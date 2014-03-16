@@ -24,6 +24,14 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+TEMPLATE_DIRS = (
+   os.path.join(BASE_DIR,'ShowCase/templates'),
+)
+
+STATICFILES_DIRS = (
+   os.path.join(BASE_DIR, "ShowCase/static"),
+)
+
 ALLOWED_HOSTS = []
 
 
@@ -58,7 +66,7 @@ WSGI_APPLICATION = 'ShowCase.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'showCase_db.sqlite3'),
     }
 }
 
