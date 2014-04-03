@@ -10,10 +10,10 @@ class NewUserSerializer(serializers.HyperlinkedModelSerializer):
 	model = User
 	fields = ('id', 'url', 'email', 'first_name', 'last_name','about', 'password')
 
-    def save_object(self, obj):
+    def save_object(self, obj, *args, **kwargs):
 	#Encrypting password before saving it.
 	obj.password = make_password(obj.password)
-	super(NewUserSerializer, self).save_object(obj)
+	super(NewUserSerializer, self).save_object(obj, *args, **kwargs)
 
 class ExistingUserSerializer(serializers.HyperlinkedModelSerializer):
     email = serializers.EmailField(read_only=True)
