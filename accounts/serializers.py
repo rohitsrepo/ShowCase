@@ -3,24 +3,25 @@ from .models import User
 from django.forms import widgets
 from django.contrib.auth.hashers import make_password
 
-class NewUserSerializer(serializers.ModelSerializer):
+class NewUserSerializer(serializers.HyperlinkedModelSerializer):
     password = serializers.CharField(max_length=128, widget=widgets.PasswordInput, write_only=True)
 
     class Meta:
 	model = User
-	fields = ('id','email', 'first_name', 'last_name','about', 'password')
+	fields = ('id', 'url', 'email', 'first_name', 'last_name','about', 'password')
 
     def save_object(self, obj):
 	#Encrypting password before saving it.
 	obj.password = make_password(obj.password)
 	super(NewUserSerializer, self).save_object(obj)
 
-class ExistingUserSerializer(serializers.ModelSerializer):
+class ExistingUserSerializer(serializers.HyperlinkedModelSerializer):
     email = serializers.EmailField(read_only=True)
+    url = serializers.HyperlinkedIdentityField(view_name = 'user-detail', lookup_field = 'pk')
 
     class Meta:
 	model = User
-	fields = ('id', 'email', 'first_name', 'last_name', 'about')
+	fields = ('id', 'url', 'email', 'first_name', 'last_name', 'about')
 
 class PasswordUserSerializer(serializers.Serializer):
     old_password = serializers.CharField(max_length=128)
