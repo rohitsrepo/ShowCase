@@ -2,13 +2,29 @@ from rest_framework import serializers
 from .models import User
 from django.forms import widgets
 from django.contrib.auth.hashers import make_password
+from django.conf import settings
+
+class HyperlinkedImageField(serializers.ImageField):
+    '''
+    Customizing image field to return complete url.
+    '''
+    
+    def to_native(self, value):
+	request = self.context.get('request', None)
+	try :
+	    print value.url
+	    return request.build_absolute_uri(value.url)
+	except ValueError:
+	    return request.build_absolute_uri(settings.DEFAULT_USER_PICTURE) 
+   
 
 class NewUserSerializer(serializers.HyperlinkedModelSerializer):
     password = serializers.CharField(max_length=128, widget=widgets.PasswordInput, write_only=True)
+    picture = HyperlinkedImageField(source='picture', required=False)
 
     class Meta:
 	model = User
-	fields = ('id', 'url', 'email', 'first_name', 'last_name','about', 'password')
+	fields = ('id', 'url', 'email', 'first_name', 'last_name','about', 'password', 'picture')
 
     def save_object(self, obj, *args, **kwargs):
 	#Encrypting password before saving it.
@@ -18,10 +34,11 @@ class NewUserSerializer(serializers.HyperlinkedModelSerializer):
 class ExistingUserSerializer(serializers.HyperlinkedModelSerializer):
     email = serializers.EmailField(read_only=True)
     url = serializers.HyperlinkedIdentityField(view_name = 'user-detail', lookup_field = 'pk')
+    picture = HyperlinkedImageField(source='picture', required=False)
 
     class Meta:
 	model = User
-	fields = ('id', 'url', 'email', 'first_name', 'last_name', 'about')
+	fields = ('id', 'url', 'email', 'first_name', 'last_name', 'about', 'picture')
 
 class PasswordUserSerializer(serializers.Serializer):
     old_password = serializers.CharField(max_length=128)

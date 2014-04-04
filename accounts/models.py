@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
+from django.conf import settings
 
 class UserManager(BaseUserManager):
 
@@ -39,6 +40,9 @@ class UserManager(BaseUserManager):
 	'''	
 	return self.create_user_base(email, first_name, password, True, True, **extra_fields)
 
+def get_upload_file_name_users(instance,filename):
+    	return 'Users/%s/Profile/%s' % (instance.id,filename)
+
 class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(
 				  verbose_name = 'first name',
@@ -72,6 +76,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 					verbose_name = 'date user joined with us',
 					auto_now_add = True,
 				      )
+
+    picture = models.ImageField(upload_to=get_upload_file_name_users, default=settings.DEFAULT_USER_PICTURE, blank=True)
 
     objects = UserManager() 
 
