@@ -1,11 +1,9 @@
 from django.shortcuts import render
-from myapp.models import Composition
-from myapp.serializers import CompositionSerializer
+from .models import Composition
 from rest_framework import mixins, generics
-from django.contrib.auth.models import User
-from myapp.serializers import UserSerializer
+from .serializers import CompositionSerializer
 from rest_framework import permissions
-from myapp.permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly
 # Create your views here.
 
 class CompositionList(generics.ListCreateAPIView):
@@ -14,7 +12,7 @@ class CompositionList(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     
     def pre_save(self, obj):
-        obj.artist = self.request.user    
+        obj.artist = self.request.user
 
 
 class CompositionDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -24,13 +22,4 @@ class CompositionDetail(generics.RetrieveUpdateDestroyAPIView):
                       IsOwnerOrReadOnly,)
     
     def pre_save(self, obj):
-        obj.artist = self.request.user    
-
-class UserList(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class UserDetail(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+        obj.artist = self.request.user

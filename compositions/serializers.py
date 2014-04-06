@@ -1,19 +1,18 @@
-from django.forms import widgets
 from rest_framework import serializers
-from myapp.models import Composition
-from django.contrib.auth.models import User
+from .models import Composition
+from django.conf import settings
+from ShowCase.serializers import HyperlinkedImageField, HyperlinkedFileField
 
+class CompositionSerializer(serializers.HyperlinkedModelSerializer):
+    artist = serializers.HyperlinkedRelatedField(source='artist', read_only=True ,view_name='user-detail')
+    display_image = HyperlinkedImageField(source='display_image', required=False,
+	     default_url=settings.DEFAULT_COMPOSITION_IMAGE_PICTURE
+	    )
+    matter = HyperlinkedFileField(source='matter', default_url=None) 
+    since = serializers.CharField(source='timesince', read_only=True)
 
-class CompositionSerializer(serializers.ModelSerializer):
-    artist = serializers.Field(source='artist.username')
     class Meta:
         model = Composition
-        fields = ('id', 'title', 'artist', 'description')
-    
-class UserSerializer(serializers.ModelSerializer):
-    compositions = serializers.PrimaryKeyRelatedField(many=True)
-    
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'compositions')
-
+        fields = ('id', 'url', 'title', 'artist', 'description', 'created', 
+		 'content_type','display_image', 'matter', 'since'
+		)

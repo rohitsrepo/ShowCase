@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'accounts',
+    'compositions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -106,4 +107,7 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'accounts.User'
 
-DEFAULT_USER_PICTURE = MEDIA_URL + 'root/default.jpg'
+DEFAULT_USER_PICTURE = MEDIA_URL + 'root/user_default.jpg'
+DEFAULT_COMPOSITION_IMAGE_PICTURE = MEDIA_URL + 'root/composition_image_default.jpg'
+DEFAULT_COMPOSITION_AUDIO_PICTURE = MEDIA_URL + 'root/composition_audio_default.jpg'
+DEFAULT_COMPOSITION_VIDEO_PICTURE = MEDIA_URL + 'root/composition_video_default.jpg'
