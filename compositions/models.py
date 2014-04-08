@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from votes.models import Vote
 
 def get_upload_file_name_composition(instance,filename):
     	return 'Users/%s/Compositions/%s/%s' % (instance.artist.id, instance.id, filename)
@@ -33,3 +34,9 @@ class Composition(models.Model):
     def timesince(self, now=None):
         from django.utils.timesince import timesince as _
 	return _(self.created, now)
+
+    def save(self, *args, **kwargs):
+	super(Composition, self).save(*args, **kwargs)
+	# Create the vote instance
+	vote = Vote(positive=0, negative=0, composition=self)
+	vote.save()

@@ -1,10 +1,7 @@
-from django.shortcuts import render
 from .models import Composition
-from rest_framework import mixins, generics
+from rest_framework import permissions, generics
 from .serializers import CompositionSerializer
-from rest_framework import permissions
 from .permissions import IsOwnerOrReadOnly
-# Create your views here.
 
 class CompositionList(generics.ListCreateAPIView):
     queryset = Composition.objects.all()

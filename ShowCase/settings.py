@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'accounts',
     'compositions',
+    'votes',
 )
 
 MIDDLEWARE_CLASSES = (
