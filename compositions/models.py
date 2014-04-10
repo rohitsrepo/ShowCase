@@ -34,9 +34,3 @@ class Composition(models.Model):
     def timesince(self, now=None):
         from django.utils.timesince import timesince as _
 	return _(self.created, now)
-
-    def save(self, *args, **kwargs):
-	super(Composition, self).save(*args, **kwargs)
-	# Create the vote instance
-	vote = Vote(positive=0, negative=0, composition=self)
-	vote.save()

@@ -9,10 +9,10 @@ class CompositionSerializer(serializers.HyperlinkedModelSerializer):
 	     default_url=settings.DEFAULT_COMPOSITION_IMAGE_PICTURE
 	    )
     matter = HyperlinkedFileField(source='matter', default_url=None) 
-    since = serializers.CharField(source='timesince', read_only=True)
+    timesince = serializers.CharField(source='timesince', read_only=True)
 
     class Meta:
         model = Composition
         fields = ('id', 'url', 'title', 'artist', 'description', 'created', 
-		 'content_type','display_image', 'matter', 'since'
+		 'content_type','display_image', 'matter', 'timesince'
 		)

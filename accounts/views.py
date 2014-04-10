@@ -35,7 +35,6 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated, IsHimself))
 def reset_password(request, pk, format=None):
-    print "Callling this method"
     '''
     Changes user password.
 
@@ -48,9 +47,9 @@ def reset_password(request, pk, format=None):
     
     check_object_permissions(request, reset_password.cls.permission_classes, user) 
     
-    serializer = PasswordUserSerializer(request.DATA, data=request.DATA,context={'user':user})
+    serializer = PasswordUserSerializer(data=request.DATA,context={'user':user})
     if serializer.is_valid():
-	user.set_password(serializer.data['new_password'])
+	user.set_password(serializer.object['new_password'])
 	user.save()
 	return Response()
     else:
