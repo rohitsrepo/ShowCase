@@ -3,6 +3,7 @@ from rest_framework import permissions, generics
 from .serializers import CompositionSerializer
 from .permissions import IsOwnerOrReadOnly
 
+
 class CompositionList(generics.ListCreateAPIView):
     queryset = Composition.objects.all()
     serializer_class = CompositionSerializer
@@ -16,7 +17,7 @@ class CompositionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Composition.objects.all()
     serializer_class = CompositionSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-                      IsOwnerOrReadOnly,)
+                          IsOwnerOrReadOnly,)
     
     def pre_save(self, obj):
         obj.artist = self.request.user

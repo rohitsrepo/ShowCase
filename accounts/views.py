@@ -7,13 +7,15 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework import generics, permissions
 from .permissions import IsHimselfOrReadOnly, IsHimself
 
+
 def check_object_permissions(request, permissions, obj):
     '''
     Checks for object permissionsi for given obj from given set of permissions.
     '''
     for permission in permissions:
-	if not permission().has_object_permission(request,None,obj=obj):
+	if not permission().has_object_permission(request, None, obj=obj):
 	    raise exceptions.PermissionDenied()
+
 
 class UserList(generics.ListCreateAPIView):
     '''
@@ -21,8 +23,9 @@ class UserList(generics.ListCreateAPIView):
     '''
     queryset = User.objects.all()
     serializer_class = NewUserSerializer
-    #TODO Change this permission to AllowANY-Catptcha or token authentication required.
+    # TODO Change this permission to AllowANY-Catptcha or token authentication required.
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     '''
@@ -31,6 +34,7 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = ExistingUserSerializer
     permission_classes = (IsHimselfOrReadOnly,)
+
 
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated, IsHimself))
@@ -45,13 +49,12 @@ def reset_password(request, pk, format=None):
     except User.DoesNotExist:
         raise Http404
     
-    check_object_permissions(request, reset_password.cls.permission_classes, user) 
+    check_object_permissions(request, reset_password.cls.permission_classes, user)
     
-    serializer = PasswordUserSerializer(data=request.DATA,context={'user':user})
+    serializer = PasswordUserSerializer(data=request.DATA, context={'user': user})
     if serializer.is_valid():
 	user.set_password(serializer.object['new_password'])
 	user.save()
 	return Response()
     else:
 	return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-

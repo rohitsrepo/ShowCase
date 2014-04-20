@@ -6,7 +6,7 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions, status
-import signals
+
 
 class VoteDetail(APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, HasNotVotedBeforeOrReadOnly)
@@ -19,12 +19,12 @@ class VoteDetail(APIView):
 
     def get(self, request, pk, format=None):
 	vote = self.get_object(pk)
-	serializer = VoteSerializer(vote, context={'request':request})
+	serializer = VoteSerializer(vote, context={'request': request})
 	return Response(serializer.data)
 
     def put(self, request, pk, format=None):
 	vote = self.get_object(pk)
-	self.check_object_permissions(request,vote)
+	self.check_object_permissions(request, vote)
 	serializer = VotingSerializer(vote, data=request.DATA)
 	if serializer.is_valid():
 	    if serializer.data['vote']:
@@ -32,7 +32,6 @@ class VoteDetail(APIView):
 	    else:
 		vote.vote_negative(request.user)
 
-	    updated_serializer = VoteSerializer(vote, context={'request':request})
+	    updated_serializer = VoteSerializer(vote, context={'request': request})
 	    return Response(updated_serializer.data)
 	return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-

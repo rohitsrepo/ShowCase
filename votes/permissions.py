@@ -6,7 +6,7 @@ class HasNotVotedBeforeOrReadOnly(permissions.BasePermission):
     Custom permission to not allow user who has already voted.
     """
 
-    def has_object_permission(self, request, view, obj): 
+    def has_object_permission(self, request, view, obj):
 	if request.method in permissions.SAFE_METHODS:
 	    return True
 

@@ -3,33 +3,34 @@ from .models import User
 from django.forms import widgets
 from django.contrib.auth.hashers import make_password
 from django.conf import settings
-from ShowCase.serializers import HyperlinkedImageField	      
+from ShowCase.serializers import HyperlinkedImageField
+
 
 class NewUserSerializer(serializers.HyperlinkedModelSerializer):
     password = serializers.CharField(max_length=128, widget=widgets.PasswordInput, write_only=True)
-    picture = HyperlinkedImageField(source='picture', required=False, 
-	     default_url=settings.DEFAULT_USER_PICTURE
-	    )
+    picture = HyperlinkedImageField(source='picture',
+                                    required=False, default_url=settings.DEFAULT_USER_PICTURE)
 
     class Meta:
 	model = User
-	fields = ('id', 'url', 'email', 'first_name', 'last_name','about', 'password', 'picture')
+	fields = ('id', 'url', 'email', 'first_name', 'last_name', 'about', 'password', 'picture')
 
     def save_object(self, obj, *args, **kwargs):
-	#Encrypting password before saving it.
+	# Encrypting password before saving it.
 	obj.password = make_password(obj.password)
 	super(NewUserSerializer, self).save_object(obj, *args, **kwargs)
+
 
 class ExistingUserSerializer(serializers.HyperlinkedModelSerializer):
     email = serializers.EmailField(read_only=True)
     url = serializers.HyperlinkedIdentityField(view_name='user-detail', lookup_field='pk')
-    picture = HyperlinkedImageField(source='picture', required=False, 
-	     default_url=settings.DEFAULT_USER_PICTURE
-	    )
+    picture = HyperlinkedImageField(source='picture', required=False,
+                                    default_url=settings.DEFAULT_USER_PICTURE)
 
     class Meta:
 	model = User
 	fields = ('id', 'url', 'email', 'first_name', 'last_name', 'about', 'picture')
+
 
 class PasswordUserSerializer(serializers.Serializer):
     old_password = serializers.CharField(max_length=128)
@@ -41,7 +42,7 @@ class PasswordUserSerializer(serializers.Serializer):
 	try:
 	    self.user = self.context['user']
 	except KeyError:
-	    raise Exception("Please pass user as context instance")    
+	    raise Exception("Please pass user as context instance")
 
     def validate_old_password(self, attrs, source):
 	'''

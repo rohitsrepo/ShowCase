@@ -7,14 +7,9 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'ShowCase.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', TemplateView.as_view(template_name='home.html')),
-    url(r'^users', include('accounts.urls')),
-    url(r'^compositions', include('compositions.urls')),
-)
+                       url(r'^admin/', include(admin.site.urls)),
+                       url(r'^$', TemplateView.as_view(template_name='home.html')),
+                       url(r'^users', include('accounts.urls')),
+                       url(r'^compositions', include('compositions.urls')),)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

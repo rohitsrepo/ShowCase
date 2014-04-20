@@ -1,6 +1,7 @@
-from django.contrib import admin
+'''
 from django import forms
 from .models import User
+
 
 class ReadOnlyPasswordHashWidget(forms.Widget):
     def render(self, name, value, attrs):
@@ -97,4 +98,4 @@ class UserChangeForm(forms.ModelForm):
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
         return self.initial["password"]
-
+'''
