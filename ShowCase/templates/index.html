@@ -1,0 +1,121 @@
+{% load staticfiles  %}
+
+<!DOCTYPE html>
+<html lang="en" ng-app='compositionsApp'>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "compositions/css/style.css" %}" rel="stylesheet">
+
+    <script src="{% static "js/angular.min.js" %}"></script>
+    <script src="{% static "compositions/js/controller.js" %}"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body ng-controller='CompostionListCtrl'>
+
+    {% verbatim %}
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><strong>ShowCase</strong></a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Recent</a></li>
+                <li><a href="#">Fresh</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown">You<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Folllows</a></li>
+                <li><a href="#">My Showcase</a></li>
+              </ul>
+            </li>
+            <li><a href="#about">Blog</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>ShowCase</h1>
+            <blockquote class="blockquote-reverse">
+              <p>“It isn't all over; everything has not been invented; the human adventure is just beginning.” </p>
+              <footer><a href="http://en.wikipedia.org/wiki/Gene_Roddenberry" target="_blank">Gene Roddenberry</a></footer>
+            </blockquote>
+        </div>
+        <div class="row">
+            <div class="panel panel-default col-lg-9">
+              <div class="panel-heading">
+                <h3 class="panel-title">{{currentComposition.title}} <small class="pull-right">By  E. J. Paprocki</small></h3>
+              </div>
+              <div class="panel-body">
+                  <p class ="col-lg-3">{{currentComposition.description}}</p>
+                <img ng-src="{{currentComposition.display_image}}" class ="col-lg-9" width="100%" data-toggle="modal" data-target="#itemModal">
+
+                <!-- Modal -->
+                <div class="modal fade" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">{{currentComposition.title}}</h4>
+                      </div>
+                      <div class="modal-body">
+                        <img ng-src="{{currentComposition.matter}}" width="100%">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div class="col-lg-3">
+                  <div class="list-group">
+                      <a href="#" class="list-group-item" ng-class="{active: isActive(composition.id)}" ng-click="showComposition(composition)" ng-repeat="composition in compositions" >
+                          <h4 class="list-group-item-heading">{{composition.title}}</h4>
+                          <p class="list-group-item-text">{{composition.description}}</p>
+                      </a>
+                  </div>
+              </div>
+            
+        </div>
+    </div><!-- /.container --> 
+    <div class ="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+           <p class="navbar-text pull-right">Place where <a href="#">Innovation</a> resides. :) </p>
+        </div>
+    </div>
+    {% endverbatim %}
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
