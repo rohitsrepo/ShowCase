@@ -3,11 +3,7 @@ from django.conf import settings
 
 
 def get_upload_file_name_composition(instance, filename):
-    	return 'Users/%s/Compositions/%s/%s' % (instance.artist.id, instance.id, filename)
-
-
-def get_upload_file_name_matter(instance, filename):
-    	return 'Users/%s/Compositions/%s/%s' % (instance.artist.id, instance.id, filename)
+    	return 'Users/%s/Compositions/%s/%s' % (instance.artist.id, instance.created, filename)
 
 
 class Composition(models.Model):
@@ -27,7 +23,7 @@ class Composition(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     content_type = models.CharField(max_length=6, choices=TYPE_CHOICES, default=IMAGE, verbose_name='Type')
     display_image = models.ImageField(upload_to=get_upload_file_name_composition, default=settings.DEFAULT_COMPOSITION_IMAGE_PICTURE, blank=True)
-    matter = models.FileField(upload_to=get_upload_file_name_matter)
+    matter = models.FileField(upload_to=get_upload_file_name_composition)
 
     class Meta:
         ordering = ('created',)

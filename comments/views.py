@@ -14,7 +14,7 @@ class CommentList(APIView):
     def get_comments(self, composition_id):
 	return  Comment.objects.filter(composition=composition_id)
 
-    def get(self, request, pk, fomrat=None):
+    def get(self, request, pk, format=None):
 	comments = self.get_comments(pk)
 	serializer = CommentSerializer(comments, many=True, context={'request': request})
 	return Response(serializer.data)

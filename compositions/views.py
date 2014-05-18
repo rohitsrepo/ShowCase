@@ -2,6 +2,7 @@ from .models import Composition
 from rest_framework import permissions, generics
 from .serializers import CompositionSerializer
 from .permissions import IsOwnerOrReadOnly
+from votes import signals
 
 
 class CompositionList(generics.ListCreateAPIView):
