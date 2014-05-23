@@ -1,0 +1,46 @@
+                <div class="row">
+                    <div class="col-lg-9" >
+                            <ul>
+                             <li ng-repeat="composition in compositions">
+                                <div class="panel panel-default">
+                                  <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        <strong>{{composition.title}} </strong>
+                                        <small class="pull-right">By  E. J. Paprocki</small>
+                                    </h3>
+                                  </div>
+                                  <div class="panel-body">  
+                                      <div class="row">
+                                      <a ui-sref="composition({compositionId: composition.id})" class="col-lg-12">
+                                        <img ng-src="{{composition.matter}}" width="100%">
+                                      </a>
+                                          </div>
+                                      <div class="row">
+                                      <br>
+                                      <div class="col-lg-10">
+                                          <button class="btn btn-primary">
+                                               <i class="fa fa-facebook"></i>
+                                          </button>
+                                          <button class="btn btn-danger">
+                                              <i class="fa fa-google-plus"></i> 
+                                          </button>
+                                          <button class="btn btn-info">
+                                              <i class="fa fa-twitter-square"></i>
+                                          </button>
+                                      </div>
+                                      <div class="col-lg-2 pull-right">
+                                          <button class="btn btn-success" ng-click="voting(composition, true)">
+                                               <i class="fa fa-hand-o-up"></i> {{composition.vote.positive}}
+                                          </button>
+                                          <button class="btn btn-warning" ng-click="voting(composition, false)">
+                                              <i class="fa fa-hand-o-down"></i> {{composition.vote.negative}}
+                                          </button>
+                                      </div>
+                                  </div>
+                                  </div>
+                                 </div>
+                                 
+                             </li>
+                            </ul>
+                    </div>
+                </div>
