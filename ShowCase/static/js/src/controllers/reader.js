@@ -3,10 +3,6 @@ var showcaseApp = angular.module('controller.reader', ['security.service', 'arti
 showcaseApp.controller('readerCtrl', function ($scope, securityFactory, compositionFactory, logger) {
     'use strict';
     
-    securityFactory.getCurrentUser().then(function (user) {
-        $scope.currentUser = user;
-    });
-    
     $scope.compositions = compositionFactory.manager.query(function (data) {
         angular.forEach(data, function (composition, key) {
             compositionFactory.votes.get(composition.id).then(function (vote) {

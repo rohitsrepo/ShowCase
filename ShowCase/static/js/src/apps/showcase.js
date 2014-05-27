@@ -1,4 +1,4 @@
-var showcaseModule = angular.module('showcaseApp', ['controller.reader', 'controller.composition', 'ui.router']);
+var showcaseModule = angular.module('showcaseApp', ['controller.reader', 'controller.composition', 'ui.router', 'security.service', 'controller.navbarTop']);
 
 showcaseModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
     'use strict';
@@ -15,7 +15,16 @@ showcaseModule.config(function ($httpProvider, $stateProvider, $urlRouterProvide
         controller: 'compositionCtrl'
     });
     
-    /* csrf for django */
+    // csrf for django 
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
 });
+
+showcaseModule.run(['securityFactory', function (securityFactory) {
+    'use strict';
+    
+    // Fetch the logged in user from last session before
+    // start of applicaiton.
+    
+    securityFactory.getCurrentUser();
+}]);

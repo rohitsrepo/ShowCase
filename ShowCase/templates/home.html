@@ -26,58 +26,15 @@
 
       <body>
 
-        {% verbatim %}
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href=""><strong>ShowCase</strong></a>
-            </div>
-            <div class="collapse navbar-collapse">
-              <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Recent</a></li>
-                    <li><a href="#">Fresh</a></li>
-                  </ul>
-                </li>
-                <li><a href="/usersapi-auth/login/" ng-hide='currentUser'>Log In</a></li>
-                <li class="dropdown" ng-show='currentUser'>
-                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentUser.first_name}}<b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Folllows</a></li>
-                    <li><a href="#">My Showcase</a></li>
-                      <li><a href="#">Logout</a></li>
-                  </ul>
-                </li>
-                <li><a href="#about">Blog</a></li>
-              </ul>
-            </div><!--/.nav-collapse -->
-          </div>
-        </div><!-- /.container --> 
+        {% verbatim %}  
+        <!--<div ng-include src=" '/static/partials/navbarTop.html' " ng-controller='navbarTopCtrl'></div>-->
+        <div  ng-include src=" '/static/partials/navbarTop.html' "></div>
             
         <div class="container">
-            <div class="jumbotron">
-                <h1>ShowCase</h1>
-                <blockquote class="blockquote-reverse">
-                  <p>“It isn't all over; everything has not been invented; the human adventure is just beginning.” </p>
-                  <footer><a href="http://en.wikipedia.org/wiki/Gene_Roddenberry" target="_blank">Gene Roddenberry</a></footer>
-                </blockquote>
-            </div>
-            <div ui-view></div>
-        </div><!-- /.container -->
-          
-        <div class ="navbar navbar-default navbar-fixed-bottom">
-            <div class="container">
-               <p class="navbar-text pull-right">Place where <a href="#">Innovation</a> resides. :) </p>
-            </div>
-        </div>
+            <div ng-include src=" '/static/partials/jumbo.html' "></div>
+            <div ui-view></div><!--jumbotron-->
+        </div><!-- /.container -->  
+        <div ng-include src=" '/static/partials/navbarBottom.html' "></div>
         {% endverbatim %}
 
         <!-- Bootstrap core JavaScript
@@ -92,6 +49,7 @@
         <script src="{% static "js/src/apps/showcase.js" %}"></script>
         <script src="{% static "js/src/controllers/reader.js" %}"></script>
         <script src="{% static "js/src/controllers/composition.js" %}"></script>
+        <script src="{% static "js/src/controllers/navbarTop.js" %}"></script>
         <script src="{% static "js/src/common/artifacts/users.js" %}"></script>
         <script src="{% static "js/src/common/artifacts/compositions.js" %}"></script>
         <script src="{% static "js/src/common/security/security.js" %}"></script>
