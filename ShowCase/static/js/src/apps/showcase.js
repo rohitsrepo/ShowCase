@@ -10,7 +10,7 @@ showcaseModule.config(function ($httpProvider, $stateProvider, $urlRouterProvide
         templateUrl: 'static/partials/reader.html',
         controller: 'readerCtrl'
     }).state('composition', {
-        url: '/compositions/:compositionId',
+        url: '/compositions/:compositionId/:slug',
         templateUrl: '/static/partials/composition.html',
         controller: 'compositionCtrl'
     });
