@@ -6,7 +6,7 @@
                                   <div class="panel-heading">
                                     <h3 class="panel-title">
                                         <strong>{{composition.title}} </strong>
-                                        <small class="pull-right">By  E. J. Paprocki</small>
+                                        <small class="pull-right">By  {{composition.artist.first_name}}</small>
                                     </h3>
                                   </div>
                                   <div class="panel-body">  
@@ -29,10 +29,10 @@
                                           </button>
                                       </div>
                                       <div class="col-lg-2 pull-right">
-                                          <button class="btn btn-success" ng-click="voting(composition, true)">
+                                          <button class="btn btn-success" ng-click="voting($index, true)">
                                                <i class="fa fa-hand-o-up"></i> {{composition.vote.positive}}
                                           </button>
-                                          <button class="btn btn-warning" ng-click="voting(composition, false)">
+                                          <button class="btn btn-warning" ng-click="voting($index, false)">
                                               <i class="fa fa-hand-o-down"></i> {{composition.vote.negative}}
                                           </button>
                                       </div>
