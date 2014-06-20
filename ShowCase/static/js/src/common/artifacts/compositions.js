@@ -1,10 +1,13 @@
-var compositionServiceModule = angular.module('artifact.composition', ['ngResource']);
+var compositionServiceModule = angular.module('artifact.composition', ['ngResource', 'security.service']);
 
-compositionServiceModule.factory('compositionFactory', function ($resource, $http) {
+compositionServiceModule.factory('compositionFactory', ['$resource', '$http', 'securityFactory', function ($resource, $http, securityFactory) {
     'use strict';
     
     var service = {};
-    service.manager = $resource('/compositions/:compositionId.json', {compositionId: '@id'});
+    service.manager = $resource('/compositions/:compositionId.json', {compositionId: '@id'}, 
+                                {
+                                    'update': { method: 'PUT'}
+                                });
     
     service.votes = {};
     service.votes.put = function (compositionId, vote) {
@@ -25,6 +28,10 @@ compositionServiceModule.factory('compositionFactory', function ($resource, $htt
     
     service.comments = $resource('/compositions/:compositionId/comments.json');
     
+    service.isOwner = function (userId) {
+        return userId === securityFactory.currentUser.id;
+    };
+    
     return service;
-});
+}]);
 

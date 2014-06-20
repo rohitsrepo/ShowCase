@@ -1,6 +1,6 @@
 var compositionCtrlModule = angular.module('controller.composition', ['security.service', 'artifact.composition', 'ui.router']);
 
-compositionCtrlModule.controller('compositionCtrl', function ($scope, securityFactory, compositionFactory, $stateParams, $location) {
+compositionCtrlModule.controller('compositionCtrl',['$scope', 'securityFactory', 'compositionFactory', '$stateParams', '$location', '$window', function ($scope, securityFactory, compositionFactory, $stateParams, $location, $window) {
     'use strict';
     
     $scope.newComment = '';
@@ -32,4 +32,23 @@ compositionCtrlModule.controller('compositionCtrl', function ($scope, securityFa
             $scope.newComment = '';
         });
     };
-});
+    
+    $scope.isCompositionOwner = compositionFactory.isOwner;
+    
+    $scope.editComposition = function () {
+        console.log($scope.composition);
+        compositionFactory.manager.update({compositionId: $scope.composition.id},
+                                          {title: $scope.composition.title, description: $scope.composition.description},
+                                          function () {
+                                              alert('Successfully updated composition.');
+                                          });
+    };
+    
+    $scope.removeComposition = function () {
+        $scope.composition.$delete(function () {
+            alert('Successfully deleted composition :( ');
+            //TODO may be back to the last page instead of home page.
+            $window.location.href = '#/popular';
+        });
+    }
+}]);

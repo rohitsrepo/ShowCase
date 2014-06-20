@@ -22,3 +22,7 @@ class CompositionDetail(generics.RetrieveUpdateDestroyAPIView):
     
     def pre_save(self, obj):
         obj.artist = self.request.user
+
+    def get_serializer(self, *args, **kwargs):
+	kwargs['partial'] = True
+	return super(CompositionDetail, self).get_serializer(*args, **kwargs);

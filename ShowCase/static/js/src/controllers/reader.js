@@ -1,20 +1,60 @@
-var showcaseApp = angular.module('controller.reader', ['security.service', 'artifact.composition', 'helper.logger']);
+var showcaseApp = angular.module('controller.reader', [
+    'security.service',
+    'artifact.composition',
+    'helper.logger',
+    'angularFileUpload',
+    'ui.router'
+]);
 
-showcaseApp.controller('readerCtrl', function ($scope, securityFactory, compositionFactory, logger) {
-    'use strict';
+showcaseApp.controller('readerCtrl', [
+    '$scope',
+    'securityFactory',
+    'compositionFactory',
+    'logger',
+    '$upload',
+    '$state',
+    '$window',
+    function ($scope, securityFactory, compositionFactory, logger, $upload, $state, $window) {
+        'use strict';
     
-    $scope.compositions = compositionFactory.manager.query();
-    
-    $scope.voting = function (index, vote) {
-        compositionFactory.votes.put($scope.compositions[index].id, vote).then(function (res) {
-            $scope.compositions[index].vote = res.data;
-        }, function (res) {
-            //TODO handle error according to status of error.
-            // Global exception handling.
-            logger('Reader controller...error while putting votes', res);
-            if (res.status === 403) {
-                alert('Seems like you have already voted mate!!!');
-            }
-        });
-    };
-});
+        var file;
+
+        $scope.compositions = compositionFactory.manager.query();
+        $scope.newComposition = {};
+
+        $scope.voting = function (index, vote) {
+            compositionFactory.votes.put($scope.compositions[index].id, vote).then(function (res) {
+                $scope.compositions[index].vote = res.data;
+            }, function (res) {
+                //TODO handle error according to status of error.
+                // Global exception handling.
+                logger('Reader controller...error while putting votes', res);
+                if (res.status === 403) {
+                    alert('Seems like you have already voted mate!!!');
+                }
+            });
+        };
+
+        $scope.onFileSelect = function ($files) {
+            file = $files;
+        };
+
+        $scope.submitComposition = function () {
+            file = file[0];
+            $scope.upload = $upload.upload({
+                url: 'compositions', //upload.php script, node.js route, or servlet url
+                method: 'POST',
+                //withCredentials: true,
+                data: $scope.newComposition,
+                file: file,
+                fileFormDataName: "matter"
+            }).progress(function (evt) {
+                console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+            }).success(function (data, status, headers, config) {
+                // file is uploaded successfully
+                //TODO - update this logic - page upload should not be required.
+                $window.location.href = $state.href('composition', {compositionId: data.id, slug: data.slug});
+                $window.location.reload();
+            });
+        };
+    }]);

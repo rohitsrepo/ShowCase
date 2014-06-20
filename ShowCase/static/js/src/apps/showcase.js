@@ -1,4 +1,4 @@
-var showcaseModule = angular.module('showcaseApp', ['controller.reader', 'controller.composition', 'ui.router', 'security.service', 'controller.navbarTop']);
+var showcaseModule = angular.module('showcaseApp', ['ui.router', 'security.service', 'controller.index']);
 
 showcaseModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
     'use strict';
@@ -13,6 +13,10 @@ showcaseModule.config(function ($httpProvider, $stateProvider, $urlRouterProvide
         url: '/compositions/:compositionId/:slug',
         templateUrl: '/static/partials/composition.html',
         controller: 'compositionCtrl'
+    }).state('test', {
+        url: '/test',
+        templateUrl: '/static/partials/test.html',
+        controller: 'testCtrl'
     });
     
     // csrf for django 
