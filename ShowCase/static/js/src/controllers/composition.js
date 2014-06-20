@@ -1,6 +1,11 @@
 var compositionCtrlModule = angular.module('controller.composition', ['security.service', 'artifact.composition', 'ui.router']);
 
-compositionCtrlModule.controller('compositionCtrl',['$scope', 'securityFactory', 'compositionFactory', '$stateParams', '$location', '$window', function ($scope, securityFactory, compositionFactory, $stateParams, $location, $window) {
+compositionCtrlModule.controller('compositionCtrl',['$scope',
+                                                    'securityFactory',
+                                                    'compositionFactory',
+                                                    '$stateParams',
+                                                    '$location',
+                                                    '$window', function ($scope, securityFactory, compositionFactory, $stateParams, $location, $window) {
     'use strict';
     
     $scope.newComment = '';
@@ -39,8 +44,10 @@ compositionCtrlModule.controller('compositionCtrl',['$scope', 'securityFactory',
         console.log($scope.composition);
         compositionFactory.manager.update({compositionId: $scope.composition.id},
                                           {title: $scope.composition.title, description: $scope.composition.description},
-                                          function () {
+                                          function (data) {
                                               alert('Successfully updated composition.');
+                                              //TODO - update this logic - page upload should not be required.
+                                              $window.location.reload();
                                           });
     };
     
