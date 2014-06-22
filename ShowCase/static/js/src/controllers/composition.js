@@ -1,6 +1,6 @@
 var compositionCtrlModule = angular.module('controller.composition', ['security.service', 'artifact.composition', 'ui.router']);
 
-compositionCtrlModule.controller('compositionCtrl',['$scope',
+compositionCtrlModule.controller('compositionCtrl', ['$scope',
                                                     'securityFactory',
                                                     'compositionFactory',
                                                     '$stateParams',
@@ -9,6 +9,7 @@ compositionCtrlModule.controller('compositionCtrl',['$scope',
     'use strict';
     
     $scope.newComment = '';
+    $scope.isAuthenticated = securityFactory.isAuthenticated;
     
     $scope.composition = compositionFactory.manager.get({compositionId: $stateParams.compositionId}, function (data) {
         if ((data.slug).localeCompare($stateParams.slug)) {
@@ -19,7 +20,9 @@ compositionCtrlModule.controller('compositionCtrl',['$scope',
     
     $scope.voting = function (vote) {
         compositionFactory.votes.put($scope.composition.id, vote).then(function (res) {
-            $scope.composition.vote = res.data;
+            if(res){
+                $scope.composition.vote = res.data;
+            }
         }, function (res) {
             //TODO handle error according to status of error.
             // Global exception handling.
@@ -31,6 +34,7 @@ compositionCtrlModule.controller('compositionCtrl',['$scope',
     };
     
     $scope.commenting = function () {
+        securityFactory.checkForAuth();
         var res = compositionFactory.comments.save({compositionId: $scope.composition.id}, {comment: $scope.newComment}, function (res) {
             //TODO - instead of reloading all comments - just append the new comment to the list - If control reaches here we already know that the request passed.
             $scope.comments = compositionFactory.comments.query({compositionId: $scope.composition.id});
@@ -57,5 +61,5 @@ compositionCtrlModule.controller('compositionCtrl',['$scope',
             //TODO may be back to the last page instead of home page.
             $window.location.href = '#/popular';
         });
-    }
+    };
 }]);

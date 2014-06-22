@@ -1,6 +1,6 @@
 var compositionServiceModule = angular.module('artifact.composition', ['ngResource', 'security.service']);
 
-compositionServiceModule.factory('compositionFactory', ['$resource', '$http', 'securityFactory', function ($resource, $http, securityFactory) {
+compositionServiceModule.factory('compositionFactory', ['$resource', '$http', 'securityFactory', '$q', function ($resource, $http, securityFactory, $q) {
     'use strict';
     
     var service = {};
@@ -11,8 +11,11 @@ compositionServiceModule.factory('compositionFactory', ['$resource', '$http', 's
     
     service.votes = {};
     service.votes.put = function (compositionId, vote) {
-        var votingUrl = '/compositions/' + compositionId + '/vote';
-        return $http({method: 'PUT', data: {'vote': vote}, url: votingUrl});
+        if(securityFactory.checkForAuth()){
+            var votingUrl = '/compositions/' + compositionId + '/vote';
+            return $http({method: 'PUT', data: {'vote': vote}, url: votingUrl});
+        }
+        return $q.when(false); 
     };
     
     service.votes.get = function (compositionId) {
@@ -21,7 +24,7 @@ compositionServiceModule.factory('compositionFactory', ['$resource', '$http', 's
             return res.data;
         }, function (res) {
             //TODO handle all the errors here. Ideally they should not be propagated further
-            // as per surrent design/.
+            // as per current design/.
             return res;
         });
     };
@@ -29,7 +32,7 @@ compositionServiceModule.factory('compositionFactory', ['$resource', '$http', 's
     service.comments = $resource('/compositions/:compositionId/comments.json');
     
     service.isOwner = function (userId) {
-        return userId === securityFactory.currentUser.id;
+        return userId === (securityFactory.currentUser && securityFactory.currentUser.id);
     };
     
     return service;

@@ -7,6 +7,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework import generics, permissions
 from .permissions import IsHimselfOrReadOnly, IsHimself
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import make_password
 
 
 def check_object_permissions(request, permissions, obj):
@@ -62,18 +63,24 @@ def reset_password(request, pk, format=None):
 
 
 @api_view(['POST'])
-@permission_classes((permissions.IsAuthenticated,))
+#@permission_classes((permissions.IsAuthenticated,))
 def login_user(request, format=None):
-	# email = request.DATA.get('email')
-	# password = make_password(request.DATA.get('password'))
-	# user = authenticate(username=email, password=password)
-
-	# if user is not None:
-	if request.user.is_active:
-	    login(request, request.user)
-	    print request.user
-	else:
-	    print "Account has been disabled"
+	email = request.DATA.get('email')
+	print email
+	password = request.DATA.get('password')
+	print password
+	try:
+		user = authenticate(username=email, password=password)
+	
+		# if user is not None:
+		if user.is_active:
+		    login(request, user)
+		    return Response(ExistingUserSerializer(user, context={'request': request}).data, status=status.HTTP_200_OK)
+		else:
+		    return Response(status=status.HTTP_403_FORBIDDEN)
+	except Exception as ex:
+	    print ex
+	    return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 	# else:
 	#    print "user name and password do not sound correct."
@@ -83,7 +90,7 @@ def login_user(request, format=None):
 @permission_classes((permissions.AllowAny,))
 def logout_user(request, format=None):
     logout(request)
-    print "user has been logged out, we guess!!!"
+    return Response(status=status.HTTP_200_OK);
 
 
 @api_view(['GET'])
