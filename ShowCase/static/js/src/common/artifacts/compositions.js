@@ -4,18 +4,18 @@ compositionServiceModule.factory('compositionFactory', ['$resource', '$http', 's
     'use strict';
     
     var service = {};
-    service.manager = $resource('/compositions/:compositionId.json', {compositionId: '@id'}, 
+    service.manager = $resource('/compositions/:compositionId.json', {compositionId: '@id'},
                                 {
                                     'update': { method: 'PUT'}
                                 });
     
     service.votes = {};
     service.votes.put = function (compositionId, vote) {
-        if(securityFactory.checkForAuth()){
+        if (securityFactory.checkForAuth()) {
             var votingUrl = '/compositions/' + compositionId + '/vote';
             return $http({method: 'PUT', data: {'vote': vote}, url: votingUrl});
         }
-        return $q.when(false); 
+        return $q.when(false);
     };
     
     service.votes.get = function (compositionId) {

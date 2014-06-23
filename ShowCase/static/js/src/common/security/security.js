@@ -3,9 +3,8 @@ var securityModule = angular.module('security.service', ['artifact.user', 'ui.bo
 securityModule.factory('securityFactory', ['$http', '$q', 'userFactory', '$modal', '$state', function ($http, $q, userFactory, $modal, $state) {
     'use strict';
     
-    var loginModal;
+    var loginModal, service = {};
     
-    var service = {};
     service.currentUser = null;
     service.redirectState = '';
                                            
@@ -66,7 +65,7 @@ securityModule.factory('securityFactory', ['$http', '$q', 'userFactory', '$modal
     };
     
     service.checkForAuth = function () {
-        if (!service.isAuthenticated()){
+        if (!service.isAuthenticated()) {
             service.showLoginModal();
             return false;
         }

@@ -3,5 +3,6 @@ var indexCtrlModule = angular.module('controller.index', [
     'controller.composition',
     'controller.navbarTop',
     'controller.test',
-    'controller.login'
+    'controller.login',
+    'controller.showcase'
 ]);

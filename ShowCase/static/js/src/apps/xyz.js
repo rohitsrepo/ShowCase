@@ -1,6 +1,6 @@
-var showcaseModule = angular.module('showcaseApp', ['ui.router', 'security.service', 'controller.index']);
+var xyzModule = angular.module('showcaseApp', ['ui.router', 'security.service', 'controller.index']);
 
-showcaseModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
+xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
     'use strict';
     
     //Http Intercpetor to check auth failures for xhr requests
@@ -16,6 +16,18 @@ showcaseModule.config(function ($httpProvider, $stateProvider, $urlRouterProvide
         url: '/compositions/:compositionId/:slug',
         templateUrl: '/static/partials/composition.html',
         controller: 'compositionCtrl'
+    }).state('showcase', {
+        url: '/:userId',
+        templateUrl: '/static/partials/showcase.html',
+        controller: 'showcaseCtrl',
+        resolve: {
+            getUser: function ($stateParams, userFactory) {
+                return userFactory.getUser($stateParams.userId).then(function (res) {
+                    return res.data;
+                });
+                //return userFactory.getUser.get({userId: $stateParams.userId}, function (res) {return res;} );
+            }
+        }
     }).state('test', {
         url: '/test',
         templateUrl: '/static/partials/test.html',
@@ -27,7 +39,7 @@ showcaseModule.config(function ($httpProvider, $stateProvider, $urlRouterProvide
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
 });
 
-showcaseModule.run(['securityFactory', function (securityFactory) {
+xyzModule.run(['securityFactory', function (securityFactory) {
     'use strict';
     
     // Fetch the logged in user from last session before
@@ -36,7 +48,7 @@ showcaseModule.run(['securityFactory', function (securityFactory) {
     securityFactory.getCurrentUser();
 }]);
 
-showcaseModule.factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
+xyzModule.factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
     'use strict';
     
     var loginPrompt = function () {

@@ -20,7 +20,7 @@ compositionCtrlModule.controller('compositionCtrl', ['$scope',
     
     $scope.voting = function (vote) {
         compositionFactory.votes.put($scope.composition.id, vote).then(function (res) {
-            if(res){
+            if (res) {
                 $scope.composition.vote = res.data;
             }
         }, function (res) {

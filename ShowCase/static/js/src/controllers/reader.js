@@ -24,7 +24,9 @@ showcaseApp.controller('readerCtrl', [
 
         $scope.voting = function (index, vote) {
             compositionFactory.votes.put($scope.compositions[index].id, vote).then(function (res) {
-                $scope.compositions[index].vote = res.data;
+                if (res) {
+                    $scope.composition.vote = res.data;
+                }
             }, function (res) {
                 //TODO handle error according to status of error.
                 // Global exception handling.

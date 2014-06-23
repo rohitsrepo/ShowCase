@@ -115,3 +115,8 @@ DEFAULT_USER_PICTURE = MEDIA_URL + 'root/user_default.jpg'
 DEFAULT_COMPOSITION_IMAGE_PICTURE = MEDIA_URL + 'root/composition_image_default.jpg'
 DEFAULT_COMPOSITION_AUDIO_PICTURE = MEDIA_URL + 'root/composition_audio_default.jpg'
 DEFAULT_COMPOSITION_VIDEO_PICTURE = MEDIA_URL + 'root/composition_video_default.jpg'
+
+REST_FRAMEWORK = {
+	    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
+}
+

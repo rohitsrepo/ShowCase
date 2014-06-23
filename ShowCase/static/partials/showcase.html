@@ -1,0 +1,14 @@
+<div class="jumbotron">
+    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <blockquote class="blockquote-reverse">
+      <p>“Because art is the music I can see.” </p>
+    </blockquote>
+</div>
+
+<div class="row" >
+    <div class="col-xs-6 col-md-3" ng-repeat="composition in compositions">
+        <a href="2" class="thumbnail">
+            <img ng-src="{{composition.matter}}" alt="...">
+        </a>
+    </div>
+</div>

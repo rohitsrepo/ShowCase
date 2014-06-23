@@ -13,7 +13,10 @@ userModule.factory('userFactory', function ($http, $resource, logger) {
             logger('User factory', res);
         });
     };
-    service.getUser = $resource('/users/:userId.json', {userId: '@id'});
+    service.getUser = function (userId) {
+        var url = '/users/' + userId;
+        return $http({method: 'GET', url: url});
+    };
     
     return service;
 });
