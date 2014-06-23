@@ -1,7 +1,12 @@
 <div ng-include src=" '/static/partials/jumbo.html' "></div>
 <div class="panel panel-default col-lg-9">
   <div class="panel-heading">
-    <h3 class="panel-title">{{composition.title}} <small class="pull-right">{{composition.user.first_name}}</small></h3>
+    <h3 class="panel-title">{{composition.title}} 
+        <small class="pull-right">By  <a target="_blank" ui-sref="showcase({userId: composition.artist.id})">
+            {{composition.artist.first_name}}
+            </a>
+        </small>
+    </h3>
   </div>
   <div class="panel-body">
           <div class="row">

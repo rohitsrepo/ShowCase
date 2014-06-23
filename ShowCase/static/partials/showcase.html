@@ -7,7 +7,7 @@
 
 <div class="row" >
     <div class="col-xs-6 col-md-3" ng-repeat="composition in compositions">
-        <a href="2" class="thumbnail">
+        <a target="_blank" ui-sref="composition({compositionId: composition.id, slug: composition.slug})" class="thumbnail">
             <img ng-src="{{composition.matter}}" alt="...">
         </a>
     </div>
