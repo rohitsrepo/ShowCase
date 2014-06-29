@@ -1,0 +1,14 @@
+<div class="jumbotron">
+    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <blockquote class="blockquote-reverse">
+      <p>“The gems that moved me.” </p>
+    </blockquote>
+</div>
+<div class="row" >
+    <div class="col-xs-6 col-md-3" ng-repeat="composition in compositions">
+        <a target="_blank" ui-sref="composition({compositionId: composition.id, slug: composition.slug})" class="thumbnail">
+            <img ng-src="media/{{composition.matter}}" alt="...">
+        </a>
+        <button class="btn btn-warning" ng-click="remove($index)">Remove</button>
+    </div>
+</div>

@@ -4,5 +4,6 @@ var indexCtrlModule = angular.module('controller.index', [
     'controller.navbarTop',
     'controller.test',
     'controller.login',
-    'controller.showcase'
+    'controller.showcase',
+    'controller.collection'
 ]);

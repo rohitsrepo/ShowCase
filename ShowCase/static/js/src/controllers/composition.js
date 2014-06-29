@@ -1,12 +1,18 @@
-var compositionCtrlModule = angular.module('controller.composition', ['security.service', 'artifact.composition', 'ui.router']);
+var compositionCtrlModule = angular.module('controller.composition', ['security.service', 'artifact.composition', 'ui.router', 'artifact.bookmark']);
 
 compositionCtrlModule.controller('compositionCtrl', ['$scope',
                                                     'securityFactory',
                                                     'compositionFactory',
                                                     '$stateParams',
                                                     '$location',
-                                                    '$window', function ($scope, securityFactory, compositionFactory, $stateParams, $location, $window) {
+                                                    '$window',
+                                                    'bookmarkFactory', function ($scope, securityFactory, compositionFactory, $stateParams, $location, $window, bookmarkFactory) {
     'use strict';
+    $scope.$watch(function () {
+        return securityFactory.currentUser;
+    }, function (user) {
+        $scope.currentUser = user;
+    });
     
     $scope.newComment = '';
     $scope.isAuthenticated = securityFactory.isAuthenticated;
@@ -61,5 +67,11 @@ compositionCtrlModule.controller('compositionCtrl', ['$scope',
             //TODO may be back to the last page instead of home page.
             $window.location.href = '#/popular';
         });
+    };
+                                                        
+    $scope.bookmark = function (compositionId) {
+        bookmarkFactory.addBookmark($scope.currentUser.id, compositionId).then(function (res) {
+            //Change the class on that button
+        }, function (res) {});
     };
 }]);

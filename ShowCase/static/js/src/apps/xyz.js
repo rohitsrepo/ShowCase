@@ -28,6 +28,10 @@ xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
                 //return userFactory.getUser.get({userId: $stateParams.userId}, function (res) {return res;} );
             }
         }
+    }).state('collections', {
+        url: '/:userId/collection',
+        templateUrl: '/static/partials/collection.html',
+        controller: 'collectionCtrl'
     }).state('test', {
         url: '/test',
         templateUrl: '/static/partials/test.html',

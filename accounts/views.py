@@ -1,5 +1,5 @@
 from .models import User
-from .serializers import NewUserSerializer, ExistingUserSerializer, PasswordUserSerializer
+from .serializers import NewUserSerializer, ExistingUserSerializer, PasswordUserSerializer, BookmarkSerializer
 from django.http import Http404
 from rest_framework.response import Response
 from rest_framework import status, exceptions
@@ -100,3 +100,26 @@ def get_current_user(request, format=None):
 	return Response(ExistingUserSerializer(request.user, context={'request': request}).data, status=status.HTTP_200_OK)
     else:
 	return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+@api_view(['GET', 'PUT', 'POST'])
+@permission_classes((permissions.IsAuthenticated, IsHimself))
+def user_bookmarks(request, pk, format=None):
+    if request.method == 'GET':
+	#user = User.objects.get(pk=pk)
+	#bookmarks = user.bookmarks.all()
+	serializer = BookmarkSerializer(request.user, context={request: request}) 
+	return Response(serializer.data)
+    elif request.method == 'PUT':
+	#serializer = BookmarkSerializer(request.user, data=request.DATA)
+	bookmarks = request.DATA.get('bookmarks')
+	request.user.bookmarks.add(*bookmarks)
+	serializer = BookmarkSerializer(request.user)
+	return Response(serializer.data)
+    elif request.method == 'POST':
+	print 'tibaaannnn'
+	print request.DATA
+	bookmarks = request.DATA['bookmarks']
+	print bookmarks
+	request.user.bookmarks.remove(*bookmarks);
+	serializer = BookmarkSerializer(request.user)
+	return Response(serializer.data)

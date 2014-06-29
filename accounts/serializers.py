@@ -54,3 +54,9 @@ class PasswordUserSerializer(serializers.Serializer):
 	    return attrs
 	else:
 	    raise serializers.ValidationError("Old password that you entered is not a valid password")
+
+class BookmarkSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+	model = User
+	fields = ('bookmarks',)
+	depth = 2

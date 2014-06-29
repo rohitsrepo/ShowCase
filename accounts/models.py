@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
 from django.conf import settings
+from compositions.models import Composition
 
 
 class UserManager(BaseUserManager):
@@ -64,6 +65,8 @@ class User(AbstractBaseUser, PermissionsMixin):
                                        auto_now_add=True,)
     
     picture = models.ImageField(upload_to=get_upload_file_name_users, default=settings.DEFAULT_USER_PICTURE, blank=True)
+
+    bookmarks = models.ManyToManyField(Composition)
     
     objects = UserManager()
 
