@@ -1,6 +1,6 @@
 var navbarTopModule = angular.module('controller.navbarTop', ['security.service']);
 
-navbarTopModule.controller('navbarTopCtrl', ['$scope', 'securityFactory', function ($scope, securityFactory) {
+navbarTopModule.controller('navbarTopCtrl', ['$scope', 'securityFactory', '$log', function ($scope, securityFactory, $log) {
     'use strict';
     
     $scope.$watch(function () {
@@ -9,6 +9,6 @@ navbarTopModule.controller('navbarTopCtrl', ['$scope', 'securityFactory', functi
         $scope.currentUser = user;
     });
     
-    $scope.login = securityFactory.showLoginModal;
+    $scope.login = securityFactory.checkForAuth;
     $scope.logout = securityFactory.logout;
 }]);

@@ -39,3 +39,10 @@ class HyperlinkedFileField(serializers.FileField):
 	        return request.build_absolute_uri(self.default_url)
 	    else:
 		raise Exception('HyperlinkedFileField: Default url invalid.')
+
+class URLImageField(serializers.ImageField):
+    '''
+    Customizing image field to complete url.
+    '''    
+    def to_native(self, value):
+	return value.url

@@ -1,6 +1,6 @@
-var bookmarkModule = angular.module('artifact.bookmark', ['ngResource']);
+var bookmarkModule = angular.module('artifact.bookmark', ['ngResource', 'security.service']);
 
-bookmarkModule.factory('bookmarkFactory', ['$http', '$log', function ($http, $log) {
+bookmarkModule.factory('bookmarkFactory', ['$http', '$log', 'securityFactory', '$q',  function ($http, $log, securityFactory, $q) {
     'use strict';
     
     var service = {};
@@ -14,11 +14,16 @@ bookmarkModule.factory('bookmarkFactory', ['$http', '$log', function ($http, $lo
     };
     
     service.addBookmark = function (userId, compositionId) {
-        return $http({method: 'PUT', data: {bookmarks: [compositionId]}, url: 'users/' + userId + '/bookmarks'}).then(function (res) {
-            $log.info(res);
-        }, function (res) {
-            $log.error('bookmarkFactory', res);
-        });
+        if (securityFactory.checkForAuth()) {
+            return $http({method: 'PUT', data: {bookmarks: [compositionId]}, url: 'users/' + userId + '/bookmarks'}).then(function (res) {
+                $log.info(res);
+                return res;
+            }, function (res) {
+                $log.error('bookmarkFactory', res);
+            });
+        }
+        
+        return $q.when(false);
     };
     
     service.deleteBookmark = function (userId, compositionId) {

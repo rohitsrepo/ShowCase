@@ -1,6 +1,6 @@
 var securityModule = angular.module('security.service', ['artifact.user', 'ui.bootstrap', 'ui.router']);
 
-securityModule.factory('securityFactory', ['$http', '$q', 'userFactory', '$modal', '$state', function ($http, $q, userFactory, $modal, $state) {
+securityModule.factory('securityFactory', ['$http', '$q', 'userFactory', '$modal', '$state', '$log', '$window', function ($http, $q, userFactory, $modal, $state, $log, $window) {
     'use strict';
     
     var loginModal, service = {};
@@ -8,9 +8,15 @@ securityModule.factory('securityFactory', ['$http', '$q', 'userFactory', '$modal
     service.currentUser = null;
     service.redirectState = '';
                                            
-    service.redirect = function (state) {
-        state = state || 'reader';
-        $state.go(state);
+    service.redirect = function (state, force) {
+        // No need felt for exposing redirection logic as all the states are AllowAny, block s w.r.t. to actions like voting so reloadin current state.
+        //state = state || 'reader';
+        if (force) {
+            $log.info('We are here for force reload.');
+            $window.location.reload();
+        } else {
+            $state.go($state.current.name, {location: 'replace'});
+        }
     };
     
     service.getCurrentUser = function () {
@@ -35,7 +41,7 @@ securityModule.factory('securityFactory', ['$http', '$q', 'userFactory', '$modal
             service.currentUser = res.data;
             return service.isAuthenticated();
         }, function (res) {
-            console.log('Error', res);
+            $log.error('Error', res);
         });
     };
     
@@ -44,8 +50,9 @@ securityModule.factory('securityFactory', ['$http', '$q', 'userFactory', '$modal
                       url: '/users/logout'
                      }).then(function (res) {
             service.currentUser = '';
+            service.redirect($state.current.name, true);
         }, function (res) {
-            console.log('Error', res);
+            $log.error('Error', res);
         });
     };
     
@@ -56,17 +63,29 @@ securityModule.factory('securityFactory', ['$http', '$q', 'userFactory', '$modal
             controller: 'loginCtrl'
         });
         
-        loginModal.result.then(function (result) {
+        /*return loginModal.result.then(function (result) {
             //retry requests/Redirect.
             service.redirect(service.redirectState);
+            $log.info('form loginModal', result);
+            return result;
         }, function (result) {
-            console.info('Log In cancelled.');
-        });
+            $log.info('from login modal Log In cancelled.');
+            $log.info('from loginModal', result);
+            return result;
+        });*/
+        
+        // Returning result promise so that user of the login modal can better handle situation on login/cancel.
+        return loginModal.result;
     };
     
     service.checkForAuth = function () {
         if (!service.isAuthenticated()) {
-            service.showLoginModal();
+            service.showLoginModal().then(function (res) {
+                
+                service.redirect($state.current.name, true);
+            }, function (res) {
+                $log.info('Login cancelled.');
+            });
             return false;
         }
         return true;

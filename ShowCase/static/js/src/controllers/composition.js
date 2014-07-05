@@ -6,7 +6,8 @@ compositionCtrlModule.controller('compositionCtrl', ['$scope',
                                                     '$stateParams',
                                                     '$location',
                                                     '$window',
-                                                    'bookmarkFactory', function ($scope, securityFactory, compositionFactory, $stateParams, $location, $window, bookmarkFactory) {
+                                                    '$log',
+                                                    'bookmarkFactory', function ($scope, securityFactory, compositionFactory, $stateParams, $location, $window, $log, bookmarkFactory) {
     'use strict';
     $scope.$watch(function () {
         return securityFactory.currentUser;
@@ -28,6 +29,7 @@ compositionCtrlModule.controller('compositionCtrl', ['$scope',
         compositionFactory.votes.put($scope.composition.id, vote).then(function (res) {
             if (res) {
                 $scope.composition.vote = res.data;
+                $scope.composition.IsVoted = true;
             }
         }, function (res) {
             //TODO handle error according to status of error.
@@ -42,8 +44,7 @@ compositionCtrlModule.controller('compositionCtrl', ['$scope',
     $scope.commenting = function () {
         securityFactory.checkForAuth();
         var res = compositionFactory.comments.save({compositionId: $scope.composition.id}, {comment: $scope.newComment}, function (res) {
-            //TODO - instead of reloading all comments - just append the new comment to the list - If control reaches here we already know that the request passed.
-            $scope.comments = compositionFactory.comments.query({compositionId: $scope.composition.id});
+            $scope.comments.push(res);
             $scope.newComment = '';
         });
     };
@@ -70,8 +71,15 @@ compositionCtrlModule.controller('compositionCtrl', ['$scope',
     };
                                                         
     $scope.bookmark = function (compositionId) {
-        bookmarkFactory.addBookmark($scope.currentUser.id, compositionId).then(function (res) {
-            //Change the class on that button
-        }, function (res) {});
+        if (securityFactory.checkForAuth()) {
+            bookmarkFactory.addBookmark($scope.currentUser.id, compositionId).then(function (res) {
+                $log.info('got in return', res);
+                if (res) {
+                    $scope.composition.IsBookmarked = true;
+                } else {
+                    $log.info('Seems like auth reluctance by user.');
+                };
+            }, function (res) {});
+        }
     };
 }]);
