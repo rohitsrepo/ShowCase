@@ -98,25 +98,26 @@ def follow_compositions(request, format=None):
     # To make it genenric w.r.t. user get user Id in post/get. Then check for permissions.
     check_object_permissions(request, follow_compositions.cls.permission_classes, request.user)
     follows = request.user.follows.all()
-    q_object = Q()
-
-    for follow in follows:
-	q_object |= Q(artist_id=follow.id)
-    
-    compositions = Composition.objects.filter(q_object)
-    ser = CompositionSerializer(compositions, many=True)
-
-    if request.user.is_authenticated():
-	counter = 0
-	related_comps = compositions.filter(collectors__id=request.user.id)  
-	for composition in compositions:
-	    
-	    ser.data[counter]['IsBookmarked'] = False
-	    ser.data[counter]['IsVoted'] = False
-	    
-	    if composition in related_comps:
-		ser.data[counter]['IsBookmarked'] = True
-	    if request.user.votes.filter(composition=composition).exists():
-		ser.data[counter]['IsVoted'] = True
-	    counter = counter + 1
-    return Response(ser.data)
+    if follows:
+	q_object = Q()
+	
+	for follow in follows:
+	    q_object |= Q(artist_id=follow.id)
+	
+	compositions = Composition.objects.filter(q_object)
+	ser = CompositionSerializer(compositions, many=True)
+	
+	if request.user.is_authenticated():
+	    counter = 0
+	    related_comps = compositions.filter(collectors__id=request.user.id)  
+	    for composition in compositions:
+		ser.data[counter]['IsBookmarked'] = False
+		ser.data[counter]['IsVoted'] = False
+		
+		if composition in related_comps:
+		    ser.data[counter]['IsBookmarked'] = True
+		if request.user.votes.filter(composition=composition).exists():
+		    ser.data[counter]['IsVoted'] = True
+		counter = counter + 1
+	return Response(ser.data)
+    return Response([])
