@@ -1,9 +1,9 @@
 var collectionModule = angular.module('controller.collection', ['artifact.bookmark']);
 
-collectionModule.controller('collectionCtrl', ['$scope', 'bookmarkFactory', function ($scope, bookmarkFactory) {
+collectionModule.controller('collectionCtrl', ['$scope', 'bookmarkFactory', '$log', 'getUser', function ($scope, bookmarkFactory, $log, getUser) {
     'use strict';
     // TODO get this user from the parent.
-    $scope.currentUser = {first_name: 'Rohit', id: 1};
+    $scope.currentUser = getUser;
     bookmarkFactory.getBookmark($scope.currentUser.id).then(function (res) {
         $scope.compositions = res;
     }, function () {});

@@ -28,8 +28,8 @@ xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
                 //return userFactory.getUser.get({userId: $stateParams.userId}, function (res) {return res;} );
             }
         }
-    }).state('collections', {
-        url: '/:userId/collection',
+    }).state('showcase.collection', {
+        url: '/collection',
         templateUrl: '/static/partials/collection.html',
         controller: 'collectionCtrl'
     }).state('test', {
@@ -52,7 +52,7 @@ xyzModule.run(['securityFactory', function (securityFactory) {
     securityFactory.getCurrentUser();
 }]);
 
-xyzModule.factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
+xyzModule.factory('authHttpResponseInterceptor', ['$q', '$window', '$log', function ($q, $window, $log) {
     'use strict';
     
     var loginPrompt = function () {
@@ -64,13 +64,13 @@ xyzModule.factory('authHttpResponseInterceptor', ['$q', '$window', function ($q,
     return {
         response: function (response) {
             if (response.status === 401) {
-                console.log("Response 401");
+                $log.info("Interceptor: Response 401");
             }
             return response || $q.when(response);
         },
         responseError: function (rejection) {
             if (rejection.status === 401) {
-                console.log("Response Error 401", rejection);
+                $log.info("Interceptor: Response Error 401", rejection);
                 //$location.path('/login').search('returnTo', $location.path());
             }
             return $q.reject(rejection);

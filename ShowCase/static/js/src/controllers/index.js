@@ -1,4 +1,5 @@
 var indexCtrlModule = angular.module('controller.index', [
+    'controller.root',
     'controller.reader',
     'controller.composition',
     'controller.navbarTop',

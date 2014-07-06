@@ -3,7 +3,8 @@ var showcaseApp = angular.module('controller.reader', [
     'artifact.composition',
     'helper.logger',
     'angularFileUpload',
-    'ui.router'
+    'ui.router',
+    'artifact.bookmark'
 ]);
 
 showcaseApp.controller('readerCtrl', [
@@ -13,8 +14,10 @@ showcaseApp.controller('readerCtrl', [
     'logger',
     '$upload',
     '$state',
+    '$log',
+    'bookmarkFactory',
     '$window',
-    function ($scope, securityFactory, compositionFactory, logger, $upload, $state, $window) {
+    function ($scope, securityFactory, compositionFactory, logger, $upload, $state, $log, bookmarkFactory, $window) {
         'use strict';
     
         var file;
@@ -51,7 +54,7 @@ showcaseApp.controller('readerCtrl', [
                 file: file,
                 fileFormDataName: "matter"
             }).progress(function (evt) {
-                console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+                $log.info('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
             }).success(function (data, status, headers, config) {
                 // file is uploaded successfully
                 //TODO - update this logic - page upload should not be required.
@@ -59,4 +62,16 @@ showcaseApp.controller('readerCtrl', [
                 $window.location.reload();
             });
         };
+        
+        $scope.bookmark = function (compositionId, index) {
+        if (securityFactory.checkForAuth()) {
+            bookmarkFactory.addBookmark($scope.currentUser.id, compositionId).then(function (res) {
+                if (res) {
+                    $scope.compositions[index].IsBookmarked = true;
+                } else {
+                    $log.info('Seems like auth reluctance by user.');
+                }
+            }, function (res) {});
+        }
+    };
     }]);

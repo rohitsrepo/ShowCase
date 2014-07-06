@@ -27,13 +27,15 @@
       <body>
 
         {% verbatim %}  
-        <!--<div ng-include src=" '/static/partials/navbarTop.html' " ng-controller='navbarTopCtrl'></div>-->
-        <div  ng-include src=" '/static/partials/navbarTop.html' "></div>
-            
-        <div class="container">
-            <div ui-view></div><!--jumbotron-->
-        </div><!-- /.container -->  
-        <div ng-include src=" '/static/partials/navbarBottom.html' "></div>
+        <div ng-controller="rootCtrl">
+            <!--<div ng-include src=" '/static/partials/navbarTop.html' " ng-controller='navbarTopCtrl'></div>-->
+            <div  ng-include src=" '/static/partials/navbarTop.html' "></div>
+
+            <div class="container">
+                <div ui-view></div><!--jumbotron-->
+            </div><!-- /.container -->  
+            <div ng-include src=" '/static/partials/navbarBottom.html' "></div>
+        </div>
         {% endverbatim %}
 
         <!-- Bootstrap core JavaScript
@@ -52,6 +54,7 @@
         <script src="{% static "js/vendor/angular/angular-file-upload-html5-shim.min.js" %}"></script>
           
         <script src="{% static "js/src/apps/xyz.js" %}"></script>
+        <script src="{% static "js/src/controllers/root.js" %}"></script>
         <script src="{% static "js/src/controllers/showcase.js" %}"></script>
         <script src="{% static "js/src/controllers/reader.js" %}"></script>
         <script src="{% static "js/src/controllers/composition.js" %}"></script>

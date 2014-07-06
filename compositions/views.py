@@ -4,10 +4,10 @@ from rest_framework import permissions, generics, status
 from .serializers import CompositionSerializer
 from .permissions import IsOwnerOrReadOnly
 from votes import signals
-from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import Http404
+from accounts.serializers import ExistingUserSerializer
 
 
 class CompositionFilter(django_filters.FilterSet):
@@ -16,7 +16,7 @@ class CompositionFilter(django_filters.FilterSet):
 	model = Composition
 	fields = ('artist',)
 
-class CompositionList(generics.ListCreateAPIView):
+class CompositionListOld(generics.ListCreateAPIView):
     queryset = Composition.objects.all()
     serializer_class = CompositionSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
@@ -24,6 +24,37 @@ class CompositionList(generics.ListCreateAPIView):
     
     def pre_save(self, obj):
         obj.artist = self.request.user
+
+class CompositionList(APIView):
+    ''' Handels listing of compositions and adding new ones.'''
+
+    def get(self, request, format=None):
+	compositions = Composition.objects.all()
+	ser = CompositionSerializer(compositions, many=True)
+
+	if request.user.is_authenticated():
+	    counter = 0
+	    related_comps = compositions.filter(user__id=request.user.id)
+	    for composition in compositions:
+		ser.data[counter]['IsBookmarked'] = False
+		ser.data[counter]['IsVoted'] = False
+		
+		if composition in related_comps:
+		    ser.data[counter]['IsBookmarked'] = True
+		if request.user.votes.filter(composition=composition).exists():
+		    ser.data[counter]['IsVoted'] = True
+		counter = counter + 1
+	return Response(ser.data)
+
+    def post(self, request, format=None):
+	ser = CompositionSerializer(data=request.DATA, files=request.FILES, context={'request': request})
+	if ser.is_valid():
+	    ser.object.artist = request.user
+	    ser.save()
+	    return Response(ser.data, status=status.HTTP_201_CREATED)
+
+	return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class CompositionDetail(APIView):
     '''Handel endpoints for individual composition.'''
@@ -58,6 +89,6 @@ class CompositionDetail(APIView):
 	return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
-	composition = self.get_serializer(pk)
+	composition = self.get_composition(pk)
 	composition.delete()
 	return Response(status=status.HTTP_204_NO_CONTENT)

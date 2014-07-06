@@ -9,11 +9,6 @@ compositionCtrlModule.controller('compositionCtrl', ['$scope',
                                                     '$log',
                                                     'bookmarkFactory', function ($scope, securityFactory, compositionFactory, $stateParams, $location, $window, $log, bookmarkFactory) {
     'use strict';
-    $scope.$watch(function () {
-        return securityFactory.currentUser;
-    }, function (user) {
-        $scope.currentUser = user;
-    });
     
     $scope.newComment = '';
     $scope.isAuthenticated = securityFactory.isAuthenticated;
@@ -34,7 +29,7 @@ compositionCtrlModule.controller('compositionCtrl', ['$scope',
         }, function (res) {
             //TODO handle error according to status of error.
             // Global exception handling.
-            console.log('Reader controller...error while putting votes', res);
+            $log.error('Reader controller...error while putting votes', res);
             if (res.status === 403) {
                 alert('Seems like you have already voted mate!!!');
             }
@@ -52,7 +47,6 @@ compositionCtrlModule.controller('compositionCtrl', ['$scope',
     $scope.isCompositionOwner = compositionFactory.isOwner;
     
     $scope.editComposition = function () {
-        console.log($scope.composition);
         compositionFactory.manager.update({compositionId: $scope.composition.id},
                                           {title: $scope.composition.title, description: $scope.composition.description},
                                           function (data) {
@@ -73,12 +67,11 @@ compositionCtrlModule.controller('compositionCtrl', ['$scope',
     $scope.bookmark = function (compositionId) {
         if (securityFactory.checkForAuth()) {
             bookmarkFactory.addBookmark($scope.currentUser.id, compositionId).then(function (res) {
-                $log.info('got in return', res);
                 if (res) {
                     $scope.composition.IsBookmarked = true;
                 } else {
                     $log.info('Seems like auth reluctance by user.');
-                };
+                }
             }, function (res) {});
         }
     };

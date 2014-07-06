@@ -28,6 +28,7 @@
               <li><a ng-click="logout()">Logout</a></li>
           </ul>
         </li>
+        <li><a ui-sref="showcase.collection({userId: currentUser.id})" ng-show="currentUser">Collection</a></li>
         <li><a href="#">Blog</a></li>
       </ul>
     </div><!--/.nav-collapse -->

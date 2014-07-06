@@ -21,7 +21,7 @@
                           </div>
                       <div class="row">
                       <br>
-                      <div class="col-lg-10">
+                      <div class="col-lg-9">
                           <button class="btn btn-primary">
                                <i class="fa fa-facebook"></i>
                           </button>
@@ -32,12 +32,18 @@
                               <i class="fa fa-twitter-square"></i>
                           </button>
                       </div>
-                      <div class="col-lg-2 pull-right">
-                          <button class="btn btn-success" ng-click="voting($index, true)">
+                      <div class="col-lg-3 pull-right">
+                          <button class="btn btn-success" ng-click="voting($index, true)" ng-class="{disabled: composition.IsVoted}">
                                <i class="fa fa-hand-o-up"></i> {{composition.vote.positive}}
                           </button>
-                          <button class="btn btn-warning" ng-click="voting($index, false)">
+                          <button class="btn btn-warning" ng-click="voting($index, false)" ng-class="{disabled: composition.IsVoted}">
                               <i class="fa fa-hand-o-down"></i> {{composition.vote.negative}}
+                          </button>
+                          <button class="btn" ng-click="bookmark(composition.id, $index)" ng-hide="composition.IsBookmarked">
+                              <i class="fa fa-heart-o"></i>
+                          </button>              
+                          <button class="btn btn-danger active" ng-show="composition.IsBookmarked">
+                              <i class="fa fa-heart"></i>
                           </button>
                       </div>
                   </div>

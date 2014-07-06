@@ -1,14 +1,16 @@
 <div class="jumbotron">
-    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <h1>{{currentUser.first_name}} {{currentUser.last_name}}</h1>
     <blockquote class="blockquote-reverse">
       <p>“Because art is the music I can see.” </p>
     </blockquote>
 </div>
 
-<div class="row" >
-    <div class="col-xs-6 col-md-3" ng-repeat="composition in compositions">
-        <a target="_blank" ui-sref="composition({compositionId: composition.id, slug: composition.slug})" class="thumbnail">
-            <img ng-src="{{composition.matter}}" alt="...">
-        </a>
+<div ui-view>
+    <div class="row" >
+        <div class="col-xs-6 col-md-3" ng-repeat="composition in compositions">
+            <a target="_blank" ui-sref="composition({compositionId: composition.id, slug: composition.slug})" class="thumbnail">
+                <img ng-src="{{composition.matter}}" alt="...">
+            </a>
+        </div>
     </div>
 </div>
