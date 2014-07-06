@@ -23,12 +23,12 @@
         <li class="dropdown" ng-show='currentUser'>
          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentUser.first_name}}<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Follows</a></li>
+            <li><a ui-sref="showcase.follow({userId: currentUser.id})">Follows</a></li>
+            <li><a ui-sref="showcase.collection({userId: currentUser.id})">Collection</a></li>
             <li><a href="#">My Showcase</a></li>
               <li><a ng-click="logout()">Logout</a></li>
           </ul>
         </li>
-        <li><a ui-sref="showcase.collection({userId: currentUser.id})" ng-show="currentUser">Collection</a></li>
         <li><a href="#">Blog</a></li>
       </ul>
     </div><!--/.nav-collapse -->

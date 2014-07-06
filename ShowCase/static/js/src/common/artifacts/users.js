@@ -1,6 +1,6 @@
-var userModule = angular.module('artifact.user', ['ngResource', 'helper.logger']);
+var userModule = angular.module('artifact.user', ['ngResource']);
 
-userModule.factory('userFactory', function ($http, $resource, logger) {
+userModule.factory('userFactory', [ '$http', '$resource', '$log', function ($http, $resource, $log) {
     'use strict';
     
     var service = {};
@@ -10,13 +10,14 @@ userModule.factory('userFactory', function ($http, $resource, logger) {
             return res.data;
         }, function (res) {
             //TODO: remove console logging and may be do something to contain the failure.
-            logger('User factory', res);
+            $log.error('Trying to user in session: ', res);
         });
     };
+    
     service.getUser = function (userId) {
         var url = '/users/' + userId;
         return $http({method: 'GET', url: url});
     };
     
     return service;
-});
+}]);

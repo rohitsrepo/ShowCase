@@ -6,5 +6,6 @@ var indexCtrlModule = angular.module('controller.index', [
     'controller.test',
     'controller.login',
     'controller.showcase',
+    'controller.follow',
     'controller.collection'
 ]);

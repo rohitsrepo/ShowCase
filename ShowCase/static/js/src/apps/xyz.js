@@ -32,6 +32,10 @@ xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
         url: '/collection',
         templateUrl: '/static/partials/collection.html',
         controller: 'collectionCtrl'
+    }).state('showcase.follow', {
+        url: '/follow',
+        templateUrl: '/static/partials/follow.html',
+        controller: 'followCtrl'
     }).state('test', {
         url: '/test',
         templateUrl: '/static/partials/test.html',

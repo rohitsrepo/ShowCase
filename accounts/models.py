@@ -66,7 +66,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     picture = models.ImageField(upload_to=get_upload_file_name_users, default=settings.DEFAULT_USER_PICTURE, blank=True)
 
-    bookmarks = models.ManyToManyField(Composition)
+    bookmarks = models.ManyToManyField(Composition, related_name='collectors')
+
+    follows = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='followers')
     
     objects = UserManager()
 

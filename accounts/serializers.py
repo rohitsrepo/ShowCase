@@ -4,16 +4,17 @@ from django.forms import widgets
 from django.contrib.auth.hashers import make_password
 from django.conf import settings
 from ShowCase.serializers import HyperlinkedImageField
+from ShowCase.serializers import URLImageField
 
 
-class NewUserSerializer(serializers.HyperlinkedModelSerializer):
+class NewUserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=128, widget=widgets.PasswordInput, write_only=True)
     picture = HyperlinkedImageField(source='picture',
                                     required=False, default_url=settings.DEFAULT_USER_PICTURE)
 
     class Meta:
 	model = User
-	fields = ('id', 'url', 'email', 'first_name', 'last_name', 'about', 'password', 'picture')
+	fields = ('id', 'email', 'first_name', 'last_name', 'about', 'password', 'picture')
 
     def save_object(self, obj, *args, **kwargs):
 	# Encrypting password before saving it.
@@ -21,15 +22,15 @@ class NewUserSerializer(serializers.HyperlinkedModelSerializer):
 	super(NewUserSerializer, self).save_object(obj, *args, **kwargs)
 
 
-class ExistingUserSerializer(serializers.HyperlinkedModelSerializer):
+class ExistingUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(read_only=True)
-    url = serializers.HyperlinkedIdentityField(view_name='user-detail', lookup_field='pk')
+    #url = serializers.HyperlinkedIdentityField(view_name='user-detail', lookup_field='pk')
     picture = HyperlinkedImageField(source='picture', required=False,
                                     default_url=settings.DEFAULT_USER_PICTURE)
 
     class Meta:
 	model = User
-	fields = ('id', 'url', 'email', 'first_name', 'last_name', 'about', 'picture')
+	fields = ('id', 'email', 'first_name', 'last_name', 'about', 'picture')
 
 
 class PasswordUserSerializer(serializers.Serializer):
@@ -55,8 +56,14 @@ class PasswordUserSerializer(serializers.Serializer):
 	else:
 	    raise serializers.ValidationError("Old password that you entered is not a valid password")
 
-class BookmarkSerializer(serializers.HyperlinkedModelSerializer):
+class BookmarkSerializer(serializers.ModelSerializer):
     class Meta:
 	model = User
 	fields = ('bookmarks',)
 	depth = 2
+
+class FollowSerializer(serializers.ModelSerializer):
+    class Meta:
+	model = User
+	fields = ('follows',)
+	depth = 1

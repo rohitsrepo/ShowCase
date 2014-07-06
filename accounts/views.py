@@ -1,22 +1,16 @@
 from .models import User
-from .serializers import NewUserSerializer, ExistingUserSerializer, PasswordUserSerializer, BookmarkSerializer
+from .serializers import NewUserSerializer, ExistingUserSerializer, PasswordUserSerializer, BookmarkSerializer, FollowSerializer
 from django.http import Http404
 from rest_framework.response import Response
-from rest_framework import status, exceptions
+from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import generics, permissions
 from .permissions import IsHimselfOrReadOnly, IsHimself
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
-
-
-def check_object_permissions(request, permissions, obj):
-    '''
-    Checks for object permissionsi for given obj from given set of permissions.
-    '''
-    for permission in permissions:
-	if not permission().has_object_permission(request, None, obj=obj):
-	    raise exceptions.PermissionDenied()
+from ShowCase.utils import check_object_permissions
+from django.shortcuts import get_object_or_404
+from rest_framework.views import APIView
 
 
 class UserList(generics.ListCreateAPIView):
@@ -29,13 +23,47 @@ class UserList(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
 
-class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+class UserDetailOld(generics.RetrieveUpdateDestroyAPIView):
     '''
     Retrieves, updates and deletes a particular user.
     '''
     queryset = User.objects.all()
     serializer_class = ExistingUserSerializer
     permission_classes = (IsHimselfOrReadOnly,)
+
+class UserDetail(APIView):
+    '''
+    Retrieves, updates and deletes a particular user.
+    '''
+
+    permission_classes = ((IsHimselfOrReadOnly,))
+
+    def get_user(self, pk, request):
+	user = get_object_or_404(User, pk=pk)
+	check_object_permissions(request, self.permission_classes, user)
+	return user
+
+    def get(self, request, pk, format=None):
+	user = self.get_user(pk, request)
+	ser = ExistingUserSerializer(user, context={'request': request})
+	ser.data['IsFollowed'] = False
+
+	if request.user.is_authenticated() and request.user.follows.filter(pk=pk).exists():
+	    ser.data['IsFollowed'] = True
+	return Response(ser.data)
+
+    def put(self, request, pk, format=None):
+	user = self.get_user(pk, request)
+	ser = ExistingUserSerializer(user, data=request.DATA, partial=True, context={'request': request})
+	if ser.is_valid():
+	    ser.save()
+	    return Response(ser.data)
+	return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+	user = self.get_user(pk, request)
+	user.delete()
+	return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 @api_view(['POST'])
@@ -104,22 +132,35 @@ def get_current_user(request, format=None):
 @api_view(['GET', 'PUT', 'POST'])
 @permission_classes((permissions.IsAuthenticated, IsHimself))
 def user_bookmarks(request, pk, format=None):
+    check_object_permissions(request, user_bookmarks.cls.permission_classes, User.objects.get(pk=pk))
     if request.method == 'GET':
-	#user = User.objects.get(pk=pk)
-	#bookmarks = user.bookmarks.all()
 	serializer = BookmarkSerializer(request.user, context={request: request}) 
 	return Response(serializer.data)
     elif request.method == 'PUT':
-	#serializer = BookmarkSerializer(request.user, data=request.DATA)
 	bookmarks = request.DATA.get('bookmarks')
 	request.user.bookmarks.add(*bookmarks)
 	serializer = BookmarkSerializer(request.user)
 	return Response(serializer.data)
     elif request.method == 'POST':
-	print 'tibaaannnn'
-	print request.DATA
 	bookmarks = request.DATA['bookmarks']
-	print bookmarks
-	request.user.bookmarks.remove(*bookmarks);
+	request.user.bookmarks.remove(*bookmarks)
 	serializer = BookmarkSerializer(request.user)
+	return Response(serializer.data)
+
+@api_view(['GET', 'PUT', 'POST'])
+@permission_classes((permissions.IsAuthenticated, IsHimself))
+def user_follows(request, pk, format=None):
+    check_object_permissions(request, user_follows.cls.permission_classes, User.objects.get(pk=pk))
+    if request.method == 'GET':
+	serializer = FollowSerializer(request.user, context={request: request}) 
+	return Response(serializer.data)
+    elif request.method == 'PUT':
+	follows = request.DATA.get('follows')
+	request.user.follows.add(*follows)
+	serializer = FollowSerializer(request.user)
+	return Response(serializer.data)
+    elif request.method == 'POST':
+	follows = request.DATA['follows']
+	request.user.follows.remove(*follows)
+	serializer = FollowSerializer(request.user)
 	return Response(serializer.data)
