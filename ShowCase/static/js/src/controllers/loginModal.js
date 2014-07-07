@@ -1,6 +1,6 @@
-var loginModule = angular.module('controller.login', ['ui.bootstrap', 'security.service']);
+var loginModalModule = angular.module('controller.loginModal', ['ui.bootstrap', 'security.service']);
 
-loginModule.controller('loginCtrl', ['$scope', '$modalInstance', 'securityFactory', function ($scope, $modalInstance, securityFactory) {
+loginModalModule.controller('loginModalCtrl', ['$scope', '$modalInstance', 'securityFactory', function ($scope, $modalInstance, securityFactory) {
     'use strict';
     
     $scope.authError = '';
@@ -9,7 +9,7 @@ loginModule.controller('loginCtrl', ['$scope', '$modalInstance', 'securityFactor
         $scope.authError = '';
         securityFactory.login(user.email, user.password).then(function (res) {
             if (res) {
-                $modalInstance.close();
+                $modalInstance.close(res);
             } else {
                 $scope.authError = 'Authentication failure';
             }

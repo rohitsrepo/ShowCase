@@ -1,4 +1,4 @@
-var xyzModule = angular.module('showcaseApp', ['ui.router', 'security.service', 'controller.index']);
+var xyzModule = angular.module('showcaseApp', ['ui.router', 'security.service', 'controller.index', 'ui.utils']);
 
 xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
     'use strict';

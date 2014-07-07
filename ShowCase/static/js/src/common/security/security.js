@@ -34,10 +34,7 @@ securityModule.factory('securityFactory', ['$http', '$q', 'userFactory', '$modal
     };
     
     service.login = function (email, password) {
-        return $http({method: 'POST',
-                      url: '/users/login',
-                      data: {email: email, password: password}
-                     }).then(function (res) {
+        return userFactory.login(email, password).then(function (res) {
             service.currentUser = res.data;
             return service.isAuthenticated();
         }, function (res) {
@@ -46,9 +43,7 @@ securityModule.factory('securityFactory', ['$http', '$q', 'userFactory', '$modal
     };
     
     service.logout = function () {
-        return $http({method: 'GET',
-                      url: '/users/logout'
-                     }).then(function (res) {
+        return userFactory.logout().then(function (res) {
             service.currentUser = '';
             service.redirect($state.current.name, true);
         }, function (res) {
@@ -59,8 +54,8 @@ securityModule.factory('securityFactory', ['$http', '$q', 'userFactory', '$modal
     service.showLoginModal = function () {
         service.redirectState = $state.current.name;
         loginModal = $modal.open({
-            templateUrl: '/static/partials/login.html',
-            controller: 'loginCtrl'
+            templateUrl: '/static/partials/loginModal.html',
+            controller: 'loginModalCtrl'
         });
         
         /*return loginModal.result.then(function (result) {

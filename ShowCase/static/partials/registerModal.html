@@ -1,0 +1,40 @@
+<form name="form" novalidate class="register-form" role="form">
+    <div class="modal-header">
+        <h4>Register</h4>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-danger" ng-show="regError">
+            {{regError}}
+        </div>
+        <div class="alert alert-info">Allow us to take you to a different level of experience. Please provide following details...</div>
+        <div class="form-group">
+            <label>First Name*</label>
+            <input name="first_name" type="text" ng-model="user.first_name" required autofocus>
+            <p ng-show="form.first_name.$invalid && !form.first_name.$pristine" class="help-block">We would love to know you, atleast by your first name.</p>
+            <label>Last Name</label>
+            <input name="last_name" type="text" ng-model="user.last_name" >
+        </div>
+        <div class="form-group">
+            <label>About</label>
+            <textarea class="form-control" ng-model="user.about" id="uploadDescription" placeholder="Tell youself who you are..."></textarea>
+        </div>
+        <div class="form-group">
+            <label>E-mail*</label>
+            <input name="email" type="email" ng-model="user.email" required email>
+            <p ng-show="form.email.$invalid && !form.email.$pristine" class="help-block">A valid E-mail address would be perfection.</p>
+        </div>
+        <div class="form-group">
+            <label>Password*</label>
+            <input name="password" type="password" ng-model="user.password" required>
+            <label>Re-Enter Password*</label>
+            <input name="password1" type="password" ng-model="user.password1" ui-validate=" '$value==user.password' " ui-validate-watch=" 'user.password' " required>
+            <p ng-show="form.password1.$invalid && !form.password1.$pristine" class="help-block">
+                <div ng-show="form.password1.$error.validator">These two bad boys gotta match billy.</div>
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary register" ng-click="register(user)" ng-disabled='form.$invalid'>Register</button>
+        <button class="btn btn-warning cancel" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

@@ -20,7 +20,7 @@ class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = NewUserSerializer
     # TODO Change this permission to AllowANY-Catptcha or token authentication required.
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    permission_classes = (permissions.AllowAny,)
 
 
 class UserDetailOld(generics.RetrieveUpdateDestroyAPIView):

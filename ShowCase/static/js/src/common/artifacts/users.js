@@ -19,5 +19,26 @@ userModule.factory('userFactory', [ '$http', '$resource', '$log', function ($htt
         return $http({method: 'GET', url: url});
     };
     
+    service.addUser = function (user) {
+        return $http({method: 'POST', url: '/users', data: user}).then(function (res) {
+            return res;
+        }, function (res) {
+            $log.error('Adding new user: ', res);
+        });
+    };
+    
+    service.login = function (email, password) {
+        return $http({method: 'POST',
+                      url: '/users/login',
+                      data: {email: email, password: password}
+                     });
+    };
+    
+    service.logout = function () {
+        return $http({method: 'GET',
+                      url: '/users/logout'
+                     });
+    };
+    
     return service;
 }]);
