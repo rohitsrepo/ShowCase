@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'compositions',
     'votes',
     'comments',
+    'notifications'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -120,3 +121,4 @@ REST_FRAMEWORK = {
 	    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
 }
 
+APPEND_SLASH = False

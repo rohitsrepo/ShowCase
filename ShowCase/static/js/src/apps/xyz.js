@@ -36,6 +36,10 @@ xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
         url: '/follow',
         templateUrl: '/static/partials/follow.html',
         controller: 'followCtrl'
+    }).state('showcase.notifications', {
+        url: '/notifications',
+        templateUrl: '/static/partials/notification.html',
+        controller: 'notificationCtrl'
     }).state('test', {
         url: '/test',
         templateUrl: '/static/partials/test.html',

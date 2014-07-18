@@ -6,6 +6,7 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions, status
+from notifications import notify
 
 
 class VoteDetail(APIView):
@@ -29,6 +30,8 @@ class VoteDetail(APIView):
 	if serializer.is_valid():
 	    if serializer.data['vote']:
 		vote.vote_positive(request.user)
+	    	# Add notification.
+	    	notify.send(request.user, recipient=vote.composition.artist, verb='voted', target=vote.composition)
 	    else:
 		vote.vote_negative(request.user)
 

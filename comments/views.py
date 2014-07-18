@@ -7,6 +7,8 @@ from rest_framework import status, permissions
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
+from notifications import notify
+
 
 class CommentList(APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
@@ -25,6 +27,9 @@ class CommentList(APIView):
 	    serializer.object.commenter = request.user
 	    serializer.object.composition = get_object_or_404(Composition, id=pk)
 	    serializer.save()
+	    # Add notification.
+	    comment = serializer.object
+	    notify.send(request.user, recipient=comment.composition.artist, verb='commented', action_object=comment, target=comment.composition)
 	    return Response(serializer.data, status=status.HTTP_201_CREATED)
 	return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

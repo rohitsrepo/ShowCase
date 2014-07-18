@@ -26,3 +26,12 @@ class Composition(models.Model):
     def timesince(self, now=None):
         from django.utils.timesince import timesince as _
 	return _(self.created, now)
+
+    def __str__(self):
+	if len(self.title) > 10:
+	    return self.title[:10] + '...'
+	else:
+	    return self.title
+
+    def get_absolute_url(self):
+	return "#/compositions/{0}/{1}".format(self.id, self.slug)

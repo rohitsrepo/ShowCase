@@ -14,10 +14,17 @@ class Comment(models.Model):
 	else:
 	    comment = self.comment
 
-	return 'Composition : %s : Composition: %s' % (comment, self.composition)
+	return comment
     
     def timesince(self, now=None):
         from django.utils.timesince import timesince as _
 	return _(self.created, now)
+
+    def get_absolute_url(self):
+	"""
+	Returns url of the composition it is realted to.
+	"""
+
+	return self.composition.get_absolute_url()
 
 

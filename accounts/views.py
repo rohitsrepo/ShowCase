@@ -11,6 +11,8 @@ from django.contrib.auth.hashers import make_password
 from ShowCase.utils import check_object_permissions
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
+from notifications import notify
+from compositions.models import Composition
 
 
 class UserList(generics.ListCreateAPIView):
@@ -140,6 +142,15 @@ def user_bookmarks(request, pk, format=None):
 	bookmarks = request.DATA.get('bookmarks')
 	request.user.bookmarks.add(*bookmarks)
 	serializer = BookmarkSerializer(request.user)
+
+	# Add notification.
+	for bookmark in bookmarks:
+	    try:
+		bookmarked = Composition.objects.get(pk=bookmark)
+		notify.send(request.user, recipient=bookmarked.artist, verb='added to his collection', action_object=bookmarked)
+	    except Composition.DoesNotExist:
+		# No such user, skip notification.
+		pass
 	return Response(serializer.data)
     elif request.method == 'POST':
 	bookmarks = request.DATA['bookmarks']
@@ -158,6 +169,16 @@ def user_follows(request, pk, format=None):
 	follows = request.DATA.get('follows')
 	request.user.follows.add(*follows)
 	serializer = FollowSerializer(request.user)
+
+	# TODO add notification.
+	for follow in follows:
+	    try:
+		followed = User.objects.get(pk=follow)
+		notify.send(request.user, recipient=followed, verb='followed you.')
+	    except User.DoesNotExist:
+		# No such user, skip notification.
+		pass
+
 	return Response(serializer.data)
     elif request.method == 'POST':
 	follows = request.DATA['follows']

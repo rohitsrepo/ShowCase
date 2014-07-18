@@ -31,3 +31,10 @@ class Vote(models.Model):
 	self.add_voter(user)
 	self.negative += 1
 	self.save()
+
+    def get_absolute_url(self):
+	"""
+	Return url for the composition it is related to.
+	"""
+
+	return self.composition.get_absolute_url()

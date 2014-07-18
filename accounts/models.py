@@ -83,8 +83,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         self.email = self.normalize_email(self.email)
         super(User, self).save(*args, **kwargs)
     
-    def __str__(self):
-        return self.email
+    def __unicode__(self):
+        return self.get_full_name()
     
     def get_absolute_url(self):
         return  # "/users/%s/" % urlquote(self.username)
@@ -119,3 +119,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         else:
             email = '@'.join([email_name, domain_part.lower()])
         return email
+
+    def get_absolute_url(self):
+	"""
+	Return link to user profile(Showcase)
+	"""
+
+	return "#/{0}".format(self.id)

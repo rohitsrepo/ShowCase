@@ -31,6 +31,7 @@
         </li>
         <li><a href="#">Blog</a></li>
         <li><a ng-click="register()" ng-hide="currentUser"><strong>Register!</strong></a></li>
+        <li><a ui-sref="showcase.notifications({userId: currentUser.id})" ng-show="currentUser">Notifications<i class="fa fa-comment" ng-show="newNotification"></i></a></li>
       </ul>
     </div><!--/.nav-collapse -->
     </div>

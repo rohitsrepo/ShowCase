@@ -8,5 +8,6 @@ var indexCtrlModule = angular.module('controller.index', [
     'controller.registerModal',
     'controller.showcase',
     'controller.follow',
-    'controller.collection'
+    'controller.collection',
+    'controller.notification'
 ]);
