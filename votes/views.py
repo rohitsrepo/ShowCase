@@ -31,7 +31,8 @@ class VoteDetail(APIView):
 	    if serializer.data['vote']:
 		vote.vote_positive(request.user)
 	    	# Add notification.
-	    	notify.send(request.user, recipient=vote.composition.artist, verb='voted', target=vote.composition)
+		if request.user != vote.composition.artist:
+		    notify.send(request.user, recipient=vote.composition.artist, verb='voted', target=vote.composition)
 	    else:
 		vote.vote_negative(request.user)
 

@@ -29,7 +29,8 @@ class CommentList(APIView):
 	    serializer.save()
 	    # Add notification.
 	    comment = serializer.object
-	    notify.send(request.user, recipient=comment.composition.artist, verb='commented', action_object=comment, target=comment.composition)
+	    if request.user != comment.composition.artist:
+		notify.send(request.user, recipient=comment.composition.artist, verb='commented', action_object=comment, target=comment.composition)
 	    return Response(serializer.data, status=status.HTTP_201_CREATED)
 	return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

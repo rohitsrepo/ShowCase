@@ -15,7 +15,7 @@ notificationModule.factory('notificationFactory', ['$http', '$log', '$interval',
         });
     };
     
-    $interval(checkForNotification, 5000);
+    $interval(checkForNotification, 50000);
     
     service.getNotifications = function () {
         return $http({method: 'GET', url: '/notifications'}).then(function (res) {

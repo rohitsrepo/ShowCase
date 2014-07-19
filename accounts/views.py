@@ -147,7 +147,8 @@ def user_bookmarks(request, pk, format=None):
 	for bookmark in bookmarks:
 	    try:
 		bookmarked = Composition.objects.get(pk=bookmark)
-		notify.send(request.user, recipient=bookmarked.artist, verb='added to his collection', action_object=bookmarked)
+		if request.user != bookmarked.artist:
+		    notify.send(request.user, recipient=bookmarked.artist, verb='added to his collection', action_object=bookmarked)
 	    except Composition.DoesNotExist:
 		# No such user, skip notification.
 		pass
@@ -174,7 +175,8 @@ def user_follows(request, pk, format=None):
 	for follow in follows:
 	    try:
 		followed = User.objects.get(pk=follow)
-		notify.send(request.user, recipient=followed, verb='followed you.')
+		if request.user != followed:
+		    notify.send(request.user, recipient=followed, verb='followed you.')
 	    except User.DoesNotExist:
 		# No such user, skip notification.
 		pass
