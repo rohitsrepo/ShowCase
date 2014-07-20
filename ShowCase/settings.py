@@ -50,7 +50,8 @@ INSTALLED_APPS = (
     'compositions',
     'votes',
     'comments',
-    'notifications'
+    'notifications',
+    'messaging',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -122,3 +123,7 @@ REST_FRAMEWORK = {
 }
 
 APPEND_SLASH = False
+
+SHOWCASE_ACCOUNT	= 'art.showcase.v1.0@gmail.com' 
+SHOWCASE_PASSWORD = 'showcaseiitkgp'
+MAIL_SENDER = 'ShowCase'
