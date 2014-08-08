@@ -12,6 +12,10 @@ xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
         url: '/popular',
         templateUrl: 'static/partials/reader.html',
         controller: 'readerCtrl'
+    }).state('test', {
+        url: '/test',
+        templateUrl: '/static/partials/test.html',
+        controller: 'testCtrl'
     }).state('composition', {
         url: '/compositions/:compositionId/:slug',
         templateUrl: '/static/partials/composition.html',
@@ -40,10 +44,6 @@ xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
         url: '/notifications',
         templateUrl: '/static/partials/notification.html',
         controller: 'notificationCtrl'
-    }).state('test', {
-        url: '/test',
-        templateUrl: '/static/partials/test.html',
-        controller: 'testCtrl'
     });
     
     // csrf for django 
