@@ -1,34 +1,109 @@
-<h1><a href="http://www.elevateweb.co.uk/image-zoom">Elevate Zoom</a> (http://www.elevateweb.co.uk/image-zoom)</h1>
-<h2>Simple</h2>
-<img src="/static/img/callout.jpg" data-zoom-image="/static/img/callout.jpg" height="50%" width="50%" elevatez option="{}"/>
-
-<h2>Tranluscent tint</h2>
-<img src="/static/img/callout.jpg" data-zoom-image="/static/img/callout.jpg" height="50%" width="50%" elevatez option="{tint:true, tintColour:'#F90', tintOpacity:0.5}"/>
-
-<h2>Opaque tint</h2>
-<img src="/static/img/callout.jpg" data-zoom-image="/static/img/callout.jpg" height="50%" width="50%" elevatez option="{tint:true, tintColour:'#F90', tintOpacity:1}"/>
-
-<h2>Inner zoom</h2>
-<img src="/static/img/callout.jpg" data-zoom-image="/static/img/callout.jpg" height="50%" width="50%" elevatez option="{zoomType: 'inner', cursor: 'crosshair' }"/>
-
-<h2>Lens</h2>
-<img src="/static/img/callout.jpg" data-zoom-image="/static/img/callout.jpg" height="50%" width="50%" elevatez option="{ zoomType: 'lens', lensShape: 'round', lensSize : 200}"/>
-
-<h2>Square Lens</h2>
-<img src="/static/img/callout.jpg" data-zoom-image="/static/img/callout.jpg" height="50%" width="50%" elevatez option="{ zoomType: 'lens', lensSize : 200}"/>
-
-<h2>Little Fade in and Fade out</h2>
-<img src="/static/img/callout.jpg" data-zoom-image="/static/img/callout.jpg" height="50%" width="50%" elevatez option="{ zoomWindowFadeIn: 500, zoomWindowFadeOut: 500, lensFadeIn: 500, lensFadeOut: 500 }"/>
-
-<h2>Mouse Zoom Enabeled</h2>
-<img src="/static/img/callout.jpg" data-zoom-image="/static/img/callout.jpg" height="50%" width="50%" elevatez option="{scrollZoom : true}"/>
-
-<h2>Customizing Zoom Window Size</h2>
-<img src="/static/img/callout.jpg" data-zoom-image="/static/img/callout.jpg" height="50%" width="50%" elevatez option="{zoomWindowWidth:300, zoomWindowHeight:100}"/>
-
-
-<h1><a href="http://mark-rolich.github.io/Magnifier.js/">Magnifier.js </a>(http://mark-rolich.github.io/Magnifier.js/) </h1>
-<h3>More Flexible option in terms of events, No new functionality as such.</h3>
-
 <h1><a href="http://codecanyon.net/item/zoome-jquery-image-zoom-effect-plugin/full_screen_preview/2973067">Zoome</a></h1>
 <h3>Have a look. It is easy to implement.</h3>
+
+<h1>No Name</h1>
+<img zoome zoome-options="zoomeOptions" src="static/img/callout.jpg" alt="" rel="static/img/callout.jpg" />
+
+<h3>Hover Type: </h3>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="" ng-click="initzoome()"> Nothin <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="grayscale" ng-click="initzoome()">  Grayscale <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="transparent" ng-click="initzoome()"> Transparent <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="blur" ng-click="initzoome()"> Blur <br/>
+<h3>Viewfinder size</h3>
+  <input type="text" ng-model="zoomeOptions.magnifierSize[0]">
+  <input type="text" ng-model="zoomeOptions.magnifierSize[1]">
+<h3>The magnification can be controlled by scroll</h3>
+
+<h1>MonaLisa</h1>
+<img zoome zoome-options="zoomeOptions" src="static/img/monaLisa.jpg" alt="" rel="static/img/monaLisa.jpg" />
+
+<h3>Hover Type: </h3>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="" ng-click="initzoome()"> Nothin <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="grayscale" ng-click="initzoome()">  Grayscale <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="transparent" ng-click="initzoome()"> Transparent <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="blur" ng-click="initzoome()"> Blur <br/>
+<h3>Viewfinder size</h3>
+  <input type="text" ng-model="zoomeOptions.magnifierSize[0]">
+  <input type="text" ng-model="zoomeOptions.magnifierSize[1]">
+<h3>The magnification can be controlled by scroll</h3>
+
+<h1>Las Meninas</h1>
+<img zoome zoome-options="zoomeOptions" src="static/img/lasMeninas.jpg" alt="" rel="static/img/lasMeninas.jpg" />
+
+<h3>Hover Type: </h3>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="" ng-click="initzoome()"> Nothin <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="grayscale" ng-click="initzoome()">  Grayscale <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="transparent" ng-click="initzoome()"> Transparent <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="blur" ng-click="initzoome()"> Blur <br/>
+<h3>Viewfinder size</h3>
+  <input type="text" ng-model="zoomeOptions.magnifierSize[0]">
+  <input type="text" ng-model="zoomeOptions.magnifierSize[1]">
+<h3>The magnification can be controlled by scroll</h3>
+
+<h1>The Nightwatch</h1>
+<img zoome zoome-options="zoomeOptions" src="static/img/theNightwatch.jpg" alt="" rel="static/img/theNightwatch.jpg" />
+
+<h3>Hover Type: </h3>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="" ng-click="initzoome()"> Nothin <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="grayscale" ng-click="initzoome()">  Grayscale <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="transparent" ng-click="initzoome()"> Transparent <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="blur" ng-click="initzoome()"> Blur <br/>
+<h3>Viewfinder size</h3>
+  <input type="text" ng-model="zoomeOptions.magnifierSize[0]">
+  <input type="text" ng-model="zoomeOptions.magnifierSize[1]">
+<h3>The magnification can be controlled by scroll</h3>
+
+<h1>The Scream</h1>
+<img zoome zoome-options="zoomeOptions" src="static/img/scream.jpg" alt="" rel="static/img/scream.jpg" />
+
+<h3>Hover Type: </h3>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="" ng-click="initzoome()"> Nothin <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="grayscale" ng-click="initzoome()">  Grayscale <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="transparent" ng-click="initzoome()"> Transparent <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="blur" ng-click="initzoome()"> Blur <br/>
+<h3>Viewfinder size</h3>
+  <input type="text" ng-model="zoomeOptions.magnifierSize[0]">
+  <input type="text" ng-model="zoomeOptions.magnifierSize[1]">
+<h3>The magnification can be controlled by scroll</h3>
+
+<h1>American Gothic</h1>
+
+<img zoome zoome-options="zoomeOptions" src="static/img/americanGothic.jpg" alt="" rel="static/img/americanGothic.jpg" />
+
+<h3>Hover Type: </h3>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="" ng-click="initzoome()"> Nothin <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="grayscale" ng-click="initzoome()">  Grayscale <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="transparent" ng-click="initzoome()"> Transparent <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="blur" ng-click="initzoome()"> Blur <br/>
+<h3>Viewfinder size</h3>
+  <input type="text" ng-model="zoomeOptions.magnifierSize[0]">
+  <input type="text" ng-model="zoomeOptions.magnifierSize[1]">
+<h3>The magnification can be controlled by scroll</h3>
+
+<h1>Irises</h1>
+
+<img zoome zoome-options="zoomeOptions" src="static/img/Irises.jpg" alt="" rel="static/img/callout.jpg" />
+
+<h3>Hover Type: </h3>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="" ng-click="initzoome()"> Nothin <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="grayscale" ng-click="initzoome()">  Grayscale <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="transparent" ng-click="initzoome()"> Transparent <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="blur" ng-click="initzoome()"> Blur <br/>
+<h3>Viewfinder size</h3>
+  <input type="text" ng-model="zoomeOptions.magnifierSize[0]">
+  <input type="text" ng-model="zoomeOptions.magnifierSize[1]">
+<h3>The magnification can be controlled by scroll</h3>
+
+<h1>Portrait_of_Adele_Bloch-Bauer</h1>
+
+<img zoome zoome-options="zoomeOptions" src="static/img/gustavKlimt.jpg" alt="" rel="static/img/gustavKlimt.jpg" />
+
+<h3>Hover Type: </h3>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="" ng-click="initzoome()"> Nothin <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="grayscale" ng-click="initzoome()">  Grayscale <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="transparent" ng-click="initzoome()"> Transparent <br/>
+  <input type="radio" ng-model="zoomeOptions.hoverEf" value="blur" ng-click="initzoome()"> Blur <br/>
+<h3>Viewfinder size</h3>
+  <input type="text" ng-model="zoomeOptions.magnifierSize[0]">
+  <input type="text" ng-model="zoomeOptions.magnifierSize[1]">
+<h3>The magnification can be controlled by scroll</h3>
