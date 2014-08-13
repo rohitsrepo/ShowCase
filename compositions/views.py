@@ -11,6 +11,7 @@ from django.http import Http404
 from accounts.serializers import ExistingUserSerializer
 from rest_framework.decorators import api_view, permission_classes
 from ShowCase.utils import check_object_permissions
+from tagging.views import tag_exists, get_tag, taglist_exists
 
 
 class CompositionFilter(django_filters.FilterSet):
@@ -121,3 +122,67 @@ def follow_compositions(request, format=None):
 		counter = counter + 1
 	return Response(ser.data)
     return Response([])
+
+
+
+@api_view(['POST'])
+@permission_classes((IsHimself,))
+def add_tags(request, pk, format = None):
+    #Try-Except block to check if the composition exists and to check if the request user has permission. 
+    try:
+	composition = Composition.objects.get(pk=pk)
+	check_object_permissions(request, add_tags.cls.permission_classes, request.user)  #Checks for object permission for given request.user from given set of permissions.
+    except Composition.DoesNotExist:
+	raise Http404    
+    tag_list = request.DATA['tagList']
+    for tag in tag_list:
+	if(tag_exists(tag)):
+	    composition.tags.add(tag) #Automatically takes care to not duplicate tags
+
+
+@api_view(['POST'])
+@permission_classes((IsHimself,))
+def remove_tags(request, pk, format = None):
+    #Try-Except block to check if the composition exists and to check if the request user has permission. 
+    try:
+	composition = Composition.objects.get(pk=pk)
+	check_object_permissions(request, add_tags.cls.permission_classes, request.user)  #Checks for object permission for given request.user from given set of permissions.
+    except Composition.DoesNotExist:
+	raise Http404    
+    tag_list = request.DATA['tagList']
+    for tag in tag_list:
+	if(tag_exists(tag)):
+	    composition.tags.remove(tag) 
+    
+
+@api_view(['POST'])
+@permission_classes((IsHimself,))
+def remove_all_tags(request, pk, format = None):
+    #Try-Except block to check if the composition exists and to check if the request user has permission. 
+    try:
+	composition = Composition.objects.get(pk=pk)
+	check_object_permissions(request, add_tags.cls.permission_classes, request.user)  #Checks for object permission for given request.user from given set of permissions.
+    except Composition.DoesNotExist:
+	raise Http404 
+    composition.tags.clear() #Removes all tags
+    
+
+@api_view(['GET'])
+def similar_compositions(request, pk, format = None):
+    #Try-Except block to check if the composition exists 
+    try:
+	composition = Composition.objects.get(pk=pk)
+    except Composition.DoesNotExist:
+	raise Http404 
+    compositions = composition.tags.similar_objects()
+    serializer = CompositionSerializer(compositions, many=True, context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def tag_based_filter(request, pk, format = None):
+    tag_list = request.DATA['tagList']
+    if(taglist_exists(tag_list)):
+	compositions = Composition.objects.filter(tags__name__in=tag_list).distinct()
+	serializer = CompositionSerializer(compositions, many=True, context={'request': request})
+	return Response(serializer.data)    

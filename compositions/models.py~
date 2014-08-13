@@ -15,8 +15,7 @@ class Composition(models.Model):
     slug = models.SlugField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     matter = models.FileField(upload_to=get_upload_file_name_composition)
-    tags = TaggableManager(blank=True)
-    
+
     class Meta:
         ordering = ('created',)
 
