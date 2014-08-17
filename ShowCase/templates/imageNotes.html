@@ -1,0 +1,123 @@
+    {% load staticfiles  %}
+    {% load rest_framework %}
+
+    <!DOCTYPE html>
+    <html lang="en" ng-app='showcaseApp'>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+        <title>ShowCase</title>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="{% static "js/vendor/bootstrap/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="{% static "js/vendor/zoome/zoome-min.css" %}">
+
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" media="screen">
+        <link rel="stylesheet" href="{% static "js/vendor/imagenotes/css/marker.css" %}">
+
+        <!-- Custom styles for this template -->
+          
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+        <![endif]-->
+
+        <style type="text/css">
+        table.gridtable {
+            font-family: verdana,arial,sans-serif;
+            font-size:11px;
+            color:#333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+        }
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+        body { 
+            padding-top: 65px; 
+            padding-bottom: 65px;
+        }
+    </style>
+      </head>
+
+      <body>
+
+        {% verbatim %}  
+        <div ng-controller="rootCtrl">
+            <!--<div ng-include src=" '/static/partials/navbarTop.html' " ng-controller='navbarTopCtrl'></div>-->
+            <div  ng-include src=" '/static/partials/navbarTop.html' "></div>
+
+            <div class="container">
+                <div ui-view></div><!--jumbotron-->
+            </div><!-- /.container -->  
+            <div ng-include src=" '/static/partials/navbarBottom.html' "></div>
+        </div>
+        {% endverbatim %}
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{% static "js/vendor/jQuery/jquery-1.11.1.min.js" %}"></script>
+        <script src="{% static "js/vendor/jquery.browser.min.js" %}"></script>            
+        <script src="{% static "js/vendor/bootstrap/bootstrap.min.js" %}"></script>
+          
+        <script src="{% static "js/vendor/jquery.elevatezoom.js" %}"></script>
+        <script src="{% static "js/vendor/zoome/zoome.js" %}"></script>
+          
+        <script src="{% static "js/vendor/angular/angular.min.js" %}"></script>
+        <script src="{% static "js/vendor/angular/angular-resource.js" %}"></script>
+        <script src="{% static "js/vendor/angular/angular-ui-router.min.js" %}"></script>
+        <script src="{% static "js/vendor/angular/angular-cookies.min.js" %}"></script>
+        <script src="{% static "js/vendor/bootstrap/ui-bootstrap-tpls.min.js" %}"></script>
+          
+        <script src="{% static "js/vendor/angular/angular-file-upload.min.js" %}"></script>
+        <script src="{% static "js/vendor/angular/angular-file-upload-shim.min.js" %}"></script>
+        <script src="{% static "js/vendor/angular/angular-file-upload-html5-shim.min.js" %}"></script>
+        <script src="{% static "js/vendor/ui-utils.min.js" %}"></script>
+          
+        <script src="{% static "js/src/apps/xyz.js" %}"></script>
+        <script src="{% static "js/src/controllers/root.js" %}"></script>
+        <script src="{% static "js/src/controllers/showcase.js" %}"></script>
+        <script src="{% static "js/src/controllers/follow.js" %}"></script>
+        <script src="{% static "js/src/controllers/reader.js" %}"></script>
+        <script src="{% static "js/src/controllers/composition.js" %}"></script>
+        <script src="{% static "js/src/controllers/navbarTop.js" %}"></script>
+        <script src="{% static "js/src/controllers/notification.js" %}"></script>
+        <script src="{% static "js/src/controllers/test.js" %}"></script>
+        <script src="{% static "js/src/controllers/loginModal.js" %}"></script>
+        <script src="{% static "js/src/controllers/registerModal.js" %}"></script>
+        <script src="{% static "js/src/controllers/collection.js" %}"></script>
+        <script src="{% static "js/src/controllers/index.js" %}"></script>
+        <script src="{% static "js/src/common/helpers/register.js" %}"></script>
+        <script src="{% static "js/src/common/artifacts/users.js" %}"></script>
+        <script src="{% static "js/src/common/artifacts/compositions.js" %}"></script>
+        <script src="{% static "js/src/common/artifacts/follow.js" %}"></script>
+        <script src="{% static "js/src/common/artifacts/bookmark.js" %}"></script>
+        <script src="{% static "js/src/common/artifacts/notification.js" %}"></script>
+        <script src="{% static "js/src/common/security/security.js" %}"></script>
+          
+        <script src="{% static "js/src/common/helpers/logger.js" %}"></script>
+
+        <script type="text/javascript" src="static/js/vendor/imagenotes/libs/jquery/jquery-ui.js"></script>
+        <script type="text/javascript" src="static/js/vendor/imagenotes/libs/jquery.fs.zoetrope.min.js"></script>
+        <script type="text/javascript" src="static/js/vendor/imagenotes/libs/toe.min.js"></script>
+        <script type="text/javascript" src="static/js/vendor/imagenotes/libs/jquery.mousewheel.min.js"></script>
+        <script type="text/javascript" src="static/js/vendor/imagenotes/libs/imgViewer.min.js"></script>
+        <script type="text/javascript" src="static/js/vendor/imagenotes/imgNotes.js"></script>
+      </body>
+    </html>
