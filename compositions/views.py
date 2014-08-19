@@ -48,6 +48,11 @@ class CompositionList(APIView):
 	if ser.is_valid():
 	    ser.object.artist = request.user
 	    ser.save()
+	    #Adding tags manually from serialized object to the Composition
+	    if type(ser.object.tags) is list:
+		saved_composition = Composition.objects.get(pk=ser.object.pk)
+		for tag in ser.object.tags:
+		    saved_composition.tags.add(tag)	    
 	    return Response(ser.data, status=status.HTTP_201_CREATED)
 
 	return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
