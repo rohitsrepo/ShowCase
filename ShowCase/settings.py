@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'messaging',
     'tagging',
     'taggit',
+    'search',
 )
 
 MIDDLEWARE_CLASSES = (
