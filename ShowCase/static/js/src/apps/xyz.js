@@ -16,6 +16,14 @@ xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
         url: '/test',
         templateUrl: '/static/partials/test.html',
         controller: 'testCtrl'
+    }).state('fabric', {
+        url: '/fabric',
+        templateUrl: '/static/partials/test_vfinder.html',
+        controller: 'testCtrl'
+    }).state('fabric1', {
+        url: '/fabric1',
+        templateUrl: '/static/partials/test_vfinder1.html',
+        controller: 'testCtrl'
     }).state('notes', {
         url: '/notes',
         templateUrl: '/static/partials/test_notes.html',

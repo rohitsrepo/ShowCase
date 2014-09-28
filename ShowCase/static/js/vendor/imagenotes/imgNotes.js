@@ -225,6 +225,10 @@
 			this.notes.push(elem);
 			return elem;
 		},
+
+		getNotes: function () {
+			return this.notes;
+		},
 /*
  *	Number of notes
  */

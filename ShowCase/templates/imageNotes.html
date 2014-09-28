@@ -15,6 +15,8 @@
 
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" media="screen">
         <link rel="stylesheet" href="{% static "js/vendor/imagenotes/css/marker.css" %}">
+        <link rel="stylesheet" href="static/js/vendor/medium/css/medium-editor.css"> <!-- Medium Core -->
+        <link rel="stylesheet" href="static/js/vendor/medium/css/themes/default.css"><!-- Medium theme -->
 
         <!-- Custom styles for this template -->
           
@@ -49,8 +51,19 @@
             background-color: #ffffff;
         }
         body { 
-            padding-top: 65px; 
-            padding-bottom: 65px;
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding-top: 0px; 
+            padding-bottom: 0px;
+        }
+        html { 
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+        }
+        #editable-div:focus {
+            outline: none;
         }
     </style>
       </head>
@@ -59,13 +72,13 @@
 
         {% verbatim %}  
         <div ng-controller="rootCtrl">
-            <!--<div ng-include src=" '/static/partials/navbarTop.html' " ng-controller='navbarTopCtrl'></div>-->
-            <div  ng-include src=" '/static/partials/navbarTop.html' "></div>
+            <!--<div ng-include src=" '/static/partials/navbarTop.html' " ng-controller='navbarTopCtrl'></div>
+            <div  ng-include src=" '/static/partials/navbarTop.html' "></div>-->
+            <div ui-view></div><!--jumbotron-->
 
-            <div class="container">
-                <div ui-view></div><!--jumbotron-->
-            </div><!-- /.container -->  
-            <div ng-include src=" '/static/partials/navbarBottom.html' "></div>
+            <!--<div class="container">
+            </div>  
+            <div ng-include src=" '/static/partials/navbarBottom.html' "></div>-->
         </div>
         {% endverbatim %}
 
@@ -83,6 +96,7 @@
         <script src="{% static "js/vendor/angular/angular-resource.js" %}"></script>
         <script src="{% static "js/vendor/angular/angular-ui-router.min.js" %}"></script>
         <script src="{% static "js/vendor/angular/angular-cookies.min.js" %}"></script>
+        <script src="{% static "js/vendor/angular/angular-sanitize.min.js" %}"></script>
         <script src="{% static "js/vendor/bootstrap/ui-bootstrap-tpls.min.js" %}"></script>
           
         <script src="{% static "js/vendor/angular/angular-file-upload.min.js" %}"></script>
@@ -119,5 +133,7 @@
         <script type="text/javascript" src="static/js/vendor/imagenotes/libs/jquery.mousewheel.min.js"></script>
         <script type="text/javascript" src="static/js/vendor/imagenotes/libs/imgViewer.min.js"></script>
         <script type="text/javascript" src="static/js/vendor/imagenotes/imgNotes.js"></script>
+        <script src="static/js/vendor/medium/js/medium-editor.js"></script>
+        <script src="static/js/vendor/medium/js/MediumButton.js"></script>
       </body>
     </html>
