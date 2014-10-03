@@ -1,3 +1,6 @@
 #Ignore all the .pyc files.
 *.pyc
 *.swp
+*.html~
+*.py~
+*.pyc~
