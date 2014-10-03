@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'tagging',
     'taggit',
     'search',
+    'haystack',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -70,6 +71,13 @@ ROOT_URLCONF = 'ShowCase.urls'
 
 WSGI_APPLICATION = 'ShowCase.wsgi.application'
 
+# Haystack configuration
+HAYSTACK_CONNECTIONS = {
+'default': {
+'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+},
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases

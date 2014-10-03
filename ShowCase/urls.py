@@ -11,7 +11,8 @@ urlpatterns = patterns('',
                        url(r'^$', TemplateView.as_view(template_name='home.html')),
                        url(r'^users', include('accounts.urls')),
                        url(r'^compositions', include('compositions.urls')),
-		       url(r'^notifications', include('notifications.urls')),
+                       url(r'^notifications', include('notifications.urls')),
+                       url(r'^search/', include('haystack.urls')),
 		       )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

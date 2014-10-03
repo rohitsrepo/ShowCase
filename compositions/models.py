@@ -11,7 +11,8 @@ def get_upload_file_name_composition(instance, filename):
 class Composition(models.Model):
     title = models.CharField(max_length=100, blank=False, verbose_name='Title')
     description = models.CharField(max_length=1000, blank=True, default='', verbose_name='Description')
-    artist = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='compositions')
+    artist = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='compositions') #same as uploader
+    painter = models.CharField(max_length=50, blank=True, verbose_name='Painter')
     slug = models.SlugField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     matter = models.FileField(upload_to=get_upload_file_name_composition)
