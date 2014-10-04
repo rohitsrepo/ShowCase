@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -75,12 +74,9 @@ WSGI_APPLICATION = 'ShowCase.wsgi.application'
 HAYSTACK_CONNECTIONS = {
 'default': {
 'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+'PATH': os.path.join(os.path.join(BASE_DIR, 'search'), 'whoosh_index'),
 },
 }
-
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
     'default': {
