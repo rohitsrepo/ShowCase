@@ -9,8 +9,7 @@ from ShowCase.serializers import URLImageField
 
 class NewUserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=128, widget=widgets.PasswordInput, write_only=True)
-    picture = HyperlinkedImageField(source='picture',
-                                    required=False, default_url=settings.DEFAULT_USER_PICTURE)
+    picture = serializers.ImageField(source='picture', required=False)
 
     class Meta:
 	model = User
@@ -24,9 +23,6 @@ class NewUserSerializer(serializers.ModelSerializer):
 
 class ExistingUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(read_only=True)
-    #url = serializers.HyperlinkedIdentityField(view_name='user-detail', lookup_field='pk')
-    picture = HyperlinkedImageField(source='picture', required=False,
-                                    default_url=settings.DEFAULT_USER_PICTURE)
 
     class Meta:
 	model = User

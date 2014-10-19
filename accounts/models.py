@@ -43,7 +43,7 @@ class UserManager(BaseUserManager):
 
 
 def get_upload_file_name_users(instance, filename):
-    return 'Users/%s/Profile/%s' % (instance.id, filename)
+    return 'Users/%s/Profile/%s' % (instance.email.split('@')[0], filename)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -64,7 +64,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(verbose_name='date user joined with us',
                                        auto_now_add=True,)
     
-    picture = models.ImageField(upload_to=get_upload_file_name_users, default=settings.DEFAULT_USER_PICTURE, blank=True)
+    picture = models.ImageField(upload_to=get_upload_file_name_users, default=settings.DEFAULT_USER_PICTURE)
 
     bookmarks = models.ManyToManyField(Composition, related_name='collectors')
 
