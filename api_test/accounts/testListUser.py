@@ -4,7 +4,7 @@ from accounts.models import User
 from .base import AccountsTest
 
 
-class TestAccountsAPI(AccountsTest):
+class TestListUserAPI(AccountsTest):
 
     """Tests for get list of users and Add new user API"""
 
