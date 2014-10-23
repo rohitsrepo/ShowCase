@@ -1,4 +1,6 @@
 import os
+import shutil
+from django.conf import settings
 from rest_framework import status
 from accounts.models import User
 from .base import AccountsTest
@@ -43,6 +45,10 @@ class TestListUserAPI(AccountsTest):
                     1, 'abc@def.com', 'abc', saved_profile_image, 'def', 'xyz'
                 )
             )
+
+        image_dir = os.path.join(
+            settings.MEDIA_ROOT, 'Users/{0}/'.format('abc'))
+        shutil.rmtree(image_dir, True)
 
     def test_add_default_picture_is_added_if_no_picture_sent(self):
         user_data = {'email': 'abc@def.com', 'first_name': 'abc',

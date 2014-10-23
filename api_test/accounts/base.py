@@ -1,6 +1,4 @@
-import shutil
 from rest_framework.test import APITestCase
-from django.conf import settings
 
 
 class AccountsTest(APITestCase):
@@ -9,10 +7,6 @@ class AccountsTest(APITestCase):
 
     def setUp(self):
         self.default_user_picture = '/media/root/user_default.jpg'
-
-    def tearDown(self):
-        media_dir = settings.MEDIA_ROOT
-        shutil.rmtree(media_dir, True)
 
     def getResponseDict(self,
                         id,

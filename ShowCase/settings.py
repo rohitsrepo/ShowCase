@@ -25,11 +25,11 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 TEMPLATE_DIRS = (
-   os.path.join(BASE_DIR, 'ShowCase/templates'),
+    os.path.join(BASE_DIR, 'ShowCase/templates'),
 )
 
 STATICFILES_DIRS = (
-   os.path.join(BASE_DIR, "ShowCase/static"),
+    os.path.join(BASE_DIR, "ShowCase/static"),
 )
 
 ALLOWED_HOSTS = []
@@ -45,7 +45,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'south',
     'accounts',
     'compositions',
     'votes',
@@ -82,8 +81,8 @@ DATABASES = {
 }
 
 SOUTH_MIGRATION_MODULES = {
-        'taggit': 'taggit.south_migrations',
-    }
+    'taggit': 'taggit.south_migrations',
+}
 
 
 # Internationalization
@@ -122,16 +121,19 @@ AUTH_USER_MODEL = 'accounts.User'
 LOGIN_REDIRECT_URL = '/'
 
 DEFAULT_USER_PICTURE = MEDIA_URL + 'root/user_default.jpg'
-DEFAULT_COMPOSITION_IMAGE_PICTURE = MEDIA_URL + 'root/composition_image_default.jpg'
-DEFAULT_COMPOSITION_AUDIO_PICTURE = MEDIA_URL + 'root/composition_audio_default.jpg'
-DEFAULT_COMPOSITION_VIDEO_PICTURE = MEDIA_URL + 'root/composition_video_default.jpg'
+DEFAULT_COMPOSITION_IMAGE_PICTURE = MEDIA_URL + \
+    'root/composition_image_default.jpg'
+DEFAULT_COMPOSITION_AUDIO_PICTURE = MEDIA_URL + \
+    'root/composition_audio_default.jpg'
+DEFAULT_COMPOSITION_VIDEO_PICTURE = MEDIA_URL + \
+    'root/composition_video_default.jpg'
 
 REST_FRAMEWORK = {
-	    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
 }
 
 APPEND_SLASH = False
 
-SHOWCASE_ACCOUNT	= 'art.showcase.v1.0@gmail.com' 
+SHOWCASE_ACCOUNT = 'art.showcase.v1.0@gmail.com'
 SHOWCASE_PASSWORD = 'showcaseiitkgp'
 MAIL_SENDER = 'ShowCase'
