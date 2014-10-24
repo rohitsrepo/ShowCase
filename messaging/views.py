@@ -1,3 +1,4 @@
+import smtplib
 from .models import Message
 from .serializers import MessageSerializer
 from rest_framework.views import APIView
@@ -6,10 +7,12 @@ from rest_framework.response import Response
 from accounts.models import User
 from .permissions import AuthenticatedGetOrPostOnly
 from django.conf import settings
+from rest_framework.decorators import api_view, permission_classes
+from django.shortcuts import get_object_or_404
+from django.utils.datastructures import MultiValueDictKeyError
 
 
 def mailsender():
-    import smtplib
     account = settings.SHOWCASE_ACCOUNT
     password = settings.SHOWCASE_PASSWORD
     messages = Message.objects.filter(read=False)
@@ -39,7 +42,7 @@ def mailsender():
 
 
 class MessageList(APIView):
-    permission_classes = (AuthenticatedGetOrPostOnly)
+    permission_classes = (AuthenticatedGetOrPostOnly, )
 
     def get(self, request, pk, format=None):
         messages = Message.objects.filter(recipient=request.user)
@@ -50,10 +53,15 @@ class MessageList(APIView):
     def post(self, request, pk, format=None):
         serializer = MessageSerializer(
             data=request.DATA, context={'request': request})
-        if request.user.is_authenticated():
-            sender_email = request.user.get_email()
-        else:
-            sender_email = request.DATA['sender']
+
+        try:
+            if request.user.is_authenticated():
+                sender_email = request.user.email
+            else:
+                sender_email = request.DATA['sender']
+        except MultiValueDictKeyError:
+            return Response({'sender': ['This field is required.']}, status=status.HTTP_400_BAD_REQUEST)
+
         recipient = User.objects.get(pk=pk)
         if serializer.is_valid():
             serializer.object.sender = sender_email
@@ -62,3 +70,15 @@ class MessageList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+@permission_classes((AuthenticatedGetOrPostOnly,))
+def markAsRead(request, pk, message_id, format=None):
+    message = get_object_or_404(Message, pk=message_id)
+    message.read = True
+    message.save()
+
+    serializer = MessageSerializer(message, context={'request': request})
+
+    return Response(serializer.data, status=status.HTTP_200_OK)

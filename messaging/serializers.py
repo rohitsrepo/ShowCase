@@ -1,9 +1,12 @@
 from rest_framework import serializers
 from .models import Message
-from django.conf import settings
 
-class MessageSerializer(serializers.HyperlinkedModelSerializer):
-    #recipient = serializers.HyperlinkedRelatedField(source='recipient', read_only=True, view_name='user-detail')
+
+class MessageSerializer(serializers.ModelSerializer):
+    timesince = serializers.CharField(source='timesince', read_only=True)
+
     class Meta:
-	model = Message
-	fields = ('id', 'sender', 'recipient', 'subject', 'body', 'read', 'created')
+        model = Message
+        fields = (
+            'id', 'sender', 'subject', 'body', 'read', 'timesince')
+        read_only_fields = ('id', 'read')

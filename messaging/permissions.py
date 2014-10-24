@@ -8,9 +8,7 @@ class AuthenticatedGetOrPostOnly(permissions.BasePermission):
     '''
 
     def has_permission(self, request, view):
-        if (request.method == 'GET' and
-                request.user.is_authenticated()):
-            return True
+        if (request.method == 'GET'):
+            return str(request.user.id) == view.kwargs['pk']
         elif (request.method == 'POST'):
             return True
-        return False

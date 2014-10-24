@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.utils.timesince import timesince
 
 
 class Comment(models.Model):
@@ -18,7 +19,6 @@ class Comment(models.Model):
         return comment
 
     def timesince(self, now=None):
-        from django.utils.timesince import timesince
         return timesince(self.created, now)
 
     def get_absolute_url(self):

@@ -18,6 +18,6 @@ urlpatterns = patterns('',
                            'accounts.views.user_follows'),
                        url(r'^api-auth/', include('rest_framework.urls',
                                                   namespace='rest_framework')),
-                       url(r'^/(?P<pk>[0-9]+)/messaging', include('messaging.urls')))
+                       url(r'^/(?P<pk>[0-9]+)/messages', include('messaging.urls')))
 
 urlpatterns = format_suffix_patterns(urlpatterns)

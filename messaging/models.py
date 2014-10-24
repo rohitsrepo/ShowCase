@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.utils.timesince import timesince
 
 
 class Message(models.Model):
@@ -19,5 +20,4 @@ class Message(models.Model):
         ordering = ('created',)
 
     def timesince(self, now=None):
-        from django.utils import timesince
         return timesince(self.created, now)
