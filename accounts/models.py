@@ -63,32 +63,31 @@ class User(AbstractBaseUser, PermissionsMixin):
                                     default=True, help_text='Desgnates whether a registered user can login.',)
     date_joined = models.DateTimeField(verbose_name='date user joined with us',
                                        auto_now_add=True,)
-    
-    picture = models.ImageField(upload_to=get_upload_file_name_users, default=settings.DEFAULT_USER_PICTURE)
+
+    picture = models.ImageField(
+        upload_to=get_upload_file_name_users, default=settings.DEFAULT_USER_PICTURE)
 
     bookmarks = models.ManyToManyField(Composition, related_name='collectors')
 
-    follows = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='followers')
-    
+    follows = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name='followers')
+
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name']
 
     class Meta:
-    	verbose_name = 'user'
-    	verbose_name_plural = 'users'
+        verbose_name = 'user'
+        verbose_name_plural = 'users'
 
     def save(self, *args, **kwargs):
         self.email = self.normalize_email(self.email)
         super(User, self).save(*args, **kwargs)
-    
+
     def __unicode__(self):
         return self.get_full_name()
-    
-    def get_absolute_url(self):
-        return  # "/users/%s/" % urlquote(self.username)
-    
+
     def get_full_name(self):
         """
         Returns the first_name plus the last_name, with a space in between.
@@ -115,14 +114,15 @@ class User(AbstractBaseUser, PermissionsMixin):
         try:
             email_name, domain_part = email.strip().rsplit('@', 1)
         except ValueError:
-            raise Exception("Invalid email id recieved during mormalization %s" % (ValueError))
+            raise Exception(
+                "Invalid email id recieved during mormalization %s" % (ValueError))
         else:
             email = '@'.join([email_name, domain_part.lower()])
         return email
 
     def get_absolute_url(self):
-	"""
-	Return link to user profile(Showcase)
-	"""
+        """
+        Return link to user profile(Showcase)
+        """
 
-	return "#/{0}".format(self.id)
+        return "#/{0}".format(self.id)

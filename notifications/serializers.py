@@ -1,13 +1,16 @@
 from rest_framework import serializers
 from .models import Notification
 
+
 class GenericRelatedField(serializers.RelatedField):
+
     """
     Custom field to handle the generic relations
     """
 
     def to_native(self, value):
-	return {'obj': unicode(value), 'url': value.get_absolute_url()}
+        return {'obj': unicode(value), 'url': value.get_absolute_url()}
+
 
 class NotificationSerializer(serializers.ModelSerializer):
     timesince = serializers.DateTimeField(source='timesince')
@@ -16,5 +19,6 @@ class NotificationSerializer(serializers.ModelSerializer):
     target = GenericRelatedField(read_only=True)
 
     class Meta:
-	model = Notification
-	fields = ('id', 'recipient', 'unread', 'actor', 'verb', 'timesince', 'target', 'action_object') 
+        model = Notification
+        fields = ('id', 'recipient', 'unread', 'actor', 'verb',
+                  'timesince', 'target', 'action_object')

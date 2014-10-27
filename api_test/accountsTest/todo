@@ -1,0 +1,4 @@
+## Remaining items for accounts API test
+# Update logic for media folder deletion to delete files only that are related to created user.
+# DB validations for Post/Update/Delete operations.
+# Using API from test-helpers - testcode should not have refrence to DB other than users
