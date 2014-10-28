@@ -58,7 +58,7 @@ class BookmarkSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('bookmarks',)
-        depth = 2
+        depth = 1
 
 
 class FollowSerializer(serializers.ModelSerializer):

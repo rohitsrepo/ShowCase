@@ -125,7 +125,7 @@ def get_current_user(request, format=None):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
-@api_view(['GET', 'PUT', 'POST'])
+@api_view(['GET', 'POST', 'DELETE'])
 @permission_classes((permissions.IsAuthenticated, IsHimself))
 def user_bookmarks(request, pk, format=None):
     check_object_permissions(
@@ -134,10 +134,11 @@ def user_bookmarks(request, pk, format=None):
         serializer = BookmarkSerializer(
             request.user, context={request: request})
         return Response(serializer.data)
-    elif request.method == 'PUT':
+    elif request.method == 'POST':
         bookmarks = request.DATA.get('bookmarks')
+        if not bookmarks:
+            return Response({"bookmarks": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
         request.user.bookmarks.add(*bookmarks)
-        serializer = BookmarkSerializer(request.user)
 
         # Add notification.
         for bookmark in bookmarks:
@@ -149,9 +150,12 @@ def user_bookmarks(request, pk, format=None):
             except Composition.DoesNotExist:
                 # No such user, skip notification.
                 pass
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        bookmarks = request.DATA['bookmarks']
+        return Response(status=status.HTTP_201_CREATED)
+    elif request.method == 'DELETE':
+        bookmarks = request.DATA.get('bookmarks')
+        if not bookmarks:
+            return Response({"bookmarks": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
+
         request.user.bookmarks.remove(*bookmarks)
         serializer = BookmarkSerializer(request.user)
         return Response(serializer.data)
