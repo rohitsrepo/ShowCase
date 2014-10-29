@@ -4,6 +4,7 @@ from compositions.models import Composition
 from comments.models import Comment
 from notifications import notify
 from notifications.models import Notification
+import votes.signals
 
 USER1 = {"email": "user1@user.com", "first_name": "user1", "password": "user1"}
 USER2 = {"email": "user2@user.com", "first_name": "user2", "password": "user2"}
