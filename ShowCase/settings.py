@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'tagging',
     'taggit',
     'search',
+    'interpretations',
 )
 
 MIDDLEWARE_CLASSES = (
