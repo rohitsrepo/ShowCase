@@ -6,4 +6,5 @@ urlpatterns = patterns('',
                        url(r'^/(?P<interpretation_id>[0-9]+)$',
                            views.InterpretationDetail.as_view(), name='interpretation-detail'),
                        url(r'^/(?P<interpretation_id>[0-9]+)/comments', include('comments.urls')),
+                       url(r'^/(?P<interpretation_id>[0-9]+)/votes', include('interpretationVotes.urls')),
                        )
