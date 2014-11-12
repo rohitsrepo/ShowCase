@@ -22,7 +22,7 @@ class TestNotifications(APITestCase):
 
         comment = Helpers.createComment()
         action_object = comment
-        target_object = comment.composition
+        target_object = comment.interpretation
 
         notification_data = {"actor": user1,
                              "recipient": user2,

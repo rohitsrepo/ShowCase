@@ -42,7 +42,7 @@ def createComposition(artist=None):
 def createComment(comment_data=None):
     if not comment_data:
         comment_data = {
-            "commenter": getUser(), "composition": getComposition(), "comment": "Comment1"}
+            "commenter": getUser(), "interpretation": createInterpretation(), "comment": "Comment1"}
 
     return Comment.objects.create(**comment_data)
 
