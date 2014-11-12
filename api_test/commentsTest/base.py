@@ -12,13 +12,13 @@ class CommentsTest(APITestCase):
                        id,
                        comment,
                        commenter,
-                       composition,
+                       interpretation,
                        create_time,
                        edited=False):
         time_gap = timesince(create_time)
         return {'id': id,
                 'comment': comment,
                 'commenter': commenter,
-                'composition': composition,
+                'interpretation': interpretation,
                 'timesince': time_gap,
                 'edited': edited}

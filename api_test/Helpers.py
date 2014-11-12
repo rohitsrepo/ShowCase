@@ -4,6 +4,7 @@ from compositions.models import Composition
 from comments.models import Comment
 from notifications import notify
 from notifications.models import Notification
+from interpretations.models import Interpretation
 import votes.signals
 
 USER1 = {"email": "user1@user.com", "first_name": "user1", "password": "user1"}
@@ -58,3 +59,10 @@ def createNotification(notification_data=None):
 
     notify.send(notification_data["actor"], **notification_data)
     return Notification.objects.get(verb__exact=notification_data["verb"])
+
+
+def createInterpretation(interpretation_data=None):
+    if not interpretation_data:
+        interpretation_data = {
+            "user": getUser(), "composition": getComposition(), "interpretation": "Interpretation1"}
+    return Interpretation.objects.create(**interpretation_data)

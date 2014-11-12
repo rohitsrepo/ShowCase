@@ -1,13 +1,14 @@
 from django.db import models
 from django.conf import settings
 from django.utils.timesince import timesince
+from interpretations.models import Interpretation
 
 
 class Comment(models.Model):
     comment = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     commenter = models.ForeignKey(settings.AUTH_USER_MODEL)
-    composition = models.ForeignKey('compositions.Composition')
+    interpretation = models.ForeignKey(Interpretation)
     edited = models.BooleanField(default=False)
 
     def __str__(self):
@@ -23,7 +24,7 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         """
-        Returns url of the composition it is realted to.
+        Returns url of the interpretation it is realted to.
         """
 
-        return self.composition.get_absolute_url()
+        return self.interpretation.get_absolute_url()
