@@ -1,4 +1,4 @@
-var xyzModule = angular.module('showcaseApp', ['ui.router', 'security.service', 'controller.index', 'ui.utils']);
+var xyzModule = angular.module('showcaseApp', ['ui.router', 'security.service', 'controller.index', 'ui.utils', 'reader.module', 'composition.module', 'collection.module', 'follow.module', 'notification.module', 'showcase.module']);
 
 xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
     'use strict';
@@ -10,16 +10,16 @@ xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
     
     $stateProvider.state('reader', {
         url: '/popular',
-        templateUrl: 'static/partials/reader.html',
-        controller: 'readerCtrl'
+        templateUrl: 'static/js/src/apps/reader/reader.html',
+        controller: 'readerController'
     }).state('composition', {
         url: '/compositions/:compositionId/:slug',
-        templateUrl: '/static/partials/composition.html',
-        controller: 'compositionCtrl'
+        templateUrl: '/static/js/src/apps/composition/composition.html',
+        controller: 'compositionController'
     }).state('showcase', {
         url: '/:userId',
-        templateUrl: '/static/partials/showcase.html',
-        controller: 'showcaseCtrl',
+        templateUrl: '/static/js/src/apps/showcase/showcase.html',
+        controller: 'showcaseController',
         resolve: {
             getUser: function ($stateParams, userFactory) {
                 return userFactory.getUser($stateParams.userId).then(function (res) {
@@ -30,16 +30,16 @@ xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
         }
     }).state('showcase.collection', {
         url: '/collection',
-        templateUrl: '/static/partials/collection.html',
-        controller: 'collectionCtrl'
+        templateUrl: '/static/js/src/apps/collection/collection.html',
+        controller: 'collectionController'
     }).state('showcase.follow', {
         url: '/follow',
-        templateUrl: '/static/partials/follow.html',
-        controller: 'followCtrl'
+        templateUrl: '/static/js/src/apps/follow/follow.html',
+        controller: 'followController'
     }).state('showcase.notifications', {
         url: '/notifications',
-        templateUrl: '/static/partials/notification.html',
-        controller: 'notificationCtrl'
+        templateUrl: '/static/js/src/apps/components/notification/notification.html',
+        controller: 'notificationController'
     }).state('test', {
         url: '/test',
         templateUrl: '/static/partials/test.html',

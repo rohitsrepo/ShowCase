@@ -27,7 +27,7 @@
       <body>
 
         {% verbatim %}  
-        <div ng-controller="rootCtrl">
+        <div ng-controller="rootController">
             <!--<div ng-include src=" '/static/partials/navbarTop.html' " ng-controller='navbarTopCtrl'></div>-->
             <div  ng-include src=" '/static/partials/navbarTop.html' "></div>
 
@@ -54,18 +54,18 @@
         <script src="{% static "js/vendor/angular/angular-file-upload-html5-shim.min.js" %}"></script>
         <script src="{% static "js/vendor/ui-utils.min.js" %}"></script>
           
-        <script src="{% static "js/src/apps/xyz.js" %}"></script>
-        <script src="{% static "js/src/controllers/root.js" %}"></script>
-        <script src="{% static "js/src/controllers/showcase.js" %}"></script>
-        <script src="{% static "js/src/controllers/follow.js" %}"></script>
-        <script src="{% static "js/src/controllers/reader.js" %}"></script>
-        <script src="{% static "js/src/controllers/composition.js" %}"></script>
+        <script src="{% static "js/src/apps/root.module.js" %}"></script>
+        <script src="{% static "js/src/apps/root.controller.js" %}"></script>
+        <script src="{% static "js/src/apps/showcase/showcase.js" %}"></script>
+        <script src="{% static "js/src/apps/follow/follow.js" %}"></script>
+        <script src="{% static "js/src/apps/reader/reader.js" %}"></script>
+        <script src="{% static "js/src/apps/composition/composition.js" %}"></script>
         <script src="{% static "js/src/controllers/navbarTop.js" %}"></script>
-        <script src="{% static "js/src/controllers/notification.js" %}"></script>
+        <script src="{% static "js/src/apps/components/notification/notification.js" %}"></script>
         <script src="{% static "js/src/controllers/test.js" %}"></script>
         <script src="{% static "js/src/controllers/loginModal.js" %}"></script>
         <script src="{% static "js/src/controllers/registerModal.js" %}"></script>
-        <script src="{% static "js/src/controllers/collection.js" %}"></script>
+        <script src="{% static "js/src/apps/collection/collection.js" %}"></script>
         <script src="{% static "js/src/controllers/index.js" %}"></script>
         <script src="{% static "js/src/common/helpers/register.js" %}"></script>
         <script src="{% static "js/src/common/artifacts/users.js" %}"></script>

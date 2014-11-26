@@ -1,6 +1,6 @@
-var collectionModule = angular.module('controller.collection', ['artifact.bookmark']);
+var collectionModule = angular.module('collection.module', ['artifact.bookmark']);
 
-collectionModule.controller('collectionCtrl', ['$scope', 'bookmarkFactory', '$log', 'getUser', function ($scope, bookmarkFactory, $log, getUser) {
+collectionModule.controller('collectionController', ['$scope', 'bookmarkFactory', '$log', 'getUser', function ($scope, bookmarkFactory, $log, getUser) {
     'use strict';
     // TODO get this user from the parent.
     $scope.user = getUser;

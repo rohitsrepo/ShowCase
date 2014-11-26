@@ -1,6 +1,6 @@
-var compositionCtrlModule = angular.module('controller.composition', ['security.service', 'artifact.composition', 'ui.router', 'artifact.bookmark']);
+var compositionCtrlModule = angular.module('composition.module', ['security.service', 'artifact.composition', 'ui.router', 'artifact.bookmark']);
 
-compositionCtrlModule.controller('compositionCtrl', ['$scope',
+compositionCtrlModule.controller('compositionController', ['$scope',
                                                     'securityFactory',
                                                     'compositionFactory',
                                                     '$stateParams',

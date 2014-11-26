@@ -1,6 +1,6 @@
-var notificationModule = angular.module('controller.notification', ['artifact.notification']);
+var notificationModule = angular.module('notification.module', ['artifact.notification']);
 
-notificationModule.controller('notificationCtrl', ['$scope', 'getUser', 'notificationFactory', function ($scope, getUser, notificationFactory) {
+notificationModule.controller('notificationController', ['$scope', 'getUser', 'notificationFactory', function ($scope, getUser, notificationFactory) {
     'use strict';
     $scope.notifications = [];
     

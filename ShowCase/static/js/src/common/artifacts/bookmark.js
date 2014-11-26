@@ -15,7 +15,7 @@ bookmarkModule.factory('bookmarkFactory', ['$http', '$log', 'securityFactory', '
     
     service.addBookmark = function (userId, compositionId) {
         if (securityFactory.checkForAuth()) {
-            return $http({method: 'PUT', data: {bookmarks: [compositionId]}, url: 'users/' + userId + '/bookmarks'}).then(function (res) {
+            return $http({method: 'POST', data: {bookmarks: [compositionId]}, url: 'users/' + userId + '/bookmarks'}).then(function (res) {
                 return res;
             }, function (res) {
                 $log.error('bookmarkFactory', res);
@@ -26,7 +26,7 @@ bookmarkModule.factory('bookmarkFactory', ['$http', '$log', 'securityFactory', '
     };
     
     service.deleteBookmark = function (userId, compositionId) {
-        return $http({method: 'POST', data: {bookmarks: [compositionId]}, url: 'users/' + userId + '/bookmarks'}).then(function (res) {
+        return $http({method: 'DELETE', data: {bookmarks: [compositionId]}, url: 'users/' + userId + '/bookmarks'}).then(function (res) {
         }, function (res) {
             $log.error('bookmarkFactory', res);
         });

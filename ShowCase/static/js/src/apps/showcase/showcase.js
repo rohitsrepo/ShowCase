@@ -1,6 +1,6 @@
-var showcaseModule = angular.module('controller.showcase', ['artifact.composition', 'security.service', 'artifact.follow']);
+var showcaseModule = angular.module('showcase.module', ['artifact.composition', 'security.service', 'artifact.follow']);
 
-showcaseModule.controller('showcaseCtrl', ['$scope', 'compositionFactory', 'getUser', 'securityFactory', '$log', 'followFactory', function ($scope, compositionFactory, getUser, securityFactory, $log, followFactory) {
+showcaseModule.controller('showcaseController', ['$scope', 'compositionFactory', 'getUser', 'securityFactory', '$log', 'followFactory', function ($scope, compositionFactory, getUser, securityFactory, $log, followFactory) {
     'use strict';
     
     $scope.user = getUser;

@@ -1,6 +1,6 @@
-var followModule = angular.module('controller.follow', ['artifact.follow']);
+var followModule = angular.module('follow.module', ['artifact.follow']);
 
-followModule.controller('followCtrl', ['$scope', 'followFactory', '$log', 'getUser', function ($scope, followFactory, $log, getUser) {
+followModule.controller('followController', ['$scope', 'followFactory', '$log', 'getUser', function ($scope, followFactory, $log, getUser) {
     'use strict';
     
     $scope.user = getUser;

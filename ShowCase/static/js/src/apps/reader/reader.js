@@ -1,4 +1,4 @@
-var showcaseApp = angular.module('controller.reader', [
+var reader = angular.module('reader.module', [
     'security.service',
     'artifact.composition',
     'helper.logger',
@@ -7,7 +7,7 @@ var showcaseApp = angular.module('controller.reader', [
     'artifact.bookmark'
 ]);
 
-showcaseApp.controller('readerCtrl', [
+reader.controller('readerController', [
     '$scope',
     'securityFactory',
     'compositionFactory',
