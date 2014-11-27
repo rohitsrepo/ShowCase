@@ -1,11 +1,11 @@
-var followModule = angular.module('artifact.follow', ['ngResource', 'security.service']);
+var followModule = angular.module('artifact.follow', ['ngResource', 'authentication']);
 
-followModule.factory('followFactory', ['$http', '$q', '$log', 'securityFactory', function ($http, $q, $log, securityFactory) {
+followModule.factory('followFactory', ['$http', '$q', '$log', 'authenticationService', function ($http, $q, $log, authenticationService) {
     'use strict';
     
     var service = {};
     service.follow = function (currentUserId, userId) {
-        if (securityFactory.checkForAuth()) {
+        if (authenticationService.checkForAuth()) {
             return $http({method: 'PUT', url: '/users/' + currentUserId + '/follows', data: {follows: [userId]}}).then(function (res) {
                 $log.info(res);
                 return res;
@@ -17,7 +17,7 @@ followModule.factory('followFactory', ['$http', '$q', '$log', 'securityFactory',
     };
     
     service.unFollow = function (currentUserId, userId) {
-        if (securityFactory.checkForAuth()) {
+        if (authenticationService.checkForAuth()) {
             return $http({method: 'POST', url: '/users/' + currentUserId + '/follows', data: {follows: [userId]}}).then(function (res) {
                 $log.info(res);
                 return res;
@@ -29,7 +29,7 @@ followModule.factory('followFactory', ['$http', '$q', '$log', 'securityFactory',
     };
     
     service.getFollowCompositions = function (userId) {
-        if (securityFactory.checkForAuth()) {
+        if (authenticationService.checkForAuth()) {
             return $http({method: 'GET', url: '/compositions/follow'}).then(function (res) {
                 return res;
             }, function (res) {

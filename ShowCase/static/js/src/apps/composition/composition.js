@@ -1,17 +1,17 @@
-var compositionCtrlModule = angular.module('composition.module', ['security.service', 'artifact.composition', 'ui.router', 'artifact.bookmark']);
+var compositionCtrlModule = angular.module('composition.module', ['authentication', 'artifact.composition', 'ui.router', 'artifact.bookmark']);
 
 compositionCtrlModule.controller('compositionController', ['$scope',
-                                                    'securityFactory',
+                                                    'authenticationService',
                                                     'compositionFactory',
                                                     '$stateParams',
                                                     '$location',
                                                     '$window',
                                                     '$log',
-                                                    'bookmarkFactory', function ($scope, securityFactory, compositionFactory, $stateParams, $location, $window, $log, bookmarkFactory) {
+                                                    'bookmarkFactory', function ($scope, authenticationService, compositionFactory, $stateParams, $location, $window, $log, bookmarkFactory) {
     'use strict';
     
     $scope.newComment = '';
-    $scope.isAuthenticated = securityFactory.isAuthenticated;
+    $scope.isAuthenticated = authenticationService.isAuthenticated;
     
     $scope.composition = compositionFactory.manager.get({compositionId: $stateParams.compositionId}, function (data) {
         if ((data.slug).localeCompare($stateParams.slug)) {
@@ -37,7 +37,7 @@ compositionCtrlModule.controller('compositionController', ['$scope',
     };
     
     $scope.commenting = function () {
-        securityFactory.checkForAuth();
+        authenticationService.checkForAuth();
         var res = compositionFactory.comments.save({compositionId: $scope.composition.id}, {comment: $scope.newComment}, function (res) {
             $scope.comments.push(res);
             $scope.newComment = '';
@@ -65,7 +65,7 @@ compositionCtrlModule.controller('compositionController', ['$scope',
     };
                                                         
     $scope.bookmark = function (compositionId) {
-        if (securityFactory.checkForAuth()) {
+        if (authenticationService.checkForAuth()) {
             bookmarkFactory.addBookmark($scope.currentUser.id, compositionId).then(function (res) {
                 if (res) {
                     $scope.composition.IsBookmarked = true;

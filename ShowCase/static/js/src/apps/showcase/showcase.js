@@ -1,13 +1,13 @@
-var showcaseModule = angular.module('showcase.module', ['artifact.composition', 'security.service', 'artifact.follow']);
+var showcaseModule = angular.module('showcase.module', ['artifact.composition', 'authentication', 'artifact.follow']);
 
-showcaseModule.controller('showcaseController', ['$scope', 'compositionFactory', 'getUser', 'securityFactory', '$log', 'followFactory', function ($scope, compositionFactory, getUser, securityFactory, $log, followFactory) {
+showcaseModule.controller('showcaseController', ['$scope', 'compositionFactory', 'getUser', 'authenticationService', '$log', 'followFactory', function ($scope, compositionFactory, getUser, authenticationService, $log, followFactory) {
     'use strict';
     
     $scope.user = getUser;
     $scope.compositions = compositionFactory.manager.query({artist: $scope.user.id});
     
     $scope.follow = function () {
-        if (securityFactory.checkForAuth()) {
+        if (authenticationService.checkForAuth()) {
             followFactory.follow($scope.currentUser.id, $scope.user.id).then(function (res) {
                 $scope.user.IsFollowed = true;
             }, function (res) {
@@ -17,7 +17,7 @@ showcaseModule.controller('showcaseController', ['$scope', 'compositionFactory',
     };
     
     $scope.unFollow = function () {
-        if (securityFactory.checkForAuth()) {
+        if (authenticationService.checkForAuth()) {
             followFactory.unFollow($scope.currentUser.id, $scope.user.id).then(function (res) {
                 $scope.user.IsFollowed = false;
             }, function (res) {

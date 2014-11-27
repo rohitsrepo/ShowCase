@@ -1,0 +1,1 @@
+angular.module('register', ['ui.bootstrap', 'ui.router', 'authentication', 'artifact.user']);

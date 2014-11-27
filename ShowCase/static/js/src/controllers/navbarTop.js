@@ -1,10 +1,10 @@
-var navbarTopModule = angular.module('controller.navbarTop', ['security.service', 'register', 'artifact.notification']);
+var navbarTopModule = angular.module('controller.navbarTop', ['authentication', 'register', 'artifact.notification']);
 
-navbarTopModule.controller('navbarTopCtrl', ['$scope', 'securityFactory', 'registerService', 'notificationFactory', function ($scope, securityFactory, registerService, notificationFactory) {
+navbarTopModule.controller('navbarTopCtrl', ['$scope', 'authenticationService', 'registerService', 'notificationFactory', function ($scope, authenticationService, registerService, notificationFactory) {
     'use strict';
     
-    $scope.login = securityFactory.checkForAuth;
-    $scope.logout = securityFactory.logout;
+    $scope.login = authenticationService.checkForAuth;
+    $scope.logout = authenticationService.logout;
     
     $scope.register = registerService.showRegisterModal;
     

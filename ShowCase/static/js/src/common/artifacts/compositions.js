@@ -1,6 +1,6 @@
-var compositionServiceModule = angular.module('artifact.composition', ['ngResource', 'security.service']);
+var compositionServiceModule = angular.module('artifact.composition', ['ngResource', 'authentication']);
 
-compositionServiceModule.factory('compositionFactory', ['$resource', '$http', 'securityFactory', '$q', function ($resource, $http, securityFactory, $q) {
+compositionServiceModule.factory('compositionFactory', ['$resource', '$http', 'authenticationService', '$q', function ($resource, $http, authenticationService, $q) {
     'use strict';
     
     var service = {};
@@ -11,7 +11,7 @@ compositionServiceModule.factory('compositionFactory', ['$resource', '$http', 's
     
     service.votes = {};
     service.votes.put = function (compositionId, vote) {
-        if (securityFactory.checkForAuth()) {
+        if (authenticationService.checkForAuth()) {
             var votingUrl = '/compositions/' + compositionId + '/vote';
             return $http({method: 'PUT', data: {'vote': vote}, url: votingUrl});
         }
@@ -32,7 +32,7 @@ compositionServiceModule.factory('compositionFactory', ['$resource', '$http', 's
     service.comments = $resource('/compositions/:compositionId/comments.json');
     
     service.isOwner = function (userId) {
-        return userId === (securityFactory.currentUser && securityFactory.currentUser.id);
+        return userId === (authenticationService.currentUser && authenticationService.currentUser.id);
     };
     
     return service;

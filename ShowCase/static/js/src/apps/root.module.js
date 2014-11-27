@@ -1,4 +1,4 @@
-var xyzModule = angular.module('showcaseApp', ['ui.router', 'security.service', 'controller.index', 'ui.utils', 'reader.module', 'composition.module', 'collection.module', 'follow.module', 'notification.module', 'showcase.module']);
+var xyzModule = angular.module('showcaseApp', ['ui.router', 'authentication', 'controller.index', 'ui.utils', 'reader.module', 'composition.module', 'collection.module', 'follow.module', 'notification.module', 'showcase.module']);
 
 xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
     'use strict';
@@ -51,13 +51,13 @@ xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
 });
 
-xyzModule.run(['securityFactory', function (securityFactory) {
+xyzModule.run(['authenticationService', function (authenticationService) {
     'use strict';
     
     // Fetch the logged in user from last session before
     // start of applicaiton.
     
-    securityFactory.getCurrentUser();
+    authenticationService.getCurrentUser();
 }]);
 
 xyzModule.factory('authHttpResponseInterceptor', ['$q', '$window', '$log', function ($q, $window, $log) {

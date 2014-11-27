@@ -1,9 +1,9 @@
 angular.module('showcaseApp')
-.controller('rootController', ['$scope', 'securityFactory', function ($scope, securityFactory) {
+.controller('rootController', ['$scope', 'authenticationService', function ($scope, authenticationService) {
     'use strict';
     
     $scope.$watch(function () {
-        return securityFactory.currentUser;
+        return authenticationService.currentUser;
     }, function (user) {
         $scope.currentUser = user;
     });

@@ -1,5 +1,5 @@
 var reader = angular.module('reader.module', [
-    'security.service',
+    'authentication',
     'artifact.composition',
     'helper.logger',
     'angularFileUpload',
@@ -9,7 +9,7 @@ var reader = angular.module('reader.module', [
 
 reader.controller('readerController', [
     '$scope',
-    'securityFactory',
+    'authenticationService',
     'compositionFactory',
     'logger',
     '$upload',
@@ -17,7 +17,7 @@ reader.controller('readerController', [
     '$log',
     'bookmarkFactory',
     '$window',
-    function ($scope, securityFactory, compositionFactory, logger, $upload, $state, $log, bookmarkFactory, $window) {
+    function ($scope, authenticationService, compositionFactory, logger, $upload, $state, $log, bookmarkFactory, $window) {
         'use strict';
     
         var file;
@@ -65,7 +65,7 @@ reader.controller('readerController', [
         };
         
         $scope.bookmark = function (compositionId, index) {
-        if (securityFactory.checkForAuth()) {
+        if (authenticationService.checkForAuth()) {
             bookmarkFactory.addBookmark($scope.currentUser.id, compositionId).then(function (res) {
                 if (res) {
                     $scope.compositions[index].IsBookmarked = true;
