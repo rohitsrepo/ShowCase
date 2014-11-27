@@ -10,15 +10,15 @@ xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
     
     $stateProvider.state('reader', {
         url: '/popular',
-        templateUrl: 'static/js/src/apps/reader/reader.html',
+        templateUrl: 'static/js/src/reader/reader.html',
         controller: 'readerController'
     }).state('composition', {
         url: '/compositions/:compositionId/:slug',
-        templateUrl: '/static/js/src/apps/composition/composition.html',
+        templateUrl: '/static/js/src/composition/composition.html',
         controller: 'compositionController'
     }).state('showcase', {
         url: '/:userId',
-        templateUrl: '/static/js/src/apps/showcase/showcase.html',
+        templateUrl: '/static/js/src/showcase/showcase.html',
         controller: 'showcaseController',
         resolve: {
             getUser: function ($stateParams, userFactory) {
@@ -30,15 +30,15 @@ xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
         }
     }).state('showcase.collection', {
         url: '/collection',
-        templateUrl: '/static/js/src/apps/collection/collection.html',
+        templateUrl: '/static/js/src/collection/collection.html',
         controller: 'collectionController'
     }).state('showcase.follow', {
         url: '/follow',
-        templateUrl: '/static/js/src/apps/follow/follow.html',
+        templateUrl: '/static/js/src/follow/follow.html',
         controller: 'followController'
     }).state('showcase.notifications', {
         url: '/notifications',
-        templateUrl: '/static/js/src/apps/components/notification/notification.html',
+        templateUrl: '/static/js/src/components/notification/notification.html',
         controller: 'notificationController'
     });
     

@@ -6,7 +6,7 @@ angular.module('register')
     service.registerModal = null;
     service.showRegisterModal = function () {
         service.registerModal = $modal.open({
-            templateUrl: '/static/js/src/apps/registration/register.modal.html',
+            templateUrl: '/static/js/src/registration/register.modal.html',
             controller: 'registerModalController',
             size: 'lg'
         });

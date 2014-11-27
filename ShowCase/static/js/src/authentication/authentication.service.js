@@ -53,7 +53,7 @@ angular.module('authentication')
     service.showLoginModal = function () {
         service.redirectState = $state.current.name;
         loginModal = $modal.open({
-            templateUrl: '/static/js/src/apps/authentication/authentication.modal.html',
+            templateUrl: '/static/js/src/authentication/authentication.modal.html',
             controller: 'authenticationModalController'
         });
         

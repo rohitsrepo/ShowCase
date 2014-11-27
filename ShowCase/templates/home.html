@@ -28,12 +28,12 @@
 
         {% verbatim %}  
         <div ng-controller="rootController">
-            <div  ng-include src=" '/static/js/src/apps/components/navbarTop.html' "></div>
+            <div  ng-include src=" '/static/js/src/components/navbarTop.html' "></div>
 
             <div class="container">
                 <div ui-view></div><!--jumbotron-->
             </div><!-- /.container -->  
-            <div ng-include src=" '/static/js/src/apps/layouts/navbarBottom.html' "></div>
+            <div ng-include src=" '/static/js/src/layouts/navbarBottom.html' "></div>
         </div>
         {% endverbatim %}
 
@@ -53,26 +53,26 @@
         <script src="{% static "js/vendor/angular/angular-file-upload-html5-shim.min.js" %}"></script>
         <script src="{% static "js/vendor/ui-utils.min.js" %}"></script>
           
-        <script src="{% static "js/src/apps/root.module.js" %}"></script>
-        <script src="{% static "js/src/apps/root.controller.js" %}"></script>
-        <script src="{% static "js/src/apps/showcase/showcase.js" %}"></script>
-        <script src="{% static "js/src/apps/follow/follow.js" %}"></script>
-        <script src="{% static "js/src/apps/reader/reader.js" %}"></script>
-        <script src="{% static "js/src/apps/composition/composition.js" %}"></script>
-        <script src="{% static "js/src/apps/components/navbarTop.js" %}"></script>
-        <script src="{% static "js/src/apps/components/notification/notification.js" %}"></script>
-        <script src="{% static "js/src/apps/registration/register.module.js" %}"></script>
-        <script src="{% static "js/src/apps/registration/register.modal.controller.js" %}"></script>
-        <script src="{% static "js/src/apps/registration/register.service.js" %}"></script>
-        <script src="{% static "js/src/apps/collection/collection.js" %}"></script>
-        <script src="{% static "js/src/apps/artifacts/users.js" %}"></script>
-        <script src="{% static "js/src/apps/artifacts/compositions.js" %}"></script>
-        <script src="{% static "js/src/apps/artifacts/follow.js" %}"></script>
-        <script src="{% static "js/src/apps/artifacts/bookmark.js" %}"></script>
-        <script src="{% static "js/src/apps/artifacts/notification.js" %}"></script>
-        <script src="{% static "js/src/apps/authentication/authentication.module.js" %}"></script>
-        <script src="{% static "js/src/apps/authentication/authentication.modal.controller.js" %}"></script>
-        <script src="{% static "js/src/apps/authentication/authentication.service.js" %}"></script>
+        <script src="{% static "js/src/root.module.js" %}"></script>
+        <script src="{% static "js/src/root.controller.js" %}"></script>
+        <script src="{% static "js/src/showcase/showcase.js" %}"></script>
+        <script src="{% static "js/src/follow/follow.js" %}"></script>
+        <script src="{% static "js/src/reader/reader.js" %}"></script>
+        <script src="{% static "js/src/composition/composition.js" %}"></script>
+        <script src="{% static "js/src/components/navbarTop.js" %}"></script>
+        <script src="{% static "js/src/components/notification/notification.js" %}"></script>
+        <script src="{% static "js/src/registration/register.module.js" %}"></script>
+        <script src="{% static "js/src/registration/register.modal.controller.js" %}"></script>
+        <script src="{% static "js/src/registration/register.service.js" %}"></script>
+        <script src="{% static "js/src/collection/collection.js" %}"></script>
+        <script src="{% static "js/src/artifacts/users.js" %}"></script>
+        <script src="{% static "js/src/artifacts/compositions.js" %}"></script>
+        <script src="{% static "js/src/artifacts/follow.js" %}"></script>
+        <script src="{% static "js/src/artifacts/bookmark.js" %}"></script>
+        <script src="{% static "js/src/artifacts/notification.js" %}"></script>
+        <script src="{% static "js/src/authentication/authentication.module.js" %}"></script>
+        <script src="{% static "js/src/authentication/authentication.modal.controller.js" %}"></script>
+        <script src="{% static "js/src/authentication/authentication.service.js" %}"></script>
       </body>
     </html>
 
