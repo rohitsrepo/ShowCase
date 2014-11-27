@@ -1,4 +1,4 @@
-var xyzModule = angular.module('showcaseApp', ['ui.router', 'authentication', 'controller.index', 'ui.utils', 'reader.module', 'composition.module', 'collection.module', 'follow.module', 'notification.module', 'showcase.module']);
+var xyzModule = angular.module('showcaseApp', ['ui.router', 'authentication', 'ui.utils', 'reader.module', 'composition.module', 'collection.module', 'follow.module', 'notification.module', 'showcase.module', 'navbarTop']);
 
 xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
     'use strict';
@@ -40,10 +40,6 @@ xyzModule.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
         url: '/notifications',
         templateUrl: '/static/js/src/apps/components/notification/notification.html',
         controller: 'notificationController'
-    }).state('test', {
-        url: '/test',
-        templateUrl: '/static/partials/test.html',
-        controller: 'testCtrl'
     });
     
     // csrf for django 

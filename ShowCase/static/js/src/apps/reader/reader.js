@@ -1,7 +1,6 @@
 var reader = angular.module('reader.module', [
     'authentication',
     'artifact.composition',
-    'helper.logger',
     'angularFileUpload',
     'ui.router',
     'artifact.bookmark'
@@ -11,13 +10,12 @@ reader.controller('readerController', [
     '$scope',
     'authenticationService',
     'compositionFactory',
-    'logger',
     '$upload',
     '$state',
     '$log',
     'bookmarkFactory',
     '$window',
-    function ($scope, authenticationService, compositionFactory, logger, $upload, $state, $log, bookmarkFactory, $window) {
+    function ($scope, authenticationService, compositionFactory, $upload, $state, $log, bookmarkFactory, $window) {
         'use strict';
     
         var file;
@@ -34,7 +32,6 @@ reader.controller('readerController', [
             }, function (res) {
                 //TODO handle error according to status of error.
                 // Global exception handling.
-                logger('Reader controller...error while putting votes', res);
                 if (res.status === 403) {
                     alert('Seems like you have already voted mate!!!');
                 }

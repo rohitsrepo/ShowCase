@@ -28,13 +28,12 @@
 
         {% verbatim %}  
         <div ng-controller="rootController">
-            <!--<div ng-include src=" '/static/partials/navbarTop.html' " ng-controller='navbarTopCtrl'></div>-->
-            <div  ng-include src=" '/static/partials/navbarTop.html' "></div>
+            <div  ng-include src=" '/static/js/src/apps/components/navbarTop.html' "></div>
 
             <div class="container">
                 <div ui-view></div><!--jumbotron-->
             </div><!-- /.container -->  
-            <div ng-include src=" '/static/partials/navbarBottom.html' "></div>
+            <div ng-include src=" '/static/js/src/apps/layouts/navbarBottom.html' "></div>
         </div>
         {% endverbatim %}
 
@@ -60,24 +59,20 @@
         <script src="{% static "js/src/apps/follow/follow.js" %}"></script>
         <script src="{% static "js/src/apps/reader/reader.js" %}"></script>
         <script src="{% static "js/src/apps/composition/composition.js" %}"></script>
-        <script src="{% static "js/src/controllers/navbarTop.js" %}"></script>
+        <script src="{% static "js/src/apps/components/navbarTop.js" %}"></script>
         <script src="{% static "js/src/apps/components/notification/notification.js" %}"></script>
-        <script src="{% static "js/src/controllers/test.js" %}"></script>
         <script src="{% static "js/src/apps/registration/register.module.js" %}"></script>
         <script src="{% static "js/src/apps/registration/register.modal.controller.js" %}"></script>
         <script src="{% static "js/src/apps/registration/register.service.js" %}"></script>
         <script src="{% static "js/src/apps/collection/collection.js" %}"></script>
-        <script src="{% static "js/src/controllers/index.js" %}"></script>
-        <script src="{% static "js/src/common/artifacts/users.js" %}"></script>
-        <script src="{% static "js/src/common/artifacts/compositions.js" %}"></script>
-        <script src="{% static "js/src/common/artifacts/follow.js" %}"></script>
-        <script src="{% static "js/src/common/artifacts/bookmark.js" %}"></script>
-        <script src="{% static "js/src/common/artifacts/notification.js" %}"></script>
+        <script src="{% static "js/src/apps/artifacts/users.js" %}"></script>
+        <script src="{% static "js/src/apps/artifacts/compositions.js" %}"></script>
+        <script src="{% static "js/src/apps/artifacts/follow.js" %}"></script>
+        <script src="{% static "js/src/apps/artifacts/bookmark.js" %}"></script>
+        <script src="{% static "js/src/apps/artifacts/notification.js" %}"></script>
         <script src="{% static "js/src/apps/authentication/authentication.module.js" %}"></script>
         <script src="{% static "js/src/apps/authentication/authentication.modal.controller.js" %}"></script>
         <script src="{% static "js/src/apps/authentication/authentication.service.js" %}"></script>
-          
-        <script src="{% static "js/src/common/helpers/logger.js" %}"></script>
       </body>
     </html>
 

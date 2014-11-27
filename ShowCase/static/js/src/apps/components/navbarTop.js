@@ -1,6 +1,5 @@
-var navbarTopModule = angular.module('controller.navbarTop', ['authentication', 'register', 'artifact.notification']);
-
-navbarTopModule.controller('navbarTopCtrl', ['$scope', 'authenticationService', 'registerService', 'notificationFactory', function ($scope, authenticationService, registerService, notificationFactory) {
+angular.module('navbarTop', ['authentication', 'register', 'artifact.notification'])
+.controller('navbarTopController', ['$scope', 'authenticationService', 'registerService', 'notificationFactory', function ($scope, authenticationService, registerService, notificationFactory) {
     'use strict';
     
     $scope.login = authenticationService.checkForAuth;
