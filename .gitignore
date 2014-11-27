@@ -1,3 +1,4 @@
 #Ignore all the .pyc files.
 *.pyc
 *.swp
+ShowCase/static/js/bower_components/
