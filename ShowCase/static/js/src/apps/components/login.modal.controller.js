@@ -1,6 +1,5 @@
-var loginModalModule = angular.module('controller.loginModal', ['ui.bootstrap', 'security.service']);
-
-loginModalModule.controller('loginModalCtrl', ['$scope', '$modalInstance', 'securityFactory', function ($scope, $modalInstance, securityFactory) {
+angular.module('login.modal.module', ['ui.bootstrap', 'security.service'])
+.controller('loginModalController', ['$scope', '$modalInstance', 'securityFactory', function ($scope, $modalInstance, securityFactory) {
     'use strict';
     
     $scope.authError = '';

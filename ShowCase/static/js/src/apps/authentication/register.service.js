@@ -1,14 +1,13 @@
-var registerModule = angular.module('service.register', ['ui.bootstrap', 'ui.router', 'security.service']);
-
-registerModule.factory('registerFactory', ['$modal', '$log', '$state', 'securityFactory', '$window', function ($modal, $log, $state, securityFactory, $window) {
+angular.module('register')
+.factory('registerService', ['$modal', '$log', '$state', 'securityFactory', '$window', function ($modal, $log, $state, securityFactory, $window) {
     'use strict';
     
     var service = {};
     service.registerModal = null;
     service.showRegisterModal = function () {
         service.registerModal = $modal.open({
-            templateUrl: '/static/partials/registerModal.html',
-            controller: 'registerModalCtrl',
+            templateUrl: '/static/js/src/apps/authentication/register.modal.html',
+            controller: 'registerModalController',
             size: 'lg'
         });
         

@@ -1,4 +1,4 @@
-var securityModule = angular.module('security.service', ['artifact.user', 'ui.bootstrap', 'ui.router']);
+var securityModule = angular.module('security.service', ['artifact.user', 'ui.bootstrap', 'ui.router', 'login.modal.module']);
 
 securityModule.factory('securityFactory', ['$http', '$q', 'userFactory', '$modal', '$state', '$log', '$window', function ($http, $q, userFactory, $modal, $state, $log, $window) {
     'use strict';
@@ -54,8 +54,8 @@ securityModule.factory('securityFactory', ['$http', '$q', 'userFactory', '$modal
     service.showLoginModal = function () {
         service.redirectState = $state.current.name;
         loginModal = $modal.open({
-            templateUrl: '/static/partials/loginModal.html',
-            controller: 'loginModalCtrl'
+            templateUrl: '/static/js/src/apps/components/login.modal.html',
+            controller: 'loginModalController'
         });
         
         /*return loginModal.result.then(function (result) {

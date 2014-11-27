@@ -1,6 +1,5 @@
-var registerModalModule = angular.module('controller.registerModal', ['ui.bootstrap', 'service.register', 'artifact.user']);
-
-registerModalModule.controller('registerModalCtrl', ['$scope', '$modalInstance', 'registerFactory', 'userFactory', function ($scope, $modalInstance, registerFactory, userFactory) {
+angular.module('register')
+.controller('registerModalController', ['$scope', '$modalInstance', 'userFactory', function ($scope, $modalInstance, userFactory) {
     'use strict';
     
     $scope.regError = '';
