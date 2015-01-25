@@ -3,27 +3,27 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 from django.conf import settings
-import compositions.models
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('interpretations', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Composition',
+            name='Comment',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('title', models.CharField(max_length=100, verbose_name=b'Title')),
-                ('description', models.CharField(default=b'', max_length=1000, verbose_name=b'Description', blank=True)),
-                ('slug', models.SlugField(max_length=100)),
+                ('comment', models.TextField()),
                 ('created', models.DateTimeField(auto_now_add=True)),
-                ('matter', models.FileField(upload_to=compositions.models.get_upload_file_name_composition)),
+                ('edited', models.BooleanField(default=False)),
+                ('commenter', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('interpretation', models.ForeignKey(to='interpretations.Interpretation')),
             ],
             options={
-                'ordering': ('created',),
             },
             bases=(models.Model,),
         ),
