@@ -51,7 +51,6 @@ INSTALLED_APPS = (
     'interpretationVotes',
     'comments',
     'notifications',
-    'messaging',
     'search',
     'interpretations',
 )

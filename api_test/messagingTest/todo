@@ -1,3 +1,0 @@
-## Remaining items for Messaging API tests.
-# Use test helper to create artifact such that test code should have no ORM dependency other the Message model.
-# DB based validation for Post/Put/Delete operations.
