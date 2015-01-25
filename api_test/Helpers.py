@@ -2,8 +2,6 @@ from uuid import uuid4
 from accounts.models import User
 from compositions.models import Composition
 from comments.models import Comment
-from notifications import notify
-from notifications.models import Notification
 from interpretations.models import Interpretation
 import votes.signals
 
@@ -45,21 +43,6 @@ def createComment(comment_data=None):
             "commenter": getUser(), "interpretation": createInterpretation(), "comment": "Comment1"}
 
     return Comment.objects.create(**comment_data)
-
-
-def createNotification(notification_data=None):
-    if not notification_data:
-        notification_data = {"actor": getUser(USER1),
-                             "recipient": getUser(USER2),
-                             "verb": "did some action",
-                             "action_object": createComment(),
-                             "target": createComposition()}
-
-    notification_data["verb"] += str(uuid4())
-
-    notify.send(notification_data["actor"], **notification_data)
-    return Notification.objects.get(verb__exact=notification_data["verb"])
-
 
 def createInterpretation(interpretation_data=None):
     if not interpretation_data:

@@ -7,7 +7,6 @@ from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from interpretationVotes  import signals
-from notifications import notify
 
 
 class InterpretationList(APIView):
@@ -30,11 +29,6 @@ class InterpretationList(APIView):
             serializer.object.composition = get_object_or_404(
                 Composition, id=composition_id)
             serializer.save()
-            # Add notification.
-            intrepretation = serializer.object
-            if request.user != intrepretation.composition.artist:
-                notify.send(request.user, recipient=intrepretation.composition.artist,
-                            verb='added interpretaion', action_object=intrepretation, target=intrepretation.composition)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

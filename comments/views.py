@@ -6,7 +6,6 @@ from rest_framework import status, permissions
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
-# from notifications import notify
 
 
 class CommentList(APIView):
@@ -29,11 +28,6 @@ class CommentList(APIView):
             serializer.object.interpretation = get_object_or_404(
                 Interpretation, id=interpretation_id)
             serializer.save()
-            # Add notification.
-            # comment = serializer.object
-            # if request.user != comment.interpretation.artist:
-            #     notify.send(request.user, recipient=comment.interpretation.artist,
-            #                 verb='commented', action_object=comment, target=comment.interpretation)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

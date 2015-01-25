@@ -10,7 +10,6 @@ from django.contrib.auth import authenticate, login, logout
 from ShowCase.utils import check_object_permissions
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
-from notifications import notify
 from compositions.models import Composition
 
 
@@ -139,17 +138,6 @@ def user_bookmarks(request, pk, format=None):
         if not bookmarks:
             return Response({"bookmarks": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
         request.user.bookmarks.add(*bookmarks)
-
-        # Add notification.
-        for bookmark in bookmarks:
-            try:
-                bookmarked = Composition.objects.get(pk=bookmark)
-                if request.user != bookmarked.artist:
-                    notify.send(request.user, recipient=bookmarked.artist,
-                                verb='added to his collection', action_object=bookmarked)
-            except Composition.DoesNotExist:
-                # No such user, skip notification.
-                pass
         return Response(status=status.HTTP_201_CREATED)
     elif request.method == 'DELETE':
         bookmarks = request.DATA.get('bookmarks')
@@ -173,17 +161,6 @@ def user_follows(request, pk, format=None):
         follows = request.DATA.get('follows')
         request.user.follows.add(*follows)
         serializer = FollowSerializer(request.user)
-
-        # TODO add notification.
-        for follow in follows:
-            try:
-                followed = User.objects.get(pk=follow)
-                if request.user != followed:
-                    notify.send(
-                        request.user, recipient=followed, verb='followed you.')
-            except User.DoesNotExist:
-                # No such user, skip notification.
-                pass
 
         return Response(serializer.data)
     elif request.method == 'POST':
