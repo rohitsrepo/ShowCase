@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
-from taggit.managers import TaggableManager
 
 
 def get_upload_file_name_composition(instance, filename):
@@ -17,7 +16,6 @@ class Composition(models.Model):
     slug = models.SlugField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     matter = models.FileField(upload_to=get_upload_file_name_composition)
-    tags = TaggableManager(blank=True)
 
     class Meta:
         ordering = ('created',)

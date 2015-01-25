@@ -52,8 +52,6 @@ INSTALLED_APPS = (
     'comments',
     'notifications',
     'messaging',
-    'tagging',
-    'taggit',
     'search',
     'interpretations',
 )
