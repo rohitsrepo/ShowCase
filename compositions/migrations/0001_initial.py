@@ -11,7 +11,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('taggit', '0001_initial'),
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -24,7 +23,6 @@ class Migration(migrations.Migration):
                 ('slug', models.SlugField(max_length=100)),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('matter', models.FileField(upload_to=compositions.models.get_upload_file_name_composition)),
-                ('artist', models.ForeignKey(related_name=b'compositions', to=settings.AUTH_USER_MODEL)),
                 ('tags', taggit.managers.TaggableManager(to='taggit.Tag', through='taggit.TaggedItem', blank=True, help_text='A comma-separated list of tags.', verbose_name='Tags')),
             ],
             options={
