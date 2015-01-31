@@ -167,22 +167,21 @@ body {
 
 /*============== DEAL WITH ARTWORK HERE ==================*/
 img#painting {
-  width: 700px;
-  height: auto;
+  width: auto;
+  height: 98%;
   object-fit: contain;
   cursor: pointer;
-  margin: 0 auto;
+  overflow: hidden;
+  padding: 2px;
+  margin: 5px auto auto auto;
   display: block;
 }
 
-
-#painting {
-  display: block;
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
+.painting-container {
+  postion: relative;
+  width: 100%;
+  height: 85%;
 }
-
 /*#interpret {
   background: #FFFFFF;
   position: relative;
@@ -198,14 +197,19 @@ img#painting {
   clear: both;
   display: inline-block;
   width: 25%;
-  border: 2px solid #000000;
   margin: 0 auto;
 }
 
-.about_art p {
+.sticky-art {
+  object-fit: contain;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+}
+/*.about_art p {
   margin-right: 5px;
   margin-left: 5px;
-}
+}*/
 /* ================== LOGIN / SIGNUP ===================*/
 #b1 {
   position: relative;

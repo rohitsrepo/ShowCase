@@ -163,8 +163,8 @@ html, body {
   position: relative; 
   left: 5%;
   top: 30%;
-  padding: 0;
   width: 40%;
+  margin-top: 1%;
 }
 
 .description {
@@ -207,3 +207,47 @@ html, body {
 span a {
   color: #000;
 }
+
+
+/*=========== NEXT PAINTING ARROW ====================*/
+.down-arrow {
+  position: relative;
+  display: inline-block;
+  border-radius: 30%;
+  text-align: center;
+  margin-right: 5%;
+  width: 10%;
+  vertical-align: top;
+}
+
+.down-arrow:hover .bottom {
+  border: 0.5em solid #e74c3c;
+}
+
+.down-arrow:hover .bottom:after {
+  border-top: 0.5em solid #e74c3c;
+  border-right: 0.5em solid #e74c3c;
+}
+
+.bottom {
+  display: inline-block;
+  width: 3.5em;
+  height: 3.5em;
+  border: 0.5em solid #333;
+  border-radius: 50%;
+  margin-left: 0.75em;
+}
+
+.bottom:after {
+  content: '';
+  display: inline-block;
+  margin-top: 0.6em;
+  width: 1.4em;
+  height: 1.4em;
+  border-top: 0.5em solid #333;
+  border-right: 0.5em solid #333;
+  -moz-transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
