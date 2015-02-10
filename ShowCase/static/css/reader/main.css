@@ -31,223 +31,370 @@ ol, ul {
 }
 
 /*===================CSS STARTS HERE=========================*/
-@import url(http://fonts.googleapis.com/css?family=Varela+Round);
+
+@font-face {
+    font-family: taile;
+    src: url(/static/css/reader/fonts/TAILEB.TTF);
+    font-weight:bold;
+}
+
+@font-face {
+    font-family: taile;
+    src: url(/static/css/reader/fonts/TAILE.TTF);
+    font-weight:400;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
 
 html, body {
   height: 100%;
   padding: 0;
   margin: 0;
-  font-family: "Varela Round";
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
 }
 
- a {
+a {
   text-decoration: none;
+}
+
+.curtain-overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: 98;
+  transition: background .40s ease;
+  -moz-transition: background .40s ease;
+  -webkit-transition: background .40s ease;
+}
+/*=================== Head Banner =========================*/
+
+.banner {
+  width: 100%;
+  min-height: 100%;
+  background: url(/static/images/reader/banner.jpg) no-repeat center top;
+  background-size: cover;
+} 
+
+.banner section {
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.banner section h1 {
+  font-family: "Lusitana";
   font-weight: bold;
+  font-size: 8em;
+  margin-bottom: 0.7em;
+  padding-top: 15%;
+}
+ 
+.banner a {
+  font-weight: bold;
+  margin-bottom: 10px;
  }
 
-.first-view {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: url(http://www.dream-wallpaper.com/free-wallpaper/art-wallpaper/world-famous-paintings-episode-3-wallpaper/1680x1050/free-wallpaper-7.jpg) no-repeat center top;
-  background-size: cover;
-}
-.first-view .center {
-  background: rgba(0, 0, 0, 0.25);
-  text-align: center;
-  position: absolute;
-  color: #FFFFFF;
-  color: #F5F7FA;
-  -webkit-text-stroke: 3px black;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  top: 0;
-}
-.first-view .center .middle {
-  position: absolute;
-  margin-top: -8em;
-  right: 0;
-  left: 0;
-  top: 50%;
-}
-.first-view .center .middle h1 {
-  font-family: "Lusitana";
-  font-weight: normal;
-  line-height: 1em;
-  font-size: 11em;
-  margin: 0;
-}
-
 /*============== EXPLORE BUTTON ====================*/
-[data-wipe] {
+.explore {
   font-family: "Varela Round";
   display: inline-block;
   padding: 12px 18px;
   text-decoration: none;
   position: relative;
-  border: 1px solid #FFF;
+  border: 1px solid #000;
   border-radius: 3px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  text-align: left;
-  color: #FFFFFF;
+  text-align: center;
+  color: #000;
   overflow: hidden;
   font-size: 30px;
-}
-[data-wipe]:before, [data-wipe]:after {
-  content: attr(data-wipe);
-  padding-top: inherit;
-  padding-bottom: inherit;
-  white-space: nowrap;
-  position: absolute;
-  top: 0;
-  overflow: hidden;
-  color: #000000;
-  background: #FFF;
-  }
-[data-wipe]:before {
-  left: 0;
-  text-indent: 18px;
-  width: 0;
-}
-[data-wipe]:after {
-  padding-left: inherit;
-  padding-right: inherit;
-  left: 100%;
-  text-indent: calc(-100% - 36px);
-  transition: 0.2s ease-in-out;
-}
-[data-wipe]:hover:before {
-  width: 100%;
-  transition: width 0.2s ease-in-out;
-}
-[data-wipe]:hover:after {
-  left: 0;
-  text-indent: 0;
-  transition: 0s 0.2s ease-in-out;
-}
-
-/*================ IMAGE BORDER =================*/
-.multiple-borders {
-  -webkit-box-shadow:
-            0px 0px 0px 2px rgba(0,0,0,0.6),
-            0px 0px 0px 14px #fff,
-            0px 0px 0px 18px rgba(0,0,0,0.2),
-            6px 6px 8px 17px #555;
-   
-     -moz-box-shadow:
-            0px 0px 0px 2px rgba(0,0,0,0.6),
-            0px 0px 0px 14px #fff,
-            0px 0px 0px 18px rgba(0,0,0,0.2),
-            6px 6px 8px 17px #555;
-   
-          box-shadow:
-            0px 0px 0px 2px rgba(0,0,0,0.6),
-            0px 0px 0px 14px #fff,
-            0px 0px 0px 18px rgba(0,0,0,0.2),
-            6px 6px 8px 17px #555;
 }
 
 /*=============== IMAGE FEED ==============*/
-.heading {
-  font-size: 50px;
-  font-family: "Varela Round";
+
+.posts {
+  height: 60%;
 }
 
-.artist {
-  font-size: 30px;
+.post {
+  width: 80%;
+  margin: 5% auto;
+  display: block;
+  box-shadow: 10px 10px 30px 0px #C9C6C6;
+  font-family: "taile";
+  overflow: hidden;
 }
 
 .artwork {
-  position: relative; 
-  left: 5%;
-  top: 30%;
-  width: 40%;
-  margin-top: 1%;
+  width: 50%;
+  height: auto;
+  display: inline-block;
+  float: left;
+  vertical-align: center;
+  overflow: hidden;
 }
 
 .description {
-  position: relative;
-  width: 45%;
-  margin: 0 auto;
   display: inline-block;
-  margin-left: 7%;
+  float: right;
+  width: 45%;
   vertical-align:top;
+  padding-right: .5em;
+  margin-top: 10px;
 }
 
-.feeds {
-  position: relative;
-  min-height: 100%;
-  margin: 0 auto;
-  display: block;
+.description-header {
+  text-align: left;
+  margin-bottom: 20px;
 }
 
-.second-view {
-  position: relative;
-  height: 100%;
+.description-header h4 {
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 42px;
+  letter-spacing: 0.5px;
+  text-decoration: none solid rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.description-header h5 {
+  font-size: 18px;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.1px;
+  line-height: 22px;
+  text-decoration: none solid rgba(0, 0, 0, 0.3);
+}
+
+.description-header .artist {
+  color: rgb(87, 173, 104);
+  text-decoration: none solid rgb(87, 173, 104);
 }
 
 /*=========== TOP INTERPRETATION ==============*/
 .comment {
-  border-left: 4px solid #000; 
-  padding: 0 1% 1% 3%;
-  margin-bottom: 5%;
+  margin-bottom: 10px;
 }
 
-.comment-header {
-  margin-bottom: 1%;
+.comment-text {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.1px;
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: none solid rgba(0, 0, 0, 0.8);
+  margin-bottom: 7px;
 }
 
-.icon {
-  width: 3%;
-  margin-right: 0.5%;
+.comment-footer {
+  font-size: 17px;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.1px;
+  line-height: 22px;
+  text-decoration: none solid rgba(0, 0, 0, 0.3);
 }
 
-span a {
-  color: #000;
+.comment-footer a {
+  color: rgb(87, 173, 104);
+  text-decoration: none solid rgb(87, 173, 104);
 }
 
+.description-footer ul {
+  margin-right: 5px;
+}
 
-/*=========== NEXT PAINTING ARROW ====================*/
-.down-arrow {
-  position: relative;
-  display: inline-block;
-  border-radius: 30%;
+.description-footer .icon {
+  height: 30px;
+  width: auto;
+  cursor: pointer;
+  opacity: 0.5;
+  margin-bottom: 5px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.description-footer .icon:hover {
+  opacity: 1;
+}
+
+.description-footer .icon-left{
+  float: left;
+}
+
+.description-footer .icon-right{
+  float: right;
+}
+
+/*================= Clearfix =====================*/
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  clear: both;
+  *zoom: 1;
+}
+
+/*================ CURTAIN MENU - LEFT ================*/
+
+.logo {
+  position: fixed;
+  cursor: pointer;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  width: 50px;
+  height: auto;
+}
+
+.curtain-left {
+  position: fixed;
+  width: 22%;
+  margin-left: -23%;
+  z-index: 99;
+  height: 100%;
+  background-color: #1c2023;
+  font-family: "taile";
+}
+
+.curtain-left .content {
+  padding: 70px 10px;
+}
+
+.curtain-left .content a {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 25px;
+  margin: 50px 0;
+  margin-left: 20px;
+  color: #B1B1B1;
+}
+
+.curtain-left .content a:hover{
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/*================ CURTAIN MENU - RIGHT ================*/
+
+.auth-user {
+  position: fixed;
+  cursor: pointer;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  /*font-weight: bold;*/
+  font-size: 20px;
+  font-family: "taile";
+}
+
+.curtain-right {
+  position: fixed;
+  right: 0;
+  width: 30%;
+  margin-right: -30%;
+  z-index: 99;
+  height: 100%; 
+  background: #FFFFFF;
+  font-family: "taile";
+}
+
+.curtain-right form {
+  margin-top: 100px;
+}
+
+.curtain-right .content {
+  width: 80%;
+  margin: 0 auto;
+  letter-spacing: .3px;
+}
+
+.curtain-right h4 {
   text-align: center;
-  margin-right: 5%;
-  width: 10%;
-  vertical-align: top;
+  font-size: 34px;
+  margin: 20px;
+  color: #1C2023;
 }
 
-.down-arrow:hover .bottom {
-  border: 0.5em solid #e74c3c;
+.curtain-right h6 {
+  text-align: center;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.5);
 }
 
-.down-arrow:hover .bottom:after {
-  border-top: 0.5em solid #e74c3c;
-  border-right: 0.5em solid #e74c3c;
+.curtain-right .social a {
+  font-size: 16px;
+  color: #FFFFFF;
+  text-align: center;
+  display: block;
+  padding: 1.3em 0;
+  margin: 20px 0;
+  cursor: pointer;
 }
 
-.bottom {
+.curtain-right .social a:hover {
+  opacity: 0.9;
+}
+
+.curtain-right .social .twitter {
+  background: #00ADE9;
+}
+
+.curtain-right .social .facebook  {
+  background: #3C5A9D;
+}
+
+.curtain-right .native {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.curtain-right .native input {
+  width: 100%;
+  font-size: 16px;
+  text-align: center;
+  display: block;
+  padding: 1em 0;
+  margin-bottom: 20px;
+}
+
+.curtain-right .native .login-button {
+  width: 45%;
   display: inline-block;
-  width: 3.5em;
-  height: 3.5em;
-  border: 0.5em solid #333;
-  border-radius: 50%;
-  margin-left: 0.75em;
+  padding: 1em 1.5em;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  border: 2px solid #1C2023;
+  color: #1C2023;
 }
 
-.bottom:after {
-  content: '';
-  display: inline-block;
-  margin-top: 0.6em;
-  width: 1.4em;
-  height: 1.4em;
-  border-top: 0.5em solid #333;
-  border-right: 0.5em solid #333;
-  -moz-transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-  transform: rotate(135deg);
+.curtain-right .native .login-button:hover {
+  color: #FFFFFF;
+  background: #1C2023;
 }
 
+.curtain-right footer a {
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  color: rgba(0, 0, 0, 0.4);
+  display: block;
+  text-align: center;
+  margin-bottom: 5px;
+}
