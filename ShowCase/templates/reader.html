@@ -1,10 +1,13 @@
+{% verbatim %}
+
 <!DOCTYPE html>
-<html>
+<html ng-app="ReaderApp">
 <head>
+	<title>ThirdDime - Explore art through interpretations and stories</title>
 	<link rel="stylesheet" type="text/css" href="/static/css/reader/main.css">
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
 </head>
-<body>
+<body ng-controller="readerController">
 	<sidebar>
 		<img class="logo" src="/static/images/reader/header-md.png" />
 		<section class="curtain-left">
@@ -29,9 +32,9 @@
 					</fieldset>
 					<h6>Or</h6>	
 					<fieldset class="native">
-						<input type="email" placeholder="E-mail" autofocus="autofocus">
-						<input type="password" placeholder="Password">
-						<input class="login-button" type="button" name="login" value="LOGIN">
+						<input type="email" placeholder="E-mail" autofocus="autofocus" ng-model="user.email">
+						<input type="password" placeholder="Password" ng-model="user.password">
+						<input class="login-button" type="button" value="LOGIN" ng-click="loginUser(user)">
 					</fieldset>
 				</form>
 				<footer>
@@ -171,6 +174,12 @@
 	</section>
 	<!-- Scripts Here -->
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/static/js/reader/reader.module.js"></script>
+	<script type="text/javascript" src="/static/js/reader/reader.controller.js"></script>
+	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
 	<script type="text/javascript" src="/static/js/reader/custom/main.js"></script>
 </body>
 </html>
+
+{% endverbatim %}
