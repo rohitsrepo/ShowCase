@@ -1,5 +1,5 @@
-angular.module("directive.curtain", ['service.curtain'])
-.directive('addcurtain', ['curtain', '$document', '$timeout', function (curtain, $document, $timeout) {
+angular.module("module.curtainRight")
+.directive('addCurtainRight', ['curtainRight', '$document', '$timeout', function (curtainRight, $document, $timeout) {
 
 	return {
 		restrict: "A",
@@ -38,13 +38,13 @@ angular.module("directive.curtain", ['service.curtain'])
 			};
 
 			var options = {
-				templateUrl: "/static/js/components/curtain/curtain-right.tpl.html",
+				templateUrl: "/static/js/components/curtain-right/curtain-right.tpl.html",
 				controller: "rightCurtainController",
 				appendElement: element.parent()
 			};
 
 			element.bind("click", function (event) {
-				var right_curtain = curtain.getCurtain(options);
+				var right_curtain = curtainRight.getCurtain(options);
 				right_curtain.then(function(curtainModal){
 					curtainElement = curtainModal.element;
 					addCurtain();

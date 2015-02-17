@@ -1,5 +1,5 @@
-angular.module("service.curtain", ["module.curtain-right", "directive.curtain"])
-.factory("curtain", 
+angular.module("module.curtainRight")
+.factory("curtainRight", 
     ['$q', '$templateCache', '$http', '$rootScope', '$compile', '$controller', '$document', '$timeout',
     function ($q, $templateCache, $http, $rootScope, $compile, $controller, $document, $timeout) {
         "use strict";

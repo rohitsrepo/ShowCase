@@ -54,10 +54,6 @@ $(document).ready(function() {
         if(leftCurtainHandler.isCurtainActive()){
             leftCurtainHandler.removeCurtain();
         }
-
-        if(rightCurtainHandler.isCurtainActive()){
-            rightCurtainHandler.removeCurtain();
-        }
     });
 
 });

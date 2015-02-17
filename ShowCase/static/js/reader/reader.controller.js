@@ -1,4 +1,4 @@
 angular.module("ReaderApp")
-.controller("readerController", ["$scope", "userModel", 'curtain', function ($scope, userModel, curtain) {
+.controller("readerController", ["$scope", "userModel", function ($scope, userModel) {
 	"use strict";
 }]);
