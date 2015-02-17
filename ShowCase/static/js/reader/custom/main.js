@@ -41,48 +41,12 @@ $(document).ready(function() {
         }
     };
 
-    var rightCurtainHandler = {
-
-        addCurtain: function () {
-            $(".curtain-right").removeClass('animated animated fadeOutRight');
-            $(".curtain-right").addClass('animated fadeInRight');
-            $(".curtain-right").animate({marginRight:0}, 400);
-            $(".auth-user").removeClass("animated fadeInRight");
-            $(".auth-user").addClass("animated fadeOutLeft");
-            setTimeout(function(){$(".curtain-overlay-placeholder").addClass("curtain-overlay")}, 250);
-        },
-
-         removeCurtain: function () {
-            $(".curtain-right").removeClass('animated fadeInRight');
-            $(".curtain-right").animate({marginRight:-500}, 300);
-            $(".auth-user").removeClass("animated fadeOutLeft");
-            $(".auth-user").addClass("animated fadeInRight");
-            $(".curtain-overlay-placeholder").removeClass("curtain-overlay");
-        },
-
-         isCurtainActive: function () {
-            if($(".curtain-right").hasClass("fadeInRight")){
-                return true;
-            }
-            return false;
-        }
-    };
-
     $(".logo").click(function () {
         if(!leftCurtainHandler.isCurtainActive()){
             leftCurtainHandler.addCurtain();
         }
         else {
             leftCurtainHandler.removeCurtain();
-        }
-    });
-
-    $(".auth-user").click(function () {
-        if(!rightCurtainHandler.isCurtainActive()){
-            rightCurtainHandler.addCurtain();
-        }
-        else {
-            rightCurtainHandler.removeCurtain();
         }
     });
         

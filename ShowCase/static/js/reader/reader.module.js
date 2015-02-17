@@ -1,4 +1,4 @@
-angular.module("ReaderApp", ["model.user"])
+angular.module("ReaderApp", ["model.user", "service.curtain"])
 .config(function ($httpProvider) {
 	"use strict";
 
