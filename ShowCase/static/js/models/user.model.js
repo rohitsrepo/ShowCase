@@ -1,5 +1,5 @@
 angular.module("model.user", [])
-.factory('userModel', ['$http', '$log', function ($http, $log) {
+.factory('userModel', ['$http', '$log', '$q', function ($http, $log, $q) {
 	"use strict";
 
 	var base_url = "/users";
@@ -24,11 +24,10 @@ angular.module("model.user", [])
 	service.login = function (email, password) {
 		return $http({method: 'POST', url: '/users/login', data: {email: email, password: password}})
 		.success(function (response) {
-			$log.info("Logging in user", response);
 			return response;
 		})
-		.error(function (response) {
-			$log.error("Error loggin in: ", response);
+		.error(function (response, status) {
+			return $q.reject(status);
 		});
 	};
 
@@ -40,6 +39,12 @@ angular.module("model.user", [])
 		.error(function (response) {
 			$log.error("Error loggin out: ", response);
 		});
+	};
+
+	service.getCurrentUser =  function () {
+	    return $http.get('users/currentUser').then(function (response) {
+	        return response.data;
+	    });
 	};
 
 	return service;

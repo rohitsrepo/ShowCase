@@ -1,7 +1,7 @@
-angular.module("module.curtainLeft")
-.factory("curtainLeft", 
-    ['$q', '$templateCache', '$http', '$rootScope', '$compile', '$controller', '$document', '$timeout',
-    function ($q, $templateCache, $http, $rootScope, $compile, $controller, $document, $timeout) {
+angular.module("module.curtainRight")
+.factory("curtainRight", 
+    ['$q', '$templateCache', '$http', '$rootScope', '$compile', '$document', '$timeout',
+    function ($q, $templateCache, $http, $rootScope, $compile, $document, $timeout) {
         "use strict";
 
         var getTemplate = function (template, templateUrl) {
@@ -37,16 +37,6 @@ angular.module("module.curtainLeft")
 
             var deferredResponse = $q.defer();
 
-            var controllerName = options.controller;
-            if(!controllerName) {
-              deferredResponse.reject("No controller has been specified.");
-              return deferredResponse.promise;
-            }
-
-            if(options.controllerAs) {
-              controllerName = controllerName + " as " + options.controllerAs;
-            }
-
             getTemplate(options.template, options.templateUrl)
               .then(function(template) {
 
@@ -75,7 +65,6 @@ angular.module("module.curtainLeft")
                 var curtainElement = linkFn(curtainScope);
                 inputs.$element = curtainElement;
 
-                var curtainController = $controller(controllerName, inputs);
 
                 if (options.appendElement) {
                   options.appendElement.append(curtainElement);
@@ -84,7 +73,6 @@ angular.module("module.curtainLeft")
                 }
 
                 var curtain = {
-                  controller: curtainController,
                   scope: curtainScope,
                   element: curtainElement,
                   close: inputs.close
@@ -106,4 +94,4 @@ angular.module("module.curtainLeft")
 
         return service;
 
-}]);
+}]);  

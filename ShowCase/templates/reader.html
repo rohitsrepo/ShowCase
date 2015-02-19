@@ -11,7 +11,8 @@
 	<sidebar>
 		<img class="logo" src="/static/images/reader/header-md.png" add-curtain-left />
 
-		<h3 class="auth-user" add-curtain-right>Login</h3>
+		<h3 class="auth-user" add-curtain-right ng-cloak ng-hide="currentUser">Login</h3>
+		<h3 class="auth-user" add-curtain-right ng-cloak ng-show="currentUser">{{currentUser.first_name}}</h3>
 	</sidebar>
 	<header class="banner">
 			<div class="curtain-overlay-placeholder"></div>
@@ -148,6 +149,7 @@
 	<script type="text/javascript" src="/static/js/reader/reader.controller.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
 	<script type="text/javascript" src="/static/js/reader/custom/main.js"></script>
+	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
