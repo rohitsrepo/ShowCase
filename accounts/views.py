@@ -102,10 +102,9 @@ def login_user(request, format=None):
         else:
             return Response(status=status.HTTP_402_PAYMENT_REQUIRED)
     except Exception:
+        if not User.objects.filter(email=email).exists():
+            return Response(status=status.HTTP_409_CONFLICT)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-    # else:
-    #    print "user name and password do not sound correct."
 
 
 @api_view(['GET'])

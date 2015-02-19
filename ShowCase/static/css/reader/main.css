@@ -32,6 +32,10 @@ ol, ul {
 
 /*===================CSS STARTS HERE=========================*/
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 @font-face {
     font-family: taile;
     src: url(/static/css/reader/fonts/TAILEB.TTF);

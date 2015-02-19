@@ -1,4 +1,4 @@
-<section class="curtain-right">
+<section class="curtain-right" ng-controller="rightCurtainController">
 	<nav class="content">
 		<form>
 			<h4>Login</h4>
@@ -10,7 +10,7 @@
 			<fieldset class="native">
 				<input type="email" placeholder="E-mail" autofocus="autofocus" ng-model="user.email">
 				<input type="password" placeholder="Password" ng-model="user.password">
-				<input class="login-button" type="button" value="LOGIN" ng-click="loginUser(user)">
+				<input class="login-button" type="button" value="LOGIN" ng-click="login(user)">
 			</fieldset>
 		</form>
 		<footer>
