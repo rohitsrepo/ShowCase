@@ -4,6 +4,7 @@
 <html ng-app="ReaderApp">
 <head>
 	<title>ThirdDime - Explore art through interpretations and stories</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/reader/main.css">
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
 </head>
@@ -11,8 +12,8 @@
 	<sidebar>
 		<img class="logo" src="/static/images/reader/header-md.png" add-curtain-left />
 
-		<h3 class="auth-user" add-curtain-right ng-cloak ng-hide="currentUser">Login</h3>
-		<h3 class="auth-user" add-curtain-right ng-cloak ng-show="currentUser">{{currentUser.first_name}}</h3>
+		<h3 class="auth-user" add-curtain-right="login" ng-cloak ng-hide="currentUser">Login</h3>
+		<h3 class="auth-user" add-curtain-right="user" ng-cloak ng-show="currentUser">{{currentUser.first_name}}</h3>
 	</sidebar>
 	<header class="banner">
 			<div class="curtain-overlay-placeholder"></div>
@@ -154,6 +155,7 @@
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>

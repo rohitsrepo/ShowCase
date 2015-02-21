@@ -37,14 +37,26 @@ angular.module("module.curtainRight")
 				});
 			};
 
-			var options = {
+			var loginOptions = {
 				templateUrl: "/static/js/components/curtain-right/curtain-right.tpl.html",
 				controller: "rightCurtainController",
 				appendElement: element.parent()
 			};
 
+			var userOptions = {
+				templateUrl: "/static/js/components/curtain-right/curtain-user.tpl.html",
+				controller: "userCurtainController",
+				appendElement: element.parent()
+			};
+
 			element.bind("click", function (event) {
-				var right_curtain = curtainRight.getCurtain(options);
+				var right_curtain;
+				console.log("Got attr:", attrs);
+				if (attrs["addCurtainRight"] === "user"){
+					right_curtain = curtainRight.getCurtain(userOptions);
+				} else {
+					right_curtain = curtainRight.getCurtain(loginOptions);
+				}
 				right_curtain.then(function(curtainModal){
 					curtainElement = curtainModal.element;
 					addCurtain();
