@@ -1,23 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
-<html>
+<html ng-app="CompositionApp">
 <head>
 	<meta charset="UTF-8">
 	<title>ThirdDime - Explore art through interpretations and stories</title>
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/composition/main.css">
+	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
 </head>
 
 
-<body>
+<body ng-controller="compositionController">
+	<topbar></topbar>
+	<div class="curtain-overlay-placeholder"></div>
 	<header class="primary-header">
-		<header class="nav-header clearfix">
-			<ul class="right">
-			    <li><a href="#">Sign Up</a></li>
-			    <li><a href="#">Log In</a></li>
-			</ul>
-			<img class="logo left" src="/static/images/composition/header-md.png" alt="ThirdDime logo">
-		</header>
-		
 		<section class="banner">
 			<h1>The Starry Night</h1>
 			<h3>Vincent van Gogh</h3>
@@ -218,6 +213,20 @@
 	<!-- Scripts Here -->
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
-	<script type="text/javascript" src="/static/js/composition/custom/main.js"></script>
+	<script type="text/javascript" src="/static/js/composition/composition.module.js"></script>
+	<script type="text/javascript" src="/static/js/composition/composition.controller.js"></script>
+	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
+	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
 </body>
 </html>

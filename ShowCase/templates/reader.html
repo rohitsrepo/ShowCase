@@ -9,12 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
 </head>
 <body ng-controller="readerController">
-	<sidebar>
-		<img class="logo" src="/static/images/reader/header-md.png" add-curtain-left />
-
-		<h3 class="auth-user" add-curtain-right="login" ng-cloak ng-hide="currentUser">Login</h3>
-		<h3 class="auth-user" add-curtain-right="user" ng-cloak ng-show="currentUser">{{currentUser.first_name}}</h3>
-	</sidebar>
+	<topbar></topbar>
 	<header class="banner">
 			<div class="curtain-overlay-placeholder"></div>
 			<section>
@@ -159,6 +154,8 @@
 	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
 </body>
 </html>
 

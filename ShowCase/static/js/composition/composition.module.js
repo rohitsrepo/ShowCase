@@ -1,4 +1,4 @@
-angular.module("ReaderApp", ["module.auth", "module.curtainRight", "module.curtainLeft", "module.topbar"])
+angular.module("CompositionApp", ["module.auth", "module.curtainLeft", "module.curtainRight", "module.topbar"])
 .config(function ($httpProvider) {
 	"use strict";
 

@@ -51,7 +51,6 @@ angular.module("module.curtainRight")
 
 			element.bind("click", function (event) {
 				var right_curtain;
-				console.log("Got attr:", attrs);
 				if (attrs["addCurtainRight"] === "user"){
 					right_curtain = curtainRight.getCurtain(userOptions);
 				} else {
