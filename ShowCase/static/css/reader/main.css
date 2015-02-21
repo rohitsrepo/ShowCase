@@ -8,20 +8,6 @@ html, body {
   font-smooth: always;
 }
 
-a {
-  text-decoration: none;
-}
-
-.curtain-overlay {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background: rgba(0,0,0,0.3);
-  z-index: 98;
-  transition: background .40s ease;
-  -moz-transition: background .40s ease;
-  -webkit-transition: background .40s ease;
-}
 /*=================== Head Banner =========================*/
 
 .banner {
