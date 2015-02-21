@@ -134,3 +134,5 @@ APPEND_SLASH = False
 SHOWCASE_ACCOUNT = 'art.showcase.v1.0@gmail.com'
 SHOWCASE_PASSWORD = 'showcaseiitkgp'
 MAIL_SENDER = 'ShowCase'
+
+PAGE_POST_CONTENT_LIMIT = 10
