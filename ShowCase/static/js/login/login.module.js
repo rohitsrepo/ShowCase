@@ -1,4 +1,4 @@
-angular.module("RegisterApp", ["module.auth"])
+angular.module("LoginApp", ["module.auth"])
 .config(function ($httpProvider) {
 	"use strict";
 

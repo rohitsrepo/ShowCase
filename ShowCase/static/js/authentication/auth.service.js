@@ -15,10 +15,11 @@ angular.module('module.auth', ['model.user'])
 	};
 
 	var service = {};
-	service.login = function (email, password) {
+	service.login = function (email, password, nextUrl) {
 		return userModel.login(email, password).then(function (user) {
 			currentUser = user;
-			redirect();
+			var next_url = next_url || "/"
+			redirect(next_url);
 			return user;
 		}, function (response) {
 			var error;

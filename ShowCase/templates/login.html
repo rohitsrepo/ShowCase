@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="LoginApp">
+<head>
+	<title>Login - ThirdDime</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/login/main.css">
+</head>
+<body ng-controller="loginController">
+	<!-- {% verbatim %} --> 
+	<header class="primary-header">
+		<h1>Welcome to ThirdDime</h1>
+		<h2>Please login to continue.</h2>
+	</header>
+	<section class="auth clearfix">
+		<section class="social">
+			<a class="facebook" href="">LOGIN WITH FACEBOOK</a>
+			<a class="twitter" href="">LOGIN WITH TWITTER</a>
+		</section>
+		<h5>Or</h5>	
+		<section class="native">
+			<input type="email" autofocus="autofocus" placeholder="E-mail" ng-model="user.email">
+			<input type="password" placeholder="Password" ng-model="user.password">
+			<input class="login-button" type="button" name="login" value="LOGIN" ng-click="login(user)">
+			
+			<footer>
+				<a href="">Forgotten your password?</a>
+				<a href="/register">Sign Up</a>
+			</footer>
+		</section>
+	</section>
+	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
+	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
+	<script type="text/javascript" src="/static/js/login/login.module.js"></script>
+	<script type="text/javascript" src="/static/js/login/login.controller.js"></script>
+	<!-- {% endverbatim %} -->
+</body>
+</html>
