@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'interpretationVotes',
     'comments',
     'interpretations',
+    'feeds'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -135,4 +136,4 @@ SHOWCASE_ACCOUNT = 'art.showcase.v1.0@gmail.com'
 SHOWCASE_PASSWORD = 'showcaseiitkgp'
 MAIL_SENDER = 'ShowCase'
 
-PAGE_POST_CONTENT_LIMIT = 10
+POSTS_PER_PAGE = 10
