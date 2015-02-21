@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="RegisterApp">
+<head>
+	<title>SignUp - ThirdDime</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/register/main.css">
+</head>
+<body ng-controller="registerController">
+	<!-- {% verbatim %} --> 
+	<header class="primary-header">
+		<h1>Welcome to ThirdDime</h1>
+		<h2>We are glad to have you on this journey togather.</h2>
+	</header>
+	<section class="auth clearfix">
+		<section class="social">
+			<a class="facebook" href="">CONNECT WITH FACEBOOK</a>
+			<a class="twitter" href="">CONNECT WITH TWITTER</a>
+		</section>
+		<h5>Or</h5>	
+		<section class="native">
+			<fieldset class="username">
+				<input type="text" placeholder="First name" autofocus="autofocus" ng-model="user.first_name">
+				<input type="text" placeholder="Last name" ng-model="user.last_name">
+			</fieldset>
+			<input type="email" placeholder="E-mail" ng-model="user.email">
+			<input type="password" placeholder="Password" ng-model="user.password">
+			<input class="signup-button" type="button" name="login" value="CREATE ACCOUNT" ng-click="register(user)">
+			<footer>
+				<h6>By creating an account, I accept ThirdDime <a href="">Terms of Service</a>.</h6>
+			</footer>
+		</section>
+	</section>
+	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
+	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
+	<script type="text/javascript" src="/static/js/register/register.module.js"></script>
+	<script type="text/javascript" src="/static/js/register/register.controller.js"></script>
+	<!-- {% endverbatim %} -->
+</body>
+</html>

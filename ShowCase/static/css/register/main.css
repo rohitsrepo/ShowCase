@@ -1,0 +1,206 @@
+/*======================= CSS RESET ==========================*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+
+/*===================CSS STARTS HERE=========================*/
+
+@font-face {
+    font-family: taile;
+    src: url(fonts/TAILEB.TTF);
+    font-weight:bold;
+}
+
+@font-face {
+    font-family: taile;
+    src: url(fonts/TAILE.TTF);
+    font-weight:400;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  font-family: "taile";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*=============== Primary-Header =====================*/
+
+.primary-header {
+  width: 60%;
+  margin: 20px auto;
+  margin-top: 5%;
+  text-align: center;
+  color: #1C2023;
+}
+
+.primary-header h1 {
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.primary-header h2 {
+  font-size: 25px;
+}
+
+/*================ Auth area ========================*/
+
+.auth {
+  width: 80%;
+  margin: 60px auto;
+  text-align: center;
+}
+
+.auth h5 {
+  display: inline-block;
+  text-align: center;
+  margin-top: 70px;
+  font-size: 60px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.auth .social {
+  float: left;
+  width: 40%;
+  text-align: center;
+}
+
+.auth .social a {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  font-size: 16px;
+  color: #FFFFFF;
+  text-align: center;
+  display: inline-block;
+  padding: 1.3em 2em;
+  cursor: pointer;
+}
+
+.auth .social a:hover {
+  opacity: 0.9;
+}
+
+.auth .social .twitter {
+  background: #00ADE9;
+}
+
+.auth .social .facebook  {
+  background: #3C5A9D;
+}
+
+.auth .native {
+  float: right;
+  width: 40%;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.auth .native .username {
+  display: block;
+}
+
+.auth .native input {
+  display: block;
+  font-size: 16px;
+  padding: 1.3em 2em;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.auth .native .username input {
+  display: inline-block;
+  width: 49%;
+}
+
+.auth .native .signup-button {
+  width: 45%;
+  display: inline-block;
+  padding: 1em 1.5em;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  border: 2px solid #1C2023;
+  color: #1C2023;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  word-spacing: .5em;
+}
+
+.auth .native .signup-button:hover {
+  color: #FFFFFF;
+  background: #1C2023;
+}
+
+.auth footer {
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: rgba(0, 0, 0, 0.4);
+  display: block;
+  text-align: center;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.auth footer a {
+  font-weight: bold;
+}
+
+/*================= Clearfix =====================*/
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  clear: both;
+  *zoom: 1;
+}

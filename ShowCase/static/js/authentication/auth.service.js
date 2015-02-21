@@ -5,8 +5,13 @@ angular.module('module.auth', ['model.user'])
 		return !!service.currentUser;
 	};
 
-	var redirect = function () {
-		$window.location.reload();
+	var redirect = function (url) {
+		if(!url)
+		{
+			$window.location.reload();
+		} else {
+			$window.location.href = url;
+		}
 	};
 
 	var service = {};
@@ -46,6 +51,21 @@ angular.module('module.auth', ['model.user'])
 				return service.currentUser;
 			});
 		}
+	};
+
+	service.registerUser = function (user) {
+		userModel.addUser(user).then(function (response){
+			userModel.login(user.email, user.password).then(function (res) {
+				console.log("login says", res);
+				redirect('/');
+			}, function (res) {
+				console.log("Err login says", res);
+			});	
+		}, function (response) {
+			if (response.status === 400) {
+				return $q.reject(response.data);
+			}
+		});
 	};
 
 	return service;

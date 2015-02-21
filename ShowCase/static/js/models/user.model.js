@@ -47,5 +47,13 @@ angular.module("model.user", [])
 	    });
 	};
 
+	service.addUser = function (user) {
+		return $http.post("/users", user).then(function (response) {
+			return response.data;
+		}, function (response, status){
+			return $q.reject(response);
+		})
+	};
+
 	return service;
 }]);
