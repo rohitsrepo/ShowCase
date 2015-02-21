@@ -27,7 +27,7 @@ def populate_list_Editors_pick(list_Editors_pick):
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
-def editors_pick_list(request, format=None):
+def get_editors_pick_list(request, format=None):
     #initialize required data
     page_num = request.DATA['page_num']
     FeedPost.objects.all().delete()
