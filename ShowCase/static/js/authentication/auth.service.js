@@ -1,4 +1,4 @@
-angular.module('module.auth', ['model.user'])
+angular.module('module.auth', ['module.model'])
 .factory('auth', ['userModel', '$window', '$q', function (userModel, $window, $q) {
 
 	var isAuthenticated = function () {

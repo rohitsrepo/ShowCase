@@ -67,6 +67,8 @@ html, body {
   box-shadow: 10px 10px 30px 0px #C9C6C6;
   font-family: "taile";
   overflow: hidden;
+  -webkit-transition: height 0.15s ease-out;
+  transition: height 0.15s ease-out;
 }
 
 .artwork {
@@ -128,6 +130,11 @@ html, body {
   color: rgba(0, 0, 0, 0.8);
   text-decoration: none solid rgba(0, 0, 0, 0.8);
   margin-bottom: 7px;
+}
+
+.comment-text .more {
+  cursor: pointer;
+  color: rgb(87, 173, 104);
 }
 
 .comment-footer {

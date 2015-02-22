@@ -1,4 +1,4 @@
-angular.module("model.user", [])
+angular.module("module.model")
 .factory('userModel', ['$http', '$log', '$q', function ($http, $log, $q) {
 	"use strict";
 

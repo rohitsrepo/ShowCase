@@ -3,15 +3,24 @@ from .models import StaffPost
 from rest_framework.pagination import PaginationSerializer
 from compositions.models import Composition
 from interpretations.models import Interpretation
+from accounts.models import User
 
+class PostUserSerializer(serializers.ModelSerializer):
+    full_name = serializers.CharField(source='get_full_name', read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('full_name',)
 
 class PostCompositionSerializer(serializers.ModelSerializer):
+    artist = PostUserSerializer(read_only=True)
 
     class Meta:
         model = Composition
         fields = ("id", "title", "matter", "artist")
 
 class PostInterpretationSerializer(serializers.ModelSerializer):
+    user = PostUserSerializer(read_only=True)
 
     class Meta:
         model = Interpretation

@@ -18,19 +18,22 @@
 			</section>
 	</header>
 	<section class="posts">
-		<section class="post clearfix">
-				<img class="artwork" src="/static/images/reader/scream.jpg" />
+		<section class="post clearfix" ng-repeat="post in posts">
+				<img class="artwork" ng-src="/media/{{post.composition.matter}}" alt="{{post.composition.title}}" />
 				<sidebar class="description">
 					<header class="description-header">
-						<h4>The Scream</h4>
-						<h5>by <span class="artist">Edward Munch</span></h5>
+						<h4>{{post.composition.title}}</h4>
+						<h5>by <span class="artist">{{post.composition.artist.full_name}}</span></h5>
 					</header>
 					<section class="comment">
-	   					<div class="comment-text">
-	     					At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores. Qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores. Deleniti atque corrupti quos dolores<a href="">.... (more)</a> 
+	   					<div class="comment-text" ng-cloak ng-hide="post.showComplete">
+	     					{{post.interpretation.interpretation.slice(0, 140)}}<span class="more" ng-click="showInterpretation($index)">.... (more)</span> 
+	   					</div>
+	   					<div class="comment-text" ng-cloak ng-show="post.showComplete">
+	     					{{post.interpretation.interpretation}}
 	   					</div>
 	    				<footer class="comment-footer">
-	      					<h5>written by<a href=""> Maggie </a></h5>
+	      					<h5>written by<a href=""> {{post.interpretation.user.full_name}} </a></h5>
 	   					</footer>
 	  				</section>
 
@@ -46,96 +49,6 @@
 	  					</ul>
 	  				</footer>
 				</sidebar>
-		</section>
-		<section class="post clearfix">
-				<img class="artwork" src="/static/images/reader/girl.jpg" />
-				<sidebar class="description">
-					<header class="description-header">
-						<h4>The Girl with a Pearl Earring</h4>
-						<h5>by <span class="artist">Johannes Vermeer</span></h5>
-					</header>
-					
-					<section class="comment">
-	   					<div class="comment-text">
-	     					At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores<a href="">.... (more)</a>  
-	   					</div>
-	    				<footer class="comment-footer">
-	      					<h5>written by<a href=""> Maggie </a></h5>
-	   					</footer>
-	  				</section>
-
-	  				<footer class="description-footer">
-	  					<ul>
-	  					    <li><img class="icon icon-left" src="/static/css/reader/icons/arrowup.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-left" src="/static/css/reader/icons/arrowdown.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-left" src="/static/css/reader/icons/comment.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/google.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/pinterest.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/facebook.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/twitter.svg" alt="image of arrow"></li>
-	  					</ul>
-	  				</footer>
-				</sidebar>
-		</section>
-		<section class="post clearfix">
-				<img class=" artwork" src="/static/images/reader/last-supper.jpg" />
-				<sidebar class="description">
-					<header class="description-header">
-						<h4>The Last Supper</h4>
-						<h5>by <span class="artist">Leonardo da Vinci</span></h5>
-					</header>
-					
-					<section class="comment">
-	   					<div class="comment-text">
-	     					At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores<a href="">.... (more)</a>  
-	   					</div>
-	    				<footer class="comment-footer">
-	      					<h5>written by<a href=""> Maggie </a></h5>
-	   					</footer>
-	  				</section>
-
-	  				<footer class="description-footer">
-	  					<ul>
-	  					    <li><img class="icon icon-left" src="/static/css/reader/icons/arrowup.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-left" src="/static/css/reader/icons/arrowdown.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-left" src="/static/css/reader/icons/comment.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/google.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/pinterest.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/facebook.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/twitter.svg" alt="image of arrow"></li>
-	  					</ul>
-	  				</footer>
-				</sidebar>
-		</section>
-		<section class="post clearfix">
-				<img class="multiple-borders artwork" src="/static/images/reader/pablo.jpg" />
-				<sidebar class="description">
-					<header class="description-header">
-						<h4>Guernica</h4>
-						<h5>by <span class="artist">Pablo Picasso</span></h5>
-					</header>
-					
-					<section class="comment">
-	   					<div class="comment-text">
-	     					At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores<a href="">.... (more)</a>  
-	   					</div>
-	    				<footer class="comment-footer">
-	      					<h5>written by<a href=""> Maggie </a></h5>
-	   					</footer>
-	  				</section>
-
-	  				<footer class="description-footer">
-	  					<ul>
-	  					    <li><img class="icon icon-left" src="/static/css/reader/icons/arrowup.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-left" src="/static/css/reader/icons/arrowdown.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-left" src="/static/css/reader/icons/comment.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/google.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/pinterest.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/facebook.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/twitter.svg" alt="image of arrow"></li>
-	  					</ul>
-	  				</footer>
-	  			</sidebar>
 		</section>
 	</section>
 	<!-- Scripts Here -->
@@ -143,7 +56,9 @@
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="/static/js/reader/reader.module.js"></script>
 	<script type="text/javascript" src="/static/js/reader/reader.controller.js"></script>
+	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
+	<script type="text/javascript" src="/static/js/models/post.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
