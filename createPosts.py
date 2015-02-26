@@ -30,6 +30,12 @@ def add_composition_data(composition):
 def get_word():
 	return ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase) for _ in range(2,5))
 
+def add_interpretations(composition, artist):
+	for i in range(5):
+		interpretation = Interpretation.objects.create(composition=composition, user=artist)
+		print add_interpretation(interpretation)
+		print "Interpretation"
+
 def add_interpretation(interpretation):
 	content = get_word()
 	for i in range(100, 200):
@@ -47,11 +53,7 @@ for i in range(5, 15):
 	add_composition_data(composition)
 	print "Composition"
 	print composition.title
-	interpretation = Interpretation.objects.create(composition=composition, user=artist)
-	print add_interpretation(interpretation)
-	print "Interpretation"
-	print interpretation.interpretation
-	post = StaffPost.objects.create(composition=composition, interpretation=interpretation)
+	add_interpretations(composition, artist)
+	print "Added interpretations to composition"
+	post = StaffPost.objects.create(composition=composition, interpretation=composition.interpretation_set.all()[random.randint(0, 4)])
 	print "Post"
-	print post.composition.title
-	print post.interpretation.interpretation

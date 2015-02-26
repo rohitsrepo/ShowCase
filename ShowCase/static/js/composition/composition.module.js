@@ -1,6 +1,10 @@
-angular.module("CompositionApp", ["module.auth", "module.curtainLeft", "module.curtainRight", "module.topbar"])
-.config(function ($httpProvider) {
+angular.module("CompositionApp", ["module.auth", "module.curtainLeft", "module.curtainRight", "module.topbar", "module.model"])
+.config(function ($httpProvider, $interpolateProvider) {
 	"use strict";
+
+    // Changing angular template tag to prevent conflict with django
+    $interpolateProvider.startSymbol('[[');
+    $interpolateProvider.endSymbol(']]');
 
 	//Http Intercpetor to check auth failures for xhr requests
     $httpProvider.interceptors.push('authHttpResponseInterceptor');

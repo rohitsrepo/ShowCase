@@ -1,18 +1,21 @@
 from rest_framework import serializers
 from .models import Composition
-from django.conf import settings
-from ShowCase.serializers import HyperlinkedImageField, HyperlinkedFileField, URLImageField
-from rest_framework.exceptions import ParseError
+from ShowCase.serializers import URLImageField
+
+class CompositionUserSerializer(serializers.ModelSerializer):
+    full_name = serializers.CharField(source='get_full_name', read_only=True)
+
+    class Meta:
+        model = Composition
+        fields = ('id', 'full_name')
 
 class CompositionSerializer(serializers.ModelSerializer):
-    #artist = serializers.HyperlinkedRelatedField(source='artist', read_only=True, view_name='user-detail')
-    #display_image = HyperlinkedImageField(source='display_image', required=False, default_url=settings.DEFAULT_COMPOSITION_IMAGE_PICTURE)
     matter = URLImageField(source='matter')
     timesince = serializers.CharField(source='timesince', read_only=True)
+    artist = CompositionUserSerializer(read_only=True)
 
     class Meta:
         model = Composition
         fields = ('id', 'title', 'artist', 'description', 'created',
 		   'matter', 'timesince', 'vote', 'slug')
-	read_only_fields = ('artist', 'slug', 'vote')
-	depth =1 
+	read_only_fields = ('slug', 'vote')

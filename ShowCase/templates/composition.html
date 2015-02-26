@@ -12,10 +12,10 @@
 <body ng-controller="compositionController">
 	<topbar></topbar>
 	<div class="curtain-overlay-placeholder"></div>
-	<header class="primary-header">
+	<header class="primary-header" ng-init="compositionId = {{composition.id}}">
 		<section class="banner">
-			<h1>The Starry Night</h1>
-			<h3>Vincent van Gogh</h3>
+			<h1>{{composition.title}}</h1>
+			<h3>{{composition.artist}}</h3>
 		</section>
 
 		<footer>
@@ -40,7 +40,7 @@
 			</div>
 		</header>
 		<div class="painting-container">
-			<img class="painting" src="/static/images/composition/web-image.jpg">
+			<img class="painting" src="{{composition.matter.url}}">
 		</div>
 	</section>
 
@@ -52,16 +52,16 @@
 		<section class="interprets">
 
 			<!-- 1 -->
-			<section class="interpret">
+			<section class="interpret" ng-repeat-start="interpretation in interpretations">
 				<header class="interpreter clearfix">
 					<img src="http://farm5.staticflickr.com/4136/4817542998_55a7eb8d8b_q.jpg"/>
 					<div>
-						<h3>Amol hik</h3>
+						<h3>[[interpretation.user.full_name]]</h3>
 						<h5>Illusionistic Painting</h5>
 					</div>
 				</header>
 				<p class="interpret-content">
-					Looking at a Spiral Illusion and then focusing on this painting is hyponotic. nfnad Lorem ipsum non minim Excepteur Duis sunt labore ut laborum sit ullamco sed ex.Lorem ipsum dolor adipisicing ullamco cillumLorem ipsum non minim Excepteur Duis sunt labore ut laborum sit ullamco sed ex.Lorem ipsum dolor adipisicing ullamco cillumLorem ipsum non minim Excepteur Duis sunt labore ut laborum sit ullamco sed ex.Lo
+					[[interpretation.interpretation]]
 				</p>
 				<footer class="interpret-footer clearfix">
 					<ul>
@@ -75,105 +75,19 @@
   					</ul>
 				</footer>
 			</section>
-			<hr>
-			<!-- 2 -->
-			<section class="interpret">
-				<header class="interpreter clearfix">
-					<img src="http://farm3.staticflickr.com/2721/4531285963_cd28f61b16_q.jpg"/>
-					<div>
-						<h3>Sarthak Munshi</h3>
-						<h5>Tint of Blue</h5>
-					</div>
-				</header>
-				<div class="interpret-content">
-					<p>
-						Lorem ipsum non minim Excepteur Duis sunt labore ut laborum sit ullamco sed ex.Lorem ipsum dolor adipisicing ullamco cillumLorem ipsum non minim Excepteur Duis sunt labore ut laborum sit ullamco sed ex.Lorem ipsum dolor adipisicing ullamco cillumLorem ipsum non minim Excepteur Duis sunt labore ut laborum sit ullamco sed ex.Lorem ipsum dolor adipisicing ullamco cillumLorem ipsum non minim Excepteur Duis sunt labore ut laborum sit ullamco sed ex.Lorem ipsum dolor adipisicing.
-					</p>
-				</div>
-
-				<footer class="interpret-footer clearfix">
-					<ul>
-  					    <li><img class="icon icon-left" src="/static/css/composition/icons/arrowup.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-left" src="/static/css/composition/icons/arrowdown.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-left" src="/static/css/composition/icons/comment.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/google.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/pinterest.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/facebook.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/twitter.svg" alt="image of arrow"></li>
-  					</ul>
-				</footer>
-			</section>
-			<hr>
-
-			<!-- 3 -->
-			<section class="interpret">
-				<header class="interpreter clearfix">
-					<img src="http://farm3.staticflickr.com/2617/3873098259_61c446da22_q.jpg" />
-					<div>
-						<h3>Aakash Raina</h3>
-						<h5>Folkore expressed by Painting</h5>
-					</div>
-				</header>
-				<div class="interpret-content">
-					<p>
-						Lorem ipsum non minim Excepteur Duis sunt labore ut laborum sit ullamco sed ex.Lorem ipsum dolor adipisicing ullamco cillum in occaecat adipisicing ullamco cillum in occaecat proident commodo in . 
-					</p>
-				</div>
-
-				<footer class="interpret-footer clearfix">
-					<ul>
-  					    <li><img class="icon icon-left" src="/static/css/composition/icons/arrowup.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-left" src="/static/css/composition/icons/arrowdown.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-left" src="/static/css/composition/icons/comment.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/google.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/pinterest.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/facebook.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/twitter.svg" alt="image of arrow"></li>
-  					</ul>
-				</footer>
-			</section>
-			<hr>
-
-			<!-- 4 -->
-			<section class="interpret">
-				<header class="interpreter clearfix">
-					<img src="http://farm4.staticflickr.com/3412/3446830982_c8b55cc7e8_q.jpg"/>
-					<div>
-						<h3>Franscesca Matthews</h3>
-						<h5>Cubism expresses attention to detail</h5>
-					</div>
-				</header>
-				<div class="interpret-content">
-					<p>
-						Phasellus pharetra, libero sed egestas condimentum, ligula nibh cursus turpis, sed convallis odio lorem sit amet ligula. Suspendisse dapibus nibh nec augue placerat eleifend sit amet nec purus. Donec consectetur cursus quam eu bibendum. Nam est nisi, tincidunt mattis luctus sit amet, faucibus luctus odio. Nam placerat mauris libero. Integer fringilla nisl vitae velit lacinia eget sagittis diam feugiat. Ut et scelerisque dolor. Phasellus luctus tellus nec augue laoreet non suscipit orci condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eros felis, eleifend ut fringilla sit amet, vestibulum eu ligula. In venenatis aliquet tristique. Fusce tempor tincidunt adipiscing. In fermentum tincidunt purus eu tristique. Integer semper, eros et accumsan porta, purus arcu vehicula massa, quis facilisis nibh nisi non mi.
-					</p>
-				</div>
-
-				<footer class="interpret-footer clearfix">
-					<ul>
-  					    <li><img class="icon icon-left" src="/static/css/composition/icons/arrowup.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-left" src="/static/css/composition/icons/arrowdown.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-left" src="/static/css/composition/icons/comment.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/google.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/pinterest.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/facebook.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/twitter.svg" alt="image of arrow"></li>
-  					</ul>
-				</footer>
-			</section>
-			<hr>
+			<hr ng-repeat-end>
 
 		</section>
 
 	 	<sidebar class="about-painting">
-			<img src="/static/images/composition/web-image.jpg" />
+			<img src="{{composition.matter.url}}" />
 			<table>
 			    <tr>
 			      <th>
 			        Title
 			      </th>
 			      <td colspan="2">
-			        The Starry Night
+			        {{composition.title}}
 			      </td>
 			    </tr>
 			    <tr>
@@ -182,7 +96,7 @@
 			      </th>
 			      <td>
 			        <a href="#">
-			          Vincent Van Gogh
+			          {{composition.artist}}
 			        </a>
 			      </td>
 			    </tr>
@@ -213,10 +127,12 @@
 	<!-- Scripts Here -->
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script type="text/javascript" src="/static/js/composition/composition.module.js"></script>
 	<script type="text/javascript" src="/static/js/composition/composition.controller.js"></script>
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
+	<script type="text/javascript" src="/static/js/models/interpretation.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
