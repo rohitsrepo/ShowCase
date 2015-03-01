@@ -4,10 +4,11 @@ from ShowCase.serializers import URLImageField
 
 class CompositionUserSerializer(serializers.ModelSerializer):
     full_name = serializers.CharField(source='get_full_name', read_only=True)
+    picture = URLImageField(source='picture')
 
     class Meta:
         model = Composition
-        fields = ('id', 'full_name')
+        fields = ('id', 'full_name', 'picture')
 
 class CompositionSerializer(serializers.ModelSerializer):
     matter = URLImageField(source='matter')

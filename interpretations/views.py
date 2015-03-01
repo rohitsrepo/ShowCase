@@ -14,16 +14,28 @@ class InterpretationList(APIView):
     def get_interpretations(self, composition_id):
         return Interpretation.objects.filter(composition=composition_id)
 
+    def add_voting_status(self, interpretations, user, serializer):
+        counter = 0;
+        for interpretation in interpretations:
+            serializer.data[counter]['voting_status'] = interpretation.vote.get_voting_status(user)
+            counter += 1
+
+    def add_comment_count(self, interpretations, serializer):
+        counter = 0
+        for interpretation in interpretations:
+            serializer.data[counter]['comments_count'] = interpretation.comment_set.count()
+            counter += 1
+
+
     def get(self, request, composition_id, format=None):
-        interpretaions = self.get_interpretations(composition_id)
+        interpretations = self.get_interpretations(composition_id)
         serializer = InterpretationSerializer(
-            interpretaions, many=True, context={'request': request})
+            interpretations, many=True, context={'request': request})
+
         if request.user.is_authenticated():
-            counter = 0
-            print "Getting voting status"
-            for interpretaion in interpretaions:
-                serializer.data[counter]['voting_status'] = interpretaion.vote.get_voting_status(request.user)
-                counter += 1
+            self.add_voting_status(interpretations, request.user, serializer)
+
+        self.add_comment_count(interpretations, serializer);
 
         return Response(serializer.data)
 
