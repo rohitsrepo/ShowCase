@@ -12,7 +12,7 @@ def editors_pick_list(request, format=None):
     page_num = request.GET.get('page', 1)
     editors_posts = StaffPost.objects.all()
 
-    paginator = Paginator(editors_posts, 4)#settings.POSTS_PER_PAGE)
+    paginator = Paginator(editors_posts, settings.POSTS_PER_PAGE)
 
     try:
         this_page_posts = paginator.page(page_num)

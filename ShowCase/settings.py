@@ -136,4 +136,4 @@ SHOWCASE_ACCOUNT = 'art.showcase.v1.0@gmail.com'
 SHOWCASE_PASSWORD = 'showcaseiitkgp'
 MAIL_SENDER = 'ShowCase'
 
-POSTS_PER_PAGE = 10
+POSTS_PER_PAGE = 4
