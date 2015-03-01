@@ -17,7 +17,7 @@ class PostCompositionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Composition
-        fields = ("id", "title", "matter", "artist")
+        fields = ("id", "title", "matter", "artist", "slug")
 
 class PostInterpretationSerializer(serializers.ModelSerializer):
     user = PostUserSerializer(read_only=True)

@@ -238,27 +238,40 @@ body {
 }
 
 .interpret-footer {
-  margin-top: 10px;
+  margin-top: 15px;
+}
+
+.interpret-footer h6 {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.interpret-footer ul {
+  margin-top: 5px;
 }
 
 .interpret-footer .icon {
   height: 30px;
   width: auto;
   cursor: pointer;
-  opacity: 0.5;
-  margin: 5px 3px;
+  opacity: 0.6;
+  margin: 5px 0;
+  margin-right: 5px;
 }
 
 .interpret-footer .icon:hover {
   opacity: 1;
 }
 
-.interpret-footer .icon-left{
+.interpret-footer .left{
   float: left;
 }
 
-.interpret-footer .icon-right{
+.interpret-footer .right{
   float: right;
+}
+
+.interpret-footer .vote-active {
+  background: rgb(87, 173, 104);
 }
 
 /*================= Clearfix =====================*/

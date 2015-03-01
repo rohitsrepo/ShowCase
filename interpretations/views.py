@@ -6,7 +6,6 @@ from rest_framework import status, permissions
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
-from interpretationVotes  import signals
 
 
 class InterpretationList(APIView):
@@ -19,6 +18,13 @@ class InterpretationList(APIView):
         interpretaions = self.get_interpretations(composition_id)
         serializer = InterpretationSerializer(
             interpretaions, many=True, context={'request': request})
+        if request.user.is_authenticated():
+            counter = 0
+            print "Getting voting status"
+            for interpretaion in interpretaions:
+                serializer.data[counter]['voting_status'] = interpretaion.vote.get_voting_status(request.user)
+                counter += 1
+
         return Response(serializer.data)
 
     def post(self, request, composition_id, format=None):

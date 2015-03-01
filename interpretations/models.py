@@ -1,7 +1,10 @@
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.db import models
 from compositions.models import Composition
 from django.conf import settings
 from django.utils.timesince import timesince
+from interpretationVotes.models import InterpretationVote
 
 
 class Interpretation(models.Model):
@@ -27,3 +30,14 @@ class Interpretation(models.Model):
         """
 
         return self.composition.get_absolute_url()
+
+
+
+# To create vote instance when an interpretatoin is created
+@receiver(post_save, sender=Interpretation)
+def create_vote(sender, **kwargs):
+    created = kwargs.get('created')
+    if created:
+        instance = kwargs.get('instance')
+        vote = InterpretationVote(positive=0, negative=0, interpretation=instance)
+        vote.save()

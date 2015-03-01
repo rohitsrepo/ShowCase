@@ -6,5 +6,12 @@ angular.module('module.model')
 			return response.data;
 		});
 	};
+
+	service.vote = function (compositionId, interpretationId, vote) {
+		var voteUrl = "/compositions/" + compositionId + "/interpretations/" + interpretationId + "/votes"
+		return $http.post(voteUrl, {vote: vote}).then(function (response) {
+			return response.data;
+		});
+	};
 	return service;
 }]);

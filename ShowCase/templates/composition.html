@@ -2,7 +2,7 @@
 <html ng-app="CompositionApp">
 <head>
 	<meta charset="UTF-8">
-	<title>ThirdDime - Explore art through interpretations and stories</title>
+	<title>ThirdDime - {{composition.title}}</title>
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/composition/main.css">
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
@@ -64,14 +64,18 @@
 					[[interpretation.interpretation]]
 				</p>
 				<footer class="interpret-footer clearfix">
+					<div class="clearfix">
+					<h6 class="right">[[interpretation.timesince]] ago</h6>
+					<h6 class="left">[[interpretation.vote.total]] Votes. [[comments]] Comments</h6>
+					</div>
 					<ul>
-  					    <li><img class="icon icon-left" src="/static/css/composition/icons/arrowup.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-left" src="/static/css/composition/icons/arrowdown.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-left" src="/static/css/composition/icons/comment.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/google.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/pinterest.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/facebook.svg" alt="image of arrow"></li>
-  					    <li><img class="icon icon-right" src="/static/css/composition/icons/twitter.svg" alt="image of arrow"></li>
+  					    <li><img class="icon left" ng-class="{'vote-active': interpretation.voting_status=='Positive'}" src="/static/css/composition/icons/arrowup.svg" ng-click="vote($index, true)"></li>
+  					    <li><img class="icon left" ng-class="{'vote-active': interpretation.voting_status=='Negative'}" src="/static/css/composition/icons/arrowdown.svg" ng-click="vote($index, false)"></li>
+  					    <li><img class="icon left" src="/static/css/composition/icons/comment.svg" ></li>
+  					    <li><img class="icon right" src="/static/css/composition/icons/google.svg" ></li>
+  					    <li><img class="icon right" src="/static/css/composition/icons/pinterest.svg" ></li>
+  					    <li><img class="icon right" src="/static/css/composition/icons/facebook.svg" ></li>
+  					    <li><img class="icon right" src="/static/css/composition/icons/twitter.svg" ></li>
   					</ul>
 				</footer>
 			</section>

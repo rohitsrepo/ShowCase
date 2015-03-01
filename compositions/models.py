@@ -1,7 +1,10 @@
 import re
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
+from votes.models import Vote
 
 
 def get_upload_file_name_composition(instance, filename):
@@ -39,7 +42,14 @@ class Composition(models.Model):
     def get_absolute_url(self):
         return "#/compositions/{0}/{1}".format(self.id, self.slug)
 
-
+# To create vote instance when a compostion is created
+@receiver(post_save, sender=Composition)
+def create_vote(sender, **kwargs):
+    created = kwargs.get('created')
+    if created:
+        instance = kwargs.get('instance')
+        vote = Vote(positive=0, negative=0, composition=instance)
+        vote.save()
 
 def unique_slugify(instance, value, slug_field_name='slug', queryset=None,
                    slug_separator='-'):

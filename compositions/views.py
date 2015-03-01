@@ -4,7 +4,6 @@ from .models import Composition
 from rest_framework import permissions, generics, status
 from .serializers import CompositionSerializer
 from .permissions import IsOwnerOrReadOnly, IsHimself
-from votes import signals
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import Http404

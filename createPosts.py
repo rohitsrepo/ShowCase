@@ -44,7 +44,7 @@ def add_interpretation(interpretation):
 	interpretation.save()
 
 delete_existing_data()
-for i in range(5, 15):
+for i in range(1, 10):
 	print "Creating objects"
 	artist = User.objects.create_user("user" + str(i) + "@user.com", "user" + str(i), "user")
 	print "Artist"

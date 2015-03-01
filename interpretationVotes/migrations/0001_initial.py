@@ -20,10 +20,27 @@ class Migration(migrations.Migration):
                 ('positive', models.PositiveIntegerField(default=0)),
                 ('negative', models.PositiveIntegerField(default=0)),
                 ('interpretation', models.OneToOneField(related_name=b'vote', to='interpretations.Interpretation')),
-                ('voters', models.ManyToManyField(related_name=b'interpretationVotes', to=settings.AUTH_USER_MODEL)),
             ],
             options={
             },
             bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='VoteMembership',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('voteType', models.BooleanField(default=True)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('vote', models.ForeignKey(to='interpretationVotes.InterpretationVote')),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='interpretationvote',
+            name='voters',
+            field=models.ManyToManyField(to=settings.AUTH_USER_MODEL, through='interpretationVotes.VoteMembership'),
+            preserve_default=True,
         ),
     ]

@@ -42,7 +42,7 @@ angular.module("module.model")
 	};
 
 	service.getCurrentUser =  function () {
-	    return $http.get('users/currentUser').then(function (response) {
+	    return $http.get('/users/currentUser').then(function (response) {
 	        return response.data;
 	    });
 	};
