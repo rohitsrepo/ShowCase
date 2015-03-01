@@ -1,8 +1,10 @@
 from django.db import models
-from compositions.models import Composition
-from interpretations.models import Interpretation
-
 
 class StaffPost(models.Model):
-    composition = models.ForeignKey(Composition)
-    interpretation = models.ForeignKey(Interpretation) 
+    composition = models.ForeignKey('compositions.Composition')
+    interpretation = models.ForeignKey('interpretations.Interpretation') 
+    
+class FreshPost(models.Model):
+    composition = models.ForeignKey('compositions.Composition')
+    interpretation = models.ForeignKey('interpretations.Interpretation', blank=True, null=True)
+    

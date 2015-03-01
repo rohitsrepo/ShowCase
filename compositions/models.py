@@ -5,6 +5,7 @@ from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
 from votes.models import Vote
+from feeds.models import FreshPost
 
 
 def get_upload_file_name_composition(instance, filename):
@@ -50,6 +51,18 @@ def create_vote(sender, **kwargs):
         instance = kwargs.get('instance')
         vote = Vote(positive=0, negative=0, composition=instance)
         vote.save()
+        
+        
+#To create FreshPost instance whenever a new composition is created
+@receiver(post_save, sender=Composition)
+def create_freshpost_from_Composition(sender, **kwargs):
+    created = kwargs.get('created', False)
+    if created:
+        composition_instance = kwargs.get('instance')
+        fresh_post = FreshPost(composition=composition_instance, interpretation= None)
+        fresh_post.save()
+
+
 
 def unique_slugify(instance, value, slug_field_name='slug', queryset=None,
                    slug_separator='-'):
