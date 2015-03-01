@@ -13,5 +13,22 @@ angular.module('module.model')
 			return response.data;
 		});
 	};
+
+	service.getComments = function (compositionId, interpretationId) {
+		var commentUrl = "/compositions/" + compositionId + "/interpretations/" + interpretationId + "/comments"
+		return $http.get(commentUrl).then(function (response) {
+			console.log("Model got; ", response);
+			return response.data;
+		});
+	};
+
+	service.addComment = function (compositionId, interpretationId, comment) {
+		var commentUrl = "/compositions/" + compositionId + "/interpretations/" + interpretationId + "/comments"
+		return $http.post(commentUrl, {"comment": comment}).then(function (response) {
+			console.log("Model got; ", response);
+			return response.data;
+		});
+	};
+
 	return service;
 }]);

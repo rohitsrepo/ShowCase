@@ -9,6 +9,7 @@ from interpretations.models import Interpretation
 from feeds.models import StaffPost
 from accounts.models import User
 from django.core.files import File
+from comments.models import Comment
 
 def delete_existing_data():
 	User.objects.all().delete()
@@ -33,15 +34,24 @@ def get_word():
 def add_interpretations(composition, artist):
 	for i in range(5):
 		interpretation = Interpretation.objects.create(composition=composition, user=artist)
-		print add_interpretation(interpretation)
+		add_interpretation(interpretation)
 		print "Interpretation"
 
-def add_interpretation(interpretation):
+def get_text(lower, upper):
 	content = get_word()
-	for i in range(100, 200):
+	for i in range(lower, upper):
 		content = content + ' ' + get_word()
-	interpretation.interpretation = content
+
+	return content
+
+def add_comments(interpretation, user):
+	for i in range(random.randint(2,5)):
+		Comment.objects.create(commenter=user, interpretation=interpretation, comment=get_text(25, 50))
+
+def add_interpretation(interpretation):
+	interpretation.interpretation = get_text(100, 200)
 	interpretation.save()
+	add_comments(interpretation, interpretation.user)
 
 delete_existing_data()
 for i in range(1, 10):

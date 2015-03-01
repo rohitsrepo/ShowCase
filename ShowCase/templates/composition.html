@@ -54,7 +54,7 @@
 			<!-- 1 -->
 			<section class="interpret" ng-repeat-start="interpretation in interpretations">
 				<header class="interpreter clearfix">
-					<img src="http://farm5.staticflickr.com/4136/4817542998_55a7eb8d8b_q.jpg"/>
+					<img ng-src="[[interpretation.user.picture]]"/>
 					<div>
 						<h3>[[interpretation.user.full_name]]</h3>
 						<h5>Illusionistic Painting</h5>
@@ -63,20 +63,38 @@
 				<p class="interpret-content">
 					[[interpretation.interpretation]]
 				</p>
-				<footer class="interpret-footer clearfix">
+				<footer class="interpret-footer">
 					<div class="clearfix">
 					<h6 class="right">[[interpretation.timesince]] ago</h6>
-					<h6 class="left">[[interpretation.vote.total]] Votes. [[comments]] Comments</h6>
+					<h6 class="left">[[interpretation.vote.total]] Votes. [[interpretation.comments_count]] Comments</h6>
 					</div>
-					<ul>
+					<ul class="clearfix">
   					    <li><img class="icon left" ng-class="{'vote-active': interpretation.voting_status=='Positive'}" src="/static/css/composition/icons/arrowup.svg" ng-click="vote($index, true)"></li>
   					    <li><img class="icon left" ng-class="{'vote-active': interpretation.voting_status=='Negative'}" src="/static/css/composition/icons/arrowdown.svg" ng-click="vote($index, false)"></li>
-  					    <li><img class="icon left" src="/static/css/composition/icons/comment.svg" ></li>
+  					    <li><img class="icon left" src="/static/css/composition/icons/comment.svg" ng-click="toggleShowComments($index)"></li>
   					    <li><img class="icon right" src="/static/css/composition/icons/google.svg" ></li>
   					    <li><img class="icon right" src="/static/css/composition/icons/pinterest.svg" ></li>
   					    <li><img class="icon right" src="/static/css/composition/icons/facebook.svg" ></li>
   					    <li><img class="icon right" src="/static/css/composition/icons/twitter.svg" ></li>
   					</ul>
+  					<section class="comments" ng-show="interpretation.showComments">
+  						<div class="clearfix">
+	  						<img class="left" src="/media/root/user_default.jpg">
+	  						<form class="left" ng-submit="addComment($index, interpretation.comment)">
+		  						<input type="textbox" placeholder="Share your thoughts about the work." ng-model="interpretation.comment" />
+	  						</form>
+	  					</div>
+  						<ul>
+  							<li class="clearfix" ng-repeat="comment in interpretation.comments">
+  								<img class="left" ng-src="[[comment.commenter.picture]]">
+  								<div class="left comment">
+  									<h5 class="commenter">[[comment.commenter.full_name]]</h5>
+									<p>[[comment.comment]]</p>
+									<h6 class="comment-time">[[comment.timesince]] ago</h6>
+								</div>
+  							</li>
+  						</ul>
+  					</section>
 				</footer>
 			</section>
 			<hr ng-repeat-end>
