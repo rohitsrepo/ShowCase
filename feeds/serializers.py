@@ -4,6 +4,7 @@ from rest_framework.pagination import PaginationSerializer
 from compositions.models import Composition
 from interpretations.models import Interpretation
 from accounts.models import User
+from ShowCase.serializers import URLImageField
 
 class PostUserSerializer(serializers.ModelSerializer):
     full_name = serializers.CharField(source='get_full_name', read_only=True)
@@ -14,6 +15,7 @@ class PostUserSerializer(serializers.ModelSerializer):
 
 class PostCompositionSerializer(serializers.ModelSerializer):
     artist = PostUserSerializer(read_only=True)
+    matter = URLImageField(source='matter')
 
     class Meta:
         model = Composition

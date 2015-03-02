@@ -1,4 +1,4 @@
-angular.module("ReaderApp", ["module.auth", "module.curtainRight", "module.curtainLeft", "module.topbar", "module.model"])
+angular.module("ReaderApp", ["module.auth", "module.curtainRight", "module.curtainLeft", "module.topbar", "module.model", 'module.sharing'])
 .config(function ($httpProvider) {
 	"use strict";
 

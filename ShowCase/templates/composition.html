@@ -3,16 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ThirdDime - {{composition.title}}</title>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta property="og:title" content="{{composition.title}}">
+	<meta property="og:site_name" content="ThirdDime">
+	<meta property="og:url" content="http://thirddime.com/arts/{{composition.slug}}">
+	<meta property="og:description" content="Behind the BrushStrokes.">
+	<meta property="og:image" content="http://thirddime.com/{{composition.matter.url}}">
+	<meta property="og:type" content="website">
+
+	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
+
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/composition/main.css">
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
 </head>
 
 
-<body ng-controller="compositionController">
+<body ng-controller="compositionController" ng-init="init()">
 	<topbar></topbar>
 	<div class="curtain-overlay-placeholder"></div>
-	<header class="primary-header" ng-init="compositionId = {{composition.id}}">
+	<header class="primary-header" ng-init="init({{composition.id}}, '{{composition.matter.url}}')">
 		<section class="banner">
 			<h1>{{composition.title}}</h1>
 			<h3>{{composition.artist}}</h3>
@@ -72,10 +83,10 @@
   					    <li><img class="icon left" ng-class="{'vote-active': interpretation.voting_status=='Positive'}" src="/static/css/composition/icons/arrowup.svg" ng-click="vote($index, true)"></li>
   					    <li><img class="icon left" ng-class="{'vote-active': interpretation.voting_status=='Negative'}" src="/static/css/composition/icons/arrowdown.svg" ng-click="vote($index, false)"></li>
   					    <li><img class="icon left" src="/static/css/composition/icons/comment.svg" ng-click="toggleShowComments($index)"></li>
-  					    <li><img class="icon right" src="/static/css/composition/icons/google.svg" ></li>
-  					    <li><img class="icon right" src="/static/css/composition/icons/pinterest.svg" ></li>
-  					    <li><img class="icon right" src="/static/css/composition/icons/facebook.svg" ></li>
-  					    <li><img class="icon right" src="/static/css/composition/icons/twitter.svg" ></li>
+  					    <li><img class="icon right" tumblr-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/google.svg" ></li>
+  					    <li><img class="icon right" pinterest-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/pinterest.svg" ></li>
+  					    <li><img class="icon right" facebook-share source="[[composition.url]]" description="[[interpretation.interpretation]]" title="This is a cool title" src="/static/css/composition/icons/facebook.svg" ></li>
+  					    <!-- <li><img class="icon right" src="/static/css/composition/icons/twitter.svg" ></li> -->
   					</ul>
   					<section class="comments" ng-show="interpretation.showComments">
   						<div class="clearfix">
@@ -165,6 +176,10 @@
 	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/sharing/sharing.module.js"></script>
+	<script type="text/javascript" src="/static/js/components/sharing/tumblr.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/sharing/pinterest.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/sharing/facebook.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
 </body>
