@@ -23,10 +23,25 @@ def editors_pick_list(request, format=None):
 
     serializer = PaginatedPostSerializer(this_page_posts)
 
+    if request.user.is_authenticated():
+        add_voting_status(this_page_posts, request.user, serializer.data['results'])
+
+    add_comment_count(this_page_posts, serializer.data['results'])
+
     return Response(serializer.data)
 
    
-    
+def add_voting_status(posts, user, results):
+    counter = 0;
+    for post in posts:
+        results[counter]['voting_status'] = post.interpretation.vote.get_voting_status(user)
+        counter += 1
+
+def add_comment_count(posts, results):
+    counter = 0
+    for post in posts:
+        results[counter]['comments_count'] = post.interpretation.comment_set.count()
+        counter += 1    
     
     
 

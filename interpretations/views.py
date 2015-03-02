@@ -35,7 +35,7 @@ class InterpretationList(APIView):
         if request.user.is_authenticated():
             self.add_voting_status(interpretations, request.user, serializer)
 
-        self.add_comment_count(interpretations, serializer);
+        self.add_comment_count(interpretations, serializer)
 
         return Response(serializer.data)
 
