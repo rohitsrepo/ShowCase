@@ -1,5 +1,6 @@
 angular.module("CompositionApp").
-controller("compositionController", ["$scope", "interpretationModel", '$location' ,function ($scope, interpretationModel, $location) {
+controller("compositionController", ["$scope", "interpretationModel", '$location' , '$timeout', 
+	function ($scope, interpretationModel, $location, $timeout) {
 
 	$scope.composition = {};
 
@@ -8,10 +9,25 @@ controller("compositionController", ["$scope", "interpretationModel", '$location
 		$scope.composition.url = url;
 	};
 
+	var checkForScroll = function (interval) {
+		$timeout (function () {
+			var scrollTo = $location.search()['scrollTo'];
+			console.log("got", scrollTo);
+			if (scrollTo) {
+				var elementTop = $('#'+scrollTo).offset().top;
+				$('html,body').animate({
+			        'scrollTop': elementTop
+			    }, 750);
+			}
+		}, interval)
+		
+	};
+
 
 	$scope.$watch($scope.composition.Id, function () {
 		interpretationModel.getInterpretations($scope.composition.id).then(function (interpretations) {
 			$scope.interpretations = interpretations;
+			checkForScroll(500);
 		});
 	});
 
@@ -34,7 +50,6 @@ controller("compositionController", ["$scope", "interpretationModel", '$location
 	$scope.addComment = function (index, comment) {
 		interpretation = $scope.interpretations[index];
 		interpretationModel.addComment($scope.composition.id, interpretation.id, comment).then(function (res) {
-			console.log("controller: ", res);
 			interpretation.comments.push(res);
 			interpretation.comment = "";
 		});
@@ -43,7 +58,6 @@ controller("compositionController", ["$scope", "interpretationModel", '$location
 	var getComments = function (index) {
 		interpretation = $scope.interpretations[index];
 		interpretationModel.getComments($scope.composition.id, interpretation.id).then(function (res) {
-			console.log("controller got", res);
 			interpretation.comments = res;
 		});
 	};

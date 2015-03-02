@@ -5,6 +5,7 @@ from rest_framework import permissions
 from rest_framework.decorators import api_view, permission_classes
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from rest_framework.response import Response
+from interpretations.models import Interpretation
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
@@ -27,9 +28,15 @@ def editors_pick_list(request, format=None):
         add_voting_status(this_page_posts, request.user, serializer.data['results'])
 
     add_comment_count(this_page_posts, serializer.data['results'])
+    add_interpretation_rank(this_page_posts, serializer.data['results'])
 
     return Response(serializer.data)
 
+def add_interpretation_rank(posts, results):
+    counter=0
+    for post in posts:
+        results[counter]['interpretation_rank'] = Interpretation.objects.filter(composition=post.composition, id__lt=post.interpretation.id).count()
+        counter += 1
    
 def add_voting_status(posts, user, results):
     counter = 0;

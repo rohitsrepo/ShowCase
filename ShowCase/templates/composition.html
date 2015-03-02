@@ -25,7 +25,7 @@
 	<div class="curtain-overlay-placeholder"></div>
 	<header class="primary-header" ng-init="init({{composition.id}}, '{{composition.matter.url}}')">
 		<section class="banner">
-			<h1>{{composition.title}}</h1>
+			<h1 scroll-to="#painting">{{composition.title}}</h1>
 			<h3>{{composition.artist}}</h3>
 		</section>
 
@@ -35,7 +35,7 @@
 	</header>
 
 	<section class="painting-area">
-		<header class="painting-toolbar clearfix">
+		<header class="painting-toolbar clearfix" id="painting">
 			<div class="tools-icons">
 				<img src="/static/css/composition/icons/viewfinder.svg" />
 				<img src="/static/css/composition/icons/bookmark.svg" />
@@ -60,7 +60,7 @@
 			<h4 class="inter-heading">4 Interpretations</h4>
 		</header>
 
-		<section class="interprets" ng-cloak>
+		<section class="interprets" ng-cloak id="inter0">
 
 			<!-- 1 -->
 			<section class="interpret" ng-repeat-start="interpretation in interpretations">
@@ -108,7 +108,7 @@
   					</section>
 				</footer>
 			</section>
-			<hr ng-repeat-end>
+			<hr ng-repeat-end id="inter[[$index+1]]">
 
 		</section>
 
@@ -182,5 +182,6 @@
 	<script type="text/javascript" src="/static/js/components/sharing/facebook.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
 </body>
 </html>
