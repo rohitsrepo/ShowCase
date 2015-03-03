@@ -1,4 +1,4 @@
-angular.module("CompositionApp", ["module.auth", "module.curtainLeft", "module.curtainRight", "module.topbar", "module.model", "module.sharing", 'module.scrollTo'])
+angular.module("CompositionApp", ["module.auth", "module.curtainLeft", "module.curtainRight", "module.topbar", "module.model", "module.sharing", 'module.scrollTo', 'sticky', 'module.color', 'module.viewFinder'])
 .config(function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

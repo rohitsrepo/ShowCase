@@ -12,7 +12,6 @@ controller("compositionController", ["$scope", "interpretationModel", '$location
 	var checkForScroll = function (interval) {
 		$timeout (function () {
 			var scrollTo = $location.search()['scrollTo'];
-			console.log("got", scrollTo);
 			if (scrollTo) {
 				var elementTop = $('#'+scrollTo).offset().top;
 				$('html,body').animate({

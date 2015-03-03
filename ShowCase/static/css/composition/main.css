@@ -109,11 +109,28 @@ body {
   width: 100%;
   text-align: center;
   margin: 20px;
+  position: relative;
+}
+
+.painting-container .zm-wrap {
+  width: 100%;
+  height: 100%;
 }
 
 .painting {
   height: 100%;
   width: auto;
+}
+
+.palette {
+  position: absolute;
+  left: 50px;
+  top: 100px;
+}
+
+.palette li {
+  height: 50px;
+  width: 50px;
 }
 
 /*=============== ART INFO BOX =====================*/
@@ -150,7 +167,7 @@ body {
 
 .about-painting th,
 .about-painting td {
-  padding-bottom: 22px;
+  padding-bottom: 12px;
   vertical-align: top;
 }
 
@@ -161,7 +178,7 @@ body {
   color: #a9b2b9;
   font-size: 14px;
   font-weight: 400;
-  padding-top: 22px;
+  padding-top: 12px;
   text-transform: uppercase;
 }
 
@@ -169,7 +186,7 @@ body {
   width: 40%;
   /*border-bottom: 1px solid #dfe2e5;*/
   border: 0;
-  padding-top: 21px;
+  padding-top: 11px;
 }
 
 /*=================== THIRD VIEW ==================*/

@@ -14,6 +14,7 @@
 
 	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
 
+	<link rel="stylesheet" type="text/css" href="/static/vendor/zoome/zoome-min.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/composition/main.css">
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
@@ -37,8 +38,8 @@
 	<section class="painting-area">
 		<header class="painting-toolbar clearfix" id="painting">
 			<div class="tools-icons">
-				<img src="/static/css/composition/icons/viewfinder.svg" />
-				<img src="/static/css/composition/icons/bookmark.svg" />
+				<img view-finder src="/static/css/composition/icons/viewfinder.svg" />
+				<img color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/bookmark.svg" />
 				<img src="/static/css/composition/icons/expand.svg" />
 				<img src="/static/css/composition/icons/more-bottom.svg" />
 			</div>
@@ -51,6 +52,11 @@
 			</div>
 		</header>
 		<div class="painting-container">
+			<ul class="palette" ng-show="showPalette" ng-cloak>
+				<li style="background: rgb([[ dominantColor['0'] ]], [[ dominantColor['1'] ]], [[ dominantColor['2'] ]])"></li>
+				<br><br>
+				<li style="background: rgb([[ color['0'] ]], [[ color['1'] ]], [[ color['2'] ]])" ng-repeat="color in palette"></li>
+			</ul>
 			<img class="painting" src="{{composition.matter.url}}">
 		</div>
 	</section>
@@ -112,7 +118,7 @@
 
 		</section>
 
-	 	<sidebar class="about-painting">
+	 	<sidebar class="about-painting" sticky offset="50">
 			<img src="{{composition.matter.url}}" />
 			<table>
 			    <tr>
@@ -160,7 +166,10 @@
 	<!-- Scripts Here -->
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
-	<script type="text/javascript" src="/static/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/ngSticky/dist/sticky.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/color-thief/dist/color-thief.min.js"></script>
+	<script type="text/javascript" src="/static/vendor/zoome/zoome.min.js"></script>
+
 	<script type="text/javascript" src="/static/js/composition/composition.module.js"></script>
 	<script type="text/javascript" src="/static/js/composition/composition.controller.js"></script>
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
@@ -183,5 +192,7 @@
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/colors.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/viewFinder.directive.js"></script>
 </body>
 </html>
