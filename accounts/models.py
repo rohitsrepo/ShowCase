@@ -43,7 +43,7 @@ class UserManager(BaseUserManager):
 
 
 def get_upload_file_name_users(instance, filename):
-    return 'Users/%s/Profile/%s' % (instance.email.split('@')[0], filename)
+    return 'Users/%s/Profile/%s' % (instance.id, instances.first_name + filename.split('.')[-1])
 
 
 class User(AbstractBaseUser, PermissionsMixin):

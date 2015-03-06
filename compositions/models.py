@@ -8,7 +8,7 @@ from votes.models import Vote
 
 
 def get_upload_file_name_composition(instance, filename):
-    return 'Users/%s/Compositions/%s/%s' % (instance.artist.id, instance.created, filename)
+    return '%s/%s/%s' % (instance.artist.id, slugify(instance.artist.get_full_name()), slugify(instance.title) + '.' + filename.split('.')[-1])
 
 
 class Composition(models.Model):
