@@ -15,9 +15,11 @@
 
 	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
 
+	 <!-- build:css /static/build/reader.css -->
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/reader/main.css">
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
+	<!-- endbuild -->
 </head>
 <body ng-controller="readerController">
 	<topbar></topbar>
@@ -69,6 +71,7 @@
 	</section>
 	<!-- Scripts Here -->
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- build:js /static/build/reader.js -->
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="/static/js/reader/reader.module.js"></script>
 	<script type="text/javascript" src="/static/js/reader/reader.controller.js"></script>
@@ -93,6 +96,7 @@
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
+	<!-- endbuild -->
 </body>
 </html>
 

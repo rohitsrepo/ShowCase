@@ -2,8 +2,10 @@
 <html ng-app="RegisterApp">
 <head>
 	<title>SignUp - ThirdDime</title>
+	<!-- build:css /static/build/register.css -->
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/register/main.css">
+	<!-- endbuild -->
 </head>
 <body ng-controller="registerController">
 	<!-- {% verbatim %} --> 
@@ -31,11 +33,14 @@
 		</section>
 	</section>
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- build:js /static/build/register.js -->
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
 	<script type="text/javascript" src="/static/js/register/register.module.js"></script>
 	<script type="text/javascript" src="/static/js/register/register.controller.js"></script>
+	<!-- endbuild -->
 	<!-- {% endverbatim %} -->
 </body>
 </html>

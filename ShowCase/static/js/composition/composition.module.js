@@ -1,5 +1,5 @@
 angular.module("CompositionApp", ["module.auth", "module.curtainLeft", "module.curtainRight", "module.topbar", "module.model", "module.sharing", 'module.scrollTo', 'sticky', 'module.color', 'module.viewFinder'])
-.config(function ($httpProvider, $interpolateProvider) {
+.config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 
     // Changing angular template tag to prevent conflict with django
@@ -12,7 +12,7 @@ angular.module("CompositionApp", ["module.auth", "module.curtainLeft", "module.c
 	// csrf for django
 	$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 	$httpProvider.defaults.xsrfCookieName = 'csrftoken';
-}).factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
+}]).factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
     'use strict';
     return {
         responseError: function (response) {

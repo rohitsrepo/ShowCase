@@ -3,7 +3,9 @@
 <head>
 	<title>Login - ThirdDime</title>
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+	<!-- build:css /static/build/login.css -->
 	<link rel="stylesheet" type="text/css" href="/static/css/login/main.css">
+	<!-- endbuild -->
 </head>
 <body ng-controller="loginController">
 	<!-- {% verbatim %} --> 
@@ -29,12 +31,14 @@
 		</section>
 	</section>
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- build:js /static/build/login.js -->
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
 	<script type="text/javascript" src="/static/js/login/login.module.js"></script>
 	<script type="text/javascript" src="/static/js/login/login.controller.js"></script>
+	<!-- endbuild -->
 	<!-- {% endverbatim %} -->
 </body>
 </html>

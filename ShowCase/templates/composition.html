@@ -14,10 +14,12 @@
 
 	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
 
+	 <!-- build:css /static/build/composition.css -->
 	<link rel="stylesheet" type="text/css" href="/static/vendor/zoome/zoome-min.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/composition/main.css">
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
+	<!-- endbuild -->
 </head>
 
 
@@ -38,17 +40,17 @@
 	<section class="painting-area">
 		<header class="painting-toolbar clearfix" id="painting">
 			<div class="tools-icons">
-				<img view-finder src="/static/css/composition/icons/viewfinder.svg" />
-				<img color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/bookmark.svg" />
-				<img src="/static/css/composition/icons/expand.svg" />
-				<img src="/static/css/composition/icons/more-bottom.svg" />
+				<img view-finder src="/static/css/composition/icons/viewfinder.svg">
+				<img color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/bookmark.svg">
+				<img src="/static/css/composition/icons/expand.svg">
+				<img src="/static/css/composition/icons/more-bottom.svg">
 			</div>
 			<!-- <button class="btn style1 inter_btn">Interpretations</button> -->
 			<div class="social-icons">
-				<img title="Twitter" src="/static/css/composition/icons/twitter.svg" />
-				<img title="Facebook" src="/static/css/composition/icons/facebook.svg" />
-				<img title="Pinterest" src="/static/css/composition/icons/pinterest.svg" />
-				<img title="Google" src="/static/css/composition/icons/google.svg" />
+				<img title="Twitter" src="/static/css/composition/icons/twitter.svg">
+				<img title="Facebook" src="/static/css/composition/icons/facebook.svg">
+				<img title="Pinterest" src="/static/css/composition/icons/pinterest.svg">
+				<img title="Google" src="/static/css/composition/icons/google.svg">
 			</div>
 		</header>
 		<div class="painting-container">
@@ -71,7 +73,7 @@
 			<!-- 1 -->
 			<section class="interpret" ng-repeat-start="interpretation in interpretations">
 				<header class="interpreter clearfix">
-					<img ng-src="[[interpretation.user.picture]]"/>
+					<img ng-src="[[interpretation.user.picture]]">
 					<div>
 						<h3>[[interpretation.user.full_name]]</h3>
 						<h5>Illusionistic Painting</h5>
@@ -89,16 +91,16 @@
   					    <li><img class="icon left" ng-class="{'vote-active': interpretation.voting_status=='Positive'}" src="/static/css/composition/icons/arrowup.svg" ng-click="vote($index, true)"></li>
   					    <li><img class="icon left" ng-class="{'vote-active': interpretation.voting_status=='Negative'}" src="/static/css/composition/icons/arrowdown.svg" ng-click="vote($index, false)"></li>
   					    <li><img class="icon left" src="/static/css/composition/icons/comment.svg" ng-click="toggleShowComments($index)"></li>
-  					    <li><img class="icon right" tumblr-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/google.svg" ></li>
-  					    <li><img class="icon right" pinterest-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/pinterest.svg" ></li>
-  					    <li><img class="icon right" facebook-share source="[[composition.url]]" description="[[interpretation.interpretation]]" title="This is a cool title" src="/static/css/composition/icons/facebook.svg" ></li>
+  					    <li><img class="icon right" tumblr-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/google.svg"></li>
+  					    <li><img class="icon right" pinterest-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/pinterest.svg"></li>
+  					    <li><img class="icon right" facebook-share source="[[composition.url]]" description="[[interpretation.interpretation]]" title="This is a cool title" src="/static/css/composition/icons/facebook.svg"></li>
   					    <!-- <li><img class="icon right" src="/static/css/composition/icons/twitter.svg" ></li> -->
   					</ul>
   					<section class="comments" ng-show="interpretation.showComments">
   						<div class="clearfix">
 	  						<img class="left" src="/media/root/user_default.jpg">
 	  						<form class="left" ng-submit="addComment($index, interpretation.comment)">
-		  						<input type="textbox" placeholder="Share your thoughts about the work." ng-model="interpretation.comment" />
+		  						<input type="textbox" placeholder="Share your thoughts about the work." ng-model="interpretation.comment">
 	  						</form>
 	  					</div>
   						<ul>
@@ -119,7 +121,7 @@
 		</section>
 
 	 	<sidebar class="about-painting" sticky offset="50">
-			<img src="{{composition.matter.url}}" />
+			<img src="{{composition.matter.url}}">
 			<table>
 			    <tr>
 			      <th>
@@ -165,6 +167,7 @@
 
 	<!-- Scripts Here -->
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- build:js /static/build/composition.js -->
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/ngSticky/dist/sticky.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/color-thief/dist/color-thief.min.js"></script>
@@ -194,5 +197,6 @@
 	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/colors.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/viewFinder.directive.js"></script>
+	<!-- endbuild -->
 </body>
 </html>
