@@ -43,14 +43,14 @@
 				<img view-finder src="/static/css/composition/icons/viewfinder.svg">
 				<img color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/bookmark.svg">
 				<img fullscreen src="/static/css/composition/icons/expand.svg">
-				<img src="/static/css/composition/icons/more-bottom.svg">
+				<img pan-zoom src="/static/css/composition/icons/more-bottom.svg">
 			</div>
 			<!-- <button class="btn style1 inter_btn">Interpretations</button> -->
 			<div class="social-icons">
-				<img title="Twitter" src="/static/css/composition/icons/twitter.svg">
-				<img title="Facebook" src="/static/css/composition/icons/facebook.svg">
-				<img title="Pinterest" src="/static/css/composition/icons/pinterest.svg">
-				<img title="Google" src="/static/css/composition/icons/google.svg">
+				<img class="zoom-in" title="Twitter" src="/static/css/composition/icons/twitter.svg">
+				<img  class="zoom-out" title="Facebook" src="/static/css/composition/icons/facebook.svg">
+				<img class="range" title="Pinterest" src="/static/css/composition/icons/pinterest.svg">
+				<img class="reset" title="Google" src="/static/css/composition/icons/google.svg">
 			</div>
 		</header>
 		<div class="painting-container">
@@ -171,6 +171,7 @@
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/ngSticky/dist/sticky.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/color-thief/dist/color-thief.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/jquery.panzoom/dist/jquery.panzoom.min.js"></script>
 	<script type="text/javascript" src="/static/vendor/zoome/zoome.min.js"></script>
 	<script type="text/javascript" src="/static/vendor/fullscreen/jquery.fullscreen.js"></script>
 
@@ -199,6 +200,7 @@
 	<script type="text/javascript" src="/static/js/components/colors.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/viewFinder.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/fullscreen.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/panZoom.directive.js"></script>
 	<!-- endbuild -->
 </body>
 </html>
