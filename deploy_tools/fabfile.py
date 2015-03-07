@@ -3,7 +3,6 @@ from fabric.api import env, local, run
 import random
 
 REPO_URL = 'https://github.com/RohitRepo/ShowCase.git'
-# env.key_filename = '/home/rohit/Desktop/ec2/newtonkey.pem'
 
 
 def deploy():
@@ -13,12 +12,14 @@ def deploy():
     _get_latest_source(source_folder)
     _update_settings(source_folder, env.host)
     _update_virtualenv(source_folder)
+    _update_bower(source_folder)
+    _build_client(source_folder)
     _update_static_files(source_folder)
     _update_database(source_folder)
 
 
 def _create_directory_structure_if_necessary(site_folder):
-    for subfolder in ('source', 'static', 'database', 'virtualenv'):
+    for subfolder in ('source', 'static', 'database', 'virtualenv', 'media'):
         run('mkdir -p %s/%s' % (site_folder, subfolder))
 
 
@@ -52,6 +53,12 @@ def _update_virtualenv(source_folder):
         run('virtualenv %s --no-site-packages' % (virtualenv_folder,))
     run('%s/bin/pip install -r %s/deploy_tools/requirements.txt' % (
         virtualenv_folder, source_folder))
+
+def _update_bower(source_folder):
+    run('cd %s/ShowCase/static && bower install' % (source_folder, ))
+
+def _build_client(source_folder):
+    run('cd %s/ShowCase && npm install && grunt build' % (source_folder,))
 
 
 def _update_static_files(source_folder):
