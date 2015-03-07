@@ -122,6 +122,12 @@ body {
   width: auto;
 }
 
+.fullScreen {
+  height: 100%;
+  width: auto;
+  margin: 0 auto;
+}
+
 .palette {
   position: absolute;
   left: 50px;
