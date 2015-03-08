@@ -38,13 +38,13 @@ ol, ul {
 
 @font-face {
     font-family: taile;
-    src: url(/static/css/reader/fonts/TAILEB.TTF);
+    src: url(/static/fonts/TAILEB.TTF);
     font-weight:bold;
 }
 
 @font-face {
     font-family: taile;
-    src: url(/static/css/reader/fonts/TAILE.TTF);
+    src: url(/static/fonts/TAILE.TTF);
     font-weight:400;
 }
 
@@ -89,6 +89,7 @@ a {
 .curtain-left {
   position: fixed;
   width: 22%;
+  max-width: 400px;
   margin-left: -23%;
   z-index: 99;
   height: 100%;
@@ -147,6 +148,7 @@ a {
   position: fixed;
   right: 0;
   width: 30%;
+  max-width: 400px;
   margin-right: -30%;
   z-index: 99;
   height: 100%; 

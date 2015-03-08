@@ -37,8 +37,8 @@
 				<a href="/arts/{{ post.composition.slug }}" target="_blank"><img class="artwork" ng-src="{{post.composition.matter}}" alt="{{post.interpretation.interpretation.slice(0, 140) + '.....Read more on ThirdDime.'}}" /></a>
 				<sidebar class="description">
 					<header class="description-header">
-						<a href="/arts/{{ post.composition.slug }}" target="_blank"><h4>{{post.composition.title}}</h4></a>
-						<h5>by <span class="artist">{{post.composition.artist.full_name}}</span></h5>
+						<a href="/arts/{{ post.composition.slug }}" target="_blank"><h4>{{post.composition.title | titlecase}}</h4></a>
+						<h5>by <span class="artist">{{post.composition.artist.full_name | titlecase}}</span></h5>
 					</header>
 					<section class="comment">
 	   					<div class="comment-text" ng-cloak ng-hide="post.showComplete">
@@ -48,7 +48,7 @@
 	     					{{post.interpretation.interpretation}}
 	   					</div>
 	    				<footer class="comment-footer clearfix">
-	      					<h5>written by<a href=""> {{post.interpretation.user.full_name}} </a></h5>
+	      					<h5>written by<a href=""> {{post.interpretation.user.full_name | titlecase}} </a></h5>
 	   					</footer>
 	  				</section>
 
@@ -76,6 +76,7 @@
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="/static/js/reader/reader.module.js"></script>
 	<script type="text/javascript" src="/static/js/reader/reader.controller.js"></script>
+	<script type="text/javascript" src="/static/js/reader/titlecase.filter.js"></script>
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
 	<script type="text/javascript" src="/static/js/models/interpretation.model.js"></script>
