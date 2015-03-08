@@ -4,6 +4,17 @@
 <html ng-app="ReaderApp">
 <head>
 	<title>ThirdDime - Explore art through interpretations and stories</title>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta property="og:title" content="ThirdDime - Explore art through interpretations and stories">
+	<meta property="og:site_name" content="ThirdDime">
+	<meta property="og:url" content="http://thirddime.com/">
+	<meta property="og:description" content="Behind the BrushStrokes.">
+	<meta property="og:image" content="http://thirddime.com/">
+	<meta property="og:type" content="website">
+
+	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
+
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/reader/main.css">
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
@@ -17,9 +28,9 @@
 					<a href="#" class="explore">Explore</a>
 			</section>
 	</header>
-	<section class="posts">
+	<section class="posts" ng-cloak>
 		<section class="post clearfix" ng-repeat="post in posts">
-				<a href="/arts/{{ post.composition.slug }}" target="_blank"><img class="artwork" ng-src="/media/{{post.composition.matter}}" alt="{{post.composition.title}}" /></a>
+				<a href="/arts/{{ post.composition.slug }}" target="_blank"><img class="artwork" ng-src="{{post.composition.matter}}" alt="{{post.interpretation.interpretation.slice(0, 140) + '.....Read more on ThirdDime.'}}" /></a>
 				<sidebar class="description">
 					<header class="description-header">
 						<a href="/arts/{{ post.composition.slug }}" target="_blank"><h4>{{post.composition.title}}</h4></a>
@@ -32,20 +43,24 @@
 	   					<div class="comment-text" ng-cloak ng-show="post.showComplete">
 	     					{{post.interpretation.interpretation}}
 	   					</div>
-	    				<footer class="comment-footer">
+	    				<footer class="comment-footer clearfix">
 	      					<h5>written by<a href=""> {{post.interpretation.user.full_name}} </a></h5>
 	   					</footer>
 	  				</section>
 
 	  				<footer class="description-footer">
+	  						<header class="clearfix">
+		      					<h5 class="right">{{post.interpretation.timesince}} ago</h5>
+		      					<h5 class="left">{{post.interpretation.vote.total}} Votes. {{post.comments_count}} Comments</h5>
+	      					</header>
 	  					<ul>
-	  					    <li><img class="icon icon-left" src="/static/css/reader/icons/arrowup.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-left" src="/static/css/reader/icons/arrowdown.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-left" src="/static/css/reader/icons/comment.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/google.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/pinterest.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/facebook.svg" alt="image of arrow"></li>
-	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/twitter.svg" alt="image of arrow"></li>
+	  					    <li><img class="icon icon-left" ng-class="{'vote-active': post.voting_status=='Positive'}" src="/static/css/reader/icons/arrowup.svg" ng-click="vote($index, true)"></li>
+	  					    <li><img class="icon icon-left" ng-class="{'vote-active': post.voting_status=='Negative'}" src="/static/css/reader/icons/arrowdown.svg" ng-click="vote($index, false)"></li>
+	  					    <li><img class="icon icon-left" src="/static/css/reader/icons/comment.svg" ></li>
+	  					    <li><img class="icon icon-right" tumblr-share source="{{post.composition.matter}}" description="{{post.interpretation.interpretation}}" src="/static/css/reader/icons/google.svg" ></li>
+	  					    <li><img class="icon icon-right" pinterest-share source="{{post.composition.matter}}" description="{{post.interpretation.interpretation}}" src="/static/css/reader/icons/pinterest.svg" ></li>
+	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/facebook.svg" ></li>
+	  					    <!-- <li><img class="icon icon-right" src="/static/css/reader/icons/twitter.svg" ></li> -->
 	  					</ul>
 	  				</footer>
 				</sidebar>
@@ -58,6 +73,7 @@
 	<script type="text/javascript" src="/static/js/reader/reader.controller.js"></script>
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
+	<script type="text/javascript" src="/static/js/models/interpretation.model.js"></script>
 	<script type="text/javascript" src="/static/js/models/post.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
@@ -69,6 +85,10 @@
 	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/sharing/sharing.module.js"></script>
+	<script type="text/javascript" src="/static/js/components/sharing/tumblr.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/sharing/pinterest.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/sharing/facebook.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
 </body>
