@@ -1,6 +1,6 @@
 <sidebar ng-controller="topbarController">
-	<img class="logo" src="/static/images/reader/header-md.png" add-curtain-left>
+	<img class="logo" src="/static/images/header-md.png" add-curtain-left>
 
-	<h3 class="auth-user" add-curtain-right="login" ng-cloak ng-hide="currentUser">Login</h3>
+	<h3 class="auth-user" add-curtain-right="login" ng-cloak ng-hide="currentUser"><a href="/register">SIGN UP</a>/LOGIN</h3>
 	<h3 class="auth-user" add-curtain-right="user" ng-cloak ng-show="currentUser">{{currentUser.first_name}}</h3>
 </sidebar>

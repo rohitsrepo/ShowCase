@@ -19,39 +19,43 @@ html, body {
 
 .banner section {
   text-align: center;
-  width: 80%;
+  width: 55%;
   margin: 0 auto;
   height: 100%;
+  color: white;
 }
 
 .banner section h1 {
-  font-family: "Lusitana";
   font-weight: bold;
-  font-size: 8em;
-  margin-bottom: 0.7em;
-  padding-top: 15%;
+  font-size: 4.5em;
+  margin-bottom: 20px;
+  padding-top: 30%;
+  line-height: 1em;
+  letter-spacing: 3px;
 }
  
-.banner a {
-  font-weight: bold;
-  margin-bottom: 10px;
- }
+.banner section h3 {
+  font-size: 1.6em;
+  margin-bottom: 25px;
+  letter-spacing: 3px;
+  line-height: 1.5em;
+}
 
 /*============== EXPLORE BUTTON ====================*/
 .explore {
-  font-family: "Varela Round";
   display: inline-block;
   padding: 12px 18px;
-  text-decoration: none;
-  position: relative;
-  border: 1px solid #000;
-  border-radius: 3px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  border: 2px solid #fff;
+  border-radius: 1px;
   text-align: center;
-  color: #000;
-  overflow: hidden;
-  font-size: 30px;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.explore:hover {
+  opacity: 1;
 }
 
 /*=============== IMAGE FEED ==============*/
