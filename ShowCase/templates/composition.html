@@ -39,22 +39,26 @@
 
 	<section class="painting-area">
 		<header class="painting-toolbar clearfix" id="painting">
-			<div class="tools-icons">
-				<img view-finder src="/static/css/composition/icons/viewfinder.svg">
-				<img color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/bookmark.svg">
-				<img fullscreen src="/static/css/composition/icons/expand.svg">
-				<img pan-zoom src="/static/css/composition/icons/more-bottom.svg">
-			</div>
-			<!-- <button class="btn style1 inter_btn">Interpretations</button> -->
-			<div class="social-icons">
-				<img class="zoom-in" title="Twitter" src="/static/css/composition/icons/twitter.svg">
-				<img  class="zoom-out" title="Facebook" src="/static/css/composition/icons/facebook.svg">
-				<img class="range" title="Pinterest" src="/static/css/composition/icons/pinterest.svg">
-				<img class="reset" title="Google" src="/static/css/composition/icons/google.svg">
-			</div>
+			<section class="tools-icons">
+				<img ng-class="{active: isViewFinderActive}" view-finder src="/static/css/composition/icons/viewfinder.svg">
+				<img ng-class="{active: isColorPaletteActive}" color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/bookmark.svg">
+				<img ng-class="{active: isFullScreen}" fullscreen src="/static/css/composition/icons/expand.svg">
+				<img ng-class="{active: isPanZoomActive}" pan-zoom src="/static/css/composition/icons/more-bottom.svg">
+			</section>
+			<section ng-show="isPanZoomActive" class="zoom-icons" ng-cloak>
+				<img class="zoom-in" src="/static/css/composition/icons/more-bottom.svg">
+				<img class="zoom-out" src="/static/css/composition/icons/more-bottom.svg">
+				<img class="reset" src="/static/css/composition/icons/more-bottom.svg">
+			</section>
+			<section class="social-icons">
+				<img title="Twitter" src="/static/css/composition/icons/twitter.svg">
+				<img title="Facebook" src="/static/css/composition/icons/facebook.svg">
+				<img title="Pinterest" src="/static/css/composition/icons/pinterest.svg">
+				<img title="Google" src="/static/css/composition/icons/google.svg">
+			</section>
 		</header>
 		<div class="painting-container">
-			<ul class="palette" ng-show="showPalette" ng-cloak>
+			<ul class="palette" ng-show="isColorPaletteActive" ng-cloak>
 				<li style="background: rgb([[ dominantColor['0'] ]], [[ dominantColor['1'] ]], [[ dominantColor['2'] ]])"></li>
 				<br><br>
 				<li style="background: rgb([[ color['0'] ]], [[ color['1'] ]], [[ color['2'] ]])" ng-repeat="color in palette"></li>

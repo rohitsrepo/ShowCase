@@ -3,18 +3,20 @@ angular.module('module.viewFinder', [])
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
-			var isActive = false;
+			scope.isViewFinderActive = false;
 			var painting = $('.painting');
 			element.bind('click', function () {
-				if (!isActive){
-					painting.zoome({hoverEf:'grayscale',showZoomState:true});
+				if (!scope.isViewFinderActive){
+					painting.zoome({hoverEf:'grayscale',showZoomState:true,magnifierSize:[200,200]});
 				} else {
 					if(painting.parent().hasClass('zm-wrap'))
 					{
 						painting.unwrap().next().remove();
 					}
-				};
-				isActive = !isActive;
+				}
+				scope.$apply(function () {
+					scope.isViewFinderActive = !scope.isViewFinderActive;
+				});
 			});
 		}
 	};

@@ -6,15 +6,14 @@ angular.module('module.fullscreen', [])
 			scope.isFullScreen = false;
 
 			var fullscreenCallback = function (status) {
-				if (!status) {
-					scope.isFullScreen = false;
-				}
+				scope.$apply(function () {
+					scope.isFullScreen = status;
+				});
 			};
 
 			var painting = $('.painting');
 			element.bind('click', function () {
 				painting.fullScreen({background: '#fff', callback: fullscreenCallback});
-				scope.isFullScreen = true;
 			});
 		}
 	};

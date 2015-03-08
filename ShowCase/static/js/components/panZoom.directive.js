@@ -3,11 +3,11 @@ angular.module('module.panZoom', [])
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
-			var isActive = false;
+			scope.isPanZoomActive = false;
 			var painting = $('.painting');
 			
 			element.bind('click', function () {
-				if (!isActive){
+				if (!scope.isPanZoomActive){
 					painting.panzoom({
 						$zoomIn: $(".zoom-in"),
 			            $zoomOut: $(".zoom-out"),
@@ -18,7 +18,9 @@ angular.module('module.panZoom', [])
 					painting.panzoom('destroy');
 				}
 
-				isActive = !isActive;
+				scope.$apply(function () {
+					scope.isPanZoomActive = !scope.isPanZoomActive;
+				});
 			});
 		}
 	};
