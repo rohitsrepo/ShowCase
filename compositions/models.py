@@ -1,11 +1,11 @@
-import re
+import re, os
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
 from votes.models import Vote
-
+from .utils import FilterR, FilterG, FilterB, GrayScaleAndSketch
 
 def get_upload_file_name_composition(instance, filename):
     return '%s/%s/%s' % (instance.artist.id, slugify(instance.artist.get_full_name()), slugify(instance.title) + '.' + filename.split('.')[-1])
@@ -42,6 +42,17 @@ class Composition(models.Model):
     def get_absolute_url(self):
         return "#/compositions/{0}/{1}".format(self.id, self.slug)
 
+    def get_analysis_url(self, suffix):
+        file_path, file_name = os.path.split(self.matter.url)
+        name, extension = os.path.splitext(file_name)
+        return os.path.join(file_path, '{0}_{1}{2}'.format(name, suffix, extension))
+
+    def get_outline_url(self):
+        return self.get_analysis_url("outline")
+
+    def get_grayscale_url(self):
+        return self.get_analysis_url("gray")
+
 # To create vote instance when a compostion is created
 @receiver(post_save, sender=Composition)
 def create_vote(sender, **kwargs):
@@ -50,6 +61,11 @@ def create_vote(sender, **kwargs):
         instance = kwargs.get('instance')
         vote = Vote(positive=0, negative=0, composition=instance)
         vote.save()
+
+        FilterG(instance.matter.path)
+        FilterR(instance.matter.path)
+        FilterB(instance.matter.path)
+        GrayScaleAndSketch(instance.matter.path)
 
 def unique_slugify(instance, value, slug_field_name='slug', queryset=None,
                    slug_separator='-'):

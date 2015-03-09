@@ -44,6 +44,8 @@
 				<img ng-class="{active: isColorPaletteActive}" color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/bookmark.svg">
 				<img ng-class="{active: isFullScreen}" fullscreen src="/static/css/composition/icons/expand.svg">
 				<img ng-class="{active: isPanZoomActive}" pan-zoom src="/static/css/composition/icons/more-bottom.svg">
+				<img ng-class="{active: isGrayScaleActive}" ng-click="isGrayScaleActive = !isGrayScaleActive;" src="/static/css/composition/icons/more-bottom.svg">
+				<img ng-class="{active: isOutlineActive}" ng-click="isOutlineActive = !isOutlineActive;" src="/static/css/composition/icons/more-bottom.svg">
 			</section>
 			<section ng-show="isPanZoomActive" class="zoom-icons" ng-cloak>
 				<img class="zoom-in" src="/static/css/composition/icons/more-bottom.svg">
@@ -63,7 +65,9 @@
 				<br><br>
 				<li style="background: rgb([[ color['0'] ]], [[ color['1'] ]], [[ color['2'] ]])" ng-repeat="color in palette"></li>
 			</ul>
-			<img class="painting" src="{{composition.matter.url}}">
+			<img class="painting" src="{{composition.matter.url}}" ng-hide="isGrayScaleActive || isOutlineActive" ng-cloak>
+			<img class="painting" src="{{composition.get_grayscale_url}}" ng-show="isGrayScaleActive" ng-cloak>
+			<img class="painting" src="{{composition.get_outline_url}}" ng-show="isOutlineActive" ng-cloak>
 		</div>
 	</section>
 
