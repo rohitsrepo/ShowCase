@@ -1,6 +1,10 @@
 angular.module("ReaderApp", ["module.auth", "module.curtainRight", "module.curtainLeft", "module.topbar", "module.model", 'module.sharing', 'module.scrollTo'])
-.config(['$httpProvider', function ($httpProvider) {
+.config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
+
+    // Changing angular template tag to prevent conflict with django
+    $interpolateProvider.startSymbol('[[');
+    $interpolateProvider.endSymbol(']]')
 
 	//Http Intercpetor to check auth failures for xhr requests
     $httpProvider.interceptors.push('authHttpResponseInterceptor');

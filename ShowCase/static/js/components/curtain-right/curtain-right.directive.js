@@ -4,13 +4,14 @@ angular.module("module.curtainRight")
 	return {
 		restrict: "A",
 		link: function (scope, element, attrs) {
-			var curtainElement;
+			var curtainElement, curtainModal;
 			var curtainOverlay = angular.element(document.getElementsByClassName("curtain-overlay-placeholder"));
 
 			var removeCurtain = function () {
 	            curtainElement.removeClass('animated fadeInRight');
 	            curtainElement.animate({marginRight:-500}, 300);
             	curtainOverlay.removeClass("curtain-overlay");
+	            $timeout(function () {curtainModal.close()}, 300);
 	            element.removeClass("animated fadeOutLeft");
 	            element.addClass("animated fadeInRight");
 	            element.show();
@@ -56,8 +57,9 @@ angular.module("module.curtainRight")
 				} else {
 					right_curtain = curtainRight.getCurtain(loginOptions);
 				}
-				right_curtain.then(function(curtainModal){
-					curtainElement = curtainModal.element;
+				right_curtain.then(function(result){
+					curtainElement = result.element;
+					curtainModal = result;
 					addCurtain();
 				});
 			});

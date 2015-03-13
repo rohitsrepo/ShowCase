@@ -37,6 +37,16 @@ angular.module("module.curtainRight")
 
             var deferredResponse = $q.defer();
 
+            var controllerName = options.controller;
+            if(!controllerName) {
+              deferredResponse.reject("No controller has been specified.");
+              return deferredResponse.promise;
+            }
+
+            if(options.controllerAs) {
+              controllerName = controllerName + " as " + options.controllerAs;
+            }
+
             getTemplate(options.template, options.templateUrl)
               .then(function(template) {
 
