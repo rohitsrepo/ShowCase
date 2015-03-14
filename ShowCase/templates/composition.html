@@ -26,10 +26,10 @@
 <body ng-controller="compositionController" ng-init="init()">
 	<topbar></topbar>
 	<div class="curtain-overlay-placeholder"></div>
-	<header class="primary-header" ng-init="init({{composition.id}}, '{{composition.matter.url}}')">
+	<header scroll-to="#painting" class="primary-header" ng-init="init({{composition.id}}, '{{composition.matter.url}}')">
 		<section class="banner">
-			<h1 scroll-to="#painting">{{composition.title}}</h1>
-			<h3>{{composition.artist}}</h3>
+			<h1>{{composition.title | title}}</h1>
+			<h3>{{composition.artist | title}}</h3>
 		</section>
 
 		<footer>
@@ -205,6 +205,7 @@
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/colors.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/viewFinder.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/fullscreen.directive.js"></script>

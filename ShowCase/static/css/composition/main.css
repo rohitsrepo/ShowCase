@@ -16,28 +16,19 @@ body {
 .primary-header {
   width: 100%;
   min-height: 100%;
+  cursor: pointer;
 }
 
-/* ========= NAVIGATION HEADER CONTAINING LOGIN/SIGNUP/CURTAIN =========*/
-.nav-header {
-  width: 94%;
-  margin: 0 auto;
- }
-
-.nav-header .left {
-  float: left;
- }
-
-.nav-header .right {
-  float: right;
- }
+.auth-user,
+.auth-user a {
+  color: rgba(0, 0, 0, 0.8);
+}
 
  /* ================== FIRST VIEW ================*/
 
 .banner {
   text-align: center;
   color: #000000;
-  cursor: pointer;
   width: 80%;
   margin: 0 auto;
   padding-top: 15%;
