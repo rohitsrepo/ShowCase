@@ -118,11 +118,14 @@ body {
   padding-left: 15%;
 }
 
+/*===========Painting area ============*/
+
 .painting-container {
   height: 85%;
   width: 100%;
   text-align: center;
-  margin: 20px;
+  margin: 20px 0;
+  overflow: hidden;
   position: relative;
 }
 
@@ -134,6 +137,11 @@ body {
 .painting {
   height: 100%;
   width: auto;
+}
+
+.painting.ng-hide-remove {
+    -webkit-animation: fadeIn 0.4s;
+    animation: fadeIn 0.4s;
 }
 
 .fullScreen {
@@ -151,6 +159,16 @@ body {
 .palette li {
   height: 50px;
   width: 50px;
+}
+
+.palette.ng-hide-add {
+  -webkit-animation: fadeOutLeft 0.4s;
+  animation: fadeOutLeft 0.4s;
+}
+
+.palette.ng-hide-remove {
+  -webkit-animation: fadeInLeft 0.4s;
+  animation: fadeInLeft 0.4s;
 }
 
 /*=============== ART INFO BOX =====================*/

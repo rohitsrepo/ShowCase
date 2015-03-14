@@ -16,9 +16,9 @@
 
 	 <!-- build:css /static/build/composition.css -->
 	<link rel="stylesheet" type="text/css" href="/static/vendor/zoome/zoome-min.css">
+	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/composition/main.css">
-	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
 	<!-- endbuild -->
 </head>
 
@@ -106,7 +106,6 @@
   					</ul>
   					<section class="comments" ng-show="interpretation.showComments">
   						<div class="clearfix">
-	  						<img class="left" src="/media/root/user_default.jpg">
 	  						<form class="left" ng-submit="addComment($index, interpretation.comment)">
 		  						<input type="textbox" placeholder="Share your thoughts about the work." ng-model="interpretation.comment">
 	  						</form>
@@ -177,6 +176,7 @@
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
 	<!-- build:js /static/build/composition.js -->
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/ngSticky/dist/sticky.min.js"></script>
 	<script type="text/javascript" src="/static/vendor/fullscreen/jquery.fullscreen.js"></script>
 	<script type="text/javascript" src="/static/bower_components/color-thief/dist/color-thief.min.js"></script>
