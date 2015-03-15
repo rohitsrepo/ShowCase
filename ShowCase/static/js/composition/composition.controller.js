@@ -18,7 +18,7 @@ controller("compositionController", ["$scope", "interpretationModel", '$location
 			        'scrollTop': elementTop
 			    }, 750);
 			}
-		}, interval)
+		}, interval);
 		
 	};
 
@@ -61,5 +61,35 @@ controller("compositionController", ["$scope", "interpretationModel", '$location
 		});
 	};
 
+	$scope.isOutlineActive = "inactive";
+	$scope.isGrayScaleActive = "inactive";
+
+	$scope.showOutline = function () {
+		if($scope.isOutlineActive!="active"){
+			$scope.isOutlineActive = '';
+			$timeout(function() {
+				$scope.isOutlineActive = 'active';
+			}, 600);
+		} else {
+			$scope.isOutlineActive = '';
+			$timeout(function() {
+				$scope.isOutlineActive = 'inactive';
+			}, 400);
+		}
+	};
+
+	$scope.showGrayscale = function () {
+		if($scope.isGrayScaleActive!="active"){
+			$scope.isGrayScaleActive = '';
+			$timeout(function() {
+				$scope.isGrayScaleActive = 'active';
+			}, 600);
+		} else {
+			$scope.isGrayScaleActive = '';
+			$timeout(function() {
+				$scope.isGrayScaleActive = 'inactive';
+			}, 400);
+		}
+	};
 
 }]);

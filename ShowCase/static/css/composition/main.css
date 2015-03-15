@@ -130,9 +130,37 @@ body {
   width: auto;
 }
 
-.painting.ng-hide-remove {
-    -webkit-animation: fadeIn 0.4s;
+.painting-original.ng-hide-remove {
+    -webkit-animation: fadeIn 0.6s;
     animation: fadeIn 0.4s;
+    opacity: 0;
+}
+
+.painting-original.ng-hide-add {
+    -webkit-animation: fadeOut 0.6s;
+    animation: fadeOut 0.4s;
+}
+
+.painting-outline.ng-hide-remove {
+    -webkit-animation: fadeInRight 0.6s;
+    animation: fadeIn 0.4s;
+    opacity: 0;
+}
+
+.painting-outline.ng-hide-add {
+    -webkit-animation: fadeOutRight 0.4s;
+    animation: fadeOut 0.4s;
+}
+
+.painting-grayscale.ng-hide-remove {
+    -webkit-animation: fadeInLeft 0.6s;
+    animation: fadeIn 0.4s;
+    opacity: 0;
+}
+
+.painting-grayscale.ng-hide-add {
+    -webkit-animation: fadeOutLeft 0.4s;
+    animation: fadeOut 0.4s;
 }
 
 .fullScreen {
