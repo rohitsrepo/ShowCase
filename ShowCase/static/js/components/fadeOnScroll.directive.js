@@ -1,7 +1,7 @@
 angular.module('module.scrollTo')
 .directive('fadeOnScroll', ['$document', function ($document) {
 	return function(scope, element, attrs) {
-		if (!attrs['ng-hide']){
+		if (!scope[attrs.ngHide]){
             element.addClass('animated fadeIn');
 	        $document.bind('scroll', function () {
 	            if ($document.scrollTop() < 100) {

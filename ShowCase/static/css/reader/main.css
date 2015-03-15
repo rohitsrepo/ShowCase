@@ -20,7 +20,7 @@ html, body {
 
 .banner section {
   text-align: center;
-  width: 55%;
+  width: 70%;
   margin: 0 auto;
   height: 100%;
   color: white;
@@ -28,17 +28,17 @@ html, body {
 
 .banner section h1 {
   font-weight: bold;
-  font-size: 4.5em;
+  font-size: 4em;
   margin-bottom: 20px;
-  padding-top: 30%;
+  padding-top: 25%;
   line-height: 1.2em;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
 }
  
 .banner section h3 {
   font-size: 1.5em;
   margin-bottom: 25px;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
   line-height: 1.5em;
 }
 

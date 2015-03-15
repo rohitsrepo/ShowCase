@@ -285,20 +285,31 @@ a {
 
 /*==============Right Curtain - User ===================*/
 
-.curtain-right .user h4{
-  margin-top: 100px;
+.curtain-user {
+  width: 23%;
+  font-family: "taile";
+  letter-spacing: 2px;
 }
 
-.curtain-right .user a {
+.curtain-user h4 {
+  margin: 50px 0;
+  text-align: center;
+  color: #000;
+  font-size: 25px;
+}
+
+.curtain-user a {
   display: block;
   text-decoration: none;
   cursor: pointer;
-  font-size: 25px;
-  margin: 50px 0;
+  font-size: 15px;
+  margin: 40px 0;
+  margin-left: 30px;
   color: #B1B1B1;
-  text-align: center;
+  letter-spacing: 2px;
+  text-align: left;
 }
 
-.curtain-right .user a:hover{
-  color: rgba(255, 255, 255, 0.95);
+.curtain-user .user a:hover{
+  color: rgba(0, 0, 0, 0.95);
 }
