@@ -2,6 +2,9 @@
 <html ng-app="RegisterApp">
 <head>
 	<title>SignUp - ThirdDime</title>
+
+	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
+
 	<!-- build:css /static/build/register.css -->
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/register/main.css">
@@ -22,13 +25,15 @@
 		</section>
 		<h5>Or</h5>	
 		<section class="native">
-			<fieldset class="username">
-				<input type="text" placeholder="First name" autofocus="autofocus" ng-model="user.first_name">
-				<input type="text" placeholder="Last name" ng-model="user.last_name">
-			</fieldset>
-			<input type="email" placeholder="E-mail" ng-model="user.email">
-			<input type="password" placeholder="Password" ng-model="user.password">
-			<input class="signup-button" type="button" name="login" value="CREATE ACCOUNT" ng-click="register(user)">
+			<form ng-keyup="$event.keyCode == 13 ? register(user) : null">
+				<fieldset class="username">
+					<input type="text" placeholder="First name" autofocus="autofocus" ng-model="user.first_name">
+					<input type="text" placeholder="Last name" ng-model="user.last_name">
+				</fieldset>
+				<input type="email" placeholder="E-mail" ng-model="user.email">
+				<input type="password" placeholder="Password" ng-model="user.password">
+				<input class="signup-button" type="button" name="login" value="CREATE ACCOUNT" ng-click="register(user)">
+			</form>
 			<footer>
 				<h6>By creating an account, I accept ThirdDime <a href="">Terms of Service</a>.</h6>
 			</footer>

@@ -2,8 +2,11 @@
 <html ng-app="LoginApp">
 <head>
 	<title>Login - ThirdDime</title>
-	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+
+	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
+
 	<!-- build:css /static/build/login.css -->
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/login/main.css">
 	<!-- endbuild -->
 </head>
@@ -22,10 +25,11 @@
 		</section>
 		<h5>Or</h5>	
 		<section class="native">
-			<input type="email" autofocus="autofocus" placeholder="E-mail" ng-model="user.email">
-			<input type="password" placeholder="Password" ng-model="user.password">
-			<input class="login-button" type="button" name="login" value="LOGIN" ng-click="login(user)">
-			
+			<form ng-keyup="$event.keyCode == 13 ? login(user) : null">
+				<input type="email" autofocus="autofocus" placeholder="E-mail" ng-model="user.email">
+				<input type="password" placeholder="Password" ng-model="user.password">
+				<input class="login-button" type="button" name="login" value="LOGIN" ng-click="login(user)">
+			</form>
 			<footer>
 				<a href="">Forgotten your password?</a>
 				<a href="/register">Sign Up</a>
