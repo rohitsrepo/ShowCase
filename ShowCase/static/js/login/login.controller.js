@@ -5,4 +5,6 @@ angular.module("LoginApp")
 	$scope.login = function (user) {
 		auth.login(user.email, user.password);
 	};
+
+	$scope.hideLogin = true;
 }]);

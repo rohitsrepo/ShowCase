@@ -1,4 +1,4 @@
-angular.module("LoginApp", ["module.auth"])
+angular.module("LoginApp", ["module.auth", "module.curtainRight", "module.curtainLeft", "module.topbar", 'module.scrollTo', 'module.titlecase'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

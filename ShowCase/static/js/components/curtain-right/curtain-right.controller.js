@@ -1,12 +1,10 @@
 angular.module("module.curtainRight")
-.controller('rightCurtainController', ['$scope', "auth", function ($scope, auth) {
+.controller('rightCurtainController', ['$scope', "auth", "$location", function ($scope, auth, $location) {
 	'use strict';
 
 	$scope.login = function (user) {
-		auth.login(user.email, user.password).then(function (response) {
-			console.log("Login request passed:", response);
+		auth.login(user.email, user.password, $location.absUrl()).then(function (response) {
 		}, function (response) {
-			console.log("Login request failed:", response);
 		});
 	};
 }]);

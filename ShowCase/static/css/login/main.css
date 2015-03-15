@@ -18,8 +18,8 @@ a {
 
 .primary-header {
   width: 60%;
-  margin: 20px auto;
-  margin-top: 5%;
+  margin: 0 auto;
+  padding-top: 5%;
   text-align: center;
   color: #1C2023;
 }
@@ -32,6 +32,11 @@ a {
 
 .primary-header h2 {
   font-size: 25px;
+}
+
+.auth-user,
+.auth-user a {
+  color: rgba(0, 0, 0, 0.8);
 }
 
 /*================ Auth area ========================*/

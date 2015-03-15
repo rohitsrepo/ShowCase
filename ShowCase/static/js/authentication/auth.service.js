@@ -18,7 +18,7 @@ angular.module('module.auth', ['module.model'])
 	service.login = function (email, password, nextUrl) {
 		return userModel.login(email, password).then(function (user) {
 			currentUser = user;
-			var next_url = next_url || "/"
+				var next_url = nextUrl || "/"
 			redirect(next_url);
 			return user;
 		}, function (response) {
