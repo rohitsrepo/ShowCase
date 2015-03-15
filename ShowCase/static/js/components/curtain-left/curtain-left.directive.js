@@ -44,7 +44,6 @@ angular.module("module.curtainLeft")
 			};
 
 			element.bind("click", function (event) {
-				console.log(curtainElement);
 				if (!isActive){
 				var left_curtain = curtainLeft.getCurtain(options);
 					left_curtain.then(function(result){

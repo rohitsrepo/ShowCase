@@ -1,4 +1,4 @@
-angular.module('ReaderApp')
+angular.module('module.titlecase', [])
 .filter('titlecase', function() {
     return function(s) {
         s = ( s === undefined || s === null ) ? '' : s;

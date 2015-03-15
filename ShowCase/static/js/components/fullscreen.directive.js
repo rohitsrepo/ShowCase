@@ -11,8 +11,9 @@ angular.module('module.fullscreen', [])
 				});
 			};
 
-			var painting = $('.painting');
+			var painting;
 			element.bind('click', function () {
+				painting = $('.painting').not('.ng-hide');
 				painting.fullScreen({background: '#fff', callback: fullscreenCallback});
 			});
 		}

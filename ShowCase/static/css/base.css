@@ -79,7 +79,7 @@ a {
 .logo {
   position: fixed;
   cursor: pointer;
-  top: 20px;
+  top: 10px;
   left: 20px;
   z-index: 100;
   width: 50px;
@@ -88,32 +88,76 @@ a {
 
 .curtain-left {
   position: fixed;
-  width: 22%;
+  width: 25%;
   max-width: 400px;
-  margin-left: -23%;
+  margin-left: -25%;
   z-index: 99;
   height: 100%;
   background-color: #1c2023;
+  color: #B1B1B1;
+  font-size: 15px;
   font-family: "taile";
 }
 
-.curtain-left .content {
-  padding: 70px 10px;
+.curtain-left hr {
+  margin: 30px auto;
+  width: 80%;
+  display: block;
+  opacity: 0.1;
 }
+
+.curtain-left .content {
+  margin-top: 100px;
+}
+
 
 .curtain-left .content a {
   display: block;
   text-decoration: none;
   cursor: pointer;
-  font-size: 25px;
-  margin: 50px 0;
+  margin-top: 40px;
   margin-left: 20px;
+  font-weight: bold;
   color: #B1B1B1;
+  letter-spacing: 5px;
 }
 
 .curtain-left .content a:hover{
   color: rgba(255, 255, 255, 0.95);
 }
+
+.curtain-left .message {
+  letter-spacing: 2px;
+  line-height: 25px;
+  margin: 0 20px;
+}
+
+.curtain-left .social {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.curtain-left .social h4 {
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.curtain-left .social li {
+  display: inline;
+  width: 30%;
+  float: left;
+}
+
+.curtain-left .social img {
+  width: 100%;
+  opacity: 0.5;
+}
+
+.curtain-left .social img:hover {
+  opacity: 1;
+}
+
 
 /*================ CURTAIN MENU - RIGHT ================*/
 
