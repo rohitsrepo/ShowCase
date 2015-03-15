@@ -32,7 +32,7 @@
 			</section>
 	</header>
 	<div id="posts"></div>
-	<section class="posts" ng-cloak>
+	<section class="posts" ng-cloak infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore'>
 		<section class="post clearfix" ng-repeat="post in posts">
 				<a href="/arts/[[ post.composition.slug ]]" target="_blank"><img class="artwork" ng-src="[[post.composition.matter]]" alt="[[post.interpretation.interpretation.slice(0, 140) + '.....Read more on ThirdDime.']]" /></a>
 				<sidebar class="description">
@@ -74,6 +74,7 @@
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
 	<!-- build:js /static/build/reader.js -->
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/nginfinitescroll/build/ng-infinite-scroll.min.js"></script>
 	<script type="text/javascript" src="/static/js/reader/reader.module.js"></script>
 	<script type="text/javascript" src="/static/js/reader/reader.controller.js"></script>
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>

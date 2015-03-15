@@ -60,11 +60,6 @@ html, body {
 }
 
 /*=============== IMAGE FEED ==============*/
-
-.posts {
-  height: 60%;
-}
-
 .post {
   width: 80%;
   margin: 5% auto;
