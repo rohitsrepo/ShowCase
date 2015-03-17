@@ -101,12 +101,16 @@ a {
   font-size: 16px;
   padding: 1.3em 2em;
   width: 100%;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
 .auth .native .username input {
   display: inline-block;
   width: 49%;
+}
+
+.auth .native input.ng-invalid.ng-touched {
+  border: 2px solid rgba(255, 0, 0, 0.8);
 }
 
 .auth .native .signup-button {

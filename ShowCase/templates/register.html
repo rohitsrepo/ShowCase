@@ -25,13 +25,23 @@
 		</section>
 		<h5>Or</h5>	
 		<section class="native">
-			<form ng-keyup="$event.keyCode == 13 ? register(user) : null">
+			<form name="register" ng-keyup="$event.keyCode == 13 ? register(user) : null" novalidate>
 				<fieldset class="username">
-					<input type="text" placeholder="First name" autofocus="autofocus" ng-model="user.first_name">
-					<input type="text" placeholder="Last name" ng-model="user.last_name">
+					<input type="text" placeholder="First name" autofocus="autofocus" ng-model="user.first_name" name="ufirstname" required maxlength="40">
+					<input type="text" placeholder="Last name" ng-model="user.last_name" name="ulastname" maxlength="40">
 				</fieldset>
-				<input type="email" placeholder="E-mail" ng-model="user.email">
-				<input type="password" placeholder="Password" ng-model="user.password">
+				<div ng-cloak ng-show="register.$submitted || register.ufirstname.$touched">
+				    <span ng-show="register.ufirstname.$error.required">Please provide a first name.</span>
+			   </div>
+				<input type="email" placeholder="E-mail" ng-model="user.email" name="uemail" required ng-model-options="{ updateOn: 'blur' }">
+				<div ng-cloak ng-show="register.$submitted || register.uemail.$touched">
+				    <span ng-show="register.uemail.$error.required">Please provide an email.</span>
+				    <span ng-show="register.uemail.$error.email">This is not a valid email.</span>
+			   </div>
+				<input type="password" placeholder="Password" ng-model="user.password" required name="upassword">
+				<div ng-cloak ng-show="register.$submitted || register.upassword.$touched">
+				    <span ng-show="register.upassword.$error.required">Please provide a password.</span>
+			   </div>
 				<input class="signup-button" type="button" name="login" value="CREATE ACCOUNT" ng-click="register(user)">
 			</form>
 			<footer>

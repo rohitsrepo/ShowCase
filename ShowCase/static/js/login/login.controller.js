@@ -3,7 +3,11 @@ angular.module("LoginApp")
 	"use strict";
 
 	$scope.login = function (user) {
-		auth.login(user.email, user.password);
+		auth.login(user.email, user.password).then(function () {
+			$scope.loginError = '';
+		}, function (error) {
+			$scope.loginError = error;
+		});
 	};
 
 	$scope.hideLogin = true;

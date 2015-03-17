@@ -18,15 +18,15 @@ angular.module('module.auth', ['module.model'])
 	service.login = function (email, password, nextUrl) {
 		return userModel.login(email, password).then(function (user) {
 			currentUser = user;
-				var next_url = nextUrl || "/"
+			var next_url = nextUrl || "/"
 			redirect(next_url);
-			return user;
+			return $q.when(user);
 		}, function (response) {
 			var error;
 			if (response.status==401){
-				error = "UserName or password did not match";
+				error = "Username and Password did not match";
 			} else if (response.status==402) {
-				error = "This account is disabeled";
+				error = "This account has been disabeled";
 			} else if (response.status==409) {
 				error = "This account is not registered with ThirdDime";
 			} else {
@@ -57,10 +57,8 @@ angular.module('module.auth', ['module.model'])
 	service.registerUser = function (user) {
 		userModel.addUser(user).then(function (response){
 			userModel.login(user.email, user.password).then(function (res) {
-				console.log("login says", res);
 				redirect('/');
 			}, function (res) {
-				console.log("Err login says", res);
 			});	
 		}, function (response) {
 			if (response.status === 400) {

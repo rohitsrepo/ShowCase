@@ -1,18 +1,26 @@
 <section class="curtain-right" ng-controller="rightCurtainController">
 	<nav class="content">
-		<form>
+		<section class="login">
 			<h4>Login</h4>
 			<fieldset class="social">
 				<a class="facebook" href="">Log in with Facebook</a>
 				<a class="twitter" href="">Login with Twitter</a>
 			</fieldset>
 			<h6>Or</h6>	
-			<fieldset class="native" ng-keyup="$event.keyCode == 13 ? login(user) : null">
-				<input type="email" placeholder="E-mail" autofocus="autofocus" ng-model="user.email">
-				<input type="password" placeholder="Password" ng-model="user.password">
+			<form name="loginForm" class="native" ng-keyup="$event.keyCode == 13 ? login(user) : null">
+				<section class="login-error" ng-cloak ng-show="loginError">[[loginError]]</section>
+				<input type="email" placeholder="E-mail" autofocus="autofocus" ng-model="user.email" name="uEmail" required ng-model-options="{ updateOn: 'blur' }">
+				<div ng-cloak ng-show="loginForm.$submitted || loginForm.uEmail.$touched">
+				    <span ng-show="loginForm.uEmail.$error.required">Please provide an email.</span>
+				    <span ng-show="loginForm.uEmail.$error.email">This is not a valid email.</span>
+			   </div>
+				<input type="password" placeholder="Password" ng-model="user.password" name="uPassword" required>
+				<div ng-loak ng-show="loginForm.$submitted || loginForm.uPassword.$touched">
+				    <span ng-show="loginForm.uPassword.$error.required">Please provide a password.</span>
+			   </div>
 				<input class="login-button" type="button" value="LOGIN" ng-click="login(user)">
-			</fieldset>
-		</form>
+			</form>
+		</section>
 		<footer>
 			<a href="">Forgotten your password?</a>
 			<a href="/register">Sign Up</a>

@@ -200,7 +200,7 @@ a {
   font-family: "taile";
 }
 
-.curtain-right form {
+.curtain-right .login {
   margin-top: 100px;
 }
 
@@ -256,7 +256,7 @@ a {
   text-align: center;
   display: block;
   padding: 1em 0;
-  margin-bottom: 20px;
+  margin: 10px 0;
 }
 
 .curtain-right .native .login-button {
@@ -267,6 +267,14 @@ a {
   cursor: pointer;
   border: 2px solid #1C2023;
   color: #1C2023;
+}
+
+.curtain-right .native input.ng-invalid.ng-touched {
+  border: 2px solid rgba(255, 0, 0, 0.8);
+}
+
+.curtain-right .native .login-error {
+  color: rgba(255, 0, 0, 1);
 }
 
 .curtain-right .native .login-button:hover {
