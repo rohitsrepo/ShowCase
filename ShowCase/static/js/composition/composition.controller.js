@@ -1,6 +1,6 @@
 angular.module("CompositionApp").
-controller("compositionController", ["$scope", "interpretationModel", '$location' , '$timeout', 
-	function ($scope, interpretationModel, $location, $timeout) {
+controller("compositionController", ["$scope", "posts", "interpretationModel", '$location' , '$timeout', 
+	function ($scope, posts, interpretationModel, $location, $timeout) {
 
 	$scope.composition = {};
 
@@ -91,5 +91,9 @@ controller("compositionController", ["$scope", "interpretationModel", '$location
 			}, 400);
 		}
 	};
+
+	posts.getPosts(1).then(function (posts) {
+		$scope.nextPosts = posts.results.slice(0,3);
+	})
 
 }]);

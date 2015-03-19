@@ -123,8 +123,7 @@
   					</section>
 				</footer>
 			</section>
-			<hr ng-repeat-end id="inter[[$index+1]]">
-
+			<hr ng-claok ng-hide="$last" ng-repeat-end id="inter[[$index+1]]">
 		</section>
 
 	 	<sidebar class="about-painting" sticky offset="50">
@@ -168,16 +167,33 @@
 			    </tr>
 			</table>
 		</sidebar>
+	</section>
+
+	<section class="end-marker clearfix">
+		<hr>
+		<img src="/static/images/header-md.png">
+		<hr>
 	</section> 
 
-
+	<footer class="primary-footer">
+	<section class="next-post" ng-repeat="post in nextPosts">
+		<a href="/arts/[[ post.composition.slug ]]"  >
+			<img ng-src="[[post.composition.matter]]" alt="[[post.composition.title | titlecase]]" />
+			<section>
+				<h4>[[post.composition.title | titlecase]]</h4>
+				<p>[[post.interpretation.interpretation.slice(0, 140).trim()]]...<span class="more">(more)</span></p>
+			</section>
+		</a>
+		</section>
+	</footer>
 
 	<!-- Scripts Here -->
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
 	<!-- build:js /static/build/composition.js -->
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
-	<script type="text/javascript" src="/static/bower_components/ngSticky/dist/sticky.min.js"></script>
+	<!-- // <script type="text/javascript" src="/static/bower_components/ngSticky/dist/sticky.min.js"></script> -->
+	<script type="text/javascript" src="/static/vendor/ngSticky/lib/sticky.js"></script>
 	<script type="text/javascript" src="/static/vendor/fullscreen/jquery.fullscreen.js"></script>
 	<script type="text/javascript" src="/static/bower_components/color-thief/dist/color-thief.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/jquery.panzoom/dist/jquery.panzoom.min.js"></script>
@@ -187,6 +203,7 @@
 	<script type="text/javascript" src="/static/js/composition/composition.controller.js"></script>
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
+	<script type="text/javascript" src="/static/js/models/post.model.js"></script>
 	<script type="text/javascript" src="/static/js/models/interpretation.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
