@@ -92,8 +92,13 @@ controller("compositionController", ["$scope", "posts", "interpretationModel", '
 		}
 	};
 
-	posts.getPosts(1).then(function (posts) {
-		$scope.nextPosts = posts.results.slice(0,3);
-	})
+	$scope.getNextPosts = function () {
+		$scope.disableNextPost = true;
+		var feed = $location.search()['feed'];
+		var postId = $location.search()['post'];
+		posts.nextPosts(feed, postId, $scope.composition.id).then(function (posts) {
+			$scope.nextPosts = posts;
+		});
+	};
 
 }]);

@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = patterns('',
                        url(r'^/editors$', 'feeds.views.editors_pick_list'),
+                       url(r'^/editors/next$', 'feeds.views.editors_pick_next')
                        )
 
 urlpatterns = format_suffix_patterns(urlpatterns)

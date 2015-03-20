@@ -71,7 +71,7 @@
 		</div>
 	</section>
 
-	<section class="interpret-area clearfix">
+	<section class="interpret-area clearfix" infinite-scroll="getNextPosts()" infinite-scroll-distance='1' infinite-scroll-disabled='disableNextPost'>
 		<header class="interpret-header">
 			<h4 class="inter-heading">4 Interpretations</h4>
 		</header>
@@ -177,12 +177,15 @@
 
 	<footer class="primary-footer">
 	<section class="next-post" ng-repeat="post in nextPosts">
-		<a href="/arts/[[ post.composition.slug ]]"  >
-			<img ng-src="[[post.composition.matter]]" alt="[[post.composition.title | titlecase]]" />
-			<section>
+		<a href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]"  >
+			<div class="painting-holder" ng-style="{'background-image': 'url([[post.composition.matter]])'}"></div>
+			<section class="post-details">
 				<h4>[[post.composition.title | titlecase]]</h4>
-				<p>[[post.interpretation.interpretation.slice(0, 140).trim()]]...<span class="more">(more)</span></p>
+				<p>[[post.interpretation.interpretation]]</p>
 			</section>
+			<footer class="next-footer">
+				<h5>Read More...</h5>
+			</footer>
 		</a>
 		</section>
 	</footer>
@@ -198,6 +201,7 @@
 	<script type="text/javascript" src="/static/bower_components/color-thief/dist/color-thief.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/jquery.panzoom/dist/jquery.panzoom.min.js"></script>
 	<script type="text/javascript" src="/static/vendor/zoome/zoome.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/nginfinitescroll/build/ng-infinite-scroll.min.js"></script>
 
 	<script type="text/javascript" src="/static/js/composition/composition.module.js"></script>
 	<script type="text/javascript" src="/static/js/composition/composition.controller.js"></script>

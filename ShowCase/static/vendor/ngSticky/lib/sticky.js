@@ -130,10 +130,6 @@
 					scrollTop        = scrolledDistance  - (doc.clientTop || 0);
 					var current_bottom = elem.clientHeight + scrollTop + offset;
 					shouldStick      = scrollTop >=  stickyLine && current_bottom <= parent_bot;
-					console.log("current_bottom ", current_bottom);
-					console.log("parent_bot ", parent_bot);
-					console.log("stickyLine ", stickyLine);
-					console.log("scrollTop ", scrollTop);
 				} else {
 					scrollBottom     = window.pageYOffset + window.innerHeight;
 					shouldStick      = scrollBottom <= stickyLine;
@@ -158,7 +154,6 @@
 				initialCSS.absoluteLeft = absoluteLeft;
 				initialCSS.relativeLeft = relativeLeft;
 
-				console.log("sticking element: had style: ", initialCSS.absoluteLeft, relativeLeft);
 				isSticking = true;
 
 				if ( bodyClass ) {

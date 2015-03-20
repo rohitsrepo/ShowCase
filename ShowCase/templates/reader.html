@@ -34,10 +34,10 @@
 	<div id="posts"></div>
 	<section class="posts" ng-cloak infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore'>
 		<section class="post clearfix" ng-repeat="post in posts">
-				<a href="/arts/[[ post.composition.slug ]]" target="_blank"><img class="artwork" ng-src="[[post.composition.matter]]" alt="[[post.interpretation.interpretation.slice(0, 140) + '.....Read more on ThirdDime.']]" /></a>
+				<a ng-href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]" target="_blank"><img class="artwork" ng-src="[[post.composition.matter]]" alt="[[post.interpretation.interpretation.slice(0, 140) + '.....Read more on ThirdDime.']]" /></a>
 				<sidebar class="description">
 					<header class="description-header">
-						<a href="/arts/[[ post.composition.slug ]]" target="_blank"><h4>[[post.composition.title | titlecase]]</h4></a>
+						<a href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]" target="_blank"><h4>[[post.composition.title | titlecase]]</h4></a>
 						<h5>by <span class="artist">[[post.composition.artist.full_name | titlecase]]</span></h5>
 					</header>
 					<section class="comment">
@@ -60,7 +60,7 @@
 	  					<ul>
 	  					    <li><img class="icon icon-left" ng-class="{'vote-active': post.voting_status=='Positive'}" src="/static/css/reader/icons/arrowup.svg" ng-click="vote($index, true)"></li>
 	  					    <li><img class="icon icon-left" ng-class="{'vote-active': post.voting_status=='Negative'}" src="/static/css/reader/icons/arrowdown.svg" ng-click="vote($index, false)"></li>
-	  					    <li><a ng-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]" target="_blank"><img class="icon icon-left" src="/static/css/reader/icons/comment.svg" ></a></li>
+	  					    <li><a ng-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank"><img class="icon icon-left" src="/static/css/reader/icons/comment.svg" ></a></li>
 	  					    <li><img class="icon icon-right" tumblr-share source="[[post.composition.matter]]" description="[[post.interpretation.interpretation]]" src="/static/css/reader/icons/google.svg" ></li>
 	  					    <li><img class="icon icon-right" pinterest-share source="[[post.composition.matter]]" description="[[post.interpretation.interpretation]]" src="/static/css/reader/icons/pinterest.svg" ></li>
 	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/facebook.svg" ></li>

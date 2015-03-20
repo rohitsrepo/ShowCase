@@ -41,11 +41,11 @@ class PostInterpretationSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     composition = PostCompositionSerializer(read_only=True)
     interpretation = PostInterpretationSerializer(read_only=True)
+    search_parameter = serializers.CharField(source='get_search_parameter', read_only=True)
 
     class Meta:
         model = StaffPost
-        fields = ('composition', 'interpretation')
-        depth=2
+        fields = ('composition', 'interpretation', 'id', 'search_parameter')
 
 class PaginatedPostSerializer(PaginationSerializer):
     """
