@@ -16,6 +16,7 @@ html, body {
   min-height: 100%;
   background: url(/static/images/reader/banner.jpg) no-repeat center top;
   background-size: cover;
+  position: relative;
 } 
 
 .banner section {
@@ -30,7 +31,7 @@ html, body {
   font-weight: bold;
   font-size: 4em;
   margin-bottom: 20px;
-  padding-top: 25%;
+  padding-top: 22%;
   line-height: 1.2em;
   letter-spacing: 1px;
 }
@@ -59,7 +60,50 @@ html, body {
   opacity: 1;
 }
 
-/*=============== IMAGE FEED ==============*/
+/*=========== HEAD FOOTER =====================*/
+.head-footer .social {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+.head-footer .social li {
+  float: right;
+  width: 2.5em;
+  height: 2.5em;
+  opacity: 0.5;
+}
+
+.head-footer .social li:hover {
+  opacity: 1;
+}
+
+.head-footer .social li img {
+  width: 100%;
+  height: 100%;
+}
+
+/*================= FEEDS ==================*/
+
+.feeds {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 4%;
+}
+
+.feeds h4 {
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+}
+
+.feeds hr {
+  margin: 5px auto;
+  width: 80%;
+}
+
+/*=============== POSTS ==============*/
 .post {
   width: 80%;
   margin: 5% auto;

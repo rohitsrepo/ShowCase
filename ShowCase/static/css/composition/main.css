@@ -109,7 +109,63 @@ body {
   padding-left: 15%;
 }
 
-/*===========Painting area ============*/
+.painting-toolbar .more-options {
+  position: relative;
+  display: inline-block;
+}
+.painting-toolbar .more-actions {
+  background-color: white;
+  position: absolute;
+  top: 135%;
+  left: 0;
+  width: 200px;
+  border: 2px solid #585858;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+
+.painting-toolbar .more-actions:after, .painting-toolbar .more-actions:before {
+  bottom: 100%;
+  left: 25px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.painting-toolbar .more-actions:after {
+  border-bottom-color: white;
+  border-width: 10px;
+  margin-left: -10px;
+}
+
+.painting-toolbar .more-actions:before {
+  border-bottom-color: #585858;
+  border-width: 13px;
+  margin-left: -13px;
+}
+
+.painting-toolbar .more-actions li {
+  text-align: left;
+  color: #585858;
+  font-size: 13px;
+  margin: 10px 0;
+  margin-left: 25px;
+  cursor: pointer;
+}
+
+.painting-toolbar .more-actions li:hover {
+  color: #0C0C0C;
+}
+
+/*=========== Painting area ============*/
 
 .painting-container {
   height: 85%;
@@ -489,6 +545,39 @@ body {
   color: white;
   text-align: center;
   letter-spacing: 3px;
+}
+
+/*================ ALERT ====================*/
+
+.alerts {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  height: 50px;
+  width: 400px;
+  background-color: rgb(87, 173, 104);
+  display: inline;
+}
+
+
+.alerts.ng-hide-remove {
+    -webkit-animation: fadeInDown 0.7s;
+    animation: fadeInDown 0.7s;
+    opacity: 0;
+}
+
+.alerts.ng-hide-add {
+    -webkit-animation: fadeOutUp 0.7s;
+    animation: fadeOutUp 0.7s;
+}
+
+.alerts h4 {
+  font-size: 15px;
+  text-align: center;
+  margin-top: 18px;
 }
 
 /*================= Clearfix =====================*/

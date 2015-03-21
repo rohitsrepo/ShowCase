@@ -1,6 +1,6 @@
 angular.module("CompositionApp").
-controller("compositionController", ["$scope", "posts", "interpretationModel", '$location' , '$timeout', 
-	function ($scope, posts, interpretationModel, $location, $timeout) {
+controller("compositionController", ["$scope", "posts", "contentManager", "interpretationModel", '$location' , '$timeout', 
+	function ($scope, posts, contentManager, interpretationModel, $location, $timeout) {
 
 	$scope.composition = {};
 
@@ -92,6 +92,13 @@ controller("compositionController", ["$scope", "posts", "interpretationModel", '
 		}
 	};
 
+	$scope.reportContent = function () {
+		contentManager.reportComposition($scope.composition.id).then(function () {
+			showAlert('Flagging this content. The content is under review now.');
+			$scope.showMoreOptions = false;
+		});
+	};
+
 	$scope.getNextPosts = function () {
 		$scope.disableNextPost = true;
 		var feed = $location.search()['feed'];
@@ -99,6 +106,17 @@ controller("compositionController", ["$scope", "posts", "interpretationModel", '
 		posts.nextPosts(feed, postId, $scope.composition.id).then(function (posts) {
 			$scope.nextPosts = posts;
 		});
+	};
+
+	$scope.alerts = {'show': false, 'content': ''};
+
+	var showAlert = function (content) {
+		$scope.alerts.content = content;
+		$scope.alerts.show = true;
+
+		$timeout(function () {
+			$scope.alerts.show = false;
+		}, 4000);
 	};
 
 }]);

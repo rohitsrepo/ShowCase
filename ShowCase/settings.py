@@ -51,7 +51,8 @@ INSTALLED_APPS = (
     'interpretationVotes',
     'comments',
     'interpretations',
-    'feeds'
+    'feeds',
+    'contentManager'
 )
 
 MIDDLEWARE_CLASSES = (

@@ -30,8 +30,25 @@
 					<h3>Explore thoughts, art can inspire, through interpretations and stories. Browse though a large collection of paintings and discover deeper layers behind each brushstroke.</h3>
 					<h4 scroll-to="#posts" class="explore">EXPLORE ART</h4>
 			</section>
+			<footer class="head-footer">
+				<ul class="social clearfix">
+					<li><a target="_blank" href="https://www.pinterest.com/thirddime/thirddime-art/">
+						<img title="Pinterest" src="/static/css/composition/icons/pinterest.svg">
+					</a></li>
+					<li><a target="_blank" href="https://twitter.com/thirddime">
+						<img title="Twitter" src="/static/css/composition/icons/twitter.svg">
+					</a></li>
+					<li><a target="_blank" href="https://www.facebook.com/thirddimeart">
+						<img title="Facebook" src="/static/css/composition/icons/facebook.svg">
+					</a></li>
+				</ul>
+			</footer>
 	</header>
 	<div id="posts"></div>
+	<section class="feeds">
+			<h4 ng-class="{ 'active' : feedsMeta.showStaffPick }">EDITORS PICK</h4>
+			<hr>
+	</section>
 	<section class="posts" ng-cloak infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore'>
 		<section class="post clearfix" ng-repeat="post in posts">
 				<a ng-href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]" target="_blank"><img class="artwork" ng-src="[[post.composition.matter]]" alt="[[post.interpretation.interpretation.slice(0, 140) + '.....Read more on ThirdDime.']]" /></a>

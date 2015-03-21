@@ -21,6 +21,7 @@ urlpatterns += patterns('',
                        url(r'^users', include('accounts.urls')),
                        url(r'^compositions', include('compositions.urls')),
                        url(r'^feeds', include('feeds.urls')),
+                       url(r'^content', include('contentManager.urls')),
 		       )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

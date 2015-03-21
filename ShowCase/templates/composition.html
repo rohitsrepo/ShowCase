@@ -56,7 +56,13 @@
 				<img title="Twitter" src="/static/css/composition/icons/twitter.svg">
 				<img title="Facebook" src="/static/css/composition/icons/facebook.svg">
 				<img title="Pinterest" src="/static/css/composition/icons/pinterest.svg">
-				<img title="Google" src="/static/css/composition/icons/google.svg">
+				<span class="more-options">
+					<img ng-click="showMoreOptions = !showMoreOptions" title="More" src="/static/css/composition/icons/google.svg">
+					<ul ng-cloak ng-show="showMoreOptions" class="more-actions">
+						<li ng-click="reportContent()">Mark Inappropriate</li>
+						<li>Embed this Art</li>
+					</ul>
+				</span>
 			</section>
 		</header>
 		<div class="painting-container">
@@ -176,7 +182,7 @@
 	</section> 
 
 	<footer class="primary-footer">
-	<section class="next-post" ng-repeat="post in nextPosts">
+		<section class="next-post" ng-repeat="post in nextPosts">
 		<a href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]"  >
 			<div class="painting-holder" ng-style="{'background-image': 'url([[post.composition.matter]])'}"></div>
 			<section class="post-details">
@@ -189,6 +195,10 @@
 		</a>
 		</section>
 	</footer>
+
+	<section class="alerts" ng-cloak ng-show="alerts.show">
+		<h4>[[alerts.content]]</h4>
+	</section>
 
 	<!-- Scripts Here -->
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
@@ -207,6 +217,7 @@
 	<script type="text/javascript" src="/static/js/composition/composition.controller.js"></script>
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
+	<script type="text/javascript" src="/static/js/models/content.model.js"></script>
 	<script type="text/javascript" src="/static/js/models/post.model.js"></script>
 	<script type="text/javascript" src="/static/js/models/interpretation.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
