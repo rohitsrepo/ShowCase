@@ -1,3 +1,15 @@
+@font-face {
+    font-family: volbi;
+    src: url(/fonts/Vollkorn-BoldItalic.TTF);
+    font-weight:bold;
+    font-style:italic;
+}
+@font-face {
+    font-family: pfdr;
+    src: url(/fonts/PlayfairDisplay-Regular.TTF);
+    font-weight:400;
+}
+
 html, body {
   height: 100%;
   padding: 0;
@@ -28,7 +40,9 @@ html, body {
 }
 
 .banner section h1 {
+  font-family: volbi;
   font-weight: bold;
+  font-style: italic;
   font-size: 4em;
   margin-bottom: 20px;
   padding-top: 22%;
@@ -37,6 +51,8 @@ html, body {
 }
  
 .banner section h3 {
+  font-family: pfdr;
+  font-style: italic;
   font-size: 1.5em;
   margin-bottom: 25px;
   letter-spacing: 1px;
@@ -45,10 +61,11 @@ html, body {
 
 /*============== EXPLORE BUTTON ====================*/
 .explore {
+  font-family: pfdr;
   display: inline-block;
   padding: 12px 18px;
   border: 2px solid #fff;
-  border-radius: 1px;
+  border-radius: 25px;
   text-align: center;
   font-size: 18px;
   letter-spacing: 0.1em;
@@ -109,10 +126,11 @@ html, body {
   margin: 5% auto;
   display: block;
   box-shadow: 10px 10px 30px 0px #C9C6C6;
-  font-family: "taile";
+  font-family: taile;
   overflow: hidden;
   -webkit-transition: height 0.15s ease-out;
   transition: height 0.15s ease-out;
+  
 }
 
 .artwork {
@@ -120,8 +138,9 @@ html, body {
   height: auto;
   display: inline-block;
   float: left;
-  vertical-align: center;
+  /*vertical-align: middle;*/
   overflow: hidden;
+  align-content: middle;
 }
 
 .description {
@@ -131,6 +150,7 @@ html, body {
   vertical-align:top;
   padding-right: .5em;
   margin-top: 10px;
+  padding: 1em
 }
 
 .description-header {
@@ -139,6 +159,9 @@ html, body {
 }
 
 .description-header h4 {
+  font-family: volbi;
+  font-weight: bold;
+  font-style: italic;
   font-size: 36px;
   font-weight: bold;
   line-height: 42px;

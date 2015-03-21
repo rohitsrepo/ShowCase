@@ -1,3 +1,10 @@
+@font-face {
+    font-family: volbi;
+    src: url(/fonts/Vollkorn-BoldItalic.TTF);
+    font-weight:bold;
+    font-style:italic;
+}
+
 html, body {
   height: 100%;
   padding: 0; 
@@ -37,12 +44,22 @@ body {
 }
 
 .banner h1 {
+  font-family: volbi;
+  font-weight: bold;
+  font-style: italic;
   font-weight: bold;
   font-size: 5em;
   margin-bottom: .25em;
 }
 .banner h3 {
   font-size: 1.5em;
+  color: rgb(87, 173, 104);
+  margin-top: 1em;
+}
+
+.banner h4 {
+  font-size: 1em;
+  margin-top: 1em;
 }
 
 .primary-header footer {
@@ -341,7 +358,7 @@ body {
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   border-radius: 50%;
-  border: 3px solid #c8c7b4; 
+  border: 1px solid #ffffff; 
   height: 50px;
   width: 50px;
   float: left;

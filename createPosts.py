@@ -43,7 +43,6 @@ def get_text(lower, upper):
     content = get_word()
     for i in range(lower, upper):
         content = content + ' ' + get_word()
-
     return content
 
 def add_comments(interpretation, user):
