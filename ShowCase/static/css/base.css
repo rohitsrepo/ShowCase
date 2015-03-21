@@ -37,14 +37,8 @@ ol, ul {
 }
 
 @font-face {
-    font-family: taile;
-    src: url(/static/fonts/TAILEB.TTF);
-    font-weight:bold;
-}
-
-@font-face {
-    font-family: taile;
-    src: url(/static/fonts/TAILE.TTF);
+    font-family: pfdr;
+    src: url(/static/fonts/PlayfairDisplay-Regular.TTF);
     font-weight:400;
 }
 
@@ -95,8 +89,8 @@ a {
   height: 100%;
   background-color: #1c2023;
   color: #B1B1B1;
-  font-size: 15px;
-  font-family: "taile";
+  font-size: 18px;
+  font-family: pfdr;
 }
 
 .curtain-left hr {
@@ -132,6 +126,8 @@ a {
   letter-spacing: 2px;
   line-height: 25px;
   margin: 0 20px;
+  text-align: center;
+  font-size: 15px
 }
 
 .curtain-left .social {
