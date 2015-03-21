@@ -104,6 +104,7 @@ a {
   width: 80%;
   display: block;
   opacity: 0.1;
+  text-align: center;
 }
 
 .curtain-left .content {
@@ -120,6 +121,7 @@ a {
   font-weight: bold;
   color: #B1B1B1;
   letter-spacing: 5px;
+  text-align: center;
 }
 
 .curtain-left .content a:hover{
