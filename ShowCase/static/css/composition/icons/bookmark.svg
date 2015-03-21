@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
-<path d="M192,256H32v-64h160v-64l96,96l-96,96V256z M512,0v416l-192,96v-96H128V288h32v96h160V96l128-64H160v128h-32V0H512z"/>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="600px" height="600px" viewBox="0 0 600 600" enable-background="new 0 0 600 600" xml:space="preserve">
+<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M591.889,592.111H7.444V8.778h584.444V592.111z M241.556,357.733
+	l65.6-73.433l-65.6-73.433v48.956H132.222v48.956h109.333V357.733z M197.822,112.956v122.389h21.867v-97.911h196.8l-87.467,48.956
+	v220.3H219.689v-73.433h-21.867v97.911h131.2V504.6l131.2-73.433V112.956C460.222,112.956,197.822,112.956,197.822,112.956z"/>
 </svg>

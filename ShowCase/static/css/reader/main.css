@@ -65,7 +65,7 @@ html, body {
   display: inline-block;
   padding: 12px 18px;
   border: 2px solid #fff;
-  border-radius: 25px;
+  border-radius: 1px;
   text-align: center;
   font-size: 18px;
   letter-spacing: 0.1em;
