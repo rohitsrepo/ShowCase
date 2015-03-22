@@ -13,20 +13,12 @@ from ShowCase.utils import check_object_permissions
 from random import randrange
 
 
-class CompositionFilter(django_filters.FilterSet):
-    # TODO - may be default ordering is required around here.
-    class Meta:
-        model = Composition
-        fields = ('artist',)
-
-
 class CompositionList(APIView):
     ''' Handels listing of compositions and adding new ones.'''
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get(self, request, format=None):
-        compositions = CompositionFilter(request.GET, queryset=Composition.objects.all())
-        compositions = compositions.qs
+        compositions = Composition.objects.all()
         ser = CompositionSerializer(compositions, many=True)
 
         if request.user.is_authenticated():
@@ -46,7 +38,7 @@ class CompositionList(APIView):
     def post(self, request, format=None):
         ser = CompositionSerializer(data=request.DATA, files=request.FILES, context={'request': request})
         if ser.is_valid():
-            ser.object.artist = request.user
+            ser.object.uploader = request.user
             ser.save()
             return Response(ser.data, status=status.HTTP_201_CREATED)
 
@@ -100,7 +92,7 @@ def follow_compositions(request, format=None):
     if follows:
         q_object = Q()
         for follow in follows:
-            q_object |= Q(artist_id=follow.id)
+            q_object |= Q(uploader_id=follow.id)
 
     compositions = Composition.objects.filter(q_object)
     ser = CompositionSerializer(compositions, many=True)

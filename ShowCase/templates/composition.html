@@ -34,7 +34,7 @@
 		</section>
 
 		<footer>
-			<h5>Uploaded by <span class="uploader">ThirdDime staff</span></h5>
+			<h5>Uploaded by <span class="uploader">{{composition.uploader.get_full_name | title}}</span></h5>
 		</footer>
 	</header>
 
@@ -141,7 +141,7 @@
 			        Title
 			      </th>
 			      <td colspan="2">
-			        {{composition.title}}
+			        {{ composition.title | title }}
 			      </td>
 			    </tr>
 			    <tr>
@@ -150,7 +150,7 @@
 			      </th>
 			      <td>
 			        <a href="#">
-			          {{composition.artist}}
+			          {{ composition.artist | title }}
 			        </a>
 			      </td>
 			    </tr>

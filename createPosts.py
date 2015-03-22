@@ -28,14 +28,15 @@ def add_composition_data(composition):
     image_path = "devScripts/resources/image{0}.jpg".format(image_num)
     composition.matter = (File(open(image_path)))
     composition.title = ['The Scream', 'Heat of Ice', "Tale of Brittle Truth", 'journey to end'][random.randint(0,3)]
+    composition.artist = get_word() + ' ' + get_word()
     composition.save()
 
 def get_word():
     return ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase) for _ in range(2,5))
 
-def add_interpretations(composition, artist):
+def add_interpretations(composition, uploader):
     for i in range(5):
-        interpretation = Interpretation.objects.create(composition=composition, user=artist)
+        interpretation = Interpretation.objects.create(composition=composition, user=uploader)
         add_interpretation(interpretation)
         print "Interpretation"
 
@@ -58,14 +59,14 @@ def add_interpretation(interpretation):
 delete_existing_data()
 for i in range(1, 10):
     print "Creating objects"
-    artist = User.objects.create_user("user" + str(i) + "@user.com", "user" + str(i), "user")
-    print "Artist"
-    print artist.first_name
-    composition = Composition(artist=artist)
+    uploader = User.objects.create_user("user" + str(i) + "@user.com", "user" + str(i), "user")
+    print "uploader"
+    print uploader.first_name
+    composition = Composition(uploader=uploader)
     add_composition_data(composition)
     print "Composition"
     print composition.title
-    add_interpretations(composition, artist)
+    add_interpretations(composition, uploader)
     print "Added interpretations to composition"
     post = StaffPost.objects.create(composition=composition, interpretation=composition.interpretation_set.all()[random.randint(0, 4)])
     print "Post"

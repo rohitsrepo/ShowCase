@@ -5,18 +5,19 @@ from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
 from votes.models import Vote
-from .utils import FilterR, FilterG, FilterB, GrayScaleAndSketch
+from .utils import GrayScaleAndSketch
 
 def get_upload_file_name_composition(instance, filename):
-    return '%s/%s/%s' % (instance.artist.id, slugify(instance.artist.get_full_name()), slugify(instance.title) + '.' + filename.split('.')[-1])
+    return '%s/%s/%s' % (instance.uploader.id, slugify(instance.artist), slugify(instance.title) + '.' + filename.split('.')[-1])
 
 
 class Composition(models.Model):
     title = models.CharField(max_length=100, blank=False, verbose_name='Title')
     description = models.CharField(
         max_length=1000, blank=True, default='', verbose_name='Description')
-    artist = models.ForeignKey(
+    uploader = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name='compositions')
+    artist = models.CharField(max_length=100, blank=False, verbose_name="Artist")
     slug = models.SlugField(max_length=100, unique=True)
     created = models.DateTimeField(auto_now_add=True)
     matter = models.FileField(upload_to=get_upload_file_name_composition)
@@ -25,7 +26,7 @@ class Composition(models.Model):
         ordering = ('created',)
 
     def save(self, *args, **kwargs):
-        slug_str = "%s %s" % (self.artist.get_full_name(), self.title) 
+        slug_str = "%s %s" % (self.artist, self.title) 
         unique_slugify(self, slug_str) 
         super(Composition, self).save(*args, **kwargs)
 
@@ -62,9 +63,9 @@ def create_vote(sender, **kwargs):
         vote = Vote(positive=0, negative=0, composition=instance)
         vote.save()
 
-        FilterG(instance.matter.path)
-        FilterR(instance.matter.path)
-        FilterB(instance.matter.path)
+        # FilterG(instance.matter.path)
+        # FilterR(instance.matter.path)
+        # FilterB(instance.matter.path)
         GrayScaleAndSketch(instance.matter.path)
 
 def unique_slugify(instance, value, slug_field_name='slug', queryset=None,

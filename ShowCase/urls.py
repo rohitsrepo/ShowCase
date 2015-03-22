@@ -13,6 +13,7 @@ urlpatterns = patterns('',
                        url(r'^$', TemplateView.as_view(template_name='reader.html')),
                        url(r'^register$', TemplateView.as_view(template_name='register.html')),
                        url(r'^login$', TemplateView.as_view(template_name='login.html')),
+                       url(r'^upload-art$', TemplateView.as_view(template_name='upload.html')),
                        url(r'^arts/(?P<slug>[\w-]+)$', 'compositions.clientViews.composition_main', name="composition-page"),
 		       )
 

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="UploadApp">
+<head>
+	<title>Upload Art - ThirdDime</title>
+
+	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
+
+	<!-- build:css /static/build/upload.css -->
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/upload/main.css">
+	<!-- endbuild -->
+</head>
+<body ng-controller="uploadController">
+	<!-- {% verbatim %} --> 
+	<topbar></topbar>
+	<div class="curtain-overlay-placeholder"></div>
+
+	<section class="upload-area">
+		<form name="uploadForm" class="upload-form" novalidate>
+
+			<button class="upload-button" ng-cloak ng-show="!uploadForm.$invalid  && !!uploader.queue && uploader.queue.length> 0" ng-click="uploadArt()">
+			UPLOAD</button>
+
+			<input type="text" class="title" autofocus="autofocus" placeholder="Title" ng-model="art.title" name="uTitle" maxlength="100" required>
+			<div ng-cloak ng-show="uploadForm.$submitted || uploadForm.uTitle.$touched">
+			    <span ng-cloak ng-show="uploadForm.uTitle.$error.required">Please provide a title.</span>
+		   </div>
+
+			<input type="text" class="artist" placeholder="Artist" ng-model="art.artist" name="uArtist" maxlength="100" required>
+			<div ng-cloak ng-show="uploadForm.$submitted || uploadForm.uArtist.$touched">
+			    <span ng-cloak ng-show="uploadForm.uArtist.$error.required">Please provide artist name.</span>
+		   </div>
+
+			<section class="matter-area">
+				<section class="fileinputs">
+	                <input type="file" class="file" nv-file-select="" uploader="uploader" />
+			        <div class="fakefile">
+			            <!-- <input type="button" value="Select file" /> -->
+			            <h4>Select image of the piece</h4>
+			        </div>
+                
+	                <section ng-repeat="item in uploader.queue">
+	                	<div class="overlay"></div>
+	                	<section ng-cloak ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 400 }"></section>
+	                    <button type="button" ng-click="item.remove()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+		                    X
+	                    </button>
+	                </section>
+			    </section>
+			</section>
+
+			<textarea class="description" placeholder="Few words about this piece..." ng-model="art.description" maxlength="1000"></textarea>
+
+		</form>
+	</section>
+
+	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- build:js /static/build/upload.js -->
+	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular-cookies/angular-cookies.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular-file-upload/angular-file-upload.min.js"></script>
+	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
+	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
+	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
+	<script type="text/javascript" src="/static/js/upload/upload.module.js"></script>
+	<script type="text/javascript" src="/static/js/upload/upload.controller.js"></script>
+	<script type="text/javascript" src="/static/js/upload/thumb.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
+	<!-- endbuild -->
+	<!-- {% endverbatim %} -->
+</body>
+</html>
