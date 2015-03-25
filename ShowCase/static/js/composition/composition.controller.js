@@ -3,6 +3,7 @@ controller("compositionController", ["$scope", "posts", "contentManager", "inter
 	function ($scope, posts, contentManager, interpretationModel, $location, $timeout) {
 
 	$scope.composition = {};
+	$scope.interpretations = [];
 
 	$scope.init = function (id, url) {
 		$scope.composition.id = id;

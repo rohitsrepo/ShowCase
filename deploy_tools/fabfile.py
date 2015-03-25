@@ -16,6 +16,7 @@ def deploy():
     _build_client(source_folder)
     _update_static_files(source_folder)
     _update_database(source_folder)
+    _restart_service()
 
 
 def _create_directory_structure_if_necessary(site_folder):
@@ -69,3 +70,7 @@ def _update_static_files(source_folder):
 def _update_database(source_folder):
     run('cd %s && ../virtualenv/bin/python manage.py migrate --noinput' % (
         source_folder,))
+
+def _restart_service():
+    run('sudo stop canvasblues.com')
+    run('sudo start canvasblues.com')

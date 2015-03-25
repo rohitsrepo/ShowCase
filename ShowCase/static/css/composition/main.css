@@ -311,11 +311,47 @@ body {
   display: block;
   position: relative;
 }
+.interpret-header {
+  width: 65%;
+  margin-bottom: 10px;
+}
 
 .inter-heading {
   font-size: 24px;
   margin-bottom: .5em;
   color: rgba(0, 0, 0, .6);
+  float: left;
+}
+
+.write-interpretation {
+  height: 24px;
+  float: right;
+  background-color: transparent;
+  border: 1px solid rgb(87, 173, 104);
+  border-radius: 12px;
+  font-size: 13px;
+  color: rgb(87, 173, 104);
+  padding: 4px 15px;
+  margin-top: 5px;
+}
+
+.write-interpretation:hover {
+  background-color: rgb(87, 173, 104);
+  color: white;
+  border: none;
+}
+
+.no-interpretation {
+  width: 100%;
+  text-align: center;
+}
+
+.no-interpretation .write-interpretation  {
+  float: none;
+  height: 44px;
+  border-radius: 22px;
+  font-size: 18px;
+  padding: 4px 15px;
 }
 
 .interprets {
@@ -332,7 +368,6 @@ body {
 
 .interpreter {
   margin-bottom: 10px;
-  cursor: pointer;
 }
 
 .interpreter img {
@@ -345,20 +380,19 @@ body {
   height: 50px;
   width: 50px;
   float: left;
+  margin-right: 10px;
 }
 
 .interpreter div {
   float: left;
-  margin-left: 10px;
   margin-top: 10px;
 }
 
 .interpreter h3 {
   color: rgb(87, 173, 104);
-}
-
-.interpreter h5 {
-  color: rgba(0, 0, 0, 0.4);
+  font-weight: normal;
+  font-size: 20px;
+  margin: 0;
 }
 
 .interpret-content {
@@ -451,23 +485,22 @@ body {
 /*================ END MARKER =====================*/
 
 .end-marker {
-  width: 60%;
+  width: 650px;
   margin: 50px auto;
-
+  vertical-align: middle;
 }
 
 .end-marker hr {
-  width: 40%;
-  float: left;
-  vertical-align: middle;
-  margin-top: 25px;
+  width: 300px;
+  display: inline-block;
+  margin: 0;
+  margin-bottom: 25px;
   opacity: 0.5;
 }
 
 .end-marker img {
   width: 50px;
   height: auto;
-  float: left;
   padding: 3px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;

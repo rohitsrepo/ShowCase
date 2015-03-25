@@ -79,19 +79,20 @@
 	</section>
 
 	<section class="interpret-area clearfix" infinite-scroll="getNextPosts()" infinite-scroll-distance='1' infinite-scroll-disabled='disableNextPost'>
-		<header class="interpret-header">
-			<h4 class="inter-heading">4 Interpretations</h4>
+		<header ng-cloak ng-show="interpretations.length" class="interpret-header clearfix">
+			<h4 class="inter-heading">[[interpretations.length]] Interpretations</h4>
+			<button under-construction class="write-interpretation">Interpret this work</button>
 		</header>
 
-		<section class="interprets" ng-cloak id="inter0">
+
+		<section ng-cloak ng-show="interpretations.length" class="interprets" ng-cloak id="inter0">
 
 			<!-- 1 -->
 			<section class="interpret" ng-repeat-start="interpretation in interpretations">
 				<header class="interpreter clearfix">
-					<img ng-src="[[interpretation.user.picture]]">
+					<img ng-cloak ng-show="interpretation.user.picture" ng-src="[[interpretation.user.picture]]">
 					<div>
 						<h3>[[interpretation.user.full_name]]</h3>
-						<h5>Illusionistic Painting</h5>
 					</div>
 				</header>
 				<p class="interpret-content">
@@ -133,7 +134,7 @@
 			<hr ng-claok ng-hide="$last" ng-repeat-end id="inter[[$index+1]]">
 		</section>
 
-	 	<sidebar class="about-painting" sticky offset="50">
+	 	<sidebar ng-cloak ng-show="interpretations.length" class="about-painting" offset="50">
 			<img src="{{composition.matter.url}}">
 			<table>
 			    <tr>
@@ -174,12 +175,14 @@
 			    </tr>
 			</table>
 		</sidebar>
+
+		<section ng-cloak ng-hide="interpretations.length" class="no-interpretation">
+			<button under-construction class="write-interpretation">Interpret this work</button>
+		</section>
 	</section>
 
 	<section class="end-marker clearfix">
-		<hr>
-		<img src="/static/images/header-md.png">
-		<hr>
+		<hr><img src="/static/images/header-md.png"><hr>
 	</section> 
 
 	<footer class="primary-footer">
