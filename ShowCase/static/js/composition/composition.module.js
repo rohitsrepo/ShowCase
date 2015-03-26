@@ -1,4 +1,19 @@
-angular.module("CompositionApp", ['infinite-scroll',  "ngAnimate", "module.auth", "module.curtainLeft", "module.curtainRight", "module.topbar", "module.model", "module.sharing", 'module.scrollTo', 'sticky', 'module.color', 'module.viewFinder', 'module.fullscreen', 'module.panZoom', 'module.titlecase', 'module.underConstruction'])
+angular.module("CompositionApp", [
+    'infinite-scroll',
+    "ngAnimate",
+    "module.auth",
+    "module.curtainLeft",
+    "module.curtainRight",
+    "module.topbar",
+    "module.model",
+    "module.sharing",
+    'module.scrollTo',
+    'module.color',
+    'module.viewFinder',
+    'module.fullscreen',
+    'module.panZoom',
+    'module.titlecase',
+    'module.underConstruction'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

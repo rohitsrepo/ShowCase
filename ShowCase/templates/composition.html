@@ -134,7 +134,7 @@
 			<hr ng-claok ng-hide="$last" ng-repeat-end id="inter[[$index+1]]">
 		</section>
 
-	 	<sidebar ng-cloak ng-show="interpretations.length" class="about-painting" offset="50">
+	 	<sidebar ng-cloak ng-show="interpretations.length" class="about-painting" sticky offset="50">
 			<img src="{{composition.matter.url}}">
 			<table>
 			    <tr>
@@ -215,7 +215,6 @@
 	<script type="text/javascript" src="/static/bower_components/nginfinitescroll/build/ng-infinite-scroll.min.js"></script>
 
 	<!-- // <script type="text/javascript" src="/static/bower_components/ngSticky/dist/sticky.min.js"></script> -->
-	<script type="text/javascript" src="/static/vendor/ngSticky/lib/sticky.js"></script>
 	<script type="text/javascript" src="/static/vendor/fullscreen/jquery.fullscreen.js"></script>
 	<script type="text/javascript" src="/static/bower_components/color-thief/dist/color-thief.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/jquery.panzoom/dist/jquery.panzoom.min.js"></script>
@@ -223,6 +222,8 @@
 
 	<script type="text/javascript" src="/static/js/composition/composition.module.js"></script>
 	<script type="text/javascript" src="/static/js/composition/composition.controller.js"></script>
+	<script type="text/javascript" src="/static/js/composition/sticky.directive.js"></script>
+	<!-- // <script type="text/javascript" src="/static/vendor/ngSticky/lib/sticky.js"></script> -->
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
 	<script type="text/javascript" src="/static/js/models/content.model.js"></script>
