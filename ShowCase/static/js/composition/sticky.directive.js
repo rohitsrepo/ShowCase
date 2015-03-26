@@ -1,5 +1,5 @@
 angular.module("CompositionApp")
-.directive('sticky', function($document, $window) {
+.directive('sticky', ["$document", "$window", function($document, $window) {
 	return {
 		restrict: 'A', 
 		link: linkFn
@@ -95,5 +95,5 @@ angular.module("CompositionApp")
 			OnResize();
 		});
 	}
-});
+}]);
 
