@@ -4,6 +4,7 @@
     font-weight:bold;
     font-style:italic;
 }
+
 @font-face {
     font-family: pfdr;
     src: url(/fonts/PlayfairDisplay-Regular.TTF);
@@ -18,7 +19,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-smooth: always;
-  font-family: taile;
+  font-family: "taile";
 }
 
 /*=================== Head Banner =========================*/
@@ -88,7 +89,7 @@ html, body {
   float: right;
   width: 2.5em;
   height: 2.5em;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .head-footer .social li:hover {
@@ -126,7 +127,7 @@ html, body {
   margin: 5% auto;
   display: block;
   box-shadow: 10px 10px 30px 0px #C9C6C6;
-  font-family: taile;
+  font-family: "taile";
   overflow: hidden;
   -webkit-transition: height 0.15s ease-out;
   transition: height 0.15s ease-out;

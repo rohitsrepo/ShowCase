@@ -3,7 +3,19 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="600px" height="600px" viewBox="0 0 600 600" enable-background="new 0 0 600 600" xml:space="preserve">
-<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M591.889,591H8.556V8.778h583.333V591z M117.667,420.167h158.351
-	v-84.685H117.667V420.167z M117.667,166.111h361.944v254.056h-67.865v-21.171h45.243V187.282H140.288v63.514h-22.622V166.111z
-	 M117.667,271.968h271.458v148.199h-90.486v-21.171h67.865V293.139H140.288v21.171h-22.622V271.968z"/>
+<g>
+	<path fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" d="M300.49,593.531
+		c-161.847,0-293.041-131.194-293.041-293.041S138.643,7.449,300.49,7.449S593.531,138.643,593.531,300.49
+		S462.337,593.531,300.49,593.531z"/>
+	<g>
+		<path fill="#020202" stroke="#100A0D" stroke-width="5" stroke-miterlimit="10" d="M148.521,191.956"/>
+		<path fill="#020202" stroke="#100A0D" stroke-width="5" stroke-miterlimit="10" d="M409.045,452.415"/>
+		<path fill="#020202" stroke="#100A0D" stroke-width="5" stroke-miterlimit="10" d="M191.934,452.459"/>
+	</g>
+</g>
+<rect x="217.465" y="245.437" fill="#FFFFFF" width="164.06" height="123.045"/>
+<polygon fill="#FFFFFF" points="196.957,347.995 196.957,265.944 155.942,306.959 "/>
+<polygon fill="#FFFFFF" points="402.033,347.995 443.068,306.959 402.033,265.944 "/>
+<polygon fill="#FFFFFF" points="299.515,183.934 258.48,224.929 340.53,224.929 "/>
+<polygon fill="#FFFFFF" points="299.474,429.984 340.51,388.989 258.459,388.989 "/>
 </svg>

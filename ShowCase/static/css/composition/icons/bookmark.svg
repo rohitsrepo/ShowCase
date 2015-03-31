@@ -3,7 +3,16 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="600px" height="600px" viewBox="0 0 600 600" enable-background="new 0 0 600 600" xml:space="preserve">
-<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M591.889,592.111H7.444V8.778h584.444V592.111z M241.556,357.733
-	l65.6-73.433l-65.6-73.433v48.956H132.222v48.956h109.333V357.733z M197.822,112.956v122.389h21.867v-97.911h196.8l-87.467,48.956
-	v220.3H219.689v-73.433h-21.867v97.911h131.2V504.6l131.2-73.433V112.956C460.222,112.956,197.822,112.956,197.822,112.956z"/>
+<g>
+	<path fill="none" stroke="#FDFDFE" stroke-width="5" stroke-miterlimit="10" d="M302.5,598C139.295,598,7,465.705,7,302.5
+		S139.295,7,302.5,7S598,139.295,598,302.5S465.705,598,302.5,598z"/>
+	<g>
+		<path fill="#010101" stroke="#FDFDFE" stroke-width="5" stroke-miterlimit="10" d="M188.984,221"/>
+		<path fill="#010101" stroke="#FDFDFE" stroke-width="5" stroke-miterlimit="10" d="M381.016,412.984"/>
+		<path fill="#010101" stroke="#FDFDFE" stroke-width="5" stroke-miterlimit="10" d="M220.984,413.016"/>
+	</g>
+</g>
+<path fill="#FFFFFF" d="M232.969,313.898h-85.394v-35.676h85.394v-35.676l51.236,53.513l-51.236,53.513V313.898z M403.755,171.196
+	v231.891L301.283,456.6v-53.513H198.812v-71.351h17.079v53.513h85.394v-160.54l68.314-35.676H215.89v71.351H198.81v-89.189
+	C198.812,171.196,403.755,171.196,403.755,171.196z"/>
 </svg>

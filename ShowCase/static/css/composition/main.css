@@ -100,7 +100,7 @@ body {
   margin: 0 5px;
   cursor: pointer;
   opacity: .5;
-  background: rgba(255, 255, 255, 0.3);
+  /*background: rgba(255, 255, 255, 0.3);*/
 }
 
 .painting-toolbar  img.active {
@@ -305,9 +305,9 @@ body {
   padding-right: 45px;
   text-align: right;
   width: 20%;
-  color: #a9b2b9;
+  color: rgba(0, 0, 0, 0.8);
   font-size: 14px;
-  font-weight: 400;
+  font-weight: bold;
   padding-top: 12px;
   text-transform: uppercase;
 }
@@ -317,6 +317,7 @@ body {
   /*border-bottom: 1px solid #dfe2e5;*/
   border: 0;
   padding-top: 11px;
+  color: rgba(0, 0, 0, 0.8);
 }
 
 /*=================== THIRD VIEW ==================*/
@@ -382,7 +383,7 @@ body {
   font-size: 20px;
   line-height: 25px;
   letter-spacing: 0.1px;
-  text-decoration: none solid rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .interpret-footer {
@@ -536,8 +537,10 @@ body {
 }
 
 .next-post h4 {
-  font-size: 27px;
+  font-family: volbi;
   font-weight: bold;
+  font-style: italic;
+  font-size: 27px;
   letter-spacing: 1px;
   margin-top: 10px;
   margin-bottom: 7px;

@@ -42,6 +42,12 @@ ol, ul {
     font-weight:400;
 }
 
+@font-face {
+    font-family: taile;
+    src: url(/static/fonts/TAILE.TTF);
+    font-weight:400;
+}
+
 *,
 *:before,
 *:after {
@@ -90,7 +96,7 @@ a {
   background-color: #1c2023;
   color: #B1B1B1;
   font-size: 18px;
-  font-family: pfdr;
+  font-family: taile;
 }
 
 .curtain-left hr {
@@ -145,6 +151,7 @@ a {
   display: inline;
   width: 30%;
   float: left;
+  padding: 0px 5px 0px 5px;
 }
 
 .curtain-left .social img {
@@ -196,6 +203,7 @@ a {
   height: 100%; 
   background: #FFFFFF;
   font-family: "taile";
+  text-align: center;
 }
 
 .curtain-right .login {
