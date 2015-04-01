@@ -1,3 +1,16 @@
+@font-face {
+    font-family: volbi;
+    src: url(/fonts/Vollkorn-BoldItalic.TTF);
+    font-weight:bold;
+    font-style:italic;
+}
+
+@font-face {
+    font-family: pfdr;
+    src: url(/fonts/PlayfairDisplay-Regular.TTF);
+    font-weight:400;
+}
+
 html, body {
   height: 100%;
   padding: 0;
@@ -6,7 +19,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-smooth: always;
-  font-family: taile;
+  font-family: 'taile';
 }
 
 /*=================== Head Banner =========================*/
@@ -28,7 +41,9 @@ html, body {
 }
 
 .banner section h1 {
+  font-family: 'volbi';
   font-weight: bold;
+  font-style: italic;
   font-size: 4em;
   margin-bottom: 20px;
   padding-top: 22%;
@@ -37,6 +52,9 @@ html, body {
 }
  
 .banner section h3 {
+  font-family: 'pfdr';
+  font-weight: 400;
+  font-style: italic;
   font-size: 1.5em;
   margin-bottom: 25px;
   letter-spacing: 1px;
@@ -45,6 +63,8 @@ html, body {
 
 /*============== EXPLORE BUTTON ====================*/
 .explore {
+  font-family: 'pfdr';
+  font-weight: 400;
   display: inline-block;
   padding: 12px 18px;
   border: 2px solid #fff;
@@ -109,7 +129,7 @@ html, body {
   margin: 5% auto;
   display: block;
   box-shadow: 10px 10px 30px 0px #C9C6C6;
-  font-family: "taile";
+  font-family: 'taile';
   overflow: hidden;
   -webkit-transition: height 0.15s ease-out;
   transition: height 0.15s ease-out;
@@ -139,8 +159,10 @@ html, body {
 }
 
 .description-header h4 {
-  font-size: 36px;
+  font-family: volbi;
   font-weight: bold;
+  font-style: italic;
+  font-size: 36px;
   line-height: 42px;
   letter-spacing: 0.5px;
   text-decoration: none solid rgba(0, 0, 0, 0.8);
