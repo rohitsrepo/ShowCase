@@ -12,6 +12,7 @@ html, body {
   margin: 0;
 }
 
+
 /* ========= PRIMARY HEADER =========*/
 
 .primary-header {
@@ -298,7 +299,7 @@ html, body {
   padding-right: 45px;
   text-align: right;
   width: 20%;
-  color: rgba(0, 0, 0, 0.8);
+  color: #a9b2b9;
   font-size: 14px;
   font-weight: 400;
   padding-top: 12px;
@@ -309,7 +310,6 @@ html, body {
   width: 40%;
   /*border-bottom: 1px solid #dfe2e5;*/
   border: 0;
-  color: rgba(0, 0, 0, 0.8);
   padding-top: 11px;
 }
 
@@ -567,6 +567,7 @@ html, body {
   font-weight: bold;
   font-style: italic;
   font-size: 27px;
+  font-weight: bold;
   letter-spacing: 1px;
   margin-top: 10px;
   margin-bottom: 7px;

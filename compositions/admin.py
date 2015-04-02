@@ -12,7 +12,7 @@ class CompositionAdmin(admin.ModelAdmin):
     list_display = ('title', 'artist', 'slug')
     list_filter = ['created']
     search_fields = ['title', 'slug', 'description']
-    fields = ['title', 'artist', 'description', 'slug', 'matter']
+    fields = ['title', 'artist', 'description', 'uploader', 'matter']
     inlines = [InterpretationInline]
     
 

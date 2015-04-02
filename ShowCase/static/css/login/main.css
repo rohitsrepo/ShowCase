@@ -109,7 +109,11 @@ a {
   width: 49%;
 }
 
-.auth .native input.ng-invalid.ng-touched {
+.auth .native input.ng-invalid.ng-dirty {
+  border: 2px solid rgba(255, 0, 0, 0.8);
+}
+
+.auth .native form.ng-submitted input.ng-invalid {
   border: 2px solid rgba(255, 0, 0, 0.8);
 }
 
