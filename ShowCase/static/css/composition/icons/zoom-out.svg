@@ -11,5 +11,5 @@
 	<path fill="#020202" stroke="#100A0D" stroke-width="5" stroke-miterlimit="10" d="M408.89,453.616"/>
 	<path fill="#020202" stroke="#100A0D" stroke-width="5" stroke-miterlimit="10" d="M189.999,453.66"/>
 </g>
-<line fill="none" stroke="#FFFFFF" stroke-width="10" stroke-miterlimit="10" x1="152.041" y1="295.736" x2="438.931" y2="295.736"/>
+<line fill="none" stroke="#FFFFFF" stroke-width="16" stroke-miterlimit="10" x1="151.5" y1="295.5" x2="437.5" y2="295.5"/>
 </svg>
