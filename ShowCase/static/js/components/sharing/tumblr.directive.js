@@ -5,8 +5,9 @@ angular.module('module.sharing')
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
-			var shareImage = $location.protocol() + '://' + $location.host() + attrs['source'];
-			var shareUrl = $location.absUrl();
+			var baseUrl = $location.protocol() + '://' + $location.host() + ':' + $location.port();
+			var shareImage = baseUrl + attrs['source'];
+			var shareUrl = baseUrl + attrs['shareUrl'] + '#?scrollTo=painting';
 			var url = "http://www.tumblr.com/share/photo?source="+
 			encodeURIComponent(shareImage)+"&caption="+(attrs['description'])+"&clickthru="+encodeURIComponent(shareUrl);
 			element.bind('click', function () {

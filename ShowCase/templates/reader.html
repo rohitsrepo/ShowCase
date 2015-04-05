@@ -1,5 +1,3 @@
-{% verbatim %}
-
 <!DOCTYPE html>
 <html ng-app="ReaderApp">
 <head>
@@ -60,7 +58,7 @@
 					</header>
 					<section class="comment">
 	   					<div class="comment-text" ng-cloak ng-hide="post.showComplete">
-	     					[[post.interpretation.interpretation.slice(0, 140)]]<span class="more" ng-click="showInterpretation($index)">.... (more)</span> 
+	     					[[post.interpretation.interpretation.slice(0, 140)]]<span class="more" ng-cloak ng-show="post.interpretation.interpretation.length > 140" ng-click="showInterpretation($index)">.... (more)</span> 
 	   					</div>
 	   					<div class="comment-text" ng-cloak ng-show="post.showComplete">
 	     					[[post.interpretation.interpretation]]
@@ -79,8 +77,8 @@
 	  					    <li><img class="icon icon-left" ng-class="{'vote-active': post.voting_status=='Positive'}" src="/static/css/reader/icons/arrowup.svg" ng-click="vote($index, true)"></li>
 	  					    <li><img class="icon icon-left" ng-class="{'vote-active': post.voting_status=='Negative'}" src="/static/css/reader/icons/arrowdown.svg" ng-click="vote($index, false)"></li>
 	  					    <li><a ng-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank"><img class="icon icon-left" src="/static/css/reader/icons/comment.svg" ></a></li>
-	  					    <li><img class="icon icon-right" tumblr-share source="[[post.composition.matter]]" description="[[post.interpretation.interpretation]]" src="/static/css/reader/icons/google.svg" ></li>
-	  					    <li><img class="icon icon-right" pinterest-share source="[[post.composition.matter]]" description="[[post.interpretation.interpretation]]" src="/static/css/reader/icons/pinterest.svg" ></li>
+	  					    <li><img class="icon icon-right" tumblr-share source="[[post.composition.matter]]" description="[[post.interpretation.interpretation]]" src="/static/css/reader/icons/google.svg" share-url='/arts/[[post.composition.slug]]'></li>
+	  					    <li><img class="icon icon-right" pinterest-share source="[[post.composition.matter]]" description="[[post.interpretation.interpretation]]" src="/static/css/reader/icons/pinterest.svg" share-url='/arts/[[post.composition.slug]]'></li>
 	  					    <li><img class="icon icon-right" src="/static/css/reader/icons/facebook.svg" ></li>
 	  					    <!-- <li><img class="icon icon-right" src="/static/css/reader/icons/twitter.svg" ></li> -->
 	  					</ul>
@@ -127,5 +125,3 @@
 	<!-- endbuild -->
 </body>
 </html>
-
-{% endverbatim %}

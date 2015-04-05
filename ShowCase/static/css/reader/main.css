@@ -216,6 +216,7 @@ html, body {
 .comment-footer a {
   color: rgb(87, 173, 104);
   text-decoration: none solid rgb(87, 173, 104);
+  cursor: default;
 }
 
 .description-footer header {

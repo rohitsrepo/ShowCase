@@ -50,6 +50,13 @@ ol, ul {
           box-sizing: border-box;
 }
 
+::selection {
+  background: rgb(87, 173, 104);
+}
+
+::-moz-selection {
+  background: rgb(87, 173, 104); 
+}
 
 a {
   text-decoration: none;

@@ -5,8 +5,9 @@ angular.module('module.sharing')
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
-			var shareImage = $location.protocol() + '://' + $location.host() + attrs['source'];
-			var shareUrl = $location.absUrl();
+			var baseUrl = $location.protocol() + '://' + $location.host() + ':' + $location.port();
+			var shareImage = baseUrl + attrs['source'];
+			var shareUrl = baseUrl + attrs['shareUrl'] + '#?scrollTo=painting';
 			var url = "http://pinterest.com/pin/create/bookmarklet/?media="+encodeURIComponent(shareImage)+
 			"&url="+encodeURIComponent(shareUrl)+"& is_video=false&description="+encodeURIComponent(attrs['description']);
 			element.bind('click', function () {

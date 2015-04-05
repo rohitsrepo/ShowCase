@@ -34,6 +34,10 @@
 			<h3>{{composition.artist | title}}</h3>
 		</section>
 
+		<section class="go-down">
+			<md-icon md-svg-src="/static/css/composition/icons/arrow.svg"></md-icon>
+		</section>
+
 		<footer>
 			<h5>Uploaded by <span class="uploader">{{composition.uploader.get_full_name | title}}</span></h5>
 		</footer>
@@ -42,22 +46,22 @@
 	<section class="painting-area">
 		<header class="painting-toolbar clearfix" id="painting">
 			<section class="tools-icons">
-				<img ng-class="{active: isViewFinderActive}" view-finder src="/static/css/composition/icons/viewfinder.svg">
-				<img ng-class="{active: isFullScreen}" fullscreen src="/static/css/composition/icons/expand.svg">
-				<img ng-class="{active: isColorPaletteActive}" color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/color-palette.svg">
-				<img ng-class="{active: isGrayScaleActive=='active'}" ng-click="showGrayscale()" src="/static/css/composition/icons/gray-palette.svg">
-				<img ng-class="{active: isOutlineActive=='active'}" ng-click="showOutline()" src="/static/css/composition/icons/outline.svg">
-				<img ng-class="{active: isPanZoomActive}" pan-zoom src="/static/css/composition/icons/pan_and_zoom.svg">
+				<img title="View Finder" ng-class="{active: isViewFinderActive}" view-finder src="/static/css/composition/icons/viewfinder.svg">
+				<img title="Full Screen" ng-class="{active: isFullScreen}" fullscreen src="/static/css/composition/icons/expand.svg">
+				<img title="Color Palette" ng-class="{active: isColorPaletteActive}" color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/color-palette.svg">
+				<img title="No Colors" ng-class="{active: isGrayScaleActive=='active'}" ng-click="showGrayscale()" src="/static/css/composition/icons/gray-palette.svg">
+				<img title="Outline" ng-class="{active: isOutlineActive=='active'}" ng-click="showOutline()" src="/static/css/composition/icons/outline.svg">
+				<img title="Pan & Zoom" ng-class="{active: isPanZoomActive}" pan-zoom src="/static/css/composition/icons/pan_and_zoom.svg">
 			</section>
 			<section ng-show="isPanZoomActive" class="zoom-icons" ng-cloak>
-				<img class="zoom-in" src="/static/css/composition/icons/zoom-in.svg">
-				<img class="reset" src="/static/css/composition/icons/reset.svg">
-				<img class="zoom-out" src="/static/css/composition/icons/zoom-out.svg">
+				<img title="Zoom In" class="zoom-in" src="/static/css/composition/icons/zoom-in.svg">
+				<img title="Reset" class="reset" src="/static/css/composition/icons/reset.svg">
+				<img title="Zoom Out" class="zoom-out" src="/static/css/composition/icons/zoom-out.svg">
 			</section>
 			<section class="social-icons">
 				<img title="Twitter" src="/static/css/composition/icons/twitter.svg">
-				<img title="Facebook" src="/static/css/composition/icons/facebook.svg">
-				<img title="Pinterest" src="/static/css/composition/icons/pinterest.svg">
+				<img title="Facebook" pinterest-share source="{{composition.matter.url}}" description="{{composition.description}}" src="/static/css/composition/icons/facebook.svg" share-url='/arts/{{composition.slug}}'>
+				<img title="Pinterest" tumblr-share source="{{composition.matter.url}}" description="{{composition.description}}" src="/static/css/composition/icons/pinterest.svg" share-url='/arts/{{composition.slug}}'>
 				<span class="more-options">
 					<img ng-click="showMoreOptions = !showMoreOptions" title="More" src="/static/css/composition/icons/more_options.svg">
 					<ul ng-cloak ng-show="showMoreOptions" class="more-actions">
@@ -108,8 +112,8 @@
   					    <li><img class="icon left" ng-class="{'vote-active': interpretation.voting_status=='Positive'}" src="/static/css/composition/icons/arrowup.svg" ng-click="vote($index, true)"></li>
   					    <li><img class="icon left" ng-class="{'vote-active': interpretation.voting_status=='Negative'}" src="/static/css/composition/icons/arrowdown.svg" ng-click="vote($index, false)"></li>
   					    <li><img class="icon left" src="/static/css/composition/icons/comment.svg" ng-click="toggleShowComments($index)"></li>
-  					    <li><img class="icon right" tumblr-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/google_black.svg"></li>
-  					    <li><img class="icon right" pinterest-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/pinterest_black.svg"></li>
+  					    <li><img class="icon right" tumblr-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/google_black.svg" share-url='/arts/{{composition.slug}}'></li>
+  					    <li><img class="icon right" pinterest-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/pinterest_black.svg" share-url='/arts/{{composition.slug}}'></li>
   					    <li><img class="icon right" facebook-share source="[[composition.url]]" description="[[interpretation.interpretation]]" title="This is a cool title" src="/static/css/composition/icons/facebook_black.svg"></li>
   					    <!-- <li><img class="icon right" src="/static/css/composition/icons/twitter.svg" ></li> -->
   					</ul>
@@ -153,24 +157,6 @@
 			      <td>
 			        <a href="#">
 			          {{ composition.artist | title }}
-			        </a>
-			      </td>
-			    </tr>
-			    <tr>
-			      <th>
-			        Genre
-			      </th>
-			      <td>
-			        Post-Impressionism
-			      </td>
-			    </tr>
-			    <tr>
-			      <th>
-			        Year
-			      </th>
-			      <td>
-			        <a href="speakers.html#tessa-harmon">
-			          1890
 			        </a>
 			      </td>
 			    </tr>

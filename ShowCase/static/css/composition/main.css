@@ -12,7 +12,6 @@ html, body {
   margin: 0;
 }
 
-
 /* ========= PRIMARY HEADER =========*/
 
 .primary-header {
@@ -70,6 +69,31 @@ html, body {
   color: rgb(87, 173, 104);
   cursor: pointer;
 }
+
+.go-down {
+  position: absolute;
+  bottom: 15%;
+  left: 49%;
+  opacity: 0.8;
+}
+.go-down:hover {
+  opacity: 1;
+}
+
+.go-down {
+ -webkit-animation: down1 3s linear infinite;
+ -moz-animation: down1 3s linear infinite;
+  animation:down1 3s linear infinite; }
+
+@-webkit-keyframes down1 { 
+  0% { bottom: 15%; } 10%{ bottom: 14%; } 20%{ bottom: 15%; } 
+  30%{ bottom: 14%; } 40%{ bottom: 15%; } 100%{ bottom: 15%; } }
+@-moz-keyframes down1 { 
+  0% { bottom: 15%; } 10%{ bottom: 14%; } 20%{ bottom: 15%; }
+  30%{ bottom: 14%; } 40%{ bottom: 15%; } 100%{ bottom: 15%; } }
+@keyframes down1 { 
+  0% { bottom: 15%; } 10%{ bottom: 14%; } 20%{ bottom: 15%; }
+  30%{ bottom: 14%; } 40%{ bottom: 15%; } 100%{ bottom: 15%; } }
 
 /* ================= HEADBAR IN SECOND VIEW ============== */
 .painting-area {

@@ -8,7 +8,6 @@ angular.module('module.viewFinder', [])
 			element.bind('click', function () {
 				if (!scope.isViewFinderActive){
 					painting = $('.painting').not(".ng-hide");
-			console.log('view viewFinder', painting);
 					painting.zoome({hoverEf:'grayscale',showZoomState:true,magnifierSize:[200,200]});
 				} else {
 					if(painting.parent().hasClass('zm-wrap'))
