@@ -5,7 +5,6 @@ from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
 from votes.models import Vote
-from .utils import GrayScaleAndSketch
 
 def get_upload_file_name_composition(instance, filename):
     return '%s/%s/%s' % (instance.uploader.id, slugify(instance.artist), slugify(instance.title) + '.' + filename.split('.')[-1])
@@ -62,11 +61,6 @@ def create_vote(sender, **kwargs):
         instance = kwargs.get('instance')
         vote = Vote(positive=0, negative=0, composition=instance)
         vote.save()
-
-        # FilterG(instance.matter.path)
-        # FilterR(instance.matter.path)
-        # FilterB(instance.matter.path)
-        GrayScaleAndSketch(instance.matter.path)
 
 def unique_slugify(instance, value, slug_field_name='slug', queryset=None,
                    slug_separator='-'):
