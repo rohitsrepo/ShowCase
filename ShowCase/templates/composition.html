@@ -120,7 +120,7 @@
   					<section class="comments" ng-show="interpretation.showComments">
   						<div class="clearfix">
 	  						<form class="left" ng-submit="addComment($index, interpretation.comment)">
-		  						<input type="textbox" placeholder="Share your thoughts about the work." ng-model="interpretation.comment">
+		  						<input type="textbox" placeholder="Share your thoughts..." ng-model="interpretation.comment">
 	  						</form>
 	  					</div>
   						<ul>
@@ -164,7 +164,7 @@
 		</sidebar>
 
 		<section ng-cloak ng-hide="interpretations.length" class="no-interpretation">
-			<button under-construction class="write-interpretation">Interpret this work</button>
+			<button ng-click="interpret($event)" class="write-interpretation">Interpret this work</button>
 		</section>
 	</section>
 
