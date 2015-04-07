@@ -18,7 +18,7 @@
 				<div ng-loak ng-show="loginForm.$submitted || loginForm.uPassword.$dirty">
 				    <span ng-show="loginForm.uPassword.$error.required">Please provide a password.</span>
 			   </div>
-				<input class="login-button" type="button" value="LOGIN" ng-click="login(user)">
+				<input class="login-button" type="button" value="LOGIN" ng-click="getLoginStatus()">
 			</form>
 		</section>
 		<footer>

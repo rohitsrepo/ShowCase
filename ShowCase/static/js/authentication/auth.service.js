@@ -33,8 +33,10 @@ angular.module('module.auth', ['module.model'])
 				error = "Could not contact server";
 			}
 			return $q.reject(error);
-		});
+		});		
 	}
+
+
 
 	service.logout = function () {
 		userModel.logout().then(function () {
@@ -55,8 +57,8 @@ angular.module('module.auth', ['module.model'])
 	};
 
 	service.registerUser = function (user) {
-		userModel.addUser(user).then(function (response){
-			userModel.login(user.email, user.password).then(function (res) {
+		return userModel.addUser(user).then(function (response){
+			userModel.login(user.email, user.password, user.login_type).then(function (res) {
 				redirect('/');
 			}, function (res) {
 			});	

@@ -13,17 +13,47 @@ from rest_framework.views import APIView
 from compositions.models import Composition
 
 
-class UserList(generics.ListCreateAPIView):
+class UserList(APIView):
 
     '''
     Creates and lists users.
     '''
-    queryset = User.objects.all()
-    serializer_class = NewUserSerializer
     # TODO Change this permission to AllowANY-Catptcha or token authentication
     # required.
     permission_classes = (permissions.AllowAny,)
 
+    def is_registered(self, email):
+        if (User.objects.filter(email=email).exists()):
+            print "already there"
+            return True
+        print "not here yet"
+        return False
+
+    def register_user(self, ser):
+        if ser.is_valid():
+            print "user is valid"
+            ser.save()
+            return Response(status=status.HTTP_200_OK)
+
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+    def post(self, request, format=None):
+        if self.is_registered(request.DATA.get('email', '')):
+            return Response(status=status.HTTP_200_OK)
+
+        login_type = request.DATA['login_type']
+
+        if login_type == "native":
+            print "the native way"
+        elif (login_type == "facebook" or login_type == "twitter"):
+            print 'the social way'
+            request.DATA['password'] = '!@#$%^&$@$%'
+        else:
+        	return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        ser = NewUserSerializer(data=request.DATA, context={'request': request})
+        return self.register_user(ser)
 
 class UserDetail(APIView):
 
@@ -92,14 +122,17 @@ def reset_password(request, pk, format=None):
 def login_user(request, format=None):
     email = request.DATA.get('email')
     password = request.DATA.get('password')
+    login_type= request.DATA.get('login_type')
     try:
-        user = authenticate(username=email, password=password)
-
+    	if login_type == "native":
+        	user = authenticate(username=email, password=password)
+        elif login_type == "facebook" or login_type == "twitter":
+        	user = authenticate(username=email, password='!@#$%^&$@$%')
         # if user is not None:
         if user.is_active:
             login(request, user)
             return Response(ExistingUserSerializer(user, context={'request': request}).data, status=status.HTTP_200_OK)
-        else:
+        #else:
             return Response(status=status.HTTP_402_PAYMENT_REQUIRED)
     except Exception:
         if not User.objects.filter(email=email).exists():
