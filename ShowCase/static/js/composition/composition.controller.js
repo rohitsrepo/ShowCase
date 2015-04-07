@@ -1,6 +1,6 @@
 angular.module("CompositionApp").
-controller("compositionController", ["$scope", "posts", "contentManager", "interpretationModel", '$location' , '$timeout', 
-	function ($scope, posts, contentManager, interpretationModel, $location, $timeout) {
+controller("compositionController", ["$scope", "posts", "contentManager", "interpretationModel", '$location' , '$timeout', 'interpretation',
+	function ($scope, posts, contentManager, interpretationModel, $location, $timeout, interpretation) {
 
 	$scope.composition = {};
 	$scope.interpretations = [];
@@ -118,6 +118,13 @@ controller("compositionController", ["$scope", "posts", "contentManager", "inter
 		$timeout(function () {
 			$scope.alerts.show = false;
 		}, 4000);
+	};
+
+	$scope.interpret = function (event) {
+		interpretation.add(event, $scope.composition.id)
+		.then(function () {
+			showAlert("Your submission under review.");
+		});
 	};
 
 }]);

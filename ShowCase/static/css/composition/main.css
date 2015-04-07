@@ -104,7 +104,6 @@ html, body {
 .painting-toolbar {
   width: 100%;
   background: rgba(0, 0, 0, .9);
-  padding: 10px 0;
   position: relative;
 }
 
@@ -113,16 +112,21 @@ html, body {
 }
 
 .painting-toolbar img {
+  box-sizing: content-box;
   height: 40px;
   width: 40px;
   margin: 0 5px;
   cursor: pointer;
   opacity: 0.5;
-  background: rgba(255, 255, 255, 0);
+  padding: 10px 0;
+  padding-top: 10px;
+  padding-bottom: 7px;
+  border-bottom: 3px solid rgba(0, 0, 0, 0);
 }
 
 .painting-toolbar  img.active {
-  background: rgba(255, 255, 255, 0.8);
+  opacity: 1;
+  border-bottom: 3px solid green;
 }
 
 .painting-toolbar img:hover {

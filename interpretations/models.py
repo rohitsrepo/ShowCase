@@ -12,6 +12,7 @@ class Interpretation(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     interpretation = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
+    public = models.BooleanField(default=False)
 
     def __str__(self):
         if len(self.interpretation) > 12:

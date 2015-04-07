@@ -13,7 +13,8 @@ angular.module("CompositionApp", [
     'module.fullscreen',
     'module.panZoom',
     'module.titlecase',
-    'module.underConstruction'])
+    'module.underConstruction',
+    'module.interpret'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

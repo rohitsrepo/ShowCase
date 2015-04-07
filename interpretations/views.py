@@ -12,7 +12,7 @@ class InterpretationList(APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_interpretations(self, composition_id):
-        return Interpretation.objects.filter(composition=composition_id)
+        return Interpretation.objects.filter(composition=composition_id, public=True)
 
     def add_voting_status(self, interpretations, user, serializer):
         counter = 0;

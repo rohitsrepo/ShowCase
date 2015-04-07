@@ -17,7 +17,6 @@ angular.module('module.model')
 	service.getComments = function (compositionId, interpretationId) {
 		var commentUrl = "/compositions/" + compositionId + "/interpretations/" + interpretationId + "/comments"
 		return $http.get(commentUrl).then(function (response) {
-			console.log("Model got; ", response);
 			return response.data;
 		});
 	};
@@ -25,10 +24,16 @@ angular.module('module.model')
 	service.addComment = function (compositionId, interpretationId, comment) {
 		var commentUrl = "/compositions/" + compositionId + "/interpretations/" + interpretationId + "/comments"
 		return $http.post(commentUrl, {"comment": comment}).then(function (response) {
-			console.log("Model got; ", response);
 			return response.data;
 		});
 	};
+
+	service.addInterpretation = function (compositionId, interpretation) {
+		var interpretUrl = "/compositions/" + compositionId + "/interpretations";
+		return $http.post(interpretUrl, {"interpretation": interpretation}).then(function (response) {
+			return response.data;
+		});
+	}
 
 	return service;
 }]);

@@ -86,7 +86,7 @@
 	<section class="interpret-area clearfix" infinite-scroll="getNextPosts()" infinite-scroll-distance='1' infinite-scroll-disabled='disableNextPost'>
 		<header ng-cloak ng-show="interpretations.length" class="interpret-header clearfix">
 			<h4 class="inter-heading">[[interpretations.length]] Interpretations</h4>
-			<button under-construction class="write-interpretation">Interpret this work</button>
+			<button ng-click="interpret($event)" class="write-interpretation">Interpret this work</button>
 		</header>
 
 
@@ -241,6 +241,8 @@
 	<script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
 	<script type="text/javascript" src="/static/js/components/underConstruction/underConstruction.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/underConstruction/underConstruction.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/interpret/interpret.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/interpret/interpret.controller.js"></script>
 	<!-- endbuild -->
 </body>
 </html>

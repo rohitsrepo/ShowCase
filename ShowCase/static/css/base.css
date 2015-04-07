@@ -170,9 +170,11 @@ a {
   z-index: 100;
   font-size: 14px;
   font-family: 'taile';
+  font-weight: normal;
   letter-spacing: 3px;
   opacity: 0.9;
   color: white;
+  margin: 0;
 }
 
 .auth-user:hover {

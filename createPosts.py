@@ -36,7 +36,7 @@ def get_word():
 
 def add_interpretations(composition, uploader):
     for i in range(5):
-        interpretation = Interpretation.objects.create(composition=composition, user=uploader)
+        interpretation = Interpretation.objects.create(composition=composition, user=uploader, public=True)
         add_interpretation(interpretation)
         print "Interpretation"
 
