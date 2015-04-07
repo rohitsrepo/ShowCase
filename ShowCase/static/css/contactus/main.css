@@ -1,0 +1,123 @@
+@font-face {
+    font-family: volbi;
+    src: url(/fonts/Vollkorn-BoldItalic.TTF);
+    font-weight:bold;
+    font-style:italic;
+}
+
+@font-face {
+    font-family: pfdr;
+    src: url(/fonts/PlayfairDisplay-Regular.TTF);
+    font-weight:400;
+}
+
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+  font-family: 'taile';
+}
+
+/*=========== Header ==============*/
+
+.banner {
+  width: 100%;
+  height: 60%;
+  background: url(/static/images/contactus/banner.jpg) no-repeat center top;
+  background-size: cover;
+  position: relative;
+}
+
+.banner  h1 {
+  font-family: 'volbi';
+  font-weight: bold;
+  font-style: italic;
+  font-size: 4em;
+  margin-bottom: 20px;
+  padding-top: 12%;
+  line-height: 1.2em;
+  letter-spacing: 1px;
+  text-align: center;
+  color: white;
+}
+
+
+/*=========== HEAD FOOTER =====================*/
+.head-footer .social {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+.head-footer .social li {
+  float: right;
+  width: 2.5em;
+  height: 2.5em;
+  opacity: 0.5;
+}
+
+.head-footer .social li:hover {
+  opacity: 1;
+}
+
+.head-footer .social li img {
+  width: 100%;
+  height: 100%;
+}
+
+/*================ About Us ======================*/
+
+.about-us {
+  width: 75%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-us h3 {
+  font-family: 'pfdr';
+  font-weight: bold;
+  font-style: italic;
+  font-size: 2.2em;
+  line-height: 1.2em;
+  letter-spacing: 1px;
+  margin: 25px 0;
+  margin-bottom: 15px;
+}
+
+.about-us p {
+  font-family: 'taile';
+  font-size: 1.2em;
+  line-height: 1.2em;
+  letter-spacing: 1px;
+}
+
+.about-us p.email {
+  font-family: 'pfdr';
+  font-style: italic;
+  color: #006600;
+  font-size: 1.3em;
+  line-height: 1.2em;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.about-us .social {
+  margin-top: 10px;
+}
+
+.about-us .social li {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+}
+
+.about-us .social li img {
+  width: 100%;
+  height: 100%;
+}

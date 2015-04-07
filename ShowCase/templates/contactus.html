@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="AboutUsApp">
+<head>
+	<title>Contact Us - ThirdDime</title>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
+
+	 <!-- build:css /static/build/contactus.css -->
+	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/contactus/main.css">
+	<!-- endbuild -->
+</head>
+<body ng-controller="aboutusController">
+	<topbar></topbar>
+	<header class="banner">
+		<div class="curtain-overlay-placeholder"></div>
+		<h1>On the journey of thoughts</h1>
+		<footer class="head-footer">
+			<ul class="social clearfix">
+				<li><a target="_blank" href="https://www.pinterest.com/thirddime/thirddime-art/">
+					<img title="Pinterest" src="/static/css/reader/icons/pinterest-filled.svg">
+				</a></li>
+				<li><a target="_blank" href="https://twitter.com/thirddime">
+					<img title="Twitter" src="/static/css/reader/icons/twitter-filled.svg">
+				</a></li>
+				<li><a target="_blank" href="https://www.facebook.com/thirddimeart">
+					<img title="Facebook" src="/static/css/reader/icons/facebook-filled.svg">
+				</a></li>
+			</ul>
+		</footer>
+	</header>
+
+	<section class="about-us">
+		<h3>Feedback/Contact Us</h3>
+		<p>If something is broken, unclear or you want to provide feedback  or just say hello, please mail us at</p>
+
+		<p class="email">hello@thirddime.com</p>
+
+		<p>You can also connect with us on.</p>
+
+		<section class="social">
+			<ul>
+				<li><a target="_blank" href="https://www.facebook.com/thirddimeart"><img src="/static/css/contactus/icons/facebook.png"></a></li>
+				<li><a target="_blank" href="https://twitter.com/thirddime"><img src="/static/css/contactus/icons/twitter.png"></a></li>
+				<li><a target="_blank" href="https://www.pinterest.com/thirddime/thirddime-art/"><img src="/static/css/contactus/icons/pinterest.png"></a></li>
+			</ul>
+		</section>
+	</section>
+	<!-- Scripts Here -->
+	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- build:js /static/build/aboutus.js -->
+	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+	
+	<script type="text/javascript" src="/static/js/aboutus/aboutus.module.js"></script>
+	<script type="text/javascript" src="/static/js/aboutus/aboutus.controller.js"></script>
+	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
+	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
+	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
+	<!-- endbuild -->
+</body>
+</html>
