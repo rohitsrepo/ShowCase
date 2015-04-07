@@ -16,13 +16,20 @@ angular.module("CompositionApp")
 		if(scrollTop > topMark - offset){
 			if (elemBottom < parentBottom) {
 				stickState = "sticky";
+				console.log("sticky");
 				Stick();
 			} else {
+				if(stickState == 'top')
+				{
+					return;
+				}
 				stickState = "fixToBottom";
+				console.log("bottom");
 				FixToBottom();
 			}
 		} else {
 				stickState = "top";
+				console.log("top");
 				RemoveAllStyle();
 		}
 	};
