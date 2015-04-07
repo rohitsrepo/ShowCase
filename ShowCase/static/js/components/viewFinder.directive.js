@@ -4,8 +4,14 @@ angular.module('module.viewFinder', [])
 		restrict: 'A',
 		link: function (scope, element, attrs) {
 			scope.isViewFinderActive = false;
+			scope.isViewFinderDisable = false;
+
 			var painting;
 			element.bind('click', function () {
+				if(element.hasClass('disable')){
+					return;
+				}
+				
 				if (!scope.isViewFinderActive){
 					painting = $('.painting').not(".ng-hide");
 					painting.zoome({hoverEf:'grayscale',showZoomState:true,magnifierSize:[200,200]});
@@ -17,6 +23,17 @@ angular.module('module.viewFinder', [])
 				}
 				scope.$apply(function () {
 					scope.isViewFinderActive = !scope.isViewFinderActive;
+					if (scope.isViewFinderActive) {
+						scope.isFullScreenDisable = true;
+						scope.isPanZoomDisable = true;
+						scope.isGrayScaleDisable = true;
+						scope.isOutlineDisable = true;
+					} else {
+						scope.isFullScreenDisable = false;
+						scope.isPanZoomDisable = false;
+						scope.isGrayScaleDisable = false;
+						scope.isOutlineDisable = false;
+					}
 				});
 			});
 		}

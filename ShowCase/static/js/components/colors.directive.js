@@ -3,7 +3,13 @@ angular.module('module.color', [])
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
+			scope.isColorPaletteDisable = false;
+
 			element.bind('click', function () {
+				if(element.hasClass('disable')){
+					return;
+				}
+			
 				scope.$apply(function () {
 					if (scope.isColorPaletteActive === undefined){
 						var sourceImage = new Image();

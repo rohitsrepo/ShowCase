@@ -3,7 +3,12 @@ angular.module('module.fullscreen', [])
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
+			if(element.hasClass('disable')){
+				return;
+			}
+			
 			scope.isFullScreen = false;
+			scope.isFullScreenDisable = false;
 
 			var fullscreenCallback = function (status) {
 				scope.$apply(function () {

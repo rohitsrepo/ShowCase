@@ -138,6 +138,11 @@ html, body {
   opacity: .95;
 }
 
+.painting-toolbar img.disable {
+  opacity: 0;
+  cursor: default;
+}
+
 .painting-toolbar .zoom-icons {
   position:absolute;
   left: 45%;

@@ -46,12 +46,12 @@
 	<section class="painting-area">
 		<header class="painting-toolbar clearfix" id="painting">
 			<section class="tools-icons">
-				<img title="View Finder" ng-class="{active: isViewFinderActive}" view-finder src="/static/css/composition/icons/viewfinder.svg">
-				<img title="Full Screen" ng-class="{active: isFullScreen}" fullscreen src="/static/css/composition/icons/expand.svg">
-				<img title="Color Palette" ng-class="{active: isColorPaletteActive}" color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/color-palette.svg">
-				<img title="No Colors" ng-class="{active: isGrayScaleActive=='active'}" ng-click="showGrayscale()" src="/static/css/composition/icons/gray-palette.svg">
-				<img title="Outline" ng-class="{active: isOutlineActive=='active'}" ng-click="showOutline()" src="/static/css/composition/icons/outline.svg">
-				<img title="Pan & Zoom" ng-class="{active: isPanZoomActive}" pan-zoom src="/static/css/composition/icons/pan_and_zoom.svg">
+				<img title="View Finder" ng-class="{active: isViewFinderActive, disable: isViewFinderDisable}" view-finder src="/static/css/composition/icons/viewfinder.svg">
+				<img title="Full Screen" ng-class="{active: isFullScreen, disable: isFullScreenDisable}" fullscreen src="/static/css/composition/icons/expand.svg">
+				<img title="Pan & Zoom" ng-class="{active: isPanZoomActive, disable: isPanZoomDisable}" pan-zoom src="/static/css/composition/icons/pan_and_zoom.svg">
+				<img title="Color Palette" ng-class="{active: isColorPaletteActive, disable: isColorPaletteDisable}" color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/color-palette.svg">
+				<img title="No Colors" ng-class="{active: isGrayScaleActive=='active', disable: isGrayScaleDisable && isGrayScaleActive!= 'active'}" ng-click="showGrayscale()" src="/static/css/composition/icons/gray-palette.svg">
+				<img title="Outline" ng-class="{active: isOutlineActive=='active', disable: isOutlineDisable && isOutlineActive!='active'}" ng-click="showOutline()" src="/static/css/composition/icons/outline.svg">
 			</section>
 			<section ng-show="isPanZoomActive" class="zoom-icons" ng-cloak>
 				<img title="Zoom In" class="zoom-in" src="/static/css/composition/icons/zoom-in.svg">

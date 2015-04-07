@@ -4,9 +4,15 @@ angular.module('module.panZoom', [])
 		restrict: 'A',
 		link: function (scope, element, attrs) {
 			scope.isPanZoomActive = false;
+			scope.isPanZoomDisable = false;
+
 			var painting = $('.painting');
 			
 			element.bind('click', function () {
+				if(element.hasClass('disable')){
+					return;
+				}
+			
 				if (!scope.isPanZoomActive){
 					painting.panzoom({
 						$zoomIn: $(".zoom-in"),
@@ -20,6 +26,17 @@ angular.module('module.panZoom', [])
 
 				scope.$apply(function () {
 					scope.isPanZoomActive = !scope.isPanZoomActive;
+					if (scope.isPanZoomActive) {
+						scope.isFullScreenDisable = true;
+						scope.isViewFinderDisable = true;
+						scope.isGrayScaleDisable = true;
+						scope.isOutlineDisable = true;
+					} else {
+						scope.isFullScreenDisable = false;
+						scope.isViewFinderDisable = false;
+						scope.isGrayScaleDisable = false;
+						scope.isOutlineDisable = false;
+					}
 				});
 			});
 		}

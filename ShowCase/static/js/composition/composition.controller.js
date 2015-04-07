@@ -66,13 +66,19 @@ controller("compositionController", ["$scope", "posts", "contentManager", "inter
 	$scope.isGrayScaleActive = "inactive";
 
 	$scope.showOutline = function () {
+		if ($scope.isOutlineDisable && !$scope.isOutlineActive) {
+			return;
+		}
+
 		if($scope.isOutlineActive!="active"){
 			$scope.isOutlineActive = '';
+			$scope.isGrayScaleDisable = true;
 			$timeout(function() {
 				$scope.isOutlineActive = 'active';
 			}, 600);
 		} else {
 			$scope.isOutlineActive = '';
+			$scope.isGrayScaleDisable = false;
 			$timeout(function() {
 				$scope.isOutlineActive = 'inactive';
 			}, 400);
@@ -80,13 +86,19 @@ controller("compositionController", ["$scope", "posts", "contentManager", "inter
 	};
 
 	$scope.showGrayscale = function () {
+		if ($scope.isGrayScaleDisable && !$scope.isGrayScaleActive) {
+			return;
+		}
+
 		if($scope.isGrayScaleActive!="active"){
 			$scope.isGrayScaleActive = '';
+			$scope.isOutlineDisable = true;
 			$timeout(function() {
 				$scope.isGrayScaleActive = 'active';
 			}, 600);
 		} else {
 			$scope.isGrayScaleActive = '';
+			$scope.isOutlineDisable = false;
 			$timeout(function() {
 				$scope.isGrayScaleActive = 'inactive';
 			}, 400);
