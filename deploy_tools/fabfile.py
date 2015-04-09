@@ -38,7 +38,7 @@ def _update_settings(source_folder, site_name):
     sed(settings_path, "DEBUG = True", "DEBUG = False")
     sed(settings_path,
         'ALLOWED_HOSTS =.+$',
-        'ALLOWED_HOSTS = ["%s"]' % (site_name,)
+        'ALLOWED_HOSTS = ["%s", "thirddime.com", "www.thirddime.com"]' % (site_name,)
         )
     secret_key_file = source_folder + '/ShowCase/secret_key.py'
     if not exists(secret_key_file):

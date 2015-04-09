@@ -8,8 +8,9 @@ angular.module('module.sharing')
 			var shareImage = $location.protocol() + '://' + $location.host() + attrs['source'];
 			var shareUrl = $location.absUrl();
 			var shareTitle = attrs['title'];
-			var url = "http://www.facebook.com/sharer.php?s=100&p[title]="+(shareUrl)+"&p[summary]="+
-			attrs['description']+"&p[url]="+encodeURIComponent(shareUrl)+"&p[images][0]="+(shareImage)
+			var url = "https://www.facebook.com/dialog/share?app_id=462422103909005&display=popup&href=" +
+			encodeURIComponent(shareUrl) + 
+			"&redirect_uri=" + encodeURIComponent(shareUrl)
 			element.bind('click', function () {
 				$window.open(url, '_blank', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600')
 			});
