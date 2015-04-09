@@ -1,6 +1,6 @@
 angular.module("CompositionApp").
-controller("compositionController", ["$scope", "posts", "contentManager", "interpretationModel", '$location' , '$timeout', 'interpretation',
-	function ($scope, posts, contentManager, interpretationModel, $location, $timeout, interpretation) {
+controller("compositionController", ["$window", "$scope", "posts", "contentManager", "interpretationModel", '$location' , '$timeout', 'interpretation',
+	function ($window, $scope, posts, contentManager, interpretationModel, $location, $timeout, interpretation) {
 
 	$scope.composition = {};
 	$scope.interpretations = [];
@@ -24,11 +24,20 @@ controller("compositionController", ["$scope", "posts", "contentManager", "inter
 		
 	};
 
+	function closeTabIfRequired() {
+		console.log("should i close tab", $location.search());
+		if ($location.search()['closeTab'] === "yes"){
+		console.log(" close tab");
+			$window.close();
+		}
+	};
+
 
 	$scope.$watch($scope.composition.Id, function () {
 		interpretationModel.getInterpretations($scope.composition.id).then(function (interpretations) {
 			$scope.interpretations = interpretations;
 			checkForScroll(500);
+			closeTabIfRequired();
 		});
 	});
 

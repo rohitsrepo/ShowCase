@@ -70,7 +70,7 @@
 				<img title="Zoom Out" class="zoom-out" src="/static/css/composition/icons/zoom-out.svg">
 			</section>
 			<section class="social-icons">
-				<img title="Facebook" facebook-share src="/static/css/composition/icons/facebook.svg">
+				<img title="Facebook" facebook-share src="/static/css/composition/icons/facebook.svg" share-url='/arts/[[post.composition.slug]]'>
 				<img title="Pinterest" pinterest-share source="{{composition.matter.url}}" description="{{composition.description}}" src="/static/css/composition/icons/pinterest.svg" share-url='/arts/{{composition.slug}}'>
 				<img title="Tumblr" tumblr-share source="{{composition.matter.url}}" description="{{composition.description}}" src="/static/css/composition/icons/tumblr.svg" share-url='/arts/{{composition.slug}}'>
 				<span class="more-options">
@@ -151,7 +151,7 @@
 		</section>
 
 	 	<sidebar ng-cloak ng-show="interpretations.length" class="about-painting" sticky offset="50">
-			<img src="{{composition.matter.url}}">
+			<img scroll-to="#painting" src="{{composition.matter.url}}">
 			<table>
 			    <tr>
 			      <th>
