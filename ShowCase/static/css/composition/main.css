@@ -78,8 +78,8 @@ html, body {
 }
 
 .go-down img{
-  height: 75px; 
-  width: 75px;
+  height: 65px; 
+  width: 65px;
 }
 .go-down:hover {
   opacity: 1;
@@ -486,6 +486,7 @@ html, body {
 
 .interpret-footer .vote-active {
   background: rgb(87, 173, 104);
+  opacity: 1;
 }
 
 .interpret-footer .comments {

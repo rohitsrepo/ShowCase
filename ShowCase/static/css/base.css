@@ -84,7 +84,18 @@ a {
   left: 20px;
   z-index: 100;
   width: 50px;
-  height: auto;
+  height: 50px;
+}
+
+.name {
+  position: fixed;
+  cursor: pointer;
+  top: 12px;
+  left: 70px;
+  z-index: 100;
+  width: 200px;
+  height: 48px;
+  background: rgb(87, 173, 104);
 }
 
 .curtain-left {

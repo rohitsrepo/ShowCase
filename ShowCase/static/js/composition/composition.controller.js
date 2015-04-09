@@ -4,6 +4,7 @@ controller("compositionController", ["$scope", "posts", "contentManager", "inter
 
 	$scope.composition = {};
 	$scope.interpretations = [];
+	$scope.hideName = true;
 
 	$scope.init = function (id, url) {
 		$scope.composition.id = id;

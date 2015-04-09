@@ -258,6 +258,7 @@ html, body {
 
 .description-footer .vote-active {
   background: rgb(87, 173, 104);
+  opacity: 1;
 }
 
 /*================= Clearfix =====================*/
