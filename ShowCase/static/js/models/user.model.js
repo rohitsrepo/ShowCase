@@ -21,8 +21,10 @@ angular.module("module.model")
 		});
 	};
 
-	service.login = function (email, password) {
-		return $http({method: 'POST', url: '/users/login', data: {email: email, password: password}})
+	service.login = function (email, password, login_type) {
+		login_type = login_type || "NT";
+
+		return $http({method: 'POST', url: '/users/login', data: {email: email, password: password, login_type: login_type}})
 		.success(function (response) {
 			return response;
 		})

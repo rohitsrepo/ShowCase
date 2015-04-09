@@ -61,19 +61,20 @@ a {
   text-align: center;
 }
 
-.auth .social a {
+.auth .social button {
   width: 80%;
   margin: 0 auto;
   margin-bottom: 40px;
-  font-size: 16px;
+  font-size: 14px;
   color: #FFFFFF;
   text-align: center;
   display: inline-block;
   padding: 1.3em 2em;
   cursor: pointer;
+  border: none;
 }
 
-.auth .social a:hover {
+.auth .social button:hover {
   opacity: 0.9;
 }
 
@@ -86,9 +87,9 @@ a {
 }
 
 .auth .native {
-  /*float: right;*/
+  float: right;
   width: 40%;
-  margin: 0 auto;
+  /*margin: 0 auto;*/
   margin-bottom: 40px;
   text-align: center;
 }
@@ -103,6 +104,7 @@ a {
   padding: 1.3em 2em;
   width: 100%;
   margin: 10px 0;
+  margin-top: 0;
 }
 
 .auth .native .username input {

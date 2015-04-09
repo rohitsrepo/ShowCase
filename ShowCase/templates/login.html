@@ -11,7 +11,6 @@
 	<!-- endbuild -->
 </head>
 <body ng-controller="loginController">
-	<!-- {% verbatim %} --> 
 	<topbar></topbar>
 	<div class="curtain-overlay-placeholder"></div>
 	<header class="primary-header">
@@ -19,11 +18,11 @@
 		<h2>Please login to continue.</h2>
 	</header>
 	<section class="auth clearfix">
-		<!-- <section class="social">
-			<a class="facebook" href="">LOGIN WITH FACEBOOK</a>
-			<a class="twitter" href="">LOGIN WITH TWITTER</a>
+		<section class="social">
+			<button class="facebook" ng-click="loginFB()">LOGIN WITH FACEBOOK</button>
+			<!-- <button under-construction class="twitter" >LOGIN WITH TWITTER</button> -->
 		</section>
-		<h5>Or</h5>	 -->
+		<h5>Or</h5>	
 		<section class="native">
 			<form name="loginForm" ng-keyup="$event.keyCode == 13 ? login(user) : null">
 				<section class="login-error" ng-cloak ng-show="loginError">[[loginError]]</section>
@@ -47,11 +46,13 @@
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
 	<!-- build:js /static/build/login.js -->
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
+	
+	<script type="text/javascript" src="/static/js/login/login.module.js"></script>
+	<script type="text/javascript" src="/static/js/login/login.controller.js"></script>
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
-	<script type="text/javascript" src="/static/js/login/login.module.js"></script>
-	<script type="text/javascript" src="/static/js/login/login.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
@@ -66,7 +67,8 @@
 	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
+	<script type="text/javascript" src="/static/js/components/underConstruction/underConstruction.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/underConstruction/underConstruction.controller.js"></script>
 	<!-- endbuild -->
-	<!-- {% endverbatim %} -->
 </body>
 </html>

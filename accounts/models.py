@@ -47,6 +47,16 @@ def get_upload_file_name_users(instance, filename):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+
+    FACEBOOK = 'FB'
+    TWITTER = 'TW'
+    NATIVE = 'NT'
+    LOGIN_CHOICES = (
+        (FACEBOOK, 'facebook'),
+        (TWITTER, 'twitter'),
+        (NATIVE, 'native'),
+    )
+
     first_name = models.CharField(verbose_name='first name',
                                   max_length=40)
     last_name = models.CharField(verbose_name='last name',
@@ -66,6 +76,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     picture = models.ImageField(
         upload_to=get_upload_file_name_users, default=settings.DEFAULT_USER_PICTURE)
+
+    login_type = models.CharField(default='native', max_length=2, choices=LOGIN_CHOICES)
 
     bookmarks = models.ManyToManyField(Composition, related_name='collectors')
 

@@ -5,6 +5,7 @@ angular.module("RegisterApp")
 	$scope.hideSignUp = true;
 
 	$scope.register = function (user) {
+		user.login_type = "NT"
 		auth.registerUser(user);
 	};
 }]);

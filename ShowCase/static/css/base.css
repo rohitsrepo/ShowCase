@@ -237,7 +237,7 @@ a {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.curtain-right .social a {
+.curtain-right .social button {
   font-size: 16px;
   color: #FFFFFF;
   text-align: center;
@@ -245,9 +245,12 @@ a {
   padding: 1.3em 0;
   margin: 20px 0;
   cursor: pointer;
+  border: none;
+  display: inline-block;
+  width: 100%;
 }
 
-.curtain-right .social a:hover {
+.curtain-right .social button:hover {
   opacity: 0.9;
 }
 

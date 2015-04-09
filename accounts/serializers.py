@@ -12,7 +12,7 @@ class NewUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'email', 'first_name', 'last_name',
-                  'about', 'password', 'picture')
+                  'about', 'password', 'picture', 'login_type')
 
     def save_object(self, obj, *args, **kwargs):
         # Encrypting password before saving it.
