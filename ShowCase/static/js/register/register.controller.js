@@ -1,5 +1,5 @@
 angular.module("RegisterApp")
-.controller("registerController", ["$scope", "auth", function ($scope, auth) {
+.controller("registerController", ["$scope", "auth", 'facebook', function ($scope, auth, facebook) {
 	"use strict";
 
 	$scope.hideSignUp = true;
@@ -8,4 +8,8 @@ angular.module("RegisterApp")
 		user.login_type = "NT"
 		auth.registerUser(user);
 	};
+
+	$scope.loginFB = function () {
+		facebook.login('/');
+	}
 }]);

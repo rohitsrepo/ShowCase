@@ -1,4 +1,4 @@
-angular.module('module.auth', ['module.model'])
+angular.module('module.auth')
 .factory('auth', ['userModel', '$window', '$q', function (userModel, $window, $q) {
 
 	var isAuthenticated = function () {
@@ -6,10 +6,15 @@ angular.module('module.auth', ['module.model'])
 	};
 
 	var redirect = function (url) {
+		console.log("Redirecting to url:", url);
 		if(!url)
 		{
 			$window.location.reload();
 		} else {
+			console.log("current location", $window.location.href);
+			if (url === $window.location.href){
+				$window.location.reload();
+			}
 			$window.location.href = url;
 		}
 	};
@@ -54,10 +59,10 @@ angular.module('module.auth', ['module.model'])
 		}
 	};
 
-	service.registerUser = function (user) {
+	service.registerUser = function (user, next_url) {
 		return userModel.addUser(user).then(function (response){
 			userModel.login(user.email, user.password, user.login_type).then(function (res) {
-				redirect('/');
+				redirect(next_url || '/');
 			}, function (res) {
 			});	
 		}, function (response) {

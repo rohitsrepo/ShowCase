@@ -19,11 +19,11 @@
 		<h2>We are glad to have you on this journey togather.</h2>
 	</header>
 	<section class="auth clearfix">
-		<!-- <section class="social">
-			<a class="facebook" href="">CONNECT WITH FACEBOOK</a>
-			<a class="twitter" href="">CONNECT WITH TWITTER</a>
+		<section class="social">
+			<button class="facebook" ng-click="loginFB()">CONNECT WITH FACEBOOK</button>
+			<!-- <button class="twitter" href="">CONNECT WITH TWITTER</button> -->
 		</section>
-		<h5>Or</h5>	 -->
+		<h5>Or</h5>	
 		<section class="native">
 			<form name="registerForm" ng-keyup="$event.keyCode == 13 ? register(user) : null" novalidate>
 				<fieldset class="username">
@@ -56,7 +56,9 @@
 	
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
+	<script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
+	<script type="text/javascript" src="/static/js/authentication/facebook.service.js"></script>
 	<script type="text/javascript" src="/static/js/register/register.module.js"></script>
 	<script type="text/javascript" src="/static/js/register/register.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
