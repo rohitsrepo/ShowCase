@@ -8,4 +8,11 @@ angular.module("module.topbar")
 	}, function (currentUser) {
 		$scope.currentUser = currentUser;
 	});
+}])
+.directive('clickLogo', [function () {
+	return function (scope, element, attrs) {
+		element.bind('click', function () {
+			$('.logo').click();
+		})
+	}
 }]);

@@ -89,7 +89,6 @@ a {
 
 .name {
   position: fixed;
-  cursor: pointer;
   top: 10px;
   left: 70px;
   z-index: 100;
@@ -99,6 +98,7 @@ a {
   text-align: left;
   color: white;
   border-bottom: 2px solid #E6B800;
+  cursor: pointer;
 }
 
 .name h1 {
