@@ -1,4 +1,4 @@
-'''
+from django.contrib import admin
 from django import forms
 from .models import User
 
@@ -98,4 +98,11 @@ class UserChangeForm(forms.ModelForm):
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
         return self.initial["password"]
-'''
+
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'login_type')
+    list_filter = ['first_name']
+    search_fields = ['first_name']
+    fields = ['first_name', 'login_type', 'groups']
+
+admin.site.register(User, UserAdmin)

@@ -77,7 +77,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     picture = models.ImageField(
         upload_to=get_upload_file_name_users, default=settings.DEFAULT_USER_PICTURE)
 
-    login_type = models.CharField(default='native', max_length=2, choices=LOGIN_CHOICES)
+    login_type = models.CharField(default='NT', max_length=2, choices=LOGIN_CHOICES)
 
     bookmarks = models.ManyToManyField(Composition, related_name='collectors')
 
