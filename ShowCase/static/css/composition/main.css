@@ -45,7 +45,7 @@ html, body {
   margin-bottom: .25em;
 }
 .banner h3 {
-  color: rgb(87, 173, 104);
+  color: #E6B800;
   font-style: italic;
   font-size: 1.5em;
 }
@@ -66,7 +66,7 @@ html, body {
 }
 
 .primary-header footer .uploader {
-  color: rgb(87, 173, 104);
+  color: #E6B800;
   cursor: pointer;
 }
 
@@ -325,7 +325,7 @@ html, body {
 .about-painting a {
   text-decoration: none;
   cursor: pointer;
-  color: rgb(87, 173, 104);
+  color: #E6B800;
 }
 
 .about-painting th,
@@ -377,16 +377,16 @@ html, body {
   height: 24px;
   float: right;
   background-color: transparent;
-  border: 1px solid rgb(87, 173, 104);
+  border: 1px solid #E6B800;
   border-radius: 12px;
   font-size: 13px;
-  color: rgb(87, 173, 104);
+  color: #E6B800;
   padding: 4px 15px;
   margin-top: 5px;
 }
 
 .write-interpretation:hover {
-  background-color: rgb(87, 173, 104);
+  background-color: #E6B800;
   color: white;
   border: none;
 }
@@ -439,7 +439,7 @@ html, body {
 }
 
 .interpreter h3 {
-  color: rgb(87, 173, 104);
+  color: #E6B800;
   font-weight: normal;
   font-size: 20px;
   margin: 0;
@@ -486,7 +486,7 @@ html, body {
 }
 
 .interpret-footer .vote-active {
-  background: rgb(87, 173, 104);
+  background: #E6B800;
   opacity: 1;
 }
 
@@ -520,7 +520,7 @@ html, body {
 }
 
 .interpret-footer .comments .commenter {
-  color: rgb(87, 173, 104);
+  color: #E6B800;
   margin-bottom: 5px;
   cursor: pointer;
 }
@@ -646,7 +646,7 @@ html, body {
   margin-left: auto;
   height: 50px;
   width: 400px;
-  background-color: rgb(87, 173, 104);
+  background-color: #E6B800;
   display: inline;
 }
 

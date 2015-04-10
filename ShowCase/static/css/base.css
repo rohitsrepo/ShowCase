@@ -51,11 +51,11 @@ ol, ul {
 }
 
 ::selection {
-  background: rgb(87, 173, 104);
+  background: #E6B800;
 }
 
 ::-moz-selection {
-  background: rgb(87, 173, 104); 
+  background: #E6B800; 
 }
 
 a {
@@ -90,12 +90,24 @@ a {
 .name {
   position: fixed;
   cursor: pointer;
-  top: 12px;
+  top: 10px;
   left: 70px;
   z-index: 100;
-  width: 200px;
-  height: 48px;
-  background: rgb(87, 173, 104);
+  height: 50px;
+  font-family: 'taile';
+  font-weight: bold;
+  text-align: left;
+  color: white;
+  border-bottom: 2px solid #E6B800;
+}
+
+.name h1 {
+  font-size: 25px;
+  margin-top: 8px;
+}
+
+.name h2 {
+  font-size: 10px;
 }
 
 .curtain-left {

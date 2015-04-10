@@ -1,6 +1,10 @@
 <sidebar ng-controller="topbarController">
 	<img class="logo" src="/static/images/header-md.png" add-curtain-left>
-	<img class="name" fade-on-scroll src="/static/css/reader/icons/logo-text.svg" ng-cloak ng-hide="hideName">
+	<!-- <img class="name" fade-on-scroll src="/static/css/reader/icons/logo-text.svg" ng-cloak ng-hide="hideName"> -->
+	<section class="name" fade-on-scroll ng-cloak ng-hide="hideName">
+		<h1>THIRDDIME</h1>
+		<h2>BEHIND THE BRUSHSTROKES</h2>
+	</section>
 
 	<h3 class="auth-user" fade-on-scroll add-curtain-right="login" ng-cloak ng-hide="currentUser">
 		<a ng-cloak ng-hide="hideSignUp" href="/register">SIGN UP</a>
