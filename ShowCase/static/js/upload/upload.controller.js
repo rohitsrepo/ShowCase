@@ -30,6 +30,7 @@ angular.module('UploadApp')
 	        };
 
 	        $scope.uploadArt = function () {
+	        	$scope.showUploading = true;
 	        	uploader.formData.push($scope.art);
 	        	uploader.queue[0].upload();
 	        }

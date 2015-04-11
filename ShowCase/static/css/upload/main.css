@@ -2,6 +2,8 @@
     color:  rgba(0, 0, 0, 0.8);
 }
 
+
+
 /*===================== BASE ==========================*/
 
 .upload-area {
@@ -40,7 +42,7 @@
 /*================== UPLOAD BUTTON =====================*/
 
 .upload-form .upload-button {
-    position: fixed;
+    position: absolute;
     top: 50px;
     right: 70px;
     margin-bottom: 20px auto;
@@ -56,8 +58,24 @@
     cursor: pointer;
 }
 
+.upload-form .uploading-button {
+    width: 150px;
+    cursor: default;
+}
+
 .upload-form .upload-button:hover {
     color: white;
+}
+
+.upload-form .upload-button.ng-hide-remove {
+    -webkit-animation: fadeIn 0.8s;
+    animation: fadeIn 0.8s;
+    opacity: 0;
+}
+
+.upload-form .upload-button.ng-hide-add {
+    -webkit-animation: fadeOutRight 0.8s;
+    animation: fadeOut 0.8s;
 }
 
 /*======================= TITLE ======================*/
