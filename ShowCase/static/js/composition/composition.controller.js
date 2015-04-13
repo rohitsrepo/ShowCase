@@ -24,20 +24,10 @@ controller("compositionController", ["$window", "$scope", "posts", "contentManag
 		
 	};
 
-	function closeTabIfRequired() {
-		console.log("should i close tab", $location.search());
-		if ($location.search()['closeTab'] === "yes"){
-		console.log(" close tab");
-			$window.close();
-		}
-	};
-
-
 	$scope.$watch($scope.composition.Id, function () {
 		interpretationModel.getInterpretations($scope.composition.id).then(function (interpretations) {
 			$scope.interpretations = interpretations;
 			checkForScroll(500);
-			closeTabIfRequired();
 		});
 	});
 

@@ -6,7 +6,7 @@ angular.module('module.sharing')
 		restrict: 'A',
 		link: function (scope, element, attrs) {
 			var baseUrl = $location.protocol() + '://' + $location.host() + ':' + $location.port();
-			var shareUrl = baseUrl + attrs['shareUrl'] + '#?scrollTo=painting&closeTab=yes';
+			var shareUrl = baseUrl + attrs['shareUrl'] + '#?scrollTo=painting';
 			var url = "https://www.facebook.com/dialog/share?app_id=462422103909005&display=popup&href=" +
 			encodeURIComponent(shareUrl) + 
 			"&redirect_uri=" + encodeURIComponent('http://thirddime.com/')
