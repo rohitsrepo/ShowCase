@@ -22,6 +22,14 @@ class Interpretation(models.Model):
 
         return interpretation
 
+    def __unicode__(self):
+        if len(self.interpretation) > 12:
+            interpretation = self.interpretation[:12] + '...'
+        else:
+            interpretation = self.interpretation
+
+        return u'%s' % (interpretation, )
+
     def timesince(self, now=None):
         return timesince(self.created, now)
 

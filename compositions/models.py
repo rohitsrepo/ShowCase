@@ -8,7 +8,7 @@ from votes.models import Vote
 from .utils import GrayScaleAndSketch
 
 def get_upload_file_name_composition(instance, filename):
-    return '%s/%s/%s' % (instance.uploader.id, slugify(instance.artist), slugify(instance.title) + '.' + filename.split('.')[-1])
+    return '%s/%s/%s_%s_thirddime%s' % (instance.uploader.id, slugify(instance.artist), slugify(instance.artist), slugify(instance.title), '.' + filename.split('.')[-1])
 
 
 class Composition(models.Model):
