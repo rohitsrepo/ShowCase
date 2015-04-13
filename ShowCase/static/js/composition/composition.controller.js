@@ -145,7 +145,7 @@ controller("compositionController", ["$window", "$scope", "posts", "contentManag
 	$scope.interpret = function (event) {
 		interpretation.add(event, $scope.composition.id)
 		.then(function () {
-			showAlert("Your submission under review.");
+			showAlert("Your submission is under review.");
 		});
 	};
 
