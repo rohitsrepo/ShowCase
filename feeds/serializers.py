@@ -33,6 +33,7 @@ class PostInterpretationSerializer(serializers.ModelSerializer):
     vote = PostInterpretationVoteSerializer(read_only=True)
     timesince = serializers.CharField(source='timesince', read_only=True)
     user = PostUserSerializer(read_only=True)
+    interpretation = serializers.CharField(source='to_text', read_only=True)
 
     class Meta:
         model = Interpretation

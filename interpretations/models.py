@@ -5,6 +5,7 @@ from compositions.models import Composition
 from django.conf import settings
 from django.utils.timesince import timesince
 from interpretationVotes.models import InterpretationVote
+from bs4 import BeautifulSoup
 
 
 class Interpretation(models.Model):
@@ -39,6 +40,10 @@ class Interpretation(models.Model):
         """
 
         return self.composition.get_absolute_url()
+
+    def to_text(self):
+        soup = BeautifulSoup(self.interpretation)
+        return soup.get_text()
 
 
 
