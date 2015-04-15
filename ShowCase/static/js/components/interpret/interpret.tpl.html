@@ -1,8 +1,7 @@
 <md-dialog class="under-construction" flex="66" aria-label="Add Interpretation">
   <md-content>
     	<form name="interpretForm" class="interpret-form" novalidate>
-    		<textarea class="description" autofocus="autofocus" rows="10" placeholder="Share what you feel...." ng-model="interpretation" required></textarea>
-
+    		<textarea rich-edit class="description interpret-content" autofocus="autofocus" rows="10" required></textarea>
     	</form>
 
   </md-content>
@@ -19,6 +18,7 @@
 	    margin: 20px 0;
 	    border: none;
 	    font-size: 20px;
+	    color: rgba(0, 0, 0, 0.8);
 	}
 
 	.md-actions button {

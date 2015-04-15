@@ -6,7 +6,7 @@ angular.module("module.interpret")
 		}
 
 		$scope.addInterpretation = function () {
-			interpretationModel.addInterpretation(compositionId, $scope.interpretation)
+			interpretationModel.addInterpretation(compositionId, $('textarea').val())
 			.then(function () {
 				$mdDialog.hide();
 			});

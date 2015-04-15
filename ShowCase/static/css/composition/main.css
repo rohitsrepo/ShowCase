@@ -445,12 +445,58 @@ html, body {
   margin: 0;
 }
 
+/*================= Interpretation - Content ==================*/
+/*Changes made here should also reflect in the add interpretation area. */
+
 .interpret-content {
-  font-size: 20px;
-  line-height: 25px;
-  letter-spacing: 0.1px;
+  color: rgba(0, 0, 0, 0.8);
   text-decoration: none solid rgba(0, 0, 0, 0.8);
+  font-family: 'taile';
 }
+
+.interpret-content h3 {
+  font-size: 20px;
+  letter-spacing: 0.1px;
+  margin: 0;
+}
+
+.interpret-content h4 {
+  font-size: 19px;
+  letter-spacing: 0.1px;
+  margin: 0;
+}
+
+.interpret-content p {
+  font-size: 18px;
+  letter-spacing: 0.1px;
+  margin: 0;
+}
+
+.interpret-content a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.interpret-content blockquote {
+  font-size: 18px;
+  letter-spacing: 0.1px;
+  margin: 12px 0;
+  padding: 0;
+  padding-left: 10px;
+  font-family: 'pfdr';
+  font-style: italic;
+  border-left: 4px solid rgba(0, 0, 0, 0.8);
+}
+
+.interpret-content b {
+  font-weight: bold;
+}
+
+.interpret-content i {
+  font-style: italic;
+}
+
+/*================ Interpretation - Footer ==================*/
 
 .interpret-footer {
   margin-top: 15px;
@@ -489,6 +535,8 @@ html, body {
   background: #E6B800;
   opacity: 1;
 }
+
+/*================= Interpretation - Comments ==================*/
 
 .interpret-footer .comments {
   margin-top: 15px;

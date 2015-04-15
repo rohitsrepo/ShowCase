@@ -69,7 +69,7 @@
 					</header>
 					<section class="comment">
 	   					<div class="comment-text" ng-cloak ng-hide="post.showComplete">
-	     					[[post.interpretation.interpretation.slice(0, 140)]]<span class="more" ng-cloak ng-show="post.interpretation.interpretation.length > 140" ng-click="showInterpretation($index)">.... (more)</span> 
+	     					[[post.interpretation.interpretation.slice(0, 140)]]<a ng-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank"><span class="more" ng-cloak ng-show="post.interpretation.interpretation.length > 140" >.... (more)</span></a>
 	   					</div>
 	   					<div class="comment-text" ng-cloak ng-show="post.showComplete">
 	     					[[post.interpretation.interpretation]]

@@ -1,4 +1,5 @@
 angular.module("CompositionApp", [
+    'ngSanitize',
     'infinite-scroll',
     "ngAnimate",
     "module.auth",
