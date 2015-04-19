@@ -154,7 +154,6 @@ html, body {
 }
 
 .description-header {
-  text-align: left;
   margin-bottom: 20px;
 }
 
@@ -162,19 +161,19 @@ html, body {
   font-family: volbi;
   font-weight: bold;
   font-style: italic;
-  font-size: 36px;
-  line-height: 42px;
+  font-size: 2.2em;
+  line-height: 1.2em;
   letter-spacing: 0.5px;
   text-decoration: none solid rgba(0, 0, 0, 0.8);
   color: rgba(0, 0, 0, 0.8);
 }
 
 .description-header h5 {
-  font-size: 18px;
+  font-size: 1em;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.3);
   letter-spacing: 0.1px;
-  line-height: 22px;
+  line-height: 1.2em;
   text-decoration: none solid rgba(0, 0, 0, 0.3);
 }
 
@@ -183,15 +182,28 @@ html, body {
   text-decoration: none solid #E6B800;
 }
 
+@media (max-width: 800px), (max-device-width: 800px) {
+    .artwork {
+      width: 100%;
+      float: none;
+    }
+
+    .description {
+      float: none;
+      width: 100%;
+      text-align: center;
+    }
+}
+
 /*=========== TOP INTERPRETATION ==============*/
 .comment {
   margin-bottom: 5px;
 }
 
 .comment-text {
-  font-size: 20px;
+  font-size: 1.2em;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 1.5em;
   letter-spacing: 0.1px;
   color: rgba(0, 0, 0, 0.8);
   text-decoration: none solid rgba(0, 0, 0, 0.8);
@@ -204,7 +216,7 @@ html, body {
 }
 
 .comment-footer {
-  font-size: 17px;
+  font-size: 1em;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.3);
   letter-spacing: 0.1px;
@@ -219,12 +231,14 @@ html, body {
   cursor: default;
 }
 
+/*============ Description Footer =================*/
+
 .description-footer header {
-  font-size: 17px;
+  font-size: 1em;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.3);
   letter-spacing: 0.1px;
-  line-height: 22px;
+  line-height: 1.2em;
   text-decoration: none solid rgba(0, 0, 0, 0.3);
   margin-bottom: 5px;
 }
@@ -234,7 +248,7 @@ html, body {
 }
 
 .description-footer .icon {
-  height: 30px;
+  height: 1.8em;
   width: auto;
   cursor: pointer;
   opacity: 0.5;
@@ -255,10 +269,27 @@ html, body {
   margin-left: 5px;
 }
 
-
 .description-footer .vote-active {
   background: #E6B800;
   opacity: 1;
+}
+
+@media (max-device-width: 800px) {
+  .description-footer header {
+    display: none;
+  }
+
+  .description-footer .icon {
+    height: 4em;
+  }
+  
+  .description-footer .icon-left{
+    margin-right: 10px;
+  }
+  
+  .description-footer .icon-right{
+    margin-left: 10px;
+  }
 }
 
 /*================= Clearfix =====================*/

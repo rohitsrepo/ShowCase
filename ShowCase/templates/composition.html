@@ -59,9 +59,9 @@
 	<section class="painting-area">
 		<header class="painting-toolbar clearfix" id="painting">
 			<section class="tools-icons">
-				<img title="View Finder" ng-class="{active: isViewFinderActive, disable: isViewFinderDisable}" view-finder src="/static/css/composition/icons/viewfinder.svg">
-				<img title="Full Screen" ng-class="{active: isFullScreen, disable: isFullScreenDisable}" fullscreen src="/static/css/composition/icons/expand.svg">
-				<img title="Pan & Zoom" ng-class="{active: isPanZoomActive, disable: isPanZoomDisable}" pan-zoom src="/static/css/composition/icons/pan_and_zoom.svg">
+				<img title="View Finder" class="nt-mb" ng-class="{active: isViewFinderActive, disable: isViewFinderDisable}" view-finder src="/static/css/composition/icons/viewfinder.svg">
+				<img title="Full Screen" class="nt-mb" ng-class="{active: isFullScreen, disable: isFullScreenDisable}" fullscreen src="/static/css/composition/icons/expand.svg">
+				<img title="Pan & Zoom" class="nt-mb" ng-class="{active: isPanZoomActive, disable: isPanZoomDisable}" pan-zoom src="/static/css/composition/icons/pan_and_zoom.svg">
 				<img title="Color Palette" ng-class="{active: isColorPaletteActive, disable: isColorPaletteDisable}" color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/color-palette.svg">
 				<img title="No Colors" ng-class="{active: isGrayScaleActive=='active', disable: isGrayScaleDisable && isGrayScaleActive!= 'active'}" ng-click="showGrayscale()" src="/static/css/composition/icons/gray-palette.svg">
 				<img title="Outline" ng-class="{active: isOutlineActive=='active', disable: isOutlineDisable && isOutlineActive!='active'}" ng-click="showOutline()" src="/static/css/composition/icons/outline.svg">
@@ -99,13 +99,12 @@
 	<section class="interpret-area clearfix" infinite-scroll="getNextPosts()" infinite-scroll-distance='1' infinite-scroll-disabled='disableNextPost'>
 		<header ng-cloak ng-show="interpretations.length" class="interpret-header clearfix">
 			<h4 class="inter-heading">[[interpretations.length]] Interpretations</h4>
-			<button ng-click="interpret($event)" class="write-interpretation">Interpret this work</button>
+			<button ng-click="interpret($event)" class="write-interpretation nt-mb">Interpret this work</button>
 		</header>
 
 
 		<section ng-cloak ng-show="interpretations.length" class="interprets" ng-cloak id="inter0">
 
-			<!-- 1 -->
 			<section class="interpret" ng-repeat-start="interpretation in interpretations">
 				<header class="interpreter clearfix">
 					<!-- <img ng-cloak ng-show="interpretation.user.picture" ng-src="[[interpretation.user.picture]]"> -->
@@ -115,15 +114,15 @@
 				</header>
 				<p class="interpret-content" ng-bind-html="interpretation.interpretation"></p>
 				<footer class="interpret-footer">
-					<div class="clearfix">
+					<div class="clearfix nt-mb">
 					<h6 class="right">[[interpretation.timesince]] ago</h6>
 					<h6 class="left">[[interpretation.vote.total]] Votes. [[interpretation.comments_count]] Comments</h6>
 					</div>
 					<ul class="clearfix">
-  					    <li><img class="icon left" ng-class="{'vote-active': interpretation.voting_status=='Positive'}" src="/static/css/composition/icons/upvote.svg" ng-click="vote($index, true)"></li>
+  					    <li><img class="icon first left" ng-class="{'vote-active': interpretation.voting_status=='Positive'}" src="/static/css/composition/icons/upvote.svg" ng-click="vote($index, true)"></li>
   					    <li><img class="icon left" ng-class="{'vote-active': interpretation.voting_status=='Negative'}" src="/static/css/composition/icons/downvote.svg" ng-click="vote($index, false)"></li>
   					    <li><img class="icon left" src="/static/css/composition/icons/comment.svg" ng-click="toggleShowComments($index)"></li>
-  					    <li><img class="icon right" tumblr-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/tumblr_black.svg" share-url='/arts/{{composition.slug}}'></li>
+  					    <li><img class="icon last right" tumblr-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/tumblr_black.svg" share-url='/arts/{{composition.slug}}'></li>
   					    <li><img class="icon right" pinterest-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/pinterest_black.svg" share-url='/arts/{{composition.slug}}'></li>
   					    <li><img class="icon right" facebook-share source="[[composition.url]]" description="[[interpretation.interpretation]]" title="This is a cool title" src="/static/css/composition/icons/facebook_black.svg"></li>
   					    <!-- <li><img class="icon right" src="/static/css/composition/icons/twitter.svg" ></li> -->

@@ -30,6 +30,12 @@ ol, ul {
   list-style: none;
 }
 
+@media (max-device-width: 800px) {
+  .nt-mb {
+    display: none;
+  }
+}
+
 /*===================CSS STARTS HERE=========================*/
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {

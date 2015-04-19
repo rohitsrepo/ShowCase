@@ -106,6 +106,14 @@ html, body {
   height:100%;
 }
 
+@media (max-device-width: 800px) {
+  .painting-area {
+    height: auto;
+  }
+}
+
+/*======================= TOOLBAR ==========================*/
+
 .painting-toolbar {
   width: 100%;
   background: rgba(0, 0, 0, .9);
@@ -118,8 +126,8 @@ html, body {
 
 .painting-toolbar img {
   box-sizing: content-box;
-  height: 40px;
-  width: 40px;
+  height: 2.5em;
+  width: 2.5em;
   margin: 0 5px;
   cursor: pointer;
   opacity: 0.5;
@@ -214,6 +222,13 @@ html, body {
   color: #0C0C0C;
 }
 
+@media (max-device-width: 800px) {
+  .painting-toolbar img {
+    height: 5em;
+    width: 5em;
+  }
+}
+
 /*=========== Painting area ============*/
 
 .painting-container {
@@ -272,6 +287,21 @@ html, body {
   height: 100%;
   width: auto;
   margin: 0 auto;
+}
+
+
+@media (max-width: 800px), (max-device-width: 800px) {
+  .painting {
+    width: 95%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .fullscreen {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+  }
 }
 
 .palette {
@@ -347,9 +377,14 @@ html, body {
 
 .about-painting td {
   width: 40%;
-  /*border-bottom: 1px solid #dfe2e5;*/
   border: 0;
   padding-top: 11px;
+}
+
+@media (max-width: 800px), (max-device-width: 800px) {
+  .about-painting {
+    display: none;
+  }
 }
 
 /*=================== THIRD VIEW ==================*/
@@ -361,13 +396,14 @@ html, body {
   display: block;
   position: relative;
 }
+
 .interpret-header {
   width: 65%;
   margin-bottom: 10px;
 }
 
 .inter-heading {
-  font-size: 24px;
+  font-size: 1.5em;
   margin-bottom: .5em;
   color: rgba(0, 0, 0, .6);
   float: left;
@@ -379,7 +415,7 @@ html, body {
   background-color: transparent;
   border: 1px solid #E6B800;
   border-radius: 12px;
-  font-size: 13px;
+  font-size: 1em;
   color: #E6B800;
   padding: 4px 15px;
   margin-top: 5px;
@@ -434,15 +470,35 @@ html, body {
 }
 
 .interpreter div {
-  float: left;
   margin-top: 10px;
 }
 
 .interpreter h3 {
   color: #E6B800;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 1.2em;
   margin: 0;
+}
+
+@media (max-width: 800px), (max-device-width: 800px) {
+  .interpret-area {
+    width: 90%;
+    margin: 40px auto;
+  }
+
+  .interpret-header {
+    width: 100%;
+  }
+
+  .inter-heading {
+    float: none;
+    font-size: 3em;
+    text-align: center;
+  }
+
+  .interprets {
+    width: 100%;
+  }
 }
 
 /*================= Interpretation - Content ==================*/
@@ -452,22 +508,23 @@ html, body {
   color: rgba(0, 0, 0, 0.8);
   text-decoration: none solid rgba(0, 0, 0, 0.8);
   font-family: 'taile';
+  font-size: 1.1em;
 }
 
 .interpret-content h3 {
-  font-size: 20px;
+  font-size: 1.25em;
   letter-spacing: 0.1px;
   margin: 0;
 }
 
 .interpret-content h4 {
-  font-size: 19px;
+  font-size: 1.2em;
   letter-spacing: 0.1px;
   margin: 0;
 }
 
 .interpret-content p {
-  font-size: 18px;
+  font-size: 1.1em;
   letter-spacing: 0.1px;
   margin: 0;
 }
@@ -478,7 +535,7 @@ html, body {
 }
 
 .interpret-content blockquote {
-  font-size: 18px;
+  font-size: 1.1em;
   letter-spacing: 0.1px;
   margin: 12px 0;
   padding: 0;
@@ -511,12 +568,16 @@ html, body {
 }
 
 .interpret-footer .icon {
-  height: 30px;
+  height: 1.9em;
   width: auto;
   cursor: pointer;
   opacity: 0.6;
   margin: 5px 0;
   margin-right: 5px;
+}
+
+.interpret-footer .icon.last {
+  margin-right: 0;
 }
 
 .interpret-footer .icon:hover {
@@ -534,6 +595,13 @@ html, body {
 .interpret-footer .vote-active {
   background: #E6B800;
   opacity: 1;
+}
+
+@media (max-device-width: 800px) {
+  .interpret-footer .icon {
+    height: 5em;
+    margin-right: 10px;
+  }
 }
 
 /*================= Interpretation - Comments ==================*/
@@ -654,7 +722,7 @@ html, body {
   font-family: 'volbi';
   font-weight: bold;
   font-style: italic;
-  font-size: 27px;
+  font-size: 1.5em;
   font-weight: bold;
   letter-spacing: 1px;
   margin-top: 10px;
@@ -663,8 +731,8 @@ html, body {
 
 .next-post p {
   font-family: 'taile';
-  line-height: 25px;
-  font-size: 15px;
+  line-height: 1.5em;
+  font-size: 1em;
   color: rgba(0, 0, 0, 0.8);
 }
 
@@ -681,6 +749,12 @@ html, body {
   color: white;
   text-align: center;
   letter-spacing: 3px;
+}
+
+@media (max-width: 800px), (max-device-width: 800px) {
+  .next-post {
+    width: 95%;
+  }
 }
 
 /*================ ALERT ====================*/

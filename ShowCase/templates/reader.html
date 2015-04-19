@@ -61,7 +61,9 @@
 	</section>
 	<section class="posts" infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore'>
 		<section class="post clearfix" ng-repeat="post in posts">
-				<a target="_blank" ng-href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]"><img class="artwork" ng-src="[[post.composition.matter]]" alt="[[post.interpretation.interpretation.slice(0, 140) + '.....Read more on ThirdDime.']]" /></a>
+				<a target="_blank" ng-href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]">
+					<img class="artwork" ng-src="[[post.composition.matter]]" alt="[[post.interpretation.interpretation.slice(0, 140) + '.....Read more on ThirdDime.']]" />
+				</a>
 				<sidebar class="description">
 					<header class="description-header">
 						<a target="_blank" href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]"><h4>[[post.composition.title | titlecase]]</h4></a>
