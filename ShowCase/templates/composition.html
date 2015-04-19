@@ -72,9 +72,9 @@
 				<img title="Zoom Out" class="zoom-out" src="/static/css/composition/icons/zoom-out.svg">
 			</section>
 			<section class="social-icons">
-				<img title="Facebook" facebook-share src="/static/css/composition/icons/facebook.svg" share-url='/arts/[[post.composition.slug]]'>
-				<img title="Pinterest" pinterest-share source="{{composition.matter.url}}" description="{{composition.description}}" src="/static/css/composition/icons/pinterest.svg" share-url='/arts/{{composition.slug}}'>
-				<img title="Tumblr" tumblr-share source="{{composition.matter.url}}" description="{{composition.description}}" src="/static/css/composition/icons/tumblr.svg" share-url='/arts/{{composition.slug}}'>
+				<img title="Facebook" facebook-share src="/static/css/composition/icons/facebook.svg" share-url='/arts/{{composition.slug}}'>
+				<img title="Pinterest" pinterest-share source="{{composition.matter.url}}" description="{{top_interpretation}}" src="/static/css/composition/icons/pinterest.svg" share-url='/arts/{{composition.slug}}'>
+				<img title="Tumblr" tumblr-share source="{{composition.matter.url}}" description="{{top_interpretation}}" src="/static/css/composition/icons/tumblr.svg" share-url='/arts/{{composition.slug}}'>
 				<span class="more-options">
 					<img ng-click="showMoreOptions = !showMoreOptions" title="More" src="/static/css/composition/icons/more_options.svg">
 					<ul ng-cloak ng-show="showMoreOptions" class="more-actions">
@@ -122,9 +122,9 @@
   					    <li><img class="icon first left" ng-class="{'vote-active': interpretation.voting_status=='Positive'}" src="/static/css/composition/icons/upvote.svg" ng-click="vote($index, true)"></li>
   					    <li><img class="icon left" ng-class="{'vote-active': interpretation.voting_status=='Negative'}" src="/static/css/composition/icons/downvote.svg" ng-click="vote($index, false)"></li>
   					    <li><img class="icon left" src="/static/css/composition/icons/comment.svg" ng-click="toggleShowComments($index)"></li>
-  					    <li><img class="icon last right" tumblr-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/tumblr_black.svg" share-url='/arts/{{composition.slug}}'></li>
-  					    <li><img class="icon right" pinterest-share source="[[composition.url]]" description="[[interpretation.interpretation]]" src="/static/css/composition/icons/pinterest_black.svg" share-url='/arts/{{composition.slug}}'></li>
-  					    <li><img class="icon right" facebook-share source="[[composition.url]]" description="[[interpretation.interpretation]]" title="This is a cool title" src="/static/css/composition/icons/facebook_black.svg"></li>
+  					    <li><img class="icon last right" tumblr-share source="[[composition.url]]" description="[[interpretation.text]]" src="/static/css/composition/icons/tumblr_black.svg" share-url='/arts/{{composition.slug}}'></li>
+  					    <li><img class="icon right" pinterest-share source="[[composition.url]]" description="[[interpretation.text]]" src="/static/css/composition/icons/pinterest_black.svg" share-url='/arts/{{composition.slug}}'></li>
+  					    <li><img class="icon right" facebook-share share-url="/arts/{{composition.slug}}" src="/static/css/composition/icons/facebook_black.svg"></li>
   					    <!-- <li><img class="icon right" src="/static/css/composition/icons/twitter.svg" ></li> -->
   					</ul>
   					<section class="comments" ng-show="interpretation.showComments">

@@ -9,7 +9,7 @@ angular.module('module.sharing')
 			var shareImage = baseUrl + attrs['source'];
 			var shareUrl = baseUrl + attrs['shareUrl'] + '#?scrollTo=painting';
 			var url = "http://www.tumblr.com/share/photo?source="+
-			encodeURIComponent(shareImage)+"&caption="+(attrs['description'])+"&clickthru="+encodeURIComponent(shareUrl);
+			encodeURIComponent(shareImage)+"&caption="+encodeURIComponent(attrs['description'])+"&clickthru="+encodeURIComponent(shareUrl);
 			element.bind('click', function () {
 				$window.open(url, '_blank', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600')
 			});
