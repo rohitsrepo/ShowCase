@@ -24,7 +24,7 @@ angular.module("ReaderApp")
 
 				if (posts.next == null){
 					$scope.postsMeta.disableGetMore = true;
-					analytics.logEvent('Reader', 'scroll', 'Load More Posts - Hit Bottom', $scope.posts.length);
+					analytics.logEvent('Reader', 'Load More Posts - Hit Bottom');
 				}
 
 				$scope.postsMeta.busy = false;
@@ -41,12 +41,12 @@ angular.module("ReaderApp")
 		
 		$scope.postsMeta.busy = true;
 		getPosts($scope.postsMeta);
-		analytics.logEvent('Reader', 'scroll', 'Load More Posts', $scope.posts.length);
+		analytics.logEvent('Reader', 'Load More Posts');
 	};
 
 	$scope.vote = function (index, vote) {
 		var post = $scope.posts[index];
-		analytics.logEvent('Reader', 'click', 'vote');
+		analytics.logEvent('Reader', 'vote');
 		interpretationModel.vote(post.composition.id, post.interpretation.id, vote).then(function (response) {
 			post.interpretation.vote.total = response.total;
 			post.voting_status = vote ? "Positive" : "Negative";

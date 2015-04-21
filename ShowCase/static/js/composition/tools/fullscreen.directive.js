@@ -1,5 +1,5 @@
 angular.module('module.tools')
-.directive('fullscreen', function () {
+.directive('fullscreen', ['analytics', function (analytics) {
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
@@ -24,4 +24,4 @@ angular.module('module.tools')
 			});
 		}
 	};
-});
+}]);

@@ -3,7 +3,7 @@
 		<section class="login">
 			<h4>Login</h4>
 			<fieldset class="social">
-				<button class="facebook" ng-click="loginFB()" analytics-click analytics-data="['Top Bar-Right', 'click', 'SignUp-FaceBook']">Log in with Facebook</button>
+				<button class="facebook" ng-click="loginFB()" analytics-click analytics-data="['Top Bar-Right', 'SignUp-FaceBook']">Log in with Facebook</button>
 				<!-- <button class="twitter" >Login with Twitter</button> -->
 			</fieldset>
 			<h6>Or</h6>	
@@ -18,7 +18,7 @@
 				<div ng-loak ng-show="loginForm.$submitted || loginForm.uPassword.$dirty">
 				    <span ng-show="loginForm.uPassword.$error.required">Please provide a password.</span>
 			   </div>
-				<input class="login-button" type="button" value="LOGIN" ng-click="login(user)" analytics-click analytics-data="['Top Bar-Right', 'click', 'SignUp-Native']">
+				<input class="login-button" type="button" value="LOGIN" ng-click="login(user)" analytics-click analytics-data="['Top Bar-Right', 'SignUp-Native']">
 			</form>
 		</section>
 		<footer>

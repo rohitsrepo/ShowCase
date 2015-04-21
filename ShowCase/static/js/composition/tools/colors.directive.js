@@ -1,5 +1,5 @@
 angular.module('module.tools')
-.directive('colorPalette', function () {
+.directive('colorPalette', ['analytics', function (analytics) {
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
@@ -26,4 +26,4 @@ angular.module('module.tools')
 			});
 		}
 	};
-});
+}]);

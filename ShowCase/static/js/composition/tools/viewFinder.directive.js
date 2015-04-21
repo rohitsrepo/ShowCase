@@ -1,5 +1,5 @@
 angular.module('module.tools')
-.directive('viewFinder', function () {
+.directive('viewFinder', ['analytics', function (analytics) {
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
@@ -40,4 +40,4 @@ angular.module('module.tools')
 			});
 		}
 	};
-});
+}]);

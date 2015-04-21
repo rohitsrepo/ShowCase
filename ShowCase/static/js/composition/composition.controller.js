@@ -37,7 +37,7 @@ controller("compositionController", [
 				$('html,body').animate({
 			        'scrollTop': elementTop
 			    }, 750);
-				analytics.logEvent('Composition', 'Init', 'scroll-to: ' + scrollTo);
+				analytics.logEvent('Composition', 'scroll-to: ' + scrollTo);
 			}
 		}, interval);
 		
@@ -51,7 +51,7 @@ controller("compositionController", [
 	});
 
 	$scope.vote = function (index, vote) {
-		analytics.logEvent('Composition', 'click', 'Vote');
+		analytics.logEvent('Composition', 'Vote');
 		interpretation = $scope.interpretations[index];
 		interpretationModel.vote($scope.composition.id, interpretation.id, vote).then(function (response) {
 			interpretation.vote.total = response.total;
@@ -65,7 +65,7 @@ controller("compositionController", [
 		if (interpretation.showComments) {
 			getComments(index);
 		};
-		analytics.logEvent('Composition', 'click', 'Comments: ' + interpretation.showComments);
+		analytics.logEvent('Composition', 'ShowComments: ' + interpretation.showComments);
 	};
 
 	$scope.addComment = function (index, comment) {
@@ -74,7 +74,7 @@ controller("compositionController", [
 			interpretation.comments.push(res);
 			interpretation.comment = "";
 		});
-		analytics.logEvent('Composition', 'click', 'Add Comment');
+		analytics.logEvent('Composition', 'Add Comment');
 	};
 
 	var getComments = function (index) {
@@ -92,7 +92,7 @@ controller("compositionController", [
 			return;
 		}
 
-		analytics.logEvent('Composition', 'click', 'ToolBar - Outline: ' + $scope.isOutlineActive);
+		analytics.logEvent('Composition', 'ToolBar - Outline: ' + $scope.isOutlineActive);
 		
 		if($scope.isOutlineActive!="active"){
 			$scope.isOutlineActive = '';
@@ -113,7 +113,7 @@ controller("compositionController", [
 		if ($scope.isGrayScaleDisable && !$scope.isGrayScaleActive) {
 			return;
 		}
-		analytics.logEvent('Composition', 'click', 'ToolBar - GrayScale: ' + $scope.isGrayScaleActive);
+		analytics.logEvent('Composition', 'ToolBar - GrayScale: ' + $scope.isGrayScaleActive);
 
 		if($scope.isGrayScaleActive!="active"){
 			$scope.isGrayScaleActive = '';
@@ -135,7 +135,7 @@ controller("compositionController", [
 			showAlert('Flagging this content. The content is under review now.');
 			$scope.showMoreOptions = false;
 		});
-		analytics.logEvent('Composition', 'click', 'ToolBar - Report Content');
+		analytics.logEvent('Composition', 'ToolBar - Report Content');
 	};
 
 	$scope.getNextPosts = function () {
@@ -159,7 +159,7 @@ controller("compositionController", [
 	};
 
 	$scope.interpret = function (event) {
-		analytics.logEvent('Composition', 'click', 'Add Interpretation');
+		analytics.logEvent('Composition', 'Add Interpretation');
 		interpretation.add(event, $scope.composition.id)
 		.then(function () {
 			showAlert("Your submission is under review.");
