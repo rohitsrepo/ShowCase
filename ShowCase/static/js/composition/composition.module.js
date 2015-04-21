@@ -9,13 +9,11 @@ angular.module("CompositionApp", [
     "module.model",
     "module.sharing",
     'module.scrollTo',
-    'module.color',
-    'module.viewFinder',
-    'module.fullscreen',
-    'module.panZoom',
+    'module.tools',
     'module.titlecase',
     'module.underConstruction',
-    'module.interpret'])
+    'module.interpret',
+    'module.analytics'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

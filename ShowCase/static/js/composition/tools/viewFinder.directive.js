@@ -1,4 +1,4 @@
-angular.module('module.viewFinder', [])
+angular.module('module.tools')
 .directive('viewFinder', function () {
 	return {
 		restrict: 'A',
@@ -8,6 +8,8 @@ angular.module('module.viewFinder', [])
 
 			var painting;
 			element.bind('click', function () {
+				analytics.logEvent('Composition', 'click', 'ToolBar - ViewFinder: ' + scope.isViewFinderActive);
+
 				if(element.hasClass('disable')){
 					return;
 				}

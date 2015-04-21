@@ -1,4 +1,4 @@
-angular.module('module.panZoom', [])
+angular.module('module.tools')
 .directive('panZoom', function () {
 	return {
 		restrict: 'A',
@@ -9,6 +9,7 @@ angular.module('module.panZoom', [])
 			var painting = $('.painting');
 			
 			element.bind('click', function () {
+				analytics.logEvent('Composition', 'click', 'ToolBar - PanZoom: ' + scope.isPanZoomActive);
 				if(element.hasClass('disable')){
 					return;
 				}

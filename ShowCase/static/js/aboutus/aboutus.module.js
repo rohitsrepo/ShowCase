@@ -5,7 +5,8 @@ angular.module("AboutUsApp", [
     "module.topbar",
     "module.model",
     'module.titlecase',
-    'module.scrollTo'])
+    'module.scrollTo',
+    'module.analytics'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

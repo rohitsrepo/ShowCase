@@ -1,6 +1,24 @@
 angular.module("CompositionApp").
-controller("compositionController", ["$window", "$scope", "posts", "contentManager", "interpretationModel", '$location' , '$timeout', 'interpretation',
-	function ($window, $scope, posts, contentManager, interpretationModel, $location, $timeout, interpretation) {
+controller("compositionController", [
+	"$window",
+	"$scope",
+	"posts",
+	"contentManager",
+	"interpretationModel",
+	'$location',
+	'$timeout',
+	'interpretation',
+	'analytics', 
+	function ($window,
+		$scope,
+		posts,
+		contentManager,
+		interpretationModel,
+		$location,
+		$timeout,
+		interpretation,
+		analytics)
+	{
 
 	$scope.composition = {};
 	$scope.interpretations = [];
@@ -19,6 +37,7 @@ controller("compositionController", ["$window", "$scope", "posts", "contentManag
 				$('html,body').animate({
 			        'scrollTop': elementTop
 			    }, 750);
+				analytics.logEvent('Composition', 'Init', 'scroll-to: ' + scrollTo);
 			}
 		}, interval);
 		
@@ -32,6 +51,7 @@ controller("compositionController", ["$window", "$scope", "posts", "contentManag
 	});
 
 	$scope.vote = function (index, vote) {
+		analytics.logEvent('Composition', 'click', 'Vote');
 		interpretation = $scope.interpretations[index];
 		interpretationModel.vote($scope.composition.id, interpretation.id, vote).then(function (response) {
 			interpretation.vote.total = response.total;
@@ -45,6 +65,7 @@ controller("compositionController", ["$window", "$scope", "posts", "contentManag
 		if (interpretation.showComments) {
 			getComments(index);
 		};
+		analytics.logEvent('Composition', 'click', 'Comments: ' + interpretation.showComments);
 	};
 
 	$scope.addComment = function (index, comment) {
@@ -53,6 +74,7 @@ controller("compositionController", ["$window", "$scope", "posts", "contentManag
 			interpretation.comments.push(res);
 			interpretation.comment = "";
 		});
+		analytics.logEvent('Composition', 'click', 'Add Comment');
 	};
 
 	var getComments = function (index) {
@@ -70,6 +92,8 @@ controller("compositionController", ["$window", "$scope", "posts", "contentManag
 			return;
 		}
 
+		analytics.logEvent('Composition', 'click', 'ToolBar - Outline: ' + $scope.isOutlineActive);
+		
 		if($scope.isOutlineActive!="active"){
 			$scope.isOutlineActive = '';
 			$scope.isGrayScaleDisable = true;
@@ -89,6 +113,7 @@ controller("compositionController", ["$window", "$scope", "posts", "contentManag
 		if ($scope.isGrayScaleDisable && !$scope.isGrayScaleActive) {
 			return;
 		}
+		analytics.logEvent('Composition', 'click', 'ToolBar - GrayScale: ' + $scope.isGrayScaleActive);
 
 		if($scope.isGrayScaleActive!="active"){
 			$scope.isGrayScaleActive = '';
@@ -110,6 +135,7 @@ controller("compositionController", ["$window", "$scope", "posts", "contentManag
 			showAlert('Flagging this content. The content is under review now.');
 			$scope.showMoreOptions = false;
 		});
+		analytics.logEvent('Composition', 'click', 'ToolBar - Report Content');
 	};
 
 	$scope.getNextPosts = function () {
@@ -133,6 +159,7 @@ controller("compositionController", ["$window", "$scope", "posts", "contentManag
 	};
 
 	$scope.interpret = function (event) {
+		analytics.logEvent('Composition', 'click', 'Add Interpretation');
 		interpretation.add(event, $scope.composition.id)
 		.then(function () {
 			showAlert("Your submission is under review.");

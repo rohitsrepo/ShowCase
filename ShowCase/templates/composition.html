@@ -183,8 +183,8 @@
 	</section> 
 
 	<footer class="primary-footer">
-		<section class="next-post" ng-repeat="post in nextPosts">
-		<a href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]"  >
+		<section analytics-click analytics-data="['Composition', 'click', 'Next Post']" class="next-post" ng-repeat="post in nextPosts">
+		<a href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]" target="_blank" >
 			<div class="painting-holder" ng-style="{'background-image': 'url([[post.composition.matter]])'}"></div>
 			<section class="post-details">
 				<h4>[[post.composition.title | titlecase]]</h4>
@@ -249,16 +249,19 @@
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/colors.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/viewFinder.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/fullscreen.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/panZoom.directive.js"></script>
+	<script type="text/javascript" src="/static/js/composition/tools/tools.module.js"></script>
+	<script type="text/javascript" src="/static/js/composition/tools/colors.directive.js"></script>
+	<script type="text/javascript" src="/static/js/composition/tools/viewFinder.directive.js"></script>
+	<script type="text/javascript" src="/static/js/composition/tools/fullscreen.directive.js"></script>
+	<script type="text/javascript" src="/static/js/composition/tools/panZoom.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
 	<script type="text/javascript" src="/static/js/components/underConstruction/underConstruction.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/underConstruction/underConstruction.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/interpret/interpret.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/interpret/interpret.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/interpret/interpret.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/analytics/analytics.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/analytics/analytics.directive.js"></script>
 	<!-- endbuild -->
 </body>
 </html>

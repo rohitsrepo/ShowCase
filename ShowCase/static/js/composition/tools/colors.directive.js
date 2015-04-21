@@ -1,4 +1,4 @@
-angular.module('module.color', [])
+angular.module('module.tools')
 .directive('colorPalette', function () {
 	return {
 		restrict: 'A',
@@ -6,6 +6,7 @@ angular.module('module.color', [])
 			scope.isColorPaletteDisable = false;
 
 			element.bind('click', function () {
+				analytics.logEvent('Composition', 'click', 'ToolBar - ColorPalette: ' + scope.isColorPaletteActive);
 				if(element.hasClass('disable')){
 					return;
 				}

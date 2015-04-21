@@ -1,4 +1,4 @@
-angular.module('module.fullscreen', [])
+angular.module('module.tools')
 .directive('fullscreen', function () {
 	return {
 		restrict: 'A',
@@ -18,6 +18,7 @@ angular.module('module.fullscreen', [])
 
 			var painting;
 			element.bind('click', function () {
+				analytics.logEvent('Composition', 'click', 'ToolBar - Fullscreen: ' + scope.isFullScreen);
 				painting = $('.painting').not('.ng-hide');
 				painting.fullScreen({background: '#fff', callback: fullscreenCallback});
 			});
