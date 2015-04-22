@@ -653,7 +653,7 @@ html, body {
 
 .end-marker {
   width: 650px;
-  margin: 50px auto;
+  margin: 3em auto;
   vertical-align: middle;
 }
 
@@ -661,12 +661,12 @@ html, body {
   width: 300px;
   display: inline-block;
   margin: 0;
-  margin-bottom: 25px;
+  margin-bottom: 1.4em;
   opacity: 0.5;
 }
 
 .end-marker img {
-  width: 50px;
+  width: 3em;
   height: auto;
   padding: 3px;
   -webkit-border-radius: 50%;
@@ -675,6 +675,17 @@ html, body {
   -o-border-radius: 50%;
   border-radius: 50%;
   border: 1px solid #c8c7b4; 
+}
+
+@media (max-device-width: 800px) {
+  .end-marker hr {
+    margin-bottom: 3em;
+    width: 275px;
+  }
+
+  .end-marker img {
+    width: 6em;
+  }
 }
 
 /*=========== Priamry Footer - Next Posts ===============*/
@@ -739,21 +750,52 @@ html, body {
 .next-post .next-footer {
   position: absolute;
   bottom: 0;
-  height: 40px;
+  height: 2.5em;
   width: 100%;
   background-color: #E6B800;
 }
 
 .next-post .next-footer h5 {
-  padding-top: 15px;
+  padding-top: 1em;
   color: white;
   text-align: center;
   letter-spacing: 3px;
 }
 
 @media (max-width: 800px), (max-device-width: 800px) {
+  .primary-footer {
+    width: 80%;
+    height: 50%;
+  }
+
   .next-post {
-    width: 95%;
+    width: 100%;
+    display: block;
+    margin-left: 0;
+    margin-bottom: 1em;
+  }
+
+  .next-post .painting-holder {
+    height: 65%;
+  }
+  .next-post h4 {
+    font-size: 3em;
+    margin-left: 10px;
+  }
+
+  .next-post p {
+    font-size: 2em;
+    margin-left: 10px;
+  }
+
+  .next-post .next-footer {
+    height: 4.5em;
+  }
+  .next-post .next-footer h5 {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    vertical-align: middle;
+    font-size: 2.5em;
   }
 }
 
