@@ -50,7 +50,7 @@ angular.module("ReaderApp")
 
 	$scope.vote = function (index, vote) {
 		var post = $scope.posts[index];
-		analytics.logEvent('Reader', 'vote');
+		analytics.logEvent('Reader', 'Feed-Comment-Click', post.composition.slug);
 		interpretationModel.vote(post.composition.id, post.interpretation.id, vote).then(function (response) {
 			post.interpretation.vote.total = response.total;
 			post.voting_status = vote ? "Positive" : "Negative";
