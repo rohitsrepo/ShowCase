@@ -27,6 +27,7 @@ controller("compositionController", [
 	$scope.init = function (id, url) {
 		$scope.composition.id = id;
 		$scope.composition.url = url;
+		analytics.logEvent('Composition', 'Init');
 	};
 
 	var checkForScroll = function (interval) {

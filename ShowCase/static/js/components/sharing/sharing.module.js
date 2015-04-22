@@ -1,1 +1,1 @@
-angular.module("module.sharing", []);
+angular.module("module.sharing", ['module.analytics']);

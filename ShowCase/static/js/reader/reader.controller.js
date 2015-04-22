@@ -40,8 +40,12 @@ angular.module("ReaderApp")
 		}
 		
 		$scope.postsMeta.busy = true;
+		if ($scope.posts.length != 0){
+			analytics.logEvent('Reader', 'Load More Posts');
+		} else {
+			analytics.logEvent('Reader', 'Init');
+		}
 		getPosts($scope.postsMeta);
-		analytics.logEvent('Reader', 'Load More Posts');
 	};
 
 	$scope.vote = function (index, vote) {

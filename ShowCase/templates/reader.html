@@ -38,17 +38,17 @@
 			<section>
 					<h1>Explore Art through Interpretations and Stories</h1>
 					<h3>Browse through our growing collection of paintings and discover deeper layers behind each brushstroke.</h3>
-					<h4 scroll-to="#posts" class="explore">EXPLORE ART</h4>
+					<h4 scroll-to="#posts" class="explore" analytics-click analytics-data="['Reader', 'Button-Explore Art']">EXPLORE ART</h4>
 			</section>
 			<footer class="head-footer">
 				<ul class="social clearfix">
-					<li><a target="_blank" href="https://www.pinterest.com/thirddime/thirddime-art/">
+					<li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Pinterest']" href="https://www.pinterest.com/thirddime/thirddime-art/" >
 						<img title="Pinterest" src="/static/css/reader/icons/pinterest-filled.svg">
 					</a></li>
-					<li><a target="_blank" href="https://twitter.com/thirddime">
+					<li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Twitter']" href="https://twitter.com/thirddime">
 						<img title="Twitter" src="/static/css/reader/icons/twitter-filled.svg">
 					</a></li>
-					<li><a target="_blank" href="https://www.facebook.com/thirddimeart">
+					<li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Facebook']" href="https://www.facebook.com/thirddimeart">
 						<img title="Facebook" src="/static/css/reader/icons/facebook-filled.svg">
 					</a></li>
 				</ul>
@@ -60,7 +60,7 @@
 			<hr>
 	</section>
 	<section class="posts" infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore'>
-		<section class="post clearfix" ng-repeat="post in posts">
+		<section class="post clearfix" ng-repeat="post in posts" analytics-scroll analytics-data="['Reader', 'Feed-Post-View:' + $index]">
 				<a target="_blank" ng-href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]">
 					<img class="artwork" ng-src="[[post.composition.matter]]" alt="[[post.interpretation.interpretation.slice(0, 140) + '.....Read more on ThirdDime.']]" />
 				</a>

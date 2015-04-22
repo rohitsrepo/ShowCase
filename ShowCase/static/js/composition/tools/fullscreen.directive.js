@@ -18,7 +18,7 @@ angular.module('module.tools')
 
 			var painting;
 			element.bind('click', function () {
-				analytics.logEvent('Composition', 'click', 'ToolBar - Fullscreen: ' + scope.isFullScreen);
+				analytics.logEvent('Composition', 'ToolBar - Fullscreen: ' + scope.isFullScreen);
 				painting = $('.painting').not('.ng-hide');
 				painting.fullScreen({background: '#fff', callback: fullscreenCallback});
 			});

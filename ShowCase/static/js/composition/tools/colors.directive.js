@@ -6,7 +6,7 @@ angular.module('module.tools')
 			scope.isColorPaletteDisable = false;
 
 			element.bind('click', function () {
-				analytics.logEvent('Composition', 'click', 'ToolBar - ColorPalette: ' + scope.isColorPaletteActive);
+				analytics.logEvent('Composition', 'ToolBar - ColorPalette: ' + scope.isColorPaletteActive);
 				if(element.hasClass('disable')){
 					return;
 				}

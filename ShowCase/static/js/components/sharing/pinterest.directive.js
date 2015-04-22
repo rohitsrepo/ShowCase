@@ -1,5 +1,5 @@
 angular.module('module.sharing')
-.directive('pinterestShare', ['$window', '$location', function ($window, $location) {
+.directive('pinterestShare', ['$window', '$location', 'analytics', function ($window, $location, analytics) {
 	'use strict';
 
 	return {
@@ -11,6 +11,12 @@ angular.module('module.sharing')
 			var url = "http://pinterest.com/pin/create/bookmarklet/?media="+encodeURIComponent(shareImage)+
 			"&url="+encodeURIComponent(shareUrl)+"& is_video=false&description="+encodeURIComponent(attrs['description']);
 			element.bind('click', function () {
+				if(baseUrl.indexOf("arts") > -1){
+					analytics.logEvent("Composition", "Social-Share: Pinterest");
+				} else {
+					analytics.logEvent("Reader", "Social-Share: Pinterest");
+				}
+				
 				$window.open(url, '_blank', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600')
 			});
 		}

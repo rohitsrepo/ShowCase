@@ -9,7 +9,7 @@ angular.module('module.tools')
 			var painting = $('.painting');
 			
 			element.bind('click', function () {
-				analytics.logEvent('Composition', 'click', 'ToolBar - PanZoom: ' + scope.isPanZoomActive);
+				analytics.logEvent('Composition', 'ToolBar - PanZoom: ' + scope.isPanZoomActive);
 				if(element.hasClass('disable')){
 					return;
 				}

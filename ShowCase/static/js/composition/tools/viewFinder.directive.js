@@ -8,7 +8,7 @@ angular.module('module.tools')
 
 			var painting;
 			element.bind('click', function () {
-				analytics.logEvent('Composition', 'click', 'ToolBar - ViewFinder: ' + scope.isViewFinderActive);
+				analytics.logEvent('Composition', 'ToolBar - ViewFinder: ' + scope.isViewFinderActive);
 
 				if(element.hasClass('disable')){
 					return;
