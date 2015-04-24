@@ -36,7 +36,7 @@ html, body {
   text-align: center;
   width: 70%;
   margin: 0 auto;
-  height: 100%;
+  /*height: 100%;*/
   color: white;
 }
 
@@ -56,9 +56,32 @@ html, body {
   font-weight: 400;
   font-style: italic;
   font-size: 1.5em;
-  margin-bottom: 25px;
+  margin-bottom: 1em;
   letter-spacing: 1px;
   line-height: 1.5em;
+}
+
+
+@media (max-width: 800px) {
+  .banner {
+    height: 600px;
+    min-height: 0;
+  }
+
+  .banner section {
+    width: 90%;
+  }
+
+  .banner section h1 {
+    font-size: 2.2em;
+    padding-top: 25%;
+  }
+
+  .banner section h3 {
+    font-size: 1.2em;
+    margin-bottom: 2.5em;
+  }
+
 }
 
 /*============== EXPLORE BUTTON ====================*/
@@ -70,7 +93,7 @@ html, body {
   border: 2px solid #fff;
   border-radius: 1px;
   text-align: center;
-  font-size: 18px;
+  font-size: 1.1em;
   letter-spacing: 0.1em;
   cursor: pointer;
   opacity: 0.9;
@@ -101,6 +124,21 @@ html, body {
 .head-footer .social li img {
   width: 100%;
   height: 100%;
+}
+
+@media (max-width: 800px) {
+  .head-footer .social {
+    position: static;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  .head-footer .social li {
+    float: none;
+    display: inline-block;
+  }
 }
 
 /*================= FEEDS ==================*/
@@ -182,7 +220,7 @@ html, body {
   text-decoration: none solid #E6B800;
 }
 
-@media (max-width: 800px), (max-device-width: 800px) {
+@media (max-width: 800px) {
     .artwork {
       width: 100%;
       float: none;
@@ -274,20 +312,9 @@ html, body {
   opacity: 1;
 }
 
-@media (max-device-width: 800px) {
-  .description-footer header {
-    display: none;
-  }
-
-  .description-footer .icon {
-    height: 4em;
-  }
-  
-  .description-footer .icon-left{
-    margin-right: 10px;
-  }
-  
-  .description-footer .icon-right{
+@media (max-width: 800px) {
+  .description-footer {
+    margin-top: 10px;
     margin-left: 10px;
   }
 }

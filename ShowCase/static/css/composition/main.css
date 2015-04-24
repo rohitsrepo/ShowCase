@@ -70,6 +70,8 @@ html, body {
   cursor: pointer;
 }
 
+/*================ DOWN ARROW ======================*/
+
 .go-down {
   position: absolute;
   bottom: 15%;
