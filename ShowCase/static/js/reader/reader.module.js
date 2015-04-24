@@ -8,7 +8,6 @@ angular.module("ReaderApp", [
     'module.sharing',
     'module.scrollTo',
     'module.titlecase',
-    'module.underConstruction',
     'module.analytics'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";

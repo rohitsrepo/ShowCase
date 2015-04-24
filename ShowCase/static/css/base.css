@@ -199,6 +199,11 @@ a {
   opacity: 1;
 }
 
+@media (max-width: 800px) {
+  .curtain-left {
+    width: 80%;
+  }
+}
 
 /*================ CURTAIN MENU - RIGHT ================*/
 
@@ -350,6 +355,12 @@ a {
   margin-bottom: 5px;
 }
 
+@media (max-width: 800px) {
+  .curtain-right {
+    width: 80%;
+  }
+}
+
 /*==============Right Curtain - User ===================*/
 
 .curtain-user {
@@ -379,4 +390,10 @@ a {
 
 .curtain-user .user a:hover{
   color: rgba(0, 0, 0, 0.95);
+}
+
+@media (max-width: 800px) {
+  .curtain-user {
+    width: 80%;
+  }
 }
