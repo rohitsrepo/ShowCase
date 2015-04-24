@@ -45,6 +45,12 @@ html, body {
   color: white;
 }
 
+@media (max-width: 800px) {
+  .banner h1 {
+    font-size: 3em;
+    padding-top: 20%;
+  }
+}
 
 /*=========== HEAD FOOTER =====================*/
 .head-footer .social {

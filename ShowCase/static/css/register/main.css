@@ -29,18 +29,31 @@ a {
 }
 
 .primary-header h1 {
-  font-size: 50px;
+  font-size: 3em;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
 .primary-header h2 {
-  font-size: 25px;
+  font-size: 1.5em;
 }
 
 .auth-user,
 .auth-user a {
   color: rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 800px) {
+  .primary-header {
+    width: 90%;
+  }
+  .primary-header h1 {
+    font-size: 2em;
+  }
+
+  .primary-header h2 {
+    font-size: 1em;
+  }
 }
 
 /*================ Auth area ========================*/
@@ -55,9 +68,24 @@ a {
   display: inline-block;
   text-align: center;
   margin-top: 70px;
-  font-size: 60px;
+  font-size: 4em;
   color: rgba(0, 0, 0, 0.5);
 }
+
+@media (max-width: 800px) {
+  .auth {
+    width: 90%;
+  }
+
+  .auth h5 {
+    width: 90%;
+    margin: 5px 0;
+    vertical-align: middle;
+    font-size: 2em;
+  }
+}
+
+/*============== Social ================*/
 
 .auth .social {
   float: left;
@@ -68,8 +96,8 @@ a {
 .auth .social button {
   width: 80%;
   margin: 0 auto;
-  margin-bottom: 40px;
-  font-size: 16px;
+  margin-bottom: 2.5em;
+  font-size: 1em;
   color: #FFFFFF;
   text-align: center;
   display: inline-block;
@@ -90,6 +118,20 @@ a {
   background: #3C5A9D;
 }
 
+@media (max-width: 800px) {
+  .auth .social {
+    float: none;
+    width: 100%;
+  }
+
+  .auth .social button {
+    margin-bottom: 0.6em;
+    width: 100%;
+  }
+}
+
+/*=============== Native ==================*/
+
 .auth .native {
   float: right;
   width: 40%;
@@ -103,7 +145,7 @@ a {
 
 .auth .native input {
   display: block;
-  font-size: 16px;
+  font-size: 1em;
   padding: 1.3em 2em;
   width: 100%;
   margin-bottom: 10px;
@@ -123,7 +165,7 @@ a {
 }
 
 .auth .native .signup-button {
-  width: 45%;
+  width: 100%;
   display: inline-block;
   padding: 1em 1.5em;
   background-color: #FFFFFF;
@@ -153,6 +195,13 @@ a {
 
 .auth footer a {
   font-weight: bold;
+}
+
+@media (max-width: 800px) {
+  .auth .native {
+    float: none;
+    width: 100%;
+  }
 }
 
 /*================= Clearfix =====================*/

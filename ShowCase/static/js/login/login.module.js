@@ -6,7 +6,7 @@ angular.module("LoginApp", [
     "module.model",
     'module.titlecase',
     'module.scrollTo',
-    'module.login'])
+    'module.analytics'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 
