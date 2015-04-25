@@ -7,7 +7,6 @@ controller("compositionController", [
 	"interpretationModel",
 	'$location',
 	'$timeout',
-	'interpretation',
 	'analytics', 
 	function ($window,
 		$scope,
@@ -16,13 +15,13 @@ controller("compositionController", [
 		interpretationModel,
 		$location,
 		$timeout,
-		interpretation,
 		analytics)
 	{
 
 	$scope.composition = {};
 	$scope.interpretations = [];
 	$scope.hideName = true;
+	$scope.interpretationModalshown = false;
 
 	$scope.init = function (id, url) {
 		$scope.composition.id = id;
@@ -161,11 +160,23 @@ controller("compositionController", [
 		}, 4000);
 	};
 
-	$scope.interpret = function (event) {
+	$scope.showInterpretationModal = function () {
+		$scope.interpretationModalshown = true;
+	};
+
+	$scope.hideInterpretationModal = function () {
+		$scope.interpretationModalshown = false;
+	};
+
+	$scope.saveInterpretation = function () {
 		analytics.logEvent('Composition', 'Add Interpretation', $scope.composition.url);
-		interpretation.add(event, $scope.composition.id)
+
+		interpretationModel.addInterpretation($scope.composition.id, $('.new-interpretation').html())
 		.then(function () {
+			$scope.hideInterpretationModal();
 			showAlert("Your submission is under review.");
+			 $('.new-interpretation').html('');
+			 $('.new-interpretation').addClass('medium-editor-placeholder');
 		});
 	};
 

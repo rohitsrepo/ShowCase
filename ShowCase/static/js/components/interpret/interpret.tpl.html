@@ -1,38 +1,15 @@
-<md-dialog class="under-construction" flex="66" aria-label="Add Interpretation">
-  <md-content>
-    	<form name="interpretForm" class="interpret-form" novalidate>
-    		<textarea rich-edit class="description interpret-content" autofocus="autofocus" rows="10" required></textarea>
-    	</form>
-
-  </md-content>
-  <footer class="md-actions">
-  	<button ng-click="cancel()">Cancel</button>
-  	<button ng-click="addInterpretation()" class="submit">Submit</button>
-  </footer>
-</md-dialog>
-<style type="text/css">
-	.interpret-form ,textarea {
-		-webkit-appearance: none;
-	    display: block;
-	    width: 100%;
-	    margin: 20px 0;
-	    border: none;
-	    font-size: 20px;
-	    color: rgba(0, 0, 0, 0.8);
-	}
-
-	.md-actions button {
-		background-color: white;
-		color: rgba(0, 0, 0, 0.6);
-		border: none;
-		opacity: 0.8;
-	}
-
-	.md-actions button:hover {
-		opacity: 1;
-	}
-
-	.md-actions .submit {
-		color: #E6B800;
-	}
-</style>
+<section class="interpret-modal" ng-show="interpretationModalshown" ng-cloaks>
+	<div class="overlay" ng-click="hideInterpretationModal()"></div>
+	<article class="content">
+		<section class='painting'>
+			<img ng-src="[[composition.url]]">
+		</section>
+		<section class='user-interpretation'>
+			<header class="actions">
+				<button class="save" ng-click="saveInterpretation()">SAVE</button>
+				<button class="cancle" ng-click="hideInterpretationModal()">CANCEL</button>
+			</header>
+			<p class="new-interpretation interpret-content" rich-edit></p>
+		</section>
+    </article>
+</section>

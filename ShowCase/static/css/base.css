@@ -26,6 +26,7 @@ footer, header, hgroup, menu, nav, section {
 body {
   line-height: 1;
   font-size: 100%;
+  outline: none;
 }
 ol, ul {
   list-style: none;
@@ -55,6 +56,7 @@ ol, ul {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
+          outline: none;
 }
 
 ::selection {
