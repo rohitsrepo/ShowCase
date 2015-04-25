@@ -25,6 +25,12 @@ html, body {
   color: rgba(0, 0, 0, 0.8);
 }
 
+@media (max-width: 800px) {
+  .primary-header {
+    height: 500px;
+    min-height: 0;
+  }
+}
  /* ================== FIRST VIEW ================*/
 
 .banner {
@@ -70,37 +76,42 @@ html, body {
   cursor: pointer;
 }
 
+@media (max-width: 800px) {
+  .banner {
+    padding-top: 30%;
+  }
+
+  .banner h1 {
+    font-size: 3em;
+  }
+}
+
 /*================ DOWN ARROW ======================*/
 
-.go-down {
+/*.go-down {
   position: absolute;
-  bottom: 15%;
-  left: 47%;
+  /*bottom: 15%;
+  margin-bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
   opacity: 0.8;
+}*/
+
+.go-down {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .go-down img{
-  height: 65px; 
-  width: 65px;
+  height: 3em; 
+  width: 3em;
 }
 .go-down:hover {
   opacity: 1;
 }
-
-.go-down {
- -webkit-animation: down1 3s linear infinite;
- -moz-animation: down1 3s linear infinite;
-  animation:down1 3s linear infinite; }
-
-@-webkit-keyframes down1 { 
-  0% { bottom: 15%; } 10%{ bottom: 14%; } 20%{ bottom: 15%; } 
-  30%{ bottom: 14%; } 40%{ bottom: 15%; } 100%{ bottom: 15%; } }
-@-moz-keyframes down1 { 
-  0% { bottom: 15%; } 10%{ bottom: 14%; } 20%{ bottom: 15%; }
-  30%{ bottom: 14%; } 40%{ bottom: 15%; } 100%{ bottom: 15%; } }
-@keyframes down1 { 
-  0% { bottom: 15%; } 10%{ bottom: 14%; } 20%{ bottom: 15%; }
-  30%{ bottom: 14%; } 40%{ bottom: 15%; } 100%{ bottom: 15%; } }
 
 /* ================= HEADBAR IN SECOND VIEW ============== */
 .painting-area {
@@ -108,7 +119,7 @@ html, body {
   height:100%;
 }
 
-@media (max-device-width: 800px) {
+@media (max-width: 800px) {
   .painting-area {
     height: auto;
   }
@@ -168,6 +179,24 @@ html, body {
   padding-left: 15%;
 }
 
+@media (max-width: 800px) {
+  .painting-toolbar .social-icons{
+    display: block;
+    text-align: center;
+    padding: 0;
+    float: none;
+  }
+
+  .painting-toolbar .tools-icons{
+    display: block;
+    text-align: center;
+    padding: 0;
+    float: none;
+  }
+}
+
+/*=========== More actions ===========*/
+
 .painting-toolbar .more-options {
   position: relative;
   display: inline-block;
@@ -222,13 +251,6 @@ html, body {
 
 .painting-toolbar .more-actions li:hover {
   color: #0C0C0C;
-}
-
-@media (max-device-width: 800px) {
-  .painting-toolbar img {
-    height: 5em;
-    width: 5em;
-  }
 }
 
 /*=========== Painting area ============*/
@@ -292,7 +314,7 @@ html, body {
 }
 
 
-@media (max-width: 800px), (max-device-width: 800px) {
+@media (max-width: 800px) {
   .painting {
     width: 95%;
     height: auto;
@@ -383,7 +405,7 @@ html, body {
   padding-top: 11px;
 }
 
-@media (max-width: 800px), (max-device-width: 800px) {
+@media (max-width: 800px) {
   .about-painting {
     display: none;
   }
@@ -482,7 +504,7 @@ html, body {
   margin: 0;
 }
 
-@media (max-width: 800px), (max-device-width: 800px) {
+@media (max-width: 800px) {
   .interpret-area {
     width: 90%;
     margin: 40px auto;
@@ -494,7 +516,7 @@ html, body {
 
   .inter-heading {
     float: none;
-    font-size: 3em;
+    /*font-size: 3em;*/
     text-align: center;
   }
 
@@ -606,13 +628,6 @@ html, body {
   opacity: 1;
 }
 
-@media (max-device-width: 800px) {
-  .interpret-footer .icon {
-    height: 5em;
-    margin-right: 10px;
-  }
-}
-
 /*================= Interpretation - Comments ==================*/
 
 .interpret-footer .comments {
@@ -684,17 +699,6 @@ html, body {
   -o-border-radius: 50%;
   border-radius: 50%;
   border: 1px solid #c8c7b4; 
-}
-
-@media (max-device-width: 800px) {
-  .end-marker hr {
-    margin-bottom: 3em;
-    width: 275px;
-  }
-
-  .end-marker img {
-    width: 6em;
-  }
 }
 
 /*=========== Priamry Footer - Next Posts ===============*/
@@ -771,10 +775,10 @@ html, body {
   letter-spacing: 3px;
 }
 
-@media (max-width: 800px), (max-device-width: 800px) {
+@media (max-width: 800px) {
   .primary-footer {
     width: 80%;
-    height: 50%;
+    height: 400px;
   }
 
   .next-post {
@@ -782,29 +786,6 @@ html, body {
     display: block;
     margin-left: 0;
     margin-bottom: 1em;
-  }
-
-  .next-post .painting-holder {
-    height: 65%;
-  }
-  .next-post h4 {
-    font-size: 3em;
-    margin-left: 10px;
-  }
-
-  .next-post p {
-    font-size: 2em;
-    margin-left: 10px;
-  }
-
-  .next-post .next-footer {
-    height: 4.5em;
-  }
-  .next-post .next-footer h5 {
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    vertical-align: middle;
-    font-size: 2.5em;
   }
 }
 
