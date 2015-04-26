@@ -380,17 +380,22 @@ a {
 
 .curtain-user a {
   display: block;
-  text-decoration: none;
-  cursor: pointer;
+  cursor: default;
   font-size: 15px;
   margin: 40px 0;
   margin-left: 30px;
   color: #B1B1B1;
   letter-spacing: 2px;
   text-align: left;
+  text-decoration: line-through;
 }
 
-.curtain-user .user a:hover{
+.curtain-user .enable {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.curtain-user .user .enable:hover{
   color: rgba(0, 0, 0, 0.95);
 }
 
@@ -398,4 +403,49 @@ a {
   .curtain-user {
     width: 80%;
   }
+}
+
+/*============== Progress bar =================*/
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 3px;
+  background: #E6B800;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  pointer-events: none;
+}
+
+.progress-bar::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100%;
+  background: #E6B800;
+  box-shadow: 0 0 15px #E6B800, 0 0 5px #E6B800;
+  content: '';
+  opacity: 0;
+  -webkit-transition: opacity 0.2s, box-shadow 2s 4s;
+  transition: opacity 0.2s, box-shadow 2s 4s;
+  -webkit-transform: rotate(2deg) translateY(-2px);
+  transform: rotate(2deg) translateY(-2px);
+}
+
+.progress-bar.animate {
+  z-index: 100;
+  opacity: 0;
+  -webkit-transition: -webkit-transform 2s ease-in, opacity 1s 2s;
+  transition: transform 2s ease-in, opacity 1s 2s;
+  -webkit-transform: translate3d(0%, 0, 0);
+  transform: translate3d(0%, 0, 0);
+}
+
+.progress-bar.animate::after {
+  box-shadow: 0 0 3px #E6B800, 0 0 1px #E6B800;
+  opacity: 1;
 }

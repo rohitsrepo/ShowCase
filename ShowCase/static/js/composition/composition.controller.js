@@ -7,7 +7,8 @@ controller("compositionController", [
 	"interpretationModel",
 	'$location',
 	'$timeout',
-	'analytics', 
+	'analytics',
+	'progress',
 	function ($window,
 		$scope,
 		posts,
@@ -15,7 +16,8 @@ controller("compositionController", [
 		interpretationModel,
 		$location,
 		$timeout,
-		analytics)
+		analytics,
+		progress)
 	{
 
 	$scope.composition = {};
@@ -168,16 +170,25 @@ controller("compositionController", [
 		$scope.interpretationModalshown = false;
 	};
 
+	var uploading;
 	$scope.saveInterpretation = function () {
+		
 		analytics.logEvent('Composition', 'Add Interpretation', $scope.composition.url);
 
-		interpretationModel.addInterpretation($scope.composition.id, $('.new-interpretation').html())
-		.then(function () {
-			$scope.hideInterpretationModal();
-			showAlert("Your submission is under review.");
-			 $('.new-interpretation').html('');
-			 $('.new-interpretation').addClass('medium-editor-placeholder');
-		});
+		progress.showProgress();
+
+		if (!uploading){
+			uploading = true;
+			interpretationModel.addInterpretation($scope.composition.id, $('.new-interpretation').html())
+			.then(function () {
+				$scope.hideInterpretationModal();
+				showAlert("Your submission is under review.");
+				 $('.new-interpretation').html('');
+				 $('.new-interpretation').addClass('medium-editor-placeholder');
+				 uploading = false;
+				 progress.hideProgress();
+			});
+		}
 	};
 
 }]);

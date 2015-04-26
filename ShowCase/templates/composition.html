@@ -127,7 +127,7 @@
   					    <li><img class="icon right" facebook-share share-url="/arts/{{composition.slug}}" src="/static/css/composition/icons/facebook_black.svg"></li>
   					    <!-- <li><img class="icon right" src="/static/css/composition/icons/twitter.svg" ></li> -->
   					</ul>
-  					<section class="comments" ng-show="interpretation.showComments">
+  					<section class="comments" ng-show="interpretation.showComments" ng-cloak>
   						<div class="clearfix">
 	  						<form class="left" ng-submit="addComment($index, interpretation.comment)">
 		  						<input type="textbox" placeholder="Share your thoughts..." ng-model="interpretation.comment">
@@ -146,7 +146,7 @@
   					</section>
 				</footer>
 			</section>
-			<hr ng-claok ng-hide="$last" ng-repeat-end id="inter[[$index+1]]">
+			<hr ng-cloak ng-hide="$last" ng-repeat-end id="inter[[$index+1]]">
 		</section>
 
 	 	<sidebar ng-cloak ng-show="interpretations.length" class="about-painting" sticky offset="50">
@@ -245,6 +245,7 @@
 	<script type="text/javascript" src="/static/js/components/sharing/facebook.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/topbar/progress.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
 	<script type="text/javascript" src="/static/js/composition/tools/tools.module.js"></script>

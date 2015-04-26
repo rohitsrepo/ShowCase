@@ -1,5 +1,15 @@
 angular.module('UploadApp')
-.controller('uploadController', ['$scope', '$cookies', 'FileUploader', '$window', function($scope, $cookies, FileUploader, $window) {
+.controller('uploadController', ['$scope',
+	'$cookies',
+	'FileUploader',
+	'$window',
+	'progress',
+	function(
+		$scope,
+		$cookies,
+		FileUploader,
+		$window,
+		progress) {
 	'use strict';
 
 	$scope.art = {};
@@ -23,13 +33,13 @@ angular.module('UploadApp')
 	            }
 	        });
 
-
 	        uploader.onSuccessItem = function(fileItem, response, status, headers) {
-	        	console.log(response);
+	        	progress.hideProgress();
 				$window.location.href="/arts/" + response.slug;
 	        };
 
 	        $scope.uploadArt = function () {
+	        	progress.showProgress();
 	        	$scope.showUploading = true;
 	        	uploader.formData.push($scope.art);
 	        	uploader.queue[0].upload();
