@@ -187,6 +187,9 @@ controller("compositionController", [
 				 $('.new-interpretation').addClass('medium-editor-placeholder');
 				 uploading = false;
 				 progress.hideProgress();
+			}, function () {
+				progress.hideProgress();
+				showAlert("This is not a valid submission.");
 			});
 		}
 	};

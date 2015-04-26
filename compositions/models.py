@@ -6,6 +6,7 @@ from django.conf import settings
 from django.template.defaultfilters import slugify
 from votes.models import Vote
 from .utils import GrayScaleAndSketch
+from .imageTools import generate_size_versions, WIDTH_READER, WIDTH_STICKY
 
 def get_upload_file_name_composition(instance, filename):
     return '%s/%s/%s_%s_thirddime%s' % (instance.uploader.id, slugify(instance.artist), slugify(instance.artist), slugify(instance.title), '.' + filename.split('.')[-1])
@@ -29,6 +30,7 @@ class Composition(models.Model):
         slug_str = "%s %s" % (self.artist, self.title) 
         unique_slugify(self, slug_str) 
         super(Composition, self).save(*args, **kwargs)
+        generate_size_versions(self.matter.path)
 
     def timesince(self, now=None):
         from django.utils.timesince import timesince as _
@@ -43,16 +45,22 @@ class Composition(models.Model):
     def get_absolute_url(self):
         return "#/compositions/{0}/{1}".format(self.id, self.slug)
 
-    def get_analysis_url(self, suffix):
+    def _format_url(self, suffix):
         file_path, file_name = os.path.split(self.matter.url)
         name, extension = os.path.splitext(file_name)
         return os.path.join(file_path, '{0}_{1}{2}'.format(name, suffix, extension))
 
     def get_outline_url(self):
-        return self.get_analysis_url("outline")
+        return self._format_url("outline")
 
     def get_grayscale_url(self):
-        return self.get_analysis_url("gray")
+        return self._format_url("gray")
+
+    def get_550_url(self):
+        return self._format_url(WIDTH_READER)
+
+    def get_350_url(self):
+        return self._format_url(WIDTH_STICKY)
 
 # To create vote instance when a compostion is created
 @receiver(post_save, sender=Composition)

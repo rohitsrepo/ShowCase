@@ -804,6 +804,7 @@ html, body {
   width: 400px;
   background-color: #E6B800;
   display: inline;
+  z-index: 1000;
 }
 
 

@@ -10,6 +10,9 @@ Provisioning a new site
 * virtualenv
 * python-dev
 
+* OpenCV (Generate outline and graysclae things)
+* libjpeg-dev (Image optimization with pillow)
+
 eg, on Ubuntu:
 
     sudo apt-get install nginx git python python-pip

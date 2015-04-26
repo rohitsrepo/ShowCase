@@ -3,7 +3,7 @@ angular.module('module.analytics', [])
 	var service = {};
 
 	service.logEvent = function (category, action, label, value) {
-		ga('send', 'event', category, action, label, value);
+		// ga('send', 'event', category, action, label, value);
 	}
 
 	return service;
