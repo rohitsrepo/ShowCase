@@ -62,7 +62,7 @@
 	<section class="posts" infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore' ng-cloak>
 		<section class="post clearfix" ng-repeat="post in posts" analytics-scroll analytics-data="['Reader', 'Feed-Post-View:' + $index]">
 				<a target="_blank" ng-href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]">
-					<img class="artwork" ng-src="[[post.composition.matter]]" alt="[[post.interpretation.interpretation.slice(0, 140) + '.....Read more on ThirdDime.']]" analytics-click analytics-data="['Reader', 'Post-Image-Click', post.composition.slug]" />
+					<img class="artwork" ng-src="[[post.composition.matter_550]]" alt="[[post.interpretation.interpretation.slice(0, 140) + '.....Read more on ThirdDime.']]" analytics-click analytics-data="['Reader', 'Post-Image-Click', post.composition.slug]" />
 				</a>
 				<sidebar class="description">
 					<header class="description-header">

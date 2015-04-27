@@ -150,7 +150,7 @@
 		</section>
 
 	 	<sidebar ng-cloak ng-show="interpretations.length" class="about-painting" sticky offset="50">
-			<img scroll-to="#painting" src="{{composition.matter.url}}">
+			<img scroll-to="#painting" src="{{composition.get_350_url}}">
 			<table>
 			    <tr>
 			      <th>
@@ -185,7 +185,7 @@
 	<footer class="primary-footer" analytics-scroll analytics-data="['Composition', 'View-Next-Post', '{{composition.title}}']" analytics-offset="300">
 		<section analytics-click analytics-data="['Composition', 'Next Post', post.composition.title]" class="next-post" ng-repeat="post in nextPosts">
 		<a href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]" target="_blank" >
-			<div class="painting-holder" ng-style="{'background-image': 'url([[post.composition.matter]])'}"></div>
+			<div class="painting-holder" ng-style="{'background-image': 'url([[post.composition.matter_350]])'}"></div>
 			<section class="post-details">
 				<h4>[[post.composition.title | titlecase]]</h4>
 				<p>[[post.interpretation.interpretation]]</p>
