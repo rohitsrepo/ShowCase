@@ -124,6 +124,7 @@ a {
     width: 2.5em;
     height: 2.5em;
     left: 10px;
+    position: absolute;
   }
 }
 
@@ -242,6 +243,7 @@ a {
   .auth-user {
     letter-spacing: 1px;
     right: 10px;
+    position: absolute;
   }
 }
 

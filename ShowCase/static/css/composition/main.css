@@ -86,6 +86,14 @@ html, body {
   .banner h1 {
     font-size: 3em;
   }
+
+  .primary-header footer {
+    position: static;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    text-align: center;
+  }
 }
 
 /*================ DOWN ARROW ======================*/
