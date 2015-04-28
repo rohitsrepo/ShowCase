@@ -105,7 +105,7 @@
 
 		<section ng-cloak ng-show="interpretations.length" class="interprets" ng-cloak id="inter0">
 
-			<section class="interpret" ng-repeat-start="interpretation in interpretations" analytics-scroll analytics-data="['Composition', 'View-Interpretation: ' + $index, '{{composition.title}}']" analytics-offset="300">
+			<section class="interpret" ng-repeat-start="interpretation in interpretations" analytics-scroll analytics-data="['Composition', 'View-Interpretation: ' + $index]" analytics-offset="300">
 				<header class="interpreter clearfix">
 					<!-- <img ng-cloak ng-show="interpretation.user.picture" ng-src="[[interpretation.user.picture]]"> -->
 					<div>
@@ -183,7 +183,7 @@
 	</section> 
 
 	<footer class="primary-footer" analytics-scroll analytics-data="['Composition', 'View-Next-Post']" analytics-offset="300">
-		<section analytics-click analytics-data="['Composition', 'Next Post', post.composition.title]" class="next-post" ng-repeat="post in nextPosts">
+		<section analytics-click analytics-data="['Composition', 'Next Post']" class="next-post" ng-repeat="post in nextPosts">
 		<a href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]" target="_blank" >
 			<div class="painting-holder" ng-style="{'background-image': 'url([[post.composition.matter_350]])'}"></div>
 			<section class="post-details">
