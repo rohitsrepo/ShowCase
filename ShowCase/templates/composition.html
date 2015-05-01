@@ -2,10 +2,14 @@
 <html ng-app="CompositionApp">
 <head>
 	<meta charset="UTF-8">
-	<title>{{composition.artist}}-{{composition.title}} on ThirdDime - Interpretations and Stories</title>
-
+	<title>{{composition.title | title}} by {{composition.artist | title}} | Interpretations and Stories</title>
+	
+	<meta name="Description" content="Title: {{composition.title}}, Artist: {{composition.artist}}, Category: Painting Interpretations and Stories">
+	<meta name="fragment" content="!">
+	<link rel="canonical" href="http://thirddime.com/arts/{{composition.slug}}" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 	<meta property="og:title" content="{{composition.title}}">
 	<meta property="og:site_name" content="ThirdDime">
 	<meta property="og:url" content="http://thirddime.com/arts/{{composition.slug}}">
@@ -90,9 +94,9 @@
 				<br><br>
 				<li style="background: rgb([[ color['0'] ]], [[ color['1'] ]], [[ color['2'] ]])" ng-repeat="color in palette"></li>
 			</ul>
-			<img class="painting painting-original" src="{{composition.matter.url}}" ng-show="isGrayScaleActive=='inactive' && isOutlineActive=='inactive'" ng-cloak>
-			<img class="painting painting-grayscale" src="{{composition.get_grayscale_url}}" ng-show="isGrayScaleActive=='active'" ng-cloak>
-			<img class="painting painting-outline" src="{{composition.get_outline_url}}" ng-show="isOutlineActive=='active'" ng-cloak>
+			<img class="painting painting-original" src="{{composition.matter.url}}" ng-show="isGrayScaleActive=='inactive' && isOutlineActive=='inactive'" ng-cloak alt="{{composition.slug}}">
+			<img class="painting painting-grayscale" src="{{composition.get_grayscale_url}}" ng-show="isGrayScaleActive=='active'" ng-cloak alt="{{composition.slug}} grayscale">
+			<img class="painting painting-outline" src="{{composition.get_outline_url}}" ng-show="isOutlineActive=='active'" ng-cloak alt="{{composition.slug}} outline">
 		</div>
 	</section>
 

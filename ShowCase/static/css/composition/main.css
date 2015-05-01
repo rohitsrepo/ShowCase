@@ -939,6 +939,7 @@ html, body {
   top: 10%;
   height: 80%;
   width: 100%;
+  overflow: auto;
 }
 
 /*================= Clearfix =====================*/
