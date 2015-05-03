@@ -18,7 +18,7 @@ angular.module("ReaderApp")
 		var page = $location.search()['page'];
 		page = parseInt(page);
 
-		if(page !== NaN){
+		if(!isNaN(page)){
 			$scope.postsMeta.pageVal = page;
 		}
 	};
