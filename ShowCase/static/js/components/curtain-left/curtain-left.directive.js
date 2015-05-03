@@ -13,7 +13,6 @@ angular.module("module.curtainLeft")
 	            curtainElement.addClass('animated fadeOutLeft');
 	            curtainElement.animate({marginLeft:-500}, 300);
 	            curtainOverlay.removeClass("curtain-overlay");
-	            $timeout(function () {curtainModal.close()}, 300);
 	            $document.unbind("click");
 	            isActive = false;
 			}
@@ -43,9 +42,10 @@ angular.module("module.curtainLeft")
 				appendElement: element.parent()
 			};
 
+			var left_curtain = curtainLeft.getCurtain(options);
+
 			element.bind("click", function (event) {
 				if (!isActive){
-				var left_curtain = curtainLeft.getCurtain(options);
 					left_curtain.then(function(result){
 						curtainModal = result;
 						curtainElement = curtainModal.element;
