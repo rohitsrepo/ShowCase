@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="ReaderApp">
+<html ng-app="ReaderApp" ng-controller="readerController">
 <head>
 	<title>ThirdDime - Explore art through interpretations and stories</title>
 	<meta name="description" content="Browse through breathtaking artworks and their interpretations. Discover deeper layers behind each painting with a community of art lovers." />
@@ -7,6 +7,8 @@
 	<meta name="fragment" content="!">
 
 	<link rel="canonical" href="http://thirddime.com" />
+	<link ng-cloak ng-if="postsMeta.next" rel="next" href="http://thirddime.com#[[postsMeta.next]]" />
+	<link ng-cloak ng-if="postsMeta.previous" rel="prev" href="http://thirddime.com#[[postsMeta.previous]]" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta property="og:title" content="ThirdDime - Explore art through interpretations and stories">
@@ -35,7 +37,7 @@
 		 ga('send', 'pageview');
 	</script>
 </head>
-<body ng-controller="readerController">
+<body>
 	<topbar></topbar>
 	<header class="banner">
 			<div class="curtain-overlay-placeholder"></div>

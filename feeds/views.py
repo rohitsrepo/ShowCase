@@ -7,6 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from rest_framework.response import Response
 from interpretations.models import Interpretation
 from django.db.models import Q
+from django.http import Http404
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
@@ -21,7 +22,7 @@ def editors_pick_list(request, format=None):
     except PageNotAnInteger:
         this_page_posts = paginator.page(1)
     except EmptyPage:
-        this_page_posts = paginator.page(paginator.num_pages)
+        raise Http404
 
     serializer = PaginatedPostSerializer(this_page_posts)
 

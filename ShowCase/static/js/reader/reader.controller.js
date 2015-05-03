@@ -3,20 +3,34 @@ angular.module("ReaderApp")
  'posts',
  'interpretationModel',
  'analytics',
+ '$location',
  function ($scope,
  	posts,
  	interpretationModel,
- 	analytics)
+ 	analytics,
+ 	$location)
  {
 	"use strict";
-	$scope.postsMeta = {pageVal: 1, disableGetMore: false, busy: false};
+	$scope.postsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
 	$scope.posts = [];
+
+	function checkForPageValue() {
+		var page = $location.search()['page'];
+		page = parseInt(page);
+
+		if(page !== NaN){
+			$scope.postsMeta.pageVal = page;
+		}
+	};
+	checkForPageValue();
 
 	var getPosts = function () {
 
 		if (!$scope.postsMeta.disableGetMore) {
 			var pageVal = $scope.postsMeta.pageVal;
 			posts.getPosts(pageVal).then(function (posts) {
+				$scope.postsMeta.next = posts.next;
+				$scope.postsMeta.previous = posts.previous;
 
 				for (var i = 0; i < posts.results.length; i++) {
 			    	$scope.posts.push(posts.results[i]);
@@ -45,7 +59,7 @@ angular.module("ReaderApp")
 		} else {
 			analytics.logEvent('Reader', 'Init');
 		}
-		getPosts($scope.postsMeta);
+		getPosts();
 	};
 
 	$scope.vote = function (index, vote) {
