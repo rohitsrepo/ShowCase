@@ -29,6 +29,11 @@ urlpatterns += patterns('',
                        url(r'^content', include('contentManager.urls')),
 		       )
 
+# Robots.txt
+urlpatterns += patterns('',
+                       url(r'^robots.txt$', TemplateView.as_view(template_name='robots.txt'), name='robots'),
+    )
+
 # SitesMap
 from compositions.sitemaps import CompositionSitemap
 from ShowCase.sitemaps import ReaderSitemap, StaticViewSitemap
