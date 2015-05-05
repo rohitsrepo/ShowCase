@@ -24,6 +24,13 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+    },
+]
+
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'ShowCase/templates'),
 )
@@ -34,8 +41,8 @@ STATICFILES_DIRS = (
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
+SITE_ID = 1
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -44,6 +51,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'rest_framework',
     'accounts',
     'compositions',
@@ -52,7 +61,7 @@ INSTALLED_APPS = (
     'comments',
     'interpretations',
     'feeds',
-    'contentManager'
+    'contentManager',
 )
 
 MIDDLEWARE_CLASSES = (

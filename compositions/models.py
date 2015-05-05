@@ -45,6 +45,20 @@ class Composition(models.Model):
     def get_absolute_url(self):
         return "#/compositions/{0}/{1}".format(self.id, self.slug)
 
+    def get_sitemap_url(self):
+        return "/arts/{0}".format(self.slug)
+
+    def get_matter_sitemap_url(self):
+        return "http://thirddime.com{0}".format(self.matter.url)
+
+    def get_outline_sitemap_url(self):
+        url = self.get_outline_url()
+        return "http://thirddime.com{0}".format(url)
+
+    def get_grayscale_sitemap_url(self):
+        url = self.get_grayscale_url()
+        return "http://thirddime.com{0}".format(url)
+
     def _format_url(self, suffix):
         file_path, file_name = os.path.split(self.matter.url)
         name, extension = os.path.splitext(file_name)
