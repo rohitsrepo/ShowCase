@@ -1,3 +1,4 @@
 User-Agent: *
 Disallow:
 Sitemap: http://thirddime.com/sitemap.xml
+Sitemap: http://thirddime.com/blog/sitemap.xml
