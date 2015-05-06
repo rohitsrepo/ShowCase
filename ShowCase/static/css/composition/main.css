@@ -1,12 +1,14 @@
-/*@font-face {
-    font-family: volbi;
-    src: url(/fonts/Vollkorn-BoldItalic.TTF);
-    font-weight:bold;
-    font-style:italic;
-}*/
+@font-face{ 
+  font-family: 'fertigo';
+  src: url('/static/fonts/fertigo/Fertigo.eot');
+  src: url('/static/fonts/fertigo/Fertigo.woff') format('woff'),
+       url('/static/fonts/fertigo/Fertigo.ttf') format('truetype'),
+       url('/static/fonts/fertigo/Fertigo.svg') format('svg');
+}
+
 
 html, body {
-  font-family: 'taile';
+  font-family: 'taile', sans-serif;
   height: 100%;
   padding: 0; 
   margin: 0;
@@ -44,16 +46,13 @@ html, body {
 }
 
 .banner h1 {
-  font-family: 'volbi';
-  font-weight: bold;
-  font-style: italic;
+  font-family: 'fertigo', serif;
   font-size: 5em;
   margin-bottom: .25em;
 }
 
 .banner h3 {
   color: #E6B800;
-  font-style: italic;
   font-size: 1.5em;
   margin-top: 10px;
 }
@@ -444,11 +443,11 @@ html, body {
 }
 
 .write-interpretation {
-  height: 24px;
+  font-family: 'taile', sans-serrif;
   float: right;
   background-color: transparent;
   border: 1px solid #E6B800;
-  border-radius: 12px;
+  border-radius: 1em;
   font-size: 1em;
   color: #E6B800;
   padding: 4px 15px;
@@ -541,7 +540,7 @@ html, body {
 .interpret-content {
   color: rgba(0, 0, 0, 0.8);
   text-decoration: none solid rgba(0, 0, 0, 0.8);
-  font-family: 'taile';
+  font-family: 'Merriweather', serif;
 }
 
 .interpret-content h3 {
@@ -581,7 +580,6 @@ html, body {
   margin: 12px 0;
   padding: 0;
   padding-left: 10px;
-  font-family: 'pfdr';
   font-style: italic;
   border-left: 4px solid rgba(0, 0, 0, 0.8);
 }
@@ -753,9 +751,8 @@ html, body {
 }
 
 .next-post h4 {
-  font-family: 'volbi';
+  font-family: 'fertigo', serif;
   font-weight: bold;
-  font-style: italic;
   font-size: 1.5em;
   font-weight: bold;
   letter-spacing: 1px;
@@ -764,7 +761,7 @@ html, body {
 }
 
 .next-post p {
-  font-family: 'taile';
+  font-family: 'taile', sans-serrif;
   line-height: 1.5em;
   font-size: 1em;
   color: rgba(0, 0, 0, 0.8);
