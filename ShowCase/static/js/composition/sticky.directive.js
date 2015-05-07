@@ -1,5 +1,5 @@
 angular.module("CompositionApp")
-.directive('sticky', ["$document", "$window", function($document, $window) {
+.directive('sticky', ["$document", "$window", "$timeout", function($document, $window, $timeout) {
 	return {
 		restrict: 'A', 
 		link: linkFn
@@ -80,7 +80,10 @@ angular.module("CompositionApp")
 		var firstRun = true;
 		$document.bind('scroll', function () {
 			if (firstRun) {
-				firstRun = false;
+				$timeout(function () {
+					firstRun = false;
+				}, 500);
+				
 				return;
 			}
 
