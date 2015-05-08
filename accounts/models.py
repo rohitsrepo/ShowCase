@@ -69,6 +69,8 @@ class User(AbstractBaseUser, PermissionsMixin):
                              blank=True,)
     is_staff = models.BooleanField(verbose_name='staff status',
                                    default=False, help_text='Designate whether user can login into admin site.',)
+    is_artist = models.BooleanField(verbose_name='artist status',
+                                   default=False, help_text='Designate whether user is an artist.',)
     is_active = models.BooleanField(verbose_name='active status',
                                     default=True, help_text='Desgnates whether a registered user can login.',)
     date_joined = models.DateTimeField(verbose_name='date user joined with us',
