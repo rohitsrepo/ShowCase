@@ -14,6 +14,7 @@ class CompositionSerializer(serializers.ModelSerializer):
     matter = URLImageField(source='matter')
     timesince = serializers.CharField(source='timesince', read_only=True)
     uploader = CompositionUserSerializer(read_only=True)
+    artist = CompositionUserSerializer(read_only=True)
 
     class Meta:
         model = Composition

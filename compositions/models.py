@@ -9,7 +9,7 @@ from .utils import GrayScaleAndSketch
 from .imageTools import generate_size_versions, WIDTH_READER, WIDTH_STICKY
 
 def get_upload_file_name_composition(instance, filename):
-    return '%s/%s/%s_%s_thirddime%s' % (instance.uploader.id, slugify(instance.artist), slugify(instance.artist), slugify(instance.title), '.' + filename.split('.')[-1])
+    return '%s/%s/%s_%s_thirddime%s' % (instance.uploader.id, slugify(instance.artist.first_name), slugify(instance.artist.first_name), slugify(instance.title), '.' + filename.split('.')[-1])
 
 
 class Composition(models.Model):
@@ -18,7 +18,8 @@ class Composition(models.Model):
         max_length=1000, blank=True, default='', verbose_name='Description')
     uploader = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name='compositions')
-    artist = models.CharField(max_length=100, blank=False, verbose_name="Artist")
+    artist = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name='arts')
     slug = models.SlugField(max_length=100, unique=True)
     created = models.DateTimeField(auto_now_add=True)
     matter = models.FileField(upload_to=get_upload_file_name_composition)
@@ -27,7 +28,7 @@ class Composition(models.Model):
         ordering = ('created',)
 
     def save(self, *args, **kwargs):
-        slug_str = "%s %s" % (self.artist, self.title) 
+        slug_str = "%s %s" % (self.artist.first_name, self.title) 
         unique_slugify(self, slug_str) 
         super(Composition, self).save(*args, **kwargs)
         generate_size_versions(self.matter.path)

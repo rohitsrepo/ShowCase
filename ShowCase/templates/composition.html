@@ -2,9 +2,9 @@
 <html ng-app="CompositionApp">
 <head>
 	<meta charset="UTF-8">
-	<title>{{composition.title | title}} by {{composition.artist | title}} | Interpretations and Stories</title>
+	<title>{{composition.title | title}} by {{composition.artist.get_full_name | title}} | Interpretations and Stories</title>
 	
-	<meta name="Description" content="Title: {{composition.title}}, Artist: {{composition.artist}}, Category: Painting Interpretations and Stories">
+	<meta name="Description" content="Title: {{composition.title}}, Artist: {{composition.artist.get_full_name}}, Category: Painting Interpretations and Stories">
 	<meta name="fragment" content="!">
 	<link rel="canonical" href="http://thirddime.com/arts/{{composition.slug}}" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -49,7 +49,7 @@
 		<section class="banner">
 			<h1>{{composition.title | title}}</h1>
 			<h4>by</h4>
-			<h3>{{composition.artist | title}}</h3>
+			<h3>{{composition.artist.get_full_name | title}}</h3>
 		</section>
 
 		<footer>
@@ -171,7 +171,7 @@
 			      </th>
 			      <td>
 			        <a>
-			          {{ composition.artist | title }}
+			          {{ composition.artist.get_full_name | title }}
 			        </a>
 			      </td>
 			    </tr>

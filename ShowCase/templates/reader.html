@@ -77,7 +77,7 @@
 						<a target="_blank" href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]">
 							<h4 analytics-click analytics-data="['Reader', 'Post-Title-Click', post.composition.slug]">[[post.composition.title | titlecase]]</h4>
 						</a>
-						<h5>by <span class="artist">[[post.composition.artist | titlecase]]</span></h5>
+						<h5>by <span class="artist">[[post.composition.artist.full_name | titlecase]]</span></h5>
 					</header>
 					<section class="comment">
 	   					<div class="comment-text" ng-cloak ng-hide="post.showComplete">

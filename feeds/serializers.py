@@ -16,6 +16,7 @@ class PostUserSerializer(serializers.ModelSerializer):
 
 class PostCompositionSerializer(serializers.ModelSerializer):
     uploader = PostUserSerializer(read_only=True)
+    artist = PostUserSerializer(read_only=True)
     matter = URLImageField(source='matter')
     matter_550 = serializers.CharField(source='get_550_url', read_only=True)
     matter_350 = serializers.CharField(source='get_350_url', read_only=True)
