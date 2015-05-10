@@ -11,6 +11,7 @@ from ShowCase.utils import check_object_permissions
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from compositions.models import Composition
+from django.db.models import Q
 
 
 class UserList(APIView):
@@ -156,6 +157,23 @@ def get_current_user(request, format=None):
         return Response(ExistingUserSerializer(request.user, context={'request': request}).data, status=status.HTTP_200_OK)
     else:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def search_artist(request, format=None):
+    if not request.user.is_authenticated():
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+    query = request.GET.get('q', '')
+    print query
+    artists = User.objects.filter(
+        Q(is_artist=True),
+        Q(first_name__icontains=query) | Q(last_name__icontains=query)
+    )[:20]
+    print artists
+    ser = ExistingUserSerializer(artists, context={'request': request})
+
+    return Response(ser.data, status=status.HTTP_200_OK)
 
 
 @api_view(['GET', 'POST', 'DELETE'])

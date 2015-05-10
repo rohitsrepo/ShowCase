@@ -38,6 +38,9 @@ ol, ul {
   }
 }
 
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
 /*===================CSS STARTS HERE=========================*/
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
