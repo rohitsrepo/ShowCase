@@ -19,7 +19,7 @@
 	<section class="upload-area">
 		<form name="uploadForm" class="upload-form" novalidate>
 
-			<button class="upload-button" ng-cloak ng-show="!uploadForm.$invalid  && !!uploader.queue && uploader.queue.length > 0 && !showUploading" ng-click="uploadArt()">
+			<button class="upload-button" ng-cloak ng-show="!uploadForm.$invalid  && art.matter && !showUploading" ng-click="uploadArt()">
 			UPLOAD</button>
 			<button class="upload-button uploading-button" ng-cloak ng-show="showUploading">
 			UPLOADING...</button>
@@ -36,19 +36,18 @@
 
 			<section class="matter-area">
 				<section class="fileinputs">
-	                <input type="file" class="file" nv-file-select="" uploader="uploader" />
+	                <input type="file" class="file" fileread="art.matter"  />
 			        <div class="fakefile">
-			            <!-- <input type="button" value="Select file" /> -->
 			            <h4>Select image of the piece</h4>
 			        </div>
                 
-	                <section ng-repeat="item in uploader.queue">
+                	<section ng-if="art.matter">
 	                	<div class="overlay"></div>
-	                	<section ng-cloak ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 400 }"></section>
-	                    <button type="button" ng-click="item.remove()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+	                	<section ng-cloak  ng-thumb="{ file: art.matter, height: 400 }"></section>
+	                    <button type="button" ng-click="art.matter=undefined" >
 		                    X
 	                    </button>
-	                </section>
+                    </section>
 			    </section>
 			</section>
 
@@ -63,8 +62,7 @@
 	<script type="text/javascript" src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
 	
-	<script type="text/javascript" src="/static/bower_components/angular-cookies/angular-cookies.min.js"></script>
-	<script type="text/javascript" src="/static/bower_components/angular-file-upload/angular-file-upload.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular-upload/angular-upload.min.js"></script>
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
@@ -73,6 +71,7 @@
 	<script type="text/javascript" src="/static/js/upload/upload.module.js"></script>
 	<script type="text/javascript" src="/static/js/upload/upload.controller.js"></script>
 	<script type="text/javascript" src="/static/js/upload/thumb.directive.js"></script>
+	<script type="text/javascript" src="/static/js/upload/fileread.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>

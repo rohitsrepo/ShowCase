@@ -1,12 +1,11 @@
 angular.module("UploadApp", [
-	"ngCookies",
 	"module.auth",
 	"module.curtainRight",
 	"module.curtainLeft",
 	"module.topbar",
 	"module.scrollTo",
 	"module.titlecase",
-	"angularFileUpload",
+	"lr.upload",
 	"ngAnimate"])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
