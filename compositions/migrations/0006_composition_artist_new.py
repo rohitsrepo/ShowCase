@@ -10,7 +10,11 @@ def add_artists(apps, schema_editor):
 
     for composition in Composition.objects.all():
         artist = composition.artist
-        user = User.objects.get(first_name__exact=artist)
+        try:
+            user = User.objects.get(first_name__exact=artist)
+        except User.MultipleObjectsReturned:
+            print "Assign first user for {0}".format(composition.title)
+            user = User.objects.filter(first_name__exact=artist)[0]
         composition.artist_new = user
         composition.save()
 
