@@ -92,6 +92,17 @@
     height: 40px;
     font-size: 30px;
     font-weight: bold;
+    border: 0;
+    width: 100%;
+ }
+
+ .angucomplete-dropdown{
+    border: 0;
+    border-bottom: 1px solid black;
+ }
+
+ .angucomplete-selected-row {
+    background-color: #E6B800;
  }
 
 /*==================== DESCRIPTION ===================*/

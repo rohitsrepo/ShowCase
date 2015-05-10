@@ -1,8 +1,9 @@
 import django_filters
 from django.db.models import Q
 from .models import Composition
+from accounts.models import User
 from rest_framework import permissions, generics, status
-from .serializers import CompositionSerializer
+from .serializers import CompositionSerializer, NewCompositionSerializer
 from .permissions import IsOwnerOrReadOnly, IsHimself
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -11,11 +12,35 @@ from accounts.serializers import ExistingUserSerializer
 from rest_framework.decorators import api_view, permission_classes
 from ShowCase.utils import check_object_permissions
 from random import randrange
+import json
 
+class CompositionError(Exception):
+    pass
 
 class CompositionList(APIView):
     ''' Handels listing of compositions and adding new ones.'''
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def is_number(self, string_val):
+        try:
+            int(float(string_val))
+            return True
+        except ValueError:
+            return False
+
+    def validate_or_create_artist(self, request_data):
+        artist = request_data.get('artist')
+        if not self.is_number(artist):
+            try:
+                artist = json.loads(artist)
+                if artist.get('id') == -1:
+                    new_artist = User.objects.create_artist(artist.get('name'))
+                    request_data['artist'] = new_artist.id
+                else:
+                    raise CompositionError("Invalid artist data {}".format(artist))
+            except:
+                raise CompositionError("Unable to parse artist data {}".format(artist))
+
 
     def get(self, request, format=None):
         compositions = Composition.objects.all()
@@ -36,13 +61,17 @@ class CompositionList(APIView):
         return Response(ser.data)
 
     def post(self, request, format=None):
-        ser = CompositionSerializer(data=request.DATA, files=request.FILES, context={'request': request})
-        if ser.is_valid():
-            ser.object.uploader = request.user
-            ser.save()
-            return Response(ser.data, status=status.HTTP_201_CREATED)
+        try:
+            self.validate_or_create_artist(request.DATA)
+            ser = NewCompositionSerializer(data=request.DATA, files=request.FILES, context={'request': request})
+            if ser.is_valid():
+                ser.object.uploader = request.user
+                ser.save()
+                return Response(ser.data, status=status.HTTP_201_CREATED)
 
-        return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+        except CompositionError as e:
+            return Response({'error': e.message}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CompositionDetail(APIView):

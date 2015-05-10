@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.utils import timezone
 from django.conf import settings
 from compositions.models import Composition
+import uuid
 
 
 class UserManager(BaseUserManager):
@@ -40,6 +41,16 @@ class UserManager(BaseUserManager):
          Creates and saves super user with given email, first_name and password.
         '''
         return self.create_user_base(email, first_name, password, True, True, **extra_fields)
+
+    def create_artist(self, name):
+        holder = str(uuid.uuid1())
+        return self.create_user(
+            holder+'@user.com',
+            name,
+            holder,
+            is_active = False,
+            is_artist = True
+        )
 
 
 def get_upload_file_name_users(instance, filename):

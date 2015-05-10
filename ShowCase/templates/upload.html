@@ -6,6 +6,7 @@
 	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
 
 	<!-- build:css /static/build/upload.css -->
+	<link rel="stylesheet" type="text/css" href="/static/bower_components/angucomplete-alt/angucomplete-alt.css">
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/upload/main.css">
@@ -19,7 +20,7 @@
 	<section class="upload-area">
 		<form name="uploadForm" class="upload-form" novalidate>
 
-			<button class="upload-button" ng-cloak ng-show="!uploadForm.$invalid  && art.matter && !showUploading" ng-click="uploadArt()">
+			<button class="upload-button" ng-cloak ng-show="!uploadForm.$invalid  && art.matter && art.matter && !showUploading" ng-click="uploadArt()">
 			UPLOAD</button>
 			<button class="upload-button uploading-button" ng-cloak ng-show="showUploading">
 			UPLOADING...</button>
@@ -29,10 +30,13 @@
 			    <span ng-cloak ng-show="uploadForm.uTitle.$error.required">Please provide a title.</span>
 		   </div>
 
-			<input type="text" class="artist" placeholder="Artist" ng-model="art.artist" name="uArtist" maxlength="100" required>
-			<div ng-cloak ng-show="uploadForm.$submitted || uploadForm.uArtist.$touched">
-			    <span ng-cloak ng-show="uploadForm.uArtist.$error.required">Please provide artist name.</span>
-		   </div>
+			<angucomplete-alt placeholder="Artist"
+							 pause="400"
+							 selected-object="selectArtist"
+							 remote-url="/users/search?q="
+							 title-field="first_name,last_name",
+							 search-fields="first_name"
+							 input-class="artist" ></angucomplete-alt>
 
 			<section class="matter-area">
 				<section class="fileinputs">
@@ -63,6 +67,7 @@
 	<script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
 	
 	<script type="text/javascript" src="/static/bower_components/angular-upload/angular-upload.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angucomplete-alt/dist/angucomplete-alt.min.js"></script>
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>

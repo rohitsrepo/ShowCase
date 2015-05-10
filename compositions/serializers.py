@@ -20,4 +20,11 @@ class CompositionSerializer(serializers.ModelSerializer):
         model = Composition
         fields = ('id', 'title', 'artist', 'description', 'created',
 		   'matter', 'timesince', 'vote', 'slug', 'uploader')
-	read_only_fields = ('slug', 'vote')
+    	read_only_fields = ('slug', 'vote')
+
+class NewCompositionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Composition
+        fields = ('title', 'artist', 'description', 'matter', 'slug')
+        read_only_fields = ('slug',)

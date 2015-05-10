@@ -6,7 +6,8 @@ angular.module("UploadApp", [
 	"module.scrollTo",
 	"module.titlecase",
 	"lr.upload",
-	"ngAnimate"])
+	"ngAnimate",
+	'angucomplete-alt'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

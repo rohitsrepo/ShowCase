@@ -165,12 +165,10 @@ def search_artist(request, format=None):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
     query = request.GET.get('q', '')
-    print query
     artists = User.objects.filter(
         Q(is_artist=True),
         Q(first_name__icontains=query) | Q(last_name__icontains=query)
     )[:20]
-    print artists
     ser = ExistingUserSerializer(artists, context={'request': request})
 
     return Response(ser.data, status=status.HTTP_200_OK)
