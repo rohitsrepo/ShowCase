@@ -43,6 +43,14 @@ class Composition(models.Model):
         else:
             return self.title
 
+    def __unicode__(self):
+        if len(self.title) > 10:
+            title = self.title[:10] + '...'
+        else:
+            title = self.title
+
+        return title.encode('utf-8')
+
     def get_absolute_url(self):
         return "#/compositions/{0}/{1}".format(self.id, self.slug)
 
