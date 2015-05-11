@@ -68,16 +68,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         (NATIVE, 'native'),
     )
 
-    first_name = models.CharField(verbose_name='first name',
-                                  max_length=40)
-    last_name = models.CharField(verbose_name='last name',
-                                 max_length=40,
-                                 blank=True,)
-    email = models.EmailField(verbose_name='email address',
-                              max_length=255,
-                              unique=True,)
-    about = models.TextField(verbose_name='descriotion',
-                             blank=True,)
+    name = models.CharField(verbose_name='first name', max_length=80)
+
+    first_name = models.CharField(verbose_name='first name', max_length=40)
+    last_name = models.CharField(verbose_name='last name', max_length=40, blank=True,)
+    email = models.EmailField(verbose_name='email address', max_length=255, unique=True,)
+    about = models.TextField(verbose_name='descriotion', blank=True,)
     is_staff = models.BooleanField(verbose_name='staff status',
                                    default=False, help_text='Designate whether user can login into admin site.',)
     is_artist = models.BooleanField(verbose_name='artist status',
