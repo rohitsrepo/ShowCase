@@ -61,7 +61,7 @@ for i in range(1, 10):
     print "Creating objects"
     uploader = User.objects.create_user("user" + str(i) + "@user.com", "user" + str(i), "user")
     print "uploader"
-    print uploader.first_name
+    print uploader.name
     composition = Composition(uploader=uploader)
     add_composition_data(composition)
     print "Composition"

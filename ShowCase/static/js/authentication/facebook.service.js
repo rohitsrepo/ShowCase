@@ -5,8 +5,7 @@ angular.module('module.auth')
         $facebook.api('/me').then( function(userFB) {
             var userObject=
             {
-                first_name: userFB.first_name,
-                last_name: userFB.last_name,
+                name: (userFB.first_name + " " + userFB.last_name).trim(),
                 login_type: "FB",
                 email: userFB.email,
                 password: "" 

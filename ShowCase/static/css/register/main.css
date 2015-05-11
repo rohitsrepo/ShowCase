@@ -139,21 +139,12 @@ a {
   text-align: center;
 }
 
-.auth .native .username {
-  display: block;
-}
-
 .auth .native input {
   display: block;
   font-size: 1em;
   padding: 1.3em 2em;
   width: 100%;
   margin-bottom: 10px;
-}
-
-.auth .native .username input {
-  display: inline-block;
-  width: 49%;
 }
 
 .auth .native input.ng-invalid.ng-dirty {

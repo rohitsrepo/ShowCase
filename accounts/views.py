@@ -167,9 +167,7 @@ def search_artist(request, format=None):
     query = request.GET.get('q', '')
     artists = User.objects.filter(
         Q(pk=request.user.id) | (
-            Q(is_artist=True) & (
-                Q(first_name__icontains=query) | Q(last_name__icontains=query)
-            )
+            Q(is_artist=True) & Q(name__icontains=query)
         )
     )[:20]
 

@@ -9,7 +9,7 @@ from .utils import GrayScaleAndSketch
 from .imageTools import generate_size_versions, WIDTH_READER, WIDTH_STICKY
 
 def get_upload_file_name_composition(instance, filename):
-    return '%s/%s/%s_%s_thirddime%s' % (instance.uploader.id, slugify(instance.artist.first_name), slugify(instance.artist.first_name), slugify(instance.title), '.' + filename.split('.')[-1])
+    return '%s/%s/%s_%s_thirddime%s' % (instance.uploader.id, slugify(instance.artist.name), slugify(instance.artist.name), slugify(instance.title), '.' + filename.split('.')[-1])
 
 
 class Composition(models.Model):
@@ -28,7 +28,7 @@ class Composition(models.Model):
         ordering = ('created',)
 
     def save(self, *args, **kwargs):
-        slug_str = "%s %s" % (self.artist.first_name, self.title) 
+        slug_str = "%s %s" % (self.artist.name, self.title) 
         unique_slugify(self, slug_str) 
         super(Composition, self).save(*args, **kwargs)
         generate_size_versions(self.matter.path)

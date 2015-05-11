@@ -8,9 +8,9 @@ import uuid
 
 class UserManager(BaseUserManager):
 
-    def create_user_base(self, email, first_name, password, is_staff, is_superuser, **extra_fields):
+    def create_user_base(self, email, name, password, is_staff, is_superuser, **extra_fields):
         '''
-        Creates user with give email, first name, password and staffing status.
+        Creates user with give email, name, password and staffing status.
         '''
 
         now = timezone.now()
@@ -20,27 +20,27 @@ class UserManager(BaseUserManager):
         else:
             email = self.normalize_email(email)
 
-        if not first_name:
-            raise ValueError('User must have first name.')
+        if not name:
+            raise ValueError('User must have name.')
 
-        user = self.model(email=email, first_name=first_name, last_login=now,
+        user = self.model(email=email, name=name, last_login=now,
                           is_staff=is_staff, is_superuser=is_superuser, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_user(self, email, first_name, password=None, **extra_fields):
+    def create_user(self, email, name, password=None, **extra_fields):
         '''
-        Creates and save non-staff-normal user with given email, first name and password.
+        Creates and save non-staff-normal user with given email, name and password.
         '''
 
-        return self.create_user_base(email, first_name, password, False, False, **extra_fields)
+        return self.create_user_base(email, name, password, False, False, **extra_fields)
 
-    def create_superuser(self, email, first_name, password, **extra_fields):
+    def create_superuser(self, email, name, password, **extra_fields):
         '''
-         Creates and saves super user with given email, first_name and password.
+         Creates and saves super user with given email, name and password.
         '''
-        return self.create_user_base(email, first_name, password, True, True, **extra_fields)
+        return self.create_user_base(email, name, password, True, True, **extra_fields)
 
     def create_artist(self, name):
         holder = str(uuid.uuid1())
@@ -54,7 +54,7 @@ class UserManager(BaseUserManager):
 
 
 def get_upload_file_name_users(instance, filename):
-    return 'Users/%s/Profile/%s' % (instance.id, instances.first_name + filename.split('.')[-1])
+    return 'Users/%s/Profile/%s' % (instance.id, instances.name + filename.split('.')[-1])
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -68,10 +68,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         (NATIVE, 'native'),
     )
 
-    name = models.CharField(verbose_name='first name', max_length=80)
-
-    first_name = models.CharField(verbose_name='first name', max_length=40)
-    last_name = models.CharField(verbose_name='last name', max_length=40, blank=True,)
+    name = models.CharField(verbose_name='name', max_length=80)
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True,)
     about = models.TextField(verbose_name='descriotion', blank=True,)
     is_staff = models.BooleanField(verbose_name='staff status',
@@ -96,7 +93,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name']
+    REQUIRED_FIELDS = ['name']
 
     class Meta:
         verbose_name = 'user'
@@ -110,15 +107,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.get_full_name()
 
     def get_full_name(self):
-        """
-        Returns the first_name plus the last_name, with a space in between.
-        """
-        full_name = ('%s %s' % (self.first_name, self.last_name)).title()
-        return full_name.strip()
+        return self.name
 
     def get_short_name(self):
         "Returns the short name for the user."
-        return self.first_name
+        return self.name
 
     def email_user(self, subject, message, from_email=None):
         """

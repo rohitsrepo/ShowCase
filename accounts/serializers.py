@@ -11,8 +11,7 @@ class NewUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'first_name', 'last_name',
-                  'about', 'password', 'picture', 'login_type')
+        fields = ('id', 'email', 'name', 'about', 'password', 'picture', 'login_type')
 
     def save_object(self, obj, *args, **kwargs):
         # Encrypting password before saving it.
@@ -25,7 +24,7 @@ class ExistingUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'first_name', 'last_name', 'about', 'picture')
+        fields = ('id', 'email','name', 'about', 'picture')
 
 
 class PasswordUserSerializer(serializers.Serializer):
