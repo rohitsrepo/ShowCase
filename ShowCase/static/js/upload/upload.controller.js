@@ -3,12 +3,15 @@ angular.module('UploadApp')
 	'upload',
 	'$window',
 	'progress',
+	'auth',
 	function(
 		$scope,
 		upload,
 		$window,
-		progress) {
+		progress,
+		auth) {
 	'use strict';
+
 
 	function checkOrAddArtist () {
 		if ($scope.art.artist === undefined || JSON.parse($scope.art.artist).id == -1){

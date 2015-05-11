@@ -2,14 +2,16 @@
     color:  rgba(0, 0, 0, 0.8);
 }
 
-
+body {
+    font-family: 'taile', sans-serif;
+}
 
 /*===================== BASE ==========================*/
 
 .upload-area {
-    width: 60%;
+    width: 90%;
     margin: 0 auto;
-    padding-top: 5%;
+    padding-top: 10%;
 }
 
 ::-webkit-input-placeholder {
@@ -37,6 +39,15 @@
 
 .upload-form input[type=text],textarea:focus {
     outline: none;
+}
+
+/*================== DETAILS ===================*/
+
+.details {
+    width: 30%;
+    padding-left: 5%;
+    display: inline-block;
+    vertical-align: top;
 }
 
 /*================== UPLOAD BUTTON =====================*/
@@ -88,7 +99,7 @@
 
 /*====================== ARTIST ======================*/
 
- .upload-form .artist {
+.upload-form .artist-input {
     height: 40px;
     font-size: 30px;
     font-weight: bold;
@@ -98,7 +109,6 @@
 
  .angucomplete-dropdown{
     border: 0;
-    border-bottom: 1px solid black;
  }
 
  .angucomplete-selected-row {
@@ -117,7 +127,8 @@
 
 .matter-area {
     margin: 20px 0;
-    width: 100%;
+    width: 50%;
+    display: inline-block;
 }
 
 .fileinputs {
@@ -187,7 +198,7 @@
  .fileinputs button {
      position: absolute;
      top: 0px;
-     right: 0px;
+     left: 0px;
      height: 25px;
      width: 25px;
      z-index: 5;

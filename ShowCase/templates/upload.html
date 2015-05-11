@@ -25,19 +25,7 @@
 			<button class="upload-button uploading-button" ng-cloak ng-show="showUploading">
 			UPLOADING...</button>
 
-			<input type="text" class="title" autofocus="autofocus" placeholder="Title" ng-model="art.title" name="uTitle" maxlength="100" required>
-			<div ng-cloak ng-show="uploadForm.$submitted || uploadForm.uTitle.$touched">
-			    <span ng-cloak ng-show="uploadForm.uTitle.$error.required">Please provide a title.</span>
-		   </div>
-
-			<angucomplete-alt placeholder="Artist"
-							 pause="400"
-							 selected-object="selectArtist"
-							 remote-url="/users/search?q="
-							 title-field="first_name,last_name",
-							 search-fields="first_name"
-							 input-class="artist" ></angucomplete-alt>
-
+			
 			<section class="matter-area">
 				<section class="fileinputs">
 	                <input type="file" class="file" fileread="art.matter"  />
@@ -55,8 +43,22 @@
 			    </section>
 			</section>
 
-			<textarea class="description" placeholder="Few words about this piece..." ng-model="art.description" maxlength="1000"></textarea>
+			<section class="details">
+				<input type="text" class="title" autofocus="autofocus" placeholder="Title" ng-model="art.title" name="uTitle" maxlength="100" required>
+				<div ng-cloak ng-show="uploadForm.$submitted">
+				    <span ng-cloak ng-show="uploadForm.uTitle.$error.required">Please provide a title.</span>
+			   </div>
 
+				<angucomplete-alt placeholder="Artist"
+							 pause="400"
+							 selected-object="selectArtist"
+							 remote-url="/users/search?q="
+							 title-field="first_name,last_name",
+							 search-fields="first_name"
+							 input-class="artist-input">
+				</angucomplete-alt>
+				<textarea class="description" placeholder="Few words about this piece..." ng-model="art.description" maxlength="1000"></textarea>
+			</section>
 		</form>
 	</section>
 
