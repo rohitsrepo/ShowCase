@@ -20,7 +20,7 @@ class Composition(models.Model):
         settings.AUTH_USER_MODEL, related_name='compositions')
     artist = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name='arts')
-    slug = models.SlugField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
     created = models.DateTimeField(auto_now_add=True)
     matter = models.FileField(upload_to=get_upload_file_name_composition)
 
