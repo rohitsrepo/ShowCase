@@ -31,7 +31,13 @@ class Composition(models.Model):
         slug_str = "%s %s" % (self.artist.name, self.title) 
         unique_slugify(self, slug_str) 
         super(Composition, self).save(*args, **kwargs)
+        self.make_artist()
         generate_size_versions(self.matter.path)
+
+    def make_artist(self):
+        if not self.artist.is_artist:
+            self.artist.is_artist = True
+            self.artist.save()
 
     def timesince(self, now=None):
         from django.utils.timesince import timesince as _
