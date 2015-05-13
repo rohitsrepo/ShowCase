@@ -15,7 +15,7 @@ angular.module('UploadApp')
 
 	function checkOrAddArtist () {
 		if ($scope.art.artist === undefined || JSON.parse($scope.art.artist).id == -1){
-			$scope.art.artist = JSON.stringify({'id': -1,'name': $('.artist')[0].value})
+			$scope.art.artist = JSON.stringify({'id': -1,'name': $('.artist-input')[0].value})
 		}
 	}
 
@@ -41,7 +41,7 @@ angular.module('UploadApp')
 
 	$scope.selectArtist = function (selectedArtist) {
 		if (selectedArtist === undefined){
-			$scope.art.artist = JSON.stringify({'id': -1,'name': $('.artist').val})
+			$scope.art.artist = JSON.stringify({'id': -1,'name': $('.artist-input')[0].val})
 		} else {
 			$scope.art.artist = selectedArtist.originalObject.id;
 		}
