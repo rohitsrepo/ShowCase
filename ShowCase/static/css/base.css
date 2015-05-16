@@ -225,7 +225,7 @@ a {
   font-weight: normal;
   letter-spacing: 3px;
   opacity: 0.9;
-  color: white;
+  color: rgba(0, 0, 0, 0.8);
   margin: 0;
 }
 
@@ -234,7 +234,7 @@ a {
 }
 
 .auth-user a {
-  color: white;
+  color: rgba(0, 0, 0, 0.8);
   opacity: 0.9;
 }
 

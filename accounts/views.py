@@ -1,5 +1,6 @@
 from .models import User
 from .serializers import NewUserSerializer, ExistingUserSerializer, PasswordUserSerializer, BookmarkSerializer, FollowSerializer
+from .artistSerializers import PaginatedArtistCompositionSerializer
 from django.http import Http404
 from rest_framework.response import Response
 from rest_framework import status
@@ -11,6 +12,8 @@ from ShowCase.utils import check_object_permissions
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from compositions.models import Composition
+from compositions.serializers import CompositionSerializer
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 
 
@@ -174,6 +177,25 @@ def search_artist(request, format=None):
 
     return Response(ser.data, status=status.HTTP_200_OK)
 
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_compositions(request, pk, format=None):
+    user = get_object_or_404(User, pk=pk)
+    user_compositions = user.arts.all().order_by('-id')
+
+    page_num = request.GET.get('page', 1)
+    paginator = Paginator(user_compositions, 9)
+
+    try:
+        this_page_compositions = paginator.page(page_num)
+    except PageNotAnInteger:
+        this_page_compositions = paginator.page(1)
+    except EmptyPage:
+        raise Http404
+
+    serializer = PaginatedArtistCompositionSerializer(this_page_compositions)
+    return Response(data=serializer.data)
 
 @api_view(['GET', 'POST', 'DELETE'])
 @permission_classes((permissions.IsAuthenticated, IsHimself))

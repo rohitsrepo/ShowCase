@@ -17,6 +17,11 @@ html, body {
   font-family: 'taile', sans-serif;
 }
 
+.auth-user,
+.auth-user a {
+  color: white;
+}
+
 /*=================== Head Banner =========================*/
 
 .banner {

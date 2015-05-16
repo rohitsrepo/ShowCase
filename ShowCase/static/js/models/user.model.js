@@ -57,5 +57,11 @@ angular.module("module.model")
 		})
 	};
 
+	service.getCompositions = function (user_id, page) {
+		return $http.get('/users/'+user_id+'/compositions?page='+page).then(function (response) {
+			return response.data;
+		})
+	};
+
 	return service;
 }]);

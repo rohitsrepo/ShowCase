@@ -22,6 +22,11 @@ html, body {
   font-family: 'taile';
 }
 
+.auth-user,
+.auth-user a {
+  color: white;
+}
+
 /*=========== Header ==============*/
 
 .banner {

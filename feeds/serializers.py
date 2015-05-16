@@ -12,7 +12,7 @@ class PostUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('full_name',)
+        fields = ('full_name', 'slug')
 
 class PostCompositionSerializer(serializers.ModelSerializer):
     uploader = PostUserSerializer(read_only=True)

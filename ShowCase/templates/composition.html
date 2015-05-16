@@ -49,7 +49,11 @@
 		<section class="banner">
 			<h1>{{composition.title | title}}</h1>
 			<h4>by</h4>
-			<h3>{{composition.artist.get_full_name | title}}</h3>
+			<h3>
+				<a href="/artists/{{composition.artist.slug}}">
+					{{composition.artist.get_full_name | title}}
+				</a>
+			</h3>
 		</section>
 
 		<footer>
@@ -170,7 +174,7 @@
 			        Artist
 			      </th>
 			      <td>
-			        <a>
+			        <a href="/artists/{{composition.artist.slug}}">
 			          {{ composition.artist.get_full_name | title }}
 			        </a>
 			      </td>

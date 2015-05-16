@@ -91,6 +91,9 @@ class Composition(models.Model):
     def get_350_url(self):
         return self._format_url(WIDTH_STICKY)
 
+    def get_interpretations_count(self):
+        return self.interpretation_set.count()
+
 # To create vote instance when a compostion is created
 @receiver(post_save, sender=Composition)
 def create_vote(sender, **kwargs):

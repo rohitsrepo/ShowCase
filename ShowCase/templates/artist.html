@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="ArtistApp">
+<head>
+	<title>{{artist.name | title}} | ThirdDime</title>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
+
+	 <!-- build:css /static/build/artist.css -->
+	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/artist/main.css">
+	<!-- endbuild -->
+
+	<script>
+		 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		 ga('create', 'UA-58563444-1', 'auto');
+		 ga('require', 'displayfeatures');
+		 ga('send', 'pageview');
+	</script>
+</head>
+<body ng-controller="artistController">
+	<topbar></topbar>
+	<div class="curtain-overlay-placeholder"></div>
+	<header class="primary-header" ng-init="init('{{artist.id}}')">
+		<section class=""></section>
+		<!-- <div class="picture">
+			<img src="{{artist.picture}}">
+		</div> -->
+		<h1>{{artist.name | title}}</h1>
+		<h4>{{artist.arts.count}} Paintings</h4>
+	</header>
+
+	<ul class="paintings-container" infinite-scroll="loadMoreCompositions()" infinite-scroll-distance='1' infinite-scroll-disabled='compositionsMeta.busy || compositionsMeta.disableGetMore' >
+		<li ng-repeat="composition in compositions">
+			<a href="/arts/[[composition.slug]]">
+				<figure>
+					<img ng-src="[[composition.matter_350]]">
+					<figcaption class="details">
+						<h4>[[composition.title | titlecase]]</h4>
+						<h5>[[composition.interpretations_count]] Interpretations</h5>
+					</figcaption>
+				</figure>
+			</a>
+		</li>
+	</ul>
+
+	<!-- Scripts Here -->
+	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- build:js /static/build/artist.js -->
+	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
+	
+	<script type="text/javascript" src="/static/bower_components/nginfinitescroll/build/ng-infinite-scroll.min.js"></script>
+	
+	<script type="text/javascript" src="/static/js/artist/artist.module.js"></script>
+	<script type="text/javascript" src="/static/js/artist/artist.controller.js"></script>
+	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
+	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
+	<script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
+	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
+	<script type="text/javascript" src="/static/js/authentication/facebook.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
+	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
+	<script type="text/javascript" src="/static/js/components/analytics/analytics.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/analytics/analytics.directive.js"></script>
+	<!-- endbuild -->
+</body>
+</html>

@@ -22,11 +22,6 @@ html, body {
   cursor: pointer;
 }
 
-.auth-user,
-.auth-user a {
-  color: rgba(0, 0, 0, 0.8);
-}
-
 @media (max-width: 800px) {
   .primary-header {
     height: 500px;
@@ -52,11 +47,13 @@ html, body {
 }
 
 .banner h3 {
-  color: #E6B800;
-  font-size: 1.5em;
   margin-top: 10px;
 }
 
+.banner h3 a {
+  color: #E6B800;
+  font-size: 1.5em;
+}
 .banner h4 {
   font-size: 1em;
   margin-top: 1em;
