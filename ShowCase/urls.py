@@ -37,12 +37,14 @@ urlpatterns += patterns('',
 
 # SitesMap
 from compositions.sitemaps import CompositionSitemap
+from accounts.sitemaps import ArtistSitemap
 from ShowCase.sitemaps import ReaderSitemap, StaticViewSitemap
 from django.contrib.sitemaps import views
 
 sitemaps = {
     'reader': ReaderSitemap,
     'compositions': CompositionSitemap,
+    'artists': ArtistSitemap,
     'static': StaticViewSitemap
 }
 
