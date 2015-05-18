@@ -19,6 +19,7 @@ urlpatterns = patterns('',
                        url(r'^login$', TemplateView.as_view(template_name='login.html'), name="login"),
                        url(r'^upload-art$', TemplateView.as_view(template_name='upload.html'), name="upload"),
                        url(r'^arts/(?P<slug>[\w-]+)$', 'compositions.clientViews.composition_main', name="composition-page"),
+                       url(r'^arts/(?P<slug>[\w-]+)/add-interpretation$', 'compositions.clientViews.add_interpretation', name="interpretation-page"),
                        url(r'^artists/(?P<slug>[\w-]+)$', 'accounts.clientViews.artist_main', name="artist-page"),
 		       )
 

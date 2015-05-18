@@ -9,3 +9,7 @@ def composition_main(request, slug):
 	except:
 		top_interpretation = "Explore Art through Stories and Interpretations."
 	return render_to_response("composition.html", {'composition': composition, 'top_interpretation': top_interpretation})
+
+def add_interpretation(request, slug):
+	composition = get_object_or_404(Composition, slug=slug)
+	return render_to_response("interpret.html", {'composition': composition})
