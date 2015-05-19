@@ -23,3 +23,8 @@ class IsHimself(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
 	# Permission is only allowed to the user.
 	return obj == request.user
+
+class IsImageUploader(permissions.BasePermission):
+
+    def has_object_permission(self, request, view, obj):
+        return obj.uploader == request.user

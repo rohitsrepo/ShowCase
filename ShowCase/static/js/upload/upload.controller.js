@@ -12,7 +12,6 @@ angular.module('UploadApp')
 		auth) {
 	'use strict';
 
-
 	function checkOrAddArtist () {
 		if ($scope.art.artist === undefined || JSON.parse($scope.art.artist).id == -1){
 			$scope.art.artist = JSON.stringify({'id': -1,'name': $('.artist-input')[0].value})

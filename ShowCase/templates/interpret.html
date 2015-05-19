@@ -31,6 +31,7 @@
 <body ng-controller="interpretController">
 	<!-- <topbar></topbar>
 	<div class="curtain-overlay-placeholder"></div> -->
+	<div class="progress-bar"></div>
 
 	<section class="container" ng-init="init({{composition.id}}, '{{composition.matter.url}}')">
 		<section class='painting'>
@@ -44,13 +45,17 @@
 			<p class="new-interpretation interpret-content" rich-edit></p>
 		</section>
     </section>
+    
+	<alert-support></alert-support>
 
 	<!-- Scripts Here -->
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
 	<!-- build:js /static/build/interpret.js -->
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
 
 	<script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular-upload/angular-upload.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/medium-editor/dist/js/medium-editor.min.js"></script>
 	
 	<script type="text/javascript" src="/static/js/interpret/interpret.module.js"></script>
@@ -68,6 +73,8 @@
 	<script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
 	<script type="text/javascript" src="/static/js/components/analytics/analytics.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/analytics/analytics.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/alert/alert.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/alert/alert.directive.js"></script>
 	<!-- endbuild -->
 </body>
 </html>

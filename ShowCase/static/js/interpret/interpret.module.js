@@ -1,9 +1,12 @@
 angular.module("InterpretApp", [
+    "lr.upload",
+    "ngAnimate",
     "module.auth",
     "module.topbar",
     "module.model",
     'module.titlecase',
-    'module.analytics'])
+    'module.analytics',
+    'module.alert'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

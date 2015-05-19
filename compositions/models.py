@@ -1,12 +1,13 @@
-import re, os
-from django.db.models.signals import post_save
+import os
+import util
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
 from votes.models import Vote
 from .utils import GrayScaleAndSketch
-from .imageTools import generate_size_versions, WIDTH_READER, WIDTH_STICKY
+from .imageTools import generate_size_versions, WIDTH_READER, WIDTH_STICKY, compress
 
 def get_upload_file_name_composition(instance, filename):
     return '%s/%s/%s_%s_thirddime%s' % (instance.uploader.id, slugify(instance.artist.name), slugify(instance.artist.name), slugify(instance.title), '.' + filename.split('.')[-1])
@@ -28,11 +29,18 @@ class Composition(models.Model):
         ordering = ('created',)
 
     def save(self, *args, **kwargs):
+        new_instance = False
+        if self.pk is None:
+            new_instance = True
+
         slug_str = "%s %s" % (self.artist.name, self.title) 
-        unique_slugify(self, slug_str) 
+        util.unique_slugify(self, slug_str)
+
         super(Composition, self).save(*args, **kwargs)
+
         self.make_artist()
-        generate_size_versions(self.matter.path)
+        if new_instance:
+            generate_size_versions(self.matter.path)
 
     def make_artist(self):
         if not self.artist.is_artist:
@@ -105,55 +113,34 @@ def create_vote(sender, **kwargs):
 
         GrayScaleAndSketch(instance.matter.path)
 
-def unique_slugify(instance, value, slug_field_name='slug', queryset=None,
-                   slug_separator='-'):
-    slug_field = instance._meta.get_field(slug_field_name)
+def get_upload_file_name_interpretation_image(instance, filename):
+    return '%s/Interprets/%s/%s_meta%s' % (instance.uploader.id, slugify(instance.composition.title),slugify(instance.composition.title), '.' + filename.split('.')[-1])
 
-    slug = getattr(instance, slug_field.attname)
-    slug_len = slug_field.max_length
+class InterpretationImage(models.Model):
+    composition = models.ForeignKey(Composition)
+    image = models.ImageField(upload_to=get_upload_file_name_interpretation_image)
+    uploader = models.ForeignKey(settings.AUTH_USER_MODEL)
 
-    # Sort out the initial slug, limiting its length if necessary.
-    slug = slugify(value)
-    if slug_len:
-        slug = slug[:slug_len]
-    slug = _slug_strip(slug, slug_separator)
-    original_slug = slug
+    def save(self, *args, **kwargs):
+        new_instance = False
+        if self.pk is None:
+            new_instance = True
 
-    # Create the queryset if one wasn't explicitly provided and exclude the
-    # current instance from the queryset.
-    if queryset is None:
-        queryset = instance.__class__._default_manager.all()
-    if instance.pk:
-        queryset = queryset.exclude(pk=instance.pk)
+        super(InterpretationImage, self).save(*args, **kwargs)
 
-    # Find a unique slug. If one matches, at '-2' to the end and try again
-    # (then '-3', etc).
-    next = 2
-    while not slug or queryset.filter(**{slug_field_name: slug}):
-        slug = original_slug
-        end = '%s%s' % (slug_separator, next)
-        if slug_len and len(slug) + len(end) > slug_len:
-            slug = slug[:slug_len-len(end)]
-            slug = _slug_strip(slug, slug_separator)
-        slug = '%s%s' % (slug, end)
-        next += 1
+        if new_instance:
+            compress(self.image.path)
+            generate_size_versions(self.image.path)
 
-    setattr(instance, slug_field.attname, slug)
+    def _format_url(self, suffix):
+        file_path, file_name = os.path.split(self.image.url)
+        name, extension = os.path.splitext(file_name)
+        return os.path.join(file_path, '{0}_{1}{2}'.format(name, suffix, extension))
 
+    def get_550_url(self):
+        return self._format_url(WIDTH_READER)
 
-def _slug_strip(value, separator='-'):
-    separator = separator or ''
-    if separator == '-' or not separator:
-        re_sep = '-'
-    else:
-        re_sep = '(?:-|%s)' % re.escape(separator)
-    # Remove multiple instances and if an alternate separator is provided,
-    # replace the default '-' separator.
-    if separator != re_sep:
-        value = re.sub('%s+' % re_sep, separator, value)
-    # Remove separator from the beginning and end of the slug.
-    if separator:
-        if separator != '-':
-            re_sep = re.escape(separator)
-        value = re.sub(r'^%s+|%s+$' % (re_sep, re_sep), '', value)
-    return value
+    def get_350_url(self):
+        return self._format_url(WIDTH_STICKY)
+
+post_delete.connect(util.file_cleanup, sender=InterpretationImage, dispatch_uid="interpretationImage.file_cleanup")

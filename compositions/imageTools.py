@@ -17,3 +17,7 @@ def generate_size_versions(filepath):
     im = Image.open(filepath)
     _resize(im.copy(), WIDTH_READER, filepath)
     _resize(im.copy(), WIDTH_STICKY, filepath)
+
+def compress(filepath, quality=80):
+	im = Image.open(filepath)
+	im.save(filepath, quality=quality, optimize=True, progressive=True)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Composition
+from .models import Composition, InterpretationImage
 from ShowCase.serializers import URLImageField
 
 class CompositionUserSerializer(serializers.ModelSerializer):
@@ -28,3 +28,12 @@ class NewCompositionSerializer(serializers.ModelSerializer):
         model = Composition
         fields = ('title', 'artist', 'description', 'matter', 'slug')
         read_only_fields = ('slug',)
+
+class InterpretationImageSerializer(serializers.ModelSerializer):
+    url = URLImageField(source='image', read_only=True)
+    image_550 = serializers.CharField(source='get_550_url', read_only=True)
+    image_350 = serializers.CharField(source='get_350_url', read_only=True)
+
+    class Meta:
+        model = InterpretationImage
+        fields = ('image', 'url', 'id', 'image_550', 'image_350')

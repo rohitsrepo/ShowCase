@@ -24,7 +24,7 @@ function derives(base, derived) {
 }
 
 /*jslint plusplus: true */
-function TableDerived(options) {
+function ImageDerived(options) {
     "use strict";
     this.parent = true;
     this.hasForm = true;
@@ -38,7 +38,7 @@ function TableDerived(options) {
     }, options || {}, true);
 }
 
-TableDerived.prototype = {
+ImageDerived.prototype = {
 
     // Called when the button the toolbar is clicked
     // Overrides DefaultButton.handleClick
@@ -102,47 +102,6 @@ TableDerived.prototype = {
             return addImage;
     },
 
-    createForm1: function () {
-        var doc = this.base.options.ownerDocument,
-            form = doc.createElement('section'),
-            close = doc.createElement('a'),
-            save = doc.createElement('a');
-            // columnInput = doc.createElement('input'),
-            // rowInput = doc.createElement('input');
-
-        form.className = 'medium-editor-toolbar-form';
-        form.id = 'medium-editor-toolbar-form-table-' + this.base.id;
-
-        // Handle clicks on the form itself
-        this.base.on(form, 'click', this.handleFormClick.bind(this));
-
-        // Add save buton
-        save.setAttribute('href', '#');
-        save.className = 'medium-editor-toolbar-save';
-        // save.innerHTML = this.base.options.buttonLabels === 'fontawesome' ?
-        //                  '<i class="fa fa-check"></i>' :
-        //                  '&#10003;';
-        save.innerHTML = 'Crop Painting'
-        form.appendChild(save);
-
-        // Handle save button clicks (capture)
-        this.base.on(save, 'click', this.handleCropPainting.bind(this), true);
-
-        // Add close button
-        close.setAttribute('href', '#');
-        close.className = 'medium-editor-toolbar-close';
-        // close.innerHTML = this.base.options.buttonLabels === 'fontawesome' ?
-        //                   '<i class="fa fa-times"></i>' :
-        //                   '&times;';
-        close.innerHTML = 'Upload File'
-        form.appendChild(close);
-
-        // Handle close button clicks
-        this.base.on(close, 'click', this.handleUploadPainting.bind(this));
-
-        return form;
-    },
-
     handleCropPainting: function (evt) {
         evt.preventDefault();
         evt.stopPropagation();
@@ -151,32 +110,80 @@ TableDerived.prototype = {
         this.doImageSave(url);
     },
 
+    handleDeletePainting: function (evt) {
+        this.options.scope.deleteFile(evt.toElement.id).then(function () {
+            evt.toElement.parentElement.remove();
+        });
+    },
+
     handleUploadPainting : function (evt) {
         evt.preventDefault();
         evt.stopPropagation();
 
         file = evt.target.files[0];
-        console.log("got file", file);
-        url = 'http://www.daydaypaint.com/images/Pino/Pino-Painting-009.jpg';
-        this.doImageSave(url);
+        var that = this;
+        this.options.scope.uploadFile(file).then(function (data) {
+            that.doImageSave(data);
+        });
     },
 
-    createImageHtml : function (url) {
-         var doc = this.base.options.ownerDocument,
-         img = doc.createElement('img')
-         ,wrap = doc.createElement('div');
+    createImageHtml : function (data) {
+        var doc = this.base.options.ownerDocument,
+        img = doc.createElement('img'),
+        container = doc.createElement('section'),
+        actions = doc.createElement('section'),
+        wrap = doc.createElement('div');
 
-         img.setAttribute('src', url);
+        container.className = 'image-holder';
 
-         wrap.appendChild(img)
-         return wrap;
+        actions.className = 'image-actions';
+        actions.innerText = 'Remove';
+        actions.id = data.id;
+        actions.setAttribute('ng-click', "deleteFile('"+data.id+"')");
+
+        this.base.on(actions, 'click', this.handleDeletePainting.bind(this), true);
+
+        img.setAttribute('src', data.url);
+
+        container.appendChild(img);
+        container.appendChild(actions);
+
+        wrap.appendChild(container);
+        return wrap;
     },
 
-    doImageSave : function (url) {
-         var doc = this.base.options.ownerDocument;
+    doImageSave : function (data) {
+        var imageHTML = this.createImageHtml(data),
+            doc = this.base.options.ownerDocument;
 
-        doc.execCommand('insertImage', false, url);
+        this.base.restoreSelection();
+
+        var selectionBaseNode = doc.getSelection().focusNode;
+        this.pasteHTML(imageHTML.childNodes[0], selectionBaseNode);
+
+        // Update toolbar -> hide this form
+        this.base.checkSelection();
+    },
+
+    pasteHTML: function (newNode, node) {
+        var parent = node.parentNode;
+        var son = node;
+        while(!this.hasClass(parent, 'interpret-content')){
+            son = parent;
+            parent = son.parentNode;
+        }
+
+        var sibling = son.nextSibling;
+        if (sibling){
+            parent.insertBefore(newNode, sibling);
+        } else {
+            parent.insertBefore(newNode, son);
+        }
+    },
+
+    hasClass: function (element, cls) {
+        return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
     }
 }
 
-ImageExtension = derives(MediumEditor.statics.AnchorExtension, TableDerived);
+ImageExtension = derives(MediumEditor.statics.AnchorExtension, ImageDerived);

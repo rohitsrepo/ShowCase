@@ -1,224 +1,261 @@
 
 html, body {
-  font-family: 'taile', sans-serif;
-  height: 100%;
-  width: 100%;
-  padding: 0; 
-  margin: 0;
+    font-family: 'taile', sans-serif;
+    height: 100%;
+    width: 100%;
+    padding: 0; 
+    margin: 0;
 }
 
 /*========================*/
 
 .container {
-    /*position: fixed;*/
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    /*top: 50%;
-    left: 50%;*/
-    /*transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);*/
+        /*position: fixed;*/
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        /*top: 50%;
+        left: 50%;*/
+        /*transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);*/
 }
 
 /*========== Painting ============*/
 
 .container .painting {
-    width: 55%;
-    height: 100%;
-    background: #1c2023;
-    display: inline-block;
-    margin-right: 4%;
-    position: relative;
+        width: 55%;
+        height: 100%;
+        background: #1c2023;
+        display: inline-block;
+        margin-right: 4%;
+        position: relative;
 }
 
 .container .painting img {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    width: 100%;
-    padding: 0 3%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        width: 100%;
+        padding: 0 3%;
 }
 
 /*============ Interpretation =============*/
 
 .container .user-interpretation {
-    position: relative;
-    width: 40%;
-    height: 100%;
-    display: inline-block;
+        position: relative;
+        width: 40%;
+        height: 100%;
+        display: inline-block;
 }
 
 .user-interpretation .actions {
-    position: absolute;
-    top: 0;
-    height: 10%;
-    width: 100%;
-    text-align: right;
-    padding-right: 2%;
+        position: absolute;
+        top: 0;
+        height: 10%;
+        width: 100%;
+        text-align: right;
+        padding-right: 2%;
 }
 
 .actions button {
-  background-color: transparent;
-  border: none;
-  font-size: 0.75em;
-  color: rgba(0, 0, 0, 0.5);
-  padding: 0.5em 0.5em;
-  margin-top: 3%;
-  margin-left: 1.5%;
-  cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 0.75em;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 0.5em 0.5em;
+    margin-top: 3%;
+    margin-left: 1.5%;
+    cursor: pointer;
 }
 
 .actions .cancel:hover {
-    color: #000;
+        color: #000;
 }
 
 .actions .save {
-  background-color: transparent;
-  border: 1px solid transparent;
-  border-radius: 3em;
-  color: #E6B800;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 3em;
+    color: #E6B800;
 }
 
 .actions .save:hover {
-  background-color: #E6B800;
-  border: 1px solid #E6B800;
-  color: white;
+    background-color: #E6B800;
+    border: 1px solid #E6B800;
+    color: white;
 }
 
 .new-interpretation {
-  position: absolute;
-  top: 10%;
-  height: 80%;
-  width: 100%;
-  overflow: auto;
+    position: absolute;
+    top: 10%;
+    height: 80%;
+    width: 100%;
+    overflow: auto;
 }
 
 /*================= Interpretation - Content ==================*/
 /*Changes made here should also reflect in the add interpretation area. */
 
 .interpret-content {
-  color: rgba(0, 0, 0, 0.8);
-  text-decoration: none solid rgba(0, 0, 0, 0.8);
-  font-family: 'Merriweather', serif;
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: none solid rgba(0, 0, 0, 0.8);
+    font-family: 'Merriweather', serif;
 }
 
 .interpret-content h3 {
-  font-size: 1.25em;
-  font-weight: bold;
-  letter-spacing: 0.1px;
-  margin: 0;
+    font-size: 1.25em;
+    font-weight: bold;
+    letter-spacing: 0.1px;
+    margin: 0;
+    margin-bottom: 13px;
 }
 
 .interpret-content h4 {
-  font-size: 1.2em;
-  letter-spacing: 0.1px;
-  margin: 0;
+    font-size: 1.2em;
+    letter-spacing: 0.1px;
+    margin: 0;
+    margin-bottom: 13px;
 }
 
 .interpret-content,
 .interpret-content:after,
 .interpret-content p {
-  font-size: 1em;
-  letter-spacing: 0.1px;
-  line-height: 1.5em;
-  margin: 0;
+    font-size: 1em;
+    letter-spacing: 0.1px;
+    line-height: 1.5em;
+    margin: 0;
+    display: block;
+    margin-bottom: 13px;
 }
 
 .interpret-content:after{
-  font-style: normal;
+    font-style: normal;
 }
 
 .interpret-content a {
-  text-decoration: underline;
-  cursor: pointer;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .interpret-content blockquote {
-  font-size: 1.1em;
-  letter-spacing: 0.1px;
-  margin: 12px 0;
-  padding: 0;
-  padding-left: 10px;
-  font-style: italic;
-  border-left: 4px solid rgba(0, 0, 0, 0.8);
+    font-size: 1.1em;
+    letter-spacing: 0.1px;
+    margin: 12px 0;
+    padding: 0;
+    padding-left: 10px;
+    font-style: italic;
+    border-left: 4px solid rgba(0, 0, 0, 0.8);
 }
 
 .interpret-content b {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .interpret-content i {
-  font-style: italic;
+    font-style: italic;
+}
+
+.interpret-content .image-holder {
+    width: 100%;
+    position: relative;
+    display: block;
+    margin-bottom: 13px;
+}
+
+.interpret-content .image-holder img {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.interpret-content .image-actions {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    font-family: 'taile', sans-serif;
+    cursor: pointer;
+    opacity: 0.6;
+    background-color: rgba(230, 184, 0, 0.4);
+    padding: 0 5px;
+}
+
+.interpret-content .image-actions:hover {
+    opacity: 1;
+    background-color: rgba(230, 184, 0, 0.8);
 }
 
 /*================== Add Image =================*/
 
 .add-image {
-  position: fixed;
-  width: 55%;
-  height: 100%;
-  background-color: rgba(230, 184, 0, 0.2);
-  top: 0;
-  left: 0;
+    position: fixed;
+    width: 55%;
+    height: 100%;
+    background-color: rgba(230, 184, 0, 0.2);
+    top: 0;
+    left: 0;
 }
 
 .add-image .small-box {
-    width: 50%;
-    height: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
 }
 
 .add-image .crop-image,
 .add-image .upload-image {
-  display: block;
-  height: 50%;
-  width: 100%;
-  text-align: center;
-  position: relative;
-  background-color: rgba(230, 184, 0, 0.6);
-  cursor: pointer;
+    display: block;
+    height: 50%;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    background-color: rgba(230, 184, 0, 0.6);
+    cursor: pointer;
 }
 
 .add-image .crop-image {
-    border-bottom: 1px solid black;
+        border-bottom: 1px solid black;
 }
 
 .add-image .crop-image:hover,
 .add-image .upload-image:hover {
-    background-color: rgba(230, 184, 0, 0.9);
+        background-color: rgba(230, 184, 0, 0.9);
 }
 
 .add-image .upload-image .file {
-    opacity: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    background-color: green;
-    cursor: pointer;
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        background-color: green;
+        cursor: pointer;
 }
 
 .add-image .crop-image h3,
 .add-image .upload-image h3 {
-    width: 100%;
-    font-size: 2em;
-    letter-spacing: 1px;
-    padding: 5px;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
+        width: 100%;
+        font-size: 2em;
+        letter-spacing: 1px;
+        padding: 5px;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
 }

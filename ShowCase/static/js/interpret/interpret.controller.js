@@ -4,7 +4,10 @@ angular.module('InterpretApp')
 	'analytics',
 	'progress',
 	'interpretationModel',
-	function ($scope, analytics, progress, interpretationModel) {
+	'upload',
+	'alert',
+	'$http',
+	function ($scope, analytics, progress, interpretationModel, upload, alert, $http) {
 
 	var uploading;
 	$scope.composition = {};
@@ -18,7 +21,6 @@ angular.module('InterpretApp')
 	};
 
 	$scope.saveInterpretation = function () {
-		console.log("start uploading");
 		analytics.logEvent('Composition', 'Add Interpretation', $scope.composition.url);
 
 		progress.showProgress();
@@ -28,19 +30,36 @@ angular.module('InterpretApp')
 			interpretationModel.addInterpretation($scope.composition.id, $('.new-interpretation').html())
 			.then(function () {
 				// Take to composition page
-		console.log("start suc");
-				// showAlert("Your submission is under review.");
+				progress.hideProgress();
+				alert.showAlert("Your submission is under review.");
 			}, function () {
 				progress.hideProgress();
-		console.log("start fail");
-				// showAlert("This is not a valid submission.");
+				alert.showAlert("This is not a valid submission.");
 				uploading = false;
 			});
 		}
 	};
 
 	$scope.interpret = {};
-	$scope.uploadFile = function (ufile) {
-		console.log("Will be uploading file: ", ufile);
+	$scope.uploadFile = function (file) {
+		progress.showProgress();
+		return upload({
+			url: '/compositions/' + $scope.composition.id + '/interpretation-images',
+			method: 'POST',
+			data: {'image': file}
+		}).then(
+			function (response) {
+				progress.hideProgress();
+				return response.data;
+			},
+			function (response) {
+				progress.hideProgress();
+				alert.showAlert('Error uploading file');
+			}
+		);
+	};
+
+	$scope.deleteFile = function (id) {
+		return $http.delete('/compositions/' + $scope.composition.id + '/interpretation-images/'+id);
 	};
 }]);

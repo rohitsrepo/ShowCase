@@ -1,12 +1,13 @@
 import django_filters
 from django.db.models import Q
-from .models import Composition
+from .models import Composition, InterpretationImage
 from accounts.models import User
 from rest_framework import permissions, generics, status
-from .serializers import CompositionSerializer, NewCompositionSerializer
-from .permissions import IsOwnerOrReadOnly, IsHimself
+from .serializers import CompositionSerializer, NewCompositionSerializer, InterpretationImageSerializer
+from .permissions import IsOwnerOrReadOnly, IsHimself, IsImageUploader
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.shortcuts import get_object_or_404
 from django.http import Http404
 from accounts.serializers import ExistingUserSerializer
 from rest_framework.decorators import api_view, permission_classes
@@ -112,6 +113,35 @@ class CompositionDetail(APIView):
         composition.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+class InterpretationImageList(APIView):
+
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, composition_id, format=None):
+        composition = get_object_or_404(Composition, pk=composition_id)
+        images = InterpretationImage.objects.filter(composition=composition)
+        serializer = InterpretationImageSerializer(images, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, composition_id, format=None):
+        composition = get_object_or_404(Composition, pk=composition_id)
+        serializer = InterpretationImageSerializer(files=request.FILES, context={'request': request})
+        if serializer.is_valid():
+            serializer.object.uploader = request.user
+            serializer.object.composition = composition
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class InterpretationImageDetail(APIView):
+    permission_classes = (permissions.IsAuthenticated, IsImageUploader)
+
+    def delete(self, request, composition_id, image_id, format=None):
+        interpretationImage = get_object_or_404(InterpretationImage, pk=image_id, composition_id=composition_id)
+        interpretationImage.delete();
+        
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET'])
 @permission_classes((permissions.IsAuthenticated, IsHimself))
