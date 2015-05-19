@@ -9,6 +9,7 @@ controller("compositionController", [
 	'$timeout',
 	'analytics',
 	'progress',
+	'alert',
 	function ($window,
 		$scope,
 		posts,
@@ -17,7 +18,8 @@ controller("compositionController", [
 		$location,
 		$timeout,
 		analytics,
-		progress)
+		progress,
+		alert)
 	{
 
 	$scope.composition = {};
@@ -136,7 +138,7 @@ controller("compositionController", [
 
 	$scope.reportContent = function () {
 		contentManager.reportComposition($scope.composition.id).then(function () {
-			showAlert('Flagging this content. The content is under review now.');
+			alert.showAlert('Flagging this content. The content is under review now.');
 			$scope.showMoreOptions = false;
 		});
 		analytics.logEvent('Composition', 'ToolBar - Report Content', $scope.composition.url);
@@ -149,17 +151,6 @@ controller("compositionController", [
 		posts.nextPosts(feed, postId, $scope.composition.id).then(function (posts) {
 			$scope.nextPosts = posts;
 		});
-	};
-
-	$scope.alerts = {'show': false, 'content': ''};
-
-	var showAlert = function (content) {
-		$scope.alerts.content = content;
-		$scope.alerts.show = true;
-
-		$timeout(function () {
-			$scope.alerts.show = false;
-		}, 4000);
 	};
 
 	$scope.showInterpretationModal = function () {
@@ -182,14 +173,14 @@ controller("compositionController", [
 			interpretationModel.addInterpretation($scope.composition.id, $('.new-interpretation').html())
 			.then(function () {
 				$scope.hideInterpretationModal();
-				showAlert("Your submission is under review.");
+				alert.showAlert("Your submission is under review.");
 				 $('.new-interpretation').html('');
 				 $('.new-interpretation').addClass('medium-editor-placeholder');
 				 uploading = false;
 				 progress.hideProgress();
 			}, function () {
 				progress.hideProgress();
-				showAlert("This is not a valid submission.");
+				alert.showAlert("This is not a valid submission.");
 			});
 		}
 	};

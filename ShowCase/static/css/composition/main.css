@@ -798,40 +798,6 @@ html, body {
   }
 }
 
-/*================ ALERT ====================*/
-
-.alerts {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  margin-right: auto;
-  margin-left: auto;
-  height: 50px;
-  width: 400px;
-  background-color: #E6B800;
-  display: inline;
-  z-index: 1000;
-}
-
-
-.alerts.ng-hide-remove {
-    -webkit-animation: fadeInDown 0.7s;
-    animation: fadeInDown 0.7s;
-    opacity: 0;
-}
-
-.alerts.ng-hide-add {
-    -webkit-animation: fadeOutUp 0.7s;
-    animation: fadeOutUp 0.7s;
-}
-
-.alerts h4 {
-  font-size: 15px;
-  text-align: center;
-  margin-top: 18px;
-}
-
 /*============== Interpretation Modal ===============*/
 
 .interpret-modal.ng-hide-remove {

@@ -42,7 +42,7 @@
 </head>
 
 
-<body ng-controller="compositionController" ng-init="init()">
+<body ng-controller="compositionController">
 	<topbar></topbar>
 	<div class="curtain-overlay-placeholder"></div>
 	<header scroll-to="#painting" class="primary-header" ng-init="init({{composition.id}}, '{{composition.matter.url}}')">
@@ -206,9 +206,11 @@
 		</section>
 	</footer>
 
-	<section class="alerts" ng-cloak ng-show="alerts.show">
+	<!-- <section class="alerts" ng-cloak ng-show="alerts.show">
 		<h4>[[alerts.content]]</h4>
-	</section>
+	</section> -->
+
+	<alert-support></alert-support>
 
 	<interpretation-modal></interpretation-modal>
 
@@ -266,6 +268,8 @@
 	<script type="text/javascript" src="/static/js/components/interpret/interpret.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/analytics/analytics.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/analytics/analytics.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/alert/alert.service.js"></script>
+	<script type="text/javascript" src="/static/js/components/alert/alert.directive.js"></script>
 	<!-- endbuild -->
 </body>
 </html>

@@ -8,8 +8,12 @@
 
 	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
 
+	<link href='http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 	 <!-- build:css /static/build/interpret.css -->
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
+	<link rel="stylesheet" type="text/css" href="/static/bower_components/medium-editor/dist/css/medium-editor.css">
+	<link rel="stylesheet" type="text/css" href="/static/bower_components/medium-editor/dist/css/themes/default.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/interpret/main.css">
 	<!-- endbuild -->
@@ -25,35 +29,42 @@
 	</script>
 </head>
 <body ng-controller="interpretController">
-	<topbar></topbar>
-	<div class="curtain-overlay-placeholder"></div>
+	<!-- <topbar></topbar>
+	<div class="curtain-overlay-placeholder"></div> -->
+
+	<section class="container" ng-init="init({{composition.id}}, '{{composition.matter.url}}')">
+		<section class='painting'>
+			<img ng-src="{{composition.matter.url}}" />
+		</section>
+		<section class='user-interpretation'>
+			<header class="actions">
+				<button class="save" ng-click="saveInterpretation()">SAVE</button>
+				<button class="cancle">CANCEL</button>
+			</header>
+			<p class="new-interpretation interpret-content" rich-edit></p>
+		</section>
+    </section>
 
 	<!-- Scripts Here -->
 	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
 	<!-- build:js /static/build/interpret.js -->
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+
 	<script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
+	<script type="text/javascript" src="/static/bower_components/medium-editor/dist/js/medium-editor.min.js"></script>
 	
 	<script type="text/javascript" src="/static/js/interpret/interpret.module.js"></script>
 	<script type="text/javascript" src="/static/js/interpret/interpret.controller.js"></script>
+	<script type="text/javascript" src="/static/js/interpret/imageExtension.js"></script>
+	<script type="text/javascript" src="/static/js/interpret/richEdit.directive.js"></script>
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
+	<script type="text/javascript" src="/static/js/models/interpretation.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
-	<script type="text/javascript" src="/static/js/authentication/facebook.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
+	<script type="text/javascript" src="/static/js/components/topbar/progress.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
 	<script type="text/javascript" src="/static/js/components/analytics/analytics.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/analytics/analytics.directive.js"></script>

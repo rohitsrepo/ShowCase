@@ -12,7 +12,8 @@ angular.module("CompositionApp", [
     'module.tools',
     'module.titlecase',
     'module.interpret',
-    'module.analytics'])
+    'module.analytics',
+    'module.alert'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 
