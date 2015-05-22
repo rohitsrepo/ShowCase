@@ -36,4 +36,4 @@ class InterpretationImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = InterpretationImage
-        fields = ('image', 'url', 'id', 'image_550', 'image_350')
+        fields = ('image', 'url', 'id', 'image_550', 'image_350', 'source_type')

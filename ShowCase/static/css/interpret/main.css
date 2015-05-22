@@ -10,15 +10,9 @@ html, body {
 /*========================*/
 
 .container {
-        /*position: fixed;*/
         width: 100%;
         height: 100%;
         overflow: hidden;
-        /*top: 50%;
-        left: 50%;*/
-        /*transform: translate(-50%, -50%);
-        -webkit-transform: translate(-50%, -50%);
-        -moz-transform: translate(-50%, -50%);*/
 }
 
 /*========== Painting ============*/
@@ -32,6 +26,10 @@ html, body {
         position: relative;
 }
 
+.imgareaselect-outer {
+    background-color: rgba(230, 184, 0, 0.6);
+}
+
 .container .painting img {
         position: absolute;
         top: 50%;
@@ -41,6 +39,7 @@ html, body {
         width: 100%;
         padding: 0 3%;
 }
+
 
 /*============ Interpretation =============*/
 

@@ -2,14 +2,17 @@ angular.module('module.alert', [])
 .factory('alert', ['$timeout', function ($timeout) {
 
 	var service = {};
-	service.meta = {'show': false, 'content': false};
+
+	service.show = false;
+	service.content = 'Welcome';
 
 	service.showAlert = function (content) {
-		service.meta.content = content;
-		service.meta.show = true;
+
+		service.content = content;
+		service.show = true;
 
 		$timeout(function () {
-			service.meta.show = false;
+			service.show = false;
 		}, 4000);
 	};
 

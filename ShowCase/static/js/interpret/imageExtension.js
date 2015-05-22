@@ -55,6 +55,7 @@ ImageDerived.prototype = {
 
     hideForm: function () {
         this.getForm().style.display = 'none';
+        this.options.scope.hideCropper();
     },
 
     showForm: function () {
@@ -87,6 +88,7 @@ ImageDerived.prototype = {
             uploadHeader.innerText = 'Upload Image';
 
             crop.appendChild(cropHeader);
+            this.base.on(crop, 'click', this.handleCropPainting.bind(this), true);
             upload.appendChild(uploadHeader);
 
             inputFile.setAttribute('type', 'file');
@@ -102,12 +104,23 @@ ImageDerived.prototype = {
             return addImage;
     },
 
+    handleCropSelection: function (instance) {
+        return function (img, selection) {
+            instance.options.scope.cropFile([selection.x1, selection.y1, selection.x2, selection.y2]).then(function (data) {
+                instance.doImageSave(data);
+            });
+        };
+    },
+
     handleCropPainting: function (evt) {
         evt.preventDefault();
         evt.stopPropagation();
+        this.base.restoreSelection();
 
-        url = 'http://c300221.r21.cf1.rackcdn.com/the-paintings-of-vicente-romero-redondo-lovely-women-in-hot-weather-boy-with-a-hat-1381023779_b.jpg';
-        this.doImageSave(url);
+        var that = this;
+        console.log("this in set", this);
+
+        this.options.scope.showCropper(this.handleCropSelection(this));
     },
 
     handleDeletePainting: function (evt) {

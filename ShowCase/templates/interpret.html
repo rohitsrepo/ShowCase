@@ -14,6 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/medium-editor/dist/css/medium-editor.css">
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/medium-editor/dist/css/themes/default.css">
+	<link rel="stylesheet" type="text/css" href="/static/vendor/imgareaselect/css/imgareaselect-default.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/interpret/main.css">
 	<!-- endbuild -->
@@ -35,12 +36,12 @@
 
 	<section class="container" ng-init="init({{composition.id}}, '{{composition.matter.url}}')">
 		<section class='painting'>
-			<img ng-src="{{composition.matter.url}}" />
+			<img ng-src="{{composition.matter.url}}" crop />
 		</section>
 		<section class='user-interpretation'>
 			<header class="actions">
 				<button class="save" ng-click="saveInterpretation()">SAVE</button>
-				<button class="cancle">CANCEL</button>
+				<button class="cancle" ng-click="showCropper()">CANCEL</button>
 			</header>
 			<p class="new-interpretation interpret-content" rich-edit></p>
 		</section>
@@ -57,7 +58,8 @@
 	<script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
 	<script type="text/javascript" src="/static/bower_components/angular-upload/angular-upload.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/medium-editor/dist/js/medium-editor.min.js"></script>
-	
+	<script type="text/javascript" src="/static/vendor/imgareaselect/scripts/jquery.imgareaselect.js"></script>
+
 	<script type="text/javascript" src="/static/js/interpret/interpret.module.js"></script>
 	<script type="text/javascript" src="/static/js/interpret/interpret.controller.js"></script>
 	<script type="text/javascript" src="/static/js/interpret/imageExtension.js"></script>

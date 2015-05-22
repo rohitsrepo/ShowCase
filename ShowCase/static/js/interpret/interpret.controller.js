@@ -59,7 +59,51 @@ angular.module('InterpretApp')
 		);
 	};
 
+	$scope.cropFile = function (cropBox) {
+		url = '/compositions/' + $scope.composition.id + '/interpretation-images';
+
+		// Ideally this logic should exist in some service so that it can be shared, here we are using scope to share that data
+		return $http.post(url, data={'source_type': 'CRP', 'box': cropBox}).then(function (response) {
+			return response.data;
+		});
+	};
+
 	$scope.deleteFile = function (id) {
 		return $http.delete('/compositions/' + $scope.composition.id + '/interpretation-images/'+id);
+	};
+}])
+.directive("crop", ['alert', function (alert) {
+
+	return {
+		restrict: 'A',
+		link: function (scope, element, attrs) {
+			var showAlertCheck = true;
+			scope.showCropper = function (callback) {
+				if(showAlertCheck){
+					scope.$apply(function () {
+						alert.showAlert("Select part of image to crop");
+					});
+					showAlertCheck = false;
+				}
+				var cropper = element.imgAreaSelect({
+					'imageHeight': element[0].naturalHeight,
+					'imageWidth': element[0].naturalWidth,
+					'onSelectEnd': handleSelection(callback)
+				});
+			};
+
+			var handleSelection = function (callback) {
+				return function (img, selection) {
+					scope.hideCropper();
+					callback(img, selection);
+				};
+			};
+
+			scope.hideCropper = function () {
+				var selector = element.imgAreaSelect({instance: true });
+				selector.cancelSelection();
+				selector.setOptions({'disable': true});
+			}
+		}
 	};
 }]);

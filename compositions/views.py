@@ -1,4 +1,4 @@
-import django_filters
+import os, django_filters
 from django.db.models import Q
 from .models import Composition, InterpretationImage
 from accounts.models import User
@@ -12,6 +12,8 @@ from django.http import Http404
 from accounts.serializers import ExistingUserSerializer
 from rest_framework.decorators import api_view, permission_classes
 from ShowCase.utils import check_object_permissions
+from .imageTools import crop
+from django.core.files import File
 from random import randrange
 import json
 
@@ -125,7 +127,29 @@ class InterpretationImageList(APIView):
 
     def post(self, request, composition_id, format=None):
         composition = get_object_or_404(Composition, pk=composition_id)
-        serializer = InterpretationImageSerializer(files=request.FILES, context={'request': request})
+
+        source_type = request.DATA.get('source_type')
+        if source_type and source_type == InterpretationImage.CROP:
+            return self._cropAndCreate(request, composition)
+        
+        return self._addImage(request, composition)
+
+    def _cropAndCreate(self, request, composition):
+        try:
+            cropped_file_path = crop(composition.matter.path, tuple(request.DATA.get('box')))
+            with open(cropped_file_path) as cropped_file:
+                interpret_image = InterpretationImage(image=File(cropped_file), composition=composition, uploader=request.user)
+                interpret_image.save()
+
+            os.remove(cropped_file_path)
+
+            serializer = InterpretationImageSerializer(interpret_image)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    def _addImage(self, request, composition):
+        serializer = InterpretationImageSerializer(data=request.DATA, files=request.FILES, context={'request': request})
         if serializer.is_valid():
             serializer.object.uploader = request.user
             serializer.object.composition = composition
