@@ -7,7 +7,9 @@ angular.module('InterpretApp')
 	'upload',
 	'alert',
 	'$http',
-	function ($scope, analytics, progress, interpretationModel, upload, alert, $http) {
+	'$timeout',
+	'$window',
+	function ($scope, analytics, progress, interpretationModel, upload, alert, $http, $timeout, $window) {
 
 	var uploading;
 	$scope.composition = {};
@@ -23,15 +25,18 @@ angular.module('InterpretApp')
 	$scope.saveInterpretation = function () {
 		analytics.logEvent('Composition', 'Add Interpretation', $scope.composition.url);
 
-		progress.showProgress();
-
 		if (!uploading){
+			progress.showProgress();
 			uploading = true;
 			interpretationModel.addInterpretation($scope.composition.id, $('.new-interpretation').html())
 			.then(function () {
 				// Take to composition page
 				progress.hideProgress();
 				alert.showAlert("Your submission is under review.");
+
+				$timeout(function () {
+					$window.location.href = $scope.composition.url;
+				}, 3000);
 			}, function () {
 				progress.hideProgress();
 				alert.showAlert("This is not a valid submission.");
@@ -60,11 +65,16 @@ angular.module('InterpretApp')
 	};
 
 	$scope.cropFile = function (cropBox) {
+		progress.showProgress();
 		url = '/compositions/' + $scope.composition.id + '/interpretation-images';
 
 		// Ideally this logic should exist in some service so that it can be shared, here we are using scope to share that data
 		return $http.post(url, data={'source_type': 'CRP', 'box': cropBox}).then(function (response) {
+			progress.hideProgress();
 			return response.data;
+		}, function () {
+			progress.hideProgress();
+			alert.showAlert("Error cropping the image");
 		});
 	};
 

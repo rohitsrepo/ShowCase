@@ -34,14 +34,14 @@
 	<div class="curtain-overlay-placeholder"></div> -->
 	<div class="progress-bar"></div>
 
-	<section class="container" ng-init="init({{composition.id}}, '{{composition.matter.url}}')">
+	<section class="container" ng-init="init({{composition.id}}, '/arts/{{composition.slug}}')">
 		<section class='painting'>
 			<img ng-src="{{composition.matter.url}}" crop />
 		</section>
 		<section class='user-interpretation'>
 			<header class="actions">
 				<button class="save" ng-click="saveInterpretation()">SAVE</button>
-				<button class="cancle" ng-click="showCropper()">CANCEL</button>
+				<button class="back"><a href="/arts/{{composition.slug}}">BACK</a></button>
 			</header>
 			<p class="new-interpretation interpret-content" rich-edit></p>
 		</section>

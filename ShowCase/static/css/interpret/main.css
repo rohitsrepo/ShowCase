@@ -59,7 +59,8 @@ html, body {
         padding-right: 2%;
 }
 
-.actions button {
+.actions button,
+.actions button .back a {
     background-color: transparent;
     border: none;
     font-size: 0.75em;
@@ -70,7 +71,7 @@ html, body {
     cursor: pointer;
 }
 
-.actions .cancel:hover {
+.actions .back a:hover {
         color: #000;
 }
 
