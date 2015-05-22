@@ -145,10 +145,30 @@ class InterpretationImage(models.Model):
         name, extension = os.path.splitext(file_name)
         return os.path.join(file_path, '{0}_{1}{2}'.format(name, suffix, extension))
 
+    def _format_path(self, suffix):
+        file_path, file_name = os.path.split(self.image.path)
+        name, extension = os.path.splitext(file_name)
+        return os.path.join(file_path, '{0}_{1}{2}'.format(name, suffix, extension))
+
     def get_550_url(self):
         return self._format_url(WIDTH_READER)
+
+    def get_550_path(self):
+        return self._format_path(WIDTH_READER)
 
     def get_350_url(self):
         return self._format_url(WIDTH_STICKY)
 
-post_delete.connect(util.file_cleanup, sender=InterpretationImage, dispatch_uid="interpretationImage.file_cleanup")
+    def get_350_path(self):
+        return self._format_path(WIDTH_STICKY)
+
+# post_delete.connect(util.file_cleanup, sender=InterpretationImage, dispatch_uid="interpretationImage.file_cleanup")
+
+# To create vote instance when a compostion is created
+@receiver(post_delete, sender=InterpretationImage)
+def remove_files(sender, **kwargs):
+    instance = kwargs.get('instance')
+
+    os.remove(unicode(instance.image.path))
+    os.remove(unicode(instance.get_550_path()))
+    os.remove(unicode(instance.get_350_path()))

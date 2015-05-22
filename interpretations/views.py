@@ -44,7 +44,6 @@ class InterpretationList(APIView):
             data=request.DATA, context={'request': request})
         if serializer.is_valid():
             serializer.object.user = request.user
-            serializer.object.public = True
             serializer.object.composition = get_object_or_404(
                 Composition, id=composition_id)
             serializer.save()

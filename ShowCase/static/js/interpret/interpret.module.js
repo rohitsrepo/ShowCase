@@ -1,5 +1,4 @@
 angular.module("InterpretApp", [
-    'ngImgCrop',
     "lr.upload",
     "ngAnimate",
     "module.auth",
