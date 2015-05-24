@@ -107,7 +107,7 @@ ImageDerived.prototype = {
     handleCropSelection: function (instance) {
         return function (img, selection) {
             instance.options.scope.cropFile([selection.x1, selection.y1, selection.x2, selection.y2]).then(function (data) {
-                instance.doImageSave(data);
+                instance.doImageSave(data, true);
             });
         };
     },
@@ -118,7 +118,6 @@ ImageDerived.prototype = {
         this.base.restoreSelection();
 
         var that = this;
-        console.log("this in set", this);
 
         this.options.scope.showCropper(this.handleCropSelection(this));
     },
@@ -136,11 +135,11 @@ ImageDerived.prototype = {
         file = evt.target.files[0];
         var that = this;
         this.options.scope.uploadFile(file).then(function (data) {
-            that.doImageSave(data);
+            that.doImageSave(data, false);
         });
     },
 
-    createImageHtml : function (data) {
+    createImageHtml : function (data, isCropped) {
         var doc = this.base.options.ownerDocument,
         img = doc.createElement('img'),
         container = doc.createElement('section'),
@@ -150,6 +149,7 @@ ImageDerived.prototype = {
         container.className = 'image-holder';
 
         actions.className = 'image-actions';
+
         actions.innerText = 'Remove';
         actions.id = data.id;
         actions.setAttribute('ng-click', "deleteFile('"+data.id+"')");
@@ -158,6 +158,10 @@ ImageDerived.prototype = {
 
         img.setAttribute('src', data.url);
 
+        if (isCropped){
+            img.className = 'cropped-image';
+        }
+
         container.appendChild(img);
         container.appendChild(actions);
 
@@ -165,8 +169,8 @@ ImageDerived.prototype = {
         return wrap;
     },
 
-    doImageSave : function (data) {
-        var imageHTML = this.createImageHtml(data),
+    doImageSave : function (data, isCropped) {
+        var imageHTML = this.createImageHtml(data, isCropped),
             doc = this.base.options.ownerDocument;
 
         this.base.restoreSelection();

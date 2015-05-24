@@ -108,9 +108,10 @@
 	<section class="interpret-area clearfix" infinite-scroll="getNextPosts()" infinite-scroll-distance='1' infinite-scroll-disabled='disableNextPost'>
 		<header ng-cloak ng-show="interpretations.length" class="interpret-header clearfix">
 			<h4 class="inter-heading">[[interpretations.length]] Interpretations</h4>
-			<button ng-click="showInterpretationModal()" class="write-interpretation nt-mb">Interpret this work</button>
+			<a href="/arts/{{composition.slug}}/add-interpretation" class="write-interpretation nt-mb" target="_blank">
+				Interpret this work
+			</a>
 		</header>
-
 
 		<section ng-cloak ng-show="interpretations.length" class="interprets" ng-cloak id="inter0">
 
@@ -158,32 +159,8 @@
 			<hr ng-cloak ng-hide="$last" ng-repeat-end id="inter[[$index+1]]">
 		</section>
 
-	 	<sidebar ng-cloak ng-show="interpretations.length" class="about-painting" sticky offset="50">
-			<img scroll-to="#painting" src="{{composition.get_350_url}}">
-			<table>
-			    <tr>
-			      <th>
-			        Title
-			      </th>
-			      <td colspan="2">
-			        {{ composition.title | title }}
-			      </td>
-			    </tr>
-			    <tr>
-			      <th>
-			        Artist
-			      </th>
-			      <td>
-			        <a href="/artists/{{composition.artist.slug}}">
-			          {{ composition.artist.get_full_name | title }}
-			        </a>
-			      </td>
-			    </tr>
-			</table>
-		</sidebar>
-
 		<section ng-cloak ng-hide="interpretations.length" class="no-interpretation">
-			<button ng-click="showInterpretationModal()" class="write-interpretation">Interpret this work</button>
+			<a href="/arts/{{composition.slug}}/add-interpretation" class="write-interpretation nt-mb" target="_blank">Interpret this work</a>
 		</section>
 	</section>
 

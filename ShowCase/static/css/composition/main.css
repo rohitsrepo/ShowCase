@@ -1,922 +1,890 @@
 @font-face{ 
-  font-family: 'fertigo';
-  src: url('/static/fonts/fertigo/Fertigo.eot');
-  src: url('/static/fonts/fertigo/Fertigo.woff') format('woff'),
-       url('/static/fonts/fertigo/Fertigo.ttf') format('truetype'),
-       url('/static/fonts/fertigo/Fertigo.svg') format('svg');
+    font-family: 'fertigo';
+    src: url('/static/fonts/fertigo/Fertigo.eot');
+    src: url('/static/fonts/fertigo/Fertigo.woff') format('woff'),
+             url('/static/fonts/fertigo/Fertigo.ttf') format('truetype'),
+             url('/static/fonts/fertigo/Fertigo.svg') format('svg');
 }
 
 
 html, body {
-  font-family: 'taile', sans-serif;
-  height: 100%;
-  padding: 0; 
-  margin: 0;
+    font-family: 'taile', sans-serif;
+    height: 100%;
+    padding: 0; 
+    margin: 0;
 }
 
 /* ========= PRIMARY HEADER =========*/
 
 .primary-header {
-  width: 100%;
-  min-height: 100%;
-  cursor: pointer;
+    width: 100%;
+    min-height: 100%;
+    cursor: pointer;
 }
 
 @media (max-width: 800px) {
-  .primary-header {
-    height: 500px;
-    min-height: 0;
-  }
+    .primary-header {
+        height: 500px;
+        min-height: 0;
+    }
 }
  /* ================== FIRST VIEW ================*/
 
 .banner {
-  text-align: center;
-  color: #000000;
-  width: 80%;
-  margin: 0 auto;
-  padding-top: 15%;
-  padding-bottom: 15%;
-  color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    color: #000000;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 15%;
+    padding-bottom: 15%;
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .banner h1 {
-  font-family: 'fertigo', serif;
-  font-size: 5em;
-  margin-bottom: .25em;
+    font-family: 'fertigo', serif;
+    font-size: 5em;
+    margin-bottom: .25em;
 }
 
 .banner h3 {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .banner h3 a {
-  color: #E6B800;
-  font-size: 1.5em;
+    color: #E6B800;
+    font-size: 1.5em;
 }
 .banner h4 {
-  font-size: 1em;
-  margin-top: 1em;
+    font-size: 1em;
+    margin-top: 1em;
 }
 
 .primary-header footer {
-  position: absolute;
-  bottom: 2.5%;
-  right: 2%;
+    position: absolute;
+    bottom: 2.5%;
+    right: 2%;
 }
 
 .primary-header footer h5 {
-  color: rgba(0, 0, 0, 0.4);
+    color: rgba(0, 0, 0, 0.4);
 }
 
 .primary-header footer .uploader {
-  color: #E6B800;
-  cursor: pointer;
+    color: #E6B800;
+    cursor: pointer;
 }
 
 @media (max-width: 800px) {
-  .banner {
-    padding-top: 30%;
-  }
+    .banner {
+        padding-top: 30%;
+    }
 
-  .banner h1 {
-    font-size: 3em;
-  }
+    .banner h1 {
+        font-size: 3em;
+    }
 
-  .primary-header footer {
-    position: static;
-    width: 90%;
-    margin: 0 auto;
-    margin-bottom: 50px;
-    text-align: center;
-  }
+    .primary-header footer {
+        position: static;
+        width: 90%;
+        margin: 0 auto;
+        margin-bottom: 50px;
+        text-align: center;
+    }
 }
 
 /*================ DOWN ARROW ======================*/
 
 /*.go-down {
-  position: absolute;
-  /*bottom: 15%;
-  margin-bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  opacity: 0.8;
+    position: absolute;
+    /*bottom: 15%;
+    margin-bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    opacity: 0.8;
 }*/
 
 .go-down {
-  width: 50%;
-  margin: 0 auto;
-  text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .go-down img{
-  height: 3em; 
-  width: 3em;
+    height: 3em; 
+    width: 3em;
 }
 .go-down:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 /* ================= HEADBAR IN SECOND VIEW ============== */
 .painting-area {
-  width:100%;
-  height:100%;
+    width:100%;
+    height:100%;
 }
 
 @media (max-width: 800px) {
-  .painting-area {
-    height: auto;
-  }
+    .painting-area {
+        height: auto;
+    }
 }
 
 /*======================= TOOLBAR ==========================*/
 
 .painting-toolbar {
-  width: 100%;
-  background: rgba(0, 0, 0, .9);
-  position: relative;
+    width: 100%;
+    background: rgba(0, 0, 0, .9);
+    position: relative;
 }
 
 .painting-tooolbar section {
-  display: inline-block;
+    display: inline-block;
 }
 
 .painting-toolbar img {
-  box-sizing: content-box;
-  height: 2.5em;
-  width: 2.5em;
-  margin: 0 5px;
-  cursor: pointer;
-  opacity: 0.5;
-  padding: 10px 0;
-  padding-top: 10px;
-  padding-bottom: 7px;
-  border-bottom: 3px solid rgba(0, 0, 0, 0);
+    box-sizing: content-box;
+    height: 2.5em;
+    width: 2.5em;
+    margin: 0 5px;
+    cursor: pointer;
+    opacity: 0.5;
+    padding: 10px 0;
+    padding-top: 10px;
+    padding-bottom: 7px;
+    border-bottom: 3px solid rgba(0, 0, 0, 0);
 }
 
 .painting-toolbar  img.active {
-  opacity: 1;
-  border-bottom: 3px solid green;
+    opacity: 1;
+    border-bottom: 3px solid green;
 }
 
 .painting-toolbar img:hover {
-  opacity: .95;
+    opacity: .95;
 }
 
 .painting-toolbar img.disable {
-  opacity: 0;
-  cursor: default;
+    opacity: 0;
+    cursor: default;
 }
 
 .painting-toolbar .zoom-icons {
-  position:absolute;
-  left: 45%;
+    position:absolute;
+    left: 45%;
 }
 
 .painting-toolbar .social-icons{
-  float: right;
-  padding-right: 15%;
+    float: right;
+    padding-right: 15%;
 }
 
 .painting-toolbar .tools-icons{
-  float: left;
-  padding-left: 15%;
+    float: left;
+    padding-left: 15%;
 }
 
 @media (max-width: 800px) {
-  .painting-toolbar .social-icons{
-    display: block;
-    text-align: center;
-    padding: 0;
-    float: none;
-  }
+    .painting-toolbar .social-icons{
+        display: block;
+        text-align: center;
+        padding: 0;
+        float: none;
+    }
 
-  .painting-toolbar .tools-icons{
-    display: block;
-    text-align: center;
-    padding: 0;
-    float: none;
-  }
+    .painting-toolbar .tools-icons{
+        display: block;
+        text-align: center;
+        padding: 0;
+        float: none;
+    }
 }
 
 /*=========== More actions ===========*/
 
 .painting-toolbar .more-options {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 .painting-toolbar .more-actions {
-  background-color: white;
-  position: absolute;
-  top: 135%;
-  left: 0;
-  width: 200px;
-  border: 2px solid #585858;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
-  z-index: 1;
+    background-color: white;
+    position: absolute;
+    top: 135%;
+    left: 0;
+    width: 200px;
+    border: 2px solid #585858;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    z-index: 1;
 }
 
 
 .painting-toolbar .more-actions:after, .painting-toolbar .more-actions:before {
-  bottom: 100%;
-  left: 25px;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
+    bottom: 100%;
+    left: 25px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
 }
 
 .painting-toolbar .more-actions:after {
-  border-bottom-color: white;
-  border-width: 10px;
-  margin-left: -10px;
+    border-bottom-color: white;
+    border-width: 10px;
+    margin-left: -10px;
 }
 
 .painting-toolbar .more-actions:before {
-  border-bottom-color: #585858;
-  border-width: 13px;
-  margin-left: -13px;
+    border-bottom-color: #585858;
+    border-width: 13px;
+    margin-left: -13px;
 }
 
 .painting-toolbar .more-actions li {
-  text-align: left;
-  color: #585858;
-  font-size: 13px;
-  margin: 10px 0;
-  margin-left: 25px;
-  cursor: pointer;
+    text-align: left;
+    color: #585858;
+    font-size: 13px;
+    margin: 10px 0;
+    margin-left: 25px;
+    cursor: pointer;
 }
 
 .painting-toolbar .more-actions li:hover {
-  color: #0C0C0C;
+    color: #0C0C0C;
 }
 
 /*=========== Painting area ============*/
 
 .painting-container {
-  height: 85%;
-  width: 100%;
-  text-align: center;
-  margin: 20px 0;
-  overflow: hidden;
-  position: relative;
+    height: 85%;
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+    overflow: hidden;
+    position: relative;
 }
 
 .painting-container .zm-wrap {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .painting {
-  height: 100%;
-  width: auto;
+    height: 100%;
+    width: auto;
 }
 
 .painting-original.ng-hide-remove {
-    -webkit-animation: fadeIn 0.6s;
-    animation: fadeIn 0.4s;
-    opacity: 0;
+        -webkit-animation: fadeIn 0.6s;
+        animation: fadeIn 0.4s;
+        opacity: 0;
 }
 
 .painting-original.ng-hide-add {
-    -webkit-animation: fadeOut 0.6s;
-    animation: fadeOut 0.4s;
+        -webkit-animation: fadeOut 0.6s;
+        animation: fadeOut 0.4s;
 }
 
 .painting-outline.ng-hide-remove {
-    -webkit-animation: fadeInRight 0.6s;
-    animation: fadeIn 0.4s;
-    opacity: 0;
+        -webkit-animation: fadeInRight 0.6s;
+        animation: fadeIn 0.4s;
+        opacity: 0;
 }
 
 .painting-outline.ng-hide-add {
-    -webkit-animation: fadeOutRight 0.4s;
-    animation: fadeOut 0.4s;
+        -webkit-animation: fadeOutRight 0.4s;
+        animation: fadeOut 0.4s;
 }
 
 .painting-grayscale.ng-hide-remove {
-    -webkit-animation: fadeInLeft 0.6s;
-    animation: fadeIn 0.4s;
-    opacity: 0;
+        -webkit-animation: fadeInLeft 0.6s;
+        animation: fadeIn 0.4s;
+        opacity: 0;
 }
 
 .painting-grayscale.ng-hide-add {
-    -webkit-animation: fadeOutLeft 0.4s;
-    animation: fadeOut 0.4s;
+        -webkit-animation: fadeOutLeft 0.4s;
+        animation: fadeOut 0.4s;
 }
 
 .fullScreen {
-  height: 100%;
-  width: auto;
-  margin: 0 auto;
+    height: 100%;
+    width: auto;
+    margin: 0 auto;
 }
 
 
 @media (max-width: 800px) {
-  .painting {
-    width: 95%;
-    height: auto;
-    margin: 0 auto;
-  }
+    .painting {
+        width: 95%;
+        height: auto;
+        margin: 0 auto;
+    }
 
-  .fullscreen {
-    width: 90%;
-    height: auto;
-    margin: 0 auto;
-  }
+    .fullscreen {
+        width: 90%;
+        height: auto;
+        margin: 0 auto;
+    }
 }
 
 .palette {
-  position: absolute;
-  left: 50px;
-  top: 100px;
+    position: absolute;
+    left: 50px;
+    top: 100px;
 }
 
 .palette li {
-  height: 50px;
-  width: 50px;
+    height: 50px;
+    width: 50px;
 }
 
 .palette.ng-hide-add {
-  -webkit-animation: fadeOutLeft 0.4s;
-  animation: fadeOutLeft 0.4s;
+    -webkit-animation: fadeOutLeft 0.4s;
+    animation: fadeOutLeft 0.4s;
 }
 
 .palette.ng-hide-remove {
-  -webkit-animation: fadeInLeft 0.4s;
-  animation: fadeInLeft 0.4s;
-}
-
-/*=============== ART INFO BOX =====================*/
-.about-painting {
-  display: inline-block;
-  float: right;
-  width: 30%;
-}
-
-.about-painting img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 15px;
-  cursor: pointer;
-}
-
-.about-painting li {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 5px;
-  margin-left: 5px;
-  color: rgba(0, 0, 0, 0.7);
-}
-
-.about-painting .details {
-  font-weight: normal;
-  color: rgba(0, 0, 0, 0.8);
-}
-
-.about-painting a {
-  text-decoration: none;
-  cursor: pointer;
-  color: #E6B800;
-}
-
-.about-painting th,
-.about-painting td {
-  padding-bottom: 12px;
-  vertical-align: top;
-}
-
-.about-painting th {
-  padding-right: 45px;
-  text-align: right;
-  width: 20%;
-  color: #a9b2b9;
-  font-size: 14px;
-  font-weight: 400;
-  padding-top: 12px;
-  text-transform: uppercase;
-}
-
-.about-painting td {
-  width: 40%;
-  border: 0;
-  padding-top: 11px;
-}
-
-@media (max-width: 800px) {
-  .about-painting {
-    display: none;
-  }
+    -webkit-animation: fadeInLeft 0.4s;
+    animation: fadeInLeft 0.4s;
 }
 
 /*=================== THIRD VIEW ==================*/
 
 .interpret-area {
-  width: 88%;
-  max-width: 1000px;
-  margin: 0 auto;
-  margin-top: 40px;
-  display: block;
-  position: relative;
+    width: 65%;
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 40px;
+    display: block;
+    position: relative;
 }
 
 .interpret-header {
-  width: 65%;
-  margin-bottom: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    margin: 0 auto;
+    vertical-align: baseline;
+    display: inline;
 }
 
 .inter-heading {
-  font-size: 1.5em;
-  margin-bottom: .5em;
-  color: rgba(0, 0, 0, .6);
-  float: left;
+    font-size: 1.5em;
+    margin-bottom: .5em;
+    color: rgba(0, 0, 0, .6);
+    float: left;
 }
 
 .write-interpretation {
-  font-family: 'taile', sans-serrif;
-  float: right;
-  background-color: transparent;
-  border: 1px solid #E6B800;
-  border-radius: 1em;
-  font-size: 1em;
-  color: #E6B800;
-  padding: 4px 15px;
-  margin-top: 5px;
-  cursor: pointer;
+    font-family: 'taile', sans-serrif;
+    float: right;
+    background-color: transparent;
+    border: 1px solid #E6B800;
+    border-radius: 1em;
+    font-size: 1em;
+    color: #E6B800;
+    padding: 4px 15px;
+    /*margin-top: 5px;*/
+    cursor: pointer;
 }
 
 .write-interpretation:hover {
-  background-color: #E6B800;
-  color: white;
+    background-color: #E6B800;
+    color: white;
 }
 
 .no-interpretation {
-  width: 100%;
-  text-align: center;
+    width: 100%;
+    text-align: center;
 }
 
 .no-interpretation .write-interpretation  {
-  float: none;
-  height: 44px;
-  border-radius: 22px;
-  font-size: 18px;
-  padding: 4px 15px;
+    float: none;
+    height: 44px;
+    border-radius: 22px;
+    font-size: 18px;
+    padding: 4px 15px;
 }
 
+/*================== Interpretation List =======================*/
+
 .interprets {
-  width: 65%;
-  float: left;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .interprets hr {
-  margin: 20px auto;
-  width: 90%;
-  display: block;
-  opacity: 0.3;
+    margin: 20px auto;
+    width: 90%;
+    display: block;
+    opacity: 0.3;
 }
 
 .interpreter {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .interpreter img {
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%;
-  border: 1px solid #c8c7b4; 
-  height: 50px;
-  width: 50px;
-  float: left;
-  margin-right: 10px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    border: 1px solid #c8c7b4; 
+    height: 50px;
+    width: 50px;
+    float: left;
+    margin-right: 10px;
 }
 
 .interpreter div {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .interpreter h3 {
-  color: #E6B800;
-  font-weight: normal;
-  font-size: 1.2em;
-  margin: 0;
+    color: #E6B800;
+    font-weight: normal;
+    font-size: 1.2em;
+    margin: 0;
 }
 
 @media (max-width: 800px) {
-  .interpret-area {
-    width: 90%;
-    margin: 40px auto;
-  }
+    .interpret-area {
+        width: 90%;
+        margin: 40px auto;
+    }
 
-  .interpret-header {
-    width: 100%;
-  }
+    .interpret-header {
+        width: 100%;
+    }
 
-  .inter-heading {
-    float: none;
-    /*font-size: 3em;*/
-    text-align: center;
-  }
+    .inter-heading {
+        float: none;
+        /*font-size: 3em;*/
+        text-align: center;
+    }
 
-  .interprets {
-    width: 100%;
-  }
+    .interprets {
+        width: 100%;
+    }
 }
 
 /*================= Interpretation - Content ==================*/
 /*Changes made here should also reflect in the add interpretation area. */
 
 .interpret-content {
-  color: rgba(0, 0, 0, 0.8);
-  text-decoration: none solid rgba(0, 0, 0, 0.8);
-  font-family: 'Merriweather', serif;
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: none solid rgba(0, 0, 0, 0.8);
+    font-family: 'Merriweather', serif;
 }
 
 .interpret-content h3 {
-  font-size: 1.25em;
-  font-weight: bold;
-  letter-spacing: 0.1px;
-  margin: 0;
+    font-size: 1.25em;
+    font-weight: bold;
+    letter-spacing: 0.1px;
+    margin: 0;
+    margin-bottom: 13px;
 }
 
 .interpret-content h4 {
-  font-size: 1.2em;
-  letter-spacing: 0.1px;
-  margin: 0;
+    font-size: 1.2em;
+    letter-spacing: 0.1px;
+    margin: 0;
+    margin-bottom: 13px;
 }
 
 .interpret-content,
 .interpret-content:after,
 .interpret-content p {
-  font-size: 1em;
-  letter-spacing: 0.1px;
-  line-height: 1.5em;
-  margin: 0;
+    font-size: 1em;
+    letter-spacing: 0.1px;
+    line-height: 1.5em;
+    margin: 0;
+    margin-bottom: 13px;
 }
 
 .interpret-content:after{
-  font-style: normal;
+    font-style: normal;
 }
 
 .interpret-content a {
-  text-decoration: underline;
-  cursor: pointer;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .interpret-content blockquote {
-  font-size: 1.1em;
-  letter-spacing: 0.1px;
-  margin: 12px 0;
-  padding: 0;
-  padding-left: 10px;
-  font-style: italic;
-  border-left: 4px solid rgba(0, 0, 0, 0.8);
+    font-size: 1.1em;
+    letter-spacing: 0.1px;
+    margin: 12px 0;
+    padding: 0;
+    padding-left: 10px;
+    font-style: italic;
+    border-left: 4px solid rgba(0, 0, 0, 0.8);
 }
 
 .interpret-content b {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .interpret-content i {
-  font-style: italic;
+    font-style: italic;
+}
+
+.interpret-content .image-holder {
+    width: 100%;
+    position: relative;
+    display: block;
+    margin-bottom: 13px;
+}
+
+.interpret-content .image-holder img {
+    max-width: 90%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.interpret-content .image-holder img.cropped-image {
+    width: 50%;
+}
+
+.interpret-content .image-actions {
+    display: none;
 }
 
 /*================ Interpretation - Footer ==================*/
 
 .interpret-footer {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .interpret-footer h6 {
-  color: rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.6);
 }
 
 .interpret-footer ul {
-  margin-top: 5px;
+    margin-top: 5px;
 }
 
 .interpret-footer .icon {
-  height: 1.9em;
-  width: auto;
-  cursor: pointer;
-  opacity: 0.6;
-  margin: 5px 0;
-  margin-right: 5px;
+    height: 1.9em;
+    width: auto;
+    cursor: pointer;
+    opacity: 0.6;
+    margin: 5px 0;
+    margin-right: 5px;
 }
 
 .interpret-footer .icon.last {
-  margin-right: 0;
+    margin-right: 0;
 }
 
 .interpret-footer .icon:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 .interpret-footer .left{
-  float: left;
+    float: left;
 }
 
 .interpret-footer .right{
-  float: right;
+    float: right;
 }
 
 .interpret-footer .vote-active {
-  background: #E6B800;
-  opacity: 1;
+    background: #E6B800;
+    opacity: 1;
 }
 
 /*================= Interpretation - Comments ==================*/
 
 .interpret-footer .comments {
-  margin-top: 15px;
-  color: rgba(0, 0, 0, 0.8);
+    margin-top: 15px;
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .interpret-footer .comments form {
-  width: 80%;
-  height: 50px;
+    width: 80%;
+    height: 50px;
 }
 
 .interpret-footer .comments input {
-  width: 100%;
-  height: 100%;
-  border: none;
-  font-size: 0.95em;
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: 0.95em;
 }
 .interpret-footer .comments img {
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%;
-  border: 3px solid #c8c7b4; 
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    border: 3px solid #c8c7b4; 
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
 }
 
 .interpret-footer .comments li {
-  margin: 20px;
+    margin: 20px;
 }
 
 .interpret-footer .comments .commenter {
-  color: #E6B800;
-  margin-bottom: 5px;
-  cursor: pointer;
+    color: #E6B800;
+    margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .interpret-footer .comments .comment {
-  width: 80%;
+    width: 80%;
 }
 
 .interpret-footer .comments .comment-time {
-  margin-top: 5px;
+    margin-top: 5px;
 }
 
 /*================ END MARKER =====================*/
 
 .end-marker {
-  width: 650px;
-  margin: 3em auto;
-  vertical-align: middle;
+    width: 650px;
+    margin: 3em auto;
+    vertical-align: middle;
 }
 
 .end-marker hr {
-  width: 300px;
-  display: inline-block;
-  margin: 0;
-  margin-bottom: 1.4em;
-  opacity: 0.5;
+    width: 300px;
+    display: inline-block;
+    margin: 0;
+    margin-bottom: 1.4em;
+    opacity: 0.5;
 }
 
 .end-marker img {
-  width: 3em;
-  height: auto;
-  padding: 3px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%;
-  border: 1px solid #c8c7b4; 
+    width: 3em;
+    height: auto;
+    padding: 3px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    border: 1px solid #c8c7b4; 
 }
 
 /*=========== Priamry Footer - Next Posts ===============*/
 
 .primary-footer {
-  width: 90%;
-  max-width: 1200px;
-  height: 60%;
-  margin: 0 auto;
-  color: rgba(0, 0, 0, 0.8);
-  margin-bottom: 50px;
+    width: 90%;
+    max-width: 1200px;
+    height: 60%;
+    margin: 0 auto;
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 50px;
 }
 
 .next-post {
-  width: 30%;
-  height: 100%;
-  display: inline-block;
-  vertical-align: top;
-  margin-left: 2%;
-  box-shadow: 10px 10px 30px 0px #C9C6C6;
-  padding: 5px;
-  overflow: hidden;
-  position: relative;
+    width: 30%;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 2%;
+    box-shadow: 10px 10px 30px 0px #C9C6C6;
+    padding: 5px;
+    overflow: hidden;
+    position: relative;
 }
 
 
 .next-post a {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
 }
 
 .next-post:hover {
-  box-shadow: 10px 10px 30px 0px #424844;
+    box-shadow: 10px 10px 30px 0px #424844;
 }
 
 .next-post .painting-holder {
-  width: 100%;
-  height: 60%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: 1;
+    width: 100%;
+    height: 60%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
 }
 
 .next-post h4 {
-  font-family: 'fertigo', serif;
-  font-weight: bold;
-  font-size: 1.5em;
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin-top: 10px;
-  margin-bottom: 7px;
+    font-family: 'fertigo', serif;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    margin-bottom: 7px;
 }
 
 .next-post p {
-  font-family: 'taile', sans-serrif;
-  line-height: 1.5em;
-  font-size: 1em;
-  color: rgba(0, 0, 0, 0.8);
+    font-family: 'taile', sans-serrif;
+    line-height: 1.5em;
+    font-size: 1em;
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .next-post .next-footer {
-  position: absolute;
-  bottom: 0;
-  height: 2.5em;
-  width: 100%;
-  background-color: #E6B800;
+    position: absolute;
+    bottom: 0;
+    height: 2.5em;
+    width: 100%;
+    background-color: #E6B800;
 }
 
 .next-post .next-footer h5 {
-  padding-top: 1em;
-  color: white;
-  text-align: center;
-  letter-spacing: 3px;
+    padding-top: 1em;
+    color: white;
+    text-align: center;
+    letter-spacing: 3px;
 }
 
 @media (max-width: 800px) {
-  .primary-footer {
-    width: 80%;
-    height: 400px;
-  }
+    .primary-footer {
+        width: 80%;
+        height: 400px;
+    }
 
-  .next-post {
-    width: 100%;
-    display: block;
-    margin-left: 0;
-    margin-bottom: 1em;
-  }
+    .next-post {
+        width: 100%;
+        display: block;
+        margin-left: 0;
+        margin-bottom: 1em;
+    }
 }
 
 /*============== Interpretation Modal ===============*/
 
 .interpret-modal.ng-hide-remove {
-    -webkit-animation: fadeIn 0.6s;
-    animation: fadeIn 0.4s;
-    opacity: 0;
+        -webkit-animation: fadeIn 0.6s;
+        animation: fadeIn 0.4s;
+        opacity: 0;
 }
 
 .interpret-modal.ng-hide-add {
-    -webkit-animation: fadeOut 0.6s;
-    animation: fadeOut 0.4s;
+        -webkit-animation: fadeOut 0.6s;
+        animation: fadeOut 0.4s;
 }
 
 .interpret-modal .overlay {
-    position:fixed;
-    z-index:198;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background-color:#000000;
-    opacity: 0.8;
+        position:fixed;
+        z-index:198;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background-color:#000000;
+        opacity: 0.8;
 }
 
 .interpret-modal .content {
-    z-index:200;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    background-color: #fff;
-    box-shadow: 4px 4px 80px #000;
+        z-index:200;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        background-color: #fff;
+        box-shadow: 4px 4px 80px #000;
 }
 
 .interpret-modal .content .painting {
-    position: relative;
-    width: 55%;
-    height: 100%;
-    background: #1c2023;
-    display: inline-block;
-    margin-right: 4%;
+        position: relative;
+        width: 55%;
+        height: 100%;
+        background: #1c2023;
+        display: inline-block;
+        margin-right: 4%;
 }
 
 .interpret-modal .painting img {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    width: 100%;
-    padding: 0 3%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        width: 100%;
+        padding: 0 3%;
 }
 
 .interpret-modal .content .user-interpretation {
-    position: relative;
-    width: 40%;
-    height: 100%;
-    display: inline-block;
+        position: relative;
+        width: 40%;
+        height: 100%;
+        display: inline-block;
 }
 
 .interpret-modal .user-interpretation .actions {
-    position: absolute;
-    top: 0;
-    height: 10%;
-    width: 100%;
-    text-align: right;
-    padding-right: 2%;
+        position: absolute;
+        top: 0;
+        height: 10%;
+        width: 100%;
+        text-align: right;
+        padding-right: 2%;
 }
 
 .interpret-modal .actions button {
-  background-color: transparent;
-  border: none;
-  font-size: 0.75em;
-  color: rgba(0, 0, 0, 0.5);
-  padding: 0.5em 0.5em;
-  margin-top: 3%;
-  margin-left: 1.5%;
-  cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 0.75em;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 0.5em 0.5em;
+    margin-top: 3%;
+    margin-left: 1.5%;
+    cursor: pointer;
 }
 
 .interpret-modal .actions .cancel:hover {
-    color: #000;
+        color: #000;
 }
 
 .interpret-modal .actions .save {
-  background-color: transparent;
-  border: 1px solid transparent;
-  border-radius: 3em;
-  color: #E6B800;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 3em;
+    color: #E6B800;
 }
 
 .interpret-modal .actions .save:hover {
-  background-color: #E6B800;
-  border: 1px solid #E6B800;
-  color: white;
+    background-color: #E6B800;
+    border: 1px solid #E6B800;
+    color: white;
 }
 
 .interpret-modal .new-interpretation {
-  position: absolute;
-  top: 10%;
-  height: 80%;
-  width: 100%;
-  overflow: auto;
+    position: absolute;
+    top: 10%;
+    height: 80%;
+    width: 100%;
+    overflow: auto;
 }
 
 /*================= Clearfix =====================*/
 .clearfix:before,
 .clearfix:after {
-  content: "";
-  display: table;
+    content: "";
+    display: table;
 }
 .clearfix:after {
-  clear: both;
+    clear: both;
 }
 .clearfix {
-  clear: both;
-  *zoom: 1;
+    clear: both;
+    *zoom: 1;
 }
