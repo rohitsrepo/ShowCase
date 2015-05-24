@@ -3,7 +3,7 @@ angular.module("InterpretApp")
 	return function (scope, element, attts) {
 
 		var editorOptions = {
-			'buttons': ['bold', 'italic', 'anchor', 'header1', 'quote', 'justifyCenter', 'image'],
+			'buttons': ['bold', 'italic', 'anchor', 'header1', 'quote', 'image'],
 			'anchorInputPlaceholder' : 'Enter complete link',
 			'targetBlank': true,
 			'placeholder': 'Start writing from here...',
