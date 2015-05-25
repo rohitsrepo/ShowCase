@@ -358,8 +358,8 @@ html, body {
 /*=================== THIRD VIEW ==================*/
 
 .interpret-area {
-    width: 65%;
-    max-width: 1000px;
+    width: 50%;
+    max-width: 750px;
     margin: 0 auto;
     margin-top: 40px;
     display: block;

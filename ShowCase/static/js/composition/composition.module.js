@@ -11,7 +11,6 @@ angular.module("CompositionApp", [
     'module.scrollTo',
     'module.tools',
     'module.titlecase',
-    'module.interpret',
     'module.analytics',
     'module.alert'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {

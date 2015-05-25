@@ -152,37 +152,4 @@ controller("compositionController", [
 			$scope.nextPosts = posts;
 		});
 	};
-
-	$scope.showInterpretationModal = function () {
-		$scope.interpretationModalshown = true;
-	};
-
-	$scope.hideInterpretationModal = function () {
-		$scope.interpretationModalshown = false;
-	};
-
-	var uploading;
-	$scope.saveInterpretation = function () {
-		
-		analytics.logEvent('Composition', 'Add Interpretation', $scope.composition.url);
-
-		progress.showProgress();
-
-		if (!uploading){
-			uploading = true;
-			interpretationModel.addInterpretation($scope.composition.id, $('.new-interpretation').html())
-			.then(function () {
-				$scope.hideInterpretationModal();
-				alert.showAlert("Your submission is under review.");
-				 $('.new-interpretation').html('');
-				 $('.new-interpretation').addClass('medium-editor-placeholder');
-				 uploading = false;
-				 progress.hideProgress();
-			}, function () {
-				progress.hideProgress();
-				alert.showAlert("This is not a valid submission.");
-			});
-		}
-	};
-
 }]);
