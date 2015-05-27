@@ -66,8 +66,8 @@
 	<section class="painting-area">
 		<header class="painting-toolbar clearfix" id="painting">
 			<section class="tools-icons">
-				<img title="View Finder" class="nt-mb" ng-class="{active: isViewFinderActive, disable: isViewFinderDisable}" view-finder src="/static/css/composition/icons/viewfinder.svg">
-				<img title="Full Screen" class="nt-mb" ng-class="{active: isFullScreen, disable: isFullScreenDisable}" fullscreen src="/static/css/composition/icons/expand.svg">
+				<!-- <img title="View Finder" class="nt-mb" ng-class="{active: isViewFinderActive, disable: isViewFinderDisable}" view-finder src="/static/css/composition/icons/viewfinder.svg">
+				<img title="Full Screen" class="nt-mb" ng-class="{active: isFullScreen, disable: isFullScreenDisable}" fullscreen src="/static/css/composition/icons/expand.svg"> -->
 				<img title="Pan & Zoom" class="nt-mb" ng-class="{active: isPanZoomActive, disable: isPanZoomDisable}" pan-zoom src="/static/css/composition/icons/pan_and_zoom.svg">
 				<img title="Color Palette" class="nt-mb" ng-class="{active: isColorPaletteActive, disable: isColorPaletteDisable}" color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/color-palette.svg">
 				<img title="No Colors" ng-class="{active: isGrayScaleActive=='active', disable: isGrayScaleDisable && isGrayScaleActive!= 'active'}" ng-click="showGrayscale()" src="/static/css/composition/icons/gray-palette.svg">
@@ -98,8 +98,8 @@
 				<li style="background: rgb([[ color['0'] ]], [[ color['1'] ]], [[ color['2'] ]])" ng-repeat="color in palette"></li>
 			</ul>
 			<img class="painting painting-original" src="{{composition.matter.url}}" ng-show="isGrayScaleActive=='inactive' && isOutlineActive=='inactive'" ng-cloak alt="{{composition.slug}}">
-			<img class="painting painting-grayscale" src="http://localhost:8000/media/150/user9/user9_journey-to-end_thirddime.jpg" ng-if="isGrayScaleActive=='active'" ng-cloak alt="{{composition.slug}} grayscale">
-			<img class="painting painting-outline" src="http://localhost:8000/media/150/user9/user9_journey-to-end_thirddime.jpg" ng-if="isOutlineActive=='active'" ng-cloak alt="{{composition.slug}} outline">
+			<img class="painting painting-grayscale" src="{{composition.get_grayscale_url}}" ng-if="isGrayScaleActive=='active'" ng-cloak alt="{{composition.slug}} grayscale">
+			<img class="painting painting-outline" src="{{composition.get_outline_url}}" ng-if="isOutlineActive=='active'" ng-cloak alt="{{composition.slug}} outline">
 		</div>
 	</section>
 
