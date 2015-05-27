@@ -98,8 +98,8 @@
 				<li style="background: rgb([[ color['0'] ]], [[ color['1'] ]], [[ color['2'] ]])" ng-repeat="color in palette"></li>
 			</ul>
 			<img class="painting painting-original" src="{{composition.matter.url}}" ng-show="isGrayScaleActive=='inactive' && isOutlineActive=='inactive'" ng-cloak alt="{{composition.slug}}">
-			<img class="painting painting-grayscale" src="{{composition.get_grayscale_url}}" ng-show="isGrayScaleActive=='active'" ng-cloak alt="{{composition.slug}} grayscale">
-			<img class="painting painting-outline" src="{{composition.get_outline_url}}" ng-show="isOutlineActive=='active'" ng-cloak alt="{{composition.slug}} outline">
+			<img class="painting painting-grayscale" src="http://localhost:8000/media/150/user9/user9_journey-to-end_thirddime.jpg" ng-if="isGrayScaleActive=='active'" ng-cloak alt="{{composition.slug}} grayscale">
+			<img class="painting painting-outline" src="http://localhost:8000/media/150/user9/user9_journey-to-end_thirddime.jpg" ng-if="isOutlineActive=='active'" ng-cloak alt="{{composition.slug}} outline">
 		</div>
 	</section>
 
@@ -168,16 +168,16 @@
 
 	<footer class="primary-footer" analytics-scroll analytics-data="['Composition', 'View-Next-Post']" analytics-offset="300">
 		<section analytics-click analytics-data="['Composition', 'Next Post']" class="next-post" ng-repeat="post in nextPosts">
-		<a href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]" target="_blank" >
-			<div class="painting-holder" ng-style="{'background-image': 'url([[post.composition.matter_350]])'}"></div>
-			<section class="post-details">
-				<h4>[[post.composition.title | titlecase]]</h4>
-				<p>[[post.interpretation.interpretation]]</p>
-			</section>
-			<footer class="next-footer">
-				<h5>Read More...</h5>
-			</footer>
-		</a>
+			<a href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]" target="_blank" >
+				<div class="painting-holder" ng-style="{'background-image': 'url([[post.composition.matter_350]])'}"></div>
+				<section class="post-details">
+					<h4>[[post.composition.title | titlecase]]</h4>
+					<p>[[post.interpretation.interpretation]]</p>
+				</section>
+				<footer class="next-footer">
+					<h5>Read More...</h5>
+				</footer>
+			</a>
 		</section>
 	</footer>
 
