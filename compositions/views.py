@@ -37,8 +37,14 @@ class CompositionList(APIView):
             try:
                 artist = json.loads(artist)
                 if artist.get('id') == -1:
-                    new_artist = User.objects.create_artist(artist.get('name'))
-                    request_data['artist'] = new_artist.id
+                    artist_name = artist.get('name')
+                    matching_artists = User.objects.filter(name__iexact=artist_name)
+
+                    if not matching_artists:
+                        new_artist = User.objects.create_artist(artist_name)
+                        request_data['artist'] = new_artist.id
+                    else:
+                        request_data['artist'] = matching_artists[0].id
                 else:
                     raise CompositionError("Invalid artist data {}".format(artist))
             except:
