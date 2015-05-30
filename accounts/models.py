@@ -4,8 +4,9 @@ from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.conf import settings
 from compositions.models import Composition
+from compositions.imageTools import resize_profile, WIDTH_PROFILE
 import uuid
-import re
+import re, os
 
 
 class UserManager(BaseUserManager):
@@ -44,19 +45,20 @@ class UserManager(BaseUserManager):
         '''
         return self.create_user_base(email, name, password, True, True, **extra_fields)
 
-    def create_artist(self, name):
+    def create_artist(self, name, **extra_fields):
         holder = str(uuid.uuid1())
         return self.create_user(
             holder+'@user.com',
             name,
             holder,
             is_active = False,
-            is_artist = True
+            is_artist = True,
+            **extra_fields
         )
 
 
 def get_upload_file_name_users(instance, filename):
-    return 'Users/%s/Profile/%s' % (instance.id, instances.name + filename.split('.')[-1])
+    return 'Users/%s/Profile/%s' % (instance.name, instance.name + '.' + filename.split('.')[-1])
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -103,9 +105,18 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = 'users'
 
     def save(self, *args, **kwargs):
-        unique_slugify(self, self.name) 
+        new_instance = False
+        if self.pk is None:
+            new_instance = True
+
+        unique_slugify(self, self.name)
         self.email = self.normalize_email(self.email)
         super(User, self).save(*args, **kwargs)
+
+        if new_instance:
+            if settings.DEFAULT_USER_PICTURE not in self.picture.url:
+                resize_profile(self.picture.path)
+
 
     def __unicode__(self):
         return self.get_full_name()
@@ -116,6 +127,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         "Returns the short name for the user."
         return self.name
+
+    def _format_url(self, suffix):
+        file_path, file_name = os.path.split(self.picture.url)
+        name, extension = os.path.splitext(file_name)
+        return os.path.join(file_path, '{0}_{1}{2}'.format(name, suffix, extension))
+
+    def get_picture_url(self):
+        return self._format_url(WIDTH_PROFILE)
 
     def email_user(self, subject, message, from_email=None):
         """
