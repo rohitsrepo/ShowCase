@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>{{composition.title | title}} by {{composition.artist.get_full_name | title}} | Interpretations and Stories</title>
-	
+
 	<meta name="Description" content="Title: {{composition.title}}, Artist: {{composition.artist.get_full_name}}, Category: Painting Interpretations and Stories">
 	<meta name="fragment" content="!">
 	<link rel="canonical" href="http://thirddime.com/arts/{{composition.slug}}" />
@@ -80,7 +80,7 @@
 			</section>
 			<section class="social-icons">
 				<img title="Facebook" facebook-share src="/static/css/composition/icons/facebook.svg" share-url='/arts/{{composition.slug}}'>
-				<img title="Pinterest" pinterest-share source="{{composition.matter.url}}" description="{{top_interpretation}}" src="/static/css/composition/icons/pinterest.svg" share-url='/arts/{{composition.slug}}'>
+				<img title="Pinterest" pinterest-share source="{{composition.matter.url}}" description="{{composition.title | title}} - interpretations and stories" src="/static/css/composition/icons/pinterest.svg" share-url='/arts/{{composition.slug}}'>
 				<img title="Tumblr" tumblr-share source="{{composition.matter.url}}" description="{{top_interpretation}}" src="/static/css/composition/icons/tumblr.svg" share-url='/arts/{{composition.slug}}'>
 				<span class="more-options">
 					<img ng-click="showMoreOptions = !showMoreOptions" title="More" src="/static/css/composition/icons/more_options.svg">
@@ -164,7 +164,7 @@
 
 	<section class="end-marker clearfix nt-mb">
 		<hr><img src="/static/images/header-md.png"><hr>
-	</section> 
+	</section>
 
 	<footer class="primary-footer" analytics-scroll analytics-data="['Composition', 'View-Next-Post']" analytics-offset="300">
 		<section analytics-click analytics-data="['Composition', 'Next Post']" class="next-post" ng-repeat="post in nextPosts">

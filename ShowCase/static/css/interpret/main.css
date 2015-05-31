@@ -3,7 +3,7 @@ html, body {
     font-family: 'taile', sans-serif;
     height: 100%;
     width: 100%;
-    padding: 0; 
+    padding: 0;
     margin: 0;
 }
 
@@ -31,13 +31,32 @@ html, body {
 }
 
 .container .painting img {
+
+
+}
+
+
+.container .painting img.landscape {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         -webkit-transform: translateY(-50%);
         -moz-transform: translateY(-50%);
         width: 100%;
+        height: auto;
         padding: 0 3%;
+}
+
+
+.container .painting img.potrait {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        height: 100%;
+        width: auto;
+        padding: 3% 0;
 }
 
 

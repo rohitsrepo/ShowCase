@@ -77,7 +77,7 @@
 						<a target="_blank" href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]">
 							<h4 analytics-click analytics-data="['Reader', 'Post-Title-Click', post.composition.slug]">[[post.composition.title | titlecase]]</h4>
 						</a>
-						<h5>by 
+						<h5>by
 							<a href="/artists/[[post.composition.artist.slug]]" class="artist" target="_blank">
 								[[post.composition.artist.full_name | titlecase]]
 							</a>
@@ -107,7 +107,7 @@
 	  					    <img class="icon icon-left" src="/static/css/reader/icons/comment.svg" analytics-click analytics-data="['Reader', 'Post-Comment-Click', post.composition.slug]">
 	  					    </a></li>
 	  					    <li><img class="icon icon-right" tumblr-share source="[[post.composition.matter]]" description="[[post.interpretation.interpretation]]" src="/static/css/reader/icons/tumblr.svg" share-url='/arts/[[post.composition.slug]]'></li>
-	  					    <li><img class="icon icon-right" pinterest-share source="[[post.composition.matter]]" description="[[post.interpretation.interpretation]]" src="/static/css/reader/icons/pinterest.svg" share-url='/arts/[[post.composition.slug]]'></li>
+	  					    <li><img class="icon icon-right" pinterest-share source="[[post.composition.matter]]" description="[[post.composition.title | titlecase]] - interpretations and stories" src="/static/css/reader/icons/pinterest.svg" share-url='/arts/[[post.composition.slug]]'></li>
 	  					    <li><img class="icon icon-right" facebook-share src="/static/css/reader/icons/facebook.svg" share-url='/arts/[[post.composition.slug]]'></li>
 	  					    <!-- <li><img class="icon icon-right" src="/static/css/reader/icons/twitter.svg" ></li> -->
 	  					</ul>
@@ -120,7 +120,7 @@
 	<!-- build:js /static/build/reader.js -->
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
-	
+
 	<script type="text/javascript" src="/static/bower_components/nginfinitescroll/build/ng-infinite-scroll.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
 
