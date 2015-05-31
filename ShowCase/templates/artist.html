@@ -2,7 +2,7 @@
 <html ng-app="ArtistApp">
 <head>
 	<meta charset="UTF-8">
-	<title>{{artist.name | title}} | ThirdDime</title>
+	<title>{{artist.name | title}} |  Paintings | ThirdDime</title>
 
 	<meta name="Description" content="Artworks by {{artist.name}}. {{artist.about}}">
 	<meta name="fragment" content="!">
@@ -13,8 +13,8 @@
 	<meta property="og:title" content="{{artist.name | title}}">
 	<meta property="og:site_name" content="ThirdDime">
 	<meta property="og:url" content="http://thirddime.com/artists/{{artist.slug}}">
-	<meta property="og:description" content="Artworks by {{artist.name}}. {{artist.about}}">
-	<meta property="og:image" content="http://thirddime.com/{{artist.picture}}">
+	<meta property="og:description" content="Explore paintings of {{artist.name}} through interpretations and stories.">
+	<meta property="og:image" content="http://thirddime.com{{artist.picture.url}}">
 	<meta property="og:type" content="website">
 	<meta property="og:type" content="[462422103909005]">
 
