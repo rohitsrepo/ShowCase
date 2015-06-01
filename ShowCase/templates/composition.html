@@ -54,8 +54,9 @@
 			</h3>
 		</section>
 
-		<footer>
-			<h5>Uploaded by <span class="uploader">{{composition.uploader.get_full_name | title}}</span></h5>
+		<footer class="clearfix">
+            <h5 class="right">Uploaded by <span class="uploader">{{composition.uploader.get_full_name | title}}</span></h5>
+			<h5 class="left">{{composition.views}} Views</h5>
 		</footer>
 
 		<section class="go-down">

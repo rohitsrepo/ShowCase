@@ -1,4 +1,4 @@
-@font-face{ 
+@font-face{
   font-family: 'fertigo';
   src: url('/static/fonts/fertigo/Fertigo.eot');
   src: url('/static/fonts/fertigo/Fertigo.woff') format('woff'),
@@ -30,7 +30,7 @@ html, body {
   background: url(/static/images/reader/banner.jpg) no-repeat center top;
   background-size: cover;
   position: relative;
-} 
+}
 
 .banner section {
   text-align: center;
@@ -47,7 +47,7 @@ html, body {
   line-height: 1.2em;
   letter-spacing: 1px;
 }
- 
+
 .banner section h3 {
   font-family: 'taile', sans-serif;
   font-weight: 300;
@@ -195,7 +195,7 @@ html, body {
   font-family: 'Playfair Display', serif;
   font-weight: bold;
   font-size: 2.2em;
-  line-height: 1.2em;
+  line-height: 1.4em;
   letter-spacing: 0.5px;
   text-decoration: none solid rgba(0, 0, 0, 0.8);
   color: rgba(0, 0, 0, 0.8);
@@ -208,6 +208,7 @@ html, body {
   letter-spacing: 0.1px;
   line-height: 1.2em;
   text-decoration: none solid rgba(0, 0, 0, 0.3);
+  display: inline-block;
 }
 
 .description-header .artist {

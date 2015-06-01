@@ -12,7 +12,7 @@ class ArtistCompositionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Composition
-        fields = ('title', 'matter', 'slug', 'matter_350', 'matter_550', 'interpretations_count')
+        fields = ('title', 'matter', 'slug', 'matter_350', 'matter_550', 'interpretations_count', 'views')
 
 class PaginatedArtistCompositionSerializer(PaginationSerializer):
 	class Meta:

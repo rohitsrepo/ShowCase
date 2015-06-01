@@ -24,6 +24,7 @@ class Composition(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     created = models.DateTimeField(auto_now_add=True)
     matter = models.FileField(upload_to=get_upload_file_name_composition)
+    views = models.IntegerField(default=0)
 
     class Meta:
         ordering = ('created',)
@@ -33,7 +34,7 @@ class Composition(models.Model):
         if self.pk is None:
             new_instance = True
 
-        slug_str = "%s %s" % (self.artist.name, self.title) 
+        slug_str = "%s %s" % (self.artist.name, self.title)
         util.unique_slugify(self, slug_str)
 
         super(Composition, self).save(*args, **kwargs)

@@ -23,7 +23,7 @@ class PostCompositionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Composition
-        fields = ("id", "title", "matter", "artist", "slug", "uploader", "matter_350", "matter_550")
+        fields = ("id", "title", "matter", "artist", "slug", "uploader", "matter_350", "matter_550", "views")
 
 class PostInterpretationVoteSerializer(serializers.ModelSerializer):
     total = serializers.CharField(source='get_total', read_only=True)

@@ -142,6 +142,7 @@ html, body {
   font-family: 'fertigo', sans-serif;
   font-size: 0.85em;
   letter-spacing: 1px;
+  display: inline-block;
   opacity: 0;
 }
 
