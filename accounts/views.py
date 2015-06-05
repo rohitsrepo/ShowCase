@@ -15,6 +15,7 @@ from compositions.models import Composition
 from compositions.serializers import CompositionSerializer
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.core.exceptions import ValidationError
 
 
 class UserList(APIView):
@@ -124,6 +125,57 @@ def reset_password(request, pk, format=None):
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['POST'])
+@permission_classes((permissions.IsAuthenticated,))
+def reset_name(request, format=None):
+    try:
+        name = request.DATA['name']
+        user = request.user
+        user.name = name
+        try:
+            user.full_clean()
+            user.save()
+            ser = ExistingUserSerializer(user, context={'request': request})
+            return Response(ser.data)
+        except ValidationError:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+    except:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@permission_classes((permissions.IsAuthenticated,))
+def reset_about(request, format=None):
+    try:
+        about = request.DATA['about']
+        user = request.user
+        user.about = about
+        try:
+            user.full_clean()
+            user.save()
+            ser = ExistingUserSerializer(user, context={'request': request})
+            return Response(ser.data)
+        except ValidationError:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+    except:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@permission_classes((permissions.IsAuthenticated,))
+def reset_picture(request, format=None):
+    try:
+        picture = request.FILES['picture']
+        user = request.user
+        user.picture = picture
+        try:
+            user.full_clean()
+            user.save()
+            ser = ExistingUserSerializer(user, context={'request': request})
+            return Response(ser.data)
+        except ValidationError:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+    except:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def login_user(request, format=None):

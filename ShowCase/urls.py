@@ -15,13 +15,27 @@ urlpatterns = patterns('',
                        url(r'^about-us$', TemplateView.as_view(template_name='aboutus.html'), name="about"),
                        url(r'^guidelines$', TemplateView.as_view(template_name='guidelines.html'), name='guidelines'),
                        url(r'^contact-us$', TemplateView.as_view(template_name='contactus.html'), name="contact"),
-                       url(r'^register$', TemplateView.as_view(template_name='register.html'), name="register"),
-                       url(r'^login$', TemplateView.as_view(template_name='login.html'), name="login"),
+		       )
+
+## Composition Urls
+urlpatterns += patterns('',
                        url(r'^upload-art$', TemplateView.as_view(template_name='upload.html'), name="upload"),
                        url(r'^arts/(?P<slug>[\w-]+)$', 'compositions.clientViews.composition_main', name="composition-page"),
-                       url(r'^arts/(?P<slug>[\w-]+)/add-interpretation$', 'compositions.clientViews.add_interpretation', name="interpretation-page"),
+    )
+
+## Account urls
+urlpatterns += patterns('',
+                       url(r'^register$', TemplateView.as_view(template_name='register.html'), name="register"),
+                       url(r'^login$', TemplateView.as_view(template_name='login.html'), name="login"),
                        url(r'^artists/(?P<slug>[\w-]+)$', 'accounts.clientViews.artist_main', name="artist-page"),
-		       )
+                       url(r'^me/settings$', 'accounts.clientViews.user_settings', name="user-settings"),
+                       # url(r'^me/collections$', 'accounts.clientViews.user_collections', name="user-collections"),
+    )
+
+## Interpretation Urls
+urlpatterns += patterns('',
+                       url(r'^arts/(?P<slug>[\w-]+)/add-interpretation$', 'compositions.clientViews.add_interpretation', name="interpretation-page"),
+    )
 
 # API urls
 urlpatterns += patterns('',

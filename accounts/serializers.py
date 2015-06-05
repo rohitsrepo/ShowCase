@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import User
 from django.forms import widgets
 from django.contrib.auth.hashers import make_password
+from ShowCase.serializers import URLImageField
 
 
 class NewUserSerializer(serializers.ModelSerializer):
@@ -21,6 +22,7 @@ class NewUserSerializer(serializers.ModelSerializer):
 
 class ExistingUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(read_only=True)
+    picture = URLImageField(source='picture')
 
     class Meta:
         model = User

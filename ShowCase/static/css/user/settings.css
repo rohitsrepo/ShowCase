@@ -1,0 +1,170 @@
+@font-face{
+  font-family: 'fertigo';
+  src: url('/static/fonts/fertigo/Fertigo.eot');
+  src: url('/static/fonts/fertigo/Fertigo.woff') format('woff'),
+       url('/static/fonts/fertigo/Fertigo.ttf') format('truetype'),
+       url('/static/fonts/fertigo/Fertigo.svg') format('svg');
+}
+
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+  font-family: 'taile';
+}
+
+.auth-user,
+.auth-user a {
+  color: white;
+}
+/*================ HEADER ===================*/
+
+.primary-header {
+	width: 100%;
+	height: 30%;
+    padding-top: 5%;
+}
+
+.primary-header h1 {
+    line-height: 1.3em;
+    letter-spacing: 1px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.9);
+    font-family: 'taile', sans-serrif;
+    font-size: 3em;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.primary-header hr {
+    width: 30%;
+    margin: 20px auto;
+}
+
+/*============== Settings ==================*/
+
+.settings {
+    width: 50%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.settings li {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.settings li h3 {
+    line-height: 1.3em;
+    letter-spacing: 1px;
+    color: rgba(0, 0, 0, 0.9);
+    font-family: 'taile', sans-serrif;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.settings form {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.settings form.active {
+    /*border: 2px solid red;*/
+    /*background: red;*/
+}
+
+.settings form .data{
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.settings form .data input {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.settings form .data input:focus {
+    border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+.settings form .actions{
+    position: absolute;
+    right: -80px;
+    top: 0;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.settings form .actions button {
+    width: 100%;
+    height: 50px;
+    display: inline-block;
+    border: 1px solid #E6B800;
+    color: #E6B800;
+    cursor: pointer;
+}
+
+.settings form .actions button:hover {
+    background: #E6B800;
+    color: white;
+}
+
+.settings form .actions.ng-hide-remove {
+        -webkit-animation: fadeInLeft 1s;
+        animation: fadeInLeft 1s;
+        opacity: 0;
+}
+
+.settings form .actions.ng-hide-add {
+        -webkit-animation: fadeOutLeft 1s;
+        animation: fadeOutLeft 1s;
+}
+
+/*=============== Picture ==================*/
+
+.picture {
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
+
+.picture .file {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    -moz-opacity:0 ;
+    filter:alpha(opacity: 0);
+    opacity: 0;
+    z-index: 1;
+}
+
+.picture .cover {
+    width: 100%;
+    height: 100%;
+    background:  #E6B800;
+    position: relative;
+}
+
+.picture img {
+    width: auto;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0px;
+    display: inline-block;
+    padding: 10px 0;
+}

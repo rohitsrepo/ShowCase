@@ -5,7 +5,7 @@
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
+
 	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
 
 	<!-- build:css /static/build/register.css -->
@@ -24,7 +24,7 @@
 	</script>
 </head>
 <body ng-controller="registerController">
-	<!-- {% verbatim %} --> 
+	<!-- {% verbatim %} -->
 	<topbar></topbar>
 	<div class="curtain-overlay-placeholder"></div>
 	<header class="primary-header">
@@ -36,12 +36,12 @@
 			<button class="facebook" ng-click="loginFB()">CONNECT WITH FACEBOOK</button>
 			<!-- <button class="twitter" href="">CONNECT WITH TWITTER</button> -->
 		</section>
-		<h5>Or</h5>	
+		<h5>Or</h5>
 		<section class="native">
 			<form name="registerForm" ng-keyup="$event.keyCode == 13 ? register(user) : null" novalidate>
 				<input type="text" autofocus="autofocus" placeholder="Name" ng-model="user.name" name="uname" maxlength="80" required>
 				<div ng-cloak ng-show="registerForm.$submitted">
-				    <span ng-show="registerForm.uname.$error.required">Please provide a first name.</span>
+				    <span ng-show="registerForm.uname.$error.required">Please provide a name.</span>
 			   </div>
 				<input type="email" placeholder="E-mail" ng-model="user.email" name="uemail" required ng-model-options="{ updateOn: 'blur' }">
 				<div ng-cloak ng-show="registerForm.$submitted">
@@ -63,7 +63,7 @@
 	<!-- build:js /static/build/register.js -->
 	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
-	
+
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>

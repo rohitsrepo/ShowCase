@@ -57,6 +57,22 @@ angular.module("module.model")
 		})
 	};
 
+    service.resetName = function (name) {
+        return $http.post("/users/reset-name", {'name': name}).then(function (response) {
+            return response.data;
+        }, function (response, status){
+            return $q.reject(response);
+        })
+    };
+
+    service.resetAbout = function (about) {
+        return $http.post("/users/reset-about", {'about': about}).then(function (response) {
+            return response.data;
+        }, function (response, status){
+            return $q.reject(response);
+        })
+    };
+
 	service.getCompositions = function (user_id, page) {
 		return $http.get('/users/'+user_id+'/compositions?page='+page).then(function (response) {
 			return response.data;

@@ -105,17 +105,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = 'users'
 
     def save(self, *args, **kwargs):
-        new_instance = False
-        if self.pk is None:
-            new_instance = True
-
         unique_slugify(self, self.name)
         self.email = self.normalize_email(self.email)
         super(User, self).save(*args, **kwargs)
 
-        if new_instance:
-            if settings.DEFAULT_USER_PICTURE not in self.picture.url:
-                resize_profile(self.picture.path)
+        #TODO this should not happen on every save
+        #TODO delete old file on picture update
+        if settings.DEFAULT_USER_PICTURE not in self.picture.url:
+            resize_profile(self.picture.path)
 
 
     def __unicode__(self):

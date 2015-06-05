@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
+<html ng-app="UserApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings | ThirdDime</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
+
+     <!-- build:css /static/build/user-settings.css -->
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/user/settings.css">
+    <!-- endbuild -->
+
+    <script>
+         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', 'UA-58563444-1', 'auto');
+         ga('require', 'displayfeatures');
+         ga('send', 'pageview');
+    </script>
+</head>
+<body ng-controller="userSettingsController">
+    <topbar></topbar>
+    <div class="curtain-overlay-placeholder"></div>
+
+    <header class="primary-header" ng-init="init('{{user.id}}', '{{user.email}}', '{{user.name}}', '{{user.about}}', '{{user.picture.url}}')">
+        <h1>Settings</h1>
+        <hr>
+    </header>
+
+    <ul class="settings">
+        <li>
+            <form name="nameForm" ng-class="{active: nameForm.$dirty}">
+                <section class="data">
+                    <input type="text" placeholder="Name" ng-model="user.name" name="uname" maxlength="80" required>
+                    <div ng-cloak ng-show="nameForm.$submitted || nameForm.uname.$dirty">
+                        <span ng-show="nameForm.uname.$error.required">Please provide a name.</span>
+                   </div>
+               </section>
+               <div class="actions" ng-cloak ng-show="nameForm.$dirty">
+                   <button ng-disabled="nameForm.$invalid" ng-click="updateName(user.name, nameForm)">UPDATE</button>
+               </div>
+           </form>
+        </li>
+        <li>
+            <form name="aboutForm">
+                <section class="data">
+                    <input type="text" placeholder="About you" ng-model="user.about" name="uabout" maxlength="40">
+               </section>
+               <div class="actions" ng-cloak ng-show="aboutForm.$dirty">
+                   <button ng-disabled="aboutForm.$invalid" ng-click="updateAbout(user.about, aboutForm)">UPDATE</button>
+               </div>
+           </form>
+        </li>
+        <li>
+            <section class="picture">
+                <input type="file" class="file" upload-picture  />
+                <div class="cover">
+                    <!-- <h4>Select image of the piece</h4> -->
+                    <img ng-src="[[user.picture]]">
+                </div>
+            </section>
+        </li>
+    </ul>
+
+    <alert-support></alert-support>
+
+    <!-- Scripts Here -->
+    <script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- build:js /static/build/userSettings.js -->
+    <script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
+    <script type="text/javascript" src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
+
+    <script type="text/javascript" src="/static/bower_components/nginfinitescroll/build/ng-infinite-scroll.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/angular-upload/angular-upload.min.js"></script>
+    <script type="text/javascript" src="/static/js/user/user.module.js"></script>
+    <script type="text/javascript" src="/static/js/user/userSettings.controller.js"></script>
+    <script type="text/javascript" src="/static/js/models/model.module.js"></script>
+    <script type="text/javascript" src="/static/js/models/user.model.js"></script>
+    <script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
+    <script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
+    <script type="text/javascript" src="/static/js/authentication/facebook.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/topbar/progress.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
+    <script type="text/javascript" src="/static/js/components/alert/alert.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/alert/alert.directive.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
