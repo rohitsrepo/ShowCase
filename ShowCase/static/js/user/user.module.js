@@ -9,7 +9,8 @@ angular.module("UserApp", [
     "module.model",
     'module.titlecase',
     'module.scrollTo',
-    'module.alert'])
+    'module.alert',
+    'module.analytics'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
     "use strict";
 

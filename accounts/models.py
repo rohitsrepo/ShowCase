@@ -162,7 +162,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return "#/{0}".format(self.id)
 
     def get_sitemap_url(self):
-        return "http://thirddime.com/artists/{0}".format(self.slug)
+        return "http://thirddime.com/@{0}".format(self.slug)
 
 def unique_slugify(instance, value, slug_field_name='slug', queryset=None,
                    slug_separator='-'):

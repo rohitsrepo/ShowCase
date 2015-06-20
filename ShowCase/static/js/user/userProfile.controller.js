@@ -1,5 +1,5 @@
-angular.module('ArtistApp')
-.controller('artistController', ['$scope', 'userModel', function ($scope, userModel) {
+angular.module('UserApp')
+.controller('userProfileController', ['$scope', 'userModel', function ($scope, userModel) {
 	$scope.hideName = true;
 	$scope.artist = {};
 	$scope.compositions = [];
@@ -37,8 +37,8 @@ angular.module('ArtistApp')
 		if ($scope.compositionsMeta.busy) {
 			return;
 		}
-		
+
 		getCompositions();
 	}
-	
+
 }]);

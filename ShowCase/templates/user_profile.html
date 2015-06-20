@@ -2,17 +2,28 @@
 <html ng-app="UserApp">
 <head>
     <meta charset="UTF-8">
-    <title>Settings | ThirdDime</title>
+    <title>{{artist.name | title}} |  Paintings | ThirdDime</title>
 
+    <meta name="Description" content="Artworks by {{artist.name}}. {{artist.about}}">
+    <meta name="fragment" content="!">
+    <link rel="canonical" href="http://thirddime.com/artists/{{artist.slug}}" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <meta property="og:title" content="{{artist.name | title}}">
+    <meta property="og:site_name" content="ThirdDime">
+    <meta property="og:url" content="http://thirddime.com/artists/{{artist.slug}}">
+    <meta property="og:description" content="Explore paintings of {{artist.name}} through interpretations and stories.">
+    <meta property="og:image" content="http://thirddime.com{{artist.picture.url}}">
+    <meta property="og:type" content="website">
+    <meta property="og:type" content="[462422103909005]">
+
     <link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
 
-     <!-- build:css /static/build/user-settings.css -->
+     <!-- build:css /static/build/user-profile.css -->
     <link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
     <link rel="stylesheet" type="text/css" href="/static/css/base.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/user/settings.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/user/profile.css">
     <!-- endbuild -->
 
     <script>
@@ -25,63 +36,44 @@
          ga('send', 'pageview');
     </script>
 </head>
-<body ng-controller="userSettingsController">
+<body ng-controller="userProfileController">
     <topbar></topbar>
     <div class="curtain-overlay-placeholder"></div>
-
-    <header class="primary-header" ng-init="init('{{user.id}}', '{{user.email}}', '{{user.name}}', '{{user.about}}', '{{user.picture.url}}')">
-        <h1>Settings</h1>
-        <hr>
+    <header class="primary-header" ng-init="init('{{artist.id}}')">
+        <div class="picture">
+            <img src="{{artist.get_picture_url}}">
+        </div>
+        <h1>{{artist.name | title}}</h1>
+        <h4>{{artist.arts.count}} Paintings</h4>
     </header>
 
-    <ul class="settings">
-        <li>
-            <form name="nameForm" ng-class="{active: nameForm.$dirty}">
-                <section class="data">
-                    <input type="text" placeholder="Name" ng-model="user.name" name="uname" maxlength="80" required>
-                    <div ng-cloak ng-show="nameForm.$submitted || nameForm.uname.$dirty">
-                        <span ng-show="nameForm.uname.$error.required">Please provide a name.</span>
-                   </div>
-               </section>
-               <div class="actions" ng-cloak ng-show="nameForm.$dirty">
-                   <button ng-disabled="nameForm.$invalid" ng-click="updateName(user.name, nameForm)">UPDATE</button>
-               </div>
-           </form>
-        </li>
-        <li>
-            <form name="aboutForm">
-                <section class="data">
-                    <input type="text" placeholder="About you" ng-model="user.about" name="uabout" maxlength="40">
-               </section>
-               <div class="actions" ng-cloak ng-show="aboutForm.$dirty">
-                   <button ng-disabled="aboutForm.$invalid" ng-click="updateAbout(user.about, aboutForm)">UPDATE</button>
-               </div>
-           </form>
-        </li>
-        <li>
-            <section class="picture">
-                <input type="file" class="file" upload-picture  />
-                <div class="cover">
-                    <!-- <h4>Select image of the piece</h4> -->
-                    <img ng-src="[[user.picture]]">
-                </div>
-            </section>
+    <ul class="paintings-container" infinite-scroll="loadMoreCompositions()" infinite-scroll-distance='1' infinite-scroll-disabled='compositionsMeta.busy || compositionsMeta.disableGetMore' >
+        <li ng-repeat="composition in compositions">
+            <a href="/arts/[[composition.slug]]">
+                <figure analytics-click analytics-data="['Artist', 'Click On: '+ composition.title ]">
+                    <img ng-src="[[composition.matter_350]]">
+                    <figcaption class="details">
+                        <h4>[[composition.title | titlecase]]</h4>
+                        <h5>[[composition.views]] Views.</h5>
+                        <h5>[[composition.interpretations_count]] Interpretations</h5>
+                    </figcaption>
+                </figure>
+            </a>
         </li>
     </ul>
 
-    <alert-support></alert-support>
-
     <!-- Scripts Here -->
     <script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- build:js /static/build/userSettings.js -->
+    <!-- build:js /static/build/userProfile.js -->
     <script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
     <script type="text/javascript" src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
 
     <script type="text/javascript" src="/static/bower_components/nginfinitescroll/build/ng-infinite-scroll.min.js"></script>
     <script type="text/javascript" src="/static/bower_components/angular-upload/angular-upload.min.js"></script>
+
     <script type="text/javascript" src="/static/js/user/user.module.js"></script>
-    <script type="text/javascript" src="/static/js/user/userSettings.controller.js"></script>
+    <script type="text/javascript" src="/static/js/user/userProfile.controller.js"></script>
     <script type="text/javascript" src="/static/js/models/model.module.js"></script>
     <script type="text/javascript" src="/static/js/models/user.model.js"></script>
     <script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
@@ -98,7 +90,6 @@
     <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
     <script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
     <script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
-    <script type="text/javascript" src="/static/js/components/topbar/progress.service.js"></script>
     <script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
     <script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
     <script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
