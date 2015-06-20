@@ -26,7 +26,7 @@ angular.module("ArtistApp", [
     return {
         responseError: function (response) {
             if (response.status === 403) {
-                $window.location.href = "/login";
+                $window.location.href = "/login#?next=" + $window.location.pathname;
             }
             return $q.reject(response);
         }

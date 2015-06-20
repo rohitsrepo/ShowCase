@@ -25,14 +25,14 @@ angular.module("InterpretApp", [
     return {
         responseError: function (response) {
             if (response.status === 403) {
-                $window.location.href = "/login";
+                $window.location.href = "/login#?next=" + $window.location.pathname;
             }
             return $q.reject(response);
         }
     };
 }]).run(['auth', '$window', function (auth, $window) {
-	auth.getCurrentUser().then(function () {}, 
+	auth.getCurrentUser().then(function () {},
         function () {
-        $window.location.href = "/login";
+        $window.location.href = "/login#?next=" + $window.location.pathname;
     });
 }]);

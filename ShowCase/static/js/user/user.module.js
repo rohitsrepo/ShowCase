@@ -28,11 +28,13 @@ angular.module("UserApp", [
     return {
         responseError: function (response) {
             if (response.status === 403) {
-                $window.location.href = "/login";
+                $window.location.href = "/login#?next=" + $window.location.pathname;
             }
             return $q.reject(response);
         }
     };
-}]).run(['auth', function (auth) {
-    auth.getCurrentUser();
+}]).run(['auth', '$window', function (auth, $window) {
+    auth.getCurrentUser().then(function () {}, function () {
+        $window.location.href = "/login#?next=" + $window.location.pathname;
+    });
 }]);

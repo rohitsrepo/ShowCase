@@ -21,6 +21,6 @@ angular.module("UploadApp", [
 }]).run(['auth', "$window", function (auth, $window) {
 	auth.getCurrentUser().then(function () {
 	}, function () {
-		$window.location.href="/login";
+		$window.location.href="/login#?next=" + $window.location.pathname;
 	});
 }]);
