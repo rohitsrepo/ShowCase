@@ -1,0 +1,14 @@
+<ul class="paintings-container" infinite-scroll="loadMoreCompositions()" infinite-scroll-distance='1' infinite-scroll-disabled='compositionsMeta.busy || compositionsMeta.disableGetMore' >
+    <li ng-repeat="composition in compositions">
+        <a href="/arts/[[composition.slug]]">
+            <figure analytics-click analytics-data="['Artist', 'Click On: '+ composition.title ]">
+                <img ng-src="[[composition.matter_350]]">
+                <figcaption class="details">
+                    <h4>[[composition.title | titlecase]]</h4>
+                    <h5>[[composition.views]] Views.</h5>
+                    <h5>[[composition.interpretations_count]] Interpretations</h5>
+                </figcaption>
+            </figure>
+        </a>
+    </li>
+</ul>

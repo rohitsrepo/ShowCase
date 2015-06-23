@@ -79,5 +79,17 @@ angular.module("module.model")
 		})
 	};
 
+    service.getUploads = function (user_id, page) {
+        return $http.get('/users/'+user_id+'/uploads?page='+page).then(function (response) {
+            return response.data;
+        })
+    };
+
+    service.getInterpretations = function (user_id, page) {
+        return $http.get('/users/'+user_id+'/interpretations?page='+page).then(function (response) {
+            return response.data;
+        })
+    };
+
 	return service;
 }]);

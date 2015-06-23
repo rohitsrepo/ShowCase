@@ -2,6 +2,7 @@ angular.module("UserApp", [
     'infinite-scroll',
     "lr.upload",
     'ngAnimate',
+    'ui.router',
     "module.auth",
     "module.curtainRight",
     "module.curtainLeft",
@@ -11,7 +12,7 @@ angular.module("UserApp", [
     'module.scrollTo',
     'module.alert',
     'module.analytics'])
-.config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
+.config(['$httpProvider', '$interpolateProvider', '$stateProvider', '$urlRouterProvider', function ($httpProvider, $interpolateProvider, $stateProvider, $urlRouterProvider) {
     "use strict";
 
     // Changing angular template tag to prevent conflict with django
@@ -24,6 +25,27 @@ angular.module("UserApp", [
     // csrf for django
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+
+    // For any unmatched url, redirect to /state1
+    $urlRouterProvider.otherwise("/paintings");
+    //
+    // Now set up the states
+    $stateProvider
+      .state('paintings', {
+        url: "/paintings",
+        templateUrl: "/static/js/user/profile.paintings.html",
+        controller: 'profilePaintingsController'
+    })
+    .state('uploads', {
+        url: "/uploads",
+        templateUrl: "/static/js/user/profile.uploads.html",
+        controller: 'profileUploadsController'
+    })
+    .state('interpretations', {
+        url: "/interpretations",
+        templateUrl: "/static/js/user/profile.interpretations.html",
+        controller: 'profileInterpretationsController'
+    });
 }]).factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
     'use strict';
     return {

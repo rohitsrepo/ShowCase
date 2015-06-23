@@ -1,6 +1,6 @@
 from .models import User
 from .serializers import NewUserSerializer, ExistingUserSerializer, PasswordUserSerializer, BookmarkSerializer, FollowSerializer
-from .artistSerializers import PaginatedArtistCompositionSerializer
+from .artistSerializers import PaginatedUserCompositionSerializer, PaginatedUserInterpretationSerializer
 from django.http import Http404
 from rest_framework.response import Response
 from rest_framework import status
@@ -246,8 +246,50 @@ def get_compositions(request, pk, format=None):
     except EmptyPage:
         raise Http404
 
-    serializer = PaginatedArtistCompositionSerializer(this_page_compositions)
+    serializer = PaginatedUserCompositionSerializer(this_page_compositions)
     return Response(data=serializer.data)
+
+
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_interpretations(request, pk, format=None):
+    user = get_object_or_404(User, pk=pk)
+    user_interpretations = user.interpretation_set.all().order_by('-id')
+
+    page_num = request.GET.get('page', 1)
+    paginator = Paginator(user_interpretations, 9)
+
+    try:
+        this_page_interpretations = paginator.page(page_num)
+    except PageNotAnInteger:
+        this_page_interpretations = paginator.page(1)
+    except EmptyPage:
+        raise Http404
+
+    serializer = PaginatedUserInterpretationSerializer(this_page_interpretations)
+    return Response(data=serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_uploads(request, pk, format=None):
+    user = get_object_or_404(User, pk=pk)
+    user_uploads = user.compositions.all().order_by('-id')
+
+    page_num = request.GET.get('page', 1)
+    paginator = Paginator(user_uploads, 9)
+
+    try:
+        this_page_compositions = paginator.page(page_num)
+    except PageNotAnInteger:
+        this_page_compositions = paginator.page(1)
+    except EmptyPage:
+        raise Http404
+
+    serializer = PaginatedUserCompositionSerializer(this_page_compositions)
+    return Response(data=serializer.data)
+
 
 @api_view(['GET', 'POST', 'DELETE'])
 @permission_classes((permissions.IsAuthenticated, IsHimself))

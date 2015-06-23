@@ -16,6 +16,8 @@ urlpatterns = patterns('',
                         url(r'^/(?P<pk>[0-9]+)/bookmarks$', 'accounts.views.user_bookmarks'),
                         url(r'^/(?P<pk>[0-9]+)/follows$', 'accounts.views.user_follows'),
                         url(r'^/(?P<pk>[0-9]+)/compositions$', 'accounts.views.get_compositions'),
+                        url(r'^/(?P<pk>[0-9]+)/interpretations$', 'accounts.views.get_interpretations'),
+                        url(r'^/(?P<pk>[0-9]+)/uploads$', 'accounts.views.get_uploads'),
                         url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
                     )
 

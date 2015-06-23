@@ -40,27 +40,30 @@
     <topbar></topbar>
     <div class="curtain-overlay-placeholder"></div>
     <header class="primary-header" ng-init="init('{{artist.id}}')">
-        <div class="picture">
-            <img src="{{artist.get_picture_url}}">
+        <div class="container">
+            <div class="picture">
+                <img src="{{artist.get_picture_url}}">
+            </div>
+            <h1>{{artist.name | title}}</h1>
+            <h2>{{artist.about}}</h2>
+            <section class="contributions">
+                <a class="contribution" ui-sref="paintings">
+                    <h4>Paintings</h4>
+                    <h5>{{artist.arts.count}}</h5>
+                </a><!--
+                --><a class="contribution" ui-sref="interpretations">
+                    <h4>Interpretations</h4>
+                    <h5>{{artist.interpretation_set.count}}</h5>
+                </a><!--
+                --><a class="contribution" ui-sref="uploads">
+                    <h4>Uploads</h4>
+                    <h5>{{artist.compositions.count}}</h5>
+                </a>
+            </section>
         </div>
-        <h1>{{artist.name | title}}</h1>
-        <h4>{{artist.arts.count}} Paintings</h4>
     </header>
 
-    <ul class="paintings-container" infinite-scroll="loadMoreCompositions()" infinite-scroll-distance='1' infinite-scroll-disabled='compositionsMeta.busy || compositionsMeta.disableGetMore' >
-        <li ng-repeat="composition in compositions">
-            <a href="/arts/[[composition.slug]]">
-                <figure analytics-click analytics-data="['Artist', 'Click On: '+ composition.title ]">
-                    <img ng-src="[[composition.matter_350]]">
-                    <figcaption class="details">
-                        <h4>[[composition.title | titlecase]]</h4>
-                        <h5>[[composition.views]] Views.</h5>
-                        <h5>[[composition.interpretations_count]] Interpretations</h5>
-                    </figcaption>
-                </figure>
-            </a>
-        </li>
-    </ul>
+    <div ui-view></div>
 
     <!-- Scripts Here -->
     <script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
@@ -68,12 +71,16 @@
     <script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
     <script type="text/javascript" src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
     <script type="text/javascript" src="/static/bower_components/nginfinitescroll/build/ng-infinite-scroll.min.js"></script>
     <script type="text/javascript" src="/static/bower_components/angular-upload/angular-upload.min.js"></script>
 
     <script type="text/javascript" src="/static/js/user/user.module.js"></script>
     <script type="text/javascript" src="/static/js/user/userProfile.controller.js"></script>
+    <script type="text/javascript" src="/static/js/user/profilePaintings.controller.js"></script>
+    <script type="text/javascript" src="/static/js/user/profileUploads.controller.js"></script>
+    <script type="text/javascript" src="/static/js/user/profileInterpretations.controller.js"></script>
     <script type="text/javascript" src="/static/js/models/model.module.js"></script>
     <script type="text/javascript" src="/static/js/models/user.model.js"></script>
     <script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
