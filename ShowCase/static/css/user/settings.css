@@ -19,7 +19,7 @@ html, body {
 
 .auth-user,
 .auth-user a {
-  color: white;
+  color: rgba(0, 0, 0, 0.8);
 }
 /*================ HEADER ===================*/
 
@@ -112,6 +112,7 @@ html, body {
     border: 1px solid #E6B800;
     color: #E6B800;
     cursor: pointer;
+    background: transparent;
 }
 
 .settings form .actions button:hover {

@@ -1,10 +1,12 @@
-angular.module('UserApp')
+angular.module('UserSettingsApp')
 .controller('userSettingsController', ['$scope',
     'userModel',
     'alert',
     'progress',
     'upload',
     function ($scope, userModel, alert, progress, upload) {
+
+    $scope.hideName = true;
 
     var resetForm = function (form) {
         form.$setPristine();

@@ -10,7 +10,7 @@ class InterpretationUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'full_name', 'picture')
+        fields = ('id', 'full_name', 'picture', 'slug')
 
 class InterpretationVoteSerializer(serializers.ModelSerializer):
     total = serializers.CharField(source='get_total', read_only=True)

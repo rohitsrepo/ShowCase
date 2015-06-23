@@ -55,7 +55,7 @@
 		</section>
 
 		<footer class="clearfix">
-            <h5 class="right">Uploaded by <span class="uploader">{{composition.uploader.get_full_name | title}}</span></h5>
+            <h5 class="right">Uploaded by <a ng-href="/@{{composition.uploader.slug}}" class="uploader">{{composition.uploader.get_full_name | title}}</a></h5>
 			<h5 class="left">{{composition.views}} Views</h5>
 		</footer>
 
@@ -118,7 +118,7 @@
 				<header class="interpreter clearfix">
 					<!-- <img ng-cloak ng-show="interpretation.user.picture" ng-src="[[interpretation.user.picture]]"> -->
 					<div>
-						<h3>[[interpretation.user.full_name]]</h3>
+						<h3><a href="/@[[interpretation.user.slug]]">[[interpretation.user.full_name]]</a></h3>
 					</div>
 				</header>
 				<p class="interpret-content" ng-bind-html="interpretation.interpretation"></p>
