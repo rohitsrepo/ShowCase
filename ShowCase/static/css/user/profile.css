@@ -91,10 +91,20 @@ html, body {
     font-family: 'taile', sans-serif;
     font-size: 1.8em;
     font-weight: bold;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .primary-header .contribution:hover h4,
 .primary-header .contribution:hover h5 {
+    color: rgba(255, 255, 255, 1);
+}
+
+.primary-header .contributions .active {
+    background: linear-gradient(transparent 50%, rgba(255, 255, 255, 0.03));
+}
+
+.primary-header .contributions .active h4,
+.primary-header .contributions .active h5 {
     color: rgba(255, 255, 255, 1);
 }
 /*================ Painting Area ==================*/

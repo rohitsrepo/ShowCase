@@ -26,7 +26,7 @@ class ExistingUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email','name', 'about', 'picture')
+        fields = ('id', 'email','name', 'about', 'picture', 'slug')
 
 
 class PasswordUserSerializer(serializers.Serializer):

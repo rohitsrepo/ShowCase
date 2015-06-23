@@ -29,6 +29,6 @@
     "medium-editor": "~4.5.2",
     "angular-upload": "~1.0.11",
     "angucomplete-alt": "~0.0.39",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.6"
   }
 }

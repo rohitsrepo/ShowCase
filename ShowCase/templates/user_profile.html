@@ -47,15 +47,15 @@
             <h1>{{artist.name | title}}</h1>
             <h2>{{artist.about}}</h2>
             <section class="contributions">
-                <a class="contribution" ui-sref="paintings">
+                <a ui-sref-active="active" class="contribution" ui-sref="paintings">
                     <h4>Paintings</h4>
                     <h5>{{artist.arts.count}}</h5>
                 </a><!--
-                --><a class="contribution" ui-sref="interpretations">
+                --><a ui-sref-active="active" class="contribution" ui-sref="interpretations">
                     <h4>Interpretations</h4>
                     <h5>{{artist.interpretation_set.count}}</h5>
                 </a><!--
-                --><a class="contribution" ui-sref="uploads">
+                --><a ui-sref-active="active" class="contribution" ui-sref="uploads">
                     <h4>Uploads</h4>
                     <h5>{{artist.compositions.count}}</h5>
                 </a>
