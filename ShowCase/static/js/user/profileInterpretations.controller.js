@@ -28,7 +28,6 @@ angular.module('UserApp')
     }
 
     $scope.loadMoreInterpretations = function () {
-        console.log("I was called");
         if ($scope.interpretationsMeta.busy) {
             return;
         }

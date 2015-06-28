@@ -20,6 +20,7 @@ urlpatterns = patterns('',
 ## Composition Urls
 urlpatterns += patterns('',
                        url(r'^upload-art$', TemplateView.as_view(template_name='upload.html'), name="upload"),
+                       url(r'^explore$', TemplateView.as_view(template_name='explore.html'), name='explore'),
                        url(r'^arts/(?P<slug>[\w-]+)$', 'compositions.clientViews.composition_main', name="composition-page"),
     )
 

@@ -6,6 +6,10 @@
        url('/static/fonts/fertigo/Fertigo.svg') format('svg');
 }
 
+html {
+  overflow-y: scroll;
+}
+
 html, body {
   height: 100%;
   padding: 0;
@@ -242,9 +246,9 @@ html, body {
         width: 100%;
     }
 }
+
 .interpretations .interpretation:hover {
     box-shadow: 10px 10px 30px 0px #C9C6C6;
-    padding: 0;
 }
 
 .interpretation .painting-holder {

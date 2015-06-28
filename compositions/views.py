@@ -3,8 +3,9 @@ from django.db.models import Q
 from .models import Composition, InterpretationImage
 from accounts.models import User
 from rest_framework import permissions, generics, status
-from .serializers import CompositionSerializer, NewCompositionSerializer, InterpretationImageSerializer
+from .serializers import CompositionSerializer, NewCompositionSerializer, InterpretationImageSerializer, PaginatedCompositionSerializer
 from .permissions import IsOwnerOrReadOnly, IsHimself, IsImageUploader
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
@@ -226,3 +227,22 @@ def random_composition(request, format=None):
             serializer.data['IsVoted'] = True
 
     return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_explores(request, format=None):
+    compositions = Composition.objects.all().order_by('-id')
+
+    page_num = request.GET.get('page', 1)
+    paginator = Paginator(compositions, 15)
+
+    try:
+        this_page_compositions = paginator.page(page_num)
+    except PageNotAnInteger:
+        this_page_compositions = paginator.page(1)
+    except EmptyPage:
+        raise Http404
+
+    serializer = PaginatedCompositionSerializer(this_page_compositions)
+    return Response(data=serializer.data)
+

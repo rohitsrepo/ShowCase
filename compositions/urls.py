@@ -5,6 +5,7 @@ from . import views
 urlpatterns = patterns('',
                        url(r'^$', views.CompositionList.as_view()),
                        url(r'^/(?P<pk>[0-9]+)$', views.CompositionDetail.as_view(), name='composition-detail'),
+                       url(r'^/explore$', 'compositions.views.get_explores', name='explore'),
                        url(r'^/random$', 'compositions.views.random_composition'),
                        url(r'^/follow$', 'compositions.views.follow_compositions'),
                        url(r'^/(?P<pk>[0-9]+)/votes', include('votes.urls')),
