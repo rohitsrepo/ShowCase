@@ -38,9 +38,20 @@ html, body {
   color: white;
 }
 
+
+@media (max-width: 800px) {
+    .primary-header {
+      padding: 75px 10px;
+    }
+
+    .primary-header h2 {
+      font-size: 1.5em;
+    }
+}
+
 /*================ Painting Area ==================*/
 .arts-container {
-  width: 80%;
+  width: 90%;
   max-width: 1200px;
   margin: 20px auto;
 }
@@ -50,7 +61,6 @@ html, body {
   width: 33%;
   display: inline-block;
 }
-
 
 .art {
   width: 100%;
@@ -141,4 +151,14 @@ html, body {
 
 .art:hover {
     box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 800px) {
+  .arts-container .container {
+      width: 100%;
+  }
+
+  .art {
+      box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.4);
+  }
 }
