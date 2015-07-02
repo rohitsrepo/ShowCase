@@ -39,4 +39,6 @@ angular.module('ExploreApp')
 	    getArts();
 	}
 
+	$scope.loadMoreArts();
+
 }]);

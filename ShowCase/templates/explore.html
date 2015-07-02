@@ -46,19 +46,21 @@
         <h2>Explore artworks from all over ThirdDime</h2>
     </header>
 
-    <div masonry class="arts-container" infinite-scroll="loadMoreArts()" infinite-scroll-distance='1' infinite-scroll-disabled='artsMeta.busy || artsMeta.disableGetMore'>
+    <div ng-cloak masonry load-images="false" preserve-order class="arts-container" infinite-scroll="loadMoreArts()" infinite-scroll-distance='1' infinite-scroll-disabled='artsMeta.busy || artsMeta.disableGetMore'>
         <div class="masonry-brick container" ng-repeat="art in arts">
             <div class="art">
                 <article class="art-content">
-                    <img ng-src="[[art.matter_350]]" alt="[[art.title]]">
-                    <div class="details-inset">
-                        <h6>[[art.views]] Views</h6>
-                        <h6>[[art.interpretations_count]] Interpretations</h6>
-                    </div>
+                    <a ng-href="/arts/[[art.slug]]" target="_blank">
+                        <img ng-src="[[art.matter_350]]" alt="[[art.title]]" height="[[350 * art.matter_aspect]]px" width="350px">
+                        <div class="details-inset">
+                            <h6>[[art.views]] Views</h6>
+                            <h6>[[art.interpretations_count]] Interpretations</h6>
+                        </div>
+                    </a>
                 </article>
                 <section class="details">
-                    <h4>[[art.title | titlecase]]</h4>
-                    <h5> by <a href="/@[[art.artist.slug]]">[[art.artist.full_name | titlecase]]</a></h5>
+                    <h4><a ng-href="/arts/[[art.slug]]" target="_blank">[[art.title | titlecase]]</a></h4>
+                    <h5> by <a href="/@[[art.artist.slug]]" target="_blank">[[art.artist.full_name | titlecase]]</a></h5>
                 </section>
             </div>
         </div>

@@ -26,7 +26,7 @@ html, body {
 
 .primary-header {
   width: 100%;
-  padding: 175px 0;
+  padding: 50px 0;
   background: rgba(0, 0, 0, 0.8);
 }
 
@@ -48,19 +48,20 @@ html, body {
 .arts-container .container {
   padding: 5px;
   width: 33%;
+  display: inline-block;
 }
 
 
 .art {
   width: 100%;
   margin-bottom: 10px;
-  cursor: pointer;
   color: rgba(0, 0, 0, 0.8);
 }
 
 .art .art-content {
   width: 100%;
   position: relative;
+  cursor: pointer;
 }
 
 .art .art-content img {
@@ -109,6 +110,15 @@ html, body {
   font-weight: bold;
   line-height: 1.5em;
   text-align: left;
+  display: inline-block;
+}
+
+.art .details h4 a {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.art .details h4:hover {
+  text-decoration: underline;
 }
 
 .art .details h5 a {

@@ -15,6 +15,7 @@ class CompositionSerializer(serializers.ModelSerializer):
     matter = URLImageField(source='matter')
     matter_550 = serializers.CharField(source='get_550_url', read_only=True)
     matter_350 = serializers.CharField(source='get_350_url', read_only=True)
+    matter_aspect = serializers.FloatField(source='get_matter_aspect', read_only=True)
     timesince = serializers.CharField(source='timesince', read_only=True)
     interpretations_count = serializers.CharField(source='get_interpretations_count', read_only=True)
     uploader = CompositionUserSerializer(read_only=True)
@@ -23,7 +24,7 @@ class CompositionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Composition
         fields = ('id', 'title', 'artist', 'description', 'created',
-		   'matter', 'matter_350', 'matter_550', 'timesince', 'vote', 'slug', 'uploader', 'views', 'interpretations_count')
+		   'matter', 'matter_350', 'matter_550', 'matter_aspect', 'timesince', 'vote', 'slug', 'uploader', 'views', 'interpretations_count')
     	read_only_fields = ('slug', 'vote', 'views')
 
 class PaginatedCompositionSerializer(PaginationSerializer):

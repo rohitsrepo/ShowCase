@@ -228,21 +228,3 @@ def random_composition(request, format=None):
 
     return Response(serializer.data)
 
-@api_view(['GET'])
-@permission_classes((permissions.AllowAny,))
-def get_explores(request, format=None):
-    compositions = Composition.objects.all().order_by('-id')
-
-    page_num = request.GET.get('page', 1)
-    paginator = Paginator(compositions, 15)
-
-    try:
-        this_page_compositions = paginator.page(page_num)
-    except PageNotAnInteger:
-        this_page_compositions = paginator.page(1)
-    except EmptyPage:
-        raise Http404
-
-    serializer = PaginatedCompositionSerializer(this_page_compositions)
-    return Response(data=serializer.data)
-

@@ -1,3 +1,4 @@
+from __future__ import division
 import os
 import util
 from django.db.models.signals import post_save, post_delete
@@ -8,6 +9,7 @@ from django.template.defaultfilters import slugify
 from votes.models import Vote
 from .utils import GrayScaleAndSketch
 from .imageTools import generate_size_versions, WIDTH_READER, WIDTH_STICKY, compress
+
 
 def get_upload_file_name_composition(instance, filename):
     return '%s/%s/%s_%s_thirddime%s' % (instance.uploader.id, slugify(instance.artist.name), slugify(instance.artist.name), slugify(instance.title), '.' + filename.split('.')[-1])
@@ -23,7 +25,7 @@ class Composition(models.Model):
         settings.AUTH_USER_MODEL, related_name='arts')
     slug = models.SlugField(max_length=200, unique=True)
     created = models.DateTimeField(auto_now_add=True)
-    matter = models.FileField(upload_to=get_upload_file_name_composition)
+    matter = models.ImageField(upload_to=get_upload_file_name_composition)
     views = models.IntegerField(default=0)
 
     class Meta:
@@ -102,6 +104,9 @@ class Composition(models.Model):
 
     def get_interpretations_count(self):
         return self.interpretation_set.count()
+
+    def get_matter_aspect(self):
+        return self.matter.height/self.matter.width
 
 # To create vote instance when a compostion is created
 @receiver(post_save, sender=Composition)
