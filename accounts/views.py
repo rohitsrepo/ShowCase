@@ -99,6 +99,40 @@ class UserDetail(APIView):
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+class UserBookmarks(APIView):
+
+    '''
+    Retrieves, updates and deletes a particular user.
+    '''
+
+    permission_classes = ((permissions.IsAuthenticatedOrReadOnly,))
+
+    def get_user(self, pk, request):
+        user = get_object_or_404(User, pk=pk)
+        check_object_permissions(request, self.permission_classes, user)
+        return user
+
+    def get(self, request, pk, format=None):
+        user = get_object_or_404(User, pk=pk)
+        serializer = BookmarkSerializer(
+            user, context={request: request})
+        return Response(serializer.data)
+
+    def post(self, request, pk, format=None):
+        bookmarks = request.DATA.get('bookmarks')
+        if not bookmarks:
+            return Response({"bookmarks": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
+        request.user.bookmarks.add(*bookmarks)
+        return Response(status=status.HTTP_201_CREATED)
+
+    def delete(self, request, pk, format=None):
+        bookmarks = request.DATA.get('bookmarks')
+        if not bookmarks:
+            return Response({"bookmarks": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        request.user.bookmarks.remove(*bookmarks)
+        serializer = BookmarkSerializer(request.user)
+        return Response(serializer.data)
 
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated, IsHimself))
@@ -289,32 +323,6 @@ def get_uploads(request, pk, format=None):
 
     serializer = PaginatedUserCompositionSerializer(this_page_compositions)
     return Response(data=serializer.data)
-
-
-@api_view(['GET', 'POST', 'DELETE'])
-@permission_classes((permissions.IsAuthenticated, IsHimself))
-def user_bookmarks(request, pk, format=None):
-    check_object_permissions(
-        request, user_bookmarks.cls.permission_classes, User.objects.get(pk=pk))
-    if request.method == 'GET':
-        serializer = BookmarkSerializer(
-            request.user, context={request: request})
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        bookmarks = request.DATA.get('bookmarks')
-        if not bookmarks:
-            return Response({"bookmarks": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
-        request.user.bookmarks.add(*bookmarks)
-        return Response(status=status.HTTP_201_CREATED)
-    elif request.method == 'DELETE':
-        bookmarks = request.DATA.get('bookmarks')
-        if not bookmarks:
-            return Response({"bookmarks": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
-
-        request.user.bookmarks.remove(*bookmarks)
-        serializer = BookmarkSerializer(request.user)
-        return Response(serializer.data)
-
 
 @api_view(['GET', 'PUT', 'POST'])
 @permission_classes((permissions.IsAuthenticated, IsHimself))

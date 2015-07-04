@@ -61,12 +61,12 @@ class CompositionList(APIView):
             related_comps = compositions.filter(collectors__id=request.user.id)
             for composition in compositions:
                 ser.data[counter]['IsBookmarked'] = False
-                ser.data[counter]['IsVoted'] = False
+                # ser.data[counter]['IsVoted'] = False
 
                 if composition in related_comps:
                     ser.data[counter]['IsBookmarked'] = True
-                if request.user.votes.filter(composition=composition).exists():
-                    ser.data[counter]['IsVoted'] = True
+                # if request.user.votes.filter(composition=composition).exists():
+                #     ser.data[counter]['IsVoted'] = True
                 counter = counter + 1
         return Response(ser.data)
 
