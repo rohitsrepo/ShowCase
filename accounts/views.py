@@ -99,7 +99,7 @@ class UserDetail(APIView):
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class UserBookmarks(APIView):
+class UserBookmarksChange(APIView):
 
     '''
     Retrieves, updates and deletes a particular user.
@@ -107,31 +107,34 @@ class UserBookmarks(APIView):
 
     permission_classes = ((permissions.IsAuthenticatedOrReadOnly,))
 
-    def get_user(self, pk, request):
-        user = get_object_or_404(User, pk=pk)
-        check_object_permissions(request, self.permission_classes, user)
-        return user
-
-    def get(self, request, pk, format=None):
-        user = get_object_or_404(User, pk=pk)
-        serializer = BookmarkSerializer(
-            user, context={request: request})
-        return Response(serializer.data)
-
-    def post(self, request, pk, format=None):
+    def post(self, request, format=None):
         bookmarks = request.DATA.get('bookmarks')
         if not bookmarks:
             return Response({"bookmarks": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
         request.user.bookmarks.add(*bookmarks)
         return Response(status=status.HTTP_201_CREATED)
 
-    def delete(self, request, pk, format=None):
+    def delete(self, request, format=None):
         bookmarks = request.DATA.get('bookmarks')
         if not bookmarks:
             return Response({"bookmarks": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
 
         request.user.bookmarks.remove(*bookmarks)
         serializer = BookmarkSerializer(request.user)
+        return Response(serializer.data)
+
+class UserBookmarksRead(APIView):
+
+    '''
+    Retrieves, updates and deletes a particular user.
+    '''
+
+    permission_classes = ((permissions.AllowAny,))
+
+    def get(self, request, pk, format=None):
+        user = get_object_or_404(User, pk=pk)
+        serializer = BookmarkSerializer(
+            user, context={request: request})
         return Response(serializer.data)
 
 @api_view(['POST'])

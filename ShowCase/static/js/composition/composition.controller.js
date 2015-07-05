@@ -10,6 +10,7 @@ controller("compositionController", [
 	'analytics',
 	'progress',
 	'alert',
+	'userModel',
 	function ($window,
 		$scope,
 		posts,
@@ -19,13 +20,15 @@ controller("compositionController", [
 		$timeout,
 		analytics,
 		progress,
-		alert)
+		alert,
+		userModel)
 	{
 
 	$scope.composition = {};
 	$scope.interpretations = [];
 	$scope.hideName = true;
 	$scope.interpretationModalshown = false;
+	$scope.collectedNow = false;
 
 	$scope.init = function (id, url) {
 		$scope.composition.id = id;
@@ -150,6 +153,17 @@ controller("compositionController", [
 		var postId = $location.search()['post'];
 		posts.nextPosts(feed, postId, $scope.composition.id).then(function (posts) {
 			$scope.nextPosts = posts;
+		});
+	};
+
+	$scope.addToCollection = function () {
+		progress.showProgress();
+		userModel.addToCollection($scope.composition.id).then(function (response) {
+			$scope.collectedNow = true;
+			progress.hideProgress();
+		}, function () {
+			progress.hideProgress();
+			alert.showAlert('We are unable to process your response');
 		});
 	};
 }]);

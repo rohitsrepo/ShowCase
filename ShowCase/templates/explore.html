@@ -61,10 +61,16 @@
                 <section class="details">
                     <h4><a ng-href="/arts/[[art.slug]]" target="_blank">[[art.title | titlecase]]</a></h4>
                     <h5> by <a href="/@[[art.artist.slug]]" target="_blank">[[art.artist.full_name | titlecase]]</a></h5>
+                </section><!--
+                --><section class="actions">
+                    <button ng-cloak ng-hide="art.is_collected" ng-click="addToCollection($index)">ADD TO COLLECTION</button>
+                    <button class="collection-active" ng-cloak ng-show="art.is_collected">IN COLLECTION</button>
                 </section>
             </div>
         </div>
     </div>
+
+    <alert-support></alert-support>
 
     <!-- Scripts Here -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -104,11 +110,14 @@
     <script type="text/javascript" src="/static/js/components/sharing/facebook.directive.js"></script>
     <script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
     <script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/topbar/progress.service.js"></script>
     <script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
     <script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
     <script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
     <script type="text/javascript" src="/static/js/components/analytics/analytics.service.js"></script>
     <script type="text/javascript" src="/static/js/components/analytics/analytics.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/alert/alert.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/alert/alert.directive.js"></script>
     <!-- endbuild -->
 </body>
 </html>

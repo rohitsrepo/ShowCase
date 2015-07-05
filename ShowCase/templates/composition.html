@@ -110,7 +110,8 @@
 	    		</section>
 			</section><!--
 			--><section class="meta-header-actions">
-				<button>ADD TO COLLECTION</button>
+				<button ng-cloak ng-hide="{{ is_collected|yesno:"true,false,false" }} || collectedNow" ng-click="addToCollection()">ADD TO COLLECTION</button>
+				<button class="collection-active" ng-cloak ng-show="{{ is_collected|yesno:"true,false,false" }} || collectedNow">IN COLLECTION</button>
 			</section>
 		</div>
 	</header>
@@ -205,8 +206,6 @@
 	</footer>
 
 	<alert-support></alert-support>
-
-	<interpretation-modal></interpretation-modal>
 
 	<!-- Scripts Here -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

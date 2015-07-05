@@ -108,6 +108,9 @@ class Composition(models.Model):
     def get_matter_aspect(self):
         return self.matter.height/self.matter.width
 
+    def is_bookmarked(self, user_id):
+        return self.collectors.filter(id=user_id).exists()
+
 # To create vote instance when a compostion is created
 @receiver(post_save, sender=Composition)
 def create_vote(sender, **kwargs):

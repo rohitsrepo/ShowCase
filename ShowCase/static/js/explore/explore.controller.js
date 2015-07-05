@@ -1,5 +1,6 @@
 angular.module('ExploreApp')
-.controller('exploreController', ['$scope', 'compositionModel', '$timeout', function ($scope, compositionModel, $timeout) {
+.controller('exploreController', ['$scope', 'compositionModel', '$timeout', 'userModel', 'alert', 'progress',
+	function ($scope, compositionModel, $timeout, userModel, alert, progress) {
 
 	$scope.arts = [];
 	$scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
@@ -40,5 +41,17 @@ angular.module('ExploreApp')
 	}
 
 	$scope.loadMoreArts();
+
+	$scope.addToCollection = function (index) {
+		art = $scope.arts[index]
+		progress.showProgress();
+		userModel.addToCollection(art.id).then(function (response) {
+			$scope.arts[index].is_collected = true;
+			progress.hideProgress();
+		}, function () {
+			progress.hideProgress();
+			alert.showAlert('We are unable to process your response');
+		});
+	};
 
 }]);

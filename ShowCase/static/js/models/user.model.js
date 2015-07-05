@@ -91,5 +91,13 @@ angular.module("module.model")
         })
     };
 
+    service.addToCollection = function (art_id) {
+    	return $http.post('/users/bookmarks', {'bookmarks': [art_id]}).then(function (response) {
+    		return response.data;
+    	}, function (response) {
+    		$q.reject(response);
+    	});
+    };
+
 	return service;
 }]);

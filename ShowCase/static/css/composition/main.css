@@ -356,7 +356,8 @@ html, body {
     vertical-align: top;
 }
 
-.meta-header-actions button:hover {
+.meta-header-actions button:hover,
+.meta-header-actions button.collection-active {
     background: #E6B800;
     color: white;
 }

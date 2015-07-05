@@ -9,7 +9,8 @@ angular.module("ExploreApp", [
     'module.sharing',
     'module.scrollTo',
     'module.titlecase',
-    'module.analytics'])
+    'module.analytics',
+    'module.alert'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

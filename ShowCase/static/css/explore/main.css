@@ -109,8 +109,9 @@ html, body {
 }
 
 .art .details {
-  width: 100%;
+  width: 70%;
   padding: 10px;
+  display: inline-block;
 }
 
 .art .details h4 {
@@ -147,6 +148,32 @@ html, body {
   font-family: 'taile', sans-serif;
   font-size: 0.85em;
   color: rgba(0, 0, 0, 0.5);
+}
+
+
+.art .actions {
+  width: 30%;
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 10px;
+  padding-right: 5px;
+}
+
+.art .actions button {
+  background: transparent;
+  border: none;
+  border: 1px solid #E6B800;
+  border-radius: 5px;
+  font-size: 0.8em;
+  padding: 8px 10px;
+  color: #E6B800;
+  cursor: pointer;
+}
+
+.art .actions button:hover,
+.art .actions button.collection-active {
+    background: #E6B800;
+    color: white;
 }
 
 .art:hover {
