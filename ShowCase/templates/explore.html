@@ -64,7 +64,7 @@
                 </section><!--
                 --><section class="actions">
                     <button ng-cloak ng-hide="art.is_collected" ng-click="addToCollection($index)">ADD TO COLLECTION</button>
-                    <button class="collection-active" ng-cloak ng-show="art.is_collected">IN COLLECTION</button>
+                    <button class="collection-active" ng-cloak ng-show="art.is_collected" ng-click="removeFromCollection($index)">IN COLLECTION</button>
                 </section>
             </div>
         </div>

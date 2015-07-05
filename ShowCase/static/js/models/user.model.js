@@ -99,6 +99,14 @@ angular.module("module.model")
     	});
     };
 
+    service.removeFromCollection = function (art_id) {
+    	return $http.delete('/users/bookmarks/'+art_id).then(function (response) {
+    		return response.data;
+    	}, function (response) {
+    		$q.reject(response);
+    	});
+    };
+
     service.getCollection = function (user_id, page) {
         return $http.get('/users/'+user_id+'/bookmarks?page='+page).then(function (response) {
             return response.data;

@@ -166,4 +166,15 @@ controller("compositionController", [
 			alert.showAlert('We are unable to process your response');
 		});
 	};
+
+	$scope.removeFromCollection = function () {
+		progress.showProgress();
+		userModel.removeFromCollection($scope.composition.id).then(function (response) {
+			$scope.collectedNow = false;
+			progress.hideProgress();
+		}, function () {
+			progress.hideProgress();
+			alert.showAlert('We are unable to process your response');
+		});
+	};
 }]);

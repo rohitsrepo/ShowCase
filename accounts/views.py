@@ -99,7 +99,7 @@ class UserDetail(APIView):
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class UserBookmarksChange(APIView):
+class UserBookmarksAdd(APIView):
 
     '''
     Retrieves, updates and deletes a particular user.
@@ -114,12 +114,16 @@ class UserBookmarksChange(APIView):
         request.user.bookmarks.add(*bookmarks)
         return Response(status=status.HTTP_201_CREATED)
 
-    def delete(self, request, format=None):
-        bookmarks = request.DATA.get('bookmarks')
-        if not bookmarks:
-            return Response({"bookmarks": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
+class UserBookmarksDelete(APIView):
 
-        request.user.bookmarks.remove(*bookmarks)
+    '''
+    Retrieves, updates and deletes a particular user.
+    '''
+
+    permission_classes = ((permissions.IsAuthenticatedOrReadOnly,))
+
+    def delete(self, request, pk, format=None):
+        request.user.bookmarks.remove(pk)
         return Response(status=status.HTTP_201_CREATED)
 
 class UserBookmarksRead(APIView):

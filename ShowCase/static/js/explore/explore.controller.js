@@ -54,4 +54,16 @@ angular.module('ExploreApp')
 		});
 	};
 
+	$scope.removeFromCollection = function (index) {
+		art = $scope.arts[index]
+		progress.showProgress();
+		userModel.removeFromCollection(art.id).then(function (response) {
+			$scope.arts[index].is_collected = false;
+			progress.hideProgress();
+		}, function () {
+			progress.hideProgress();
+			alert.showAlert('We are unable to process your response');
+		});
+	};
+
 }]);
