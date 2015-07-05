@@ -29,6 +29,7 @@ controller("compositionController", [
 	$scope.hideName = true;
 	$scope.interpretationModalshown = false;
 	$scope.collectedNow = false;
+	$scope.removedNow = false;
 
 	$scope.init = function (id, url) {
 		$scope.composition.id = id;
@@ -159,7 +160,8 @@ controller("compositionController", [
 	$scope.addToCollection = function () {
 		progress.showProgress();
 		userModel.addToCollection($scope.composition.id).then(function (response) {
-			$scope.collectedNow = true;
+			$scope.removedNow = true;
+			$scope.collectedNow = false;
 			progress.hideProgress();
 		}, function () {
 			progress.hideProgress();
@@ -170,7 +172,8 @@ controller("compositionController", [
 	$scope.removeFromCollection = function () {
 		progress.showProgress();
 		userModel.removeFromCollection($scope.composition.id).then(function (response) {
-			$scope.collectedNow = false;
+			$scope.collectedNow = true;
+			$scope.removedNow = false;
 			progress.hideProgress();
 		}, function () {
 			progress.hideProgress();

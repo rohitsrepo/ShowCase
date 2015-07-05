@@ -1,5 +1,5 @@
 angular.module('UserApp')
-.controller('profileCollectionController', ['$scope', 'userModel', function ($scope, userModel) {
+.controller('profileCollectionController', ['$scope', 'userModel', 'progress', 'alert', function ($scope, userModel, progress, alert) {
     $scope.compositions = [];
     $scope.compositionsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
 
@@ -7,6 +7,7 @@ angular.module('UserApp')
 
         if (!$scope.compositionsMeta.disableGetMore) {
             var pageVal = $scope.compositionsMeta.pageVal;
+            progress.showProgress();
             userModel.getCollection($scope.artist.id, pageVal).then(function (response) {
                 $scope.compositionsMeta.next = response.next;
                 $scope.compositionsMeta.previous = response.previous;
@@ -19,7 +20,11 @@ angular.module('UserApp')
                     $scope.compositionsMeta.disableGetMore = true;
                 }
 
+                progress.hideProgress();
                 $scope.compositionsMeta.busy = false;
+            }, function () {
+                alert.showAlert('We are facing some problems fetching data');
+                progress.hideProgress();
             });
         }
 
@@ -33,6 +38,5 @@ angular.module('UserApp')
 
         $scope.compositionsMeta.busy = true;
         getCompositions();
-    }
-
+    };
 }]);

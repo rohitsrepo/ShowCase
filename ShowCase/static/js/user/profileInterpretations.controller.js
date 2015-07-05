@@ -1,5 +1,5 @@
 angular.module('UserApp')
-.controller('profileInterpretationsController', ['$scope', 'userModel', function ($scope, userModel) {
+.controller('profileInterpretationsController', ['$scope', 'userModel', 'progress', 'alert', function ($scope, userModel, progress, alert) {
     $scope.interpretationsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
     $scope.interpretations = [];
 
@@ -20,7 +20,11 @@ angular.module('UserApp')
                     // analytics.logEvent('Reader', 'Load More interpretations - Hit Bottom');
                 }
 
+                progress.hideProgress();
                 $scope.interpretationsMeta.busy = false;
+            }, function () {
+                alert.showAlert('We are facing some problems fetching data');
+                progress.hideProgress();
             });
         }
 

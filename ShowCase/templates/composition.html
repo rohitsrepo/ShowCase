@@ -111,11 +111,11 @@
 			</section><!--
 			--><section class="meta-header-actions">
 				{% if is_collected %}
-				<button ng-cloak ng-show="true && collectedNow" ng-click="addToCollection()">ADD TO COLLECTION</button>
-				<button class="collection-active" ng-cloak ng-hide="true && collectedNow" ng-click="removeFromCollection()">IN COLLECTION</button>
+				<button ng-cloak ng-show="collectedNow" ng-click="addToCollection()">ADD TO COLLECTION</button>
+				<button class="collection-active" ng-cloak ng-hide="collectedNow" ng-click="removeFromCollection()">IN COLLECTION</button>
 				{% else %}
-				<button ng-cloak ng-hide="false || collectedNow" ng-click="addToCollection()">ADD TO COLLECTION</button>
-				<button class="collection-active" ng-cloak ng-show="false || collectedNow" ng-click="removeFromCollection()">IN COLLECTION</button>
+				<button ng-cloak ng-hide="removedNow" ng-click="addToCollection()">ADD TO COLLECTION</button>
+				<button class="collection-active" ng-cloak ng-show="removedNow" ng-click="removeFromCollection()">IN COLLECTION</button>
 				{% endif %}
 			</section>
 		</div>

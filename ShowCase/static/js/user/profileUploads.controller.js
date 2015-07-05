@@ -1,5 +1,5 @@
 angular.module('UserApp')
-.controller('profileUploadsController', ['$scope', 'userModel', function ($scope, userModel) {
+.controller('profileUploadsController', ['$scope', 'userModel', 'progress', 'alert', function ($scope, userModel, progress, alert) {
     $scope.compositions = [];
     $scope.compositionsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
 
@@ -19,7 +19,11 @@ angular.module('UserApp')
                     $scope.compositionsMeta.disableGetMore = true;
                 }
 
+                progress.hideProgress();
                 $scope.compositionsMeta.busy = false;
+            }, function () {
+                alert.showAlert('We are facing some problems fetching data');
+                progress.hideProgress();
             });
         }
 
