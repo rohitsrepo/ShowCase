@@ -53,14 +53,6 @@ class PasswordUserSerializer(serializers.Serializer):
             raise serializers.ValidationError(
                 "Old password that you entered is not a valid password")
 
-
-class BookmarkSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = User
-        fields = ('bookmarks',)
-
-
 class FollowSerializer(serializers.ModelSerializer):
 
     class Meta:

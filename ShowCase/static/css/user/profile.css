@@ -87,14 +87,14 @@ html, body {
 /*============ Contributions =============*/
 
 .primary-header .contributions {
-    width: 50%;
+    width: 64%;
     margin: 0 auto;
     margin-top: 40px;
 }
 
 .primary-header .contributions .contribution {
     display: inline-block;
-    width: 33%;
+    width: 25%;
     cursor: pointer;
 }
 

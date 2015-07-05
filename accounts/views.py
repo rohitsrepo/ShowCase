@@ -1,5 +1,5 @@
 from .models import User
-from .serializers import NewUserSerializer, ExistingUserSerializer, PasswordUserSerializer, BookmarkSerializer, FollowSerializer
+from .serializers import NewUserSerializer, ExistingUserSerializer, PasswordUserSerializer, FollowSerializer
 from .artistSerializers import PaginatedUserCompositionSerializer, PaginatedUserInterpretationSerializer
 from django.http import Http404
 from rest_framework.response import Response
@@ -120,8 +120,7 @@ class UserBookmarksChange(APIView):
             return Response({"bookmarks": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
 
         request.user.bookmarks.remove(*bookmarks)
-        serializer = BookmarkSerializer(request.user)
-        return Response(serializer.data)
+        return Response(status=status.HTTP_201_CREATED)
 
 class UserBookmarksRead(APIView):
 
@@ -133,9 +132,20 @@ class UserBookmarksRead(APIView):
 
     def get(self, request, pk, format=None):
         user = get_object_or_404(User, pk=pk)
-        serializer = BookmarkSerializer(
-            user, context={request: request})
-        return Response(serializer.data)
+        user_collection = user.bookmarks.all().order_by('-id')
+
+        page_num = request.GET.get('page', 1)
+        paginator = Paginator(user_collection, 9)
+
+        try:
+            this_page_compositions = paginator.page(page_num)
+        except PageNotAnInteger:
+            this_page_compositions = paginator.page(1)
+        except EmptyPage:
+            raise Http404
+
+        serializer = PaginatedUserCompositionSerializer(this_page_compositions)
+        return Response(data=serializer.data)
 
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated, IsHimself))

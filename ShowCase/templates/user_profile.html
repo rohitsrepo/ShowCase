@@ -58,6 +58,10 @@
                 --><a ui-sref-active="active" class="contribution" ui-sref="uploads">
                     <h4>Uploads</h4>
                     <h5>{{artist.compositions.count}}</h5>
+                </a><!--
+                --><a ui-sref-active="active" class="contribution" ui-sref="collection">
+                    <h4>Collection</h4>
+                    <h5>{{artist.bookmarks.count}}</h5>
                 </a>
             </section>
         </div>
@@ -83,6 +87,7 @@
     <script type="text/javascript" src="/static/js/user/profilePaintings.controller.js"></script>
     <script type="text/javascript" src="/static/js/user/profileUploads.controller.js"></script>
     <script type="text/javascript" src="/static/js/user/profileInterpretations.controller.js"></script>
+    <script type="text/javascript" src="/static/js/user/profileCollection.controller.js"></script>
     <script type="text/javascript" src="/static/js/models/model.module.js"></script>
     <script type="text/javascript" src="/static/js/models/user.model.js"></script>
     <script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>

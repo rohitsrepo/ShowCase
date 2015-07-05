@@ -99,5 +99,11 @@ angular.module("module.model")
     	});
     };
 
+    service.getCollection = function (user_id, page) {
+        return $http.get('/users/'+user_id+'/bookmarks?page='+page).then(function (response) {
+            return response.data;
+        })
+    };
+
 	return service;
 }]);

@@ -45,6 +45,11 @@ angular.module("UserApp", [
         url: "/interpretations",
         templateUrl: "/static/js/user/profile.interpretations.html",
         controller: 'profileInterpretationsController'
+    })
+    .state('collection', {
+        url: "/collection",
+        templateUrl: "/static/js/user/profile.collection.html",
+        controller: 'profileCollectionController'
     });
 }]).factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
     'use strict';
