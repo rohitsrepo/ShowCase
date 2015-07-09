@@ -5,7 +5,6 @@ controller("compositionController", [
 	"feedModel",
 	"postModel",
 	"contentManager",
-	"interpretationModel",
 	'$location',
 	'$timeout',
 	'analytics',
@@ -16,7 +15,6 @@ controller("compositionController", [
 		feedModel,
 		postModel,
 		contentManager,
-		interpretationModel,
 		$location,
 		$timeout,
 		analytics,
@@ -60,34 +58,34 @@ controller("compositionController", [
 
 	$scope.vote = function (index, vote) {
 		analytics.logEvent('Composition', 'Vote', $scope.composition.url);
-		interpretation = $scope.interpretations[index];
-		interpretationModel.vote($scope.composition.id, interpretation.id, vote).then(function (response) {
-			interpretation.vote.total = response.total;
-			interpretation.voting_status = vote ? "Positive" : "Negative";
+		post = $scope.posts[index];
+		postModel.vote(post.id, vote).then(function (response) {
+			post.vote.total = response.total;
+			post.voting_status = vote ? "Positive" : "Negative";
 		});
 	};
 
 	$scope.toggleShowComments = function (index) {
-		var interpretation = $scope.interpretations[index];
-		interpretation.showComments = !interpretation.showComments;
-		if (interpretation.showComments) {
+		var post = $scope.posts[index];
+		post.showComments = !post.showComments;
+		if (post.showComments) {
 			getComments(index);
 		};
-		analytics.logEvent('Composition', 'ShowComments: ' + interpretation.showComments, $scope.composition.url);
+		analytics.logEvent('Composition', 'ShowComments: ' + post.showComments, $scope.composition.url);
 	};
 
 	$scope.addComment = function (index, comment) {
-		interpretation = $scope.interpretations[index];
-		interpretationModel.addComment($scope.composition.id, interpretation.id, comment).then(function (res) {
-			interpretation.comments.push(res);
-			interpretation.comment = "";
+		post = $scope.posts[index];
+		postModel.addComment(post.id, comment).then(function (res) {
+			post.comments.push(res);
+			post.comment = "";
 		});
 		analytics.logEvent('Composition', 'Add Comment', $scope.composition.url);
 	};
 
 	var getComments = function (index) {
 		post = $scope.posts[index];
-		postModel.getComments($scope.composition.id, post.id).then(function (res) {
+		postModel.getComments(post.id).then(function (res) {
 			post.comments = res;
 		});
 	};

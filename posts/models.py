@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from compositions.models import Composition
+from postVotes.models import PostVote
 
 class Post(models.Model):
     composition = models.ForeignKey(Composition, related_name='posts')

@@ -5,6 +5,7 @@ from compositions.models import Composition
 from django.conf import settings
 from django.utils.timesince import timesince
 from interpretationVotes.models import InterpretationVote
+from posts.models import Post
 from bs4 import BeautifulSoup
 
 
@@ -49,9 +50,12 @@ class Interpretation(models.Model):
 
 # To create vote instance when an interpretatoin is created
 @receiver(post_save, sender=Interpretation)
-def create_vote(sender, **kwargs):
+def create_post(sender, **kwargs):
     created = kwargs.get('created')
     if created:
         instance = kwargs.get('instance')
-        vote = InterpretationVote(positive=0, negative=0, interpretation=instance)
+        vote = Post(
+            composition=instance.composition,
+            creator=instance.user,
+            content_object=instance)
         vote.save()

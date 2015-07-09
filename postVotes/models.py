@@ -1,11 +1,10 @@
 from django.db import models
 from django.conf import settings
-from posts.models import Post
 
 class PostVote(models.Model):
     positive = models.PositiveIntegerField(default=0)
     negative = models.PositiveIntegerField(default=0)
-    post = models.OneToOneField(Post, related_name='vote')
+    post = models.OneToOneField('posts.Post', related_name='vote')
     voters = models.ManyToManyField(
         settings.AUTH_USER_MODEL, through='PostVoteMembership')
 

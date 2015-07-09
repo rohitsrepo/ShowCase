@@ -13,9 +13,23 @@ angular.module('module.model')
 		});
 	};
 
+	service.addComment = function (postId, comment) {
+		var commentUrl = "/posts/" + postId + "/comments"
+		return $http.post(commentUrl, {"comment": comment}).then(function (response) {
+			return response.data;
+		});
+	};
+
 	service.getComments = function (postId) {
 		var commentUrl = "/posts/" + postId + "/comments"
 		return $http.get(commentUrl).then(function (response) {
+			return response.data;
+		});
+	};
+
+	service.vote = function (postId, vote) {
+		var voteUrl = "/posts/" + postId + "/votes"
+		return $http.post(voteUrl, {vote: vote}).then(function (response) {
 			return response.data;
 		});
 	};
