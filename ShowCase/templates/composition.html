@@ -2,9 +2,9 @@
 <html ng-app="CompositionApp">
 <head>
 	<meta charset="UTF-8">
-	<title>{{composition.title | title}} by {{composition.artist.get_full_name | title}} | Interpretations and Stories</title>
+	<title>{{composition.title | title}} by {{composition.artist.name | title}} | Interpretations and Stories</title>
 
-	<meta name="Description" content="Title: {{composition.title}}, Artist: {{composition.artist.get_full_name}}, Category: Painting Interpretations and Stories">
+	<meta name="Description" content="Title: {{composition.title}}, Artist: {{composition.artist.name}}, Category: Painting Interpretations and Stories">
 	<meta name="fragment" content="!">
 	<link rel="canonical" href="http://thirddime.com/arts/{{composition.slug}}" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -49,13 +49,13 @@
 			<h4>by</h4>
 			<h3>
 				<a href="/@{{composition.artist.slug}}">
-					{{composition.artist.get_full_name | title}}
+					{{composition.artist.name | title}}
 				</a>
 			</h3>
 		</section>
 
 		<footer class="clearfix">
-            <h5 class="right">Uploaded by <a ng-href="/@{{composition.uploader.slug}}" class="uploader">{{composition.uploader.get_full_name | title}}</a></h5>
+            <h5 class="right">Uploaded by <a ng-href="/@{{composition.uploader.slug}}" class="uploader">{{composition.uploader.name | title}}</a></h5>
 			<h5 class="left">{{composition.views}} Views</h5>
 		</footer>
 
@@ -105,48 +105,48 @@
 	</section>
 
 	<section class="interpret-area clearfix" infinite-scroll="getNextPosts()" infinite-scroll-distance='1' infinite-scroll-disabled='disableNextPost'>
-		<header ng-cloak ng-show="interpretations.length" class="interpret-header clearfix">
-			<h4 class="inter-heading">[[interpretations.length]] Interpretations</h4>
+		<header ng-cloak ng-show="posts.length" class="interpret-header clearfix">
+			<h4 class="inter-heading">[[posts.length]] Interpretation</h4>
 			<a href="/arts/{{composition.slug}}/add-interpretation" class="write-interpretation nt-mb" target="_blank">
 				Interpret this work
 			</a>
 		</header>
 
-		<section ng-cloak ng-show="interpretations.length" class="interprets" ng-cloak id="inter0">
+		<section ng-cloak ng-show="posts.length" class="interprets" ng-cloak id="inter0">
 
-			<section class="interpret" ng-repeat-start="interpretation in interpretations" analytics-scroll analytics-data="['Composition', 'View-Interpretation: ' + $index]" analytics-offset="300">
+			<section class="interpret" ng-repeat-start="post in posts" analytics-scroll analytics-data="['Composition', 'View-Interpretation: ' + $index]" analytics-offset="300">
 				<header class="interpreter clearfix">
-					<!-- <img ng-cloak ng-show="interpretation.user.picture" ng-src="[[interpretation.user.picture]]"> -->
+					<!-- <img ng-cloak ng-show="post.creator.picture" ng-src="[[post.creator.picture]]"> -->
 					<div>
-						<h3><a href="/@[[interpretation.user.slug]]">[[interpretation.user.full_name]]</a></h3>
+						<h3><a href="/@[[post.creator.slug]]">[[post.creator.name]]</a></h3>
 					</div>
 				</header>
-				<p class="interpret-content" ng-bind-html="interpretation.interpretation"></p>
+				<p class="interpret-content" ng-bind-html="post.content.interpretation"></p>
 				<footer class="interpret-footer">
 					<div class="clearfix nt-mb">
-					<h6 class="right">[[interpretation.timesince]] ago</h6>
-					<h6 class="left">[[interpretation.vote.total]] Votes. [[interpretation.comments_count]] Comments</h6>
+					<h6 class="right">[[post.timesince]] ago</h6>
+					<h6 class="left">[[post.vote.total]] Votes. [[post.comments_count]] Comments</h6>
 					</div>
 					<ul class="clearfix">
-  					    <li><img class="icon first left" ng-class="{'vote-active': interpretation.voting_status=='Positive'}" src="/static/css/composition/icons/upvote.svg" ng-click="vote($index, true)"></li>
-  					    <li><img class="icon left" ng-class="{'vote-active': interpretation.voting_status=='Negative'}" src="/static/css/composition/icons/downvote.svg" ng-click="vote($index, false)"></li>
+  					    <li><img class="icon first left" ng-class="{'vote-active': post.voting_status=='Positive'}" src="/static/css/composition/icons/upvote.svg" ng-click="vote($index, true)"></li>
+  					    <li><img class="icon left" ng-class="{'vote-active': post.voting_status=='Negative'}" src="/static/css/composition/icons/downvote.svg" ng-click="vote($index, false)"></li>
   					    <li><img class="icon left" src="/static/css/composition/icons/comment.svg" ng-click="toggleShowComments($index)"></li>
-  					    <li><img class="icon last right" tumblr-share source="[[composition.url]]" description="[[interpretation.text]]" src="/static/css/composition/icons/tumblr_black.svg" share-url='/arts/{{composition.slug}}'></li>
-  					    <li><img class="icon right" pinterest-share source="[[composition.url]]" description="[[interpretation.text]]" src="/static/css/composition/icons/pinterest_black.svg" share-url='/arts/{{composition.slug}}'></li>
+  					    <li><img class="icon last right" tumblr-share source="[[composition.url]]" description="[[post.content.text]]" src="/static/css/composition/icons/tumblr_black.svg" share-url='/arts/{{composition.slug}}'></li>
+  					    <li><img class="icon right" pinterest-share source="[[composition.url]]" description="[[post.content.text]]" src="/static/css/composition/icons/pinterest_black.svg" share-url='/arts/{{composition.slug}}'></li>
   					    <li><img class="icon right" facebook-share share-url="/arts/{{composition.slug}}" src="/static/css/composition/icons/facebook_black.svg"></li>
   					    <!-- <li><img class="icon right" src="/static/css/composition/icons/twitter.svg" ></li> -->
   					</ul>
-  					<section class="comments" ng-show="interpretation.showComments" ng-cloak>
+  					<section class="comments" ng-show="post.showComments" ng-cloak>
   						<div class="clearfix">
-	  						<form class="left" ng-submit="addComment($index, interpretation.comment)">
-		  						<input type="textbox" placeholder="Share your thoughts..." ng-model="interpretation.comment">
+	  						<form class="left" ng-submit="addComment($index, post.comment)">
+		  						<input type="textbox" placeholder="Share your thoughts..." ng-model="post.comment">
 	  						</form>
 	  					</div>
   						<ul>
-  							<li class="clearfix" ng-repeat="comment in interpretation.comments">
+  							<li class="clearfix" ng-repeat="comment in post.comments">
   								<!-- <img class="left" ng-src="[[comment.commenter.picture]]"> -->
   								<div class="left comment">
-  									<h5 class="commenter">[[comment.commenter.full_name]]</h5>
+  									<h5 class="commenter">[[comment.commenter.name]]</h5>
 									<p>[[comment.comment]]</p>
 									<h6 class="comment-time">[[comment.timesince]] ago</h6>
 								</div>
@@ -158,7 +158,7 @@
 			<hr ng-cloak ng-hide="$last" ng-repeat-end id="inter[[$index+1]]">
 		</section>
 
-		<section ng-cloak ng-hide="interpretations.length" class="no-interpretation">
+		<section ng-cloak ng-hide="posts.length" class="no-interpretation">
 			<a href="/arts/{{composition.slug}}/add-interpretation" class="write-interpretation nt-mb" target="_blank">Interpret this work</a>
 		</section>
 	</section>
@@ -208,6 +208,7 @@
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
 	<script type="text/javascript" src="/static/js/models/content.model.js"></script>
 	<script type="text/javascript" src="/static/js/models/post.model.js"></script>
+	<script type="text/javascript" src="/static/js/models/feed.model.js"></script>
 	<script type="text/javascript" src="/static/js/models/interpretation.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>

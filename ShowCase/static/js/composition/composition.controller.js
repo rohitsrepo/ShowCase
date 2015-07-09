@@ -2,7 +2,8 @@ angular.module("CompositionApp").
 controller("compositionController", [
 	"$window",
 	"$scope",
-	"posts",
+	"feedModel",
+	"postModel",
 	"contentManager",
 	"interpretationModel",
 	'$location',
@@ -12,7 +13,8 @@ controller("compositionController", [
 	'alert',
 	function ($window,
 		$scope,
-		posts,
+		feedModel,
+		postModel,
 		contentManager,
 		interpretationModel,
 		$location,
@@ -50,8 +52,8 @@ controller("compositionController", [
 	};
 
 	$scope.$watch($scope.composition.Id, function () {
-		interpretationModel.getInterpretations($scope.composition.id).then(function (interpretations) {
-			$scope.interpretations = interpretations;
+		postModel.getCompositionPosts($scope.composition.id).then(function (posts) {
+			$scope.posts = posts;
 			checkForScroll(500);
 		});
 	});
@@ -84,9 +86,9 @@ controller("compositionController", [
 	};
 
 	var getComments = function (index) {
-		interpretation = $scope.interpretations[index];
-		interpretationModel.getComments($scope.composition.id, interpretation.id).then(function (res) {
-			interpretation.comments = res;
+		post = $scope.posts[index];
+		postModel.getComments($scope.composition.id, post.id).then(function (res) {
+			post.comments = res;
 		});
 	};
 
@@ -148,7 +150,7 @@ controller("compositionController", [
 		$scope.disableNextPost = true;
 		var feed = $location.search()['feed'];
 		var postId = $location.search()['post'];
-		posts.nextPosts(feed, postId, $scope.composition.id).then(function (posts) {
+		feedModel.nextPosts(feed, postId, $scope.composition.id).then(function (posts) {
 			$scope.nextPosts = posts;
 		});
 	};

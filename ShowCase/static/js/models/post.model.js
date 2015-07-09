@@ -1,27 +1,21 @@
-angular.module("module.model")
-.factory("posts", ['$http', function ($http) {
-
-	var DefaultFeed = 'editors';
-
-	var validateFeed = function (feedName) {
-		if (feedName!=='editors') {
-			return DefaultFeed;
-		}
-
-		return feedName;
-	};
-
+angular.module('module.model')
+.factory('postModel', ['$http', function ($http) {
 	var service = {};
-	service.getPosts = function (pageNum) {
-		return $http.get('/feeds/editors?page='+pageNum).then(function (response) {
+	service.getCompositionPosts = function (compositionId) {
+		return $http.get('/compositions/' + compositionId + '/posts').then(function (response) {
 			return response.data;
 		});
 	};
 
-	service.nextPosts = function (feedName, postId, compositionId) {
-		var feed = validateFeed(feedName)
-		return $http.get('/feeds/'+ feed +'/next?postId=' + postId + '&compositionId=' + compositionId)
-		.then(function (response) {
+	service.getUserPosts = function (userId, page) {
+		return $http.get('/users/' + userId + '/posts?page='+page).then(function (response) {
+			return response.data;
+		});
+	};
+
+	service.getComments = function (postId) {
+		var commentUrl = "/posts/" + postId + "/comments"
+		return $http.get(commentUrl).then(function (response) {
 			return response.data;
 		});
 	};

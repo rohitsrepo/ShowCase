@@ -1,11 +1,11 @@
 angular.module("ReaderApp")
 .controller("readerController", ["$scope",
- 'posts',
+ 'feedModel',
  'interpretationModel',
  'analytics',
  '$location',
  function ($scope,
- 	posts,
+ 	feedModel,
  	interpretationModel,
  	analytics,
  	$location)
@@ -28,7 +28,7 @@ angular.module("ReaderApp")
 
 		if (!$scope.postsMeta.disableGetMore) {
 			var pageVal = $scope.postsMeta.pageVal;
-			posts.getPosts(pageVal).then(function (posts) {
+			feedModel.getPosts(pageVal).then(function (posts) {
 				$scope.postsMeta.next = posts.next;
 				$scope.postsMeta.previous = posts.previous;
 

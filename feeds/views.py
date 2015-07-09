@@ -75,7 +75,7 @@ def add_voting_status(posts, user, results):
 def add_comment_count(posts, results):
     counter = 0
     for post in posts:
-        results[counter]['comments_count'] = post.interpretation.comment_set.count()
+        results[counter]['comments_count'] = post.interpretation.comments.count()
         counter += 1    
     
     

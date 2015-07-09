@@ -23,7 +23,7 @@ class InterpretationList(APIView):
     def add_comment_count(self, interpretations, serializer):
         counter = 0
         for interpretation in interpretations:
-            serializer.data[counter]['comments_count'] = interpretation.comment_set.count()
+            serializer.data[counter]['comments_count'] = interpretation.comments.count()
             counter += 1
 
 
