@@ -8,7 +8,7 @@ class PostComment(models.Model):
     comment = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     commenter = models.ForeignKey(settings.AUTH_USER_MODEL)
-    post = models.ForeignKey(Post)
+    post = models.ForeignKey(Post, related_name='comments')
     edited = models.BooleanField(default=False)
     modified = models.DateTimeField(auto_now=True)
 

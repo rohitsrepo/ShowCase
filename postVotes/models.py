@@ -55,6 +55,6 @@ class PostVote(models.Model):
 
 
 class PostVoteMembership(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='vote_membership')
     vote = models.ForeignKey(PostVote)
     voteType = models.BooleanField(default=True)

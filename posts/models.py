@@ -19,6 +19,12 @@ class Post(models.Model):
         from django.utils.timesince import timesince as _
         return _(self.created, now)
 
+    def get_comments_count(self):
+        return self.comments.all().count()
+
+    def get_voting_status(self, user):
+        return self.vote.get_voting_status(user)
+
 
 # To create vote instance when an post is created
 @receiver(post_save, sender=Post)

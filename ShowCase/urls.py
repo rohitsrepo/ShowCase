@@ -42,6 +42,7 @@ urlpatterns += patterns('',
 urlpatterns += patterns('',
                        url(r'^users', include('accounts.urls')),
                        url(r'^compositions', include('compositions.urls')),
+                       url(r'^posts', include('posts.urls')),
                        url(r'^feeds', include('feeds.urls')),
                        url(r'^content', include('contentManager.urls')),
 		       )
