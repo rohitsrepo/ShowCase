@@ -1,12 +1,10 @@
 angular.module("ReaderApp")
 .controller("readerController", ["$scope",
- 'posts',
- 'interpretationModel',
+ 'feedModel',
  'analytics',
  '$location',
  function ($scope,
- 	posts,
- 	interpretationModel,
+ 	feedModel,
  	analytics,
  	$location)
  {
@@ -28,7 +26,7 @@ angular.module("ReaderApp")
 
 		if (!$scope.postsMeta.disableGetMore) {
 			var pageVal = $scope.postsMeta.pageVal;
-			posts.getPosts(pageVal).then(function (posts) {
+			feedModel.getPosts(pageVal).then(function (posts) {
 				$scope.postsMeta.next = posts.next;
 				$scope.postsMeta.previous = posts.previous;
 
@@ -60,15 +58,6 @@ angular.module("ReaderApp")
 			analytics.logEvent('Reader', 'Init');
 		}
 		getPosts();
-	};
-
-	$scope.vote = function (index, vote) {
-		var post = $scope.posts[index];
-		analytics.logEvent('Reader', 'Feed-Comment-Click', post.composition.slug);
-		interpretationModel.vote(post.composition.id, post.interpretation.id, vote).then(function (response) {
-			post.interpretation.vote.total = response.total;
-			post.voting_status = vote ? "Positive" : "Negative";
-		});
 	};
 
 }]);

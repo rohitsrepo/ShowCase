@@ -85,11 +85,11 @@ angular.module("module.model")
         })
     };
 
-    service.getInterpretations = function (user_id, page) {
-        return $http.get('/users/'+user_id+'/interpretations?page='+page).then(function (response) {
-            return response.data;
-        })
-    };
+    // service.getInterpretations = function (user_id, page) {
+    //     return $http.get('/users/'+user_id+'/interpretations?page='+page).then(function (response) {
+    //         return response.data;
+    //     })
+    // };
 
     service.addToCollection = function (art_id) {
     	return $http.post('/users/bookmarks', {'bookmarks': [art_id]}).then(function (response) {

@@ -103,11 +103,21 @@
 		      					<h5 class="left">[[post.interpretation.vote.total]] Votes. [[post.comments_count]] Comments</h5>
 	      					</header>
 	  					<ul>
-	  					    <li><img class="icon icon-left" ng-class="{'vote-active': post.voting_status=='Positive'}" src="/static/css/reader/icons/upvote.svg" ng-click="vote($index, true)"></li>
-	  					    <li><img class="icon icon-left" ng-class="{'vote-active': post.voting_status=='Negative'}" src="/static/css/reader/icons/downvote.svg" ng-click="vote($index, false)"></li>
-	  					    <li><a ng-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank">
-	  					    <img class="icon icon-left" src="/static/css/reader/icons/comment.svg" analytics-click analytics-data="['Reader', 'Post-Comment-Click', post.composition.slug]">
-	  					    </a></li>
+	  					    <li>
+		  					    <a ng-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank">
+			  					    <img class="icon icon-left" ng-class="{'vote-active': post.voting_status=='Positive'}" src="/static/css/reader/icons/upvote.svg" ng-click="vote($index, true)">
+		  					    </a>
+	  					    </li>
+	  					    <li>
+		  					    <a ng-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank">
+			  					    <img class="icon icon-left" ng-class="{'vote-active': post.voting_status=='Negative'}" src="/static/css/reader/icons/downvote.svg" ng-click="vote($index, false)">
+		  					    </a>
+	  					   </li>
+	  					    <li>
+		  					    <a ng-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank">
+			  					    <img class="icon icon-left" src="/static/css/reader/icons/comment.svg" analytics-click analytics-data="['Reader', 'Post-Comment-Click', post.composition.slug]">
+		  					    </a>
+	  					    </li>
 	  					    <li><img class="icon icon-right" tumblr-share source="[[post.composition.matter]]" description="[[post.interpretation.interpretation]]" src="/static/css/reader/icons/tumblr.svg" share-url='/arts/[[post.composition.slug]]'></li>
 	  					    <li><img class="icon icon-right" pinterest-share source="[[post.composition.matter]]" description="[[post.composition.title | titlecase]] - interpretations and stories" src="/static/css/reader/icons/pinterest.svg" share-url='/arts/[[post.composition.slug]]'></li>
 	  					    <li><img class="icon icon-right" facebook-share src="/static/css/reader/icons/facebook.svg" share-url='/arts/[[post.composition.slug]]'></li>
@@ -131,7 +141,7 @@
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
 	<script type="text/javascript" src="/static/js/models/interpretation.model.js"></script>
-	<script type="text/javascript" src="/static/js/models/post.model.js"></script>
+	<script type="text/javascript" src="/static/js/models/feed.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/facebook.service.js"></script>

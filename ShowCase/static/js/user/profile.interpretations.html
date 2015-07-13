@@ -1,27 +1,27 @@
-<section class="interpretations clearfix" infinite-scroll="loadMoreInterpretations()" infinite-scroll-distance='1' infinite-scroll-disabled='interpretationsMeta.busy || interpretationsMeta.disableGetMore' ng-cloak>
-    <section class="interpretation " ng-repeat="interpretation in interpretations" analytics-scroll analytics-data="['Reader', 'Feed-interpretation-View:' + $index]">
+<section class="interpretations clearfix" infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore' ng-cloak>
+    <section class="interpretation " ng-repeat="post in posts" analytics-scroll analytics-data="['Reader', 'Feed-post-View:' + $index]">
 
-        <a ng-href="/arts/[[ interpretation.composition.slug ]]">
-            <div class="painting-holder" ng-style="{'background-image': 'url([[interpretation.composition.matter_350]])'}"></div>
+        <a ng-href="/arts/[[ post.composition.slug ]]">
+            <div class="painting-holder" ng-style="{'background-image': 'url([[post.composition.matter_350]])'}"></div>
         </a>
 
         <sidebar class="description">
             <header class="description-header">
-                <a target="_blank" ng-href="/arts/[[ interpretation.composition.slug ]]">
-                    <h4 analytics-click analytics-data="['Reader', 'interpretation-Title-Click', interpretation.composition.slug]">[[interpretation.composition.title | titlecase]]</h4>
+                <a target="_blank" ng-href="/arts/[[ post.composition.slug ]]">
+                    <h4 analytics-click analytics-data="['Reader', 'post-Title-Click', post.composition.slug]">[[post.composition.title | titlecase]]</h4>
                 </a>
                 <div class="description-header-footer">
                     <h5>by
-                        <a href="/@[[interpretation.composition.artist.slug]]" class="artist" target="_blank">
-                            [[interpretation.composition.artist.name | titlecase]]
+                        <a href="/@[[post.composition.artist.slug]]" class="artist" target="_blank">
+                            [[post.composition.artist.name | titlecase]]
                         </a>
-                        . [[interpretation.composition.views]] Views
+                        . [[post.composition.views]] Views
                     </h5>
                 </div>
             </header>
             <section class="content-area">
-                <a class="content" ng-href="/arts/[[interpretation.composition.slug]]#?scrollTo=inter0">
-                    [[interpretation.interpretation]]
+                <a class="content" ng-href="/arts/[[post.composition.slug]]#?scrollTo=inter0">
+                    [[post.content.text]]
                 </a>
             </section>
         </sidebar>

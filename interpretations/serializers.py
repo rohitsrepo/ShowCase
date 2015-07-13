@@ -29,3 +29,10 @@ class InterpretationSerializer(serializers.ModelSerializer):
         model = Interpretation
         fields = ('id', 'interpretation', 'user', 'composition', 'timesince', 'vote', 'text')
         read_only_fields = ('id', 'composition')
+
+class PostInterpretationSerializer(serializers.ModelSerializer):
+    text = serializers.CharField(source='to_text', read_only=True)
+
+    class Meta:
+        model = Interpretation
+        fields = ('id', 'interpretation', 'text')

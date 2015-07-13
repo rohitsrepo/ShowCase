@@ -44,7 +44,7 @@ angular.module("UserApp", [
     .state('interpretations', {
         url: "/interpretations",
         templateUrl: "/static/js/user/profile.interpretations.html",
-        controller: 'profileInterpretationsController'
+        controller: 'profilePostsController'
     })
     .state('collection', {
         url: "/collection",

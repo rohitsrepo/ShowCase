@@ -1,15 +1,16 @@
 from django.db import models
 from django.conf import settings
 from django.utils.timesince import timesince
-from interpretations.models import Interpretation
+from posts.models import Post
 
 
-class Comment(models.Model):
+class PostComment(models.Model):
     comment = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     commenter = models.ForeignKey(settings.AUTH_USER_MODEL)
-    interpretation = models.ForeignKey(Interpretation, related_name="comments")
+    post = models.ForeignKey(Post, related_name='comments')
     edited = models.BooleanField(default=False)
+    modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         if len(self.comment) > 12:
@@ -24,7 +25,7 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         """
-        Returns url of the interpretation it is realted to.
+        Returns url of the post it is realted to.
         """
 
-        return self.interpretation.get_absolute_url()
+        return self.Post.get_absolute_url()

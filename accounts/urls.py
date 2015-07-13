@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from . import views
+from posts.views import UserPostList
 
 urlpatterns = patterns('',
                         url(r'^$', views.UserList.as_view()),
@@ -20,7 +21,8 @@ urlpatterns = patterns('',
                         url(r'^/(?P<pk>[0-9]+)/compositions$', 'accounts.views.get_compositions'),
                         url(r'^/(?P<pk>[0-9]+)/interpretations$', 'accounts.views.get_interpretations'),
                         url(r'^/(?P<pk>[0-9]+)/uploads$', 'accounts.views.get_uploads'),
-                        url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+                        url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+                        url(r'^/(?P<user_id>[0-9]+)/posts$', UserPostList.as_view()),
                     )
 
 urlpatterns = format_suffix_patterns(urlpatterns)

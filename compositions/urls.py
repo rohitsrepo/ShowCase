@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url, include
 from rest_framework.urlpatterns import format_suffix_patterns
+from posts.views import CompositionPostList
 from . import views
 
 urlpatterns = patterns('',
@@ -12,6 +13,7 @@ urlpatterns = patterns('',
                        url(r'^/(?P<composition_id>[0-9]+)/interpretations', include('interpretations.urls')),
                        url(r'^/(?P<composition_id>[0-9]+)/interpretation-images$', views.InterpretationImageList.as_view()),
                        url(r'^/(?P<composition_id>[0-9]+)/interpretation-images/(?P<image_id>[0-9]+)$', views.InterpretationImageDetail.as_view()),
+                       url(r'^/(?P<composition_id>[0-9]+)/posts$', CompositionPostList.as_view()),
                )
 
 urlpatterns = format_suffix_patterns(urlpatterns)

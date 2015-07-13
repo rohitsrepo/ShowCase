@@ -2,9 +2,9 @@ angular.module("CompositionApp").
 controller("compositionController", [
 	"$window",
 	"$scope",
-	"posts",
+	"feedModel",
+	"postModel",
 	"contentManager",
-	"interpretationModel",
 	'$location',
 	'$timeout',
 	'analytics',
@@ -13,9 +13,9 @@ controller("compositionController", [
 	'userModel',
 	function ($window,
 		$scope,
-		posts,
+		feedModel,
+		postModel,
 		contentManager,
-		interpretationModel,
 		$location,
 		$timeout,
 		analytics,
@@ -54,43 +54,43 @@ controller("compositionController", [
 	};
 
 	$scope.$watch($scope.composition.Id, function () {
-		interpretationModel.getInterpretations($scope.composition.id).then(function (interpretations) {
-			$scope.interpretations = interpretations;
+		postModel.getCompositionPosts($scope.composition.id).then(function (posts) {
+			$scope.posts = posts;
 			checkForScroll(500);
 		});
 	});
 
 	$scope.vote = function (index, vote) {
 		analytics.logEvent('Composition', 'Vote', $scope.composition.url);
-		interpretation = $scope.interpretations[index];
-		interpretationModel.vote($scope.composition.id, interpretation.id, vote).then(function (response) {
-			interpretation.vote.total = response.total;
-			interpretation.voting_status = vote ? "Positive" : "Negative";
+		post = $scope.posts[index];
+		postModel.vote(post.id, vote).then(function (response) {
+			post.vote.total = response.total;
+			post.voting_status = vote ? "Positive" : "Negative";
 		});
 	};
 
 	$scope.toggleShowComments = function (index) {
-		var interpretation = $scope.interpretations[index];
-		interpretation.showComments = !interpretation.showComments;
-		if (interpretation.showComments) {
+		var post = $scope.posts[index];
+		post.showComments = !post.showComments;
+		if (post.showComments) {
 			getComments(index);
 		};
-		analytics.logEvent('Composition', 'ShowComments: ' + interpretation.showComments, $scope.composition.url);
+		analytics.logEvent('Composition', 'ShowComments: ' + post.showComments, $scope.composition.url);
 	};
 
 	$scope.addComment = function (index, comment) {
-		interpretation = $scope.interpretations[index];
-		interpretationModel.addComment($scope.composition.id, interpretation.id, comment).then(function (res) {
-			interpretation.comments.push(res);
-			interpretation.comment = "";
+		post = $scope.posts[index];
+		postModel.addComment(post.id, comment).then(function (res) {
+			post.comments.push(res);
+			post.comment = "";
 		});
 		analytics.logEvent('Composition', 'Add Comment', $scope.composition.url);
 	};
 
 	var getComments = function (index) {
-		interpretation = $scope.interpretations[index];
-		interpretationModel.getComments($scope.composition.id, interpretation.id).then(function (res) {
-			interpretation.comments = res;
+		post = $scope.posts[index];
+		postModel.getComments(post.id).then(function (res) {
+			post.comments = res;
 		});
 	};
 
@@ -152,7 +152,7 @@ controller("compositionController", [
 		$scope.disableNextPost = true;
 		var feed = $location.search()['feed'];
 		var postId = $location.search()['post'];
-		posts.nextPosts(feed, postId, $scope.composition.id).then(function (posts) {
+		feedModel.nextPosts(feed, postId, $scope.composition.id).then(function (posts) {
 			$scope.nextPosts = posts;
 		});
 	};

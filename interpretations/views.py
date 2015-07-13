@@ -11,34 +11,6 @@ from rest_framework.response import Response
 class InterpretationList(APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-    def get_interpretations(self, composition_id):
-        return Interpretation.objects.filter(composition=composition_id, public=True)
-
-    def add_voting_status(self, interpretations, user, serializer):
-        counter = 0;
-        for interpretation in interpretations:
-            serializer.data[counter]['voting_status'] = interpretation.vote.get_voting_status(user)
-            counter += 1
-
-    def add_comment_count(self, interpretations, serializer):
-        counter = 0
-        for interpretation in interpretations:
-            serializer.data[counter]['comments_count'] = interpretation.comment_set.count()
-            counter += 1
-
-
-    def get(self, request, composition_id, format=None):
-        interpretations = self.get_interpretations(composition_id)
-        serializer = InterpretationSerializer(
-            interpretations, many=True, context={'request': request})
-
-        if request.user.is_authenticated():
-            self.add_voting_status(interpretations, request.user, serializer)
-
-        self.add_comment_count(interpretations, serializer)
-
-        return Response(serializer.data)
-
     def post(self, request, composition_id, format=None):
         serializer = InterpretationSerializer(
             data=request.DATA, context={'request': request})
