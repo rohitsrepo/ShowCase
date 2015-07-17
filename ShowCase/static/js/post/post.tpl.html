@@ -1,0 +1,59 @@
+<article class="post" ng-if="post">
+    <a class="user-picture" ng-href="/@[[post.creator.slug]]">
+            <img ng-src="[[post.creator.picture]]">
+    </a>
+    <section class="post-header">
+        <a ng-href="/@[[post.creator.slug]]" class="user-details">
+            <h2>[[post.creator.name | titlecase]]</h2>
+        </a>
+        <section class="user-action">
+            wrote about
+        </section>
+        <a class="art-details" ng-href="/arts/[[post.composition.slug]]">
+            [[post.composition.title]]
+        </a>
+        <section class="header-about">
+            [[post.timesince]]
+        </section>
+    </section> <!-- post-header -->
+
+    <section class="post-content interpretation">
+        <div class="interpretation-content" interheight>
+            <div class="art-holder" ng-style="{'background-image': 'url([[post.composition.matter_550]])'}"></div>
+            <div class="art-holder-overlay"></div>
+            [[post.content.interpretation]]
+        </div>
+    </section> <!-- post-content -->
+
+    <ul class="post-actions">
+        <li ng-class="{'vote-positive': post.voting_status=='Positive', 'vote-active': post.voting_status=='Negative'}" ng-click="vote(true)">
+            UpVote <span class="count">[[post.vote.total]]</span>
+        </li>
+        <li ng-class="{'vote-negative': post.voting_status=='Negative', 'vote-active': post.voting_status=='Positive'}" ng-click="vote(false)">
+            DownVote
+        </li>
+        <li ng-click="toggleShowComments()">Comment <span class="count">[[post.comments_count]]</span></li>
+        <li>Share</li>
+    </ul>
+    <section class="post-comments" ng-cloak ng-show="post.showComments">
+        <hr>
+        <section class="add-comment">
+            <form ng-submit="addComment(post.comment)">
+                <!-- <input type="textbox" autofocus="autofocus" placeholder="Share your thoughts..." ng-model="post.comment"> -->
+                <textarea elastic wrap="hard" autofocus="autofocus" placeholder="Share your thoughts..." ng-model="post.comment" ng-keydown="$event.keyCode == 13 ? addComment(post.comment) : null"></textarea>
+            </form>
+        </section>
+        <section class="post-comment" ng-repeat="comment in post.comments">
+            <a class="commenter-picture" ng-href="/@[[comment.commenter.slug]]">
+                <img ng-src="[[comment.commenter.picture]]">
+            </a><!--
+            --><section class="comment-details">
+                <a ng-href="/@[[comment.commenter.slug]]">
+                    <h5>[[comment.commenter.name | titlecase]]</h5>
+                </a>
+                <p>[[comment.comment]]</p>
+                <h6>[[comment.timesince]]</h6>
+            </section>
+        </section>
+    </section>
+</article>

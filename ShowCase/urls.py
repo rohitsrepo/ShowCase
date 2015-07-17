@@ -38,6 +38,11 @@ urlpatterns += patterns('',
                        url(r'^arts/(?P<slug>[\w-]+)/add-interpretation$', 'compositions.clientViews.add_interpretation', name="interpretation-page"),
     )
 
+## Post Urls
+urlpatterns += patterns('',
+                       url(r'^@(?P<user_slug>[\w-]+)/posts/(?P<post_id>[0-9]+)$', 'posts.clientViews.post_main'),
+    )
+
 # API urls
 urlpatterns += patterns('',
                        url(r'^users', include('accounts.urls')),

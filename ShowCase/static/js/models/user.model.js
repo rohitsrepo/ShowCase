@@ -46,7 +46,9 @@ angular.module("module.model")
 	service.getCurrentUser =  function () {
 	    return $http.get('/users/currentUser').then(function (response) {
 	        return response.data;
-	    });
+	    }, function (response) {
+            return $q.reject(response);
+        });
 	};
 
 	service.addUser = function (user) {
@@ -76,26 +78,24 @@ angular.module("module.model")
 	service.getCompositions = function (user_id, page) {
 		return $http.get('/users/'+user_id+'/compositions?page='+page).then(function (response) {
 			return response.data;
-		})
+		}, function (response) {
+            return $q.reject(response);
+        });
 	};
 
     service.getUploads = function (user_id, page) {
         return $http.get('/users/'+user_id+'/uploads?page='+page).then(function (response) {
             return response.data;
-        })
+        }, function (response) {
+            return $q.reject(response);
+        });
     };
-
-    // service.getInterpretations = function (user_id, page) {
-    //     return $http.get('/users/'+user_id+'/interpretations?page='+page).then(function (response) {
-    //         return response.data;
-    //     })
-    // };
 
     service.addToCollection = function (art_id) {
     	return $http.post('/users/bookmarks', {'bookmarks': [art_id]}).then(function (response) {
     		return response.data;
     	}, function (response) {
-    		$q.reject(response);
+    		return $q.reject(response);
     	});
     };
 
@@ -103,14 +103,16 @@ angular.module("module.model")
     	return $http.delete('/users/bookmarks/'+art_id).then(function (response) {
     		return response.data;
     	}, function (response) {
-    		$q.reject(response);
+    		return $q.reject(response);
     	});
     };
 
     service.getCollection = function (user_id, page) {
         return $http.get('/users/'+user_id+'/bookmarks?page='+page).then(function (response) {
             return response.data;
-        })
+        }, function (response) {
+            return $q.reject(response);
+        });
     };
 
 	return service;

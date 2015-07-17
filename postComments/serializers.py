@@ -8,7 +8,7 @@ class CommenterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'name', 'picture')
+        fields = ('id', 'name', 'picture', 'slug')
 
 class CommentSerializer(serializers.ModelSerializer):
     timesince = serializers.CharField(source='timesince', read_only=True)

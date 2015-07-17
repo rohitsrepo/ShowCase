@@ -1,0 +1,227 @@
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
+    font-family: 'taile';
+    background: #F6FAFF;
+}
+
+.auth-user,
+.auth-user a {
+    color: white;
+}
+
+/*--------------- Post -----------------*/
+.post {
+    width: 70%;
+    max-width: 650px;
+    margin: 0 auto;
+    margin-top: 180px;
+    background: white;
+    padding: 30px;
+}
+
+.user-picture img {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    height: 42px;
+    width: 42px;
+}
+
+.post .post-header {
+    display: inline-block;
+}
+
+.post-header {
+    vertical-align: top;
+    padding-left: 5px;
+    font-size: 1em;
+}
+
+.post-header .user-details h2 {
+    display: inline;
+    color: #E6B800;
+    line-height: 1.5em;
+}
+
+.post-header .user-action {
+    display: inline;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.post-header .art-details {
+    display: inline;
+    color: #E6B800;
+}
+
+.post-header .header-about {
+    color: rgba(0, 0, 0, 0.5);
+    display: block;
+    font-size: 0.67em;
+    margin-top: 5px;
+}
+
+/*---------------- Post Content ------------------*/
+.post-content {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/*--------------- Interpretation --------------*/
+.interpretation {
+    position: relative;
+    width: 100%;
+}
+
+.interpretation .interpretation-content {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    padding: 50px 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    letter-spacing: 2px;
+    line-height: 2.2em;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.interpretation-content .art-holder,
+.interpretation-content .art-holder-overlay {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.interpretation-content .art-holder {
+    z-index: -2;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.interpretation-content .art-holder-overlay {
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/*--------------- Post Actions --------------------*/
+.post-actions {
+    margin-top: 20px;
+}
+
+.post-actions li {
+    display: inline;
+    color: #E6B800;
+    font-size: 0.8em;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.post-actions li:hover {
+    text-decoration: underline;
+}
+
+.post-actions li.vote-positive,
+.post-actions li.vote-negative,
+.post-actions li.vote-active {
+    color: rgba(0, 0, 0, 0.26);
+    cursor: default;
+    text-decoration: none;
+}
+
+.post-actions li .count {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.8;
+    font-weight: bold;
+}
+
+/*-------------------- Post Comments ----------------------*/
+.post-comments {
+    width: 100%;
+}
+
+.post-comments .add-comment,
+.post-comments .post-comment {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.post-comments hr {
+    opacity: 0.1;
+    width: 100%;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.post-comment img {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    height: 42px;
+    width: 42px;
+}
+
+.post-comment .comment-details {
+    display: inline-block;
+    width: 90%;
+    vertical-align: top;
+    line-height: 1.5em;
+}
+
+.add-comment form {
+    padding-top: 10px;
+    width: 100%;
+}
+
+.add-comment form input{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    height: 50px;
+    width: 100%;
+    vertical-align: top;
+    padding: 0 20px;
+}
+
+.add-comment form textarea {
+    width: 100%;
+    height: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    resize: none;
+    overflow: hidden;
+    font-size: 0.78em;
+    line-height: 1.5em;
+    padding: 5px 10px;
+}
+
+.comment-details {
+    padding-left: 10px;
+    font-size: 0.78em;
+}
+
+.comment-details a h5 {
+    color: #E6B800;
+    display: inline;
+    padding-right: 5px;
+}
+
+.comment-details p {
+    display: inline;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.comment-details h6 {
+    display: block;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 0.7em;
+}

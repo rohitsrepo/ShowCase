@@ -22,7 +22,7 @@ class NewUserSerializer(serializers.ModelSerializer):
 
 class ExistingUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(read_only=True)
-    picture = URLImageField(source='picture')
+    picture = serializers.Field(source='get_picture_url')
 
     class Meta:
         model = User
