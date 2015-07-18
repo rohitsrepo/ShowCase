@@ -39,7 +39,7 @@ class PostVote(models.Model):
             if(voteType):
                 return "Positive"
             return "Negative"
-        except PostVoteMembership.DoesNotExist:
+        except:
             return "NotVoted"
 
     def get_total(self):
