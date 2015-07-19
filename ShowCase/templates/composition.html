@@ -25,6 +25,7 @@
 	<link rel="stylesheet" type="text/css" href="/static/vendor/zoome/zoome-min.css">
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/post/post.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/composition/main.css">
 	<!-- endbuild -->
 
@@ -140,51 +141,7 @@
                 </section>
 			</section><!--
 			--><section class="content-posts clearfix" infinite-scroll="getNextPosts()" infinite-scroll-distance='1' infinite-scroll-disabled='disableNextPost'>
-						<section ng-cloak ng-show="posts.length" class="interprets" ng-cloak id="inter0">
-
-							<section class="interpret" ng-repeat-start="post in posts" analytics-scroll analytics-data="['Composition', 'View-post: ' + $index]" analytics-offset="300">
-								<header class="interpreter clearfix">
-									<!-- <img ng-cloak ng-show="post.user.picture" ng-src="[[post.user.picture]]"> -->
-									<div>
-										<h3><a href="/@[[post.creator.slug]]">[[post.creator.name]]</a></h3>
-									</div>
-								</header>
-								<p class="interpret-content" ng-bind-html="post.content.interpretation"></p>
-								<footer class="interpret-footer">
-									<div class="clearfix nt-mb">
-									<h6 class="right">[[post.timesince]] ago</h6>
-									<h6 class="left">[[post.vote.total]] Votes. [[post.comments_count]] Comments</h6>
-									</div>
-									<ul class="clearfix">
-				  					    <li><img class="icon first left" ng-class="{'vote-active': post.voting_status=='Positive'}" src="/static/css/composition/icons/upvote.svg" ng-click="vote($index, true)"></li>
-				  					    <li><img class="icon left" ng-class="{'vote-active': post.voting_status=='Negative'}" src="/static/css/composition/icons/downvote.svg" ng-click="vote($index, false)"></li>
-				  					    <li><img class="icon left" src="/static/css/composition/icons/comment.svg" ng-click="toggleShowComments($index)"></li>
-				  					    <li><img class="icon last right" tumblr-share source="[[composition.url]]" description="[[post.content.text]]" src="/static/css/composition/icons/tumblr_black.svg" share-url='/arts/{{composition.slug}}'></li>
-				  					    <li><img class="icon right" pinterest-share source="[[composition.url]]" description="[[post.content.text]]" src="/static/css/composition/icons/pinterest_black.svg" share-url='/arts/{{composition.slug}}'></li>
-				  					    <li><img class="icon right" facebook-share share-url="/arts/{{composition.slug}}" src="/static/css/composition/icons/facebook_black.svg"></li>
-				  					    <!-- <li><img class="icon right" src="/static/css/composition/icons/twitter.svg" ></li> -->
-				  					</ul>
-				  					<section class="comments" ng-show="post.showComments" ng-cloak>
-				  						<div class="clearfix">
-					  						<form class="left" ng-submit="addComment($index, post.comment)">
-						  						<input type="textbox" placeholder="Share your thoughts..." ng-model="post.comment">
-					  						</form>
-					  					</div>
-				  						<ul>
-				  							<li class="clearfix" ng-repeat="comment in post.comments">
-				  								<!-- <img class="left" ng-src="[[comment.commenter.picture]]"> -->
-				  								<div class="left comment">
-				  									<h5 class="commenter">[[comment.commenter.name]]</h5>
-													<p>[[comment.comment]]</p>
-													<h6 class="comment-time">[[comment.timesince]] ago</h6>
-												</div>
-				  							</li>
-				  						</ul>
-				  					</section>
-								</footer>
-							</section>
-							<hr ng-cloak ng-hide="$last" ng-repeat-end id="inter[[$index+1]]">
-						</section>
+						<div ng-repeat="post in posts" post-template post-data="post"></div>
 			</section><!--
 			--><section class="content-actions">
 			</section>
@@ -227,9 +184,15 @@
 	<script type="text/javascript" src="/static/bower_components/jquery.panzoom/dist/jquery.panzoom.min.js"></script>
 	<script type="text/javascript" src="/static/vendor/zoome/zoome.min.js"></script>
 
+	<script type="text/javascript" src="/static/bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
+
 	<script type="text/javascript" src="/static/js/composition/composition.module.js"></script>
 	<script type="text/javascript" src="/static/js/composition/composition.controller.js"></script>
 	<script type="text/javascript" src="/static/js/composition/sticky.directive.js"></script>
+    <script type="text/javascript" src="/static/js/post/post.module.js"></script>
+    <script type="text/javascript" src="/static/js/post/postApp.controller.js"></script>
+    <script type="text/javascript" src="/static/js/post/post.controller.js"></script>
+    <script type="text/javascript" src="/static/js/post/interpretationSetHeight.directive.js"></script>
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
 	<script type="text/javascript" src="/static/js/models/content.model.js"></script>

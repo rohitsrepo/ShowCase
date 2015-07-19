@@ -1,5 +1,6 @@
 angular.module("PostApp", [
     "ngAnimate",
+    'ngSanitize',
     "module.auth",
     "module.curtainRight",
     "module.curtainLeft",

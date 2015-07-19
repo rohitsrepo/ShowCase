@@ -2,6 +2,7 @@ angular.module("CompositionApp", [
     'ngSanitize',
     'infinite-scroll',
     "ngAnimate",
+    "PostApp",
     "module.auth",
     "module.curtainLeft",
     "module.curtainRight",

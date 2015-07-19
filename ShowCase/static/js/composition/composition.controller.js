@@ -60,40 +60,6 @@ controller("compositionController", [
 		});
 	});
 
-	$scope.vote = function (index, vote) {
-		analytics.logEvent('Composition', 'Vote', $scope.composition.url);
-		post = $scope.posts[index];
-		postModel.vote(post.id, vote).then(function (response) {
-			post.vote.total = response.total;
-			post.voting_status = vote ? "Positive" : "Negative";
-		});
-	};
-
-	$scope.toggleShowComments = function (index) {
-		var post = $scope.posts[index];
-		post.showComments = !post.showComments;
-		if (post.showComments) {
-			getComments(index);
-		};
-		analytics.logEvent('Composition', 'ShowComments: ' + post.showComments, $scope.composition.url);
-	};
-
-	$scope.addComment = function (index, comment) {
-		post = $scope.posts[index];
-		postModel.addComment(post.id, comment).then(function (res) {
-			post.comments.push(res);
-			post.comment = "";
-		});
-		analytics.logEvent('Composition', 'Add Comment', $scope.composition.url);
-	};
-
-	var getComments = function (index) {
-		post = $scope.posts[index];
-		postModel.getComments(post.id).then(function (res) {
-			post.comments = res;
-		});
-	};
-
 	$scope.isOutlineActive = "inactive";
 	$scope.isGrayScaleActive = "inactive";
 
@@ -179,5 +145,17 @@ controller("compositionController", [
 			progress.hideProgress();
 			alert.showAlert('We are unable to process your response');
 		});
+	};
+}])
+.directive('postTemplate', [function () {
+	return {
+		restrict: 'A',
+		scope: {
+			'postData': '='
+		},
+		templateUrl: '/static/js/post/post.tpl.html',
+		link: function (scope, element, attrs) {
+			scope.post = scope.postData;
+		}
 	};
 }]);
