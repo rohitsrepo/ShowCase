@@ -1,6 +1,6 @@
 module.exports = function (grunt) {
     "use strict";
-    
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
@@ -87,7 +87,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
     	'copy:prehtmlmin',
-    	'htmlmin',
 	    'useminPrepare',
 	    'concat:generated',
 	    'cssmin:generated',
