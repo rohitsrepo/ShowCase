@@ -1,4 +1,4 @@
-angular.module('module.alert', [])
+angular.module('module.util')
 .factory('alert', ['$timeout', function ($timeout) {
 
 	var service = {};

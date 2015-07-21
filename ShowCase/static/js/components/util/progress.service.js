@@ -1,4 +1,4 @@
-angular.module('module.topbar')
+angular.module('module.util')
 .factory('progress', ['$timeout', '$interval', function ($timeout, $interval) {
 	var intervalPromise;
 
@@ -16,7 +16,7 @@ angular.module('module.topbar')
 		animate();
 		intervalPromise = $interval(function () {
 			animate();
-		}, 2200);	
+		}, 2200);
 	}
 
 	service.hideProgress = function () {

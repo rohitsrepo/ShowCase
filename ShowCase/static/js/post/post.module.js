@@ -9,7 +9,7 @@ angular.module("PostApp", [
     'module.sharing',
     'module.scrollTo',
     'module.titlecase',
-    'module.alert'])
+    'module.util'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
     "use strict";
 

@@ -1,4 +1,4 @@
-angular.module('module.alert')
+angular.module('module.util')
 .directive('alertSupport', [ 'alert', function (alert) {
 	return {
 		restrict: 'E',
@@ -11,7 +11,7 @@ angular.module('module.alert')
 			}, function () {
 				scope.alertMeta = {'content': alert.content, 'show': alert.show};
 			}, true);
-			
+
 		}
 	};
 }]);
