@@ -7,6 +7,8 @@
 
     <meta name="fragment" content="!">
     <link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.css">
 
     {% block css_block %}{% endblock %}
 
@@ -21,8 +23,53 @@
     </script>
 </head>
 <body {% block body_attr_block %} {% endblock %}>
-    <topbar></topbar>
-    <div class="curtain-overlay-placeholder"></div>
+
+    {% block site_header_block %}
+
+    <header class="site-header">
+        <a class="site-logo" href="/">
+            <img src="/static/images/header-md.png"  analytics-click analytics-data="['Top Bar-Left', 'Logo']">
+            <section class="site-name" fade-on-scroll ng-cloak ng-hide="hideName" analytics-click analytics-data="['Top Bar-Left', 'Logo - Name']">
+                <h1 class="nt-mb">THIRDDIME</h1>
+                <h2 class="nt-mb">BEHIND THE BRUSHSTROKES</h2>
+            </section>
+        </a><!--
+        --><nav class="site-navigation">
+            <li><a class="active" href="/explore">ART</a></li>
+            <li><a href="/artist">ARTISTS</a></li>
+            <li><a href="/generes">GENRES</a></li>
+            <li><a href="/posts">POSTS</a></li>
+        </nav><!--
+        --><section class="site-actions">
+            <!-- <button>ADD ART</button> -->
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect">
+              <i class="material-icons">search</i>
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect">
+              <i class="material-icons">add</i>
+            </button>
+        </section><!--
+        --><section class="user-auth">
+        {% if user.is_authenticated %}
+            <button id="user-profile" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect">
+              <i class="material-icons">reorder</i>
+            </button>
+
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                for="user-profile">
+              <li class="mdl-menu__item"><i class="material-icons">face</i>Profile</li>
+              <li class="mdl-menu__item"><i class="material-icons">list</i>Collection</li>
+              <li class="mdl-menu__item"><i class="material-icons">settings</i>Settings</li>
+              <a href="/users/logout" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
+            </ul>
+
+        {% else %}
+            <h3>SIGNUP/LOGIN</h3>
+        {% endif %}
+        </section>
+    </header>
+
+    {%endblock%}
 
     {% block content_block %}{% endblock %}
 
@@ -30,6 +77,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular-animate.min.js"></script>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
 
     {% block script_block %}{% endblock %}
 </body>

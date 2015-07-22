@@ -11,7 +11,7 @@ admin.autodiscover()
 # WebClient urls
 urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
-                       url(r'^$', TemplateView.as_view(template_name='reader.html'), name='reader'),
+                       url(r'^$', 'accounts.clientViews.site_main', name='reader'),
                        url(r'^about-us$', TemplateView.as_view(template_name='aboutus.html'), name="about"),
                        url(r'^guidelines$', TemplateView.as_view(template_name='guidelines.html'), name='guidelines'),
                        url(r'^contact-us$', TemplateView.as_view(template_name='contactus.html'), name="contact"),
