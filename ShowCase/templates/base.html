@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html {% block html_attr_block %} {% endblock %}>
+<html {% block html_attr_block %}{% endblock %}>
 <head>
 
     {% block title_block %}{%endblock%}
@@ -22,7 +22,7 @@
          ga('send', 'pageview');
     </script>
 </head>
-<body {% block body_attr_block %} {% endblock %}>
+<body {% block body_attr_block %}{% endblock %}>
 
     {% block site_header_block %}
 
@@ -73,9 +73,13 @@
 
     {% block content_block %}{% endblock %}
 
+    <alert-support></alert-support>
+    <progress-support></progress-support>
+
     <!-- Scripts Here -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular-sanitize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular-animate.min.js"></script>
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
 

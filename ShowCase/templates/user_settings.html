@@ -1,34 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
-<html ng-app="UserSettingsApp">
-<head>
-    <meta charset="UTF-8">
-    <title>Settings | ThirdDime</title>
+{% extends "base.html" %}
+{% block html_attr_block %}ng-app="UserSettingsApp"{% endblock %}
 
+{% block title_block %}
+    <title>Settings | ThirdDime</title>
+{%endblock%}
+
+{% block meta_block %}
+    <meta charset="UTF-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{%endblock%}
 
-    <link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
-
+{% block css_block %}
      <!-- build:css /static/build/user-settings.css -->
     <link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
     <link rel="stylesheet" type="text/css" href="/static/css/base.css">
     <link rel="stylesheet" type="text/css" href="/static/css/user/settings.css">
     <!-- endbuild -->
+{%endblock%}
 
-    <script>
-         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-         ga('create', 'UA-58563444-1', 'auto');
-         ga('require', 'displayfeatures');
-         ga('send', 'pageview');
-    </script>
-</head>
-<body ng-controller="userSettingsController">
-    <topbar></topbar>
-    <div class="curtain-overlay-placeholder"></div>
+{% block body_attr_block %}ng-controller="userSettingsController"{% endblock %}
 
+{% block content_block %}
     <header class="primary-header" ng-init="init('{{user.id}}', '{{user.email}}', '{{user.name}}', '{{user.about}}', '{{user.picture.url}}')">
         <h1>Settings</h1>
         <hr>
@@ -68,15 +61,9 @@
             </section>
         </li>
     </ul>
+{% endblock %}
 
-    <alert-support></alert-support>
-    <progress-support></progress-support>
-
-    <!-- Scripts Here -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular-animate.min.js"></script>
-
+{% block script_block %}
     <!-- build:js /static/build/userSettings.js -->
     <script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
 
@@ -89,15 +76,6 @@
     <script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
     <script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
     <script type="text/javascript" src="/static/js/authentication/facebook.service.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
     <script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
     <script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
     <script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
@@ -109,5 +87,4 @@
     <script type="text/javascript" src="/static/js/components/util/alert.service.js"></script>
     <script type="text/javascript" src="/static/js/components/util/alert.directive.js"></script>
     <!-- endbuild -->
-</body>
-</html>
+{% endblock %}

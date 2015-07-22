@@ -2,8 +2,6 @@ angular.module("PostApp", [
     "ngAnimate",
     'ngSanitize',
     "module.auth",
-    "module.curtainRight",
-    "module.curtainLeft",
     "module.topbar",
     "module.model",
     'module.sharing',

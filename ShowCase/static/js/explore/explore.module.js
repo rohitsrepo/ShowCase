@@ -2,8 +2,6 @@ angular.module("ExploreApp", [
     'infinite-scroll',
     "module.auth",
     "wu.masonry",
-    "module.curtainRight",
-    "module.curtainLeft",
     "module.topbar",
     "module.model",
     'module.sharing',

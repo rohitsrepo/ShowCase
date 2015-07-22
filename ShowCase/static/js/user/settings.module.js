@@ -3,8 +3,6 @@ angular.module("UserSettingsApp", [
     "lr.upload",
     'ngAnimate',
     "module.auth",
-    "module.curtainRight",
-    "module.curtainLeft",
     "module.topbar",
     "module.model",
     'module.titlecase',

@@ -4,8 +4,6 @@ angular.module("CompositionApp", [
     "ngAnimate",
     "PostApp",
     "module.auth",
-    "module.curtainLeft",
-    "module.curtainRight",
     "module.topbar",
     "module.model",
     "module.sharing",

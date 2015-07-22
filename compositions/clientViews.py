@@ -13,7 +13,8 @@ def composition_main(request, slug):
     return render_to_response("composition.html",
         {'composition': composition,
         'top_interpretation': top_interpretation,
-        'is_collected': composition.is_bookmarked(request.user.id)})
+        'is_collected': composition.is_bookmarked(request.user.id),
+        'user': request.user})
 
 def add_interpretation(request, slug):
     composition = get_object_or_404(Composition, slug=slug)

@@ -4,8 +4,6 @@ angular.module("UserApp", [
     'ngAnimate',
     'ui.router',
     "module.auth",
-    "module.curtainRight",
-    "module.curtainLeft",
     "module.topbar",
     "module.model",
     'module.titlecase',
