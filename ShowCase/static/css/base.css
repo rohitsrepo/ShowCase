@@ -75,12 +75,24 @@ a {
   color: black;
 }
 
+body {
+  padding-top: 80px;
+}
+
 /*============= Site Header ==============*/
 .site-header {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.9);
     color: white;
     padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    transition: top 0.2s ease-in-out;
+    z-index: 1000;
+}
+
+.header-pull-up {
+    top: -85px;
 }
 
 /*-------------- Site Logo ------------------*/
