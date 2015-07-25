@@ -158,4 +158,17 @@ controller("compositionController", [
 			scope.post = scope.postData;
 		}
 	};
+}])
+.directive('toolsDrawer', [function () {
+	return function (scope, element, attrs) {
+		var open = false;
+		element.bind('click', function () {
+			if (open){
+				element.removeClass('tools-extended');
+			} else {
+				element.addClass('tools-extended');
+			}
+			open = !open;
+		})
+	};
 }]);

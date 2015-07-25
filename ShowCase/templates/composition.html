@@ -33,34 +33,6 @@
 {% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}')"{% endblock %}
 
 {% block content_block %}
-    <header class="painting-toolbar clearfix" id="painting">
-        <section class="tools-icons">
-            <!-- <img title="View Finder" class="nt-mb" ng-class="{active: isViewFinderActive, disable: isViewFinderDisable}" view-finder src="/static/css/composition/icons/viewfinder.svg">
-            <img title="Full Screen" class="nt-mb" ng-class="{active: isFullScreen, disable: isFullScreenDisable}" fullscreen src="/static/css/composition/icons/expand.svg"> -->
-            <img title="Pan & Zoom" class="nt-mb" ng-class="{active: isPanZoomActive, disable: isPanZoomDisable}" pan-zoom src="/static/css/composition/icons/pan_and_zoom.svg">
-            <img title="Color Palette" class="nt-mb" ng-class="{active: isColorPaletteActive, disable: isColorPaletteDisable}" color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/color-palette.svg">
-            <img title="No Colors" ng-class="{active: isGrayScaleActive=='active', disable: isGrayScaleDisable && isGrayScaleActive!= 'active'}" ng-click="showGrayscale()" src="/static/css/composition/icons/gray-palette.svg">
-            <img title="Outline" ng-class="{active: isOutlineActive=='active', disable: isOutlineDisable && isOutlineActive!='active'}" ng-click="showOutline()" src="/static/css/composition/icons/outline.svg">
-        </section>
-        <section ng-show="isPanZoomActive" class="zoom-icons" ng-cloak>
-            <img title="Zoom In" class="zoom-in" src="/static/css/composition/icons/zoom-in.svg">
-            <img title="Reset" class="reset" src="/static/css/composition/icons/reset.svg">
-            <img title="Zoom Out" class="zoom-out" src="/static/css/composition/icons/zoom-out.svg">
-        </section>
-        <section class="social-icons">
-            <img title="Facebook" facebook-share src="/static/css/composition/icons/facebook.svg" share-url='/arts/{{composition.slug}}'>
-            <img title="Pinterest" pinterest-share source="{{composition.matter.url}}" description="{{composition.title | title}} - interpretations and stories" src="/static/css/composition/icons/pinterest.svg" share-url='/arts/{{composition.slug}}'>
-            <img title="Tumblr" tumblr-share source="{{composition.matter.url}}" description="{{top_interpretation}}" src="/static/css/composition/icons/tumblr.svg" share-url='/arts/{{composition.slug}}'>
-            <span class="more-options">
-                <img ng-click="showMoreOptions = !showMoreOptions" title="More" src="/static/css/composition/icons/more_options.svg">
-                <ul ng-cloak ng-show="showMoreOptions" class="more-actions">
-                    <li ng-click="reportContent()">Mark Inappropriate</li>
-                    <li under-construction>Embed this Art</li>
-                </ul>
-            </span>
-        </section>
-    </header>
-
 	<section class="painting-area">
 		<div class="painting-container">
 			<ul class="palette" ng-show="isColorPaletteActive" ng-cloak>
@@ -72,7 +44,24 @@
 			<img class="painting painting-grayscale" src="{{composition.get_grayscale_url}}" ng-if="isGrayScaleActive=='active'" ng-cloak alt="{{composition.slug}} grayscale">
 			<img class="painting painting-outline" src="{{composition.get_outline_url}}" ng-if="isOutlineActive=='active'" ng-cloak alt="{{composition.slug}} outline">
 		</div>
+
+
+		<section tools-drawer class="art-tools">
+			<button class="drawer-control">
+			  <i class="material-icons">face</i>
+			</button>
+			<button>
+			  <i class="material-icons">add</i>
+			</button>
+			<button>
+			  <i class="material-icons">add</i>
+			</button>
+			<button>
+			  <i class="material-icons">add</i>
+			</button>
+		</section>
 	</section>
+
 
 	<header class="meta-header">
 		<div class="meta-header-container">

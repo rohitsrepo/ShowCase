@@ -19,12 +19,58 @@ html, body {
     height: 90%;
     padding-top: 15px;
     background: white;
+    position: relative;
 }
 
 @media (max-width: 800px) {
     .painting-area {
         height: auto;
     }
+}
+
+/*-------------- Art Tools ---------------*/
+.painting-area .art-tools {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    height: 60px;
+    overflow: hidden;
+    -webkit-transition: height 0.3s;
+    -moz-transition: height 0.3s;
+    transition: height 0.3s;
+}
+
+.art-tools button {
+    display: block;
+    height: 50px;
+    width: 50px;
+    min-width: 50px;
+    color: #E6B800;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.9);
+    border: none;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.art-tools button.drawer-control {
+    height: 60px;
+    width: 60px;
+    min-width: 60px;
+}
+
+.painting-area .tools-extended button.drawer-control,
+.art-tools button:hover {
+    background: #E6B800;
+    color: black;
+}
+
+.painting-area .tools-extended {
+    height: 210px;
+}
+
+.art-tools button i {
+    vertical-align: middle;
 }
 
 /*======================= TOOLBAR ==========================*/
