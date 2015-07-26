@@ -528,7 +528,7 @@ html, body {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.curtain-right .social button {
+.curtain-right .social a {
   font-size: 16px;
   color: #FFFFFF;
   text-align: center;
@@ -541,8 +541,12 @@ html, body {
   width: 100%;
 }
 
-.curtain-right .social button:hover {
+.curtain-right .social a:hover {
   opacity: 0.9;
+}
+
+.curtain-right .social .google {
+  background: #dd4b39;
 }
 
 .curtain-right .social .twitter {
@@ -577,6 +581,19 @@ html, body {
   color: #1C2023;
 }
 
+.curtain-right .native .login-button:hover {
+  color: #FFFFFF;
+  background: #1C2023;
+}
+
+.curtain-right .native .login-button.disabled,
+.curtain-right .native .login-button.disabled:hover {
+  opacity: 0.5;
+  color: #1C2023;
+  background-color: #FFFFFF;
+  cursor: default;
+}
+
 .curtain-right .native input.ng-invalid.ng-dirty {
   border: 2px solid rgba(255, 0, 0, 0.8);
 }
@@ -587,11 +604,6 @@ html, body {
 
 .curtain-right .native .login-error {
   color: rgba(255, 0, 0, 1);
-}
-
-.curtain-right .native .login-button:hover {
-  color: #FFFFFF;
-  background: #1C2023;
 }
 
 .curtain-right footer a {

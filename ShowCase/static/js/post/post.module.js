@@ -2,7 +2,6 @@ angular.module("PostApp", [
     "ngAnimate",
     'ngSanitize',
     "module.auth",
-    "module.topbar",
     "module.model",
     'module.sharing',
     'module.scrollTo',

@@ -1,54 +1,49 @@
-<!DOCTYPE html>
-<html ng-app="LoginApp">
-<head>
-	<title>Login - ThirdDime</title>
+{% extends "base.html" %}
+{% block html_attr_block %}ng-app="LoginApp"{% endblock %}
 
+{% block title_block %}
+	<title>Login - ThirdDime</title>
+{%endblock%}
+
+{% block meta_block %}
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
-	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
+{%endblock%}
 
+{% block css_block %}
 	<!-- build:css /static/build/login.css -->
+	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/login/main.css">
 	<!-- endbuild -->
+{%endblock%}
 
-	<script>
-		 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		 ga('create', 'UA-58563444-1', 'auto');
-		 ga('require', 'displayfeatures');
-		 ga('send', 'pageview');
-	</script>
-</head>
-<body ng-controller="loginController">
-	<topbar></topbar>
-	<div class="curtain-overlay-placeholder"></div>
+{% block body_attr_block %}ng-controller="loginController"{% endblock %}
+
+{% block content_block %}
 	<header class="primary-header">
 		<h1>Welcome to ThirdDime</h1>
 		<h2>Please login to continue.</h2>
 	</header>
 	<section class="auth clearfix">
 		<section class="social">
-			<button class="facebook" ng-click="loginFB()">LOGIN WITH FACEBOOK</button>
-			<!-- <button under-construction class="twitter" >LOGIN WITH TWITTER</button> -->
+			<a class="facebook" href="/users/login/facebook/">LOGIN WITH FACEBOOK</a>
+			<a class="google" href="/users/login/google/">LOGIN WITH GOOGLE</a>
 		</section>
 		<h5>Or</h5>	
 		<section class="native">
 			<form name="loginForm" ng-keyup="$event.keyCode == 13 ? login(user) : null">
-				<section class="login-error" ng-cloak ng-show="loginError">[[loginError]]</section>
+				
 				<input type="email" autofocus="autofocus" placeholder="E-mail" ng-model="user.email" name="uEmail" required ng-model-options="{ updateOn: 'blur' }">
-				<div ng-cloak ng-show="loginForm.$submitted || loginForm.uEmail.$dirty">
+				<div ng-cloak ng-show="loginForm.$submitted">
 				    <span ng-show="loginForm.uEmail.$error.required">Please provide an email.</span>
 				    <span ng-show="loginForm.uEmail.$error.email">This is not a valid email.</span>
 			   </div>
 				<input type="password" placeholder="Password" ng-model="user.password" name="uPassword" required >
-				<div ng-loak ng-show="loginForm.$submitted || loginForm.uPassword.$dirty">
+				<div ng-loak ng-show="loginForm.$submitted">
 				    <span ng-show="loginForm.uPassword.$error.required">Please provide a password.</span>
 			   </div>
-				<input class="login-button" type="button" name="login" value="LOGIN" ng-click="login(user)">
+				<input class="login-button" ng-class="{'disabled': loginForm.$invalid}" ng-disabled="loginForm.$invalid" type="button" name="login" value="LOGIN" ng-click="login(user)">
 			</form>
 			<footer>
 				<a href="">Forgotten your password?</a>
@@ -56,36 +51,25 @@
 			</footer>
 		</section>
 	</section>
-	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+{% endblock %}
+
+{% block script_block %}
 	<!-- build:js /static/build/login.js -->
-	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
-	<script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
-	
 	<script type="text/javascript" src="/static/js/login/login.module.js"></script>
 	<script type="text/javascript" src="/static/js/login/login.controller.js"></script>
 	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
 	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
 	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
-	<script type="text/javascript" src="/static/js/authentication/facebook.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
 	<script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
-	<script type="text/javascript" src="/static/js/components/underConstruction/underConstruction.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/underConstruction/underConstruction.controller.js"></script>
 	<script type="text/javascript" src="/static/js/components/analytics/analytics.service.js"></script>
 	<script type="text/javascript" src="/static/js/components/analytics/analytics.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/util/util.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/util/progress.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/util/progress.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/util/alert.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/util/alert.directive.js"></script>
 	<!-- endbuild -->
-</body>
-</html>
+{% endblock %}

@@ -1,8 +1,6 @@
 angular.module("LoginApp")
-.controller("loginController", ["$scope", "auth", 'facebook', '$location', function ($scope, auth, facebook, $location) {
+.controller("loginController", ["$scope", "auth", '$location', "progress", "alert", function ($scope, auth, $location, progress, alert) {
 	"use strict";
-
-	$scope.hideLogin = true;
 
     var next = '/';
     $scope.init = function () {
@@ -11,18 +9,13 @@ angular.module("LoginApp")
     $scope.init();
 
 	$scope.login = function (user) {
+		progress.showProgress();
+
 		auth.login(user.email, user.password, next).then(function () {
-			$scope.loginError = '';
+			progress.hideProgress();
 		}, function (error) {
-			$scope.loginError = error;
+			progress.hideProgress();
+			alert.showAlert(error);
 		});
 	};
-
-	$scope.loginFB = function () {
-    	facebook.login(next).then(function(response){
-			$scope.loginError = '';
-			}, function (error) {
-			$scope.loginError = error;
-		})
-    };
 }]);

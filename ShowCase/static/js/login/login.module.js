@@ -1,12 +1,11 @@
 angular.module("LoginApp", [
+	'ngAnimate',
     "module.auth",
-    "module.curtainRight",
-    "module.curtainLeft",
-    "module.topbar",
     "module.model",
     'module.titlecase',
     'module.scrollTo',
-    'module.analytics'])
+    'module.analytics',
+    'module.util'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

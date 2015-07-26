@@ -3,22 +3,22 @@
 		<section class="login">
 			<h4>Login</h4>
 			<fieldset class="social">
-				<button class="facebook" ng-click="loginFB()" analytics-click analytics-data="['Top Bar-Right', 'SignUp-FaceBook']">Log in with Facebook</button>
-				<!-- <button class="twitter" >Login with Twitter</button> -->
+				<a class="facebook" href="/users/login/facebook/" analytics-click analytics-data="['Top Bar-Right', 'SignUp-FaceBook']">LOGIN WITH FACEBOOK</a>
+				<a class="google" href="/users/login/google/" analytics-click analytics-data="['Top Bar-Right', 'SignUp-Google']">LOGIN WITH GOOGLE</a>
 			</fieldset>
 			<h6>Or</h6>	
 			<form name="loginForm" class="native" ng-keyup="$event.keyCode == 13 ? login(user) : null">
-				<section class="login-error" ng-cloak ng-show="loginError">[[loginError]]</section>
+				
 				<input type="email" placeholder="E-mail" autofocus="autofocus" ng-model="user.email" name="uEmail" required ng-model-options="{ updateOn: 'blur' }">
-				<div ng-cloak ng-show="loginForm.$submitted || loginForm.uEmail.$dirty">
+				<div ng-cloak ng-show="loginForm.$submitted">
 				    <span ng-show="loginForm.uEmail.$error.required">Please provide an email.</span>
 				    <span ng-show="loginForm.uEmail.$error.email">This is not a valid email.</span>
 			   </div>
 				<input type="password" placeholder="Password" ng-model="user.password" name="uPassword" required>
-				<div ng-loak ng-show="loginForm.$submitted || loginForm.uPassword.$dirty">
+				<div ng-loak ng-show="loginForm.$submitted">
 				    <span ng-show="loginForm.uPassword.$error.required">Please provide a password.</span>
 			   </div>
-				<input class="login-button" type="button" value="LOGIN" ng-click="login(user)" analytics-click analytics-data="['Top Bar-Right', 'SignUp-Native']">
+				<input class="login-button" ng-class="{'disabled': loginForm.$invalid}" ng-disabled="loginForm.$invalid" type="button" value="LOGIN" ng-click="login(user)" analytics-click analytics-data="['Top Bar-Right', 'SignUp-Native']">
 			</form>
 		</section>
 		<footer>

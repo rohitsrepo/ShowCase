@@ -1,5 +1,6 @@
 angular.module("ReaderApp", [
     'infinite-scroll',
+    'ngAnimate',
     "module.auth",
     "module.curtainRight",
     "module.curtainLeft",

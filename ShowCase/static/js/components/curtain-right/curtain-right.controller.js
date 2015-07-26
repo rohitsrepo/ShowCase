@@ -1,21 +1,16 @@
 angular.module("module.curtainRight")
-.controller('rightCurtainController', ['$scope', "auth", "$location", 'facebook', function ($scope, auth, $location, facebook) {
+.controller('rightCurtainController', ['$scope', "auth", "$location", "progress", "alert", function ($scope, auth, $location, progress, alert) {
 	'use strict';
 
 	$scope.login = function (user) {
-		auth.login(user.email, user.password, $location.absUrl()).then(function (response) {
-			$scope.loginError = '';
+		progress.showProgress();
+
+		auth.login(user.email, user.password, $location.absUrl()).then(function () {
+			progress.hideProgress();
 		}, function (error) {
-			$scope.loginError = error;
+			progress.hideProgress();
+			alert.showAlert(error);
 		});
 	};
-
-    $scope.loginFB = function () {
-    	facebook.login($location.absUrl()).then(function(response){
-			$scope.loginError = '';
-			}, function (error) {
-			$scope.loginError = error;
-		})
-    };
 
 }]);
