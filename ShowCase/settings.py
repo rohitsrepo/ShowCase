@@ -65,6 +65,12 @@ INSTALLED_APPS = (
     'posts',
     'postVotes',
     'postComments',
+    'allaccess',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allaccess.backends.AuthorizedServiceBackend',
 )
 
 MIDDLEWARE_CLASSES = (

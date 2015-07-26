@@ -65,10 +65,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     FACEBOOK = 'FB'
     TWITTER = 'TW'
+    GOOGLE = 'GG'
     NATIVE = 'NT'
     LOGIN_CHOICES = (
         (FACEBOOK, 'facebook'),
         (TWITTER, 'twitter'),
+        (GOOGLE, 'google'),
         (NATIVE, 'native'),
     )
 
@@ -111,12 +113,17 @@ class User(AbstractBaseUser, PermissionsMixin):
 
         #TODO this should not happen on every save
         #TODO delete old file on picture update
-        if settings.DEFAULT_USER_PICTURE not in self.picture.url:
+        if not self.has_default_picture():
             resize_profile(self.picture.path)
 
 
     def __unicode__(self):
         return self.get_full_name()
+
+    def has_default_picture(self):
+        if settings.DEFAULT_USER_PICTURE not in self.picture.url:
+            return False
+        return True
 
     def get_full_name(self):
         return self.name
