@@ -4,7 +4,6 @@ angular.module("UserApp", [
     'ngAnimate',
     'ui.router',
     "module.auth",
-    "module.topbar",
     "module.model",
     'module.titlecase',
     'module.scrollTo',

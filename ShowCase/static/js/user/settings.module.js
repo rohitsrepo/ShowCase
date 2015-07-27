@@ -3,7 +3,6 @@ angular.module("UserSettingsApp", [
     "lr.upload",
     'ngAnimate',
     "module.auth",
-    "module.topbar",
     "module.model",
     'module.titlecase',
     'module.scrollTo',
