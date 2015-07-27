@@ -290,3 +290,185 @@ body {
   text-align: center;
   margin-top: 18px;
 }
+
+/*============= Login Modal ================*/
+.login-modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3000;
+  background: rgba(255, 255, 255, 0.99);
+}
+
+.login-modal .modal-action {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+}
+
+.login-modal .modal-action button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1.2em;
+}
+
+.login-modal .modal-action button:hover {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.login-modal .modal-content {
+  width: 70%;
+  margin: 0 auto;
+  padding-top: 120px;
+}
+
+.modal-content header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.modal-content header h2 {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 3em;
+  font-weight: bold;
+  line-height: 1.5em;
+  letter-spacing: 1px;
+}
+
+.modal-content header h3 {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1.2em;
+}
+
+/*------------- Social Login ------------*/
+
+.modal-content .login-social {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.social-actions .social-action {
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 2em;
+  font-size: 0.9em;
+  color: #FFFFFF;
+  text-align: center;
+  display: inline-block;
+  padding: 1em 1.5em;
+  cursor: pointer;
+  border: none;
+  opacity: 0.9;
+}
+
+.social-actions .social-action:hover {
+  opacity: 1;
+}
+
+.social-actions .social-action.twitter {
+  background: #00ADE9;
+}
+
+.social-actions .social-action.google {
+  background: #dd4b39;
+}
+
+.social-actions .social-action.facebook  {
+  background: #3C5A9D;
+}
+
+.login-social footer h4 {
+  font-size: 1em;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 15px;
+}
+
+.login-social footer h6 {
+  font-size: 1em;
+  color: #E6B800;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.login-social footer h6:hover {
+  text-decoration: underline;
+}
+
+/*------------- Naitve Login ------------*/
+.modal-content .login-native {
+  width: 100%;
+}
+
+.login-native .native-form {
+  width: 50%;
+  display: inline-block;
+  padding: 0 50px;
+  vertical-align: top;
+}
+
+.login-native .native-form input {
+  display: block;
+  font-size: 1em;
+  padding: 1em 1.5em;
+  width: 100%;
+  margin: 10px 0;
+  margin-top: 0;
+  width: 100%;
+}
+
+.login-native .native-form input:focus {
+  border: 2px solid rgba(0, 0, 0, 0.8);
+}
+
+.login-native .native-form input.ng-invalid.ng-dirty {
+  border: 2px solid rgba(255, 0, 0, 0.8);
+}
+
+.login-native .native-form form.ng-submitted input.ng-invalid {
+  border: 2px solid rgba(255, 0, 0, 0.8);
+}
+
+.login-native .native-form .native-action-button {
+  display: inline-block;
+  padding: 1em 1.5em;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  border: 2px solid #1C2023;
+  color: #1C2023;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  word-spacing: .5em;
+}
+
+.login-native .native-form .native-action-button:hover {
+  color: #FFFFFF;
+  background: #1C2023;
+}
+
+.login-native .native-form .native-action-button.disabled,
+.login-native .native-form .native-action-button.disabled:hover {
+  color: #1C2023;
+  background-color: #FFFFFF;
+  opacity: 0.5;
+  cursor: default;
+}
+
+
+.login-native footer h6 {
+  font-size: 1em;
+  color: #E6B800;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.login-native footer h6:hover {
+  text-decoration: underline;
+}

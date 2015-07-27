@@ -1,0 +1,63 @@
+<section class="login-modal">
+	<section class="modal-action">
+		<button ng-click="closeModal()">X</button>
+	</section>
+
+	<div class="modal-content">
+		
+		<header>
+			<h2>ThirdDime</h2>
+			<h3>We are glad to have on this journey together</h3>
+		</header>
+		<section class="login-social" ng-cloak ng-hide="showNative">
+
+			<div class="social-actions">
+				<button class="social-action facebook" ng-click="">CONNECT WITH FACEBOOK</button>
+				<button class="social-action google" ng-click="">CONNECT WITH GOOGLE</button>
+				<button class="social-action twitter" ng-click="">CONNECT WITH TWITTER</button>
+			</div>
+
+			<footer>
+				<h4>We will never post anything without your permission</h4>
+				<h6 ng-click="toggleLoginType()">SignUp or SignIn using email</h6>
+			</footer>
+		</section>
+
+		<section ng-cloak ng-show="showNative" class="login-native">
+			<form class="native-form" name="nativeRegisterForm" ng-keyup="$event.keyCode == 13 ? register(newUser) : null" novalidate>
+				<input type="text" placeholder="Name" ng-model="newUser.name" name="uname" maxlength="80" required>
+				<div ng-cloak ng-show="nativeRegisterForm.$submitted">
+				    <span ng-show="nativeRegisterForm.uname.$error.required">Please provide a name.</span>
+			    </div>
+				<input type="email" placeholder="E-mail" ng-model="newUser.email" name="uemail" required ng-model-options="{ updateOn: 'blur' }">
+				<div ng-cloak ng-show="nativeRegisterForm.$submitted">
+				    <span ng-show="nativeRegisterForm.uemail.$error.required">Please provide an email.</span>
+				    <span ng-show="nativeRegisterForm.uemail.$error.email">This is not a valid email.</span>
+			    </div>
+				<input type="password" placeholder="Password" ng-model="newUser.password" required name="upassword">
+				<div ng-cloak ng-show="nativeRegisterForm.$submitted">
+				    <span ng-show="nativeRegisterForm.upassword.$error.required">Please provide a password.</span>
+			    </div>
+				<input class="native-action-button" ng-class="{'disabled': nativeRegisterForm.$invalid}" ng-disabled="nativeRegisterForm.$invalid" type="submit" name="login" value="CREATE ACCOUNT" ng-click="register(newUser)">
+			</form><!--
+
+			--><form class="native-form" name="nativeLoginForm" ng-keyup="$event.keyCode == 13 ? login(existingUser) : null">
+				
+				<input type="email" autofocus="autofocus" placeholder="E-mail" ng-model="existingUser.email" name="uEmail" required ng-model-options="{ updateOn: 'blur' }">
+				<div ng-cloak ng-show="nativeLoginForm.$submitted">
+				    <span ng-show="nativeLoginForm.uEmail.$error.required">Please provide an email.</span>
+				    <span ng-show="nativeLoginForm.uEmail.$error.email">This is not a valid email.</span>
+			    </div>
+				<input type="password" placeholder="Password" ng-model="existingUser.password" name="uPassword" required >
+				<div ng-loak ng-show="nativeLoginForm.$submitted">
+				    <span ng-show="nativeLoginForm.uPassword.$error.required">Please provide a password.</span>
+			    </div>
+				<input class="native-action-button" ng-class="{'disabled': nativeLoginForm.$invalid}" ng-disabled="nativeLoginForm.$invalid"  type="button" name="login" value="LOGIN" ng-click="login(existingUser)">
+			</form>
+
+			<footer>
+				<h6 ng-click="toggleLoginType()">SignUp or SignIn using social media</h6>
+			</footer>
+		</section>
+	</div>
+</section>

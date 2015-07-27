@@ -1,5 +1,5 @@
 angular.module('module.auth')
-.factory('auth', ['userModel', '$window', '$q', function (userModel, $window, $q) {
+.factory('auth', ['userModel', '$window', '$q', 'loginModal', function (userModel, $window, $q, loginModal) {
 
 	var isAuthenticated = function () {
 		return !!service.currentUser;
