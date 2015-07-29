@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from allaccess.views import OAuthRedirect, OAuthCallback
 from .models import User
 from django.core.urlresolvers import reverse
@@ -65,3 +66,20 @@ class CustomUserCallback(OAuthCallback):
 
         return super(CustomUserCallback, self).handle_existing_user(provider, user, access, info)
 
+    def get_error_redirect(self, provider, reason):
+        "Return url to redirect on login failure."
+        return reverse('auth-failure', kwargs={'provider': provider.name})
+
+    def get_login_redirect(self, provider, user, access, new=False):
+        "Return url to redirect authenticated users."
+        return reverse('auth-success', kwargs={'provider': provider.name})
+
+def auth_success(request, provider):
+    response = HttpResponse("Successfully logged in.....redirecting");
+    response.set_cookie('userLoggedIn', provider);
+    return response
+
+def auth_failure(request, provider):
+    response = HttpResponse("Failed to log in.....redirecting");
+    response.set_cookie('userLoggedNot', provider);
+    return response

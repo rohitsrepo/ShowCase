@@ -1,4 +1,5 @@
 angular.module("ExploreApp", [
+    'ngAnimate',
     'infinite-scroll',
     "module.auth",
     "wu.masonry",
@@ -24,12 +25,12 @@ angular.module("ExploreApp", [
 }]).factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
     'use strict';
     return {
-        responseError: function (response) {
-            if (response.status === 403) {
-                $window.location.href = "/login#?next=" + $window.location.pathname;
-            }
-            return $q.reject(response);
-        }
+        // responseError: function (response) {
+        //     if (response.status === 403) {
+        //         $window.location.href = "/login#?next=" + $window.location.pathname;
+        //     }
+        //     return $q.reject(response);
+        // }
     };
 }]).run(['auth', function (auth) {
 	auth.getCurrentUser();

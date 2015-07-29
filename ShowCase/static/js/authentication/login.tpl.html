@@ -12,9 +12,9 @@
 		<section class="login-social" ng-cloak ng-hide="showNative">
 
 			<div class="social-actions">
-				<button class="social-action facebook" ng-click="">CONNECT WITH FACEBOOK</button>
-				<button class="social-action google" ng-click="">CONNECT WITH GOOGLE</button>
-				<button class="social-action twitter" ng-click="">CONNECT WITH TWITTER</button>
+				<button class="social-action facebook" ng-click="socialLogger('facebook')">CONNECT WITH FACEBOOK</button>
+				<button class="social-action google" ng-click="socialLogger('google')">CONNECT WITH GOOGLE</button>
+				<button class="social-action twitter" ng-click="socialLogger('twitter')">CONNECT WITH TWITTER</button>
 			</div>
 
 			<footer>
@@ -38,7 +38,7 @@
 				<div ng-cloak ng-show="nativeRegisterForm.$submitted">
 				    <span ng-show="nativeRegisterForm.upassword.$error.required">Please provide a password.</span>
 			    </div>
-				<input class="native-action-button" ng-class="{'disabled': nativeRegisterForm.$invalid}" ng-disabled="nativeRegisterForm.$invalid" type="submit" name="login" value="CREATE ACCOUNT" ng-click="register(newUser)">
+				<input class="native-action-button" ng-class="{'disabled': nativeRegisterForm.$invalid}" ng-disabled="nativeRegisterForm.$invalid" type="button" name="register" value="CREATE ACCOUNT" ng-click="register(newUser)">
 			</form><!--
 
 			--><form class="native-form" name="nativeLoginForm" ng-keyup="$event.keyCode == 13 ? login(existingUser) : null">

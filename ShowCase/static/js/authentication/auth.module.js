@@ -1,1 +1,1 @@
-angular.module('module.auth', ['module.model']);
+angular.module('module.auth', ['ngCookies', 'module.model']);

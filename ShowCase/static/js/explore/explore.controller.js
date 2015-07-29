@@ -1,6 +1,6 @@
 angular.module('ExploreApp')
-.controller('exploreController', ['$scope', 'compositionModel', '$timeout', 'userModel', 'alert', 'progress',
-	function ($scope, compositionModel, $timeout, userModel, alert, progress) {
+.controller('exploreController', ['$scope', 'compositionModel', '$timeout', 'userModel', 'alert', 'progress', 'auth',
+	function ($scope, compositionModel, $timeout, userModel, alert, progress, auth) {
 
 	$scope.arts = [];
 	$scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
@@ -43,16 +43,18 @@ angular.module('ExploreApp')
 	$scope.loadMoreArts();
 
 	$scope.addToCollection = function (index) {
-		art = $scope.arts[index]
-		progress.showProgress();
-		userModel.addToCollection(art.id).then(function (response) {
-			$scope.arts[index].is_collected = true;
-			progress.hideProgress();
-		}, function () {
-			progress.hideProgress();
-			alert.showAlert('We are unable to process your response');
+		auth.runWithAuth(function () {
+			art = $scope.arts[index]
+			progress.showProgress();
+			userModel.addToCollection(art.id).then(function (response) {
+				$scope.arts[index].is_collected = true;
+				progress.hideProgress();
+			}, function () {
+				progress.hideProgress();
+				alert.showAlert('We are unable to process your response');
+			});
 		});
-	};
+	}
 
 	$scope.removeFromCollection = function (index) {
 		art = $scope.arts[index]

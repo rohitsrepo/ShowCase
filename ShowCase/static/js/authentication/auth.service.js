@@ -1,5 +1,5 @@
 angular.module('module.auth')
-.factory('auth', ['userModel', '$window', '$q', function (userModel, $window, $q) {
+.factory('auth', ['userModel', '$window', '$q', '$rootScope', 'loginModal', function (userModel, $window, $q, $rootScope, loginModal) {
 
 	var isAuthenticated = function () {
 		return !!service.currentUser;
@@ -19,10 +19,18 @@ angular.module('module.auth')
 
 	var service = {};
 	service.login = function (email, password, nextUrl) {
-		return userModel.login(email, password).then(function (user) {
-			currentUser = user;
+		return service.loginRaw(email, password).then(function () {
 			var next_url = nextUrl || "/"
 			redirect(next_url);
+		}, function (error) {
+			return $q.reject(error);
+		});
+	}
+
+	service.loginRaw = function (email, password) {
+		return userModel.login(email, password).then(function (user) {
+			currentUser = user;
+			$rootScope.userIsNowLoggedIn = true;
 			return $q.when(user);
 		}, function (response) {
 			var error;
@@ -50,18 +58,32 @@ angular.module('module.auth')
 
 	service.getCurrentUser = function () {
 		if (isAuthenticated()){
+			$rootScope.userIsNowLoggedIn = true;
 			return $q.when(service.currentUser);
 		} else {
 			return userModel.getCurrentUser().then(function (user) {
 				service.currentUser = user;
+				$rootScope.userIsNowLoggedIn = true;
 				return service.currentUser;
+			}, function () {
+				return $q.reject();
 			});
 		}
 	};
 
 	service.registerUser = function (user, next_url) {
-		return userModel.addUser(user).then(function (response){
+		return service.registerUserRaw(user).then(function(user){
 			redirect(next_url || '/');
+		}, function (error) {
+			return $q.reject(error);
+		});
+	};
+
+	service.registerUserRaw = function (user) {
+		return userModel.addUser(user).then(function (user){
+			currentUser = user;
+			$rootScope.userIsNowLoggedIn = true;
+			return $q.when(user);
 		}, function (response) {
 			if (response.status === 400) {
 				return $q.reject("We are unable to process this request. Please check the information you have provided.");
@@ -73,6 +95,31 @@ angular.module('module.auth')
 				return $q.reject("We are unable to process this request. Please try again later.");
 			}
 		});
+	};
+
+	var showLoginModal = function () {
+
+		return loginModal.showModal({
+			'templateUrl': '/static/js/authentication/login.tpl.html',
+			'controller': 'loginModalController'
+		});
+	};
+
+	service.runWithAuth = function (callback) {
+
+		return service.getCurrentUser().then(function (user) {
+			callback();
+		}, function () {
+			showLoginModal().then(function (modal) {
+				modal.close.then(function (response) {
+					if (response == "LoggedIn") {
+						service.getCurrentUser();   // call to make sure auth service has the new user
+						callback();
+					}
+				});
+			});
+			
+		})
 	};
 
 	return service;
