@@ -1,10 +1,4 @@
-angular.module("RegisterApp", [
-	"ngAnimate",
-	"module.auth",
-	'module.scrollTo',
-	'module.titlecase',
-	'module.analytics',
-	'module.util'])
+angular.module("RegisterApp", ['module.root'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

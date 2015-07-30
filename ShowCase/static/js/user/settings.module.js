@@ -1,12 +1,7 @@
 angular.module("UserSettingsApp", [
     'infinite-scroll',
     "lr.upload",
-    'ngAnimate',
-    "module.auth",
-    "module.model",
-    'module.titlecase',
-    'module.scrollTo',
-    'module.util'])
+    'module.root'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
     "use strict";
 

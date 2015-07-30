@@ -1,16 +1,9 @@
 angular.module("CompositionApp", [
     'ngSanitize',
     'infinite-scroll',
-    "ngAnimate",
     "PostApp",
-    "module.auth",
-    "module.model",
-    "module.sharing",
-    'module.scrollTo',
-    'module.tools',
-    'module.titlecase',
-    'module.analytics',
-    'module.util'])
+    'module.root',
+    'module.tools'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

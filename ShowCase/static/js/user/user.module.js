@@ -1,14 +1,8 @@
 angular.module("UserApp", [
     'infinite-scroll',
     "lr.upload",
-    'ngAnimate',
     'ui.router',
-    "module.auth",
-    "module.model",
-    'module.titlecase',
-    'module.scrollTo',
-    'module.util',
-    'module.analytics'])
+    "module.root"])
 .config(['$httpProvider', '$interpolateProvider', '$stateProvider', '$urlRouterProvider', function ($httpProvider, $interpolateProvider, $stateProvider, $urlRouterProvider) {
     "use strict";
 

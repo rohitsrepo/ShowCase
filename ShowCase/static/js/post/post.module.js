@@ -1,12 +1,6 @@
 angular.module("PostApp", [
-    "ngAnimate",
     'ngSanitize',
-    "module.auth",
-    "module.model",
-    'module.sharing',
-    'module.scrollTo',
-    'module.titlecase',
-    'module.util'])
+    'module.root'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
     "use strict";
 

@@ -108,13 +108,17 @@ angular.module('module.auth')
 	service.runWithAuth = function (callback) {
 
 		return service.getCurrentUser().then(function (user) {
-			callback();
+			if (typeof callback == 'function') {
+				callback();
+			}
 		}, function () {
 			showLoginModal().then(function (modal) {
 				modal.close.then(function (response) {
 					if (response == "LoggedIn") {
 						service.getCurrentUser();   // call to make sure auth service has the new user
-						callback();
+						if (typeof callback == 'function') {
+							callback();
+						}
 					}
 				});
 			});

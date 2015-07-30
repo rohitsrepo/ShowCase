@@ -9,7 +9,7 @@ from rest_framework import generics, permissions
 from .permissions import IsHimselfOrReadOnly, IsHimself
 from django.contrib.auth import authenticate, login, logout
 from ShowCase.utils import check_object_permissions
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from rest_framework.views import APIView
 from compositions.models import Composition
 from compositions.serializers import CompositionSerializer
@@ -248,7 +248,9 @@ def login_user(request, format=None):
 @permission_classes((permissions.AllowAny,))
 def logout_user(request, format=None):
     logout(request)
-    return Response(status=status.HTTP_200_OK)
+
+    next_url = request.GET.get('next', '/')
+    return redirect(next_url)
 
 
 @api_view(['GET'])

@@ -1,14 +1,7 @@
 angular.module("ExploreApp", [
-    'ngAnimate',
     'infinite-scroll',
-    "module.auth",
     "wu.masonry",
-    "module.model",
-    'module.sharing',
-    'module.scrollTo',
-    'module.titlecase',
-    'module.analytics',
-    'module.util'])
+    "module.root"])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

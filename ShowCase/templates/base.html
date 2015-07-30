@@ -26,7 +26,7 @@
 
     {% block site_header_block %}
 
-    <header header-scroll class="site-header">
+    <header header-scroll class="site-header" ng-controller="headerController">
         <a class="site-logo" href="/">
             <img src="/static/images/header-md.png"  analytics-click analytics-data="['Top Bar-Left', 'Logo']">
             <section class="site-name" fade-on-scroll ng-cloak ng-hide="hideName" analytics-click analytics-data="['Top Bar-Left', 'Logo - Name']">
@@ -61,11 +61,11 @@
               <li class="mdl-menu__item"><i class="material-icons">face</i>Profile</li>
               <li class="mdl-menu__item"><i class="material-icons">list</i>Collection</li>
               <li class="mdl-menu__item"><i class="material-icons">settings</i>Settings</li>
-              <a href="/users/logout" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
+              <a href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
             </ul>
 
         {% else %}
-            <h3 ng-cloak ng-hide="userIsNowLoggedIn">SIGNUP/LOGIN</h3>
+            <h3 ng-cloak ng-hide="userIsNowLoggedIn" ng-click="authorize()">SIGNUP/LOGIN</h3>
 
             <button ng-cloak ng-show="userIsNowLoggedIn" id="user-profile" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect">
               <i class="material-icons">reorder</i>
@@ -76,7 +76,7 @@
               <li class="mdl-menu__item"><i class="material-icons">face</i>Profile</li>
               <li class="mdl-menu__item"><i class="material-icons">list</i>Collection</li>
               <li class="mdl-menu__item"><i class="material-icons">settings</i>Settings</li>
-              <a href="/users/logout" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
+              <a href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
             </ul>
         {% endif %}
         </section>
@@ -128,6 +128,9 @@
     
     <script type="text/javascript" src="/static/js/components/analytics/analytics.service.js"></script>
     <script type="text/javascript" src="/static/js/components/analytics/analytics.directive.js"></script>
+
+    <script type="text/javascript" src="/static/js/root/root.module.js"></script>
+    <script type="text/javascript" src="/static/js/root/header.controller.js"></script>
     <!-- endbuild -->
 
     {% block script_block %}{% endblock %}
