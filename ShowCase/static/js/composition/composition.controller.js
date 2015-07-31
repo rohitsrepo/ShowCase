@@ -171,4 +171,17 @@ controller("compositionController", [
 			open = !open;
 		})
 	};
-}]);
+}]).directive('fitImage', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+        	imagesLoaded(element, function () {
+               imgElement = element[0]
+
+                if (imgElement.width/$(window).width() > 0.8){
+                    element.addClass('landscape');
+                }
+            })
+        }
+    }
+});

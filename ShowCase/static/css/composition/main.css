@@ -73,134 +73,6 @@ html, body {
     vertical-align: middle;
 }
 
-/*======================= TOOLBAR ==========================*/
-
-.painting-toolbar {
-    width: 100%;
-    background: rgba(0, 0, 0, .9);
-    position: relative;
-}
-
-.painting-tooolbar section {
-    display: inline-block;
-}
-
-.painting-toolbar img {
-    box-sizing: content-box;
-    height: 2.5em;
-    width: 2.5em;
-    margin: 0 5px;
-    cursor: pointer;
-    opacity: 0.5;
-    padding: 10px 0;
-    padding-top: 10px;
-    padding-bottom: 7px;
-    border-bottom: 3px solid rgba(0, 0, 0, 0);
-}
-
-.painting-toolbar  img.active {
-    opacity: 1;
-    border-bottom: 3px solid green;
-}
-
-.painting-toolbar img:hover {
-    opacity: .95;
-}
-
-.painting-toolbar img.disable {
-    opacity: 0;
-    cursor: default;
-}
-
-.painting-toolbar .zoom-icons {
-    position:absolute;
-    left: 45%;
-}
-
-.painting-toolbar .social-icons{
-    float: right;
-    padding-right: 15%;
-}
-
-.painting-toolbar .tools-icons{
-    float: left;
-    padding-left: 15%;
-}
-
-@media (max-width: 800px) {
-    .painting-toolbar .social-icons{
-        display: block;
-        text-align: center;
-        padding: 0;
-        float: none;
-    }
-
-    .painting-toolbar .tools-icons{
-        display: block;
-        text-align: center;
-        padding: 0;
-        float: none;
-    }
-}
-
-/*=========== More actions ===========*/
-
-.painting-toolbar .more-options {
-    position: relative;
-    display: inline-block;
-}
-.painting-toolbar .more-actions {
-    background-color: white;
-    position: absolute;
-    top: 135%;
-    left: 0;
-    width: 200px;
-    border: 2px solid #585858;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px;
-    z-index: 1;
-}
-
-
-.painting-toolbar .more-actions:after, .painting-toolbar .more-actions:before {
-    bottom: 100%;
-    left: 25px;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-}
-
-.painting-toolbar .more-actions:after {
-    border-bottom-color: white;
-    border-width: 10px;
-    margin-left: -10px;
-}
-
-.painting-toolbar .more-actions:before {
-    border-bottom-color: #585858;
-    border-width: 13px;
-    margin-left: -13px;
-}
-
-.painting-toolbar .more-actions li {
-    text-align: left;
-    color: #585858;
-    font-size: 13px;
-    margin: 10px 0;
-    margin-left: 25px;
-    cursor: pointer;
-}
-
-.painting-toolbar .more-actions li:hover {
-    color: #0C0C0C;
-}
-
 /*=========== Painting area ============*/
 
 .painting-container {
@@ -210,6 +82,8 @@ html, body {
     overflow: hidden;
     position: relative;
     background: white;
+    display: inline-block;
+    vertical-align: bottom;
 }
 
 .painting-container .zm-wrap {
@@ -220,6 +94,15 @@ html, body {
 .painting {
     height: 100%;
     width: auto;
+}
+
+.painting.landscape {
+    width: 60%;
+    height: auto;
+    margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .painting-original.ng-hide-remove {

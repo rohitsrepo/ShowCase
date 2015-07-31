@@ -24,7 +24,7 @@ def delete_existing_data():
     print "Deleted media"
 
 def add_composition_data(composition):
-    image_num = random.randint(1, 5)
+    image_num = random.randint(1, 15)
     image_path = "devScripts/resources/image{0}.jpg".format(image_num)
     composition.matter = (File(open(image_path)))
     composition.title = ['The Scream', 'Heat of Ice', "Tale of Brittle Truth", 'journey to end'][random.randint(0,3)]
