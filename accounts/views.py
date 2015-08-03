@@ -1,5 +1,5 @@
 from .models import User
-from .serializers import NewUserSerializer, ExistingUserSerializer, PasswordUserSerializer, FollowSerializer
+from .serializers import NewUserSerializer, ExistingUserSerializer, PasswordUserSerializer
 from .artistSerializers import PaginatedUserCompositionSerializer, PaginatedUserInterpretationSerializer
 from django.http import Http404
 from rest_framework.response import Response
@@ -91,57 +91,6 @@ class UserDetail(APIView):
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class UserBookmarksAdd(APIView):
-
-    '''
-    Retrieves, updates and deletes a particular user.
-    '''
-
-    permission_classes = ((permissions.IsAuthenticatedOrReadOnly,))
-
-    def post(self, request, format=None):
-        bookmarks = request.DATA.get('bookmarks')
-        if not bookmarks:
-            return Response({"bookmarks": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
-        request.user.bookmarks.add(*bookmarks)
-        return Response(status=status.HTTP_201_CREATED)
-
-class UserBookmarksDelete(APIView):
-
-    '''
-    Retrieves, updates and deletes a particular user.
-    '''
-
-    permission_classes = ((permissions.IsAuthenticatedOrReadOnly,))
-
-    def delete(self, request, pk, format=None):
-        request.user.bookmarks.remove(pk)
-        return Response(status=status.HTTP_201_CREATED)
-
-class UserBookmarksRead(APIView):
-
-    '''
-    Retrieves, updates and deletes a particular user.
-    '''
-
-    permission_classes = ((permissions.AllowAny,))
-
-    def get(self, request, pk, format=None):
-        user = get_object_or_404(User, pk=pk)
-        user_collection = user.bookmarks.all().order_by('-id')
-
-        page_num = request.GET.get('page', 1)
-        paginator = Paginator(user_collection, 9)
-
-        try:
-            this_page_compositions = paginator.page(page_num)
-        except PageNotAnInteger:
-            this_page_compositions = paginator.page(1)
-        except EmptyPage:
-            raise Http404
-
-        serializer = PaginatedUserCompositionSerializer(this_page_compositions)
-        return Response(data=serializer.data)
 
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated, IsHimself))
@@ -337,22 +286,3 @@ def get_uploads(request, pk, format=None):
     serializer = PaginatedUserCompositionSerializer(this_page_compositions)
     return Response(data=serializer.data)
 
-@api_view(['GET', 'PUT', 'POST'])
-@permission_classes((permissions.IsAuthenticated, IsHimself))
-def user_follows(request, pk, format=None):
-    check_object_permissions(
-        request, user_follows.cls.permission_classes, User.objects.get(pk=pk))
-    if request.method == 'GET':
-        serializer = FollowSerializer(request.user, context={request: request})
-        return Response(serializer.data)
-    elif request.method == 'PUT':
-        follows = request.DATA.get('follows')
-        request.user.follows.add(*follows)
-        serializer = FollowSerializer(request.user)
-
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        follows = request.DATA['follows']
-        request.user.follows.remove(*follows)
-        serializer = FollowSerializer(request.user)
-        return Response(serializer.data)

@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import User
 from django.forms import widgets
 from django.contrib.auth.hashers import make_password
-from ShowCase.serializers import URLImageField
+from rest_framework.pagination import PaginationSerializer
 
 
 class NewUserSerializer(serializers.ModelSerializer):
@@ -53,9 +53,7 @@ class PasswordUserSerializer(serializers.Serializer):
             raise serializers.ValidationError(
                 "Old password that you entered is not a valid password")
 
-class FollowSerializer(serializers.ModelSerializer):
 
+class PaginatedUserSerializer(PaginationSerializer):
     class Meta:
-        model = User
-        fields = ('follows',)
-        depth = 1
+        object_serializer_class = ExistingUserSerializer
