@@ -7,6 +7,7 @@ from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
 from votes.models import Vote
+from posts.models import Post
 from .utils import GrayScaleAndSketch
 from .imageTools import generate_size_versions, WIDTH_READER, WIDTH_STICKY, compress
 
@@ -111,6 +112,13 @@ class Composition(models.Model):
     def is_bookmarked(self, user_id):
         return self.collectors.filter(id=user_id).exists()
 
+    def create_post(self):
+        return Post(
+            composition=self,
+            creator=self.uploader,
+            post_type = Post.ADD,
+            content_object=self)
+
 # To create vote instance when a compostion is created
 @receiver(post_save, sender=Composition)
 def create_vote(sender, **kwargs):
@@ -171,9 +179,8 @@ class InterpretationImage(models.Model):
     def get_350_path(self):
         return self._format_path(WIDTH_STICKY)
 
-# post_delete.connect(util.file_cleanup, sender=InterpretationImage, dispatch_uid="interpretationImage.file_cleanup")
-
-# To create vote instance when a compostion is created
+# TODO - delete all the posts and corresponding activities
+# To delete images when composition is deleted
 @receiver(post_delete, sender=InterpretationImage)
 def remove_files(sender, **kwargs):
     instance = kwargs.get('instance')
@@ -181,3 +188,14 @@ def remove_files(sender, **kwargs):
     os.remove(unicode(instance.image.path))
     os.remove(unicode(instance.get_550_path()))
     os.remove(unicode(instance.get_350_path()))
+
+# TODO - put a similar post for the artist also for whom the art is added
+# To create post instance when an composition is created
+@receiver(post_save, sender=Composition)
+def create_post(sender, **kwargs):
+    created = kwargs.get('created')
+    if created:
+        instance = kwargs.get('instance')
+        post = instance.create_post()
+        post.save()
+

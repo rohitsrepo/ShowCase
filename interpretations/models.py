@@ -48,14 +48,15 @@ class Interpretation(models.Model):
 
 
 
-# To create vote instance when an interpretatoin is created
+# To create post instance when an interpretatoin is created
 @receiver(post_save, sender=Interpretation)
 def create_post(sender, **kwargs):
     created = kwargs.get('created')
     if created:
         instance = kwargs.get('instance')
-        vote = Post(
+        post = Post(
             composition=instance.composition,
             creator=instance.user,
+            post_type = Post.INTERPRET,
             content_object=instance)
-        vote.save()
+        post.save()

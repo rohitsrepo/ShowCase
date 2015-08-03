@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     'postVotes',
     'postComments',
     'allaccess',
+    'streams',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -160,3 +161,6 @@ REST_FRAMEWORK = {
 APPEND_SLASH = False
 
 POSTS_PER_PAGE = 10
+
+STREAM_API_KEY = 'x399sdbsgtmx'
+STREAM_API_SECRET = 'njhq6uzms7bezq6hxwsz434b6xpp37r97nwc3bg99ps8cmgrf6qvqhyjmgdbuhe9'
