@@ -1,11 +1,11 @@
 from django.db import models
 from django.conf import settings
 from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-from streams.manager import bind_model
-from postVotes.models import PostVote
+from streams.manager import bind_stream
+from postVotes.models import PostVote, bind_post_vote
 
 class Post(models.Model):
     INTERPRET = 'IN'
@@ -56,15 +56,35 @@ class Post(models.Model):
         )
         return activity
 
-# TODO - delete votes on deletion
-# To create vote instance when an post is created
-@receiver(post_save, sender=Post)
-def create_post_vote(sender, **kwargs):
-    created = kwargs.get('created')
+    def create_post_vote(self):
+        return PostVote(positive=0, negative=0, post=self)
+
+# Define Signals
+def model_created(sender, instance, created, raw, **kwargs):
     if created:
+        post = instance.create_post()
+        post.save()
+
+def model_deleted(sender, instance, **kwargs):
+    try:
+        ctype = ContentType.objects.get_for_model(instance)
+        post = Post.objects.get(content_type = ctype, object_id = instance.id)
+    except:
+        pass
+
+def bind_post(sender, **kwargs):
+    post_save.connect(model_created, sender=sender)
+    post_delete.connect(model_deleted, sender=sender)
+
+# Bind Signals
+bind_stream(Post)
+bind_post_vote(Post)
+
+# Remove underlying object when deleted
+@receiver(post_delete, sender=Post)
+def remove_post_target(sender, **kwargs):
+    try:
         instance = kwargs.get('instance')
-        vote = PostVote(positive=0, negative=0, post=instance)
-        vote.save()
-        
-# Bind signal for activities
-bind_model(Post)
+        instance.content_object.delete()
+    except:
+        pass

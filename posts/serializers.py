@@ -1,12 +1,12 @@
 from rest_framework import serializers
 from .models import Post
 from interpretations.models import Interpretation
+from compositions.models import Composition
 from interpretations.serializers import PostInterpretationSerializer
 from postVotes.serializers import VoteSerializer
 from accounts.models import User
 from rest_framework.pagination import PaginationSerializer
 from ShowCase.serializers import URLImageField
-from compositions.models import Composition
 
 class ContentObjectRelatedField(serializers.RelatedField):
 
@@ -14,6 +14,8 @@ class ContentObjectRelatedField(serializers.RelatedField):
 
         if isinstance(value, Interpretation):
             serializer = PostInterpretationSerializer(value)
+        elif isinstance(value, Composition):
+            serializer = PostCompositionSerializer(value)
         else:
             raise Exception('Unexpected type of tagged object')
 

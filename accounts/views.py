@@ -240,7 +240,7 @@ def login_user(request, format=None):
             return Response(data={'error': 'Login via third party'}, status=status.HTTP_406_NOT_ACCEPTABLE)
     except User.DoesNotExist:
         return Response(status=status.HTTP_409_CONFLICT)
-    except: 
+    except:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 

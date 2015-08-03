@@ -19,6 +19,6 @@ def activity_delete(sender, instance, **kwargs):
     result = feed.remove_activity(foreign_id=instance.activity_foreign_id)
     return result
 
-def bind_model(sender, **kwargs):
+def bind_stream(sender, **kwargs):
     post_save.connect(activity_created, sender=sender)
     post_delete.connect(activity_delete, sender=sender)
