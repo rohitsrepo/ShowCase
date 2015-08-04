@@ -10,7 +10,9 @@ def site_main(request):
 def artist_main(request, slug):
     artist = get_object_or_404(User, slug=slug)
 
-    context = RequestContext(request, {'artist': artist})
+    is_followed = artist.followers.filter(id = request.user.id).exists()
+
+    context = RequestContext(request, {'artist': artist, 'is_followed': is_followed})
     return render_to_response("user_profile.html", context)
 
 

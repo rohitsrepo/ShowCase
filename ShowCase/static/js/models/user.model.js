@@ -113,5 +113,21 @@ angular.module("module.model")
         });
     };
 
+    service.follow = function (user_id) {
+    	return $http.post('/users/follows', {'follows': [user_id]}).then(function (response) {
+    		return response.data;
+    	}, function (response) {
+    		return $q.reject(response);
+    	});
+    };
+
+    service.unfollow = function (user_id) {
+    	return $http.delete('/users/follows/'+user_id).then(function (response) {
+    		return response.data;
+    	}, function (response) {
+    		return $q.reject(response);
+    	});
+    };
+
 	return service;
 }]);

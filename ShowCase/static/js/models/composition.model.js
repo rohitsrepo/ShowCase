@@ -10,7 +10,7 @@ angular.module("module.model")
 		return $http.get(url).then(function (response) {
 			return response.data;
 		},function (response) {
-			$log.error("Error fetching user list.", response);
+			$log.error("Error fetching art list.", response);
 		});
 	};
 	return service;

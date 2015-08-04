@@ -55,8 +55,17 @@
                     <h4>Collection</h4>
                     <h5>{{artist.bookmarks.count}}</h5>
                 </a>
+            </section> <!-- contributions -->
+            <section class="header-actions">
+                {% if is_followed %}
+                <button ng-cloak ng-show="followedNow" ng-click="follow()">FOLLOW</button>
+                <button class="collection-active" ng-cloak ng-hide="followedNow" ng-click="unfollow()">FOLLOWING</button>
+                {% else %}
+                <button ng-cloak ng-hide="unfollowedNow" ng-click="follow()">FOLLOW</button>
+                <button class="collection-active" ng-cloak ng-show="unfollowedNow" ng-click="unfollow()">FOLLOWING</button>
+                {% endif %}
             </section>
-        </div>
+        </div> <!-- container -->
     </header>
 
     <div ui-view></div>

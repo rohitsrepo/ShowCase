@@ -7,6 +7,7 @@ from rest_framework import permissions
 from ShowCase.utils import check_object_permissions
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
+from streams.manager import follow_user, unfollow_user
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 class UserFollowsAdd(APIView):
@@ -21,7 +22,11 @@ class UserFollowsAdd(APIView):
         elif request.user.id in follows:
             follows.remove(request.user.id)
 
-        request.user.followers.add(*follows)
+        request.user.follows.add(*follows)
+
+        for follow in follows:
+            follow_user(request.user.id, follow)
+
         return Response(status=status.HTTP_201_CREATED)
 
 class UserFollowsDelete(APIView):
@@ -29,7 +34,8 @@ class UserFollowsDelete(APIView):
     permission_classes = ((permissions.IsAuthenticatedOrReadOnly,))
 
     def delete(self, request, pk, format=None):
-        request.user.followers.remove(pk)
+        request.user.follows.remove(pk)
+        unfollow_user(request.user.id, pk)
         return Response(status=status.HTTP_201_CREATED)
 
 class UserFollowsRead(APIView):
@@ -38,7 +44,7 @@ class UserFollowsRead(APIView):
 
     def get(self, request, pk, format=None):
         user = get_object_or_404(User, pk=pk)
-        user_collection = user.followers.all().order_by('-id')
+        user_collection = user.follows.all().order_by('-id')
 
         page_num = request.GET.get('page', 1)
         paginator = Paginator(user_collection, 15)
