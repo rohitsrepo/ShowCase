@@ -106,14 +106,6 @@ controller("compositionController", [
 		}
 	};
 
-	$scope.reportContent = function () {
-		contentManager.reportComposition($scope.composition.id).then(function () {
-			alert.showAlert('Flagging this content. The content is under review now.');
-			$scope.showMoreOptions = false;
-		});
-		analytics.logEvent('Composition', 'ToolBar - Report Content', $scope.composition.url);
-	};
-
 	$scope.getNextPosts = function () {
 		$scope.disableNextPost = true;
 		var feed = $location.search()['feed'];
@@ -121,7 +113,7 @@ controller("compositionController", [
 		feedModel.nextPosts(feed, postId, $scope.composition.id).then(function (posts) {
 			$scope.nextPosts = posts;
 		});
-	};
+	}();
 
 	$scope.addToCollection = function () {
 		progress.showProgress();

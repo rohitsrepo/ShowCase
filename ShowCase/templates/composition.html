@@ -34,6 +34,30 @@
 
 {% block content_block %}
 	<section class="painting-area">
+		<section class="painting-details" >
+			<h2>{{ composition.title | title }}</h2>
+
+            <div class="by-header">Created By</div>
+            <a class="by-user" href="/@{{composition.artist.slug}}">
+                <h3>{{composition.artist.name | title}}</h3>
+            </a>
+            <div class="by-header">Uploaded By</div>
+            <a class="by-user" ng-href="/@{{composition.uploader.slug}}" class="uploader">
+                <h3>{{composition.uploader.name | title}}</h3>
+            </a>
+
+            <section class="details-actions-details">
+	            <h4>{{composition.views}} Views</h4>
+	            <h4>{{composition.views}} Admirers</h4>
+	            <h4>{{composition.views}} Collections</h4>	
+            </section>
+
+            <section class="details-actions">
+            	<button class="admire">ADMIRE</button><br>
+            	<button class="collect">Add To Collection</button>
+            </section>
+            
+		</section>
 		<div class="painting-container">
 			<ul class="palette" ng-show="isColorPaletteActive" ng-cloak>
 				<li style="background: rgb([[ dominantColor['0'] ]], [[ dominantColor['1'] ]], [[ dominantColor['2'] ]])"></li>
@@ -60,70 +84,6 @@
 			  <i class="material-icons">add</i>
 			</button>
 		</section>
-	</section>
-
-
-	<header class="meta-header">
-		<div class="meta-header-container">
-			<section class="meta-header-about">
-	            <h1>{{composition.title | title}}</h1>
-	            <h5 class="left">{{composition.views}} Views</h5>
-			</section><!--
-			--><section class="meta-header-posts">
-	    		<ul class="header-posts-container clearfix">
-	    			<li class="active">
-		    			<h5>POSTS</h5><br>
-		    			<h6 class="count">[[posts.length]]</h6>
-	    			</li>
-	    			<li>
-		    			<h5>COLLECTIONS</h5><br>
-		    			<h6 class="count">34</h6>
-	    			</li>
-	    			<li>
-		    			<h5>FOLLOWERS</h5><br>
-		    			<h6 class="count">34</h6>
-	    			</li>
-	    		</ul>
-	    		<section class="header-posts-actions">
-	    			<img class="posts-actions" src="/static/css/composition/icons/upvote.svg">
-	    		</section>
-			</section><!--
-			--><section class="meta-header-actions">
-				{% if is_collected %}
-				<button ng-cloak ng-show="collectedNow" ng-click="addToCollection()">ADD TO COLLECTION</button>
-				<button class="collection-active" ng-cloak ng-hide="collectedNow" ng-click="removeFromCollection()">IN COLLECTION</button>
-				{% else %}
-				<button ng-cloak ng-hide="removedNow" ng-click="addToCollection()">ADD TO COLLECTION</button>
-				<button class="collection-active" ng-cloak ng-show="removedNow" ng-click="removeFromCollection()">IN COLLECTION</button>
-				{% endif %}
-			</section>
-		</div>
-	</header>
-
-	<section class="meta-content">
-		<div class="meta-content-container">
-			<section class="content-about">
-	            <div class="by-header">Created By</div>
-                <a class="by-user" href="/@{{composition.artist.slug}}">
-                	<img src="{{composition.artist.get_picture_url}}">
-                    <h3>{{composition.artist.name | title}}</h3>
-                </a>
-
-	            <div class="by-header">Uploaded By</div>
-                <a class="by-user" ng-href="/@{{composition.uploader.slug}}" class="uploader">
-                	<img src="{{composition.uploader.get_picture_url}}">
-                    <h3>{{composition.uploader.name | title}}</h3>
-                </a>
-                <section class="content-about-actions">
-                	<button class="about-action">FOLLOW THIS WORK</button>
-                </section>
-			</section><!--
-			--><section class="content-posts clearfix" infinite-scroll="getNextPosts()" infinite-scroll-distance='1' infinite-scroll-disabled='disableNextPost'>
-						<div ng-repeat="post in posts" post-template post-data="post"></div>
-			</section><!--
-			--><section class="content-actions">
-			</section>
-		</div>
 	</section>
 
 	<section class="end-marker clearfix nt-mb">

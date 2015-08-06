@@ -16,10 +16,11 @@ html, body {
 /* ================= HEADBAR IN SECOND VIEW ============== */
 .painting-area {
     width: 100%;
-    height: 90%;
+    /*height: 90%;*/
     padding-top: 15px;
     background: white;
     position: relative;
+    margin-bottom: 30px;
 }
 
 @media (max-width: 800px) {
@@ -28,82 +29,87 @@ html, body {
     }
 }
 
-/*-------------- Art Tools ---------------*/
-.painting-area .art-tools {
-    position: absolute;
-    bottom: 0;
-    right: 20px;
-    height: 60px;
-    overflow: hidden;
-    -webkit-transition: height 0.3s;
-    -moz-transition: height 0.3s;
-    transition: height 0.3s;
+.painting-area .painting-details {
+    width: 25%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 20px 30px;
+    color: rgba(0, 0, 0, 0.9);
+    letter-spacing: 1px;
 }
 
-.art-tools button {
-    display: block;
-    height: 50px;
-    width: 50px;
-    min-width: 50px;
-    color: #E6B800;
-    padding: 0;
-    background: rgba(0, 0, 0, 0.9);
+.painting-details h2 {
+    font-size: 1.3em;
+    line-height: 1.5em;
+}
+
+.painting-details .by-header {
+    font-size: 0.65em;
+    display: inline;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.painting-details .by-user {
+    font-size: 0.9em;
+    display: inline;
+}
+
+.painting-details .details-actions-details {
+    margin-top: 30px;
+}
+
+.painting-details .details-actions-details h4 {
+    font-size: 0.8em;
+    line-height: 1.5em;
+}
+
+.painting-details .details-actions {
+    margin-top: 30px;
+}
+
+.painting-details .details-actions .admire {
+    background: transparent;
     border: none;
-    cursor: pointer;
-    margin: 0 auto;
+    width: 40%;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 1px;
+    padding: 10px 10px;
+    margin-bottom: 10px;
 }
 
-.art-tools button.drawer-control {
-    height: 60px;
-    width: 60px;
-    min-width: 60px;
+.painting-details .details-actions .collect {
+    background: transparent;
+    border: none;
 }
 
-.painting-area .tools-extended button.drawer-control,
-.art-tools button:hover {
-    background: #E6B800;
-    color: black;
-}
-
-.painting-area .tools-extended {
-    height: 210px;
-}
-
-.art-tools button i {
-    vertical-align: middle;
-}
 
 /*=========== Painting area ============*/
 
-.painting-container {
-    height: 100%;
-    width: 100%;
+.painting-area .painting-container {
+    /*height: 100%;*/
+    width: 60%;
     text-align: center;
     overflow: hidden;
     position: relative;
     background: white;
     display: inline-block;
-    vertical-align: bottom;
+    vertical-align: top;
 }
 
-.painting-container .zm-wrap {
-    width: 100%;
-    height: 100%;
+.painting-area .painting {
+    /*height: 100%;*/
+    max-width: 100%;
+    margin: 0 auto;
 }
 
-.painting {
-    height: 100%;
-    width: auto;
-}
-
-.painting.landscape {
+/*.painting.landscape {
     width: 60%;
     height: auto;
     margin: 0 auto;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}*/
 
 .painting-original.ng-hide-remove {
         -webkit-animation: fadeIn 0.6s;
@@ -137,13 +143,6 @@ html, body {
         -webkit-animation: fadeOutLeft 0.4s;
         animation: fadeOut 0.4s;
 }
-
-.fullScreen {
-    height: 100%;
-    width: auto;
-    margin: 0 auto;
-}
-
 
 @media (max-width: 800px) {
     .painting {
@@ -180,191 +179,50 @@ html, body {
     animation: fadeInLeft 0.4s;
 }
 
-/*================= Meta Header =====================*/
-
-.meta-header {
-    width: 100%;
-    background: white;
-    padding-top: 10px;
-    border-bottom:  1px solid rgba(0, 0, 0, 0.05);
+/*-------------- Art Tools ---------------*/
+.painting-area .art-tools {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    height: 60px;
+    overflow: hidden;
+    -webkit-transition: height 0.3s;
+    -moz-transition: height 0.3s;
+    transition: height 0.3s;
 }
 
-.meta-header .meta-header-container{
-    width: 80%;
-    margin: 0 auto;
-    max-width: 1300px;
-}
-
-.meta-header-container .meta-header-about {
-    width: 20%;
-    display: inline-block;
-}
-
-.meta-header-about h1 {
-    font-family: 'fertigo', serif;
-    font-size: 1.5em;
-    margin-bottom: .25em;
-}
-
-.meta-header-about h5 {
-    font-size: 0.8em;
-    color: rgba(0, 0, 0, 0.4);
-}
-
-.meta-header-container .meta-header-posts {
-    width: 60%;
-    display: inline-block;
-}
-
-.meta-header-posts .header-posts-container {
-    width: 60%;
-    display: inline-block;
-}
-
-.header-posts-container li {
-    width: 30%;
-    display: inline-block;
-    line-height: 1.5em;
-    letter-spacing: 1px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.header-posts-container li h5 {
-    font-size: 0.7em;
-    display: inline-block;
-    color: rgba(0, 0, 0, 0.6);
-}
-
-.header-posts-container li .count {
-    font-size: 1.4em;
-    display: inline-block;
-    color: #E6B800;
-    /*text-align: center;*/
-}
-
-.header-posts-container li.active .count {
+.art-tools button {
+    display: block;
+    height: 50px;
+    width: 50px;
+    min-width: 50px;
     color: rgba(0, 0, 0, 0.9);
-}
-
-.header-posts-container li.active {
-    border-bottom: 2px solid #E6B800;
-}
-
-.meta-header-container .meta-header-actions {
-    width: 20%;
-    text-align: left;
-    display: inline-block;
-    vertical-align: top;
-    margin-top: 7px;
-}
-
-.meta-header-posts .header-posts-actions {
-    float: right;
-    display: inline;
-    padding-top: 6px;
-}
-
-.header-posts-actions img {
-    width: 35px;
-    height: 35px;
-    margin-right: 10px;
-}
-
-.meta-header-actions button {
     background: transparent;
+    padding: 0;
     border: none;
-    border: 1px solid #E6B800;
-    border-radius: 5px;
-    font-size: 0.8em;
-    padding: 8px 10px;
-    color: #E6B800;
+    border: 1px solid rgba(0, 0, 0, 0.9);
     cursor: pointer;
-    vertical-align: top;
-}
-
-.meta-header-actions button:hover,
-.meta-header-actions button.collection-active {
-    background: #E6B800;
-    color: white;
-}
-
-/*============ Meta Art Content ==============*/
-
-.meta-content {
-    width: 100%;
-}
-
-.meta-content .meta-content-container {
-    width: 80%;
     margin: 0 auto;
-    max-width: 1300px;
 }
 
-.meta-content-container .content-about {
-    width: 20%;
-    display: inline-block;
-    vertical-align: top;
+.art-tools button.drawer-control {
+    height: 60px;
+    width: 60px;
+    min-width: 60px;
 }
 
-.content-about .by-header {
-    margin: 7px 0;
-    font-size: 0.65em;
-    letter-spacing: 1px;
-    color: rgba(0, 0, 0, 0.4);
-}
-
-.content-about .by-user {
-    width: 100%;
-}
-
-.content-about .by-user img {
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -o-border-radius: 2px;
-    border-radius: 2px;
-    height: 40px;
-    width: 40px;
-}
-
-.content-about .by-user h3 {
-    display: inline-block;
-    vertical-align: top;
-    padding-left: 5px;
-    color: #E6B800;
-}
-
-.content-about .content-about-actions {
-    width: 100%;
-}
-
-.content-about-actions .about-action {
-    width: 85%;
-    margin: 8px auto;
-    background: #E6B800;
-    border: none;
-    border: 1px solid #E6B800;
-    border-radius: 5px;
+.painting-area .tools-extended button.drawer-control,
+.art-tools button:hover {
+    background: rgba(0, 0, 0, 0.9);
     color: white;
-    font-size: 0.8em;
-    font-weight: bold;
-    padding: 10px 10px;
-    cursor: pointer;
 }
 
-.content-about-actions .about-action:hover {
-    background: #CFA600;
+.painting-area .tools-extended {
+    height: 210px;
 }
 
-.meta-content-container .content-posts {
-    width: 60%;
-    display: inline-block;
-    background: white;
-    margin-top: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    padding: 12px;
+.art-tools button i {
+    vertical-align: middle;
 }
 
 

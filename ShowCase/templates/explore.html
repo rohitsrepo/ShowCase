@@ -44,8 +44,17 @@
                     <a ng-href="/arts/[[art.slug]]" target="_blank">
                         <img ng-src="[[art.matter_350]]" alt="[[art.title]]" height="[[350 * art.matter_aspect]]px" width="350px">
                         <div class="details-inset">
-                            <h6>[[art.views]] Views</h6>
-                            <h6>[[art.interpretations_count]] Interpretations</h6>
+                            <section class="inset-details">
+                                <h6>[[art.views]] Views</h6>
+                                <h6>[[art.interpretations_count]] Admirers</h6>
+                                <h6>[[art.interpretations_count]] Collections</h6>
+                            </section>
+
+                            <section class="inset-actions">
+                                <button>Collect</button><!--
+                                --><button>Share</button>
+                            </section>
+
                         </div>
                     </a>
                 </article>
@@ -54,10 +63,10 @@
                     <h5> by <a href="/@[[art.artist.slug]]" target="_blank">[[art.artist.full_name | titlecase]]</a></h5>
                 </section><!--
                 --><section class="actions">
-                    <button ng-cloak ng-hide="art.is_collected" ng-click="addToCollection($index)">ADD TO COLLECTION</button>
-                    <button class="collection-active" ng-cloak ng-show="art.is_collected" ng-click="removeFromCollection($index)">IN COLLECTION</button>
+                    <button ng-cloak ng-hide="art.is_collected" ng-click="addToCollection($index)">ADMIRE</button>
+                    <button class="collection-active" ng-cloak ng-show="art.is_collected" ng-click="removeFromCollection($index)">ADMIRE</button>
                 </section>
-            </div>
+            </div> <!-- art -->
         </div>
     </div>
 {% endblock %}

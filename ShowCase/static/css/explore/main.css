@@ -55,7 +55,7 @@ html, body {
 }
 
 .arts-container .container {
-  padding: 5px;
+  padding: 5px 12px;
   width: 33%;
   display: inline-block;
 }
@@ -89,21 +89,59 @@ html, body {
 
 .art:hover .art-content .details-inset {
   transition: all 0.3s;
-  background: linear-gradient(to bottom, rgba(72,76,97,0.8) 0%, rgba(72,76,97,0) 75%);
+  background: linear-gradient(to bottom, rgba(72,76,97,1) 0%, rgba(72,76,97,0) 75%);
 }
 
-.art:hover .art-content .details-inset,
-.art:hover .art-content .details-inset h6 {
+.details-inset .inset-details {
+  width: 60%;
+  display: inline-block;
+}
+
+.art:hover .art-content .details-inset .inset-details,
+.art:hover .art-content .details-inset .inset-details h6 {
   opacity: 1;
   transition: all 0.3s;
 }
 
-.art-content .details-inset h6 {
+.details-inset .inset-details h6 {
   font-family: 'taile', sans-serif;
   font-size: 0.85em;
   letter-spacing: 1px;
   line-height: 1.5em;
   opacity: 0;
+}
+
+.details-inset .inset-actions {
+  width: 100%;
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+}
+
+.art:hover .art-content .details-inset .inset-actions ,
+.art:hover .art-content .details-inset .inset-actions button {
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+
+
+.details-inset .inset-actions button {
+  width: 50%;
+  display: inline-block;
+  background: transparent;
+  border: none;
+  font-size: 0.8em;
+  padding: 8px 10px;
+  color: white;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.details-inset .inset-actions button:hover {
+  background: rgba(0, 0, 0, 1);
 }
 
 .art .details {
@@ -113,8 +151,7 @@ html, body {
 }
 
 .art .details h4 {
-  font-family: 'fertigo', serif;
-  font-weight: bold;
+  /*font-family: 'fertigo', serif;*/
   font-size: 1.3em;
   font-weight: bold;
   line-height: 1.5em;
@@ -135,7 +172,6 @@ html, body {
   font-size: 0.95em;
   letter-spacing: 1px;
   display: inline-block;
-  color: #B88A00;
 }
 
 .art .details h5 a:hover {
@@ -160,17 +196,17 @@ html, body {
 .art .actions button {
   background: transparent;
   border: none;
-  border: 1px solid #E6B800;
-  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
   font-size: 0.8em;
   padding: 8px 10px;
-  color: #E6B800;
+  color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
 }
 
 .art .actions button:hover,
 .art .actions button.collection-active {
-    background: #E6B800;
+    background: rgba(0, 0, 0, 0.8);
     color: white;
 }
 
