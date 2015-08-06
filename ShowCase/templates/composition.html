@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block html_attr_block %}ng-app="CompositionApp"{% endblock %}
-	
+
 {% block title_block %}
 	<title>{{composition.title | title}} by {{composition.artist.name | title}} | Interpretations and Stories</title>
 {%endblock%}
@@ -25,12 +25,12 @@
 	<link rel="stylesheet" type="text/css" href="/static/vendor/zoome/zoome-min.css">
 	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/post/post.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bookmark/main.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/composition/main.css">
 	<!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}', '{{is_bookmarked}}')"{% endblock %}
 
 {% block content_block %}
 	<section class="painting-area">
@@ -47,16 +47,16 @@
             </a>
 
             <section class="details-actions-details">
-	            <h4>{{composition.views}} Views</h4>
-	            <h4>{{composition.views}} Admirers</h4>
-	            <h4>{{composition.views}} Collections</h4>	
+	            <h4 class="inactive">{{composition.views}} Views</h4>
+	            <h4 ng-click="showBookMarkers()">{{composition.bookmarks_count}} Admirers</h4>
+	            <h4>{{composition.views}} Collections</h4>
             </section>
 
             <section class="details-actions">
-            	<button class="admire">ADMIRE</button><br>
+                <button class="admire" ng-class="{'active': isBookMarked}" ng-click="handleBookMark()">ADMIRE</button><br>
             	<button class="collect">Add To Collection</button>
             </section>
-            
+
 		</section>
 		<div class="painting-container">
 			<ul class="palette" ng-show="isColorPaletteActive" ng-cloak>
@@ -120,10 +120,9 @@
 	<script type="text/javascript" src="/static/js/composition/composition.module.js"></script>
 	<script type="text/javascript" src="/static/js/composition/composition.controller.js"></script>
 	<script type="text/javascript" src="/static/js/composition/sticky.directive.js"></script>
-    <script type="text/javascript" src="/static/js/post/post.module.js"></script>
-    <script type="text/javascript" src="/static/js/post/postApp.controller.js"></script>
-    <script type="text/javascript" src="/static/js/post/post.controller.js"></script>
-    <script type="text/javascript" src="/static/js/post/interpretationSetHeight.directive.js"></script>
+
+    <script type="text/javascript" src="/static/js/components/bookmark/bookmark.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/bookmark/bookmark.controller.js"></script>
 
     <script type="text/javascript" src="/static/js/composition/tools/tools.module.js"></script>
     <script type="text/javascript" src="/static/js/composition/tools/colors.directive.js"></script>

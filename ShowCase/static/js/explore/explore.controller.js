@@ -1,6 +1,6 @@
 angular.module('ExploreApp')
-.controller('exploreController', ['$scope', 'compositionModel', '$timeout', 'userModel', 'alert', 'progress', 'auth',
-	function ($scope, compositionModel, $timeout, userModel, alert, progress, auth) {
+.controller('exploreController', ['$scope', 'compositionModel', '$timeout', 'userModel', 'alert', 'progress', 'auth', 'modalService',
+	function ($scope, compositionModel, $timeout, userModel, alert, progress, auth, modalService) {
 
 	$scope.arts = [];
 	$scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
@@ -42,12 +42,11 @@ angular.module('ExploreApp')
 
 	$scope.loadMoreArts();
 
-	$scope.addToCollection = function (index) {
+	var bookmark = function (art) {
 		auth.runWithAuth(function () {
-			art = $scope.arts[index]
 			progress.showProgress();
-			userModel.addToCollection(art.id).then(function (response) {
-				$scope.arts[index].is_collected = true;
+			userModel.bookmark(art.id).then(function (response) {
+				art.is_collected = true;
 				progress.hideProgress();
 			}, function () {
 				progress.hideProgress();
@@ -56,16 +55,38 @@ angular.module('ExploreApp')
 		});
 	}
 
-	$scope.removeFromCollection = function (index) {
-		art = $scope.arts[index]
+	var unmark = function (art) {
 		progress.showProgress();
-		userModel.removeFromCollection(art.id).then(function (response) {
-			$scope.arts[index].is_collected = false;
+		userModel.unmark(art.id).then(function (response) {
+			art.is_collected = false;
 			progress.hideProgress();
 		}, function () {
 			progress.hideProgress();
 			alert.showAlert('We are unable to process your response');
 		});
 	};
+
+    $scope.handleBookMark = function (index) {
+        art = $scope.arts[index]
+        if (art.is_collected) {
+            unmark(art)
+        } else {
+            bookmark(art);
+        }
+    };
+
+
+    $scope.showBookMarkers = function (index) {
+        var art = $scope.arts[index];
+        if (art.bookmarks_count == 0) {
+            return;
+        }
+
+        modalService.showModal({
+            'templateUrl': '/static/js/components/bookmark/bookmark.tpl.html',
+            'controller': 'bookmarkController',
+            'inputs' : {'composition': art}
+        });
+    };
 
 }]);

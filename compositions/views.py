@@ -3,7 +3,7 @@ from django.db.models import Q
 from .models import Composition, InterpretationImage
 from accounts.models import User
 from rest_framework import permissions, generics, status
-from .serializers import CompositionSerializer, NewCompositionSerializer, InterpretationImageSerializer, PaginatedCompositionSerializer
+from .serializers import CompositionSerializer, NewCompositionSerializer, InterpretationImageSerializer, PaginatedCompositionSerializer, CollectorSerializer
 from .permissions import IsOwnerOrReadOnly, IsHimself, IsImageUploader
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from rest_framework.response import Response
@@ -138,7 +138,7 @@ class InterpretationImageList(APIView):
         source_type = request.DATA.get('source_type')
         if source_type and source_type == InterpretationImage.CROP:
             return self._cropAndCreate(request, composition)
-        
+
         return self._addImage(request, composition)
 
     def _cropAndCreate(self, request, composition):
@@ -171,7 +171,7 @@ class InterpretationImageDetail(APIView):
     def delete(self, request, composition_id, image_id, format=None):
         interpretationImage = get_object_or_404(InterpretationImage, pk=image_id, composition_id=composition_id)
         interpretationImage.delete();
-        
+
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET'])
@@ -228,3 +228,10 @@ def random_composition(request, format=None):
 
     return Response(serializer.data)
 
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_collectors(request, composition_id, format=None):
+    composition = get_object_or_404(Composition, pk=composition_id)
+    collectors = composition.collectors.exclude(id=request.user.id);
+    serializer = CollectorSerializer(collectors, context={'request': request})
+    return Response(data=serializer.data)

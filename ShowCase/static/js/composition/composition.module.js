@@ -1,9 +1,9 @@
 angular.module("CompositionApp", [
     'ngSanitize',
     'infinite-scroll',
-    "PostApp",
     'module.root',
-    'module.tools'])
+    'module.tools',
+    'module.bookmark'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

@@ -15,7 +15,7 @@ def composition_main(request, slug):
     context = RequestContext(request, {
         'composition': composition,
         'top_interpretation': top_interpretation,
-        'is_collected': composition.is_bookmarked(request.user.id)
+        'is_bookmarked': composition.is_bookmarked(request.user.id)
     })
     return render_to_response("composition.html", context)
 

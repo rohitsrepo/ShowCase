@@ -1,6 +1,6 @@
-var module = angular.module('module.auth');
+var module = angular.module('module.util');
 
-module.factory('loginModal', ['$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateCache',
+module.factory('modalService', ['$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateCache',
 function($document, $compile, $controller, $http, $rootScope, $q, $templateCache) {
 
 //  Get the body of the document, we'll add the modal to this.
@@ -80,12 +80,15 @@ function LoginModal() {
               //  Resolve the 'close' promise.
               closeDeferred.resolve(result);
 
+              // Remove style from body
+              body.removeClass('modal-open');
+
               //  We can now clean up the scope and remove the element from the DOM.
               modalScope.$destroy();
               modalElement.remove();
-              
+
               //  Unless we null out all of these objects we seem to suffer
-              //  from memory leaks, if anyone can explain why then I'd 
+              //  from memory leaks, if anyone can explain why then I'd
               //  be very interested to know.
               inputs.close = null;
               deferred = null;
@@ -124,6 +127,8 @@ function LoginModal() {
         } else {
           // append to body when no custom append element is specified
           body.append(modalElement);
+          // add css class to body to disable scrolll and things of that sort.
+          body.addClass('modal-open');
         }
 
         //  We now have a modal object...

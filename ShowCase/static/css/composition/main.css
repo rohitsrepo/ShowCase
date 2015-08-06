@@ -10,13 +10,11 @@
 html, body {
     font-family: 'taile', sans-serif;
     height: 100%;
-    background: #F6FAFF;
 }
 
 /* ================= HEADBAR IN SECOND VIEW ============== */
 .painting-area {
     width: 100%;
-    /*height: 90%;*/
     padding-top: 15px;
     background: white;
     position: relative;
@@ -60,7 +58,18 @@ html, body {
 
 .painting-details .details-actions-details h4 {
     font-size: 0.8em;
-    line-height: 1.5em;
+    line-height: 1.8em;
+    color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+}
+
+.painting-details .details-actions-details h4:hover {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.painting-details .details-actions-details h4.inactive {
+    color: rgba(0, 0, 0, 0.9);
+    cursor: default;
 }
 
 .painting-details .details-actions {
@@ -75,6 +84,30 @@ html, body {
     border-radius: 1px;
     padding: 10px 10px;
     margin-bottom: 10px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.painting-details .details-actions .admire.active,
+.painting-details .details-actions .admire:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+.painting-details .details-actions .admire:before {
+    position: absolute;
+    content: '#';
+    left: 130%;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.painting-details .details-actions .admire.active:before {
+    left: 80%;
 }
 
 .painting-details .details-actions .collect {

@@ -85,6 +85,10 @@ html, body {
   opacity: 0;
 }
 
+.details-inset .inset-details h6.active:hover {
+    text-decoration: underline;
+}
+
 .details-inset .inset-actions {
   width: 100%;
   position: absolute;
@@ -119,14 +123,14 @@ html, body {
 }
 
 .art .details {
-  width: 70%;
+  width: 60%;
   padding: 10px;
   display: inline-block;
 }
 
 .art .details h4 {
   /*font-family: 'fertigo', serif;*/
-  font-size: 1.3em;
+  font-size: 1.1em;
   font-weight: bold;
   line-height: 1.5em;
   text-align: left;
@@ -143,7 +147,7 @@ html, body {
 
 .art .details h5 a {
   font-family: 'fertigo', serif;
-  font-size: 0.95em;
+  font-size: 0.9em;
   letter-spacing: 1px;
   display: inline-block;
 }
@@ -154,17 +158,18 @@ html, body {
 
 .art .details h5 {
   font-family: 'taile', sans-serif;
-  font-size: 0.85em;
+  font-size: 0.8em;
   color: rgba(0, 0, 0, 0.5);
 }
 
-
 .art .actions {
-  width: 30%;
+  width: 40%;
   display: inline-block;
   vertical-align: top;
   padding-top: 10px;
-  padding-right: 5px;
+  padding-right: 15px;
+  text-align: right;
+  letter-spacing: 1px;
 }
 
 .art .actions button {
@@ -173,15 +178,33 @@ html, body {
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 2px;
   font-size: 0.8em;
-  padding: 8px 10px;
+  padding: 10px 30px;
   color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .art .actions button:hover,
-.art .actions button.collection-active {
-    background: rgba(0, 0, 0, 0.8);
+.art .actions button.bookmark-active {
+    background: rgba(0, 0, 0, 0.9);
     color: white;
+}
+
+
+.art .actions button:before {
+    position: absolute;
+    content: '#';
+    left: 130%;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.art .actions button.bookmark-active:before {
+    left: 80%;
 }
 
 .art:hover {

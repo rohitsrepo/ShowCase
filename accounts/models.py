@@ -111,5 +111,20 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_sitemap_url(self):
         return "http://thirddime.com/@{0}".format(self.slug)
 
+    @property
+    def followers_count(self):
+        return self.followers.all().count()
+
+    @property
+    def paintings_count(self):
+        return self.arts.all().count()
+
+    @property
+    def uploads_count(self):
+        return self.compositions.all().count()
+
+    def is_followed(self, user_id):
+        return self.followers.filter(id=user_id).exists()
+
 # Bind Signals
 bind_profile_picture_handler(User)

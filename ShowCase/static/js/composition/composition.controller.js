@@ -11,6 +11,7 @@ controller("compositionController", [
 	'progress',
 	'alert',
 	'userModel',
+    'modalService',
 	function ($window,
 		$scope,
 		feedModel,
@@ -21,19 +22,21 @@ controller("compositionController", [
 		analytics,
 		progress,
 		alert,
-		userModel)
+		userModel,
+        modalService)
 	{
 
 	$scope.composition = {};
 	$scope.interpretations = [];
 	$scope.hideName = true;
 	$scope.interpretationModalshown = false;
-	$scope.collectedNow = false;
-	$scope.removedNow = false;
+    $scope.isBookMarked = false;
 
-	$scope.init = function (id, url) {
+	$scope.init = function (id, url, isBookMarked) {
 		$scope.composition.id = id;
 		$scope.composition.url = url;
+        $scope.isBookMarked = isBookMarked == 'True';
+
 		if (url) {
 			analytics.logEvent('Composition', 'Init: ' + url);
 		}
@@ -50,7 +53,7 @@ controller("compositionController", [
 				analytics.logEvent('Composition', 'scroll-to: ' + scrollTo, $scope.composition.url);
 			}
 		}, interval);
-		
+
 	};
 
 	$scope.$watch($scope.composition.Id, function () {
@@ -69,7 +72,7 @@ controller("compositionController", [
 		}
 
 		analytics.logEvent('Composition', 'ToolBar - Outline: ' + $scope.isOutlineActive, $scope.composition.url);
-		
+
 		if($scope.isOutlineActive!="active"){
 			$scope.isOutlineActive = '';
 			$scope.isGrayScaleDisable = true;
@@ -115,11 +118,10 @@ controller("compositionController", [
 		});
 	}();
 
-	$scope.addToCollection = function () {
+	var bookmark = function () {
 		progress.showProgress();
-		userModel.addToCollection($scope.composition.id).then(function (response) {
-			$scope.removedNow = true;
-			$scope.collectedNow = false;
+		userModel.bookmark($scope.composition.id).then(function (response) {
+            $scope.isBookMarked = true;
 			progress.hideProgress();
 		}, function () {
 			progress.hideProgress();
@@ -127,17 +129,32 @@ controller("compositionController", [
 		});
 	};
 
-	$scope.removeFromCollection = function () {
+	var unmark = function () {
 		progress.showProgress();
-		userModel.removeFromCollection($scope.composition.id).then(function (response) {
-			$scope.collectedNow = true;
-			$scope.removedNow = false;
+		userModel.unmark($scope.composition.id).then(function (response) {
+            $scope.isBookMarked = false;
 			progress.hideProgress();
 		}, function () {
 			progress.hideProgress();
 			alert.showAlert('We are unable to process your response');
 		});
 	};
+
+    $scope.handleBookMark = function () {
+        if ($scope.isBookMarked) {
+            unmark();
+        } else {
+            bookmark();
+        }
+    };
+
+    $scope.showBookMarkers = function () {
+        modalService.showModal({
+            'templateUrl': '/static/js/components/bookmark/bookmark.tpl.html',
+            'controller': 'bookmarkController',
+            'inputs' : {'composition': $scope.composition}
+        });
+    }
 }])
 .directive('postTemplate', [function () {
 	return {

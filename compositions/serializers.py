@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Composition, InterpretationImage
+from accounts.models import User
 from ShowCase.serializers import URLImageField
 from rest_framework.pagination import PaginationSerializer
 
@@ -21,12 +22,13 @@ class CompositionSerializer(serializers.ModelSerializer):
     uploader = CompositionUserSerializer(read_only=True)
     artist = CompositionUserSerializer(read_only=True)
     is_collected = serializers.SerializerMethodField('get_is_collected')
+    bookmarks_count = serializers.CharField(source='bookmarks_count')
 
     class Meta:
         model = Composition
         fields = ('id', 'title', 'artist', 'description', 'created',
 		   'matter', 'matter_350', 'matter_550', 'matter_aspect', 'timesince', 'vote',
-           'slug', 'uploader', 'views', 'interpretations_count', 'is_collected')
+           'slug', 'uploader', 'views', 'interpretations_count', 'is_collected', 'bookmarks_count')
     	read_only_fields = ('slug', 'vote', 'views')
 
     def get_is_collected(self, obj):
@@ -53,3 +55,18 @@ class InterpretationImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = InterpretationImage
         fields = ('image', 'url', 'id', 'image_550', 'image_350', 'source_type')
+
+class CollectorSerializer(serializers.ModelSerializer):
+    picture = serializers.Field(source='get_picture_url')
+    followers_count = serializers.Field(source='followers_count')
+    paintings_count = serializers.Field(source='paintings_count')
+    uploads_count = serializers.Field(source='uploads_count')
+    is_followed = serializers.SerializerMethodField('get_is_followed')
+
+    class Meta:
+        model = User
+        fields = ('id', 'slug', 'picture', 'name', 'followers_count', 'paintings_count', 'uploads_count', 'is_followed')
+
+    def get_is_followed(self, obj):
+        request = self.context['request']
+        return obj.is_followed(request.user.id)

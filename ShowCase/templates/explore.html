@@ -26,6 +26,7 @@
      <!-- build:css /static/build/explore.css -->
     <link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
     <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bookmark/main.css">
     <link rel="stylesheet" type="text/css" href="/static/css/explore/main.css">
     <!-- endbuild -->
 {%endblock%}
@@ -37,13 +38,13 @@
         <div class="masonry-brick container" ng-repeat="art in arts">
             <div class="art">
                 <article class="art-content">
-                    <a ng-href="/arts/[[art.slug]]" target="_blank">
+                    <section>
                         <img ng-src="[[art.matter_350]]" alt="[[art.title]]" height="[[350 * art.matter_aspect]]px" width="350px">
                         <div class="details-inset">
                             <section class="inset-details">
                                 <h6>[[art.views]] Views</h6>
-                                <h6>[[art.interpretations_count]] Admirers</h6>
-                                <h6>[[art.interpretations_count]] Collections</h6>
+                                <h6 class="active" ng-click="showBookMarkers($index)">[[art.bookmarks_count]] Admirers</h6>
+                                <h6 class="active">[[art.interpretations_count]] Collections</h6>
                             </section>
 
                             <section class="inset-actions">
@@ -51,7 +52,7 @@
                                 --><button>Share</button>
                             </section>
 
-                        </div>
+                        </section>
                     </a>
                 </article>
                 <section class="details">
@@ -59,8 +60,7 @@
                     <h5> by <a href="/@[[art.artist.slug]]" target="_blank">[[art.artist.full_name | titlecase]]</a></h5>
                 </section><!--
                 --><section class="actions">
-                    <button ng-cloak ng-hide="art.is_collected" ng-click="addToCollection($index)">ADMIRE</button>
-                    <button class="collection-active" ng-cloak ng-show="art.is_collected" ng-click="removeFromCollection($index)">ADMIRE</button>
+                    <button ng-click="handleBookMark($index)" ng-class="{'bookmark-active': art.is_collected}">ADMIRE</button>
                 </section>
             </div> <!-- art -->
         </div>
@@ -77,5 +77,9 @@
 
     <script type="text/javascript" src="/static/js/explore/explore.module.js"></script>
     <script type="text/javascript" src="/static/js/explore/explore.controller.js"></script>
+
+    <script type="text/javascript" src="/static/js/components/bookmark/bookmark.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/bookmark/bookmark.controller.js"></script>
+
     <!-- endbuild -->
 {% endblock %}

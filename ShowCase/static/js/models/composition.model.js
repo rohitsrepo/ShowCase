@@ -13,5 +13,14 @@ angular.module("module.model")
 			$log.error("Error fetching art list.", response);
 		});
 	};
+
+    service.getBookMarkers = function (compositionId) {
+        return $http.get('/compositions/' + compositionId + '/bookmarkers').then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
 	return service;
 }]);

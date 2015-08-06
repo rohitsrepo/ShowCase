@@ -79,11 +79,31 @@ body {
   padding-top: 80px;
 }
 
+body.modal-open {
+    overflow: hidden;
+}
+
+/*============= Scroll Bar ===========*/
+
+body::-webkit-scrollbar {
+    width: 15px;
+    /*border: 1px solid rgba(0, 0, 0, 0.9);*/
+}
+
+body::-webkit-scrollbar-track {
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+    -webkit-box-shadow: none;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: black;
+    border: 5px solid white;
+}
+
 /*============= Site Header ==============*/
 .site-header {
     width: 100%;
     background-color: white;
-    /*border-bottom: 1px solid rgba(0, 0, 0, 0.9) ;*/
     color: rgba(0, 0, 0, 0.9);
     padding: 10px 20px;
     position: fixed;
@@ -238,10 +258,10 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2000;
+  z-index: 10000;
   width: 100%;
-  height: 3px;
-  background: #E6B800;
+  height: 2px;
+  background: rgba(0, 0, 0, 1);
   -webkit-transform: translate3d(-100%, 0, 0);
   transform: translate3d(-100%, 0, 0);
   pointer-events: none;
@@ -253,8 +273,8 @@ body {
   right: 0;
   width: 100px;
   height: 100%;
-  background: #E6B800;
-  box-shadow: 0 0 15px #E6B800, 0 0 5px #E6B800;
+  background: rgba(0, 0, 0, 1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 1), 0 0 5px rgba(0, 0, 0, 1);
   content: '';
   opacity: 0;
   -webkit-transition: opacity 0.2s, box-shadow 2s 4s;
@@ -264,7 +284,7 @@ body {
 }
 
 .progress-bar.animate {
-  z-index: 2000;
+  z-index: 10000;
   opacity: 0;
   -webkit-transition: -webkit-transform 2s ease-in, opacity 1s 2s;
   transition: transform 2s ease-in, opacity 1s 2s;
@@ -273,7 +293,7 @@ body {
 }
 
 .progress-bar.animate::after {
-  box-shadow: 0 0 3px #E6B800, 0 0 1px #E6B800;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 1), 0 0 1px rgba(0, 0, 0, 1);
   opacity: 1;
 }
 
@@ -287,14 +307,15 @@ body {
   margin-right: auto;
   margin-left: auto;
   width: 400px;
-  background-color: #E6B800;
-  border: 1px solid #E6B800;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.9);
+  border-top: none;
   border-radius: 2px;
   color: black;
   display: inline;
   padding: 15px;
   line-height: 1.5em;
-  z-index: 2000;
+  z-index: 10000;
 }
 
 

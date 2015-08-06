@@ -1,5 +1,5 @@
 angular.module('module.auth')
-.factory('auth', ['userModel', '$window', '$q', '$rootScope', 'loginModal', function (userModel, $window, $q, $rootScope, loginModal) {
+.factory('auth', ['userModel', '$window', '$q', '$rootScope', 'modalService', function (userModel, $window, $q, $rootScope, modalService) {
 
 	var isAuthenticated = function () {
 		return !!service.currentUser;
@@ -99,7 +99,7 @@ angular.module('module.auth')
 
 	var showLoginModal = function () {
 
-		return loginModal.showModal({
+		return modalService.showModal({
 			'templateUrl': '/static/js/authentication/login.tpl.html',
 			'controller': 'loginModalController'
 		});
@@ -122,7 +122,7 @@ angular.module('module.auth')
 					}
 				});
 			});
-			
+
 		})
 	};
 
