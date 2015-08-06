@@ -43,16 +43,16 @@
         </nav><!--
         --><section class="site-actions">
             <!-- <button>ADD ART</button> -->
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect">
+            <button>
               <i class="material-icons">search</i>
             </button>
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect">
+            <button>
               <i class="material-icons">add</i>
             </button>
         </section><!--
         --><section class="user-auth">
         {% if user.is_authenticated %}
-            <button id="user-profile" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect">
+            <button id="user-profile">
               <i class="material-icons">reorder</i>
             </button>
 
@@ -67,7 +67,7 @@
         {% else %}
             <h3 ng-cloak ng-hide="userIsNowLoggedIn" ng-click="authorize()">SIGNUP/LOGIN</h3>
 
-            <button ng-cloak ng-show="userIsNowLoggedIn" id="user-profile" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect">
+            <button ng-cloak ng-show="userIsNowLoggedIn" id="user-profile">
               <i class="material-icons">reorder</i>
             </button>
 

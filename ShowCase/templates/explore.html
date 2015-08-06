@@ -33,10 +33,6 @@
 {% block body_attr_block %}ng-controller="exploreController"{% endblock %}
 
 {% block content_block %}
-    <header class="primary-header">
-        <h2>Explore artworks from all over ThirdDime</h2>
-    </header>
-
     <div ng-cloak masonry load-images="false" preserve-order class="arts-container" infinite-scroll="loadMoreArts()" infinite-scroll-distance='1' infinite-scroll-disabled='artsMeta.busy || artsMeta.disableGetMore'>
         <div class="masonry-brick container" ng-repeat="art in arts">
             <div class="art">

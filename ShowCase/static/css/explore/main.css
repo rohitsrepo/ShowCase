@@ -20,32 +20,6 @@ html, body {
   color: white;
 }
 
-/*============ Primary header ==============*/
-
-.primary-header {
-  width: 100%;
-  padding: 50px 0;
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.primary-header h2 {
-  text-align: center;
-  font-size: 2.5em;
-  font-family: 'fertigo', serif;
-  letter-spacing: 1px;
-  color: white;
-}
-
-
-@media (max-width: 800px) {
-    .primary-header {
-      padding: 75px 10px;
-    }
-
-    .primary-header h2 {
-      font-size: 1.5em;
-    }
-}
 
 /*================ Painting Area ==================*/
 .arts-container {
