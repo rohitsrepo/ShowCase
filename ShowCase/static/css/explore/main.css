@@ -40,6 +40,10 @@ html, body {
   color: rgba(0, 0, 0, 0.8);
 }
 
+.art:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+}
+
 .art .art-content {
   width: 100%;
   position: relative;
@@ -48,6 +52,7 @@ html, body {
 
 .art .art-content img {
   width: 100%;
+  vertical-align: bottom;
 }
 
 .art .art-content .details-inset {
@@ -63,7 +68,7 @@ html, body {
 
 .art:hover .art-content .details-inset {
   transition: all 0.3s;
-  background: linear-gradient(to bottom, rgba(72,76,97,1) 0%, rgba(72,76,97,0) 75%);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .details-inset .inset-details {
@@ -92,7 +97,7 @@ html, body {
 .details-inset .inset-actions {
   width: 100%;
   position: absolute;
-  bottom: 3px;
+  bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.4);
   opacity: 0;
@@ -205,10 +210,6 @@ html, body {
 
 .art .actions button.bookmark-active:before {
     left: 80%;
-}
-
-.art:hover {
-    box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.8);
 }
 
 @media (max-width: 800px) {

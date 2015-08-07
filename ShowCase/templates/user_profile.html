@@ -33,30 +33,42 @@
 {% block content_block %}
     <header class="primary-header" ng-init="init('{{artist.id}}')">
         <div class="container">
-            <div class="picture">
-                <img src="{{artist.get_picture_url}}">
-            </div>
-            <h1>{{artist.name | title}}</h1>
-            <h2>{{artist.about}}</h2>
+            <header>
+                <div class="picture">
+                    <img src="{{artist.get_picture_url}}">
+                </div>
+
+                <div class="details">
+                    <h1>{{artist.name | title}}</h1>
+                    <h2>{{artist.about}}</h2>
+
+                    <section class="actions">
+                        <button>Follow</button>
+                        <h3>Followers {{artist.followers_count}}</h3>
+                        <h3>Following {{artist.followings_count}}</h3>
+                    </section>
+                </div>
+
+            </header>
             <section class="contributions">
                 <a ui-sref-active="active" class="contribution" ui-sref="paintings">
                     <h4>Paintings</h4>
-                    <h5>{{artist.arts.count}}</h5>
+                    <!-- <h5>{{artist.arts.count}}</h5> -->
                 </a><!--
                 --><a ui-sref-active="active" class="contribution" ui-sref="interpretations">
                     <h4>Interpretations</h4>
-                    <h5>{{artist.interpretation_set.count}}</h5>
+                    <!-- <h5>{{artist.interpretation_set.count}}</h5> -->
                 </a><!--
                 --><a ui-sref-active="active" class="contribution" ui-sref="uploads">
                     <h4>Uploads</h4>
-                    <h5>{{artist.compositions.count}}</h5>
+                    <!-- <h5>{{artist.compositions.count}}</h5> -->
                 </a><!--
                 --><a ui-sref-active="active" class="contribution" ui-sref="collection">
                     <h4>Collection</h4>
-                    <h5>{{artist.bookmarks.count}}</h5>
+                    <!-- <h5>{{artist.bookmarks.count}}</h5> -->
                 </a>
             </section> <!-- contributions -->
-            <section class="header-actions">
+            <!-- <section class="header-actions">
                 {% if is_followed %}
                 <button ng-cloak ng-show="followedNow" ng-click="follow()">FOLLOW</button>
                 <button class="collection-active" ng-cloak ng-hide="followedNow" ng-click="unfollow()">FOLLOWING</button>
@@ -64,7 +76,7 @@
                 <button ng-cloak ng-hide="unfollowedNow" ng-click="follow()">FOLLOW</button>
                 <button class="collection-active" ng-cloak ng-show="unfollowedNow" ng-click="unfollow()">FOLLOWING</button>
                 {% endif %}
-            </section>
+            </section> -->
         </div> <!-- container -->
     </header>
 

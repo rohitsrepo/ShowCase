@@ -26,9 +26,7 @@ html, body {
 /*================ HEADER ===================*/
 
 .primary-header {
-	width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 5% 0;
+    width: 100%;
 }
 
 .primary-header .container{
@@ -36,38 +34,87 @@ html, body {
     margin: 0 auto;
 }
 
-.primary-header .picture {
-	width: 100%;
+.primary-header header {
+    width: 100%;
+}
+
+.primary-header header .picture {
 	text-align: center;
     margin-bottom: 10px;
+    display: inline;
 }
 
-.primary-header img {
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
-    height: 120px;
-    width: 120px;
+.primary-header header img {
+    height: 200px;
+    width: 200px;
 }
 
-.primary-header h1, h2, h4, h5 {
+.primary-header header .details {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.primary-header header h1, h2 {
     line-height: 1.3em;
     letter-spacing: 1px;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(0, 0, 0, 0.9);
 }
 
 .primary-header h1 {
-    font-family: 'fertigo', serrif;
-    font-size: 3em;
+    font-size: 2em;
 }
 
 .primary-header h2 {
-    font-family: 'taile', sans-serif;
     font-size: 1.5em;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.primary-header header .details .actions {
+    display: block;
+    vertical-align: top;
+    text-align: left;
+    margin-top: 20px;
+}
+
+header .details .actions button {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 5px 25px;
+    font-size: 0.8em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+header .details .actions button.active,
+header .details .actions button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+header .details .actions button:before {
+    position: absolute;
+    content: '#';
+    left: 130%;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+header .details .actions button.active:before {
+    left: 80%;
+}
+
+header .details .actions h3 {
+    display: inline;
+    color: rgba(0, 0, 0, 0.54);
+    margin-left: 5px;
+    font-size: 0.8em;
 }
 
 @media (max-width: 800px) {
@@ -85,42 +132,46 @@ html, body {
 /*============ Contributions =============*/
 
 .primary-header .contributions {
-    width: 64%;
+    width: 100%;
     margin: 0 auto;
-    margin-top: 40px;
+    margin: 40px 0;
+    text-align: left;
 }
 
 .primary-header .contributions .contribution {
     display: inline-block;
-    width: 25%;
     cursor: pointer;
+    text-align: left;
+    margin-right: 20px;
 }
 
 .primary-header .contribution h4 {
     font-family: 'taile', sans-serif;
     font-size: 1em;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(0, 0, 0, 0.6);
+    letter-spacing: 1px;
 }
 
 .primary-header .contribution h5 {
     font-family: 'taile', sans-serif;
     font-size: 1.8em;
     font-weight: bold;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 0, 0, 0.8);
+    text-align: center;
 }
 
 .primary-header .contribution:hover h4,
 .primary-header .contribution:hover h5 {
-    color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
 }
 
 .primary-header .contributions .active {
-    background: linear-gradient(transparent 50%, rgba(255, 255, 255, 0.03));
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
 }
 
 .primary-header .contributions .active h4,
 .primary-header .contributions .active h5 {
-    color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
 }
 
 
@@ -138,7 +189,7 @@ html, body {
 }
 /*================ Painting Area ==================*/
 .paintings-container {
-  width: 90%;
+  width: 60%;
   max-width: 1200px;
   margin: 0 auto;
   color: rgba(0, 0, 0, 0.8);
@@ -223,7 +274,7 @@ html, body {
 /*============= Interpretations ============*/
 
 .interpretations {
-    width: 85%;
+    width: 60%;
     max-width: 1300px;
     height: 50%;
     margin: 0 auto;

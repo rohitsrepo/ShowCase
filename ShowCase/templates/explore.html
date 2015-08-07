@@ -38,22 +38,20 @@
         <div class="masonry-brick container" ng-repeat="art in arts">
             <div class="art">
                 <article class="art-content">
-                    <section>
-                        <img ng-src="[[art.matter_350]]" alt="[[art.title]]" height="[[350 * art.matter_aspect]]px" width="350px">
-                        <div class="details-inset">
-                            <section class="inset-details">
-                                <h6>[[art.views]] Views</h6>
-                                <h6 class="active" ng-click="showBookMarkers($index)">[[art.bookmarks_count]] Admirers</h6>
-                                <h6 class="active">[[art.interpretations_count]] Collections</h6>
-                            </section>
-
-                            <section class="inset-actions">
-                                <button>Collect</button><!--
-                                --><button>Share</button>
-                            </section>
-
+                    <img ng-src="[[art.matter_350]]" alt="[[art.title]]" height="[[350 * art.matter_aspect]]px" width="350px">
+                    <div class="details-inset">
+                        <section class="inset-details">
+                            <h6>[[art.views]] Views</h6>
+                            <h6 class="active" ng-click="showBookMarkers($index)">[[art.bookmarks_count]] Admirers</h6>
+                            <h6 class="active">[[art.interpretations_count]] Collections</h6>
                         </section>
-                    </a>
+
+                        <section class="inset-actions">
+                            <button>Collect</button><!--
+                            --><button>Share</button>
+                        </section>
+
+                    </div>
                 </article>
                 <section class="details">
                     <h4><a ng-href="/arts/[[art.slug]]" target="_blank">[[art.title | titlecase]]</a></h4>
