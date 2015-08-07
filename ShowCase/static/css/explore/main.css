@@ -34,6 +34,16 @@ html, body {
   display: inline-block;
 }
 
+.masonry-brick {
+                display: none;
+            }
+
+.masonry-brick.loaded {
+    display: inline-block;
+    -webkit-animation: fadeIn 0.33s;
+    animation: fadeIn 0.33s;
+}
+
 .art {
   width: 100%;
   margin-bottom: 10px;
