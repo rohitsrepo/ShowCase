@@ -11,7 +11,7 @@ controller("compositionController", [
 	'progress',
 	'alert',
 	'userModel',
-    'modalService',
+    'bookService',
 	function ($window,
 		$scope,
 		feedModel,
@@ -23,7 +23,7 @@ controller("compositionController", [
 		progress,
 		alert,
 		userModel,
-        modalService)
+        bookService)
 	{
 
 	$scope.composition = {};
@@ -35,7 +35,7 @@ controller("compositionController", [
 	$scope.init = function (id, url, isBookMarked) {
 		$scope.composition.id = id;
 		$scope.composition.url = url;
-        $scope.isBookMarked = isBookMarked == 'True';
+        $scope.composition.is_bookMarked = isBookMarked == 'True';
 
 		if (url) {
 			analytics.logEvent('Composition', 'Init: ' + url);
@@ -118,41 +118,25 @@ controller("compositionController", [
 		});
 	}();
 
-	var bookmark = function () {
-		progress.showProgress();
-		userModel.bookmark($scope.composition.id).then(function (response) {
-            $scope.isBookMarked = true;
-			progress.hideProgress();
-		}, function () {
-			progress.hideProgress();
-			alert.showAlert('We are unable to process your response');
-		});
-	};
-
-	var unmark = function () {
-		progress.showProgress();
-		userModel.unmark($scope.composition.id).then(function (response) {
-            $scope.isBookMarked = false;
-			progress.hideProgress();
-		}, function () {
-			progress.hideProgress();
-			alert.showAlert('We are unable to process your response');
-		});
-	};
-
     $scope.handleBookMark = function () {
-        if ($scope.isBookMarked) {
-            unmark();
+    	var composition = $scope.composition;
+
+        if (composition.is_bookMarked) {
+            bookService.unmark(composition).then(function () {
+            	composition.is_bookMarked = false;
+            });
         } else {
-            bookmark();
+            bookService.bookmark(composition).then(function () {
+            	composition.is_bookMarked = true;
+            });;
         }
     };
 
     $scope.showBookMarkers = function () {
-        modalService.showModal({
-            'templateUrl': '/static/js/components/bookmark/bookmark.tpl.html',
-            'controller': 'bookmarkController',
-            'inputs' : {'composition': $scope.composition}
+        bookService.showBookMarkers($scope.composition).then(function (bookStatus) {
+        	if (bookStatus == 'bookmarked') {
+        		$scope.composition.is_bookMarked = true;
+        	}
         });
     }
 }])

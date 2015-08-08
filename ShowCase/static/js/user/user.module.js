@@ -1,8 +1,8 @@
 angular.module("UserApp", [
-    'infinite-scroll',
     "lr.upload",
     'ui.router',
-    "module.root"])
+    "module.root",
+    'module.bookmark'])
 .config(['$httpProvider', '$interpolateProvider', '$stateProvider', '$urlRouterProvider', function ($httpProvider, $interpolateProvider, $stateProvider, $urlRouterProvider) {
     "use strict";
 
@@ -30,17 +30,20 @@ angular.module("UserApp", [
     .state('paintings', {
         url: "/paintings",
         templateUrl: "/static/js/user/profile.paintings.html",
-        controller: 'profilePaintingsController'
+        controller: 'profilePaintingsController',
+        data: {'listType': 'paintings'}
     })
     .state('uploads', {
         url: "/uploads",
         templateUrl: "/static/js/user/profile.paintings.html",
-        controller: 'profileUploadsController'
+        controller: 'profilePaintingsController',
+        data: {'listType': 'uploads'}
     })
     .state('bookmarks', {
         url: "/admirations",
         templateUrl: "/static/js/user/profile.paintings.html",
-        controller: 'profileBookmarksController'
+        controller: 'profilePaintingsController',
+        data: {'listType': 'bookmarks'}
     });
 }]).factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
     'use strict';

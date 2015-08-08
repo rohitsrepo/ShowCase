@@ -34,10 +34,10 @@ class UserBookmarksRead(APIView):
 
     def get(self, request, pk, format=None):
         user = get_object_or_404(User, pk=pk)
-        user_collection = user.bookmarks.all().order_by('-id')
+        user_bookmarks = user.bookmarks.all().order_by('-id')
 
         page_num = request.GET.get('page', 1)
-        paginator = Paginator(user_collection, 9)
+        paginator = Paginator(user_bookmarks, 9)
 
         try:
             this_page_compositions = paginator.page(page_num)

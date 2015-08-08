@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.css">
 
+     <!-- build:css /static/build/base.css -->
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/util/progress.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/util/alert.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/components/authentication/login.modal.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bookmark/main.css">
+    <!-- endbuild -->
+
     {% block css_block %}{% endblock %}
 
     <script>
@@ -136,6 +145,10 @@
 
     <script type="text/javascript" src="/static/js/root/root.module.js"></script>
     <script type="text/javascript" src="/static/js/root/header.controller.js"></script>
+    
+    <script type="text/javascript" src="/static/js/components/bookmark/bookmark.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/bookmark/bookmark.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/bookmark/bookmark.service.js"></script>
 
     <!-- endbuild -->
 

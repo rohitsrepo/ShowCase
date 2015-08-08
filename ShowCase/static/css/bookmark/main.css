@@ -139,3 +139,35 @@
 .marker-details .actions button.active:before {
     left: 80%;
 }
+
+/*=============== No Such Users ================*/
+.no-users {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.no-users h1 {
+    font-size: 1.2em;
+    line-height: 2em;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.no-users h2 {
+    font-size: 2em;
+    line-height: 2.5em;
+}
+
+.no-users button {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 1px;
+    padding: 10px 25px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.no-users button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}

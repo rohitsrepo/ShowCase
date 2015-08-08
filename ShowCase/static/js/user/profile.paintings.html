@@ -1,8 +1,8 @@
-<div ng-cloak masonry load-images="false" preserve-order class="arts-container profile-container" infinite-scroll="loadMoreCompositions()" infinite-scroll-distance='1' infinite-scroll-disabled='compositionsMeta.busy || compositionsMeta.disableGetMore'>
-    <div class="masonry-brick container profile-art-container" ng-repeat="art in compositions">
+<div ng-cloak masonry load-images="false" preserve-order class="arts-container profile-container" infinite-scroll="loadMoreCompositions()" infinite-scroll-distance='1' infinite-scroll-disabled='artsMeta.busy || artsMeta.disableGetMore'>
+    <div class="masonry-brick container profile-art-container" ng-repeat="art in arts">
         <div class="art">
             <article class="art-content">
-                <img ng-src="[[art.matter_350]]" alt="[[art.title]]" height="[[350 * art.matter_aspect]]px" width="350px">
+                <img ng-src="[[art.matter_350]]" alt="[[art.title]]" height="[[350 * art.matter_aspect]]" width="350">
                 <div class="details-inset">
                     <section class="inset-details">
                         <h6>[[art.views]] Views</h6>
@@ -22,12 +22,12 @@
                 <h5> by <a href="/@[[art.artist.slug]]" target="_blank">[[art.artist.name | titlecase]]</a></h5>
             </section><!--
             --><section class="actions">
-                <button ng-click="handleBookMark($index)" ng-class="{'bookmark-active': art.is_collected}">ADMIRE</button>
+                <button ng-click="handleBookMark($index)" ng-class="{'bookmark-active': art.is_bookmarked}">ADMIRE</button>
             </section>
         </div> <!-- art -->
     </div>
 
-    <section ng-cloak ng-show="compositionsMeta.noWorks" class="empty-placeholder">
+    <section ng-cloak ng-show="artsMeta.noWorks" class="empty-placeholder">
         <h4>No works found in this category.</h4>
     </section>
 </div>

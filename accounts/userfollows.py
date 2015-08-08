@@ -19,8 +19,12 @@ class UserFollowsAdd(APIView):
 
         if not follows:
             return Response({"follows": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
-        elif request.user.id in follows:
-            follows.remove(request.user.id)
+        elif str(request.user.id) in follows:
+            print 'id in follows'
+            follows.remove(str(request.user.id))
+
+        print 'id in follows'
+        print follows
 
         request.user.follows.add(*follows)
 

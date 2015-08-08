@@ -230,8 +230,8 @@ def random_composition(request, format=None):
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
-def get_collectors(request, composition_id, format=None):
+def get_bookmarkers(request, composition_id, format=None):
     composition = get_object_or_404(Composition, pk=composition_id)
-    collectors = composition.collectors.exclude(id=request.user.id);
+    collectors = composition.collectors.all()
     serializer = CollectorSerializer(collectors, context={'request': request})
     return Response(data=serializer.data)

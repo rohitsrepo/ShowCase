@@ -1,0 +1,38 @@
+/*================ ALERT ====================*/
+
+.alerts {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 400px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.9);
+  border-top: none;
+  border-radius: 2px;
+  color: black;
+  display: inline;
+  padding: 15px;
+  line-height: 1.5em;
+  z-index: 10000;
+}
+
+
+.alerts.ng-hide-remove {
+    -webkit-animation: fadeInDown 0.7s;
+    animation: fadeInDown 0.7s;
+    opacity: 0;
+}
+
+.alerts.ng-hide-add {
+    -webkit-animation: fadeOutUp 0.7s;
+    animation: fadeOutUp 0.7s;
+}
+
+.alerts h4 {
+  font-size: 15px;
+  text-align: center;
+  margin-top: 18px;
+}

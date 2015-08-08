@@ -23,9 +23,6 @@
 {% block css_block %}
 	 <!-- build:css /static/build/composition.css -->
 	<link rel="stylesheet" type="text/css" href="/static/vendor/zoome/zoome-min.css">
-	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/bookmark/main.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/composition/main.css">
 	<!-- endbuild -->
 {%endblock%}
@@ -53,7 +50,7 @@
             </section>
 
             <section class="details-actions">
-                <button class="admire" ng-class="{'active': isBookMarked}" ng-click="handleBookMark()">ADMIRE</button><br>
+                <button class="admire" ng-class="{'active': composition.is_bookMarked}" ng-click="handleBookMark()">ADMIRE</button><br>
             	<button class="collect">Add To Collection</button>
             </section>
 
@@ -108,21 +105,14 @@
 
 {% block script_block %}
 	<!-- build:js /static/build/composition.js -->
-	<script type="text/javascript" src="/static/bower_components/nginfinitescroll/build/ng-infinite-scroll.min.js"></script>
-
 	<script type="text/javascript" src="/static/vendor/fullscreen/jquery.fullscreen.js"></script>
 	<script type="text/javascript" src="/static/bower_components/color-thief/dist/color-thief.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/jquery.panzoom/dist/jquery.panzoom.min.js"></script>
 	<script type="text/javascript" src="/static/vendor/zoome/zoome.min.js"></script>
 
-	<script type="text/javascript" src="/static/bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
-
 	<script type="text/javascript" src="/static/js/composition/composition.module.js"></script>
 	<script type="text/javascript" src="/static/js/composition/composition.controller.js"></script>
 	<script type="text/javascript" src="/static/js/composition/sticky.directive.js"></script>
-
-    <script type="text/javascript" src="/static/js/components/bookmark/bookmark.module.js"></script>
-    <script type="text/javascript" src="/static/js/components/bookmark/bookmark.controller.js"></script>
 
     <script type="text/javascript" src="/static/js/composition/tools/tools.module.js"></script>
     <script type="text/javascript" src="/static/js/composition/tools/colors.directive.js"></script>
