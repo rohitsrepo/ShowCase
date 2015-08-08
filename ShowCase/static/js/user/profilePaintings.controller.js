@@ -1,6 +1,12 @@
 angular.module('UserApp')
-.controller('profilePaintingsController', ['$scope', '$state', 'userModel', 'bookService', 'progress', 'alert', 
-    function ($scope, $state, userModel, bookService, progress, alert) {
+.controller('profilePaintingsController', ['$scope',
+    '$state',
+    'userModel',
+    'bookService',
+    'progress',
+    'alert',
+    'usermodalService',
+    function ($scope, $state, userModel, bookService, progress, alert, usermodalService) {
     $scope.arts = [];
     $scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', noWorks: false};
 
@@ -74,7 +80,7 @@ angular.module('UserApp')
     $scope.showBookMarkers = function (index) {
         var art = $scope.arts[index];
 
-        bookService.showBookMarkers(art).then(function (bookStatus) {
+        usermodalService.showBookMarkers(art).then(function (bookStatus) {
             if (bookStatus == 'bookmarked') {
                 console.log("mark it booked");
                 art.is_bookmarked = true;

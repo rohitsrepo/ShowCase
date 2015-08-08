@@ -1,8 +1,7 @@
 angular.module("UserApp", [
     "lr.upload",
     'ui.router',
-    "module.root",
-    'module.bookmark'])
+    "module.root"])
 .config(['$httpProvider', '$interpolateProvider', '$stateProvider', '$urlRouterProvider', function ($httpProvider, $interpolateProvider, $stateProvider, $urlRouterProvider) {
     "use strict";
 

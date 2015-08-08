@@ -8,4 +8,7 @@ angular.module('module.root', [
     'module.scrollTo',
     'module.titlecase',
     'module.analytics',
+    'module.bookmark',
+    'module.follow',
+    'module.usermodal',
     'module.util']);

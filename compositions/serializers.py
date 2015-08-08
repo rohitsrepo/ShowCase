@@ -56,7 +56,7 @@ class InterpretationImageSerializer(serializers.ModelSerializer):
         model = InterpretationImage
         fields = ('image', 'url', 'id', 'image_550', 'image_350', 'source_type')
 
-class CollectorSerializer(serializers.ModelSerializer):
+class BookmarkerSerializer(serializers.ModelSerializer):
     picture = serializers.Field(source='get_picture_url')
     followers_count = serializers.Field(source='followers_count')
     paintings_count = serializers.Field(source='paintings_count')

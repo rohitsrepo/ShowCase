@@ -1,5 +1,5 @@
-angular.module('module.bookmark')
-.factory('bookService', ['$q', 'modalService', 'userModel', 'progress', 'alert', function ($q, modalService, userModel, progress, alert) {
+angular.module('module.bookmark', ['module.model', 'module.util'])
+.factory('bookService', ['$q', 'userModel', 'progress', 'alert', function ($q, userModel, progress, alert) {
 	var service = {};
 
 	service.bookmark = function (art) {
@@ -24,16 +24,6 @@ angular.module('module.bookmark')
 			alert.showAlert('We are unable to process your response');
 			return $q.reject();
 		});
-	};
-
-	service.showBookMarkers = function (art) {
-		return modalService.showModal({
-            'templateUrl': '/static/js/components/bookmark/bookmark.tpl.html',
-            'controller': 'bookmarkController',
-            'inputs' : {'composition': art}
-        }).then(function (modal) {
-        	return modal.close;
-        });
 	};
 
 	return service;

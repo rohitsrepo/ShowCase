@@ -1,1 +1,0 @@
-angular.module('module.bookmark', ['module.model', 'module.util']);

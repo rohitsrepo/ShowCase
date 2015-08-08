@@ -154,7 +154,8 @@
 
 .no-users h2 {
     font-size: 2em;
-    line-height: 2.5em;
+    line-height: 1.5em;
+    margin-bottom: 20px;
 }
 
 .no-users button {

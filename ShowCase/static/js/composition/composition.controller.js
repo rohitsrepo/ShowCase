@@ -12,6 +12,7 @@ controller("compositionController", [
 	'alert',
 	'userModel',
     'bookService',
+    'usermodalService',
 	function ($window,
 		$scope,
 		feedModel,
@@ -23,7 +24,8 @@ controller("compositionController", [
 		progress,
 		alert,
 		userModel,
-        bookService)
+        bookService,
+        usermodalService)
 	{
 
 	$scope.composition = {};
@@ -133,7 +135,7 @@ controller("compositionController", [
     };
 
     $scope.showBookMarkers = function () {
-        bookService.showBookMarkers($scope.composition).then(function (bookStatus) {
+        usermodalService.showBookMarkers($scope.composition).then(function (bookStatus) {
         	if (bookStatus == 'bookmarked') {
         		$scope.composition.is_bookMarked = true;
         	}

@@ -1,6 +1,14 @@
 angular.module('ExploreApp')
-.controller('exploreController', ['$scope', 'compositionModel', '$timeout', 'userModel', 'alert', 'progress', 'auth', 'bookService',
-	function ($scope, compositionModel, $timeout, userModel, alert, progress, auth, bookService) {
+.controller('exploreController', ['$scope',
+    'compositionModel',
+    '$timeout',
+    'userModel',
+    'alert',
+    'progress',
+    'auth',
+    'bookService',
+    'usermodalService',
+	function ($scope, compositionModel, $timeout, userModel, alert, progress, auth, bookService, usermodalService) {
 
 	$scope.arts = [];
 	$scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
@@ -58,9 +66,8 @@ angular.module('ExploreApp')
     $scope.showBookMarkers = function (index) {
         var art = $scope.arts[index];
 
-        bookService.showBookMarkers(art).then(function (bookStatus) {
+        usermodalService.showBookMarkers(art).then(function (bookStatus) {
         	if (bookStatus == 'bookmarked') {
-        		console.log("mark it booked");
         		art.is_bookmarked = true;
         	}
         });

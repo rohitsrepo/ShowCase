@@ -1,5 +1,5 @@
 angular.module('UserApp')
-.controller('userProfileController', ['$scope', 'userModel', 'alert', 'progress', function ($scope, userModel, alert, progress) {
+.controller('userProfileController', ['$scope', 'followService', 'usermodalService', 'alert', 'progress', function ($scope, followService, usermodalService, alert, progress) {
 	$scope.hideName = true;
 	$scope.artist = {'is_followed': false};
 
@@ -8,33 +8,29 @@ angular.module('UserApp')
 		$scope.artist.is_followed = is_followed == 'True';
 	};
 
-	var follow = function () {
-		progress.showProgress();
-		userModel.follow($scope.artist.id).then(function (response) {
-			$scope.artist.is_followed = true;
-			progress.hideProgress();
-		}, function () {
-			progress.hideProgress();
-			alert.showAlert('We are unable to process your response');
-		});
-	};
-
-	var unfollow = function () {
-		progress.showProgress();
-		userModel.unfollow($scope.artist.id).then(function (response) {
-			$scope.artist.is_followed = false;
-			progress.hideProgress();
-		}, function () {
-			progress.hideProgress();
-			alert.showAlert('We are unable to process your response');
-		});
-	};
-
 	$scope.handleFollow = function () {
-		if ($scope.artist.is_followed) {
-			unfollow();
+        var artist = $scope.artist;
+
+		if (artist.is_followed) {
+			followService.unfollow(artist).then(function () {
+                artist.is_followed = false;
+            });
 		} else {
-			follow();
+			followService.follow(artist).then(function () {
+                artist.is_followed = true;
+            });
 		}
 	};
+
+    $scope.showFollows = function () {
+        usermodalService.showFollows($scope.artist);
+    };
+
+    $scope.showFollowers = function () {
+        usermodalService.showFollowers($scope.artist).then(function (followStatus) {
+            if (followStatus == 'followed') {
+                $scope.artist.is_followed = true;
+            }
+        });
+    };
 }]);

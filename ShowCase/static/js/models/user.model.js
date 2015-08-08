@@ -129,5 +129,21 @@ angular.module("module.model")
     	});
     };
 
+    service.getFollowers = function (user_id) {
+        return $http.get('/users/'+user_id+'/followers').then(function (response) {
+            return response.data;
+        }, function (response) {
+            return $q.reject(response);
+        });
+    };
+
+    service.getFollows = function (user_id) {
+        return $http.get('/users/'+user_id+'/follows').then(function (response) {
+            return response.data;
+        }, function (response) {
+            return $q.reject(response);
+        });
+    };
+
 	return service;
 }]);

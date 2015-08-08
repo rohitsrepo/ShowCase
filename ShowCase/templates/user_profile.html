@@ -42,8 +42,8 @@
 
                     <section class="actions">
                         <button ng-class="{'active': artist.is_followed}" ng-click="handleFollow()">Follow</button>
-                        <h3>Followers {{artist.followers_count}}</h3>
-                        <h3>Following {{artist.followings_count}}</h3>
+                        <h3 ng-click="showFollowers()">Followers {{artist.followers_count}}</h3>
+                        <h3 ng-click="showFollows()">Following {{artist.followings_count}}</h3>
                     </section>
                 </div>
 
@@ -62,7 +62,7 @@
                     <h4>Admirations</h4>
                 </a>
             </section> <!-- contributions -->
-            
+
         </div> <!-- container -->
     </header>
 

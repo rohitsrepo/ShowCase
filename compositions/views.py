@@ -3,7 +3,7 @@ from django.db.models import Q
 from .models import Composition, InterpretationImage
 from accounts.models import User
 from rest_framework import permissions, generics, status
-from .serializers import CompositionSerializer, NewCompositionSerializer, InterpretationImageSerializer, PaginatedCompositionSerializer, CollectorSerializer
+from .serializers import CompositionSerializer, NewCompositionSerializer, InterpretationImageSerializer, PaginatedCompositionSerializer, BookmarkerSerializer
 from .permissions import IsOwnerOrReadOnly, IsHimself, IsImageUploader
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from rest_framework.response import Response
@@ -233,5 +233,5 @@ def random_composition(request, format=None):
 def get_bookmarkers(request, composition_id, format=None):
     composition = get_object_or_404(Composition, pk=composition_id)
     collectors = composition.collectors.all()
-    serializer = CollectorSerializer(collectors, context={'request': request})
+    serializer = BookmarkerSerializer(collectors, context={'request': request})
     return Response(data=serializer.data)

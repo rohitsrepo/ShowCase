@@ -1,6 +1,5 @@
 angular.module("ExploreApp", [
-    "module.root",
-    'module.bookmark'])
+    "module.root"])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

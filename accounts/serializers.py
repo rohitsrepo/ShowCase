@@ -21,12 +21,19 @@ class NewUserSerializer(serializers.ModelSerializer):
 
 
 class ExistingUserSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(read_only=True)
     picture = serializers.Field(source='get_picture_url')
+    followers_count = serializers.Field(source='followers_count')
+    paintings_count = serializers.Field(source='paintings_count')
+    uploads_count = serializers.Field(source='uploads_count')
+    is_followed = serializers.SerializerMethodField('get_is_followed')
 
     class Meta:
         model = User
-        fields = ('id', 'email','name', 'about', 'picture', 'slug')
+        fields = ('id', 'email','name', 'about', 'picture', 'slug', 'followers_count', 'paintings_count', 'uploads_count', 'is_followed')
+
+    def get_is_followed(self, obj):
+        request = self.context['request']
+        return obj.is_followed(request.user.id)
 
 
 class PasswordUserSerializer(serializers.Serializer):
