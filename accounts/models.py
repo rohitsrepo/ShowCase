@@ -116,6 +116,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.followers.all().count()
 
     @property
+    def followings_count(self):
+        return self.follows.all().count()
+
+    @property
     def paintings_count(self):
         return self.arts.all().count()
 

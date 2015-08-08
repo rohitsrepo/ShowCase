@@ -46,5 +46,5 @@ class UserBookmarksRead(APIView):
         except EmptyPage:
             raise Http404
 
-        serializer = PaginatedUserCompositionSerializer(this_page_compositions)
+        serializer = PaginatedUserCompositionSerializer(this_page_compositions, context={'request': request})
         return Response(data=serializer.data)

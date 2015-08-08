@@ -22,25 +22,25 @@ angular.module("UserApp", [
     //
     // Now set up the states
     $stateProvider
-      .state('paintings', {
+    .state('activities', {
+        url: "/activities",
+        templateUrl: "/static/js/user/profile.activities.html",
+        controller: 'profileActivitiesController'
+    })
+    .state('paintings', {
         url: "/paintings",
         templateUrl: "/static/js/user/profile.paintings.html",
         controller: 'profilePaintingsController'
     })
     .state('uploads', {
         url: "/uploads",
-        templateUrl: "/static/js/user/profile.uploads.html",
+        templateUrl: "/static/js/user/profile.paintings.html",
         controller: 'profileUploadsController'
     })
-    .state('interpretations', {
-        url: "/interpretations",
-        templateUrl: "/static/js/user/profile.interpretations.html",
-        controller: 'profilePostsController'
-    })
-    .state('collection', {
-        url: "/collection",
-        templateUrl: "/static/js/user/profile.collection.html",
-        controller: 'profileCollectionController'
+    .state('bookmarks', {
+        url: "/admirations",
+        templateUrl: "/static/js/user/profile.paintings.html",
+        controller: 'profileBookmarksController'
     });
 }]).factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
     'use strict';

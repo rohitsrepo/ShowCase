@@ -1,4 +1,6 @@
 angular.module('module.root', [
+    'infinite-scroll',
+    "wu.masonry",
 	"ngAnimate",
     "module.model",
     "module.auth",

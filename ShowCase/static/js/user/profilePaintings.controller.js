@@ -1,12 +1,13 @@
 angular.module('UserApp')
 .controller('profilePaintingsController', ['$scope', 'userModel', 'progress', 'alert', function ($scope, userModel, progress, alert) {
     $scope.compositions = [];
-    $scope.compositionsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
+    $scope.compositionsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', noWorks: false};
 
     var getCompositions = function () {
 
         if (!$scope.compositionsMeta.disableGetMore) {
             var pageVal = $scope.compositionsMeta.pageVal;
+            progress.showProgress();
             userModel.getCompositions($scope.artist.id, pageVal).then(function (response) {
                 $scope.compositionsMeta.next = response.next;
                 $scope.compositionsMeta.previous = response.previous;
@@ -17,6 +18,12 @@ angular.module('UserApp')
 
                 if (response.next == null){
                     $scope.compositionsMeta.disableGetMore = true;
+                }
+                    console.log('settion it to false', $scope.compositions.length);
+
+                if ($scope.compositions.length == 0){
+                    console.log('settion it to false');
+                    $scope.compositionsMeta.noWorks = true;
                 }
 
                 progress.hideProgress();

@@ -9,8 +9,8 @@ class CompositionUserSerializer(serializers.ModelSerializer):
     picture = URLImageField(source='picture')
 
     class Meta:
-        model = Composition
-        fields = ('id', 'full_name', 'picture', 'slug')
+        model = User
+        fields = ('id', 'full_name', 'picture', 'slug', 'name')
 
 class CompositionSerializer(serializers.ModelSerializer):
     matter = URLImageField(source='matter')

@@ -1,14 +1,14 @@
 angular.module('UserApp')
-.controller('profileCollectionController', ['$scope', 'userModel', 'progress', 'alert', function ($scope, userModel, progress, alert) {
+.controller('profileBookmarksController', ['$scope', 'userModel', 'progress', 'alert', function ($scope, userModel, progress, alert) {
     $scope.compositions = [];
-    $scope.compositionsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
+    $scope.compositionsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', noWorks: false};
 
     var getCompositions = function () {
 
         if (!$scope.compositionsMeta.disableGetMore) {
             var pageVal = $scope.compositionsMeta.pageVal;
             progress.showProgress();
-            userModel.getCollection($scope.artist.id, pageVal).then(function (response) {
+            userModel.getBookMarks($scope.artist.id, pageVal).then(function (response) {
                 $scope.compositionsMeta.next = response.next;
                 $scope.compositionsMeta.previous = response.previous;
 
@@ -18,6 +18,10 @@ angular.module('UserApp')
 
                 if (response.next == null){
                     $scope.compositionsMeta.disableGetMore = true;
+                }
+
+                if ($scope.compositions.length == 0){
+                    $scope.compositionsMeta.noWorks = true;
                 }
 
                 progress.hideProgress();

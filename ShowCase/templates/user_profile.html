@@ -31,7 +31,7 @@
 {% block body_attr_block %}ng-controller="userProfileController"{% endblock %}
 
 {% block content_block %}
-    <header class="primary-header" ng-init="init('{{artist.id}}')">
+    <header class="primary-header" ng-init="init('{{artist.id}}', '{{is_followed}}')">
         <div class="container">
             <header>
                 <div class="picture">
@@ -43,7 +43,7 @@
                     <h2>{{artist.about}}</h2>
 
                     <section class="actions">
-                        <button>Follow</button>
+                        <button ng-class="{'active': artist.is_followed}" ng-click="handleFollow()">Follow</button>
                         <h3>Followers {{artist.followers_count}}</h3>
                         <h3>Following {{artist.followings_count}}</h3>
                     </section>
@@ -51,32 +51,20 @@
 
             </header>
             <section class="contributions">
-                <a ui-sref-active="active" class="contribution" ui-sref="paintings">
-                    <h4>Paintings</h4>
-                    <!-- <h5>{{artist.arts.count}}</h5> -->
+                <a ui-sref-active="active" class="contribution" ui-sref="activities">
+                    <h4>Activities</h4>
                 </a><!--
-                --><a ui-sref-active="active" class="contribution" ui-sref="interpretations">
-                    <h4>Interpretations</h4>
-                    <!-- <h5>{{artist.interpretation_set.count}}</h5> -->
+                --><a ui-sref-active="active" class="contribution" ui-sref="paintings">
+                    <h4>Paintings</h4>
                 </a><!--
                 --><a ui-sref-active="active" class="contribution" ui-sref="uploads">
                     <h4>Uploads</h4>
-                    <!-- <h5>{{artist.compositions.count}}</h5> -->
                 </a><!--
-                --><a ui-sref-active="active" class="contribution" ui-sref="collection">
-                    <h4>Collection</h4>
-                    <!-- <h5>{{artist.bookmarks.count}}</h5> -->
+                --><a ui-sref-active="active" class="contribution" ui-sref="bookmarks">
+                    <h4>Admirations</h4>
                 </a>
             </section> <!-- contributions -->
-            <!-- <section class="header-actions">
-                {% if is_followed %}
-                <button ng-cloak ng-show="followedNow" ng-click="follow()">FOLLOW</button>
-                <button class="collection-active" ng-cloak ng-hide="followedNow" ng-click="unfollow()">FOLLOWING</button>
-                {% else %}
-                <button ng-cloak ng-hide="unfollowedNow" ng-click="follow()">FOLLOW</button>
-                <button class="collection-active" ng-cloak ng-show="unfollowedNow" ng-click="unfollow()">FOLLOWING</button>
-                {% endif %}
-            </section> -->
+            
         </div> <!-- container -->
     </header>
 
@@ -95,6 +83,6 @@
     <script type="text/javascript" src="/static/js/user/profilePaintings.controller.js"></script>
     <script type="text/javascript" src="/static/js/user/profileUploads.controller.js"></script>
     <script type="text/javascript" src="/static/js/user/profileInterpretations.controller.js"></script>
-    <script type="text/javascript" src="/static/js/user/profileCollection.controller.js"></script>
+    <script type="text/javascript" src="/static/js/user/profileBookmarks.controller.js"></script>
     <!-- endbuild -->
 {% endblock %}

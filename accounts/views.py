@@ -243,7 +243,7 @@ def get_compositions(request, pk, format=None):
     except EmptyPage:
         raise Http404
 
-    serializer = PaginatedUserCompositionSerializer(this_page_compositions)
+    serializer = PaginatedUserCompositionSerializer(this_page_compositions, context={'request': request})
     return Response(data=serializer.data)
 
 
@@ -283,6 +283,6 @@ def get_uploads(request, pk, format=None):
     except EmptyPage:
         raise Http404
 
-    serializer = PaginatedUserCompositionSerializer(this_page_compositions)
+    serializer = PaginatedUserCompositionSerializer(this_page_compositions, context={'request': request})
     return Response(data=serializer.data)
 

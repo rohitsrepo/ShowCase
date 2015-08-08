@@ -30,7 +30,8 @@ html, body {
 }
 
 .primary-header .container{
-    width: 60%;
+    width: 70%;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -115,6 +116,11 @@ header .details .actions h3 {
     color: rgba(0, 0, 0, 0.54);
     margin-left: 5px;
     font-size: 0.8em;
+    cursor: pointer;
+}
+
+header .details .actions h3:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 800px) {
@@ -136,6 +142,7 @@ header .details .actions h3 {
     margin: 0 auto;
     margin: 40px 0;
     text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 }
 
 .primary-header .contributions .contribution {
@@ -143,6 +150,7 @@ header .details .actions h3 {
     cursor: pointer;
     text-align: left;
     margin-right: 20px;
+    padding-bottom: 3px;
 }
 
 .primary-header .contribution h4 {
@@ -188,201 +196,11 @@ header .details .actions h3 {
     }
 }
 /*================ Painting Area ==================*/
-.paintings-container {
-  width: 60%;
+.profile-container {
+  width: 80%;
   max-width: 1200px;
-  margin: 0 auto;
-  color: rgba(0, 0, 0, 0.8);
-  margin-bottom: 50px;
-  -moz-column-count: 3;
-  -moz-column-gap: 0px;
-  -webkit-column-count: 3;
-  -webkit-column-gap: 0px;
-  column-count: 3;
-  column-gap: 0px;
-  margin-top: 10px;
 }
 
-.paintings-container li {
-  width: 100%;
-  display: inline-block;
-  padding: 10px;
-}
-
-.paintings-container li figure {
-  width: 100%;
-  position: relative;
-}
-
-.paintings-container li figure img {
-  width: 100%;
-  height: auto;
-  border: 5px solid black;
-}
-
-.paintings-container .details {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  background-color: transparent;
-  z-index: 1;
-  padding: 20px;
-  color: white;
-}
-
-.paintings-container .details:hover {
-  transition: all 0.3s;
-  background: linear-gradient(to bottom, rgba(72,76,97,0.8) 0%, rgba(72,76,97,0) 75%);
-}
-
-.paintings-container .details:hover,
-.paintings-container .details:hover h4,
-.paintings-container .details:hover h5,
-.paintings-container .details:hover button {
-  opacity: 1;
-  transition: all 0.3s;
-}
-
-.paintings-container .details h4 {
-  font-family: 'fertigo', sans-serif;
-  font-weight: bold;
-  font-size: 1.45em;
-  font-weight: bold;
-  letter-spacing: 1px;
-  line-height: 1.5em;
-  opacity: 0;
-  text-align: left;
-}
-
-.paintings-container .details h5 {
-  font-family: 'fertigo', sans-serif;
-  font-size: 0.85em;
-  letter-spacing: 1px;
-  display: inline-block;
-  opacity: 0;
-}
-
-@media (max-width: 800px) {
-  .paintings-container {
-    -moz-column-count: 1;
-    -webkit-column-count: 1;
-    column-count: 1;
-  }
-}
-
-/*============= Interpretations ============*/
-
-.interpretations {
-    width: 60%;
-    max-width: 1300px;
-    height: 50%;
-    margin: 0 auto;
-    margin-top: 10px;
-}
-
-.interpretations .interpretation {
-    width: 33%;
-    height: 600px;
-    float: left;
-    display: inline-block;
-    position: relative;
-}
-
-@media (max-width: 800px) {
-    .interpretations .interpretation {
-        float: none;
-        width: 100%;
-    }
-}
-
-.interpretations .interpretation:hover {
-    box-shadow: 10px 10px 30px 0px #C9C6C6;
-}
-
-.interpretation .painting-holder {
-    width: 100%;
-    height: 60%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: inline-block;
-}
-
-.interpretation .description {
-    width: 100%;
-    height: 40%;
-    padding: 0 25px;
-    display: inline-block;
-    overflow: hidden;
-}
-
-.interpretation .description .description-header h4 {
-    display: block;
-    color: rgba(0, 0, 0, 0.8);
-    font-size: 1.5em;
-    line-height: 1.5em;
-    font-family: 'fertigo', serif;
-}
-
-.interpretation .description .description-header h4:hover {
-    text-decoration: underline;
-}
-
-.description .description-header h5 {
-    color: rgba(0, 0, 0, 0.4);
-    display: block;
-    text-align: center;
-    font-size: 0.8em;
-}
-
-.description .description-header h5 a:hover {
-    text-decoration: underline;
-}
-
-.description .content-area {
-    margin-top: 8px;
-}
-
-.description .content-area .content {
-    font-family: 'taile', sans-serif;
-    font-size: 1em;
-    line-height: 2em;
-    letter-spacing: 1px;
-    cursor: pointer;
-}
-
-.description .content-area .content:hover {
-    text-decoration: underline;
-}
-
-.interpretation .void {
-    position: absolute;
-    bottom: -5px;
-    width: 100%;
-    height: 100px;
-    background: -webkit-linear-gradient(transpar10nt, white); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(transparent, wh10te); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(transpar10nt, white); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(transparent, white); /* Standard syntax (must be last) */
-}
-/*================= Clearfix =====================*/
-.clearfix:before,
-.clearfix:after {
-  content: "";
-  display: table;
-}
-.clearfix:after {
-  clear: both;
-}
-.clearfix {
-  clear: both;
-  *zoom: 1;
-}
-
-.right {
-  float: right;
-}
-
-.left {
-  float: left;
+.profile-art-container {
+    width: 350px;
 }

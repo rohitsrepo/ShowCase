@@ -1,6 +1,4 @@
 angular.module("ExploreApp", [
-    'infinite-scroll',
-    "wu.masonry",
     "module.root",
     'module.bookmark'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
