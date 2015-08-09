@@ -115,6 +115,10 @@ class Composition(models.Model):
     def bookmarks_count(self):
         return self.bookers.all().count()
 
+    @property
+    def buckets_count(self):
+        return self.holders.all().count()
+
     def create_post(self):
         return Post(
             composition=self,

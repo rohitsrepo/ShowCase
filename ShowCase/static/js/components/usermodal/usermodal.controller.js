@@ -1,4 +1,4 @@
-angular.module('module.bookmark')
+angular.module('module.usermodal')
 .controller('usermodalController', ['$scope',
     'compositionModel',
     'userModel',

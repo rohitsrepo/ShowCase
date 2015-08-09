@@ -10,12 +10,12 @@ class Bucket(models.Model):
 
     @property
     def compositions_count(self):
-        return self.compositios.all().count()
+        return self.compositions.all().count()
 
     @property
     def picture(self):
         try:
-            composition = self.compositions.all()[0]
+            composition = self.compositions.latest('created')
             return composition.get_350_url()
         except:
             return ''

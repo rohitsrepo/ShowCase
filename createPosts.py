@@ -8,6 +8,7 @@ from compositions.models import Composition
 from interpretations.models import Interpretation
 from feeds.models import StaffPost
 from accounts.models import User
+from buckets.models import Bucket
 from django.core.files import File
 from comments.models import Comment
 
@@ -40,6 +41,17 @@ def add_interpretations(composition, uploader):
         add_interpretation(interpretation)
         print "Interpretation"
 
+def add_collections(user):
+    for i in range(random.randint(2, 5)):
+        bucket = Bucket.objects.create(name='Collection_'+str(i), owner=user)
+        print "Bucket: " + bucket.name
+        composition_count = Composition.objects.all().count()
+        for j in range(random.randint(0, composition_count)):
+            composition = Composition.objects.all()[j]
+            bucket.compositions.add(composition)
+            print "  " + composition.title
+
+
 def get_text(lower, upper):
     content = get_word()
     for i in range(lower, upper):
@@ -57,7 +69,7 @@ def add_interpretation(interpretation):
     add_comments(interpretation, interpretation.user)
 
 delete_existing_data()
-for i in range(1, 10):
+for i in range(1, 50):
     print "Creating objects"
     uploader = User.objects.create_user("user" + str(i) + "@user.com", "user" + str(i), "user")
     print "uploader"
@@ -66,7 +78,5 @@ for i in range(1, 10):
     add_composition_data(composition)
     print "Composition"
     print composition.title
-    add_interpretations(composition, uploader)
-    print "Added interpretations to composition"
-    post = StaffPost.objects.create(composition=composition, interpretation=composition.interpretation_set.all()[random.randint(0, 4)])
-    print "Post"
+    print "Add collections"
+    add_collections(uploader)

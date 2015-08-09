@@ -7,8 +7,9 @@ angular.module('ExploreApp')
     'progress',
     'auth',
     'bookService',
+    'collectionmodalService',
     'usermodalService',
-	function ($scope, compositionModel, $timeout, userModel, alert, progress, auth, bookService, usermodalService) {
+	function ($scope, compositionModel, $timeout, userModel, alert, progress, auth, bookService, collectionmodalService, usermodalService) {
 
 	$scope.arts = [];
 	$scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
@@ -72,5 +73,10 @@ angular.module('ExploreApp')
         	}
         });
     };
+
+    $scope.showCollections = function (index) {
+        var art = $scope.arts[index];
+        collectionmodalService.showCollections(art);
+    }
 
 }]);
