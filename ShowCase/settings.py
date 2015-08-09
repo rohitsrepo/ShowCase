@@ -81,6 +81,7 @@ INSTALLED_APPS = (
     'postComments',
     'allaccess',
     'streams',
+    'buckets',
 )
 
 AUTHENTICATION_BACKENDS = (

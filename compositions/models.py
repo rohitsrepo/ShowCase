@@ -109,11 +109,11 @@ class Composition(models.Model):
         return self.matter.path
 
     def is_bookmarked(self, user_id):
-        return self.collectors.filter(id=user_id).exists()
+        return self.bookers.filter(id=user_id).exists()
 
     @property
     def bookmarks_count(self):
-        return self.collectors.all().count()
+        return self.bookers.all().count()
 
     def create_post(self):
         return Post(

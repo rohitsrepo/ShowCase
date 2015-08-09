@@ -5,6 +5,7 @@ from accounts.models import User
 from rest_framework import permissions, generics, status
 from .serializers import CompositionSerializer, NewCompositionSerializer, InterpretationImageSerializer, PaginatedCompositionSerializer, BookmarkerSerializer
 from .permissions import IsOwnerOrReadOnly, IsHimself, IsImageUploader
+from buckets.serializers import BucketSerializer
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -58,7 +59,7 @@ class CompositionList(APIView):
 
         if request.user.is_authenticated():
             counter = 0
-            related_comps = compositions.filter(collectors__id=request.user.id)
+            related_comps = compositions.filter(bookers__id=request.user.id)
             for composition in compositions:
                 ser.data[counter]['IsBookmarked'] = False
                 # ser.data[counter]['IsVoted'] = False
@@ -102,7 +103,7 @@ class CompositionDetail(APIView):
         ser = CompositionSerializer(composition)
         ser.data['IsBookmarked'] = False
         ser.data['IsVoted'] = False
-        if(composition.collectors.filter(pk=request.user.id).exists()):
+        if(composition.bookers.filter(pk=request.user.id).exists()):
             ser.data['IsBookmarked'] = True
         if request.user.is_authenticated() and request.user.votes.filter(composition=composition).exists():
             ser.data['IsVoted'] = True
@@ -189,7 +190,7 @@ def follow_compositions(request, format=None):
 
     if request.user.is_authenticated():
         counter = 0
-        related_comps = compositions.filter(collectors__id=request.user.id)
+        related_comps = compositions.filter(bookers__id=request.user.id)
         for composition in compositions:
             ser.data[counter]['IsBookmarked'] = False
             ser.data[counter]['IsVoted'] = False
@@ -221,7 +222,7 @@ def random_composition(request, format=None):
     serializer.data['IsVoted'] = False
 
     if request.user.is_authenticated():
-        if (composition.collectors.filter(pk=request.user.id).exists()):
+        if (composition.bookers.filter(pk=request.user.id).exists()):
             serializer.data['IsBookmarked'] = True
         if request.user.votes.filter(composition=composition).exists():
             serializer.data['IsVoted'] = True
@@ -232,6 +233,14 @@ def random_composition(request, format=None):
 @permission_classes((permissions.AllowAny,))
 def get_bookmarkers(request, composition_id, format=None):
     composition = get_object_or_404(Composition, pk=composition_id)
-    collectors = composition.collectors.all()
-    serializer = BookmarkerSerializer(collectors, context={'request': request})
+    bookers = composition.bookers.all()
+    serializer = BookmarkerSerializer(bookers, context={'request': request})
+    return Response(data=serializer.data)
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_buckets(request, composition_id, format=None):
+    composition = get_object_or_404(Composition, pk=composition_id)
+    buckets = composition.holders.all()
+    serializer = BucketSerializer(buckets, context={'request': request})
     return Response(data=serializer.data)
