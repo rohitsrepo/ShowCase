@@ -11,5 +11,5 @@ angular.module('module.root', [
     'module.bookmark',
     'module.follow',
     'module.usermodal',
-    'module.seriesmodal',
+    'module.bucketmodal',
     'module.util']);

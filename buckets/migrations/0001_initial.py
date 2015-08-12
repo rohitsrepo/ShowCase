@@ -19,11 +19,33 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=25)),
                 ('created', models.DateTimeField(auto_now_add=True)),
-                ('compositions', models.ManyToManyField(related_name=b'holders', to='compositions.Composition')),
-                ('owner', models.ForeignKey(related_name=b'buckets', to=settings.AUTH_USER_MODEL)),
             ],
             options={
             },
             bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='BucketMembership',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('added', models.DateTimeField(auto_now_add=True)),
+                ('bucket', models.ForeignKey(related_name=b'membership', to='buckets.Bucket')),
+                ('composition', models.ForeignKey(to='compositions.Composition')),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='bucket',
+            name='compositions',
+            field=models.ManyToManyField(related_name=b'holders', through='buckets.BucketMembership', to='compositions.Composition'),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='bucket',
+            name='owner',
+            field=models.ForeignKey(related_name=b'buckets', to=settings.AUTH_USER_MODEL),
+            preserve_default=True,
         ),
     ]

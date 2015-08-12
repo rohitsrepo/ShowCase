@@ -7,9 +7,9 @@ angular.module('ExploreApp')
     'progress',
     'auth',
     'bookService',
-    'seriesmodalService',
+    'bucketmodalService',
     'usermodalService',
-	function ($scope, compositionModel, $timeout, userModel, alert, progress, auth, bookService, seriesmodalService, usermodalService) {
+	function ($scope, compositionModel, $timeout, userModel, alert, progress, auth, bookService, bucketmodalService, usermodalService) {
 
 	$scope.arts = [];
 	$scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
@@ -74,9 +74,14 @@ angular.module('ExploreApp')
         });
     };
 
-    $scope.showSerieses = function (index) {
+    $scope.showArtBuckets = function (index) {
         var art = $scope.arts[index];
-        seriesmodalService.showSerieses(art);
+        bucketmodalService.showArtBuckets(art);
     }
+
+    $scope.showAddToBucket = function (index) {
+        var art = $scope.arts[index];
+        bucketmodalService.showAddToBucket(art);
+    };
 
 }]);

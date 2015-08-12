@@ -1,0 +1,1 @@
+angular.module('module.bucketmodal', ['module.util', 'module.model'])

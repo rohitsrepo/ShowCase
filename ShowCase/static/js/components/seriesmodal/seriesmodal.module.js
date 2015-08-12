@@ -1,1 +1,0 @@
-angular.module('module.seriesmodal', ['module.util', 'module.model'])

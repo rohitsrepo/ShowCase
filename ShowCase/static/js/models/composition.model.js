@@ -22,13 +22,5 @@ angular.module("module.model")
         });
     };
 
-    service.getSerieses = function (compositionId) {
-        return $http.get('/compositions/' + compositionId + '/buckets').then(function (response) {
-            return response.data;
-        }, function (error) {
-            return $q.reject(error);
-        });
-    };
-
 	return service;
 }]);

@@ -1,0 +1,23 @@
+<section class="bucket-modal">
+    <section class="modal-actions">
+        <button ng-click="close()">X</button>
+    </section>
+    <div class="scroll-holder">
+        <ul class="container">
+            <h1 class="buckets-header" ng-cloak ng-hide="noUserBucket.status">Select series to add <a ng-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a></h1>
+            <li class="bucket" ng-repeat="bucket in userBuckets">
+                <div class="picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">
+                    <section class="details" ng-click="addToThisBucket($index)">
+                        <h2>[[bucket.name | titlecase]]</h2>
+                        <div class="arts-count">[[bucket.compositions_count]] Paintings</div>
+                    </section>
+                </div>
+            </li>
+            <div ng-cloak ng-show="noUserBucket.status" class="no-bucket">
+                <h1 class="no-buckets-header">This work is not present in any series yet</h1>
+                <h2>Add this work to your series?</h2>
+                <button ng-click='noUserBucket.action()'>To Series</button>
+            </div>
+        </ul> <!-- container -->
+    </div>
+</section>

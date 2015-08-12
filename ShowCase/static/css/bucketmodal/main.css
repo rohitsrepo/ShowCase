@@ -1,4 +1,4 @@
-.series-modal {
+.bucket-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -9,26 +9,26 @@
     overflow: auto;
 }
 
-.series-modal::-webkit-scrollbar {
+.bucket-modal::-webkit-scrollbar {
     width: 15px;
 }
 
-.series-modal::-webkit-scrollbar-track {
+.bucket-modal::-webkit-scrollbar-track {
     -webkit-box-shadow: none;
 }
 
-.series-modal::-webkit-scrollbar-thumb {
+.bucket-modal::-webkit-scrollbar-thumb {
     background-color: black;
     border: 5px solid white;
 }
 
-.series-modal .modal-actions {
+.bucket-modal .modal-actions {
     position: absolute;
     top: 20px;
     right: 20px;
 }
 
-.series-modal .modal-actions button {
+.bucket-modal .modal-actions button {
     color: rgba(0, 0, 0, 0.6);
     background: transparent;
     border: none;
@@ -36,30 +36,42 @@
     cursor: pointer;
 }
 
-.series-modal .modal-actions button:hover {
+.bucket-modal .modal-actions button:hover {
     color: rgba(0, 0, 0, 1);
 }
 
-.series-modal .scroll-holder {
+.bucket-modal .scroll-holder {
     width: 100%;
-    padding-top: 150px;
+    padding-top: 100px;
     padding-bottom: 350px;
 }
 
-.series-modal .container {
+.bucket-modal .container {
     width: 70%;
     max-width: 900px;
     margin: 0 auto;
 }
 
-.series-modal .container .series {
+.bucket-modal .container .buckets-header {
+    text-align: center;
+    font-size: 2em;
+    line-height: 1.5em;
+    margin-bottom: 20px;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.bucket-modal .container .buckets-header a {
+    text-decoration: underline;
+}
+
+.bucket-modal .container .bucket {
     width: 32%;
     padding: 10px 20px;
     display: inline-block;
     vertical-align: bottom;
 }
 
-.series-modal .container .series .picture{
+.bucket-modal .container .bucket .picture{
     width: 100%;
     height: 300px;
     background-repeat: no-repeat;
@@ -68,7 +80,7 @@
     cursor: pointer;
 }
 
-.series .picture .details {
+.bucket .picture .details {
     position: absolute;
     top: 0;
     left: 0;
@@ -82,49 +94,50 @@
     transition: all 1s;
 }
 
-.series .picture .details:hover {
+.bucket .picture .details:hover {
     opacity: 0.5;
 }
 
-.series .picture .details h2 {
+.bucket .picture .details h2 {
     font-size: 1.3em;
     line-height: 1.5em;
 }
 
-.series .picture .details .arts-count {
+.bucket .picture .details .arts-count {
     margin-bottom: 40px;
     font-size: 0.8em;
 }
 
-.series .picture .details .by-user {
+.bucket .picture .details .by-user {
     font-size: 0.8em;
     line-height: 1.5em;
 }
 
-.series .picture .details h3 {
+.bucket .picture .details h3 {
     font-size: 1em;
     line-height: 1.5em;
 }
 
-/*=============== No Such Series ================*/
-.no-series {
+/*=============== No Such bucket ================*/
+.no-bucket {
     text-align: center;
     color: rgba(0, 0, 0, 0.9);
 }
 
-.no-series h1 {
+.no-bucket .no-buckets-header {
     font-size: 1.2em;
     line-height: 2em;
     color: rgba(0, 0, 0, 0.54);
 }
 
-.no-series h2 {
+.no-bucket h2 {
     font-size: 2em;
     line-height: 1.5em;
     margin-bottom: 20px;
+    color: rgba(0, 0, 0, 0.9);
 }
 
-.no-series button {
+.no-bucket button {
     background: transparent;
     border: none;
     border: 1px solid rgba(0, 0, 0, 0.8);
@@ -134,7 +147,7 @@
     cursor: pointer;
 }
 
-.no-series button:hover {
+.no-bucket button:hover {
     background: rgba(0, 0, 0, 0.9);
     color: white;
 }

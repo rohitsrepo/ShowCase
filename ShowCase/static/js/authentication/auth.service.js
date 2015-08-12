@@ -109,7 +109,7 @@ angular.module('module.auth')
 
 		return service.getCurrentUser().then(function (user) {
 			if (typeof callback == 'function') {
-				callback();
+				return callback();
 			}
 		}, function () {
 			showLoginModal().then(function (modal) {
@@ -117,7 +117,7 @@ angular.module('module.auth')
 					if (response == "LoggedIn") {
 						service.getCurrentUser();   // call to make sure auth service has the new user
 						if (typeof callback == 'function') {
-							callback();
+							return callback();
 						}
 					}
 				});

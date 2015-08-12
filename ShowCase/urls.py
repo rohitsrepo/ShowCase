@@ -50,6 +50,7 @@ urlpatterns += patterns('',
                        url(r'^posts', include('posts.urls')),
                        url(r'^feeds', include('feeds.urls')),
                        url(r'^content', include('contentManager.urls')),
+                       url(r'^buckets', include('buckets.urls')),
 		       )
 
 # Robots.txt

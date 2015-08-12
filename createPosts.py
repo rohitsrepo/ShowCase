@@ -8,7 +8,7 @@ from compositions.models import Composition
 from interpretations.models import Interpretation
 from feeds.models import StaffPost
 from accounts.models import User
-from buckets.models import Bucket
+from buckets.models import Bucket, BucketMembership
 from django.core.files import File
 from comments.models import Comment
 
@@ -48,7 +48,7 @@ def add_collections(user):
         composition_count = Composition.objects.all().count()
         for j in range(random.randint(0, composition_count)):
             composition = Composition.objects.all()[j]
-            bucket.compositions.add(composition)
+            BucketMembership.objects.create(composition=composition, bucket=bucket)
             print "  " + composition.title
 
 

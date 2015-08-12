@@ -236,11 +236,3 @@ def get_bookmarkers(request, composition_id, format=None):
     bookers = composition.bookers.all()
     serializer = BookmarkerSerializer(bookers, context={'request': request})
     return Response(data=serializer.data)
-
-@api_view(['GET'])
-@permission_classes((permissions.AllowAny,))
-def get_buckets(request, composition_id, format=None):
-    composition = get_object_or_404(Composition, pk=composition_id)
-    buckets = composition.holders.all()
-    serializer = BucketSerializer(buckets, context={'request': request})
-    return Response(data=serializer.data)

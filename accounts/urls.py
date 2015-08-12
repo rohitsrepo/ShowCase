@@ -34,6 +34,7 @@ urlpatterns = patterns('',
                       url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
                       url(r'^/(?P<user_id>[0-9]+)/posts$', UserPostList.as_view()),
                       url(r'^/(?P<user_id>[0-9]+)/posts/(?P<post_id>[0-9]+)$', UserPostDetail.as_view()),
+                      url(r'^/(?P<user_id>[0-9]+)/buckets$', 'buckets.views.get_user_buckets'),
                     )
 
 urlpatterns = format_suffix_patterns(urlpatterns)
