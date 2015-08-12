@@ -1,5 +1,5 @@
-angular.module('module.collectionmodal')
-.controller('collectionmodalController', ['$scope',
+angular.module('module.seriesmodal')
+.controller('seriesmodalController', ['$scope',
     'compositionModel',
     'close',
     'art',
@@ -7,17 +7,17 @@ angular.module('module.collectionmodal')
     'alert',
     function ($scope, compositionModel, close, art, progress, alert) {
 
-        $scope.noSuchCollection = {
+        $scope.noSuchSeries = {
             status: false,
             action: function () {}
         }
 
         progress.showProgress();
-        compositionModel.getCollections(art.id).then(function (collections) {
-            $scope.collections = collections;
+        compositionModel.getSerieses(art.id).then(function (serieses) {
+            $scope.serieses = serieses;
 
-            if ($scope.collections.length == 0){
-                $scope.noSuchCollection.status = true;
+            if ($scope.serieses.length == 0){
+                $scope.noSuchSeries.status = true;
             }
 
             progress.hideProgress();

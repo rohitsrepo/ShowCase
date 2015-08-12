@@ -1,4 +1,4 @@
-.collection-modal {
+.series-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -9,26 +9,26 @@
     overflow: auto;
 }
 
-.collection-modal::-webkit-scrollbar {
+.series-modal::-webkit-scrollbar {
     width: 15px;
 }
 
-.collection-modal::-webkit-scrollbar-track {
+.series-modal::-webkit-scrollbar-track {
     -webkit-box-shadow: none;
 }
 
-.collection-modal::-webkit-scrollbar-thumb {
+.series-modal::-webkit-scrollbar-thumb {
     background-color: black;
     border: 5px solid white;
 }
 
-.collection-modal .modal-actions {
+.series-modal .modal-actions {
     position: absolute;
     top: 20px;
     right: 20px;
 }
 
-.collection-modal .modal-actions button {
+.series-modal .modal-actions button {
     color: rgba(0, 0, 0, 0.6);
     background: transparent;
     border: none;
@@ -36,30 +36,30 @@
     cursor: pointer;
 }
 
-.collection-modal .modal-actions button:hover {
+.series-modal .modal-actions button:hover {
     color: rgba(0, 0, 0, 1);
 }
 
-.collection-modal .scroll-holder {
+.series-modal .scroll-holder {
     width: 100%;
     padding-top: 150px;
     padding-bottom: 350px;
 }
 
-.collection-modal .container {
+.series-modal .container {
     width: 70%;
     max-width: 900px;
     margin: 0 auto;
 }
 
-.collection-modal .container .collection {
+.series-modal .container .series {
     width: 32%;
     padding: 10px 20px;
     display: inline-block;
     vertical-align: bottom;
 }
 
-.collection-modal .container .collection .picture{
+.series-modal .container .series .picture{
     width: 100%;
     height: 300px;
     background-repeat: no-repeat;
@@ -68,7 +68,7 @@
     cursor: pointer;
 }
 
-.collection .picture .details {
+.series .picture .details {
     position: absolute;
     top: 0;
     left: 0;
@@ -82,49 +82,49 @@
     transition: all 1s;
 }
 
-.collection .picture .details:hover {
+.series .picture .details:hover {
     opacity: 0.5;
 }
 
-.collection .picture .details h2 {
+.series .picture .details h2 {
     font-size: 1.3em;
     line-height: 1.5em;
 }
 
-.collection .picture .details .arts-count {
+.series .picture .details .arts-count {
     margin-bottom: 40px;
     font-size: 0.8em;
 }
 
-.collection .picture .details .by-user {
+.series .picture .details .by-user {
     font-size: 0.8em;
     line-height: 1.5em;
 }
 
-.collection .picture .details h3 {
+.series .picture .details h3 {
     font-size: 1em;
     line-height: 1.5em;
 }
 
-/*=============== No Such Collection ================*/
-.no-collections {
+/*=============== No Such Series ================*/
+.no-series {
     text-align: center;
     color: rgba(0, 0, 0, 0.9);
 }
 
-.no-collections h1 {
+.no-series h1 {
     font-size: 1.2em;
     line-height: 2em;
     color: rgba(0, 0, 0, 0.54);
 }
 
-.no-collections h2 {
+.no-series h2 {
     font-size: 2em;
     line-height: 1.5em;
     margin-bottom: 20px;
 }
 
-.no-collections button {
+.no-series button {
     background: transparent;
     border: none;
     border: 1px solid rgba(0, 0, 0, 0.8);
@@ -134,7 +134,7 @@
     cursor: pointer;
 }
 
-.no-collections button:hover {
+.no-series button:hover {
     background: rgba(0, 0, 0, 0.9);
     color: white;
 }

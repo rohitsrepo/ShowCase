@@ -1,1 +1,0 @@
-angular.module('module.collectionmodal', ['module.util', 'module.model'])

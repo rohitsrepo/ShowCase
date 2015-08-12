@@ -22,7 +22,7 @@ angular.module("module.model")
         });
     };
 
-    service.getCollections = function (compositionId) {
+    service.getSerieses = function (compositionId) {
         return $http.get('/compositions/' + compositionId + '/buckets').then(function (response) {
             return response.data;
         }, function (error) {

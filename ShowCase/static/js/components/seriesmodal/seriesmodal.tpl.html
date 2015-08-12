@@ -1,0 +1,24 @@
+<section class="series-modal">
+    <section class="modal-actions">
+        <button ng-click="close()">X</button>
+    </section>
+    <div class="scroll-holder">
+        <ul class="container">
+            <li class="series" ng-repeat="series in serieses">
+                <div class="picture" ng-style="{'background-image': 'url([[series.picture]])'}">
+                    <section class="details">
+                        <h2>[[series.name]]</h2>
+                        <div class="arts-count">[[series.compositions_count]] Paintings</div>
+                        <div class="by-user">By</div>
+                        <h3>[[series.owner.name | titlecase ]]</h3>
+                    </section>
+                </div>
+            </li>
+            <div ng-cloak ng-show="noSuchSeries.status" class="no-series">
+                <h1>This work is not present in any series yet</h1>
+                <h2>Add this work to your series?</h2>
+                <button ng-click='noSuchSeries.action()'>To Series</button>
+            </div>
+        </ul> <!-- container -->
+    </div>
+</section>
