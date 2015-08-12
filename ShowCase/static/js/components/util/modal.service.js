@@ -117,6 +117,9 @@ function LoginModal() {
         var modalElement = linkFn(modalScope);
         inputs.$element = modalElement;
 
+
+
+
         //  Create the controller, explicitly specifying the scope to use.
         var modalController = $controller(controllerName, inputs);
 
@@ -138,6 +141,17 @@ function LoginModal() {
           element: modalElement,
           close: closeDeferred.promise
         };
+
+        // bind close on escape
+        modalElement.keydown(function (evt) {
+            if (evt.keyCode == 27) {
+                inputs.close();
+            }
+        })
+
+        window.setTimeout(function () {
+            modalElement.focus();
+        }, 0)
 
         //  ...which is passed to the caller via the promise.
         deferred.resolve(modal);
