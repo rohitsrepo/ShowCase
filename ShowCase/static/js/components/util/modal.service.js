@@ -40,6 +40,8 @@ function LoginModal() {
     return deferred.promise;
   };
 
+  var modalCount = 0;
+
   self.showModal = function(options) {
 
     //  Create a deferred we'll resolve when the modal is ready.
@@ -80,8 +82,12 @@ function LoginModal() {
               //  Resolve the 'close' promise.
               closeDeferred.resolve(result);
 
+              modalCount = modalCount - 1;
+
               // Remove style from body
-              body.removeClass('modal-open');
+              if (modalCount == 0){
+                  body.removeClass('modal-open');
+              }
 
               //  We can now clean up the scope and remove the element from the DOM.
               modalScope.$destroy();
@@ -130,8 +136,10 @@ function LoginModal() {
         } else {
           // append to body when no custom append element is specified
           body.append(modalElement);
+
           // add css class to body to disable scrolll and things of that sort.
           body.addClass('modal-open');
+          modalCount = modalCount + 1;
         }
 
         //  We now have a modal object...

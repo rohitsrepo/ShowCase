@@ -1,12 +1,13 @@
 angular.module('module.bucketmodal')
 .controller('bucketmodalAddController', ['$scope',
     'bucketModel',
+    'bucketmodalService',
     'close',
     'art',
     'user',
     'progress',
     'alert',
-    function ($scope, bucketModel, close, art, user, progress, alert) {
+    function ($scope, bucketModel, bucketmodalService, close, art, user, progress, alert) {
 
         $scope.noUserBucket = {
             status: false,
@@ -39,6 +40,14 @@ angular.module('module.bucketmodal')
                 progress.hideProgress();
                 alert.showAlert('Unable to add art to bucket');
             })
+        };
+
+        $scope.showCreateBucket = function () {
+            bucketmodalService.showCreateBucket().then(function (result) {
+                if (result && result.created) {
+                    $scope.userBuckets.push(result.bucket);
+                }
+            });
         };
 
         $scope.close = function () {

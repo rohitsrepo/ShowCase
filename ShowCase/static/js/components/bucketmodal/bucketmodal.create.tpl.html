@@ -1,0 +1,18 @@
+<section tabindex="0" class="bucket-modal">
+    <section class="modal-actions-header">
+        <button ng-click="close()">X</button>
+    </section>
+    <div class="scroll-holder">
+        <ul class="container">
+            <h1 class="buckets-header">Create a new series</h1>
+            <form class="bucket-form" name="bucketForm">
+                 <input type="text" autofocus placeholder="Name" ng-model="newBucket.name" name="uName" required ng-maxlength="25">
+                 <div ng-cloak ng-show="bucketForm.$dirty">
+                     <span class="error" ng-show="bucketForm.uName.$error.required">Please provide a name</span>
+                     <span class="error" ng-show="bucketForm.uName.$error.maxlength">Please use less than 25 charactes</span>
+                </div>
+                <button class="create-button" ng-class="{'disabled': bucketForm.$invalid}" ng-disabled="bucketForm.$invalid" ng-click="createNewBucket()">CREATE</button>
+            </form>
+        </ul> <!-- container -->
+    </div>
+</section>

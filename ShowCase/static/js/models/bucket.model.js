@@ -28,5 +28,13 @@ angular.module("module.model")
         });
     };
 
+    service.create = function (bucket) {
+        return $http.post('/buckets', bucket).then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
     return service;
 }]);

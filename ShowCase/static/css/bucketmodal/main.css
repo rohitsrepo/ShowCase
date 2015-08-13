@@ -22,13 +22,13 @@
     border: 5px solid white;
 }
 
-.bucket-modal .modal-actions {
+.bucket-modal .modal-actions-header {
     position: fixed;
     top: 20px;
     right: 20px;
 }
 
-.bucket-modal .modal-actions button {
+.bucket-modal .modal-actions-header button {
     color: rgba(0, 0, 0, 0.6);
     background: transparent;
     border: none;
@@ -36,7 +36,7 @@
     cursor: pointer;
 }
 
-.bucket-modal .modal-actions button:hover {
+.bucket-modal .modal-actions-header button:hover {
     color: rgba(0, 0, 0, 1);
 }
 
@@ -148,6 +148,71 @@
 }
 
 .no-bucket button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+/*============== Bucket Form =================*/
+.container .bucket-form {
+    display: block;
+    text-align: center;
+}
+
+.container .bucket-form input {
+    display: block;
+    width: 350px;
+    margin: 0 auto;
+    margin-top: 50px;
+    font-size: 1.3em;
+    border: none;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.54);
+}
+
+.container .bucket-form .error {
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.container .bucket-form button {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 1px;
+    padding: 10px 25px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.container .bucket-form button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+.container .bucket-form button.disabled {
+    opacity: 0.5
+}
+
+/*=============== Footer actions ===================*/
+
+.bucket-modal .modal-actions-footer {
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+}
+
+.bucket-modal .modal-actions-footer button {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 1px;
+    padding: 5px 15px;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.bucket-modal .modal-actions-footer button:hover {
     background: rgba(0, 0, 0, 0.9);
     color: white;
 }

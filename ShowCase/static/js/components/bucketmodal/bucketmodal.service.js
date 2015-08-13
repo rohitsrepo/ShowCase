@@ -27,5 +27,18 @@ angular.module('module.bucketmodal')
         auth.runWithAuth(addToBucketCallback(art));
     };
 
+    var createBucketCallback = function () {
+        return modalService.showModal({
+            'templateUrl': '/static/js/components/bucketmodal/bucketmodal.create.tpl.html',
+            'controller': 'bucketmodalCreateController',
+        }).then(function (modal) {
+            return modal.close;
+        });
+    };
+
+    service.showCreateBucket = function () {
+        return createBucketCallback();
+    };
+
     return service;
 }]);
