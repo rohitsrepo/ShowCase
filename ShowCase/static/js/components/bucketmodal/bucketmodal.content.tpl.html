@@ -1,0 +1,44 @@
+<section tabindex="0" class="bucket-modal">
+    <section class="modal-actions-header">
+        <button ng-click="close()">X</button>
+    </section>
+    <div class="scroll-holder">
+        <ul class="container">
+            <header class="buckets-header">
+                <h1>[[bucket.name | titlecase]]</h1>
+                <div class="by-user">By</div>
+                <h2><a ng-href="/@[[bucket.owner.slug]]">[[bucket.owner.name]]</a></h2>
+            </header>
+            <li class="bucket" ng-repeat="art in bucketArts">
+                <div class="art">
+                    <article class="art-content">
+                        <img ng-src="[[art.matter_550]]" alt="[[art.title]]" height="[[400 * art.matter_aspect]]px" width="400px">
+                        <div class="details-inset">
+                            <section class="inset-details">
+                                <h6>[[art.views]] Views</h6>
+                                <h6 class="active" ng-click="showBookMarkers($index)">[[art.bookmarks_count]] Admirers</h6>
+                                <h6 class="active" ng-click="showArtBuckets($index)">[[art.buckets_count]] Series</h6>
+                            </section>
+
+                            <section class="inset-actions">
+                                <button ng-click="showAddToBucket($index)">To Series</button><!--
+                                --><button>Share</button>
+                            </section>
+
+                        </div>
+                    </article>
+                    <section class="details">
+                        <h4><a ng-href="/arts/[[art.slug]]" target="_blank">[[art.title | titlecase]]</a></h4>
+                        <h5> by <a href="/@[[art.artist.slug]]" target="_blank">[[art.artist.name | titlecase]]</a></h5>
+                    </section><!--
+                    --><section class="actions">
+                        <button ng-click="handleBookMark($index)" ng-class="{'bookmark-active': art.is_bookmarked}">ADMIRE</button>
+                    </section>
+                </div>
+            </li>
+        </ul> <!-- container -->
+    </div>
+    <section class="modal-actions-footer">
+        <button ng-click="showCreateBucket()">New Series</button>
+    </section>
+</section>

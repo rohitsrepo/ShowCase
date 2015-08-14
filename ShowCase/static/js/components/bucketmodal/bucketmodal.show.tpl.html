@@ -7,7 +7,7 @@
             <h1 class="buckets-header" ng-cloak ng-hide="noSuchBucket.status">Series containing <a ng-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a></h1>
             <li class="bucket" ng-repeat="bucket in artBuckets">
                 <div class="picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">
-                    <section class="details">
+                    <section class="details" ng-click="showArts($index)">
                         <h2>[[bucket.name | titlecase]]</h2>
                         <div class="arts-count">[[bucket.compositions_count]] Paintings</div>
                         <div class="by-user">By</div>

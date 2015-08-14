@@ -8,9 +8,10 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Bucket, BucketMembership
 from .permissions import IsOwnerOrReadOnly
-from .serializers import BucketSerializer, PaginatedBucketCompositionSerializer
+from .serializers import BucketSerializer
 
 from compositions.models import Composition
+from compositions.serializers import CompositionSerializer
 from accounts.models import User
 
 class BucketList(APIView):
@@ -33,17 +34,18 @@ class BucketComposition(APIView):
         bucket = get_object_or_404(Bucket, id=bucket_id)
         compositions = bucket.compositions.all()
 
-        page_num = request.GET.get('page', 1)
-        paginator = Paginator(compositions, 9)
+        # page_num = request.GET.get('page', 1)
+        # paginator = Paginator(compositions, 9)
 
-        try:
-            this_page_compositions = paginator.page(page_num)
-        except PageNotAnInteger:
-            this_page_compositions = paginator.page(1)
-        except EmptyPage:
-            raise Http404
+        # try:
+        #     this_page_compositions = paginator.page(page_num)
+        # except PageNotAnInteger:
+        #     this_page_compositions = paginator.page(1)
+        # except EmptyPage:
+        #     raise Http404
 
-        serializer = PaginatedBucketCompositionSerializer(this_page_compositions, context={'request': request})
+        # serializer = PaginatedBucketCompositionSerializer(this_page_compositions, context={'request': request})
+        serializer = CompositionSerializer(compositions, context={'request': request})
         return Response(serializer.data)
 
     def put(self, request, bucket_id, format=None):

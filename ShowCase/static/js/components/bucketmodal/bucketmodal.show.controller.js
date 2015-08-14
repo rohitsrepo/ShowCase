@@ -1,11 +1,12 @@
 angular.module('module.bucketmodal')
 .controller('bucketmodalShowController', ['$scope',
     'bucketModel',
+    'bucketmodalService',
     'close',
     'art',
     'progress',
     'alert',
-    function ($scope, bucketModel, close, art, progress, alert) {
+    function ($scope, bucketModel, bucketmodalService, close, art, progress, alert) {
 
         $scope.noSuchBucket = {
             status: false,
@@ -26,6 +27,11 @@ angular.module('module.bucketmodal')
             alert.showAlert('We are unable to fetch data');
             progress.hideProgress();
         });
+
+        $scope.showArts = function (index) {
+            var bucket = $scope.artBuckets[index];
+            bucketmodalService.showBucketArts(bucket);
+        }
 
         $scope.close = function () {
             close();

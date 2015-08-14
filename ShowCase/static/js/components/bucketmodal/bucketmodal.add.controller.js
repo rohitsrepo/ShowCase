@@ -9,9 +9,20 @@ angular.module('module.bucketmodal')
     'alert',
     function ($scope, bucketModel, bucketmodalService, close, art, user, progress, alert) {
 
+        $scope.showCreateBucket = function () {
+            bucketmodalService.showCreateBucket().then(function (result) {
+                if (result && result.created) {
+                    $scope.userBuckets.push(result.bucket);
+                    $scope.noUserBucket.status = false;
+                }
+            });
+        };
+
         $scope.noUserBucket = {
             status: false,
-            action: function () {}
+            action: function () {
+                $scope.showCreateBucket();
+            }
         }
 
         progress.showProgress();
@@ -40,14 +51,6 @@ angular.module('module.bucketmodal')
                 progress.hideProgress();
                 alert.showAlert('Unable to add art to bucket');
             })
-        };
-
-        $scope.showCreateBucket = function () {
-            bucketmodalService.showCreateBucket().then(function (result) {
-                if (result && result.created) {
-                    $scope.userBuckets.push(result.bucket);
-                }
-            });
         };
 
         $scope.close = function () {

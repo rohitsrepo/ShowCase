@@ -36,5 +36,13 @@ angular.module("module.model")
         });
     };
 
+    service.bucketArts = function (bucketId) {
+        return $http.get('/buckets/' + bucketId).then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
     return service;
 }]);

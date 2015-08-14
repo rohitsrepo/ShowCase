@@ -40,5 +40,13 @@ angular.module('module.bucketmodal')
         return createBucketCallback();
     };
 
+    service.showBucketArts = function (bucket) {
+        modalService.showModal({
+            'templateUrl': '/static/js/components/bucketmodal/bucketmodal.content.tpl.html',
+            'controller': 'bucketmodalContentController',
+            'inputs' : {'bucket': bucket}
+        })
+    };
+
     return service;
 }]);
