@@ -1,0 +1,16 @@
+ <div class="user-buckets">
+    <li class="user-bucket" ng-repeat="bucket in userBuckets">
+        <div class="user-bucket-picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">
+            <section class="user-bucket-details" ng-click="showArts($index)">
+                <h2>[[bucket.name | titlecase]]</h2>
+                <div class="arts-count">[[bucket.compositions_count]] Paintings</div>
+            </section>
+        </div>
+    </li>
+
+    <div ng-cloak ng-show="noUserBucket.status" class="no-bucket">
+        <h1 class="no-buckets-header">You have not created any series yet</h1>
+        <h2>Time to give your thoughts a mould</h2>
+        <button ng-click='noUserBucket.action()'>Create New Series</button>
+    </div>
+</div>

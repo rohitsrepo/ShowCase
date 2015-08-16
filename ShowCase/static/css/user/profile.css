@@ -204,3 +204,55 @@ header .details .actions h3:hover {
 .profile-art-container {
     width: 350px;
 }
+
+/*================= Buckets Area ============================*/
+
+.user-buckets {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.user-buckets .user-bucket {
+    width: 32%;
+    display: inline-block;
+}
+
+.user-bucket .user-bucket-picture {
+    width: 100%;
+    height: 350px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+    border: 10px solid white;
+}
+
+.user-bucket-picture .user-bucket-details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 5px;
+    padding-top: 75px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    transition: all 1s;
+}
+
+.user-bucket-picture .user-bucket-details:hover {
+    opacity: 0.5;
+}
+
+.user-bucket-picture .user-bucket-details h2 {
+    color: white;
+    font-size: 1.3em;
+    line-height: 2.5em;
+    margin-bottom: 150px;
+}
+
+.user-bucket-picture .user-bucket-details .arts-count {
+    font-size: 0.8em;
+}

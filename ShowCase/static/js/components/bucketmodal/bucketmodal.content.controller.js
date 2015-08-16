@@ -15,10 +15,12 @@ angular.module('module.bucketmodal')
         bucketModel.bucketArts(bucket.id).then(function (arts) {
             $scope.bucketArts = arts;
 
-            $scope.bucketArts.push({
-                matter_aspect: 1
-            })
-            
+            if ($scope.bucketArts.length > 2){
+                $scope.bucketArts.push({
+                    matter_aspect: 1
+                })
+            }
+
             progress.hideProgress();
         }, function () {
             alert.showAlert('We are unable to art for this series');
@@ -74,24 +76,22 @@ angular.module('module.bucketmodal')
 
             scope.KeydownCallback(function (evt) {
                 if (evt.keyCode == 37) {
-                    console.log('call prev');
                     sly.prev();
                 }
 
                 if (evt.keyCode == 39) {
-                    console.log('call next');
                     sly.next();
                 }
-                
+
             });
 
 
         });
     };
-        
+
 }])
 .directive('checkLast', [function () {
-   
+
     return function (scope, element, attrs) {
         if (scope.$last) {
             scope.$emit('slyLastElement')

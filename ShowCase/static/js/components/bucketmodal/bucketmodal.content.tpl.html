@@ -12,7 +12,7 @@
 
         <div horizontal-sly class="content-scroll-holder" id="basic">
             <ul class="content-container">
-                <section class="content-art" check-last ng-repeat="art in bucketArts" ng-style="{'height': '400px', 'width': '[[400/art.matter_aspect]]px'}">
+                <section class="content-art" check-last ng-repeat="art in bucketArts" ng-style="{'height': '450px', 'width': '[[450/art.matter_aspect]]px'}">
                     <img ng-src="[[art.matter_550]]">
                     <section class="art-details">
                         <h1><a ng-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a></h1>
@@ -30,6 +30,6 @@
         </div>
     </div>
 
-            
+
 
 </section>

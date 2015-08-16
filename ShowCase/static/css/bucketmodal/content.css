@@ -5,15 +5,16 @@
     background-position: center;
 }
 
-.bucket-modal.content .background-overlay { 
+.bucket-modal.content .background-overlay {
 	background: rgba(0, 0, 0, 0.7);
 	width: 100%;
 	height: 100%;
+    position: relative;
 }
 
 /*============ HEADER ===========*/
 .content-bucket-header {
-	padding-top: 30px;
+	padding-top: 60px;
 	padding-bottom: 50px;
     text-align: center;
     line-height: 1.5em;
@@ -44,7 +45,7 @@
 /* ============== Content Holder ============== */
 .content-scroll-holder {
 	line-height: 250px;
-	height: 400px;     /* Image height + Margin */
+	height: 450px;     /* Image height + Margin */
 	overflow: hidden;
 	background: rgba(0, 0, 0, 0.8);
 
@@ -53,6 +54,11 @@
     -o-filter: none;
     -ms-filter: none;
     filter: none;
+
+   /* position: absolute;
+    top: 50%;
+    transform: translateY(-50%);*/
+
 }
 
 .content-scroll-holder .content-container {
@@ -127,25 +133,26 @@
 
 /*========== Scrollbar =====================*/
 .scrollbar {
-	margin: 0 0 1em 0;
-	margin-top: 10px;
-	height: 3px;
-	background: #ccc;
+	margin: 0 auto;
+	margin-top: 60px;
+	height: 30px;
+    background: rgba(0, 0, 0, 0.7);
 	line-height: 0;
 	cursor: pointer;
+    width: 60%;
 }
 
 .scrollbar .handle {
 	width: 100px;
 	height: 100%;
-	background: #292a33;
+	background: rgba(255, 255, 255, 0.7);
 }
 
 .scrollbar .handle .mousearea {
 	position: absolute;
 	top: -9px;
 	left: 0;
-	width: 60%;
+	width: 100%;
 	height: 20px;
 }
 

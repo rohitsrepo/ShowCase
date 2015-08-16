@@ -43,6 +43,11 @@ angular.module("UserApp", [
         templateUrl: "/static/js/user/profile.paintings.html",
         controller: 'profilePaintingsController',
         data: {'listType': 'bookmarks'}
+    })
+    .state('buckets', {
+        url: "/series",
+        templateUrl: "/static/js/user/profile.buckets.html",
+        controller: 'profileBucketsController'
     });
 }]).factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
     'use strict';

@@ -6,7 +6,8 @@ angular.module('UserApp')
     'progress',
     'alert',
     'usermodalService',
-    function ($scope, $state, userModel, bookService, progress, alert, usermodalService) {
+    'bucketmodalService',
+    function ($scope, $state, userModel, bookService, progress, alert, usermodalService, bucketmodalService) {
     $scope.arts = [];
     $scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', noWorks: false};
 
@@ -86,6 +87,16 @@ angular.module('UserApp')
                 art.is_bookmarked = true;
             }
         });
+    };
+
+    $scope.showArtBuckets = function (index) {
+        var art = $scope.arts[index];
+        bucketmodalService.showArtBuckets(art);
+    }
+
+    $scope.showAddToBucket = function (index) {
+        var art = $scope.arts[index];
+        bucketmodalService.showAddToBucket(art);
     };
 
 }]);
