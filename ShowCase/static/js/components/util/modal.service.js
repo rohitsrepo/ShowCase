@@ -123,7 +123,12 @@ function LoginModal() {
         var modalElement = linkFn(modalScope);
         inputs.$element = modalElement;
 
-
+        inputs.KeydownCallback = function (callback) {
+          // bind close on escape
+          modalElement.keydown(function (evt) {
+              callback(evt);
+          })
+        };
 
 
         //  Create the controller, explicitly specifying the scope to use.
