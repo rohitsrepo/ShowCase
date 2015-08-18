@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/components/authentication/login.modal.css">
     <link rel="stylesheet" type="text/css" href="/static/css/bucketmodal/main.css">
     <link rel="stylesheet" type="text/css" href="/static/css/bucketmodal/content.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/uploadmodal/main.css">
     <link rel="stylesheet" type="text/css" href="/static/css/bookmark/main.css">
     <!-- endbuild -->
 
@@ -47,8 +48,8 @@
         </a><!--
         --><nav class="site-navigation">
             <li><a class="active" href="/explore">ART</a></li>
-            <li><a href="/artist">ARTISTS</a></li>
-            <li><a href="/generes">GENRES</a></li>
+            <!-- <li><a href="/artist">ARTISTS</a></li> -->
+            <!-- <li><a href="/generes">GENRES</a></li> -->
             <li><a href="/posts">POSTS</a></li>
             <li><a href="/blog" target="_blank">BLOG</a></li>
         </nav><!--
@@ -57,7 +58,7 @@
             <button>
               <i class="material-icons">search</i>
             </button>
-            <button>
+            <button ng-click="showUpload()">
               <i class="material-icons">add</i>
             </button>
         </section><!--
@@ -110,7 +111,7 @@
 
     <!-- build:js /static/build/base.js -->
     <script type="text/javascript" src="/static/vendor/sly/sly.min.js"></script>
-    
+
     <script type="text/javascript" src="/static/js/models/model.module.js"></script>
     <script type="text/javascript" src="/static/js/models/user.model.js"></script>
     <script type="text/javascript" src="/static/js/models/content.model.js"></script>
@@ -161,6 +162,13 @@
     <script type="text/javascript" src="/static/js/components/bucketmodal/bucketmodal.add.controller.js"></script>
     <script type="text/javascript" src="/static/js/components/bucketmodal/bucketmodal.create.controller.js"></script>
     <script type="text/javascript" src="/static/js/components/bucketmodal/bucketmodal.content.controller.js"></script>
+
+    <script type="text/javascript" src="/static/bower_components/angular-upload/angular-upload.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/angucomplete-alt/dist/angucomplete-alt.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/components/uploadmodal/uploadmodal.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/uploadmodal/uploadmodal.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/uploadmodal/uploadmodal.controller.js"></script>
 
     <script type="text/javascript" src="/static/js/root/root.module.js"></script>
     <script type="text/javascript" src="/static/js/root/header.controller.js"></script>

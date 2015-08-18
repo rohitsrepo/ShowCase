@@ -22,5 +22,21 @@ angular.module("module.model")
         });
     };
 
+    service.urlImageUploader = function (art) {
+        return $http.post('/compositions/matter', art).then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
+    service.addArt = function (art) {
+        return $http.post('/compositions', art).then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
 	return service;
 }]);

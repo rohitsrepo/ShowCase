@@ -45,8 +45,29 @@ class NewCompositionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Composition
-        fields = ('title', 'artist', 'description', 'matter', 'slug')
-        read_only_fields = ('slug',)
+        fields = ('title', 'artist', 'matter', 'slug')
+        read_only_fields = ('slug', )
+
+class CompositionMatterSerializer(serializers.Serializer):
+    upload_type = serializers.CharField(max_length=3);
+    upload_image = serializers.ImageField(required=False)
+    upload_url = serializers.URLField(required=False)
+
+    def validate_upload_type(self, attrs, value):
+        field_value = attrs[value]
+        if (field_value == 'upl' or field_value=='url'):
+            return attrs
+        raise serializers.ValidationError('Upload type should be upl or url');
+
+    def validate(self, data):
+        if (data['upload_type'] == 'upl'):
+            if ('upload_image' not in data.keys() or not data['upload_image']):
+                raise serializers.ValidationError('Upload image can not be empty')
+        elif (data['upload_type'] == 'url'):
+            if ('upload_url' not in data.keys() or not data['upload_url']):
+                raise serializers.ValidationError('Upload url can not be empty')
+
+        return data
 
 class InterpretationImageSerializer(serializers.ModelSerializer):
     url = URLImageField(source='image', read_only=True)

@@ -1,0 +1,222 @@
+.upload-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3000;
+    background: rgba(255, 255, 255, 0.97);
+    overflow: auto;
+}
+
+.upload-modal::-webkit-scrollbar {
+    width: 15px;
+}
+
+.upload-modal::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+}
+
+.upload-modal::-webkit-scrollbar-thumb {
+    background-color: black;
+    border: 5px solid white;
+}
+
+/*=========== Modal Action ============*/
+
+.upload-modal .upload-modal-actions-header {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.upload-modal .upload-modal-actions-header button {
+    color: rgba(0, 0, 0, 0.6);
+    background: transparent;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.upload-modal .upload-modal-actions-header button:hover {
+    color: rgba(0, 0, 0, 1);
+}
+
+/*============== Image Source =============*/
+
+.image-source {
+    width: 60%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 200px;
+}
+
+.image-source .source-upload {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.image-source .realfile,
+.image-source .fakefile {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.image-source .realfile {
+    z-index: 2;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.image-source .fakefile {
+    z-index: 1;
+}
+
+.image-source .fakefile h2 {
+    font-size: 2em;
+    line-height: 400px;
+    color: white;
+}
+
+.image-source .fakefile:hover h2 {
+    text-decoration: underline;
+}
+
+/*------ Url Upload -----*/
+
+.image-source .source-url {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.source-url .upload-url-form {
+    width: 100%;
+}
+.source-url .upload-url-form .url-submit,
+.source-url .upload-url-form input {
+    height: 30px;
+}
+
+.source-url .upload-url-form input {
+    width: 85%;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    float: left;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.source-url .upload-url-form .url-submit {
+    width: 10%;
+    float: right;
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    opacity: 0.5;
+}
+
+.source-url .upload-url-form .url-submit.enable {
+    opacity: 1;
+}
+
+
+.source-url .upload-url-form .url-submit.enable:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    cursor: pointer;
+}
+
+.source-url .upload-url-form .error {
+    padding-top: 10px;
+}
+
+/*================ Art Info Source =================*/
+
+.info-source {
+    width: 85%;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 200px;
+}
+
+.info-source .uploaded-image {
+    width: 60%;
+    display: inline-block;
+    float: left;
+    vertical-align: top;
+}
+
+.info-source .uploaded-image img {
+    width: 100%;
+}
+
+.info-source .info-form {
+    width: 35%;
+    display: inline-block;
+    float: right;
+    vertical-align: top;
+}
+
+.info-source .info-form .title {
+    margin: 10px 0;
+}
+
+.info-source .info-form .title,
+.info-source .info-form .artist-input {
+    width: 100%;
+    height: 30px;
+    font-size: 1.3em;
+    font-weight: bold;
+    padding-left: 15px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.angucomplete-dropdown {
+   border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.angucomplete-selected-row {
+   background-color: #E6B800;
+}
+
+.angucomplete-row {
+   padding: 5px 15px;
+   cursor: pointer;
+   text-align: left;
+}
+
+.angucomplete-row:hover {
+   background-color: rgba(0, 0, 0, 0.6);
+   color: white;
+}
+
+/*----- Submit Button ----------*/
+
+.info-source .info-form .info-submit-button {
+    width: 150px;
+    margin: 15px auto;
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    opacity: 0.5;
+    padding: 10px 10px;
+}
+
+.info-source .info-form .info-submit-button.enable {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.info-source .info-form .info-submit-button.enable:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+}

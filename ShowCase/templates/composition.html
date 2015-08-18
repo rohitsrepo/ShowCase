@@ -62,8 +62,8 @@
 				<li style="background: rgb([[ color['0'] ]], [[ color['1'] ]], [[ color['2'] ]])" ng-repeat="color in palette"></li>
 			</ul>
 			<img class="painting painting-original" fit-image src="{{composition.matter.url}}" ng-show="isGrayScaleActive=='inactive' && isOutlineActive=='inactive'" ng-cloak alt="{{composition.slug}}">
-			<img class="painting painting-grayscale" fit-image src="{{composition.get_grayscale_url}}" ng-if="isGrayScaleActive=='active'" ng-cloak alt="{{composition.slug}} grayscale">
-			<img class="painting painting-outline" fit-image src="{{composition.get_outline_url}}" ng-if="isOutlineActive=='active'" ng-cloak alt="{{composition.slug}} outline">
+			<!-- <img class="painting painting-grayscale" fit-image src="{{composition.get_grayscale_url}}" ng-if="isGrayScaleActive=='active'" ng-cloak alt="{{composition.slug}} grayscale">
+			<img class="painting painting-outline" fit-image src="{{composition.get_outline_url}}" ng-if="isOutlineActive=='active'" ng-cloak alt="{{composition.slug}} outline"> -->
 		</div>
 
 
