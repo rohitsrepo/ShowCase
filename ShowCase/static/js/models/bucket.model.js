@@ -44,5 +44,13 @@ angular.module("module.model")
         });
     };
 
+    service.updateBackground = function (bucket_id, bucket_background) {
+        return $http.post('/buckets/' + bucket_id + '/background', bucket_background).then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
     return service;
 }]);

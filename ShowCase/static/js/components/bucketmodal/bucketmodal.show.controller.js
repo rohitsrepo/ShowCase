@@ -10,7 +10,10 @@ angular.module('module.bucketmodal')
 
         $scope.noSuchBucket = {
             status: false,
-            action: function () {}
+            action: function () {
+                bucketmodalService.showAddToBucket(art);
+                close();
+            }
         }
 
         progress.showProgress();

@@ -1,14 +1,18 @@
+import urllib2
+
 from rest_framework import status, permissions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.core.files.temp import NamedTemporaryFile
+from django.core.files import File
 
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Bucket, BucketMembership
 from .permissions import IsOwnerOrReadOnly
-from .serializers import BucketSerializer
+from .serializers import BucketSerializer, BucketBackgroundSerializer
 
 from compositions.models import Composition
 from compositions.serializers import CompositionSerializer
@@ -77,6 +81,46 @@ class BucketComposition(APIView):
 
         return Response(status=status.HTTP_201_CREATED)
 
+class BucketBackground(APIView):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+
+    def get_image_from_web(self, image_url):
+        img_temp = NamedTemporaryFile(delete=True)
+        img_temp.write(urllib2.urlopen(image_url).read())
+        img_temp.flush()
+
+        return img_temp
+
+    def get_image_from_upload(self, image_file):
+        dest = NamedTemporaryFile(delete=True)
+        for chunk in image_file.chunks():
+            dest.write(chunk)
+        return dest
+
+    def update_background(self, bucket, upload_object):
+        if (upload_object['upload_type'] == 'url'):
+            image_file = self.get_image_from_web(upload_object['upload_url'])
+        elif (upload_object['upload_type'] == 'upl'):
+            image_file = self.get_image_from_upload(upload_object['upload_image'])
+
+        print dir(image_file)
+        print image_file.name
+
+        bucket.background = File(image_file)
+        bucket.save();
+
+    def post(self, request, bucket_id, format=None):
+        bucket = get_object_or_404(Bucket, id=bucket_id)
+        self.check_object_permissions(request, bucket)
+
+        back_ser = BucketBackgroundSerializer(data=request.DATA, files=request.FILES, context={'request': request})
+        if back_ser.is_valid():
+            self.update_background(bucket, back_ser.object)
+
+            bucket_ser = BucketSerializer(bucket)
+            return Response(bucket_ser.data)
+
+        return Response(data=bucket_ser.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))

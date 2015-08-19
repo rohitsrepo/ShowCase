@@ -11,15 +11,10 @@ angular.module('module.bucketmodal')
 
         progress.showProgress();
         $scope.bucket = bucket;
+        $scope.math = window.Math
 
         bucketModel.bucketArts(bucket.id).then(function (arts) {
             $scope.bucketArts = arts;
-
-            if ($scope.bucketArts.length > 2){
-                $scope.bucketArts.push({
-                    matter_aspect: 1
-                })
-            }
 
             progress.hideProgress();
         }, function () {
@@ -51,7 +46,7 @@ angular.module('module.bucketmodal')
 
                 sly = new Sly(element, {
                     horizontal: 1,
-                    itemNav: 'centered',
+                    itemNav: 'forceCentered',
                     smart: 1,
                     activateOn: 'click',
                     mouseDragging: 1,

@@ -4,8 +4,8 @@
     </section>
     <div class="scroll-holder">
         <ul class="container">
-            <h1 class="buckets-header">Create a new series</h1>
-            <form class="bucket-form" name="bucketForm">
+            <h1 class="buckets-header" ng-claok ng-hide="bucketCreated">Create a new series</h1>
+            <form class="bucket-form" ng-claok ng-hide="bucketCreated" name="bucketForm">
                  <input type="text" autofocus placeholder="Name" ng-model="newBucket.name" name="uName" required ng-maxlength="25">
                  <div ng-cloak ng-show="bucketForm.$dirty">
                      <span class="error" ng-show="bucketForm.uName.$error.required">Please provide a name</span>
@@ -13,6 +13,31 @@
                 </div>
                 <button class="create-button" ng-class="{'disabled': bucketForm.$invalid}" ng-disabled="bucketForm.$invalid" ng-click="createNewBucket()">CREATE</button>
             </form>
+
+            <h1 class="buckets-header" ng-claok ng-show="bucketCreated">Add a background suiting to your theme?</h1>
+            <section ng-cloak ng-show="bucketCreated" class="background-source">
+                <section class="source-upload">
+                    <input type="file" class="realfile" bucket-fileread>
+                    <div class="fakefile">
+                        <h2>Upload image for the series</h2>
+                    </div>
+                </section>
+                <section class="source-url">
+                    <form class="upload-url-form" name="uplUrlForm">
+                        <div class="form-container clearfix">
+                            <input type="url" placeholder="or Enter url for the image" name="input" ng-model="newBucket.upload_url" required>
+                            <button ng-disabled="[[uplUrlForm.$invalid]]" ng-class="{'enable': uplUrlForm.$valid}" class="url-submit" ng-click="urlBackgroundUpload()">SUBMIT</button>
+                        </div>
+                        <div class="error" ng-show="uplUrlForm.input.$error.required && uplUrlForm.$dirty">
+                          Url Required
+                        </div>
+                        <div class="error" ng-show="uplUrlForm.input.$error.url  && uplUrlForm.$dirty">
+                          Not valid url
+                        </div>
+                  </form>
+                </section>
+                <button class="background-later" ng-click="close()">Later?</button>
+            </section>
         </ul> <!-- container -->
     </div>
 </section>

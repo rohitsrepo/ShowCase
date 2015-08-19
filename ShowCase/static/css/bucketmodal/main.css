@@ -216,3 +216,110 @@
     background: rgba(0, 0, 0, 0.9);
     color: white;
 }
+
+/*================ Bucket Background ===================*/
+
+.background-source {
+    width: 550px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.background-source .source-upload {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.background-source .realfile,
+.background-source .fakefile {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.background-source .realfile {
+    z-index: 2;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.background-source .fakefile {
+    z-index: 1;
+}
+
+.background-source .fakefile h2 {
+    font-size: 1.4em;
+    line-height: 300px;
+    color: white;
+}
+
+.background-source .fakefile:hover h2 {
+    text-decoration: underline;
+}
+
+/*------ Url Upload -----*/
+
+.background-source .source-url {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.background-source .source-url .upload-url-form {
+    width: 100%;
+}
+.background-source .source-url .upload-url-form .url-submit,
+.background-source .source-url .upload-url-form input {
+    height: 30px;
+}
+
+.background-source .source-url .upload-url-form input {
+    width: 75%;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    float: left;
+    text-align: center;
+    font-size: 1em;
+}
+
+.background-source .source-url .upload-url-form .url-submit {
+    width: 20%;
+    float: right;
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    opacity: 0.5;
+}
+
+.background-source .source-url .upload-url-form .url-submit.enable {
+    opacity: 1;
+}
+
+.background-source .source-url .upload-url-form .url-submit.enable:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    cursor: pointer;
+}
+
+.background-source .source-url .upload-url-form .error {
+    padding-top: 10px;
+}
+
+.background-source .background-later {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px 10px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 100px;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+}
+
+.background-source .background-later:hover {
+    color: rgba(0, 0, 0, 0.9);
+}

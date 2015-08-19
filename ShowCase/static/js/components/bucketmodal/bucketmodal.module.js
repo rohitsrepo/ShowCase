@@ -1,1 +1,1 @@
-angular.module('module.bucketmodal', ['module.util', 'module.model'])
+angular.module('module.bucketmodal', ["lr.upload", 'module.util', 'module.model'])

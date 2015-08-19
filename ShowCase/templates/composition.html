@@ -46,12 +46,12 @@
             <section class="details-actions-details">
 	            <h4 class="inactive">{{composition.views}} Views</h4>
 	            <h4 ng-click="showBookMarkers()">{{composition.bookmarks_count}} Admirers</h4>
-	            <h4>{{composition.views}} Collections</h4>
+	            <h4 ng-click="showArtBuckets()">{{composition.buckets_count}} Series</h4>
             </section>
 
             <section class="details-actions">
                 <button class="admire" ng-class="{'active': composition.is_bookMarked}" ng-click="handleBookMark()">ADMIRE</button><br>
-            	<button class="collect">Add To Collection</button>
+            	<button class="collect" ng-click="showAddToBucket()">Add To Series</button>
             </section>
 
 		</section>

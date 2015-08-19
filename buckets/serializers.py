@@ -13,13 +13,36 @@ class UserSerializer(serializers.ModelSerializer):
 
 class BucketSerializer(serializers.ModelSerializer):
     compositions_count = serializers.CharField(source='compositions_count', read_only=True)
+    has_background = serializers.CharField(source='has_background', read_only=True)
+    background_url = serializers.CharField(source='background_url', read_only=True)
     picture = serializers.CharField(source='picture', read_only=True)
     owner = UserSerializer(read_only=True)
 
     class Meta:
         model = Bucket
-        fields = ('id', 'owner', 'name', 'compositions_count', 'picture')
+        fields = ('id', 'owner', 'name', 'compositions_count', 'picture', 'has_background', 'background_url')
         read_only_fields = ('id', )
+
+class BucketBackgroundSerializer(serializers.Serializer):
+    upload_type = serializers.CharField(max_length=3);
+    upload_image = serializers.ImageField(required=False)
+    upload_url = serializers.URLField(required=False)
+
+    def validate_upload_type(self, attrs, value):
+        field_value = attrs[value]
+        if (field_value == 'upl' or field_value=='url'):
+            return attrs
+        raise serializers.ValidationError('Upload type should be upl or url');
+
+    def validate(self, data):
+        if (data['upload_type'] == 'upl'):
+            if ('upload_image' not in data.keys() or not data['upload_image']):
+                raise serializers.ValidationError('Upload image can not be empty')
+        elif (data['upload_type'] == 'url'):
+            if ('upload_url' not in data.keys() or not data['upload_url']):
+                raise serializers.ValidationError('Upload url can not be empty')
+
+        return data
 
 class BucketCompositionSerializer(serializers.ModelSerializer):
     interpretations_count= serializers.CharField(source='get_interpretations_count', read_only=True)

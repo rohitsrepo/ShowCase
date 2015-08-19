@@ -1,5 +1,10 @@
-.bucket-modal.content {
-	background-image: url("http://thomaslockehobbs.com/2005/033.jpg");
+.bucket-modal.content .background-area {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -9,7 +14,20 @@
 	background: rgba(0, 0, 0, 0.7);
 	width: 100%;
 	height: 100%;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.bucket-modal.content .bucket-content {
+    background: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
 }
 
 /*============ HEADER ===========*/
@@ -54,11 +72,6 @@
     -o-filter: none;
     -ms-filter: none;
     filter: none;
-
-   /* position: absolute;
-    top: 50%;
-    transform: translateY(-50%);*/
-
 }
 
 .content-scroll-holder .content-container {

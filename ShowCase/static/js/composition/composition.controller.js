@@ -13,6 +13,7 @@ controller("compositionController", [
 	'userModel',
     'bookService',
     'usermodalService',
+    'bucketmodalService',
 	function ($window,
 		$scope,
 		feedModel,
@@ -25,7 +26,8 @@ controller("compositionController", [
 		alert,
 		userModel,
         bookService,
-        usermodalService)
+        usermodalService,
+        bucketmodalService)
 	{
 
 	$scope.composition = {};
@@ -140,6 +142,14 @@ controller("compositionController", [
         		$scope.composition.is_bookMarked = true;
         	}
         });
+    }
+
+    $scope.showArtBuckets = function () {
+        bucketmodalService.showArtBuckets($scope.composition);
+    }
+
+    $scope.showAddToBucket = function () {
+        bucketmodalService.showAddToBucket($scope.composition);
     }
 }])
 .directive('postTemplate', [function () {

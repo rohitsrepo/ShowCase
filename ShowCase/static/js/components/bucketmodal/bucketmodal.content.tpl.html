@@ -3,7 +3,10 @@
         <button ng-click="close()">X</button>
     </section>
 
-    <div class="background-overlay">
+    <div class="background-area" ng-if="bucket" ng-style="{'background-image': 'url([[bucket.background_url]])'}"></div>
+    <div class="background-overlay"></div>
+
+    <article class="bucket-content">
         <header class="content-bucket-header">
             <h1>[[bucket.name | titlecase]]</h1>
             <div class="by-user">by</div>
@@ -12,7 +15,7 @@
 
         <div horizontal-sly class="content-scroll-holder" id="basic">
             <ul class="content-container">
-                <section class="content-art" check-last ng-repeat="art in bucketArts" ng-style="{'height': '450px', 'width': '[[450/art.matter_aspect]]px'}">
+                <section class="content-art" check-last ng-repeat="art in bucketArts" ng-style="{'height': '450px', 'width': '[[math.round(450/art.matter_aspect)]]px'}">
                     <img ng-src="[[art.matter_550]]">
                     <section class="art-details">
                         <h1><a ng-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a></h1>
@@ -28,7 +31,8 @@
                 <div class="mousearea"></div>
             </div>
         </div>
-    </div>
+
+    </article>
 
 
 
