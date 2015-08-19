@@ -9,6 +9,7 @@ angular.module('UserApp')
     'bucketmodalService',
     function ($scope, $state, userModel, bookService, progress, alert, usermodalService, bucketmodalService) {
     $scope.arts = [];
+    $scope.math = window.Math;
     $scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', noWorks: false};
 
     var artFetcher = function () {

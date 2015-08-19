@@ -262,7 +262,6 @@ body::-webkit-scrollbar-thumb {
 
 .arts-container .container {
   padding: 5px 12px;
-  width: 33%;
   display: inline-block;
   text-align: left;
 }
@@ -272,9 +271,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 .masonry-brick.loaded {
-    display: inline-block;
-    -webkit-animation: fadeIn 0.33s;
-    animation: fadeIn 0.33s;
+    display: block;
+    -webkit-animation: fadeIn 0.1s;
+    animation: fadeIn 0.1s;
 }
 
 .art {

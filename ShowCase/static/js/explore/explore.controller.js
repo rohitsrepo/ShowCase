@@ -11,6 +11,7 @@ angular.module('ExploreApp')
     'usermodalService',
 	function ($scope, compositionModel, $timeout, userModel, alert, progress, auth, bookService, bucketmodalService, usermodalService) {
 
+    $scope.math = window.Math
 	$scope.arts = [];
 	$scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
 

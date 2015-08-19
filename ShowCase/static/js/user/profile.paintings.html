@@ -1,8 +1,8 @@
-<div ng-cloak masonry load-images="false" preserve-order class="arts-container profile-container" infinite-scroll="loadMoreCompositions()" infinite-scroll-distance='1' infinite-scroll-disabled='artsMeta.busy || artsMeta.disableGetMore'>
+<div ng-cloak masonry load-images="false" class="arts-container profile-container" infinite-scroll="loadMoreCompositions()" infinite-scroll-distance='1' infinite-scroll-disabled='artsMeta.busy || artsMeta.disableGetMore'>
     <div class="masonry-brick container profile-art-container" ng-repeat="art in arts">
         <div class="art">
             <article class="art-content">
-                <img ng-src="[[art.matter_350]]" alt="[[art.title]]" height="[[350 * art.matter_aspect]]" width="350">
+                <img ng-src="[[art.matter_350]]" alt="[[art.title]]" height="[[math.round(350 * art.matter_aspect)]]" width="350">
                 <div class="details-inset">
                     <section class="inset-details">
                         <h6>[[art.views]] Views</h6>
