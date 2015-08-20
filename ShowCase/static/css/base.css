@@ -255,13 +255,13 @@ body::-webkit-scrollbar-thumb {
 /*================= Arts Stream ===============*/
 .arts-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 20px auto;
   text-align: center;
 }
 
 .arts-container .container {
-  padding: 5px 12px;
+  margin: 0 8px;
   display: inline-block;
   text-align: left;
 }
