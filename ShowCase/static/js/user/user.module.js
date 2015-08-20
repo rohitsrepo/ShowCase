@@ -2,7 +2,12 @@ angular.module("UserApp", [
     "lr.upload",
     'ui.router',
     "module.root"])
-.config(['$httpProvider', '$interpolateProvider', '$stateProvider', '$urlRouterProvider', function ($httpProvider, $interpolateProvider, $stateProvider, $urlRouterProvider) {
+.config(['$httpProvider',
+ '$interpolateProvider',
+ '$stateProvider',
+ '$urlRouterProvider',
+ '$locationProvider',
+  function ($httpProvider, $interpolateProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
     "use strict";
 
     // Changing angular template tag to prevent conflict with django
@@ -15,6 +20,9 @@ angular.module("UserApp", [
     // csrf for django
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+
+    // use the HTML5 History API
+    $locationProvider.html5Mode(true);
 
     // For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise("/paintings");

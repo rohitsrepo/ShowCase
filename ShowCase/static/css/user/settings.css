@@ -25,7 +25,7 @@ html, body {
 
 .primary-header {
 	width: 100%;
-	height: 30%;
+	height: 20%;
     padding-top: 5%;
 }
 
@@ -55,7 +55,7 @@ html, body {
 
 .settings li {
     width: 100%;
-    padding: 10px 0;
+    padding: 20px 0;
 }
 
 .settings li h3 {
@@ -88,7 +88,8 @@ html, body {
     width: 100%;
     height: 50px;
     text-align: center;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     font-size: 30px;
     margin-bottom: 10px;
 }
@@ -109,14 +110,14 @@ html, body {
     width: 100%;
     height: 50px;
     display: inline-block;
-    border: 1px solid #E6B800;
-    color: #E6B800;
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    color: rgba(0, 0, 0, 0.9);
     cursor: pointer;
     background: transparent;
 }
 
 .settings form .actions button:hover {
-    background: #E6B800;
+    background: rgba(0, 0, 0, 0.9);
     color: white;
 }
 
@@ -135,7 +136,6 @@ html, body {
 
 .picture {
     width: 100%;
-    height: 400px;
     position: relative;
 }
 
@@ -153,19 +153,9 @@ html, body {
 .picture .cover {
     width: 100%;
     height: 100%;
-    background:  #E6B800;
     position: relative;
 }
 
 .picture img {
-    width: auto;
-    height: 100%;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0px;
-    display: inline-block;
-    padding: 10px 0;
+    width: 100%;
 }

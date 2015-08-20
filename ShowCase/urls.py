@@ -28,7 +28,7 @@ urlpatterns += patterns('',
 urlpatterns += patterns('',
                        url(r'^register$', TemplateView.as_view(template_name='register.html'), name="register"),
                        url(r'^login$', TemplateView.as_view(template_name='login.html'), name="login"),
-                       url(r'^@(?P<slug>[\w-]+)$', 'accounts.clientViews.artist_main', name="artist-page"),
+                       url(r'^@(?P<slug>[\w-]+)', 'accounts.clientViews.artist_main', name="artist-page"),
                        url(r'^me/settings$', 'accounts.clientViews.user_settings', name="user-settings"),
                        # url(r'^me/collections$', 'accounts.clientViews.user_collections', name="user-collections"),
     )

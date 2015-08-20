@@ -113,19 +113,27 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def followers_count(self):
-        return self.followers.all().count()
+        return self.followers.count()
 
     @property
     def followings_count(self):
-        return self.follows.all().count()
+        return self.follows.count()
 
     @property
     def paintings_count(self):
-        return self.arts.all().count()
+        return self.arts.count()
 
     @property
     def uploads_count(self):
-        return self.compositions.all().count()
+        return self.compositions.count()
+
+    @property
+    def buckets_count(self):
+        return self.buckets.count()
+
+    @property
+    def bookmarks_count(self):
+        return self.bookmarks.count()
 
     def is_followed(self, user_id):
         return self.followers.filter(id=user_id).exists()
