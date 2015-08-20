@@ -109,16 +109,18 @@ angular.module('module.auth')
 
 		return service.getCurrentUser().then(function (user) {
 			if (typeof callback == 'function') {
-				return callback();
+				return callback(user);
 			}
 		}, function () {
 			showLoginModal().then(function (modal) {
 				modal.close.then(function (response) {
 					if (response == "LoggedIn") {
-						service.getCurrentUser();   // call to make sure auth service has the new user
-						if (typeof callback == 'function') {
-							return callback();
-						}
+						service.getCurrentUser().then(function (user) {
+                            if (typeof callback == 'function') {
+                                return callback(user);
+                            }
+                        });   // call to make sure auth service has the new user
+
 					}
 				});
 			});

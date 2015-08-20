@@ -170,7 +170,8 @@
 }
 
 .info-source .info-form .title,
-.info-source .info-form .artist-input {
+.info-source .info-form .artist-input,
+.info-source .info-form .info-bucket-select {
     width: 100%;
     height: 30px;
     font-size: 1.3em;
@@ -178,6 +179,7 @@
     padding-left: 15px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    display: block;
 }
 
 .angucomplete-dropdown {
@@ -199,11 +201,18 @@
    color: white;
 }
 
+/*------------ Bucket Selection -----------------*/
+.info-source .info-form .info-bucket-select {
+    margin-top: 40px;
+    font-weight: normal;
+}
+
 /*----- Submit Button ----------*/
 
 .info-source .info-form .info-submit-button {
     width: 150px;
     margin: 15px auto;
+    margin-top: 30px;
     background: transparent;
     border: none;
     border: 1px solid rgba(0, 0, 0, 0.9);

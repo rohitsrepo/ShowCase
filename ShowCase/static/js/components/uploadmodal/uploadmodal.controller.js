@@ -2,11 +2,13 @@ angular.module('module.uploadmodal')
 .controller('uploadmodalController', ['$scope',
     '$window',
     'compositionModel',
+    'bucketModel',
     'upload',
+    'user',
     'close',
     'progress',
     'alert',
-    function ($scope, $window, compositionModel, upload, close, progress, alert) {
+    function ($scope, $window, compositionModel, bucketModel, upload, user, close, progress, alert) {
 
         $scope.close = function () {
             close();
@@ -14,6 +16,16 @@ angular.module('module.uploadmodal')
 
         $scope.art = {};
         $scope.imageUploaded = false;
+
+        var showInfoForm = function (imageData) {
+            $scope.artImage = imageData;
+            $scope.imageUploaded = true;
+
+            // Load user buckets
+            bucketModel.userBuckets(user.id).then(function (buckets) {
+                $scope.userBuckets = buckets;
+            });
+        };
 
         $scope.uploadArt = function (artImageFile) {
             progress.showProgress();
@@ -27,9 +39,7 @@ angular.module('module.uploadmodal')
                 data: $scope.art
             }).then(
                 function (response) {
-                    $scope.artImage = response.data;
-                    $scope.imageUploaded = true;
-
+                    showInfoForm(response.data);
                     progress.hideProgress();
                 },
                 function (response) {
@@ -44,9 +54,7 @@ angular.module('module.uploadmodal')
             $scope.art.upload_type = 'url'
 
             compositionModel.urlImageUploader($scope.art).then(function (response) {
-                $scope.artImage = response;
-                $scope.imageUploaded = true;
-
+                showInfoForm(response);
                 progress.hideProgress();
             } , function () {
                 progress.hideProgress();

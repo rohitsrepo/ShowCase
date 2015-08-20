@@ -31,9 +31,9 @@
             <img ng-src="[[artImage.url]]">
         </section>
         <form class="info-form" name="infoForm">
-            <input type="text" class="title" autofocus="autofocus" placeholder="Title" ng-model="art.title" name="uTitle" maxlength="100" required>
+            <input type="text" class="title" autofocus="autofocus" placeholder="Title*" ng-model="art.title" name="uTitle" maxlength="100" required>
 
-            <angucomplete-alt placeholder="Artist"
+            <angucomplete-alt placeholder="Artist*"
                          pause="400"
                          selected-object="selectArtist"
                          remote-url="/users/search?q="
@@ -41,6 +41,12 @@
                          search-fields="name"
                          input-class="artist-input">
             </angucomplete-alt>
+
+            <select class="info-bucket-select" name="bucketSelect" ng-model="art.bucket">
+                <option value="">Add to series?</option> <!-- not selected / blank option -->
+                <option ng-repeat="bucket in userBuckets" value="[[bucket.id]]">[[bucket.name]]</option>
+            </select>
+
             <button class="info-submit-button" ng-class="{'enable': infoForm.$valid}" ng-disabled="[[infoForm.$invalid]]" ng-click="submitArtInfo()">SUBMIT</button>
         </form>
     </section>

@@ -24,6 +24,7 @@ from .imageTools import crop
 from accounts.models import User
 from accounts.serializers import ExistingUserSerializer
 from buckets.serializers import BucketSerializer
+from buckets.models import BucketMembership
 from ShowCase.utils import check_object_permissions
 
 class CompositionError(Exception):
@@ -111,6 +112,12 @@ class CompositionList(APIView):
             image_path = get_image_path(user, image_id)
             return File(open(image_path))
 
+    def addToBucket(self, user, request_data, composition):
+        if ('bucket' in request_data.keys()):
+            bucket_id = request_data['bucket']
+            bucket = user.buckets.get(id=bucket_id)
+            BucketMembership.objects.get_or_create(bucket=bucket, composition=composition)
+
 
     def post(self, request, format=None):
         try:
@@ -121,7 +128,9 @@ class CompositionList(APIView):
 
             if ser.is_valid():
                 ser.object.uploader = request.user
-                ser.save()
+                composition = ser.save()
+
+                self.addToBucket(request.user, request.DATA, composition)
                 return Response(ser.data, status=status.HTTP_201_CREATED)
 
             return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)

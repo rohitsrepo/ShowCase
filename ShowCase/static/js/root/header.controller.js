@@ -5,8 +5,8 @@ angular.module('module.root')
 	}
 
     $scope.showUpload = function () {
-        auth.runWithAuth(function () {
-            uploadmodalService.showUpload();
+        auth.runWithAuth(function (user) {
+            uploadmodalService.showUpload(user);
         });
     };
 }]);
