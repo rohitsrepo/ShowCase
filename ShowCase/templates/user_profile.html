@@ -31,7 +31,7 @@
 {% block body_attr_block %}ng-controller="userProfileController"{% endblock %}
 
 {% block content_block %}
-    <header class="primary-header" ng-init="init('{{artist.id}}', '{{is_followed}}')">
+    <header class="primary-header" ng-init="init('{{artist.id}}', '{{is_followed}}', '{{is_me}}')">
         <div class="container">
             <header>
                 <div class="picture">

@@ -3,9 +3,10 @@ angular.module('UserApp')
 	$scope.hideName = true;
 	$scope.artist = {'is_followed': false};
 
-	$scope.init = function (id, is_followed) {
+	$scope.init = function (id, is_followed, is_me) {
 		$scope.artist.id = id;
-		$scope.artist.is_followed = is_followed == 'True';
+        $scope.artist.is_followed = is_followed == 'True';
+		$scope.artist.is_me = is_me == 'True';
 	};
 
 	$scope.handleFollow = function () {

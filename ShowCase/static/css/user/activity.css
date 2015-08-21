@@ -232,3 +232,41 @@
     left: 80%;
 }
 
+/*----------- No activities -------------*/
+.no-user-activities {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.no-user-activities h3 {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.no-user-activities h2 {
+    font-size: 1.2em;
+    line-height: 1.4em;
+}
+
+.no-user-activities h2.starter {
+    margin-top: 50px;
+}
+
+.no-user-activities h4 {
+    font-size: 1.1em;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.no-user-activities .explore-art {
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.no-user-activities .explore-art:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}

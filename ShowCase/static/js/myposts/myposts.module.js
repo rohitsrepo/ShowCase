@@ -1,18 +1,18 @@
-angular.module("ExploreApp", [
+angular.module("MypostsApp", [
     "module.root"])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
-	"use strict";
+    "use strict";
 
     // Changing angular template tag to prevent conflict with django
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]')
 
-	//Http Intercpetor to check auth failures for xhr requests
+    //Http Intercpetor to check auth failures for xhr requests
     $httpProvider.interceptors.push('authHttpResponseInterceptor');
 
-	// csrf for django
-	$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-	$httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    // csrf for django
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
 }]).factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
     'use strict';
     return {
@@ -23,6 +23,8 @@ angular.module("ExploreApp", [
             return $q.reject(response);
         }
     };
-}]).run(['auth', function (auth) {
-	auth.getCurrentUser();
+}]).run(['$window', 'auth', function ($window, auth) {
+    auth.getCurrentUser().then(function () {}, function () {
+        $window.location.href = "/login#?next=" + $window.location.pathname;
+    });
 }]);

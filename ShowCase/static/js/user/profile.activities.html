@@ -1,4 +1,4 @@
-<section class="user-activities">
+<section ng-cloak class="user-activities" infinite-scroll="loadMoreActivities()" infinite-scroll-distance='1' infinite-scroll-disabled='activitiesMeta.busy || activitiesMeta.disableGetMore'>
 
     <div class="user-activity-container" ng-switch='activity.post_type' ng-repeat-start="activity in userActivities">
 
@@ -133,5 +133,18 @@
     </div>
 
     <hr ng-repeat-end>
+
+    <section class="no-user-activities" ng-cloak ng-show="activitiesMeta.noActivities" >
+        <h3>There are no posts yet</h3>
+
+        <section class="me-no-activities" ng-cloak ng-show="artist.is_me">
+            <h3>You have not engaged with any artwork</h3>
+            <h2 class="starter">Art that resonates with you is like a mirror</h2>
+            <h2>Take your time</h2>
+            <h2>Sometimes it is hard to find</h2>
+            <h4>Keep exploring</h4>
+            <a class="explore-art" ng-href="/arts">Explore Art</a>
+        </section>
+    </section>
 
 </section>
