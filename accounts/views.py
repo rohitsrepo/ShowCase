@@ -54,6 +54,37 @@ class UserList(APIView):
         else:
                 return Response(data={'email': 'This field is required'}, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['POST'])
+def login_user(request, format=None):
+    email = request.DATA.get('email')
+    password = request.DATA.get('password')
+    try:
+        user = User.objects.get(email=email)
+        if user.login_type == User.NATIVE:
+            user = authenticate(username=email, password=password)
+
+            if user is None:
+                return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+            if user.is_active:
+                login(request, user)
+                return Response(ExistingUserSerializer(user, context={'request': request}).data, status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_402_PAYMENT_REQUIRED)
+        else:
+            return Response(data={'error': 'Login via third party'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_409_CONFLICT)
+    except:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def logout_user(request, format=None):
+    logout(request)
+
+    next_url = request.GET.get('next', '/')
+    return redirect(next_url)
 
 class UserDetail(APIView):
 
@@ -91,7 +122,6 @@ class UserDetail(APIView):
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated, IsHimself))
 def reset_password(request, pk, format=None):
@@ -116,7 +146,6 @@ def reset_password(request, pk, format=None):
         return Response()
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated,))
@@ -168,39 +197,6 @@ def reset_picture(request, format=None):
             return Response(status=status.HTTP_400_BAD_REQUEST)
     except:
         return Response(status=status.HTTP_400_BAD_REQUEST)
-
-@api_view(['POST'])
-def login_user(request, format=None):
-    email = request.DATA.get('email')
-    password = request.DATA.get('password')
-    try:
-        user = User.objects.get(email=email)
-        if user.login_type == User.NATIVE:
-            user = authenticate(username=email, password=password)
-
-            if user is None:
-                return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-            if user.is_active:
-                login(request, user)
-                return Response(ExistingUserSerializer(user, context={'request': request}).data, status=status.HTTP_200_OK)
-            return Response(status=status.HTTP_402_PAYMENT_REQUIRED)
-        else:
-            return Response(data={'error': 'Login via third party'}, status=status.HTTP_406_NOT_ACCEPTABLE)
-    except User.DoesNotExist:
-        return Response(status=status.HTTP_409_CONFLICT)
-    except:
-        return Response(status=status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(['GET'])
-@permission_classes((permissions.AllowAny,))
-def logout_user(request, format=None):
-    logout(request)
-
-    next_url = request.GET.get('next', '/')
-    return redirect(next_url)
-
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))

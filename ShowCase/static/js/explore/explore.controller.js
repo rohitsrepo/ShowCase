@@ -18,6 +18,8 @@ angular.module('ExploreApp')
 	var getArts = function () {
 
 	    if (!$scope.artsMeta.disableGetMore) {
+            progress.showProgress();
+
 	        var pageVal = $scope.artsMeta.pageVal;
 	        compositionModel.getExplores(pageVal).then(function (response) {
 	            $scope.artsMeta.next = response.next;
@@ -35,6 +37,8 @@ angular.module('ExploreApp')
     			    $scope.artsMeta.pageVal += 1;
     	            $scope.artsMeta.busy = false;
 	            }, 500);
+
+                progress.hideProgress();
 
 	        });
 	    }

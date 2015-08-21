@@ -24,7 +24,7 @@
 		</section>
 
 		<section ng-cloak ng-show="showNative" class="login-native">
-			<form class="native-form" name="nativeRegisterForm" ng-keyup="$event.keyCode == 13 ? register(newUser) : null" novalidate>
+			<form class="native-form" name="nativeRegisterForm" novalidate>
 				<input type="text" placeholder="Name" ng-model="newUser.name" name="uname" maxlength="80" required>
 				<div ng-cloak ng-show="nativeRegisterForm.$submitted">
 				    <span ng-show="nativeRegisterForm.uname.$error.required">Please provide a name.</span>
@@ -41,9 +41,9 @@
 				<input class="native-action-button" ng-class="{'disabled': nativeRegisterForm.$invalid}" ng-disabled="nativeRegisterForm.$invalid" type="button" name="register" value="CREATE ACCOUNT" ng-click="register(newUser)">
 			</form><!--
 
-			--><form class="native-form" name="nativeLoginForm" ng-keyup="$event.keyCode == 13 ? login(existingUser) : null">
+			--><form class="native-form" name="nativeLoginForm"> <!-- ng-keyup="$event.keyCode == 13 ? login(existingUser) : null" -->
 
-				<input type="email" autofocus="autofocus" placeholder="E-mail" ng-model="existingUser.email" name="uEmail" required ng-model-options="{ updateOn: 'blur' }">
+				<input type="email" autofocus="autofocus" placeholder="E-mail" ng-model="existingUser.email" name="uEmail" required> <!-- ng-model-options="{ updateOn: 'blur' }" -->
 				<div ng-cloak ng-show="nativeLoginForm.$submitted">
 				    <span ng-show="nativeLoginForm.uEmail.$error.required">Please provide an email.</span>
 				    <span ng-show="nativeLoginForm.uEmail.$error.email">This is not a valid email.</span>
