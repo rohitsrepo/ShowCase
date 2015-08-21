@@ -25,7 +25,7 @@ angular.module("UserApp", [
     $locationProvider.html5Mode(true);
 
     // For any unmatched url, redirect to /state1
-    $urlRouterProvider.otherwise("/paintings");
+    $urlRouterProvider.otherwise("/activities");
     //
     // Now set up the states
     $stateProvider

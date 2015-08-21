@@ -70,7 +70,7 @@
 
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                 for="user-profile">
-              <li class="mdl-menu__item"><i class="material-icons">face</i>Profile</li>
+              <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
               <li class="mdl-menu__item"><i class="material-icons">list</i>Collection</li>
               <li class="mdl-menu__item"><i class="material-icons">settings</i>Settings</li>
               <a href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
@@ -120,6 +120,7 @@
     <script type="text/javascript" src="/static/js/models/composition.model.js"></script>
     <script type="text/javascript" src="/static/js/models/interpretation.model.js"></script>
     <script type="text/javascript" src="/static/js/models/bucket.model.js"></script>
+    <script type="text/javascript" src="/static/js/models/activity.model.js"></script>
 
     <script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
     <script type="text/javascript" src="/static/js/authentication/login.modal.controller.js"></script>

@@ -1,5 +1,7 @@
 from django.db import models
+
 from compositions.models import Composition
+from posts.models import Post, bind_post
 from accounts.models import User
 
 def get_upload_file_name_background(instance, filename):
@@ -44,3 +46,12 @@ class BucketMembership(models.Model):
     bucket = models.ForeignKey(Bucket, related_name='membership')
     composition = models.ForeignKey(Composition)
     added = models.DateTimeField(auto_now_add=True)
+
+    def create_post(self):
+        return Post(
+            composition=self.composition,
+            creator=self.bucket.owner,
+            post_type = Post.BUCKET,
+            content_object=self.bucket)
+
+bind_post(BucketMembership)

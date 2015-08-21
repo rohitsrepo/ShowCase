@@ -17,9 +17,9 @@ def delete_existing_data():
     print "Deleted Users"
     Composition.objects.all().delete()
     print "Deleted compositions"
-    Interpretation.objects.all().delete()
+    # Interpretation.objects.all().delete()
     print "Deleted interpretations"
-    StaffPost.objects.all().delete()
+    # StaffPost.objects.all().delete()
     print "Deleted posts"
     shutil.rmtree('../media')
     print "Deleted media"

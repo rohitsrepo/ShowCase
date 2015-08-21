@@ -120,6 +120,12 @@ class Composition(models.Model):
         return self.holders.all().count()
 
     def create_post(self):
+        Post.objects.create(
+            composition=self,
+            creator=self.artist,
+            post_type = Post.CREATE,
+            content_object=self)
+
         return Post(
             composition=self,
             creator=self.uploader,
@@ -128,7 +134,6 @@ class Composition(models.Model):
 
 #Bind Signals
 bind_image_resize_handler(Composition)
-# TODO - put a similar post for the artist also for whom the art is added
 bind_post(Composition)
 
 

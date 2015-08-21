@@ -11,11 +11,13 @@ class Post(models.Model):
     INTERPRET = 'IN'
     ADD = 'AD'
     CREATE = 'CR'
+    BUCKET = 'BK'
 
     TYPE_CHOICES = (
         (INTERPRET, 'interpret'),
         (ADD, 'add'),
         (CREATE, 'create'),
+        (BUCKET, 'bucket'),
     )
 
     composition = models.ForeignKey('compositions.Composition', related_name='posts')
