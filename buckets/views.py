@@ -103,9 +103,6 @@ class BucketBackground(APIView):
         elif (upload_object['upload_type'] == 'upl'):
             image_file = self.get_image_from_upload(upload_object['upload_image'])
 
-        print dir(image_file)
-        print image_file.name
-
         bucket.background = File(image_file)
         bucket.save();
 

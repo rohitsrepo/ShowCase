@@ -1,6 +1,7 @@
 from django.db import models
 
 from compositions.models import Composition
+from compositions.imageTools import compress
 from posts.models import Post, bind_post
 from accounts.models import User
 
@@ -13,6 +14,12 @@ class Bucket(models.Model):
     compositions = models.ManyToManyField(Composition, related_name='holders', through='BucketMembership')
     owner = models.ForeignKey(User, related_name='buckets')
     created = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        super(Bucket, self).save(*args, **kwargs)
+
+        if self.background:
+            compress(self.background.path)
 
     @property
     def compositions_count(self):

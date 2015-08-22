@@ -118,6 +118,11 @@ class CompositionList(APIView):
             bucket = user.buckets.get(id=bucket_id)
             BucketMembership.objects.get_or_create(bucket=bucket, composition=composition)
 
+    def remove_temp_image(self, user, image_id):
+        if image_id:
+            image_path = get_image_path(user, image_id)
+            os.remove(image_path)
+
 
     def post(self, request, format=None):
         try:
@@ -129,6 +134,8 @@ class CompositionList(APIView):
             if ser.is_valid():
                 ser.object.uploader = request.user
                 composition = ser.save()
+
+                self.remove_temp_image(request.user, request.DATA.get('image_id', ''))
 
                 self.addToBucket(request.user, request.DATA, composition)
                 return Response(ser.data, status=status.HTTP_201_CREATED)
