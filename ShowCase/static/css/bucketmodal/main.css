@@ -65,7 +65,7 @@
 }
 
 .bucket-modal .container .bucket {
-    width: 32%;
+    width: 100%;
     padding: 10px 20px;
     display: inline-block;
     vertical-align: bottom;
@@ -88,7 +88,7 @@
     height: 100%;
     text-align: center;
     padding: 5px;
-    padding-top: 80px;
+    padding-top: 40px;
     background: rgba(0, 0, 0, 0.5);
     color: white;
     transition: all 1s;
@@ -99,23 +99,24 @@
 }
 
 .bucket .picture .details h2 {
-    font-size: 1.3em;
+    font-size: 1.5em;
     line-height: 1.5em;
-}
-
-.bucket .picture .details .arts-count {
-    margin-bottom: 40px;
-    font-size: 0.8em;
 }
 
 .bucket .picture .details .by-user {
     font-size: 0.8em;
+    margin-top: 80px;
     line-height: 1.5em;
 }
 
 .bucket .picture .details h3 {
     font-size: 1em;
     line-height: 1.5em;
+}
+
+.bucket .picture .details .arts-count {
+    font-size: 0.7em;
+    margin-top: 10px;
 }
 
 /*=============== No Such bucket ================*/

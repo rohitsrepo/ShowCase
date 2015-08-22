@@ -9,9 +9,10 @@
                 <div class="picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">
                     <section class="details" ng-click="showArts($index)">
                         <h2>[[bucket.name | titlecase]]</h2>
-                        <div class="arts-count">[[bucket.compositions_count]] Paintings</div>
+                        <h3>[[bucket.description]]</h3>
                         <div class="by-user">By</div>
                         <h3>[[bucket.owner.name | titlecase ]]</h3>
+                        <div class="arts-count">[[bucket.compositions_count]] Artworks</div>
                     </section>
                 </div>
             </li>

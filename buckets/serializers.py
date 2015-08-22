@@ -20,7 +20,7 @@ class BucketSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Bucket
-        fields = ('id', 'owner', 'name', 'compositions_count', 'picture', 'has_background', 'background_url')
+        fields = ('id', 'owner', 'name', 'description', 'compositions_count', 'picture', 'has_background', 'background_url')
         read_only_fields = ('id', )
 
 class BucketBackgroundSerializer(serializers.Serializer):

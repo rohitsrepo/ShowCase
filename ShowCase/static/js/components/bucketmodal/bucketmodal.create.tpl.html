@@ -11,6 +11,11 @@
                      <span class="error" ng-show="bucketForm.uName.$error.required">Please provide a name</span>
                      <span class="error" ng-show="bucketForm.uName.$error.maxlength">Please use less than 25 charactes</span>
                 </div>
+
+                 <input type="text" autofocus placeholder="Description" ng-model="newBucket.description" name="uDescription" ng-maxlength="111">
+                 <div ng-cloak ng-show="bucketForm.$dirty">
+                     <span class="error" ng-show="bucketForm.uDescription.$error.maxlength">Please use less than 111 charactes</span>
+                </div>
                 <button class="create-button" ng-class="{'disabled': bucketForm.$invalid}" ng-disabled="bucketForm.$invalid" ng-click="createNewBucket()">CREATE</button>
             </form>
 

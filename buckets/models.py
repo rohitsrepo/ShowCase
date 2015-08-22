@@ -10,6 +10,7 @@ def get_upload_file_name_background(instance, filename):
 
 class Bucket(models.Model):
     name = models.CharField(max_length=25, blank=False)
+    description = models.CharField(max_length=111, blank=True)
     background = models.ImageField(upload_to=get_upload_file_name_background, blank=True, null=True)
     compositions = models.ManyToManyField(Composition, related_name='holders', through='BucketMembership')
     owner = models.ForeignKey(User, related_name='buckets')
@@ -39,11 +40,11 @@ class Bucket(models.Model):
     @property
     def picture(self):
         try:
-            composition = self.compositions.order_by('bucketmembership__added').last()
-            return composition.get_350_url()
+            return self.background.url
         except:
             try:
-                return self.background_url
+                composition = self.compositions.order_by('bucketmembership__added').last()
+                return composition.get_350_url()
             except:
                 return ''
 
