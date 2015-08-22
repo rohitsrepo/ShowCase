@@ -1,9 +1,12 @@
 from django.db import models
 
+from ShowCase.slugger import unique_slugify
+
 from compositions.models import Composition
 from compositions.imageTools import compress
 from posts.models import Post, bind_post
 from accounts.models import User
+
 
 def get_upload_file_name_background(instance, filename):
     return '%s/buckets/%s' % (instance.owner.id, filename.split('/')[-1] + '.jpg')
@@ -13,10 +16,13 @@ class Bucket(models.Model):
     description = models.CharField(max_length=111, blank=True)
     background = models.ImageField(upload_to=get_upload_file_name_background, blank=True, null=True)
     compositions = models.ManyToManyField(Composition, related_name='holders', through='BucketMembership')
+    slug = models.SlugField(max_length=100, unique=True)
+
     owner = models.ForeignKey(User, related_name='buckets')
     created = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
+        unique_slugify(self, self.name)
         super(Bucket, self).save(*args, **kwargs)
 
         if self.background:

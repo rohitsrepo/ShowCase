@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 from django.conf import settings
+import buckets.models
 
 
 class Migration(migrations.Migration):
@@ -18,6 +19,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=25)),
+                ('description', models.CharField(max_length=111, blank=True)),
+                ('background', models.ImageField(null=True, upload_to=buckets.models.get_upload_file_name_background, blank=True)),
+                ('slug', models.SlugField(unique=True, max_length=100)),
                 ('created', models.DateTimeField(auto_now_add=True)),
             ],
             options={
