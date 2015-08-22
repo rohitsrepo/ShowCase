@@ -1,5 +1,5 @@
 angular.module('module.bucketmodal')
-.factory('bucketmodalService', ['modalService', 'auth', function (modalService, auth) {
+.factory('bucketmodalService', ['$q', 'modalService', 'auth', function ($q, modalService, auth) {
     var service = {};
 
     service.showArtBuckets = function (art) {
@@ -27,17 +27,23 @@ angular.module('module.bucketmodal')
         auth.runWithAuth(addToBucketCallback(art));
     };
 
-    var createBucketCallback = function () {
-        return modalService.showModal({
-            'templateUrl': '/static/js/components/bucketmodal/bucketmodal.create.tpl.html',
-            'controller': 'bucketmodalCreateController',
-        }).then(function (modal) {
-            return modal.close;
-        });
-    };
-
     service.showCreateBucket = function () {
-        return auth.runWithAuth(createBucketCallback());
+        var deferred = $q.defer();
+
+        auth.runWithAuth(function () {
+            modalService.showModal({
+                'templateUrl': '/static/js/components/bucketmodal/bucketmodal.create.tpl.html',
+                'controller': 'bucketmodalCreateController',
+            }).then(function (modal) {
+                modal.close.then(function(result) {
+                    deferred.resolve(result);
+                }, function(result) {
+                    deferred.reject(result);
+                });
+            });
+        });
+
+        return deferred.promise;
     };
 
     service.showBucketArts = function (bucket) {
