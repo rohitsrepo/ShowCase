@@ -37,7 +37,7 @@ angular.module('module.bucketmodal')
     };
 
     service.showCreateBucket = function () {
-        return createBucketCallback();
+        return auth.runWithAuth(createBucketCallback());
     };
 
     service.showBucketArts = function (bucket) {

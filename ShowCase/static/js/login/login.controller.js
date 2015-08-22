@@ -4,7 +4,10 @@ angular.module("LoginApp")
 
     var next = '/';
     $scope.init = function () {
-        next = $location.search()['next'];
+    	if ($location.search()) {
+	        next = $location.search()['next'] || next;
+    	}
+        console.log('next', next);
     };
     $scope.init();
 

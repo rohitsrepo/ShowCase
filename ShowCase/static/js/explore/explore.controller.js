@@ -64,6 +64,7 @@ angular.module('ExploreApp')
             });
         } else {
             bookService.bookmark(art).then(function () {
+                console.log('resolved');
             	art.is_bookmarked = true;
             });;
         }

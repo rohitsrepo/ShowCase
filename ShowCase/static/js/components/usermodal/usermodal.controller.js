@@ -108,15 +108,15 @@ angular.module('module.usermodal')
 
         $scope.handleFollow = function (index) {
             var targetUser = $scope.bookmarkers[index];
-            auth.runWithAuth(function () {
-                if (targetUser.is_followed) {
-                    followService.unfollow(targetUser);
+            if (targetUser.is_followed) {
+                followService.unfollow(targetUser).then(function () {
                     targetUser.is_followed = false;
-                } else {
-                    followService.follow(targetUser);
+                });
+            } else {
+                followService.follow(targetUser).then(function () {
                     targetUser.is_followed = true;
-                }
-            });
+                });
+            }
         };
 
     }

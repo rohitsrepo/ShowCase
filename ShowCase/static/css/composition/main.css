@@ -113,6 +113,11 @@ html, body {
 .painting-details .details-actions .collect {
     background: transparent;
     border: none;
+    cursor: pointer;
+}
+
+.painting-details .details-actions .collect:hover {
+    text-decoration: underline;
 }
 
 

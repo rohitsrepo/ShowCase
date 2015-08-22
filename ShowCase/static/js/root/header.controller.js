@@ -5,9 +5,7 @@ angular.module('module.root')
 	}
 
     $scope.showUpload = function () {
-        auth.runWithAuth(function (user) {
-            uploadmodalService.showUpload(user);
-        });
+        uploadmodalService.showUpload();
     };
 
     $scope.goHome = function () {

@@ -14,9 +14,6 @@ angular.module("UserApp", [
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]')
 
-    //Http Intercpetor to check auth failures for xhr requests
-    $httpProvider.interceptors.push('authHttpResponseInterceptor');
-
     // csrf for django
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
@@ -57,16 +54,4 @@ angular.module("UserApp", [
         templateUrl: "/static/js/user/profile.buckets.html",
         controller: 'profileBucketsController'
     });
-}]).factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
-    'use strict';
-    return {
-        responseError: function (response) {
-            if (response.status === 403) {
-                $window.location.href = "/login#?next=" + $window.location.pathname;
-            }
-            return $q.reject(response);
-        }
-    };
-}]).run(['auth', '$window', function (auth, $window) {
-    auth.getCurrentUser();
 }]);

@@ -112,15 +112,20 @@ angular.module('module.auth')
 				return callback(user);
 			}
 		}, function () {
-			showLoginModal().then(function (modal) {
-				modal.close.then(function (response) {
+			return showLoginModal().then(function (modal) {
+				return modal.close.then(function (response) {
 					if (response == "LoggedIn") {
 						service.getCurrentUser().then(function (user) {
-                            if (typeof callback == 'function') {
-                                return callback(user);
-                            }
+							if (typeof callback == 'function') {
+	                            callback(user);
+	                        }
+                            
+                            redirect();
                         });   // call to make sure auth service has the new user
-
+					} else {
+						if (typeof callback == 'function') {
+                            return $q.reject(callback());
+                        }
 					}
 				});
 			});

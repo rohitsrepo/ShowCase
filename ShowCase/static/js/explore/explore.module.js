@@ -7,22 +7,7 @@ angular.module("ExploreApp", [
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]')
 
-	//Http Intercpetor to check auth failures for xhr requests
-    $httpProvider.interceptors.push('authHttpResponseInterceptor');
-
 	// csrf for django
 	$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 	$httpProvider.defaults.xsrfCookieName = 'csrftoken';
-}]).factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
-    'use strict';
-    return {
-        responseError: function (response) {
-            if (response.status === 403) {
-                $window.location.href = "/login#?next=" + $window.location.pathname;
-            }
-            return $q.reject(response);
-        }
-    };
-}]).run(['auth', function (auth) {
-	auth.getCurrentUser();
 }]);

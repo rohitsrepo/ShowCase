@@ -2,6 +2,7 @@ from .models import User
 from django.http import Http404
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render_to_response
+from django.contrib.auth.decorators import login_required
 
 def site_main(request):
     context = RequestContext(request)
@@ -24,6 +25,7 @@ def profile_main(request):
     context = RequestContext(request, {'artist': artist, 'is_followed': is_followed})
     return render_to_response("user_profile.html", context)
 
+@login_required
 def user_settings(request):
     if not request.user.is_authenticated:
         raise Http404

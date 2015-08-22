@@ -19,7 +19,6 @@ urlpatterns = patterns('',
 
 ## Composition Urls
 urlpatterns += patterns('',
-                       url(r'^upload-art$', TemplateView.as_view(template_name='upload.html'), name="upload"),
                        url(r'^arts$', TemplateView.as_view(template_name='explore.html'), name='explore'),
                        url(r'^arts/(?P<slug>[\w-]+)$', 'compositions.clientViews.composition_main', name="composition-page"),
     )
@@ -27,7 +26,7 @@ urlpatterns += patterns('',
 ## Account urls
 urlpatterns += patterns('',
                        url(r'^register$', TemplateView.as_view(template_name='register.html'), name="register"),
-                       url(r'^login$', TemplateView.as_view(template_name='login.html'), name="login"),
+                       url(r'^login/$', TemplateView.as_view(template_name='login.html'), name="login"),
                        url(r'^@(?P<slug>[\w-]+)', 'accounts.clientViews.artist_main', name="artist-page"),
                        url(r'^me/settings$', 'accounts.clientViews.user_settings', name="user-settings"),
                        # url(r'^me/collections$', 'accounts.clientViews.user_collections', name="user-collections"),
@@ -41,7 +40,7 @@ urlpatterns += patterns('',
 ## Post Urls
 urlpatterns += patterns('',
                        url(r'^@(?P<user_slug>[\w-]+)/posts/(?P<post_id>[0-9]+)$', 'posts.clientViews.post_main'),
-                       url(r'^posts$', TemplateView.as_view(template_name='myposts.html'), name='myposts'),
+                       url(r'^posts$', 'streams.clientViews.posts_main', name='myposts'),
     )
 
 # API urls

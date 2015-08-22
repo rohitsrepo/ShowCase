@@ -7,24 +7,7 @@ angular.module("MypostsApp", [
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]')
 
-    //Http Intercpetor to check auth failures for xhr requests
-    $httpProvider.interceptors.push('authHttpResponseInterceptor');
-
     // csrf for django
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-}]).factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
-    'use strict';
-    return {
-        responseError: function (response) {
-            if (response.status === 403) {
-                $window.location.href = "/login#?next=" + $window.location.pathname;
-            }
-            return $q.reject(response);
-        }
-    };
-}]).run(['$window', 'auth', function ($window, auth) {
-    auth.getCurrentUser().then(function () {}, function () {
-        $window.location.href = "/login#?next=" + $window.location.pathname;
-    });
 }]);
