@@ -35,7 +35,7 @@ ol, ul {
 
 @media (max-width: 800px) {
   .nt-mb {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -173,6 +173,13 @@ body::-webkit-scrollbar-thumb {
     border-bottom: 1px solid rgba(0, 0, 0, 1);
 }
 
+@media (max-width: 800px) {
+  .site-header .site-navigation {
+    text-align: center;
+    width: 60%;
+  }
+}
+
 /*---------------- Site Actions -----------------*/
 .site-header .site-actions {
     width: 15%;
@@ -202,7 +209,6 @@ body::-webkit-scrollbar-thumb {
 .site-actions button i {
   vertical-align: middle;
 }
-
 
 /*---------------- User Auth -----------------*/
 .site-header .user-auth {
@@ -253,6 +259,13 @@ body::-webkit-scrollbar-thumb {
     padding-right: 4px;
 }
 
+@media (max-width: 800px) {
+  .site-header .user-auth {
+    width: 20%;
+    text-align: right;
+  }
+}
+
 /*================= Arts Stream ===============*/
 .arts-container {
   width: 100%;
@@ -291,7 +304,6 @@ body::-webkit-scrollbar-thumb {
 .art .art-content {
   width: 100%;
   position: relative;
-  cursor: pointer;
 }
 
 .art .art-content img {
@@ -324,11 +336,13 @@ body::-webkit-scrollbar-thumb {
 .art:hover .art-content .details-inset .inset-details h6 {
   opacity: 1;
   transition: all 0.3s;
+  display: inline;
 }
 
 .details-inset .inset-details h6 {
   font-family: 'taile', sans-serif;
   font-size: 0.85em;
+  line-height: 2em;
   letter-spacing: 1px;
   line-height: 1.5em;
   opacity: 0;
@@ -336,6 +350,7 @@ body::-webkit-scrollbar-thumb {
 
 .details-inset .inset-details h6.active:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .details-inset .inset-actions {
@@ -459,10 +474,6 @@ body::-webkit-scrollbar-thumb {
 @media (max-width: 800px) {
   .arts-container .container {
       width: 100%;
-  }
-
-  .art {
-      box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.4);
   }
 }
 

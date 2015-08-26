@@ -12,7 +12,6 @@
     <link ng-cloak ng-if="postsMeta.next" rel="next" href="http://thirddime.com#[[postsMeta.next]]" />
     <link ng-cloak ng-if="postsMeta.previous" rel="prev" href="http://thirddime.com#[[postsMeta.previous]]" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="og:title" content="ThirdDime - Explore art through interpretations and stories">
     <meta property="og:site_name" content="ThirdDime">
     <meta property="og:url" content="http://thirddime.com/">
@@ -38,8 +37,8 @@
                     <img ng-src="[[art.matter_550]]" alt="[[art.title]]" >
                     <div class="details-inset">
                         <section class="inset-details">
-                            <h6>[[art.views]] Views</h6>
-                            <h6 class="active" ng-click="showBookMarkers($index)">[[art.bookmarks_count]] Admirers</h6>
+                            <h6>[[art.views]] Views</h6><br>
+                            <h6 class="active" ng-click="showBookMarkers($index)">[[art.bookmarks_count]] Admirers</h6><br>
                             <h6 class="active" ng-click="showArtBuckets($index)">[[art.buckets_count]] Series</h6>
                         </section>
 

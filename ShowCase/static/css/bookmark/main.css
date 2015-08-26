@@ -35,6 +35,13 @@
     overflow: auto;
 }
 
+
+@media (max-width: 800px) {
+  .bookmark-modal .container  {
+      width: 100%;
+  }
+}
+
 .bookmark-modal .container::-webkit-scrollbar {
     width: 15px;
 }
@@ -50,7 +57,7 @@
 
 .bookmark-modal .container .bookmarker {
     width: 100%;
-    padding: 10px 0;
+    padding: 10px;
     vertical-align: top;
 }
 
@@ -138,6 +145,21 @@
 
 .marker-details .actions button.active:before {
     left: 80%;
+}
+
+@media (max-width: 800px) {
+    .marker-details .data .marker-name {
+        font-size: 0.8em;
+    }
+
+    .marker-details .data h4{
+        font-size: 0.6em;
+    }
+
+    .marker-details .actions button {
+        font-size: 0.4em;
+        padding: 5px 10px;
+    }
 }
 
 /*=============== No Such Users ================*/

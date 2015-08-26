@@ -7,6 +7,7 @@
   left: 0;
   z-index: 3000;
   background: rgba(255, 255, 255, 0.99);
+  overflow: auto;
 }
 
 .login-modal .modal-action {
@@ -50,6 +51,12 @@
 .modal-content header h3 {
   color: rgba(0, 0, 0, 0.5);
   font-size: 1.2em;
+}
+
+@media (max-width: 800px) {
+  .login-modal .modal-content {
+      width: 100%;
+  }
 }
 
 /*------------- Social Login ------------*/
@@ -107,6 +114,16 @@
   text-decoration: underline;
 }
 
+@media (max-width: 800px) {
+  .modal-content .login-social {
+      width: 100%;
+  }
+
+  .social-actions .social-action {
+    width: 90%;
+  }
+}
+
 /*------------- Naitve Login ------------*/
 .modal-content .login-native {
   width: 100%;
@@ -127,6 +144,8 @@
   margin: 10px 0;
   margin-top: 0;
   width: 100%;
+  border: none;
+  border: 2px solid rgba(0, 0, 0, 0.4);
 }
 
 .login-native .native-form input:focus {
@@ -167,6 +186,9 @@
   cursor: default;
 }
 
+.login-native footer {
+  margin-bottom: 20px;
+}
 
 .login-native footer h6 {
   font-size: 1em;
@@ -178,4 +200,15 @@
 
 .login-native footer h6:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 800px) {
+  .login-native .native-form  {
+      width: 95%;
+  }
+
+  .login-native .native-form.login-form  {
+      border-bottom: 2px solid rgba(0, 0, 0, 0.9);
+      margin-bottom: 20px;
+  }
 }

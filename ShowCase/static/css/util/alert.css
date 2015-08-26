@@ -36,3 +36,9 @@
   text-align: center;
   margin-top: 18px;
 }
+
+@media (max-width: 800px) {
+  .alerts{
+      width: 100%;
+  }
+}
