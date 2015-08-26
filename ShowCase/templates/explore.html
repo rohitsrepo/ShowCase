@@ -31,11 +31,11 @@
 {% block body_attr_block %}ng-controller="exploreController"{% endblock %}
 
 {% block content_block %}
-    <div ng-cloak masonry load-images="false" class="arts-container explore-container" infinite-scroll="loadMoreArts()" infinite-scroll-distance='1' infinite-scroll-disabled='artsMeta.busy || artsMeta.disableGetMore'>
+    <div ng-cloak masonry masonry-options="{ transitionDuration: '0' }" class="arts-container explore-container" infinite-scroll="loadMoreArts()" infinite-scroll-distance='1' infinite-scroll-disabled='artsMeta.busy || artsMeta.disableGetMore'>
         <div class="masonry-brick container explore-art-container" ng-repeat="art in arts">
             <div class="art">
                 <article class="art-content">
-                    <img ng-src="[[art.matter_550]]" alt="[[art.title]]" height="[[math.round(400 * art.matter_aspect)]]px" width="400px">
+                    <img ng-src="[[art.matter_550]]" alt="[[art.title]]" >
                     <div class="details-inset">
                         <section class="inset-details">
                             <h6>[[art.views]] Views</h6>
