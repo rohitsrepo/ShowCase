@@ -3,7 +3,7 @@
     <div class="user-activity-container" ng-switch='activity.post_type' ng-repeat-start="activity in userActivities">
 
         <article ng-switch-when="AD" class="user-activity add-activity">
-            <header>
+            <header class="clearfix">
                 <a ng-href="/@[[activity.creator.slug]]"><img class="activity-header-image" ng-src="[[activity.creator.picture]]"></a>
                 <div class="activity-header-details">
                     <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]'s</a>

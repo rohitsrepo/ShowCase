@@ -18,17 +18,33 @@
     padding: 20px;
 }
 
+
+@media (max-width: 800px) {
+    .user-activities {
+        width: 100%;
+    }
+    .user-activities .user-activity-container {
+        width: 100%;
+        padding: 5px;
+    }
+}
+
 /*------------ Activity Header ---------*/
 
 .user-activities hr,
 .user-activity-container .user-activity {
-    width: 550px;
+    width: 60%;
+    max-width: 550px;
     margin: 0 auto;
     padding-bottom: 5px;
 }
 
-.user-activity-container .user-activity {
+@media (max-width: 800px) {
+    .user-activity-container .user-activity {
+        width: 100%;
+    }
 }
+
 
 .user-activity header {
     margin-bottom: 20px;
@@ -41,10 +57,11 @@
     display: inline-block;
     width: 50px;
     height: 50px;
+    float: left;
 }
 
 .user-activity header .activity-header-details {
-    display: inline-block;
+    display: inline;
     vertical-align: top;
     padding-left: 7px;
     line-height: 25px;  /*half the user image*/
@@ -59,13 +76,20 @@
 .activity-header-details .activity-user-creds {
     color: rgba(0, 0, 0, 0.54);
     font-size: 0.8em;
+    padding-left: 57px;
     line-height: 25px;  /*half the user image*/
+}
+
+@media (max-width: 800px) {
+  .user-activity header {
+      font-size: 0.8em;
+  }
 }
 
 /*------------ Activity Image ---------*/
 
 .user-activity .user-activity-image {
-    width: 550px;
+    max-width: 550px;
     position: relative;
 }
 
@@ -232,6 +256,12 @@
     left: 80%;
 }
 
+@media (max-width: 800px) {
+  .user-activity-footer .activity-image-details {
+      font-size: 0.8em;
+  }
+}
+
 /*----------- No activities -------------*/
 .no-user-activities {
     width: 60%;
@@ -269,4 +299,10 @@
 .no-user-activities .explore-art:hover {
     background: rgba(0, 0, 0, 0.9);
     color: white;
+}
+
+@media (max-width: 800px) {
+  .no-user-activities {
+      width: 90%;
+  }
 }
