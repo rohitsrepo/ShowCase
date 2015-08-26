@@ -1,4 +1,5 @@
 angular.module('module.root', [
+    'ngTouch',
     'infinite-scroll',
     "wu.masonry",
 	"ngAnimate",

@@ -11,10 +11,13 @@ angular.module('module.bucketmodal')
 
         progress.showProgress();
         $scope.bucket = bucket;
-        $scope.math = window.Math
+        $scope.math = window.Math;
+        var currentShowIndex = 0;
 
         bucketModel.bucketArts(bucket.id).then(function (arts) {
             $scope.bucketArts = arts;
+
+            $scope.bucketArts[currentShowIndex].show = true;
 
             progress.hideProgress();
         }, function () {
@@ -23,6 +26,24 @@ angular.module('module.bucketmodal')
         });
 
         $scope.KeydownCallback = KeydownCallback;
+
+        $scope.nextArt = function () {
+
+            if ($scope.bucketArts.length > currentShowIndex + 1){
+                $scope.bucketArts[currentShowIndex].show = false;
+                currentShowIndex = currentShowIndex + 1;
+                $scope.bucketArts[currentShowIndex].show = true;
+            }
+        }
+
+        $scope.prevArt = function () {
+
+            if (currentShowIndex > 0){
+                $scope.bucketArts[currentShowIndex].show = false;
+                currentShowIndex = currentShowIndex - 1;
+                $scope.bucketArts[currentShowIndex].show = true;
+            }
+        }
 
         $scope.close = function () {
             close();
@@ -91,5 +112,17 @@ angular.module('module.bucketmodal')
         if (scope.$last) {
             scope.$emit('slyLastElement')
         }
+    };
+}])
+.directive('swipeEffect', ['$swipe', function ($swipe) {
+    return function (scope, element, attrs) {
+        $swipe.bind(element, {
+            'move' : function () {
+                element.addClass('swiping');
+            },
+            'end' : function () {
+                element.removeClass('swiping');
+            }
+        })
     };
 }]);

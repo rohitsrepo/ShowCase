@@ -27,34 +27,11 @@
 	<!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}', '{{is_bookmarked}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}', '{{composition.slug}}', '{{composition.title}}', '{{is_bookmarked}}')"{% endblock %}
 
 {% block content_block %}
 	<section class="painting-area">
-		<section class="painting-details" >
-			<h2>{{ composition.title | title }}</h2>
 
-            <div class="by-header">Created By</div>
-            <a class="by-user" href="/@{{composition.artist.slug}}">
-                <h3>{{composition.artist.name | title}}</h3>
-            </a>
-            <div class="by-header">Uploaded By</div>
-            <a class="by-user" ng-href="/@{{composition.uploader.slug}}" class="uploader">
-                <h3>{{composition.uploader.name | title}}</h3>
-            </a>
-
-            <section class="details-actions-details">
-	            <h4 class="inactive">{{composition.views}} Views</h4>
-	            <h4 ng-click="showBookMarkers()">{{composition.bookmarks_count}} Admirers</h4>
-	            <h4 ng-click="showArtBuckets()">{{composition.buckets_count}} Series</h4>
-            </section>
-
-            <section class="details-actions">
-                <button class="admire" ng-class="{'active': composition.is_bookMarked}" ng-click="handleBookMark()">ADMIRE</button><br>
-            	<button class="collect" ng-click="showAddToBucket()">Add To Series</button>
-            </section>
-
-		</section>
 		<div class="painting-container">
 			<ul class="palette" ng-show="isColorPaletteActive" ng-cloak>
 				<li style="background: rgb([[ dominantColor['0'] ]], [[ dominantColor['1'] ]], [[ dominantColor['2'] ]])"></li>
@@ -67,7 +44,7 @@
 		</div>
 
 
-		<section tools-drawer class="art-tools">
+		<!-- <section tools-drawer class="art-tools">
 			<button class="drawer-control">
 			  <i class="material-icons">face</i>
 			</button>
@@ -80,27 +57,41 @@
 			<button>
 			  <i class="material-icons">add</i>
 			</button>
-		</section>
+		</section> -->
 	</section>
 
-	<section class="end-marker clearfix nt-mb">
-		<hr><img src="/static/images/header-md.png"><hr>
-	</section>
+    <section class="painting-details" >
+        <div class="painting-details-container">
+            <h2>{{ composition.title | title }}</h2>
 
-	<footer class="primary-footer" analytics-scroll analytics-data="['Composition', 'View-Next-Post']" analytics-offset="300">
-		<section analytics-click analytics-data="['Composition', 'Next Post']" class="next-post" ng-repeat="post in nextPosts">
-			<a href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]" target="_blank" >
-				<div class="painting-holder" ng-style="{'background-image': 'url([[post.composition.matter_350]])'}"></div>
-				<section class="post-details">
-					<h4>[[post.composition.title | titlecase]]</h4>
-					<p>[[post.interpretation.interpretation]]</p>
-				</section>
-				<footer class="next-footer">
-					<h5>Read More...</h5>
-				</footer>
-			</a>
-		</section>
-	</footer>
+            <section class="painting-parent">
+                <div class="by-header">Created By</div>
+                <a class="by-user" href="/@{{composition.artist.slug}}">
+                    <h3>{{composition.artist.name | title}}</h3>
+                </a>
+            </section>
+
+            <section class="painting-parent">
+                <div class="by-header">Uploaded By</div>
+                <a class="by-user" ng-href="/@{{composition.uploader.slug}}" class="uploader">
+                    <h3>{{composition.uploader.name | title}}</h3>
+                </a>
+            </section>
+
+            <section class="details-actions-details">
+                <h4 class="inactive">Views {{composition.views}}</h4>
+                <h4 ng-click="showBookMarkers()">Admirers {{composition.bookmarks_count}}</h4>
+                <h4 ng-click="showArtBuckets()">Series {{composition.buckets_count}}</h4>
+            </section>
+
+            <section class="details-actions">
+                <button class="action admire" ng-class="{'active': composition.is_bookMarked}" ng-click="handleBookMark()">ADMIRE</button>
+                <button class="action collect" ng-click="showAddToBucket()">Add To Series</button>
+            </section>
+
+        </div>
+
+    </section>
 {% endblock %}
 
 {% block script_block %}

@@ -28,6 +28,11 @@
     top: 0;
     left: 0;
     z-index: 3;
+    transition: all 0.5s;
+}
+
+.bucket-modal.content .bucket-content.swiping{
+
 }
 
 /*============ HEADER ===========*/
@@ -59,6 +64,8 @@
 	color: white;
 }
 
+@media (max-width: 800px) {
+}
 
 /* ============== Content Holder ============== */
 .content-scroll-holder {
@@ -169,4 +176,16 @@
 	height: 20px;
 }
 
+.bucket-content .show-mb {
+    width: 95%;
+    margin: 0 auto;
+}
 
+.bucket-content .show-mb img {
+    width: 100%;
+}
+
+.bucket-content .show-mb a.ng-hide-remove {
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+}

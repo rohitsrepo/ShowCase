@@ -13,7 +13,7 @@ html, body {
 }
 
 /* ================= HEADBAR IN SECOND VIEW ============== */
-.painting-area {
+.painting-details {
     width: 100%;
     padding-top: 15px;
     background: white;
@@ -21,46 +21,56 @@ html, body {
     margin-bottom: 30px;
 }
 
-@media (max-width: 800px) {
-    .painting-area {
-        height: auto;
-    }
-}
-
-.painting-area .painting-details {
-    width: 25%;
-    display: inline-block;
+.painting-details .painting-details-container {
+    width: 60%;
+    margin: 0 auto;
     vertical-align: top;
-    padding: 20px 30px;
+    padding: 20px;
     color: rgba(0, 0, 0, 0.9);
     letter-spacing: 1px;
+    text-align: center;
 }
 
-.painting-details h2 {
-    font-size: 1.3em;
+.painting-details-container h2 {
+    font-size: 2em;
+    width: 70%;
+    margin: 0 auto;
     line-height: 1.5em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
 }
 
-.painting-details .by-header {
+.painting-details-container .painting-parent {
+    display: inline-block;
+    padding: 10px;
+}
+
+.painting-parent .by-header {
     font-size: 0.65em;
     display: inline;
     color: rgba(0, 0, 0, 0.5);
 }
 
-.painting-details .by-user {
+.painting-parent .by-user {
     font-size: 0.9em;
+    line-height: 1em;
     display: inline;
 }
 
-.painting-details .details-actions-details {
-    margin-top: 30px;
+.painting-parent .by-user:hover {
+    text-decoration: underline;
 }
 
-.painting-details .details-actions-details h4 {
+.painting-details-container .details-actions-details {
+    margin-top: 10px;
+}
+
+.painting-details-container .details-actions-details h4 {
     font-size: 0.8em;
     line-height: 1.8em;
     color: rgba(0, 0, 0, 0.9);
     cursor: pointer;
+    display: inline;
+    padding: 0 5px;
 }
 
 .painting-details .details-actions-details h4:hover {
@@ -76,26 +86,27 @@ html, body {
     margin-top: 30px;
 }
 
-.painting-details .details-actions .admire {
+.painting-details .details-actions .action {
     background: transparent;
     border: none;
-    width: 40%;
     border: 1px solid rgba(0, 0, 0, 0.8);
     border-radius: 1px;
-    padding: 10px 10px;
+    width: 200px;
+    padding: 10px 20px;
     margin-bottom: 10px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    display: inline-block;
 }
 
-.painting-details .details-actions .admire.active,
-.painting-details .details-actions .admire:hover {
+.painting-details .details-actions .action.active,
+.painting-details .details-actions .action:hover {
     background: rgba(0, 0, 0, 0.9);
     color: white;
 }
 
-.painting-details .details-actions .admire:before {
+.painting-details .details-actions .action:before {
     position: absolute;
     content: '#';
     left: 130%;
@@ -106,48 +117,34 @@ html, body {
     transition: all 0.3s;
 }
 
-.painting-details .details-actions .admire.active:before {
+.painting-details .details-actions .action.active:before {
     left: 80%;
 }
 
-.painting-details .details-actions .collect {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.painting-details .details-actions .collect:hover {
-    text-decoration: underline;
+@media (max-width: 800px) {
+    .painting-details .painting-details-container {
+        width: 100%;
+        font-size: 0.8em;
+    }
 }
 
 
 /*=========== Painting area ============*/
 
 .painting-area .painting-container {
-    /*height: 100%;*/
-    width: 60%;
+    width: 70%;
+    margin: 0 auto;
     text-align: center;
     overflow: hidden;
     position: relative;
     background: white;
-    display: inline-block;
     vertical-align: top;
 }
 
 .painting-area .painting {
-    /*height: 100%;*/
     max-width: 100%;
     margin: 0 auto;
 }
-
-/*.painting.landscape {
-    width: 60%;
-    height: auto;
-    margin: 0 auto;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}*/
 
 .painting-original.ng-hide-remove {
         -webkit-animation: fadeIn 0.6s;
@@ -183,9 +180,8 @@ html, body {
 }
 
 @media (max-width: 800px) {
-    .painting {
+    .painting-area .painting-container {
         width: 95%;
-        height: auto;
         margin: 0 auto;
     }
 

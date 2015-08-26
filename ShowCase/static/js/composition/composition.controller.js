@@ -36,9 +36,11 @@ controller("compositionController", [
 	$scope.interpretationModalshown = false;
     $scope.isBookMarked = false;
 
-	$scope.init = function (id, url, isBookMarked) {
+	$scope.init = function (id, url, slug, title, isBookMarked) {
 		$scope.composition.id = id;
-		$scope.composition.url = url;
+        $scope.composition.url = url;
+        $scope.composition.slug = slug;
+		$scope.composition.title = title;
         $scope.composition.is_bookMarked = isBookMarked == 'True';
 
 		if (url) {
