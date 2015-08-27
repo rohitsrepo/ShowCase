@@ -164,5 +164,5 @@ APPEND_SLASH = False
 
 POSTS_PER_PAGE = 10
 
-STREAM_API_KEY = 'kvkuck3w9thv'
-STREAM_API_SECRET = 'can7n5vuyw5k556e7nz7wjzx98r6umm3yn3uy559rch8xd4m5aqu9rmxgw8xyy5r'
+STREAM_API_KEY = ''
+STREAM_API_SECRET = ''

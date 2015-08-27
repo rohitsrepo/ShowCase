@@ -1,5 +1,20 @@
 angular.module('module.root')
-.controller('headerController', ['$scope', '$window', 'auth', 'uploadmodalService', function ($scope, $window, auth, uploadmodalService) {
+.controller('headerController', ['$scope', '$window', '$location', 'auth', 'uploadmodalService', function ($scope, $window, $location, auth, uploadmodalService) {
+
+    $scope.exploreActive = false;
+    $scope.postsActive = false;
+
+    function initActiveLink() {
+        path = window.location.pathname;
+
+        if (path=='/arts') {
+            $scope.exploreActive = true;
+        } else if (path='/posts') {
+            $scope.postsActive = true;
+        }
+    };
+    initActiveLink();
+
 	$scope.authorize = function () {
 		auth.runWithAuth();
 	}

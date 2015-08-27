@@ -40,6 +40,15 @@ def _update_settings(source_folder, site_name):
         'ALLOWED_HOSTS =.+$',
         'ALLOWED_HOSTS = ["%s", "thirddime.com", "www.thirddime.com"]' % (site_name,)
         )
+    sed(settings_path,
+        'STREAM_API_KEY =.+$',
+        'STREAM_API_KEY = "kvkuck3w9thv"'
+        )
+    sed(settings_path,
+        'STREAM_API_SECRET =.+$',
+        'STREAM_API_SECRET = "can7n5vuyw5k556e7nz7wjzx98r6umm3yn3uy559rch8xd4m5aqu9rmxgw8xyy5r"'
+        )
+
     secret_key_file = source_folder + '/ShowCase/secret_key.py'
     if not exists(secret_key_file):
         chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
