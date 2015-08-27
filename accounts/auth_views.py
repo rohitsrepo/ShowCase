@@ -48,6 +48,8 @@ class CustomUserCallback(OAuthCallback):
             user =  User.objects.get(email=info['email'])
             if (user.has_default_picture()):
                 self.try_adding_picture(info, user)
+
+            return user
         except User.DoesNotExist:
             kwargs = {
                 User.USERNAME_FIELD: info['email'],
