@@ -108,7 +108,7 @@ html, body {
 
 .painting-details .details-actions .action:before {
     position: absolute;
-    content: '#';
+    content: '\2714';
     left: 130%;
     top: 50%;
     transform: translateY(-50%);

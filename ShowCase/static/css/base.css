@@ -455,10 +455,9 @@ body::-webkit-scrollbar-thumb {
     color: white;
 }
 
-
 .art .actions button:before {
     position: absolute;
-    content: '#';
+    content: '\2714';
     left: 130%;
     top: 50%;
     transform: translateY(-50%);
