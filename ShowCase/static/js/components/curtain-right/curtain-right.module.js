@@ -1,1 +1,1 @@
-angular.module('module.curtainRight', ["module.auth"]);
+angular.module('module.curtainRight', ["module.auth", "module.util"]);

@@ -1,25 +1,80 @@
-import os, django_filters
-from django.db.models import Q
-from .models import Composition, InterpretationImage
-from accounts.models import User
-from rest_framework import permissions, generics, status
-from .serializers import CompositionSerializer, NewCompositionSerializer, InterpretationImageSerializer, PaginatedCompositionSerializer
-from .permissions import IsOwnerOrReadOnly, IsHimself, IsImageUploader
+import os, uuid
+import json
+import urllib
+from random import randrange
+
+import django_filters
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from django.conf import settings
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.http import Http404
-from accounts.serializers import ExistingUserSerializer
-from rest_framework.decorators import api_view, permission_classes
-from ShowCase.utils import check_object_permissions
-from .imageTools import crop
 from django.core.files import File
-from random import randrange
-import json
+
+from rest_framework import permissions, generics, status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes
+
+from .models import Composition, InterpretationImage
+from .serializers import CompositionSerializer, NewCompositionSerializer, CompositionMatterSerializer, InterpretationImageSerializer, PaginatedCompositionSerializer, BookmarkerSerializer
+from .permissions import IsOwnerOrReadOnly, IsHimself, IsImageUploader
+from .imageTools import crop
+
+from accounts.models import User
+from accounts.serializers import ExistingUserSerializer
+from buckets.serializers import BucketSerializer
+from buckets.models import BucketMembership
+from ShowCase.utils import check_object_permissions
 
 class CompositionError(Exception):
     pass
+
+
+def get_image_path(user, name):
+    relative_path = '../media/temp/' + user.slug + '/' + name + '.jpg'
+    return os.path.join(settings.BASE_DIR, relative_path)
+
+
+def get_image_object(user, name):
+    url = '/media/temp/' + user.slug + '/' + name + '.jpg'
+    id = name
+
+    return {'url': url, 'id': id}
+
+def get_image_from_web(image_url, image_path):
+    urllib.urlretrieve(image_url, image_path)
+
+def get_image_from_upload(image_file, image_path):
+    with open(image_path, 'wb') as dest:
+        for chunk in image_file.chunks():
+            dest.write(chunk)
+
+def generate_image_url(user, upload_object):
+    image_name = str(uuid.uuid1())
+    image_path = get_image_path(user, image_name)
+
+    if not os.path.exists(os.path.dirname(image_path)):
+        os.makedirs(os.path.dirname(image_path))
+
+    if (upload_object['upload_type'] == 'url'):
+        get_image_from_web(upload_object['upload_url'], image_path)
+    elif (upload_object['upload_type'] == 'upl'):
+        get_image_from_upload(upload_object['upload_image'], image_path)
+
+    return get_image_object(user, image_name)
+
+@api_view(['POST'])
+@permission_classes((permissions.IsAuthenticated,))
+def composition_matter(request, format=None):
+    upload_ser = CompositionMatterSerializer(data=request.DATA, files=request.FILES, context={'request': request})
+
+    if upload_ser.is_valid():
+        image_object = generate_image_url(request.user, upload_ser.object)
+        return Response(image_object)
+
+    return Response(data=upload_ser.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class CompositionList(APIView):
     ''' Handels listing of compositions and adding new ones.'''
@@ -51,38 +106,43 @@ class CompositionList(APIView):
             except:
                 raise CompositionError("Unable to parse artist data {}".format(artist))
 
+    def generate_matter(self, user, data):
+        if ('image_id' in data.keys()):
+            image_id = data['image_id']
+            image_path = get_image_path(user, image_id)
+            return File(open(image_path))
 
-    def get(self, request, format=None):
-        compositions = Composition.objects.all()
-        ser = CompositionSerializer(compositions, many=True)
+    def addToBucket(self, user, request_data, composition):
+        if ('bucket' in request_data.keys()):
+            bucket_id = request_data['bucket']
+            bucket = user.buckets.get(id=bucket_id)
+            BucketMembership.objects.get_or_create(bucket=bucket, composition=composition)
 
-        if request.user.is_authenticated():
-            counter = 0
-            related_comps = compositions.filter(collectors__id=request.user.id)
-            for composition in compositions:
-                ser.data[counter]['IsBookmarked'] = False
-                ser.data[counter]['IsVoted'] = False
+    def remove_temp_image(self, user, image_id):
+        if image_id:
+            image_path = get_image_path(user, image_id)
+            os.remove(image_path)
 
-                if composition in related_comps:
-                    ser.data[counter]['IsBookmarked'] = True
-                if request.user.votes.filter(composition=composition).exists():
-                    ser.data[counter]['IsVoted'] = True
-                counter = counter + 1
-        return Response(ser.data)
 
     def post(self, request, format=None):
         try:
             self.validate_or_create_artist(request.DATA)
+            request.DATA['matter'] = self.generate_matter(request.user, request.DATA)
+
             ser = NewCompositionSerializer(data=request.DATA, files=request.FILES, context={'request': request})
+
             if ser.is_valid():
                 ser.object.uploader = request.user
-                ser.save()
+                composition = ser.save()
+
+                self.remove_temp_image(request.user, request.DATA.get('image_id', ''))
+
+                self.addToBucket(request.user, request.DATA, composition)
                 return Response(ser.data, status=status.HTTP_201_CREATED)
 
             return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
         except CompositionError as e:
             return Response({'error': e.message}, status=status.HTTP_400_BAD_REQUEST)
-
 
 class CompositionDetail(APIView):
     '''Handel endpoints for individual composition.'''
@@ -102,7 +162,7 @@ class CompositionDetail(APIView):
         ser = CompositionSerializer(composition)
         ser.data['IsBookmarked'] = False
         ser.data['IsVoted'] = False
-        if(composition.collectors.filter(pk=request.user.id).exists()):
+        if(composition.bookers.filter(pk=request.user.id).exists()):
             ser.data['IsBookmarked'] = True
         if request.user.is_authenticated() and request.user.votes.filter(composition=composition).exists():
             ser.data['IsVoted'] = True
@@ -138,7 +198,7 @@ class InterpretationImageList(APIView):
         source_type = request.DATA.get('source_type')
         if source_type and source_type == InterpretationImage.CROP:
             return self._cropAndCreate(request, composition)
-        
+
         return self._addImage(request, composition)
 
     def _cropAndCreate(self, request, composition):
@@ -171,7 +231,7 @@ class InterpretationImageDetail(APIView):
     def delete(self, request, composition_id, image_id, format=None):
         interpretationImage = get_object_or_404(InterpretationImage, pk=image_id, composition_id=composition_id)
         interpretationImage.delete();
-        
+
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET'])
@@ -189,7 +249,7 @@ def follow_compositions(request, format=None):
 
     if request.user.is_authenticated():
         counter = 0
-        related_comps = compositions.filter(collectors__id=request.user.id)
+        related_comps = compositions.filter(bookers__id=request.user.id)
         for composition in compositions:
             ser.data[counter]['IsBookmarked'] = False
             ser.data[counter]['IsVoted'] = False
@@ -221,10 +281,17 @@ def random_composition(request, format=None):
     serializer.data['IsVoted'] = False
 
     if request.user.is_authenticated():
-        if (composition.collectors.filter(pk=request.user.id).exists()):
+        if (composition.bookers.filter(pk=request.user.id).exists()):
             serializer.data['IsBookmarked'] = True
         if request.user.votes.filter(composition=composition).exists():
             serializer.data['IsVoted'] = True
 
     return Response(serializer.data)
 
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_bookmarkers(request, composition_id, format=None):
+    composition = get_object_or_404(Composition, pk=composition_id)
+    bookers = composition.bookers.all()
+    serializer = BookmarkerSerializer(bookers, context={'request': request})
+    return Response(data=serializer.data)

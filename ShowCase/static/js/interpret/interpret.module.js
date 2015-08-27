@@ -6,7 +6,7 @@ angular.module("InterpretApp", [
     "module.model",
     'module.titlecase',
     'module.analytics',
-    'module.alert'])
+    'module.util'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

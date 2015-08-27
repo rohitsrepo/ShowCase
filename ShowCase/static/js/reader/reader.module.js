@@ -1,14 +1,9 @@
 angular.module("ReaderApp", [
     'infinite-scroll',
-    "module.auth",
     "module.curtainRight",
     "module.curtainLeft",
     "module.topbar",
-    "module.model",
-    'module.sharing',
-    'module.scrollTo',
-    'module.titlecase',
-    'module.analytics'])
+    'module.root'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {
 	"use strict";
 

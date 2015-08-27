@@ -10,8 +10,33 @@ angular.module("module.model")
 		return $http.get(url).then(function (response) {
 			return response.data;
 		},function (response) {
-			$log.error("Error fetching user list.", response);
+			$log.error("Error fetching art list.", response);
 		});
 	};
+
+    service.getBookMarkers = function (compositionId) {
+        return $http.get('/compositions/' + compositionId + '/bookmarkers').then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
+    service.urlImageUploader = function (art) {
+        return $http.post('/compositions/matter', art).then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
+    service.addArt = function (art) {
+        return $http.post('/compositions', art).then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
 	return service;
 }]);

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Composition, InterpretationImage
+from accounts.models import User
 from ShowCase.serializers import URLImageField
 from rest_framework.pagination import PaginationSerializer
 
@@ -8,8 +9,8 @@ class CompositionUserSerializer(serializers.ModelSerializer):
     picture = URLImageField(source='picture')
 
     class Meta:
-        model = Composition
-        fields = ('id', 'full_name', 'picture', 'slug')
+        model = User
+        fields = ('id', 'full_name', 'picture', 'slug', 'name')
 
 class CompositionSerializer(serializers.ModelSerializer):
     matter = URLImageField(source='matter')
@@ -20,12 +21,20 @@ class CompositionSerializer(serializers.ModelSerializer):
     interpretations_count = serializers.CharField(source='get_interpretations_count', read_only=True)
     uploader = CompositionUserSerializer(read_only=True)
     artist = CompositionUserSerializer(read_only=True)
+    is_bookmarked = serializers.SerializerMethodField('get_is_bookmarked')
+    bookmarks_count = serializers.CharField(source='bookmarks_count')
+    buckets_count = serializers.CharField(source='buckets_count')
 
     class Meta:
         model = Composition
         fields = ('id', 'title', 'artist', 'description', 'created',
-		   'matter', 'matter_350', 'matter_550', 'matter_aspect', 'timesince', 'vote', 'slug', 'uploader', 'views', 'interpretations_count')
+		   'matter', 'matter_350', 'matter_550', 'matter_aspect', 'timesince', 'vote',
+           'slug', 'uploader', 'views', 'interpretations_count', 'is_bookmarked', 'bookmarks_count', 'buckets_count')
     	read_only_fields = ('slug', 'vote', 'views')
+
+    def get_is_bookmarked(self, obj):
+        request = self.context['request']
+        return obj.is_bookmarked(request.user.id)
 
 class PaginatedCompositionSerializer(PaginationSerializer):
     class Meta:
@@ -36,8 +45,29 @@ class NewCompositionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Composition
-        fields = ('title', 'artist', 'description', 'matter', 'slug')
-        read_only_fields = ('slug',)
+        fields = ('title', 'artist', 'matter', 'slug')
+        read_only_fields = ('slug', )
+
+class CompositionMatterSerializer(serializers.Serializer):
+    upload_type = serializers.CharField(max_length=3);
+    upload_image = serializers.ImageField(required=False)
+    upload_url = serializers.URLField(required=False)
+
+    def validate_upload_type(self, attrs, value):
+        field_value = attrs[value]
+        if (field_value == 'upl' or field_value=='url'):
+            return attrs
+        raise serializers.ValidationError('Upload type should be upl or url');
+
+    def validate(self, data):
+        if (data['upload_type'] == 'upl'):
+            if ('upload_image' not in data.keys() or not data['upload_image']):
+                raise serializers.ValidationError('Upload image can not be empty')
+        elif (data['upload_type'] == 'url'):
+            if ('upload_url' not in data.keys() or not data['upload_url']):
+                raise serializers.ValidationError('Upload url can not be empty')
+
+        return data
 
 class InterpretationImageSerializer(serializers.ModelSerializer):
     url = URLImageField(source='image', read_only=True)
@@ -47,3 +77,18 @@ class InterpretationImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = InterpretationImage
         fields = ('image', 'url', 'id', 'image_550', 'image_350', 'source_type')
+
+class BookmarkerSerializer(serializers.ModelSerializer):
+    picture = serializers.Field(source='get_picture_url')
+    followers_count = serializers.Field(source='followers_count')
+    paintings_count = serializers.Field(source='paintings_count')
+    uploads_count = serializers.Field(source='uploads_count')
+    is_followed = serializers.SerializerMethodField('get_is_followed')
+
+    class Meta:
+        model = User
+        fields = ('id', 'slug', 'picture', 'name', 'followers_count', 'paintings_count', 'uploads_count', 'is_followed')
+
+    def get_is_followed(self, obj):
+        request = self.context['request']
+        return obj.is_followed(request.user.id)

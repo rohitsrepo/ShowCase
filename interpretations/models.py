@@ -1,11 +1,8 @@
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.db import models
 from compositions.models import Composition
 from django.conf import settings
 from django.utils.timesince import timesince
-from interpretationVotes.models import InterpretationVote
-from posts.models import Post
+from posts.models import Post, bind_post
 from bs4 import BeautifulSoup
 
 
@@ -46,16 +43,12 @@ class Interpretation(models.Model):
         soup = BeautifulSoup(self.interpretation)
         return soup.get_text()
 
+    def create_post(self):
+        return Post(
+            composition=self.composition,
+            creator=self.user,
+            post_type = Post.INTERPRET,
+            content_object=self)
 
-
-# To create vote instance when an interpretatoin is created
-@receiver(post_save, sender=Interpretation)
-def create_post(sender, **kwargs):
-    created = kwargs.get('created')
-    if created:
-        instance = kwargs.get('instance')
-        vote = Post(
-            composition=instance.composition,
-            creator=instance.user,
-            content_object=instance)
-        vote.save()
+#Bind Signals
+bind_post(Interpretation)

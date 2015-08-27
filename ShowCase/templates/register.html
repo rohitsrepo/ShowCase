@@ -1,40 +1,34 @@
-<!DOCTYPE html>
-<html ng-app="RegisterApp">
-<head>
-	<title>SignUp - ThirdDime</title>
+{% extends "base.html" %}
+{% block html_attr_block %}ng-app="RegisterApp"{% endblock %}
 
+{% block title_block %}
+	<title>SignUp - ThirdDime</title>
+{%endblock%}
+
+{% block meta_block %}
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{%endblock%}
 
-	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
-
+{% block css_block %}
 	<!-- build:css /static/build/register.css -->
+	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/register/main.css">
-	<!-- endbuild -->
+<!-- endbuild -->
+{%endblock%}
 
-	<script>
-		 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		 ga('create', 'UA-58563444-1', 'auto');
-		 ga('require', 'displayfeatures');
-		 ga('send', 'pageview');
-	</script>
-</head>
-<body ng-controller="registerController">
-	<!-- {% verbatim %} -->
-	<topbar></topbar>
-	<div class="curtain-overlay-placeholder"></div>
+{% block body_attr_block %}ng-controller="registerController"{% endblock %}
+
+{% block content_block %}
 	<header class="primary-header">
 		<h1>Welcome to ThirdDime</h1>
 		<h2>We are glad to have you on this journey together.</h2>
 	</header>
 	<section class="auth clearfix">
 		<section class="social">
-			<button class="facebook" ng-click="loginFB()">CONNECT WITH FACEBOOK</button>
-			<!-- <button class="twitter" href="">CONNECT WITH TWITTER</button> -->
+			<a class="facebook" href="/users/login/facebook/">CONNECT WITH FACEBOOK</a>
+			<a class="google" href="/users/login/google/">CONNECT WITH GOOGLE</a>
 		</section>
 		<h5>Or</h5>
 		<section class="native">
@@ -52,42 +46,18 @@
 				<div ng-cloak ng-show="registerForm.$submitted">
 				    <span ng-show="registerForm.upassword.$error.required">Please provide a password.</span>
 			   </div>
-				<input class="signup-button" type="submit" name="login" value="CREATE ACCOUNT" ng-click="register(user)">
+				<input class="signup-button" ng-class="{'disable': registerForm.$invalid}" ng-disabled="registerForm.$invalid" type="submit" name="login" value="CREATE ACCOUNT" ng-click="register(user)">
 			</form>
 			<footer>
 				<h6>By creating an account, I accept ThirdDime <a href="/guidelines">Terms of Service</a>.</h6>
 			</footer>
 		</section>
 	</section>
-	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
-	<!-- build:js /static/build/register.js -->
-	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
-	<script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
+{% endblock %}
 
-	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
-	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
-	<script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
-	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
-	<script type="text/javascript" src="/static/js/authentication/facebook.service.js"></script>
+{% block script_block %}
+	<!-- build:js /static/build/register.js -->
 	<script type="text/javascript" src="/static/js/register/register.module.js"></script>
 	<script type="text/javascript" src="/static/js/register/register.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
-	<script type="text/javascript" src="/static/js/components/analytics/analytics.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/analytics/analytics.directive.js"></script>
 	<!-- endbuild -->
-	<!-- {% endverbatim %} -->
-</body>
-</html>
+{% endblock %}

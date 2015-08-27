@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block html_attr_block %}ng-app="PostApp"{% endblock %}
+
+{% block title_block %}
+    <title>{{post.creator.name}} | Thirddime</title>
+{%endblock%}
+
+{% block meta_block %}
+    <meta name="description" content="Browse through breathtaking artworks and their interpretations. Discover deeper layers behind each painting with a community of art lovers." />
+    <link rel="canonical" href="http://thirddime.com" />
+    <link ng-cloak ng-if="postsMeta.next" rel="next" href="http://thirddime.com#[[postsMeta.next]]" />
+    <link ng-cloak ng-if="postsMeta.previous" rel="prev" href="http://thirddime.com#[[postsMeta.previous]]" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="ThirdDime - Explore art through interpretations and stories">
+    <meta property="og:site_name" content="ThirdDime">
+    <meta property="og:url" content="http://thirddime.com/">
+    <meta property="og:description" content="Behind the BrushStrokes.">
+    <meta property="og:image" content="http://thirddime.com/static/images/reader/banner.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:type" content="[462422103909005]">
+{%endblock%}
+
+{% block css_block %}
+     <!-- build:css /static/build/post.css -->
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/post/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/post/post.css">
+    <!-- endbuild -->
+{%endblock%}
+
+{% block body_attr_block %}ng-controller="postAppController" ng-init="init({{ post.creator.id }}, {{ post.id }})"{% endblock %}
+
+{% block content_block %}
+    <ng-include src="'/static/js/post/post.tpl.html'" ></ng-include>
+{% endblock %}
+
+{% block script_block %}
+    <!-- build:js /static/build/post.js -->
+    <script type="text/javascript" src="/static/bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/post/post.module.js"></script>
+    <script type="text/javascript" src="/static/js/post/postApp.controller.js"></script>
+    <script type="text/javascript" src="/static/js/post/post.controller.js"></script>
+    <script type="text/javascript" src="/static/js/post/interpretationSetHeight.directive.js"></script>
+    <!-- endbuild -->
+{% endblock %}

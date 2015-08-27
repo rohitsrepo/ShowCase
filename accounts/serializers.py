@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import User
 from django.forms import widgets
 from django.contrib.auth.hashers import make_password
-from ShowCase.serializers import URLImageField
+from rest_framework.pagination import PaginationSerializer
 
 
 class NewUserSerializer(serializers.ModelSerializer):
@@ -21,12 +21,20 @@ class NewUserSerializer(serializers.ModelSerializer):
 
 
 class ExistingUserSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(read_only=True)
-    picture = URLImageField(source='picture')
+    picture = serializers.Field(source='get_picture_url')
+    followers_count = serializers.Field(source='followers_count')
+    paintings_count = serializers.Field(source='paintings_count')
+    uploads_count = serializers.Field(source='uploads_count')
+    buckets_count = serializers.Field(source='buckets_count')
+    is_followed = serializers.SerializerMethodField('get_is_followed')
 
     class Meta:
         model = User
-        fields = ('id', 'email','name', 'about', 'picture', 'slug')
+        fields = ('id', 'email','name', 'about', 'picture', 'slug', 'buckets_count', 'followers_count', 'paintings_count', 'uploads_count', 'is_followed')
+
+    def get_is_followed(self, obj):
+        request = self.context['request']
+        return obj.is_followed(request.user.id)
 
 
 class PasswordUserSerializer(serializers.Serializer):
@@ -54,17 +62,6 @@ class PasswordUserSerializer(serializers.Serializer):
                 "Old password that you entered is not a valid password")
 
 
-class BookmarkSerializer(serializers.ModelSerializer):
-
+class PaginatedUserSerializer(PaginationSerializer):
     class Meta:
-        model = User
-        fields = ('bookmarks',)
-        depth = 1
-
-
-class FollowSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = User
-        fields = ('follows',)
-        depth = 1
+        object_serializer_class = ExistingUserSerializer

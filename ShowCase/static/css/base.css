@@ -19,7 +19,7 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
@@ -27,6 +27,7 @@ body {
   line-height: 1;
   font-size: 100%;
   outline: none;
+  font-family: taile;
 }
 ol, ul {
   list-style: none;
@@ -34,7 +35,7 @@ ol, ul {
 
 @media (max-width: 800px) {
   .nt-mb {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -67,7 +68,7 @@ ol, ul {
 }
 
 ::-moz-selection {
-  background: #E6B800; 
+  background: #E6B800;
 }
 
 a {
@@ -75,417 +76,418 @@ a {
   color: black;
 }
 
-.curtain-overlay {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background: rgba(0,0,0,0.3);
-  z-index: 98;
-  transition: background .40s ease;
-  -moz-transition: background .40s ease;
-  -webkit-transition: background .40s ease;
+body {
+  padding-top: 80px;
 }
 
-
-/*================ CURTAIN MENU - LEFT ================*/
-
-.logo {
-  position: fixed;
-  cursor: pointer;
-  top: 10px;
-  left: 20px;
-  z-index: 100;
-  width: 3em;
-  height: 3em;
+body.modal-open {
+    overflow: hidden;
 }
 
-.name {
-  position: fixed;
-  top: 10px;
-  left: 70px;
-  z-index: 100;
-  height: 3em;
-  font-family: 'taile';
-  font-weight: bold;
-  text-align: left;
-  color: white;
-  border-bottom: 2px solid #E6B800;
-  cursor: pointer;
+/*============= Scroll Bar ===========*/
+
+body::-webkit-scrollbar {
+    width: 15px;
+    /*border: 1px solid rgba(0, 0, 0, 0.9);*/
 }
 
-.name h1 {
-  font-size: 1.55em;
-  margin-top: 8px;
+body::-webkit-scrollbar-track {
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+    -webkit-box-shadow: none;
 }
 
-.name h2 {
-  font-size: 0.6em;
+body::-webkit-scrollbar-thumb {
+    background-color: black;
+    border: 5px solid white;
 }
 
-@media (max-width: 800px) {
-  .logo {
-    width: 2.5em;
-    height: 2.5em;
-    left: 10px;
-    position: absolute;
-  }
+/*============= Site Header ==============*/
+.site-header {
+    width: 100%;
+    background-color: white;
+    color: rgba(0, 0, 0, 0.9);
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    transition: top 0.2s ease-in-out;
+    z-index: 1000;
 }
 
-/*============ Curtain Elements =============*/
-
-.curtain-left {
-  position: fixed;
-  width: 25%;
-  max-width: 400px;
-  margin-left: -25%;
-  z-index: 99;
-  height: 100%;
-  background-color: #1c2023;
-  color: #B1B1B1;
-  font-size: 15px;
-  font-family: 'taile';
+.header-pull-up {
+    top: -85px;
 }
 
-.curtain-left hr {
-  margin: 30px auto;
-  width: 80%;
-  display: block;
-  opacity: 0.1;
+/*-------------- Site Logo ------------------*/
+.site-header .site-logo{
+    width: 20%;
+    display: inline-block;
 }
 
-.curtain-left .content {
-  margin-top: 100px;
+.site-logo img {
+    width: 3.4em;
+    height: 3.4em;
+    vertical-align: bottom;
 }
 
-
-.curtain-left .content a {
-  display: block;
-  text-decoration: none;
-  cursor: pointer;
-  margin-top: 40px;
-  margin-left: 20px;
-  font-weight: bold;
-  color: #B1B1B1;
-  letter-spacing: 5px;
+.site-logo .site-name {
+    display: inline-block;
+    height: 3.3em;
+    font-family: 'taile';
+    font-weight: bold;
+    text-align: left;
+    cursor: pointer;
 }
 
-.curtain-left .content a:hover{
-  color: rgba(255, 255, 255, 0.95);
+.site-logo .site-name h1 {
+    display: inline-block;
+    font-size: 1.55em;
+    margin-top: 8px;
 }
 
-.curtain-left .message {
-  letter-spacing: 2px;
-  line-height: 25px;
-  margin: 0 20px;
+.site-logo .site-name h2 {
+    display: block;
+    font-size: 0.6em;
 }
 
-.curtain-left .social {
-  width: 60%;
-  margin: 0 auto;
+/*---------------- Site navigation -----------------*/
+.site-header .site-navigation{
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 20px 0;
 }
 
-.curtain-left .social h4 {
-  margin-bottom: 10px;
-  letter-spacing: 3px;
-  text-align: center;
+.site-navigation li {
+    display: inline-block;
+    padding: 0 3%;
 }
 
-.curtain-left .social li {
-  display: inline;
-  width: 30%;
-  float: left;
-}
-
-.curtain-left .social img {
-  width: 100%;
-  opacity: 0.5;
-}
-
-.curtain-left .social img:hover {
-  opacity: 1;
-}
-
-@media (max-width: 800px) {
-  .curtain-left {
-    width: 80%;
-    margin-left: -80%;
-  }
-}
-
-/*================ CURTAIN MENU - RIGHT ================*/
-
-.auth-user {
-  position: fixed;
-  cursor: pointer;
-  top: 20px;
-  right: 20px;
-  z-index: 100;
-  font-size: 0.89em;
-  font-family: 'taile';
-  font-weight: normal;
-  letter-spacing: 3px;
-  opacity: 0.9;
-  color: rgba(0, 0, 0, 0.8);
-  margin: 0;
-}
-
-.auth-user:hover {
-  opacity: 1;
-}
-
-.auth-user a {
-  color: rgba(0, 0, 0, 0.8);
-  opacity: 0.9;
-}
-
-.auth-user a:hover {
-  opacity: 1;
-
-}
-
-@media (max-width: 800px) {
-  .auth-user {
+.site-navigation li a {
+    font-size: 1.1em;
     letter-spacing: 1px;
-    right: 10px;
-    position: absolute;
+}
+
+.site-navigation li a:hover,
+.site-navigation li a.active {
+    color: rgba(0, 0, 0, 1);
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+
+@media (max-width: 800px) {
+  .site-header .site-navigation {
+    text-align: center;
+    width: 60%;
   }
 }
 
-/*============= Curtain Content =================*/
-
-.curtain-right {
-  position: fixed;
-  right: 0;
-  width: 30%;
-  max-width: 400px;
-  margin-right: -30%;
-  z-index: 99;
-  height: 100%; 
-  background: #FFFFFF;
-  font-family: 'taile';
+/*---------------- Site Actions -----------------*/
+.site-header .site-actions {
+    width: 15%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px 0;
+    padding-right: 10px;
+    text-align: right;
 }
 
-.curtain-right .login {
-  margin-top: 100px;
+.site-actions button {
+    color: rgba(0, 0, 0, 0.9);
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    height: 35px;
+    width: 35px;
+    min-width: 35px;
+    cursor: pointer;
 }
 
-.curtain-right .content {
-  width: 80%;
-  margin: 0 auto;
-  letter-spacing: .3px;
+.site-actions button:hover {
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
 }
 
-.curtain-right h4 {
+.site-actions button i {
+  vertical-align: middle;
+}
+
+/*---------------- User Auth -----------------*/
+.site-header .user-auth {
+    width: 15%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px 0;
+}
+
+.user-auth button {
+    color: rgba(0, 0, 0, 0.9);
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    height: 35px;
+    width: 35px;
+    min-width: 35px;
+    cursor: pointer;
+}
+
+.user-auth button:hover {
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+}
+
+.user-auth button i {
+  vertical-align: middle;
+}
+
+.user-auth h3 {
+    font-size: 1.1em;
+    color: rgba(0, 0, 0, 0.7);
+    letter-spacing: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+}
+
+.user-auth h3:hover {
+    color: rgba(0, 0, 0, 1);
+}
+
+.user-auth .mdl-menu {
+    width: 200px;
+}
+
+.user-auth .mdl-menu i {
+    vertical-align: middle;
+    padding-right: 4px;
+}
+
+@media (max-width: 800px) {
+  .site-header .user-auth {
+    width: 20%;
+    text-align: right;
+  }
+}
+
+/*================= Arts Stream ===============*/
+.arts-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 20px auto;
   text-align: center;
-  font-size: 34px;
-  margin: 20px;
-  color: #1C2023;
 }
 
-.curtain-right h6 {
-  text-align: center;
-  font-size: 20px;
+.arts-container .container {
+  margin: 0 5px;
+  display: inline-block;
+  text-align: left;
+  width: 32%;
+}
+
+.masonry-brick {
+  display: none;
+}
+
+.masonry-brick.loaded {
+    display: block;
+    -webkit-animation: fadeInUp 0.8s;
+    animation: fadeInUp 0.8s;
+}
+
+.art {
+  width: 100%;
+  margin-bottom: 10px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.art:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+}
+
+.art .art-content {
+  width: 100%;
+  position: relative;
+}
+
+.art .art-content img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+.art .art-content .details-inset {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-color: transparent;
+  z-index: 1;
+  padding: 20px;
+  color: white;
+}
+
+.art:hover .art-content .details-inset {
+  transition: all 0.3s;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.details-inset .inset-details {
+  width: 60%;
+  display: inline-block;
+}
+
+.art:hover .art-content .details-inset .inset-details,
+.art:hover .art-content .details-inset .inset-details h6 {
+  opacity: 1;
+  transition: all 0.3s;
+  display: inline;
+}
+
+.details-inset .inset-details h6 {
+  font-family: 'taile', sans-serif;
+  font-size: 0.85em;
+  line-height: 2em;
+  letter-spacing: 1px;
+  line-height: 1.5em;
+  opacity: 0;
+}
+
+.details-inset .inset-details h6.active:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.details-inset .inset-actions {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+}
+
+.art:hover .art-content .details-inset .inset-actions ,
+.art:hover .art-content .details-inset .inset-actions button {
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+
+
+.details-inset .inset-actions button {
+  width: 50%;
+  display: inline-block;
+  background: transparent;
+  border: none;
+  font-size: 0.8em;
+  padding: 8px 10px;
+  color: white;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.details-inset .inset-actions button:hover {
+  background: rgba(0, 0, 0, 1);
+}
+
+.art .details {
+  width: 60%;
+  padding: 10px;
+  display: inline-block;
+}
+
+.art .details h4 {
+  /*font-family: 'fertigo', serif;*/
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 1.5em;
+  text-align: left;
+  display: inline-block;
+}
+
+.art .details h4 a {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.art .details h4:hover {
+  text-decoration: underline;
+}
+
+.art .details h5 a {
+  font-family: 'fertigo', serif;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  display: inline-block;
+}
+
+.art .details h5 a:hover {
+  text-decoration: underline;
+}
+
+.art .details h5 {
+  font-family: 'taile', sans-serif;
+  font-size: 0.8em;
   color: rgba(0, 0, 0, 0.5);
 }
 
-.curtain-right .social button {
-  font-size: 16px;
-  color: #FFFFFF;
-  text-align: center;
-  display: block;
-  padding: 1.3em 0;
-  margin: 20px 0;
-  cursor: pointer;
+.art .actions {
+  width: 40%;
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 10px;
+  padding-right: 15px;
+  text-align: right;
+  letter-spacing: 1px;
+}
+
+.art .actions button {
+  background: transparent;
   border: none;
-  display: inline-block;
-  width: 100%;
-}
-
-.curtain-right .social button:hover {
-  opacity: 0.9;
-}
-
-.curtain-right .social .twitter {
-  background: #00ADE9;
-}
-
-.curtain-right .social .facebook  {
-  background: #3C5A9D;
-}
-
-.curtain-right .native {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.curtain-right .native input {
-  width: 100%;
-  font-size: 16px;
-  text-align: center;
-  display: block;
-  padding: 1em 0;
-  margin: 10px 0;
-}
-
-.curtain-right .native .login-button {
-  width: 45%;
-  display: inline-block;
-  padding: 1em 1.5em;
-  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+  font-size: 0.8em;
+  padding: 10px 30px;
+  color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
-  border: 2px solid #1C2023;
-  color: #1C2023;
+  position: relative;
+  overflow: hidden;
 }
 
-.curtain-right .native input.ng-invalid.ng-dirty {
-  border: 2px solid rgba(255, 0, 0, 0.8);
+.art .actions button:hover,
+.art .actions button.bookmark-active {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
 }
 
-.curtain-right .native form.ng-submitted input.ng-invalid {
-  border: 2px solid rgba(255, 0, 0, 0.8);
+
+.art .actions button:before {
+    position: absolute;
+    content: '#';
+    left: 130%;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
 }
 
-.curtain-right .native .login-error {
-  color: rgba(255, 0, 0, 1);
-}
-
-.curtain-right .native .login-button:hover {
-  color: #FFFFFF;
-  background: #1C2023;
-}
-
-.curtain-right footer a {
-  font-size: 15px;
-  letter-spacing: 0.3px;
-  color: rgba(0, 0, 0, 0.4);
-  display: block;
-  text-align: center;
-  margin-bottom: 5px;
+.art .actions button.bookmark-active:before {
+    left: 80%;
 }
 
 @media (max-width: 800px) {
-  .curtain-right {
-    width: 80%;
+  .arts-container .container {
+      width: 100%;
   }
 }
 
-/*==============Right Curtain - User ===================*/
 
-.curtain-user {
-  width: 23%;
-  font-family: 'taile';
-  letter-spacing: 2px;
+/*================= Clearfix =====================*/
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
 }
-
-.curtain-user h4 {
-  margin: 50px 0;
-  text-align: center;
-  color: #000;
-  font-size: 25px;
+.clearfix:after {
+    clear: both;
 }
-
-.curtain-user a {
-  display: block;
-  cursor: default;
-  font-size: 15px;
-  margin: 40px 0;
-  margin-left: 30px;
-  color: #B1B1B1;
-  letter-spacing: 2px;
-  text-align: left;
-  text-decoration: line-through;
-}
-
-.curtain-user .enable {
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.curtain-user .user .enable:hover{
-  color: rgba(0, 0, 0, 0.95);
-}
-
-@media (max-width: 800px) {
-  .curtain-user {
-    width: 80%;
-  }
-}
-
-/*============== Progress bar =================*/
-
-.progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  height: 3px;
-  background: #E6B800;
-  -webkit-transform: translate3d(-100%, 0, 0);
-  transform: translate3d(-100%, 0, 0);
-  pointer-events: none;
-}
-
-.progress-bar::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 100%;
-  background: #E6B800;
-  box-shadow: 0 0 15px #E6B800, 0 0 5px #E6B800;
-  content: '';
-  opacity: 0;
-  -webkit-transition: opacity 0.2s, box-shadow 2s 4s;
-  transition: opacity 0.2s, box-shadow 2s 4s;
-  -webkit-transform: rotate(2deg) translateY(-2px);
-  transform: rotate(2deg) translateY(-2px);
-}
-
-.progress-bar.animate {
-  z-index: 100;
-  opacity: 0;
-  -webkit-transition: -webkit-transform 2s ease-in, opacity 1s 2s;
-  transition: transform 2s ease-in, opacity 1s 2s;
-  -webkit-transform: translate3d(0%, 0, 0);
-  transform: translate3d(0%, 0, 0);
-}
-
-.progress-bar.animate::after {
-  box-shadow: 0 0 3px #E6B800, 0 0 1px #E6B800;
-  opacity: 1;
-}
-
-/*================ ALERT ====================*/
-
-.alerts {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  margin-right: auto;
-  margin-left: auto;
-  height: 50px;
-  width: 400px;
-  background-color: #E6B800;
-  display: inline;
-  z-index: 1000;
-}
-
-
-.alerts.ng-hide-remove {
-    -webkit-animation: fadeInDown 0.7s;
-    animation: fadeInDown 0.7s;
-    opacity: 0;
-}
-
-.alerts.ng-hide-add {
-    -webkit-animation: fadeOutUp 0.7s;
-    animation: fadeOutUp 0.7s;
-}
-
-.alerts h4 {
-  font-size: 15px;
-  text-align: center;
-  margin-top: 18px;
+.clearfix {
+    clear: both;
+    *zoom: 1;
 }

@@ -35,6 +35,20 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'ShowCase/templates'),
 )
 
+## settings.py
+TEMPLATE_CONTEXT_PROCESSORS = (
+    #default
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    # Added later
+    'django.core.context_processors.request',
+)
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "ShowCase/static"),
 )
@@ -65,6 +79,14 @@ INSTALLED_APPS = (
     'posts',
     'postVotes',
     'postComments',
+    'allaccess',
+    'streams',
+    'buckets',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allaccess.backends.AuthorizedServiceBackend',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -130,6 +152,7 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'accounts.User'
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
 
 DEFAULT_USER_PICTURE = STATIC_URL + 'images/user_default.jpg'
 
@@ -140,3 +163,6 @@ REST_FRAMEWORK = {
 APPEND_SLASH = False
 
 POSTS_PER_PAGE = 10
+
+STREAM_API_KEY = 'x399sdbsgtmx'
+STREAM_API_SECRET = 'njhq6uzms7bezq6hxwsz434b6xpp37r97nwc3bg99ps8cmgrf6qvqhyjmgdbuhe9'

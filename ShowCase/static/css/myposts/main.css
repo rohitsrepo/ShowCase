@@ -1,0 +1,41 @@
+/*----------- No activities -------------*/
+.no-user-posts {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 10%;
+    text-align: center;
+    line-height: 1.5em;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.no-user-posts h3 {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.no-user-posts h2 {
+    font-size: 1.4em;
+    line-height: 2em;
+    margin-top: 30px;
+}
+
+.no-user-posts h2.starter {
+    margin-top: 50px;
+}
+
+.no-user-posts h4 {
+    font-size: 1.1em;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.no-user-posts .explore-art {
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.no-user-posts .explore-art:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}

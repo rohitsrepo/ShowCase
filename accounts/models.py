@@ -1,60 +1,12 @@
+import os
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.template.defaultfilters import slugify
-from django.utils import timezone
 from django.conf import settings
+from .usermanager import UserManager
 from compositions.models import Composition
-from compositions.imageTools import resize_profile, WIDTH_PROFILE
-import uuid
-import re, os
-
-
-class UserManager(BaseUserManager):
-
-    def create_user_base(self, email, name, password, is_staff, is_superuser, **extra_fields):
-        '''
-        Creates user with give email, name, password and staffing status.
-        '''
-
-        now = timezone.now()
-
-        if not email:
-            raise ValueError('User must have an email address')
-        else:
-            email = self.normalize_email(email)
-
-        if not name:
-            raise ValueError('User must have name.')
-
-        user = self.model(email=email, name=name, last_login=now,
-                          is_staff=is_staff, is_superuser=is_superuser, **extra_fields)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    def create_user(self, email, name, password=None, **extra_fields):
-        '''
-        Creates and save non-staff-normal user with given email, name and password.
-        '''
-
-        return self.create_user_base(email, name, password, False, False, **extra_fields)
-
-    def create_superuser(self, email, name, password, **extra_fields):
-        '''
-         Creates and saves super user with given email, name and password.
-        '''
-        return self.create_user_base(email, name, password, True, True, **extra_fields)
-
-    def create_artist(self, name, **extra_fields):
-        holder = str(uuid.uuid1())
-        return self.create_user(
-            holder+'@user.com',
-            name,
-            holder,
-            is_active = False,
-            is_artist = True,
-            **extra_fields
-        )
+from .picturehandler import bind_profile_picture_handler, WIDTH_PROFILE
+from ShowCase.slugger import unique_slugify
 
 
 def get_upload_file_name_users(instance, filename):
@@ -65,10 +17,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     FACEBOOK = 'FB'
     TWITTER = 'TW'
+    GOOGLE = 'GG'
     NATIVE = 'NT'
     LOGIN_CHOICES = (
         (FACEBOOK, 'facebook'),
         (TWITTER, 'twitter'),
+        (GOOGLE, 'google'),
         (NATIVE, 'native'),
     )
 
@@ -90,7 +44,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     login_type = models.CharField(default='NT', max_length=2, choices=LOGIN_CHOICES)
 
-    bookmarks = models.ManyToManyField(Composition, related_name='collectors')
+    bookmarks = models.ManyToManyField(Composition, related_name='bookers')
 
     follows = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name='followers')
@@ -109,14 +63,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         self.email = self.normalize_email(self.email)
         super(User, self).save(*args, **kwargs)
 
-        #TODO this should not happen on every save
-        #TODO delete old file on picture update
-        if settings.DEFAULT_USER_PICTURE not in self.picture.url:
-            resize_profile(self.picture.path)
-
-
     def __unicode__(self):
         return self.get_full_name()
+
+    def has_default_picture(self):
+        if settings.DEFAULT_USER_PICTURE not in self.picture.url:
+            return False
+        return True
 
     def get_full_name(self):
         return self.name
@@ -132,12 +85,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_picture_url(self):
         return self._format_url(WIDTH_PROFILE)
-
-    def email_user(self, subject, message, from_email=None):
-        """
-        Sends an email to this User.
-        """
-        # send_mail(subject, message, from_email, [self.email])
 
     def normalize_email(cls, email):
         """
@@ -164,55 +111,32 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_sitemap_url(self):
         return "http://thirddime.com/@{0}".format(self.slug)
 
-def unique_slugify(instance, value, slug_field_name='slug', queryset=None,
-                   slug_separator='-'):
-    slug_field = instance._meta.get_field(slug_field_name)
+    @property
+    def followers_count(self):
+        return self.followers.count()
 
-    slug = getattr(instance, slug_field.attname)
-    slug_len = slug_field.max_length
+    @property
+    def followings_count(self):
+        return self.follows.count()
 
-    # Sort out the initial slug, limiting its length if necessary.
-    slug = slugify(value)
-    if slug_len:
-        slug = slug[:slug_len]
-    slug = _slug_strip(slug, slug_separator)
-    original_slug = slug
+    @property
+    def paintings_count(self):
+        return self.arts.count()
 
-    # Create the queryset if one wasn't explicitly provided and exclude the
-    # current instance from the queryset.
-    if queryset is None:
-        queryset = instance.__class__._default_manager.all()
-    if instance.pk:
-        queryset = queryset.exclude(pk=instance.pk)
+    @property
+    def uploads_count(self):
+        return self.compositions.count()
 
-    # Find a unique slug. If one matches, at '-2' to the end and try again
-    # (then '-3', etc).
-    next = 2
-    while not slug or queryset.filter(**{slug_field_name: slug}):
-        slug = original_slug
-        end = '%s%s' % (slug_separator, next)
-        if slug_len and len(slug) + len(end) > slug_len:
-            slug = slug[:slug_len-len(end)]
-            slug = _slug_strip(slug, slug_separator)
-        slug = '%s%s' % (slug, end)
-        next += 1
+    @property
+    def buckets_count(self):
+        return self.buckets.count()
 
-    setattr(instance, slug_field.attname, slug)
+    @property
+    def bookmarks_count(self):
+        return self.bookmarks.count()
 
+    def is_followed(self, user_id):
+        return self.followers.filter(id=user_id).exists()
 
-def _slug_strip(value, separator='-'):
-    separator = separator or ''
-    if separator == '-' or not separator:
-        re_sep = '-'
-    else:
-        re_sep = '(?:-|%s)' % re.escape(separator)
-    # Remove multiple instances and if an alternate separator is provided,
-    # replace the default '-' separator.
-    if separator != re_sep:
-        value = re.sub('%s+' % re_sep, separator, value)
-    # Remove separator from the beginning and end of the slug.
-    if separator:
-        if separator != '-':
-            re_sep = re.escape(separator)
-        value = re.sub(r'^%s+|%s+$' % (re_sep, re_sep), '', value)
-    return value
+# Bind Signals
+bind_profile_picture_handler(User)

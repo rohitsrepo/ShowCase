@@ -10,6 +10,10 @@ controller("compositionController", [
 	'analytics',
 	'progress',
 	'alert',
+	'userModel',
+    'bookService',
+    'usermodalService',
+    'bucketmodalService',
 	function ($window,
 		$scope,
 		feedModel,
@@ -19,17 +23,26 @@ controller("compositionController", [
 		$timeout,
 		analytics,
 		progress,
-		alert)
+		alert,
+		userModel,
+        bookService,
+        usermodalService,
+        bucketmodalService)
 	{
 
 	$scope.composition = {};
 	$scope.interpretations = [];
 	$scope.hideName = true;
 	$scope.interpretationModalshown = false;
+    $scope.isBookMarked = false;
 
-	$scope.init = function (id, url) {
+	$scope.init = function (id, url, slug, title, isBookMarked) {
 		$scope.composition.id = id;
-		$scope.composition.url = url;
+        $scope.composition.url = url;
+        $scope.composition.slug = slug;
+		$scope.composition.title = title;
+        $scope.composition.is_bookMarked = isBookMarked == 'True';
+
 		if (url) {
 			analytics.logEvent('Composition', 'Init: ' + url);
 		}
@@ -46,7 +59,7 @@ controller("compositionController", [
 				analytics.logEvent('Composition', 'scroll-to: ' + scrollTo, $scope.composition.url);
 			}
 		}, interval);
-		
+
 	};
 
 	$scope.$watch($scope.composition.Id, function () {
@@ -55,40 +68,6 @@ controller("compositionController", [
 			checkForScroll(500);
 		});
 	});
-
-	$scope.vote = function (index, vote) {
-		analytics.logEvent('Composition', 'Vote', $scope.composition.url);
-		post = $scope.posts[index];
-		postModel.vote(post.id, vote).then(function (response) {
-			post.vote.total = response.total;
-			post.voting_status = vote ? "Positive" : "Negative";
-		});
-	};
-
-	$scope.toggleShowComments = function (index) {
-		var post = $scope.posts[index];
-		post.showComments = !post.showComments;
-		if (post.showComments) {
-			getComments(index);
-		};
-		analytics.logEvent('Composition', 'ShowComments: ' + post.showComments, $scope.composition.url);
-	};
-
-	$scope.addComment = function (index, comment) {
-		post = $scope.posts[index];
-		postModel.addComment(post.id, comment).then(function (res) {
-			post.comments.push(res);
-			post.comment = "";
-		});
-		analytics.logEvent('Composition', 'Add Comment', $scope.composition.url);
-	};
-
-	var getComments = function (index) {
-		post = $scope.posts[index];
-		postModel.getComments(post.id).then(function (res) {
-			post.comments = res;
-		});
-	};
 
 	$scope.isOutlineActive = "inactive";
 	$scope.isGrayScaleActive = "inactive";
@@ -99,7 +78,7 @@ controller("compositionController", [
 		}
 
 		analytics.logEvent('Composition', 'ToolBar - Outline: ' + $scope.isOutlineActive, $scope.composition.url);
-		
+
 		if($scope.isOutlineActive!="active"){
 			$scope.isOutlineActive = '';
 			$scope.isGrayScaleDisable = true;
@@ -136,14 +115,6 @@ controller("compositionController", [
 		}
 	};
 
-	$scope.reportContent = function () {
-		contentManager.reportComposition($scope.composition.id).then(function () {
-			alert.showAlert('Flagging this content. The content is under review now.');
-			$scope.showMoreOptions = false;
-		});
-		analytics.logEvent('Composition', 'ToolBar - Report Content', $scope.composition.url);
-	};
-
 	$scope.getNextPosts = function () {
 		$scope.disableNextPost = true;
 		var feed = $location.search()['feed'];
@@ -151,5 +122,73 @@ controller("compositionController", [
 		feedModel.nextPosts(feed, postId, $scope.composition.id).then(function (posts) {
 			$scope.nextPosts = posts;
 		});
+	}();
+
+    $scope.handleBookMark = function () {
+    	var composition = $scope.composition;
+
+        if (composition.is_bookMarked) {
+            bookService.unmark(composition).then(function () {
+            	composition.is_bookMarked = false;
+            });
+        } else {
+            bookService.bookmark(composition).then(function () {
+            	composition.is_bookMarked = true;
+            });;
+        }
+    };
+
+    $scope.showBookMarkers = function () {
+        usermodalService.showBookMarkers($scope.composition).then(function (bookStatus) {
+        	if (bookStatus == 'bookmarked') {
+        		$scope.composition.is_bookMarked = true;
+        	}
+        });
+    }
+
+    $scope.showArtBuckets = function () {
+        bucketmodalService.showArtBuckets($scope.composition);
+    }
+
+    $scope.showAddToBucket = function () {
+        bucketmodalService.showAddToBucket($scope.composition);
+    }
+}])
+.directive('postTemplate', [function () {
+	return {
+		restrict: 'A',
+		scope: {
+			'postData': '='
+		},
+		templateUrl: '/static/js/post/post.tpl.html',
+		link: function (scope, element, attrs) {
+			scope.post = scope.postData;
+		}
 	};
-}]);
+}])
+.directive('toolsDrawer', [function () {
+	return function (scope, element, attrs) {
+		var open = false;
+		element.bind('click', function () {
+			if (open){
+				element.removeClass('tools-extended');
+			} else {
+				element.addClass('tools-extended');
+			}
+			open = !open;
+		})
+	};
+}]).directive('fitImage', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+        	imagesLoaded(element, function () {
+               imgElement = element[0]
+
+                if (imgElement.width/$(window).width() > 0.8){
+                    element.addClass('landscape');
+                }
+            })
+        }
+    }
+});

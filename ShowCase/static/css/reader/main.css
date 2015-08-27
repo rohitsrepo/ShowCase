@@ -314,6 +314,355 @@ html, body {
   }
 }
 
+
+.curtain-overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: 98;
+  transition: background .40s ease;
+  -moz-transition: background .40s ease;
+  -webkit-transition: background .40s ease;
+}
+
+
+/*================ CURTAIN MENU - LEFT ================*/
+
+.logo {
+  position: fixed;
+  cursor: pointer;
+  top: 10px;
+  left: 20px;
+  z-index: 100;
+  width: 3em;
+  height: 3em;
+}
+
+.name {
+  position: fixed;
+  top: 10px;
+  left: 70px;
+  z-index: 100;
+  height: 3em;
+  font-family: 'taile';
+  font-weight: bold;
+  text-align: left;
+  color: white;
+  border-bottom: 2px solid #E6B800;
+  cursor: pointer;
+}
+
+.name h1 {
+  font-size: 1.55em;
+  margin-top: 8px;
+}
+
+.name h2 {
+  font-size: 0.6em;
+}
+
+@media (max-width: 800px) {
+  .logo {
+    width: 2.5em;
+    height: 2.5em;
+    left: 10px;
+    position: absolute;
+  }
+}
+
+/*============ Curtain Elements =============*/
+
+.curtain-left {
+  position: fixed;
+  width: 25%;
+  max-width: 400px;
+  margin-left: -25%;
+  z-index: 99;
+  height: 100%;
+  background-color: #1c2023;
+  color: #B1B1B1;
+  font-size: 15px;
+  font-family: 'taile';
+}
+
+.curtain-left hr {
+  margin: 30px auto;
+  width: 80%;
+  display: block;
+  opacity: 0.1;
+}
+
+.curtain-left .content {
+  margin-top: 100px;
+}
+
+
+.curtain-left .content a {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 40px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: #B1B1B1;
+  letter-spacing: 5px;
+}
+
+.curtain-left .content a:hover{
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.curtain-left .message {
+  letter-spacing: 2px;
+  line-height: 25px;
+  margin: 0 20px;
+}
+
+.curtain-left .social {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.curtain-left .social h4 {
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.curtain-left .social li {
+  display: inline;
+  width: 30%;
+  float: left;
+}
+
+.curtain-left .social img {
+  width: 100%;
+  opacity: 0.5;
+}
+
+.curtain-left .social img:hover {
+  opacity: 1;
+}
+
+@media (max-width: 800px) {
+  .curtain-left {
+    width: 80%;
+    margin-left: -80%;
+  }
+}
+
+/*================ CURTAIN MENU - RIGHT ================*/
+
+.auth-user {
+  position: fixed;
+  cursor: pointer;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  font-size: 0.89em;
+  font-family: 'taile';
+  font-weight: normal;
+  letter-spacing: 3px;
+  opacity: 0.9;
+  color: rgba(0, 0, 0, 0.8);
+  margin: 0;
+}
+
+.auth-user:hover {
+  opacity: 1;
+}
+
+.auth-user a {
+  color: rgba(0, 0, 0, 0.8);
+  opacity: 0.9;
+}
+
+.auth-user a:hover {
+  opacity: 1;
+
+}
+
+@media (max-width: 800px) {
+  .auth-user {
+    letter-spacing: 1px;
+    right: 10px;
+    position: absolute;
+  }
+}
+
+/*============= Curtain Content =================*/
+
+.curtain-right {
+  position: fixed;
+  right: 0;
+  width: 30%;
+  max-width: 400px;
+  margin-right: -30%;
+  z-index: 99;
+  height: 100%;
+  background: #FFFFFF;
+  font-family: 'taile';
+}
+
+.curtain-right .login {
+  margin-top: 100px;
+}
+
+.curtain-right .content {
+  width: 80%;
+  margin: 0 auto;
+  letter-spacing: .3px;
+}
+
+.curtain-right h4 {
+  text-align: center;
+  font-size: 34px;
+  margin: 20px;
+  color: #1C2023;
+}
+
+.curtain-right h6 {
+  text-align: center;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.curtain-right .social a {
+  font-size: 16px;
+  color: #FFFFFF;
+  text-align: center;
+  display: block;
+  padding: 1.3em 0;
+  margin: 20px 0;
+  cursor: pointer;
+  border: none;
+  display: inline-block;
+  width: 100%;
+}
+
+.curtain-right .social a:hover {
+  opacity: 0.9;
+}
+
+.curtain-right .social .google {
+  background: #dd4b39;
+}
+
+.curtain-right .social .twitter {
+  background: #00ADE9;
+}
+
+.curtain-right .social .facebook  {
+  background: #3C5A9D;
+}
+
+.curtain-right .native {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.curtain-right .native input {
+  width: 100%;
+  font-size: 16px;
+  text-align: center;
+  display: block;
+  padding: 1em 0;
+  margin: 10px 0;
+}
+
+.curtain-right .native .login-button {
+  width: 45%;
+  display: inline-block;
+  padding: 1em 1.5em;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  border: 2px solid #1C2023;
+  color: #1C2023;
+}
+
+.curtain-right .native .login-button:hover {
+  color: #FFFFFF;
+  background: #1C2023;
+}
+
+.curtain-right .native .login-button.disabled,
+.curtain-right .native .login-button.disabled:hover {
+  opacity: 0.5;
+  color: #1C2023;
+  background-color: #FFFFFF;
+  cursor: default;
+}
+
+.curtain-right .native input.ng-invalid.ng-dirty {
+  border: 2px solid rgba(255, 0, 0, 0.8);
+}
+
+.curtain-right .native form.ng-submitted input.ng-invalid {
+  border: 2px solid rgba(255, 0, 0, 0.8);
+}
+
+.curtain-right .native .login-error {
+  color: rgba(255, 0, 0, 1);
+}
+
+.curtain-right footer a {
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  color: rgba(0, 0, 0, 0.4);
+  display: block;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 800px) {
+  .curtain-right {
+    width: 80%;
+  }
+}
+
+/*==============Right Curtain - User ===================*/
+
+.curtain-user {
+  width: 23%;
+  font-family: 'taile';
+  letter-spacing: 2px;
+}
+
+.curtain-user h4 {
+  margin: 50px 0;
+  text-align: center;
+  color: #000;
+  font-size: 25px;
+}
+
+.curtain-user a {
+  display: block;
+  cursor: default;
+  font-size: 15px;
+  margin: 40px 0;
+  margin-left: 30px;
+  color: #B1B1B1;
+  letter-spacing: 2px;
+  text-align: left;
+  text-decoration: line-through;
+}
+
+.curtain-user .enable {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.curtain-user .user .enable:hover{
+  color: rgba(0, 0, 0, 0.95);
+}
+
+@media (max-width: 800px) {
+  .curtain-user {
+    width: 80%;
+  }
+}
+
 /*================= Clearfix =====================*/
 .clearfix:before,
 .clearfix:after {

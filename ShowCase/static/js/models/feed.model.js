@@ -15,7 +15,9 @@ angular.module("module.model")
 	service.getPosts = function (pageNum) {
 		return $http.get('/feeds/editors?page='+pageNum).then(function (response) {
 			return response.data;
-		});
+		}, function (response) {
+            return $q.reject(response);
+        });
 	};
 
 	service.nextPosts = function (feedName, postId, compositionId) {
@@ -23,7 +25,9 @@ angular.module("module.model")
 		return $http.get('/feeds/'+ feed +'/next?postId=' + postId + '&compositionId=' + compositionId)
 		.then(function (response) {
 			return response.data;
-		});
+		}, function (response) {
+            return $q.reject(response);
+        });
 	};
 
 	return service;

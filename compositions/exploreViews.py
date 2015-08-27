@@ -30,5 +30,5 @@ def get_explores(request, format=None):
     except EmptyPage:
         raise Http404
 
-    serializer = PaginatedCompositionSerializer(this_page_compositions)
+    serializer = PaginatedCompositionSerializer(this_page_compositions, context={'request': request})
     return Response(data=serializer.data)

@@ -1,15 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
-<html ng-app="CompositionApp">
-<head>
-	<meta charset="UTF-8">
-	<title>{{composition.title | title}} by {{composition.artist.name | title}} | Interpretations and Stories</title>
+{% extends "base.html" %}
+{% block html_attr_block %}ng-app="CompositionApp"{% endblock %}
 
+{% block title_block %}
+	<title>{{composition.title | title}} by {{composition.artist.name | title}} | Interpretations and Stories</title>
+{%endblock%}
+
+{% block meta_block %}
+	<meta charset="UTF-8">
 	<meta name="Description" content="Title: {{composition.title}}, Artist: {{composition.artist.name}}, Category: Painting Interpretations and Stories">
-	<meta name="fragment" content="!">
 	<link rel="canonical" href="http://thirddime.com/arts/{{composition.slug}}" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 	<meta property="og:title" content="{{composition.title}}">
 	<meta property="og:site_name" content="ThirdDime">
 	<meta property="og:url" content="http://thirddime.com/arts/{{composition.slug}}">
@@ -17,185 +18,84 @@
 	<meta property="og:image" content="http://thirddime.com/{{composition.matter.url}}">
 	<meta property="og:type" content="website">
 	<meta property="og:type" content="[462422103909005]">
+{%endblock%}
 
-	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
-
-	<link href='http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700' rel='stylesheet' type='text/css'>
+{% block css_block %}
 	 <!-- build:css /static/build/composition.css -->
 	<link rel="stylesheet" type="text/css" href="/static/vendor/zoome/zoome-min.css">
-	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/composition/main.css">
 	<!-- endbuild -->
+{%endblock%}
 
-	<script>
-		 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		 ga('create', 'UA-58563444-1', 'auto');
-		 ga('require', 'displayfeatures');
-		 ga('send', 'pageview');
-	</script>
-</head>
+{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}', '{{composition.slug}}', '{{composition.title}}', '{{is_bookmarked}}')"{% endblock %}
 
-
-<body ng-controller="compositionController">
-	<topbar></topbar>
-	<div class="curtain-overlay-placeholder"></div>
-	<header scroll-to="#painting" class="primary-header" ng-init="init({{composition.id}}, '{{composition.matter.url}}')">
-		<section class="banner">
-			<h1>{{composition.title | title}}</h1>
-			<h4>by</h4>
-			<h3>
-				<a href="/@{{composition.artist.slug}}">
-					{{composition.artist.name | title}}
-				</a>
-			</h3>
-		</section>
-
-		<footer class="clearfix">
-            <h5 class="right">Uploaded by <a ng-href="/@{{composition.uploader.slug}}" class="uploader">{{composition.uploader.name | title}}</a></h5>
-			<h5 class="left">{{composition.views}} Views</h5>
-		</footer>
-
-		<section class="go-down">
-			<img src="/static/css/composition/icons/arrow.svg">
-		</section>
-	</header>
-
+{% block content_block %}
 	<section class="painting-area">
-		<header class="painting-toolbar clearfix" id="painting">
-			<section class="tools-icons">
-				<!-- <img title="View Finder" class="nt-mb" ng-class="{active: isViewFinderActive, disable: isViewFinderDisable}" view-finder src="/static/css/composition/icons/viewfinder.svg">
-				<img title="Full Screen" class="nt-mb" ng-class="{active: isFullScreen, disable: isFullScreenDisable}" fullscreen src="/static/css/composition/icons/expand.svg"> -->
-				<img title="Pan & Zoom" class="nt-mb" ng-class="{active: isPanZoomActive, disable: isPanZoomDisable}" pan-zoom src="/static/css/composition/icons/pan_and_zoom.svg">
-				<img title="Color Palette" class="nt-mb" ng-class="{active: isColorPaletteActive, disable: isColorPaletteDisable}" color-palette="{{composition.matter.url}}" src="/static/css/composition/icons/color-palette.svg">
-				<img title="No Colors" ng-class="{active: isGrayScaleActive=='active', disable: isGrayScaleDisable && isGrayScaleActive!= 'active'}" ng-click="showGrayscale()" src="/static/css/composition/icons/gray-palette.svg">
-				<img title="Outline" ng-class="{active: isOutlineActive=='active', disable: isOutlineDisable && isOutlineActive!='active'}" ng-click="showOutline()" src="/static/css/composition/icons/outline.svg">
-			</section>
-			<section ng-show="isPanZoomActive" class="zoom-icons" ng-cloak>
-				<img title="Zoom In" class="zoom-in" src="/static/css/composition/icons/zoom-in.svg">
-				<img title="Reset" class="reset" src="/static/css/composition/icons/reset.svg">
-				<img title="Zoom Out" class="zoom-out" src="/static/css/composition/icons/zoom-out.svg">
-			</section>
-			<section class="social-icons">
-				<img title="Facebook" facebook-share src="/static/css/composition/icons/facebook.svg" share-url='/arts/{{composition.slug}}'>
-				<img title="Pinterest" pinterest-share source="{{composition.matter.url}}" description="{{composition.title | title}} - interpretations and stories" src="/static/css/composition/icons/pinterest.svg" share-url='/arts/{{composition.slug}}'>
-				<img title="Tumblr" tumblr-share source="{{composition.matter.url}}" description="{{top_interpretation}}" src="/static/css/composition/icons/tumblr.svg" share-url='/arts/{{composition.slug}}'>
-				<span class="more-options">
-					<img ng-click="showMoreOptions = !showMoreOptions" title="More" src="/static/css/composition/icons/more_options.svg">
-					<ul ng-cloak ng-show="showMoreOptions" class="more-actions">
-						<li ng-click="reportContent()">Mark Inappropriate</li>
-						<li under-construction>Embed this Art</li>
-					</ul>
-				</span>
-			</section>
-		</header>
+
 		<div class="painting-container">
 			<ul class="palette" ng-show="isColorPaletteActive" ng-cloak>
 				<li style="background: rgb([[ dominantColor['0'] ]], [[ dominantColor['1'] ]], [[ dominantColor['2'] ]])"></li>
 				<br><br>
 				<li style="background: rgb([[ color['0'] ]], [[ color['1'] ]], [[ color['2'] ]])" ng-repeat="color in palette"></li>
 			</ul>
-			<img class="painting painting-original" src="{{composition.matter.url}}" ng-show="isGrayScaleActive=='inactive' && isOutlineActive=='inactive'" ng-cloak alt="{{composition.slug}}">
-			<img class="painting painting-grayscale" src="{{composition.get_grayscale_url}}" ng-if="isGrayScaleActive=='active'" ng-cloak alt="{{composition.slug}} grayscale">
-			<img class="painting painting-outline" src="{{composition.get_outline_url}}" ng-if="isOutlineActive=='active'" ng-cloak alt="{{composition.slug}} outline">
+			<img class="painting painting-original" fit-image src="{{composition.matter.url}}" ng-show="isGrayScaleActive=='inactive' && isOutlineActive=='inactive'" ng-cloak alt="{{composition.slug}}">
+			<!-- <img class="painting painting-grayscale" fit-image src="{{composition.get_grayscale_url}}" ng-if="isGrayScaleActive=='active'" ng-cloak alt="{{composition.slug}} grayscale">
+			<img class="painting painting-outline" fit-image src="{{composition.get_outline_url}}" ng-if="isOutlineActive=='active'" ng-cloak alt="{{composition.slug}} outline"> -->
 		</div>
+
+
+		<!-- <section tools-drawer class="art-tools">
+			<button class="drawer-control">
+			  <i class="material-icons">face</i>
+			</button>
+			<button>
+			  <i class="material-icons">add</i>
+			</button>
+			<button>
+			  <i class="material-icons">add</i>
+			</button>
+			<button>
+			  <i class="material-icons">add</i>
+			</button>
+		</section> -->
 	</section>
 
-	<section class="interpret-area clearfix" infinite-scroll="getNextPosts()" infinite-scroll-distance='1' infinite-scroll-disabled='disableNextPost'>
-		<header ng-cloak ng-show="posts.length" class="interpret-header clearfix">
-			<h4 class="inter-heading">[[posts.length]] Interpretation</h4>
-			<a href="/arts/{{composition.slug}}/add-interpretation" class="write-interpretation nt-mb" target="_blank">
-				Interpret this work
-			</a>
-		</header>
+    <section class="painting-details" >
+        <div class="painting-details-container">
+            <h2>{{ composition.title | title }}</h2>
 
-		<section ng-cloak ng-show="posts.length" class="interprets" ng-cloak id="inter0">
+            <section class="painting-parent">
+                <div class="by-header">Created By</div>
+                <a class="by-user" href="/@{{composition.artist.slug}}">
+                    <h3>{{composition.artist.name | title}}</h3>
+                </a>
+            </section>
 
-			<section class="interpret" ng-repeat-start="post in posts" analytics-scroll analytics-data="['Composition', 'View-Interpretation: ' + $index]" analytics-offset="300">
-				<header class="interpreter clearfix">
-					<!-- <img ng-cloak ng-show="post.creator.picture" ng-src="[[post.creator.picture]]"> -->
-					<div>
-						<h3><a href="/@[[post.creator.slug]]">[[post.creator.name]]</a></h3>
-					</div>
-				</header>
-				<p class="interpret-content" ng-bind-html="post.content.interpretation"></p>
-				<footer class="interpret-footer">
-					<div class="clearfix nt-mb">
-					<h6 class="right">[[post.timesince]] ago</h6>
-					<h6 class="left">[[post.vote.total]] Votes. [[post.comments_count]] Comments</h6>
-					</div>
-					<ul class="clearfix">
-  					    <li><img class="icon first left" ng-class="{'vote-active': post.voting_status=='Positive'}" src="/static/css/composition/icons/upvote.svg" ng-click="vote($index, true)"></li>
-  					    <li><img class="icon left" ng-class="{'vote-active': post.voting_status=='Negative'}" src="/static/css/composition/icons/downvote.svg" ng-click="vote($index, false)"></li>
-  					    <li><img class="icon left" src="/static/css/composition/icons/comment.svg" ng-click="toggleShowComments($index)"></li>
-  					    <li><img class="icon last right" tumblr-share source="[[composition.url]]" description="[[post.content.text]]" src="/static/css/composition/icons/tumblr_black.svg" share-url='/arts/{{composition.slug}}'></li>
-  					    <li><img class="icon right" pinterest-share source="[[composition.url]]" description="[[post.content.text]]" src="/static/css/composition/icons/pinterest_black.svg" share-url='/arts/{{composition.slug}}'></li>
-  					    <li><img class="icon right" facebook-share share-url="/arts/{{composition.slug}}" src="/static/css/composition/icons/facebook_black.svg"></li>
-  					    <!-- <li><img class="icon right" src="/static/css/composition/icons/twitter.svg" ></li> -->
-  					</ul>
-  					<section class="comments" ng-show="post.showComments" ng-cloak>
-  						<div class="clearfix">
-	  						<form class="left" ng-submit="addComment($index, post.comment)">
-		  						<input type="textbox" placeholder="Share your thoughts..." ng-model="post.comment">
-	  						</form>
-	  					</div>
-  						<ul>
-  							<li class="clearfix" ng-repeat="comment in post.comments">
-  								<!-- <img class="left" ng-src="[[comment.commenter.picture]]"> -->
-  								<div class="left comment">
-  									<h5 class="commenter">[[comment.commenter.name]]</h5>
-									<p>[[comment.comment]]</p>
-									<h6 class="comment-time">[[comment.timesince]] ago</h6>
-								</div>
-  							</li>
-  						</ul>
-  					</section>
-				</footer>
-			</section>
-			<hr ng-cloak ng-hide="$last" ng-repeat-end id="inter[[$index+1]]">
-		</section>
+            <section class="painting-parent">
+                <div class="by-header">Uploaded By</div>
+                <a class="by-user" ng-href="/@{{composition.uploader.slug}}" class="uploader">
+                    <h3>{{composition.uploader.name | title}}</h3>
+                </a>
+            </section>
 
-		<section ng-cloak ng-hide="posts.length" class="no-interpretation">
-			<a href="/arts/{{composition.slug}}/add-interpretation" class="write-interpretation nt-mb" target="_blank">Interpret this work</a>
-		</section>
-	</section>
+            <section class="details-actions-details">
+                <h4 class="inactive">Views {{composition.views}}</h4>
+                <h4 ng-click="showBookMarkers()">Admirers {{composition.bookmarks_count}}</h4>
+                <h4 ng-click="showArtBuckets()">Series {{composition.buckets_count}}</h4>
+            </section>
 
-	<section class="end-marker clearfix nt-mb">
-		<hr><img src="/static/images/header-md.png"><hr>
-	</section>
+            <section class="details-actions">
+                <button class="action admire" ng-class="{'active': composition.is_bookMarked}" ng-click="handleBookMark()">ADMIRE</button>
+                <button class="action collect" ng-click="showAddToBucket()">Add To Series</button>
+            </section>
 
-	<footer class="primary-footer" analytics-scroll analytics-data="['Composition', 'View-Next-Post']" analytics-offset="300">
-		<section analytics-click analytics-data="['Composition', 'Next Post']" class="next-post" ng-repeat="post in nextPosts">
-			<a href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]" target="_blank" >
-				<div class="painting-holder" ng-style="{'background-image': 'url([[post.composition.matter_350]])'}"></div>
-				<section class="post-details">
-					<h4>[[post.composition.title | titlecase]]</h4>
-					<p>[[post.interpretation.interpretation]]</p>
-				</section>
-				<footer class="next-footer">
-					<h5>Read More...</h5>
-				</footer>
-			</a>
-		</section>
-	</footer>
+        </div>
 
-	<alert-support></alert-support>
+    </section>
+{% endblock %}
 
-	<interpretation-modal></interpretation-modal>
-
-	<!-- Scripts Here -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular-sanitize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular-animate.min.js"></script>
-    
+{% block script_block %}
 	<!-- build:js /static/build/composition.js -->
-	<script type="text/javascript" src="/static/bower_components/nginfinitescroll/build/ng-infinite-scroll.min.js"></script>
-	<script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
-
 	<script type="text/javascript" src="/static/vendor/fullscreen/jquery.fullscreen.js"></script>
 	<script type="text/javascript" src="/static/bower_components/color-thief/dist/color-thief.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/jquery.panzoom/dist/jquery.panzoom.min.js"></script>
@@ -204,43 +104,11 @@
 	<script type="text/javascript" src="/static/js/composition/composition.module.js"></script>
 	<script type="text/javascript" src="/static/js/composition/composition.controller.js"></script>
 	<script type="text/javascript" src="/static/js/composition/sticky.directive.js"></script>
-	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
-	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
-	<script type="text/javascript" src="/static/js/models/content.model.js"></script>
-	<script type="text/javascript" src="/static/js/models/post.model.js"></script>
-	<script type="text/javascript" src="/static/js/models/feed.model.js"></script>
-	<script type="text/javascript" src="/static/js/models/interpretation.model.js"></script>
-	<script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
-	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
-	<script type="text/javascript" src="/static/js/authentication/facebook.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/sharing/sharing.module.js"></script>
-	<script type="text/javascript" src="/static/js/components/sharing/tumblr.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/sharing/pinterest.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/sharing/facebook.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/topbar/progress.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
-	<script type="text/javascript" src="/static/js/composition/tools/tools.module.js"></script>
-	<script type="text/javascript" src="/static/js/composition/tools/colors.directive.js"></script>
-	<script type="text/javascript" src="/static/js/composition/tools/viewFinder.directive.js"></script>
-	<script type="text/javascript" src="/static/js/composition/tools/fullscreen.directive.js"></script>
-	<script type="text/javascript" src="/static/js/composition/tools/panZoom.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
-	<script type="text/javascript" src="/static/js/components/analytics/analytics.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/analytics/analytics.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/alert/alert.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/alert/alert.directive.js"></script>
-	<!-- endbuild -->
-</body>
-</html>
+
+    <script type="text/javascript" src="/static/js/composition/tools/tools.module.js"></script>
+    <script type="text/javascript" src="/static/js/composition/tools/colors.directive.js"></script>
+    <script type="text/javascript" src="/static/js/composition/tools/viewFinder.directive.js"></script>
+    <script type="text/javascript" src="/static/js/composition/tools/fullscreen.directive.js"></script>
+    <script type="text/javascript" src="/static/js/composition/tools/panZoom.directive.js"></script>
+    <!-- endbuild -->
+{% endblock %}

@@ -1,0 +1,1 @@
+angular.module('module.uploadmodal', ["lr.upload", 'angucomplete-alt', 'module.util', 'module.model'])

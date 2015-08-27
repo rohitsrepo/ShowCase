@@ -1,7 +1,5 @@
 html, body {
   height: 100%;
-  padding: 0;
-  margin: 0;
   font-size: 100%;
   font-family: "taile";
   -webkit-font-smoothing: antialiased;
@@ -93,7 +91,7 @@ a {
   text-align: center;
 }
 
-.auth .social button {
+.auth .social a {
   width: 80%;
   margin: 0 auto;
   margin-bottom: 2.5em;
@@ -106,12 +104,16 @@ a {
   border: none;
 }
 
-.auth .social button:hover {
+.auth .social a:hover {
   opacity: 0.9;
 }
 
 .auth .social .twitter {
   background: #00ADE9;
+}
+
+.auth .social .google {
+  background: #dd4b39;
 }
 
 .auth .social .facebook  {
@@ -124,7 +126,7 @@ a {
     width: 100%;
   }
 
-  .auth .social button {
+  .auth .social a {
     margin-bottom: 0.6em;
     width: 100%;
   }
@@ -165,10 +167,6 @@ a {
   border: 2px solid rgba(255, 0, 0, 0.8);
 }
 
-.auth .native .login-error {
-  color: rgba(255, 0, 0, 1);
-}
-
 .auth .native .login-button {
   width: 45%;
   display: inline-block;
@@ -186,6 +184,14 @@ a {
 .auth .native .login-button:hover {
   color: #FFFFFF;
   background: #1C2023;
+}
+
+.auth .native .login-button.disabled,
+.auth .native .login-button.disabled:hover {
+  color: #1C2023;
+  background-color: #FFFFFF;
+  opacity: 0.5;
+  cursor: default;
 }
 
 .auth footer {

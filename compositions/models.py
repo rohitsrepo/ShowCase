@@ -1,19 +1,16 @@
 from __future__ import division
 import os
 import util
-from django.db.models.signals import post_save, post_delete
-from django.dispatch import receiver
+from ShowCase.slugger import unique_slugify
 from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
-from votes.models import Vote
-from .utils import GrayScaleAndSketch
-from .imageTools import generate_size_versions, WIDTH_READER, WIDTH_STICKY, compress
+from posts.models import Post, bind_post
+from .imageTools import bind_image_resize_handler, WIDTH_READER, WIDTH_STICKY, resized_file_path
 
 
 def get_upload_file_name_composition(instance, filename):
     return '%s/%s/%s_%s_thirddime%s' % (instance.uploader.id, slugify(instance.artist.name), slugify(instance.artist.name), slugify(instance.title), '.' + filename.split('.')[-1])
-
 
 class Composition(models.Model):
     title = models.CharField(max_length=100, blank=False, verbose_name='Title')
@@ -32,18 +29,12 @@ class Composition(models.Model):
         ordering = ('created',)
 
     def save(self, *args, **kwargs):
-        new_instance = False
-        if self.pk is None:
-            new_instance = True
-
         slug_str = "%s %s" % (self.artist.name, self.title)
-        util.unique_slugify(self, slug_str)
+        unique_slugify(self, slug_str)
 
         super(Composition, self).save(*args, **kwargs)
 
         self.make_artist()
-        if new_instance:
-            generate_size_versions(self.matter.path)
 
     def make_artist(self):
         if not self.artist.is_artist:
@@ -85,22 +76,17 @@ class Composition(models.Model):
         url = self.get_grayscale_url()
         return "http://thirddime.com{0}".format(url)
 
-    def _format_url(self, suffix):
-        file_path, file_name = os.path.split(self.matter.url)
-        name, extension = os.path.splitext(file_name)
-        return os.path.join(file_path, '{0}_{1}{2}'.format(name, suffix, extension))
-
     def get_outline_url(self):
-        return self._format_url("outline")
+        return resized_file_path(self.matter.url, 'outline')
 
     def get_grayscale_url(self):
-        return self._format_url("gray")
+        return resized_file_path(self.matter.url, 'gray')
 
     def get_550_url(self):
-        return self._format_url(WIDTH_READER)
+        return resized_file_path(self.matter.url, WIDTH_READER)
 
     def get_350_url(self):
-        return self._format_url(WIDTH_STICKY)
+        return resized_file_path(self.matter.url, WIDTH_STICKY)
 
     def get_interpretations_count(self):
         return self.interpretation_set.count()
@@ -108,16 +94,50 @@ class Composition(models.Model):
     def get_matter_aspect(self):
         return self.matter.height/self.matter.width
 
-# To create vote instance when a compostion is created
-@receiver(post_save, sender=Composition)
-def create_vote(sender, **kwargs):
-    created = kwargs.get('created')
-    if created:
-        instance = kwargs.get('instance')
-        vote = Vote(positive=0, negative=0, composition=instance)
-        vote.save()
+    @property
+    def attached_images_path(self):
+        return [
+            self.matter.path,
+            resized_file_path(self.matter.path, WIDTH_STICKY),
+            resized_file_path(self.matter.path, WIDTH_READER),
+            resized_file_path(self.matter.path, 'outline'),
+            resized_file_path(self.matter.path, 'gray'),
+        ]
 
-        GrayScaleAndSketch(instance.matter.path)
+    @property
+    def image_path(self):
+        return self.matter.path
+
+    def is_bookmarked(self, user_id):
+        return self.bookers.filter(id=user_id).exists()
+
+    @property
+    def bookmarks_count(self):
+        return self.bookers.all().count()
+
+    @property
+    def buckets_count(self):
+        return self.holders.all().count()
+
+    def create_post(self):
+        Post.objects.create(
+            composition=self,
+            creator=self.artist,
+            post_type = Post.CREATE,
+            content_object=self)
+
+        return Post(
+            composition=self,
+            creator=self.uploader,
+            post_type = Post.ADD,
+            content_object=self)
+
+#Bind Signals
+bind_image_resize_handler(Composition)
+bind_post(Composition)
+
+
+# Intrepretation Image
 
 def get_upload_file_name_interpretation_image(instance, filename):
     return '%s/Interprets/%s/%s_meta%s' % (instance.uploader.id, slugify(instance.composition.title),slugify(instance.composition.title), '.' + filename.split('.')[-1])
@@ -130,51 +150,33 @@ class InterpretationImage(models.Model):
         (UPLOAD, 'upload'),
         (CROP, 'crop'),
     )
+
     composition = models.ForeignKey(Composition)
     image = models.ImageField(upload_to=get_upload_file_name_interpretation_image)
     uploader = models.ForeignKey(settings.AUTH_USER_MODEL)
     source_type = models.CharField(default=UPLOAD, max_length=3, choices=SOURCE_TYPE_CHOICES)
 
-    def save(self, *args, **kwargs):
-        new_instance = False
-        if self.pk is None:
-            new_instance = True
-
-        super(InterpretationImage, self).save(*args, **kwargs)
-
-        if new_instance:
-            compress(self.image.path)
-            generate_size_versions(self.image.path)
-
-    def _format_url(self, suffix):
-        file_path, file_name = os.path.split(self.image.url)
-        name, extension = os.path.splitext(file_name)
-        return os.path.join(file_path, '{0}_{1}{2}'.format(name, suffix, extension))
-
-    def _format_path(self, suffix):
-        file_path, file_name = os.path.split(self.image.path)
-        name, extension = os.path.splitext(file_name)
-        return os.path.join(file_path, '{0}_{1}{2}'.format(name, suffix, extension))
-
     def get_550_url(self):
-        return self._format_url(WIDTH_READER)
+        return self.resized_file_path(self.image.url, WIDTH_READER)
 
     def get_550_path(self):
-        return self._format_path(WIDTH_READER)
+        return self.resized_file_path(self.image.path, WIDTH_READER)
 
     def get_350_url(self):
-        return self._format_url(WIDTH_STICKY)
+        return self.resized_file_path(self.image.url, WIDTH_STICKY)
 
-    def get_350_path(self):
-        return self._format_path(WIDTH_STICKY)
+    @property
+    def attached_images_path(self):
+        return [
+            self.image.path,
+            resized_file_path(self.image.path, WIDTH_STICKY),
+            resized_file_path(self.image.path, WIDTH_READER),
+        ]
 
-# post_delete.connect(util.file_cleanup, sender=InterpretationImage, dispatch_uid="interpretationImage.file_cleanup")
+    @property
+    def image_path(self):
+        return self.image.path
 
-# To create vote instance when a compostion is created
-@receiver(post_delete, sender=InterpretationImage)
-def remove_files(sender, **kwargs):
-    instance = kwargs.get('instance')
 
-    os.remove(unicode(instance.image.path))
-    os.remove(unicode(instance.get_550_path()))
-    os.remove(unicode(instance.get_350_path()))
+# Bind Signals
+bind_image_resize_handler(InterpretationImage)

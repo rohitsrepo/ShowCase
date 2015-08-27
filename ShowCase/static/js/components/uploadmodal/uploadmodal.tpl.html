@@ -1,0 +1,53 @@
+<section tabindex="0" class="upload-modal">
+    <section class="upload-modal-actions-header">
+        <button ng-click="close()">X</button>
+    </section>
+
+    <section ng-cloak ng-hide="imageUploaded" class="image-source">
+        <section class="source-upload">
+            <input type="file" class="realfile" fileread>
+            <div class="fakefile">
+                <h2>Upload image for the artwork</h2>
+            </div>
+        </section>
+        <section class="source-url">
+            <form class="upload-url-form" name="uplUrlForm">
+                <div class="form-container clearfix">
+                    <input type="url" placeholder="or Enter url for the image" name="input" ng-model="art.upload_url" required>
+                    <button ng-disabled="[[uplUrlForm.$invalid]]" ng-class="{'enable': uplUrlForm.$valid}" class="url-submit" ng-click="urlUpload()">SUBMIT</button>
+                </div>
+                <div class="error" ng-show="uplUrlForm.input.$error.required && uplUrlForm.$dirty">
+                  Url Required
+                </div>
+                <div class="error" ng-show="uplUrlForm.input.$error.url  && uplUrlForm.$dirty">
+                  Not valid url
+                </div>
+          </form>
+        </section>
+    </section>
+
+    <section ng-cloak ng-show="imageUploaded" class="info-source clearfix">
+        <section class="uploaded-image">
+            <img ng-src="[[artImage.url]]">
+        </section>
+        <form class="info-form" name="infoForm">
+            <input type="text" class="title" autofocus="autofocus" placeholder="Title*" ng-model="art.title" name="uTitle" maxlength="100" required>
+
+            <angucomplete-alt placeholder="Artist*"
+                         pause="400"
+                         selected-object="selectArtist"
+                         remote-url="/users/search?q="
+                         title-field="name",
+                         search-fields="name"
+                         input-class="artist-input">
+            </angucomplete-alt>
+
+            <select class="info-bucket-select" name="bucketSelect" ng-model="art.bucket">
+                <option value="">Add to series?</option> <!-- not selected / blank option -->
+                <option ng-repeat="bucket in userBuckets" value="[[bucket.id]]">[[bucket.name]]</option>
+            </select>
+
+            <button class="info-submit-button" ng-class="{'enable': infoForm.$valid}" ng-disabled="[[infoForm.$invalid]]" ng-click="submitArtInfo()">SUBMIT</button>
+        </form>
+    </section>
+</section>

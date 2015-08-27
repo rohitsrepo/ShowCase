@@ -21,10 +21,8 @@ angular.module("module.model")
 		});
 	};
 
-	service.login = function (email, password, login_type) {
-		login_type = login_type || "NT";
-
-		return $http({method: 'POST', url: '/users/login', data: {email: email, password: password, login_type: login_type}})
+	service.login = function (email, password) {
+		return $http({method: 'POST', url: '/users/login', data: {email: email, password: password}})
 		.success(function (response) {
 			return response;
 		})
@@ -46,7 +44,9 @@ angular.module("module.model")
 	service.getCurrentUser =  function () {
 	    return $http.get('/users/currentUser').then(function (response) {
 	        return response.data;
-	    });
+	    }, function (response) {
+            return $q.reject(response);
+        });
 	};
 
 	service.addUser = function (user) {
@@ -76,20 +76,74 @@ angular.module("module.model")
 	service.getCompositions = function (user_id, page) {
 		return $http.get('/users/'+user_id+'/compositions?page='+page).then(function (response) {
 			return response.data;
-		})
+		}, function (response) {
+            return $q.reject(response);
+        });
 	};
 
     service.getUploads = function (user_id, page) {
         return $http.get('/users/'+user_id+'/uploads?page='+page).then(function (response) {
             return response.data;
-        })
+        }, function (response) {
+            return $q.reject(response);
+        });
     };
 
-    // service.getInterpretations = function (user_id, page) {
-    //     return $http.get('/users/'+user_id+'/interpretations?page='+page).then(function (response) {
-    //         return response.data;
-    //     })
-    // };
+    service.bookmark = function (art_id) {
+    	return $http.post('/users/bookmarks', {'bookmarks': [art_id]}).then(function (response) {
+    		return response.data;
+    	}, function (response) {
+    		return $q.reject(response);
+    	});
+    };
+
+    service.unmark = function (art_id) {
+    	return $http.delete('/users/bookmarks/'+art_id).then(function (response) {
+    		return response.data;
+    	}, function (response) {
+    		return $q.reject(response);
+    	});
+    };
+
+    service.getBookMarks = function (user_id, page) {
+        return $http.get('/users/'+user_id+'/bookmarks?page='+page).then(function (response) {
+            return response.data;
+        }, function (response) {
+            return $q.reject(response);
+        });
+    };
+
+    service.follow = function (user_id) {
+    	return $http.post('/users/follows', {'follows': [user_id]}).then(function (response) {
+    		return response.data;
+    	}, function (response) {
+    		return $q.reject(response);
+    	});
+    };
+
+    service.unfollow = function (user_id) {
+    	return $http.delete('/users/follows/'+user_id).then(function (response) {
+    		return response.data;
+    	}, function (response) {
+    		return $q.reject(response);
+    	});
+    };
+
+    service.getFollowers = function (user_id) {
+        return $http.get('/users/'+user_id+'/followers').then(function (response) {
+            return response.data;
+        }, function (response) {
+            return $q.reject(response);
+        });
+    };
+
+    service.getFollows = function (user_id) {
+        return $http.get('/users/'+user_id+'/follows').then(function (response) {
+            return response.data;
+        }, function (response) {
+            return $q.reject(response);
+        });
+    };
 
 	return service;
 }]);

@@ -12,8 +12,6 @@ html {
 
 html, body {
   height: 100%;
-  padding: 0;
-  margin: 0;
   font-size: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,48 +26,104 @@ html, body {
 /*================ HEADER ===================*/
 
 .primary-header {
-	width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 5% 0;
+    width: 100%;
 }
 
 .primary-header .container{
-    width: 60%;
+    width: 70%;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.primary-header .picture {
-	width: 100%;
+.primary-header header {
+    width: 100%;
+    text-align: center;
+}
+
+.primary-header header .picture {
 	text-align: center;
     margin-bottom: 10px;
+    display: block;
 }
 
-.primary-header img {
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
-    height: 120px;
-    width: 120px;
+.primary-header header img {
+    width: 200px;
 }
 
-.primary-header h1, h2, h4, h5 {
+.primary-header header .details {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 20px;
+}
+
+.primary-header header h1, h2 {
     line-height: 1.3em;
     letter-spacing: 1px;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(0, 0, 0, 0.9);
 }
 
 .primary-header h1 {
-    font-family: 'fertigo', serrif;
-    font-size: 3em;
+    font-size: 2em;
+    font-weight: bold;
 }
 
 .primary-header h2 {
-    font-family: 'taile', sans-serif;
-    font-size: 1.5em;
-    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.2em;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.primary-header header .details .actions {
+    display: block;
+    vertical-align: top;
+    text-align: center;
+    margin-top: 30px;
+}
+
+header .details .actions button {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 5px 25px;
+    font-size: 0.8em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin: 20px auto;
+    margin-top: 40px;
+}
+
+header .details .actions button.active,
+header .details .actions button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+header .details .actions button:before {
+    position: absolute;
+    content: '#';
+    left: 130%;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+header .details .actions button.active:before {
+    left: 80%;
+}
+
+header .details .actions h3 {
+    display: inline;
+    color: rgba(0, 0, 0, 0.54);
+    margin-left: 5px;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+
+header .details .actions h3:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 800px) {
@@ -87,42 +141,48 @@ html, body {
 /*============ Contributions =============*/
 
 .primary-header .contributions {
-    width: 50%;
-    margin: 0 auto;
-    margin-top: 40px;
+    /*width: 100%;*/
+    margin: 40px auto;
+    margin-top: 60px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 .primary-header .contributions .contribution {
     display: inline-block;
-    width: 33%;
     cursor: pointer;
+    text-align: left;
+    margin-right: 20px;
+    padding-bottom: 5px;
 }
 
 .primary-header .contribution h4 {
     font-family: 'taile', sans-serif;
     font-size: 1em;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(0, 0, 0, 0.6);
+    letter-spacing: 1px;
 }
 
 .primary-header .contribution h5 {
     font-family: 'taile', sans-serif;
     font-size: 1.8em;
     font-weight: bold;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 0, 0, 0.8);
+    text-align: center;
 }
 
 .primary-header .contribution:hover h4,
 .primary-header .contribution:hover h5 {
-    color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
 }
 
 .primary-header .contributions .active {
-    background: linear-gradient(transparent 50%, rgba(255, 255, 255, 0.03));
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
 }
 
 .primary-header .contributions .active h4,
 .primary-header .contributions .active h5 {
-    color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
 }
 
 
@@ -139,201 +199,60 @@ html, body {
     }
 }
 /*================ Painting Area ==================*/
-.paintings-container {
-  width: 90%;
+.profile-container {
+  width: 80%;
   max-width: 1200px;
-  margin: 0 auto;
-  color: rgba(0, 0, 0, 0.8);
-  margin-bottom: 50px;
-  -moz-column-count: 3;
-  -moz-column-gap: 0px;
-  -webkit-column-count: 3;
-  -webkit-column-gap: 0px;
-  column-count: 3;
-  column-gap: 0px;
-  margin-top: 10px;
 }
 
-.paintings-container li {
-  width: 100%;
-  display: inline-block;
-  padding: 10px;
-}
 
-.paintings-container li figure {
-  width: 100%;
-  position: relative;
-}
+/*================= Buckets Area ============================*/
 
-.paintings-container li figure img {
-  width: 100%;
-  height: auto;
-  border: 5px solid black;
-}
-
-.paintings-container .details {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  background-color: transparent;
-  z-index: 1;
-  padding: 20px;
-  color: white;
-}
-
-.paintings-container .details:hover {
-  transition: all 0.3s;
-  background: linear-gradient(to bottom, rgba(72,76,97,0.8) 0%, rgba(72,76,97,0) 75%);
-}
-
-.paintings-container .details:hover,
-.paintings-container .details:hover h4,
-.paintings-container .details:hover h5,
-.paintings-container .details:hover button {
-  opacity: 1;
-  transition: all 0.3s;
-}
-
-.paintings-container .details h4 {
-  font-family: 'fertigo', sans-serif;
-  font-weight: bold;
-  font-size: 1.45em;
-  font-weight: bold;
-  letter-spacing: 1px;
-  line-height: 1.5em;
-  opacity: 0;
-  text-align: left;
-}
-
-.paintings-container .details h5 {
-  font-family: 'fertigo', sans-serif;
-  font-size: 0.85em;
-  letter-spacing: 1px;
-  display: inline-block;
-  opacity: 0;
-}
-
-@media (max-width: 800px) {
-  .paintings-container {
-    -moz-column-count: 1;
-    -webkit-column-count: 1;
-    column-count: 1;
-  }
-}
-
-/*============= Interpretations ============*/
-
-.interpretations {
-    width: 85%;
-    max-width: 1300px;
-    height: 50%;
+.user-buckets {
+    width: 80%;
+    max-width: 1200px;
     margin: 0 auto;
-    margin-top: 10px;
 }
 
-.interpretations .interpretation {
-    width: 33%;
-    height: 600px;
-    float: left;
+.user-buckets .user-bucket {
+    width: 32%;
     display: inline-block;
-    position: relative;
 }
 
-@media (max-width: 800px) {
-    .interpretations .interpretation {
-        float: none;
-        width: 100%;
-    }
-}
-
-.interpretations .interpretation:hover {
-    box-shadow: 10px 10px 30px 0px #C9C6C6;
-}
-
-.interpretation .painting-holder {
+.user-bucket .user-bucket-picture {
     width: 100%;
-    height: 60%;
+    height: 350px;
     background-repeat: no-repeat;
     background-size: cover;
-    display: inline-block;
-}
-
-.interpretation .description {
-    width: 100%;
-    height: 40%;
-    padding: 0 25px;
-    display: inline-block;
-    overflow: hidden;
-}
-
-.interpretation .description .description-header h4 {
-    display: block;
-    color: rgba(0, 0, 0, 0.8);
-    font-size: 1.5em;
-    line-height: 1.5em;
-    font-family: 'fertigo', serif;
-}
-
-.interpretation .description .description-header h4:hover {
-    text-decoration: underline;
-}
-
-.description .description-header h5 {
-    color: rgba(0, 0, 0, 0.4);
-    display: block;
-    text-align: center;
-    font-size: 0.8em;
-}
-
-.description .description-header h5 a:hover {
-    text-decoration: underline;
-}
-
-.description .content-area {
-    margin-top: 8px;
-}
-
-.description .content-area .content {
-    font-family: 'taile', sans-serif;
-    font-size: 1em;
-    line-height: 2em;
-    letter-spacing: 1px;
+    position: relative;
     cursor: pointer;
+    border: 10px solid white;
 }
 
-.description .content-area .content:hover {
-    text-decoration: underline;
-}
-
-.interpretation .void {
+.user-bucket-picture .user-bucket-details {
     position: absolute;
-    bottom: -5px;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100px;
-    background: -webkit-linear-gradient(transpar10nt, white); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(transparent, wh10te); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(transpar10nt, white); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(transparent, white); /* Standard syntax (must be last) */
-}
-/*================= Clearfix =====================*/
-.clearfix:before,
-.clearfix:after {
-  content: "";
-  display: table;
-}
-.clearfix:after {
-  clear: both;
-}
-.clearfix {
-  clear: both;
-  *zoom: 1;
+    height: 100%;
+    text-align: center;
+    padding: 5px;
+    padding-top: 75px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    transition: all 1s;
 }
 
-.right {
-  float: right;
+.user-bucket-picture .user-bucket-details:hover {
+    opacity: 0.5;
 }
 
-.left {
-  float: left;
+.user-bucket-picture .user-bucket-details h2 {
+    color: white;
+    font-size: 1.3em;
+    line-height: 2.5em;
+    margin-bottom: 150px;
+}
+
+.user-bucket-picture .user-bucket-details .arts-count {
+    font-size: 0.8em;
 }

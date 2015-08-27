@@ -1,61 +1,57 @@
 angular.module("UserApp", [
-    'infinite-scroll',
     "lr.upload",
-    'ngAnimate',
     'ui.router',
-    "module.auth",
-    "module.curtainRight",
-    "module.curtainLeft",
-    "module.topbar",
-    "module.model",
-    'module.titlecase',
-    'module.scrollTo',
-    'module.alert',
-    'module.analytics'])
-.config(['$httpProvider', '$interpolateProvider', '$stateProvider', '$urlRouterProvider', function ($httpProvider, $interpolateProvider, $stateProvider, $urlRouterProvider) {
+    "module.root"])
+.config(['$httpProvider',
+ '$interpolateProvider',
+ '$stateProvider',
+ '$urlRouterProvider',
+ '$locationProvider',
+  function ($httpProvider, $interpolateProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
     "use strict";
 
     // Changing angular template tag to prevent conflict with django
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]')
 
-    //Http Intercpetor to check auth failures for xhr requests
-    $httpProvider.interceptors.push('authHttpResponseInterceptor');
-
     // csrf for django
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
 
+    // use the HTML5 History API
+    $locationProvider.html5Mode(true);
+
     // For any unmatched url, redirect to /state1
-    $urlRouterProvider.otherwise("/paintings");
+    $urlRouterProvider.otherwise("/activities");
     //
     // Now set up the states
     $stateProvider
-      .state('paintings', {
+    .state('activities', {
+        url: "/activities",
+        templateUrl: "/static/js/user/profile.activities.html",
+        controller: 'profileActivitiesController'
+    })
+    .state('paintings', {
         url: "/paintings",
         templateUrl: "/static/js/user/profile.paintings.html",
-        controller: 'profilePaintingsController'
+        controller: 'profilePaintingsController',
+        data: {'listType': 'paintings'}
     })
     .state('uploads', {
         url: "/uploads",
-        templateUrl: "/static/js/user/profile.uploads.html",
-        controller: 'profileUploadsController'
+        templateUrl: "/static/js/user/profile.paintings.html",
+        controller: 'profilePaintingsController',
+        data: {'listType': 'uploads'}
     })
-    .state('interpretations', {
-        url: "/interpretations",
-        templateUrl: "/static/js/user/profile.interpretations.html",
-        controller: 'profilePostsController'
+    .state('bookmarks', {
+        url: "/admirations",
+        templateUrl: "/static/js/user/profile.paintings.html",
+        controller: 'profilePaintingsController',
+        data: {'listType': 'bookmarks'}
+    })
+    .state('buckets', {
+        url: "/series",
+        templateUrl: "/static/js/user/profile.buckets.html",
+        controller: 'profileBucketsController'
     });
-}]).factory('authHttpResponseInterceptor', ['$q', '$window', function ($q, $window) {
-    'use strict';
-    return {
-        responseError: function (response) {
-            if (response.status === 403) {
-                $window.location.href = "/login#?next=" + $window.location.pathname;
-            }
-            return $q.reject(response);
-        }
-    };
-}]).run(['auth', '$window', function (auth, $window) {
-    auth.getCurrentUser();
 }]);

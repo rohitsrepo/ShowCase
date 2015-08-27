@@ -1,0 +1,30 @@
+<section tabindex="0" class="bookmark-modal">
+    <section class="modal-actions">
+        <button ng-click="close()">X</button>
+    </section>
+    <div class="container">
+        <section class="bookmarker" ng-repeat="marker in bookmarkers">
+            <a class="marker-picture" ng-href="/@[[marker.slug]]">
+                <img ng-src="[[marker.picture]]">
+            </a>
+            <div class="marker-details">
+                <a class="data" ng-href="/@[[marker.slug]]">
+                    <h3 class="marker-name">[[marker.name | titlecase]]</h3>
+                    <h4 ng-show="marker.followers_count != 0">[[marker.followers_count]] Followers</h4>
+                    <h4 ng-show="marker.buckets_count != 0">[[marker.buckets_count]] Followers</h4>
+                    <h4 ng-show="marker.paintings_count != 0">[[marker.paintings_count]] Paintings</h4>
+                    <h4 ng-show="marker.uploads_count != 0">[[marker.uploads_count]] Uploads</h4>
+                </a>
+                <section class="actions">
+                    <button ng-class="{'active' : marker.is_followed}" ng-click="handleFollow($index)">FOLLOW</button>
+                </section>
+            </div>
+        </section>
+
+        <div ng-cloak ng-show="noSuchUser.status" class="no-users">
+            <h1>[[noSuchUser.info]]</h1>
+            <h2>[[noSuchUser.message]]</h2>
+            <button ng-cloak ng-show="noSuchUser.actionMessage" ng-click='noSuchUser.action()'>[[noSuchUser.actionMessage]]</button>
+        </div>
+    </div> <!-- container -->
+</section>

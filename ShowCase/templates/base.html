@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html {% block html_attr_block %}{% endblock %}>
+<head>
+
+    {% block title_block %}{%endblock%}
+    {% block meta_block %}{%endblock%}
+
+    <meta name="fragment" content="!">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.css">
+
+     <!-- build:css /static/build/base.css -->
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/util/progress.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/util/alert.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/components/authentication/login.modal.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bucketmodal/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bucketmodal/content.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/uploadmodal/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bookmark/main.css">
+    <!-- endbuild -->
+
+    {% block css_block %}{% endblock %}
+
+    <script>
+         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', 'UA-58563444-1', 'auto');
+         ga('require', 'displayfeatures');
+         ga('send', 'pageview');
+    </script>
+</head>
+<body {% block body_attr_block %}{% endblock %}>
+
+    {% block site_header_block %}
+
+    <header header-scroll class="site-header" ng-controller="headerController">
+        <a class="site-logo" href="/">
+            <img src="/static/images/header-md.png"  analytics-click analytics-data="['Top Bar-Left', 'Logo']">
+            <section class="site-name nt-mb" fade-on-scroll ng-cloak ng-hide="hideName" analytics-click analytics-data="['Top Bar-Left', 'Logo - Name']">
+                <h1 class="nt-mb">THIRDDIME</h1>
+                <h2 class="nt-mb">BEHIND THE BRUSHSTROKES</h2>
+            </section>
+        </a><!--
+        --><nav class="site-navigation">
+            <li><a class="active" href="/arts">ART</a></li>
+            <!-- <li><a href="/artist">ARTISTS</a></li> -->
+            <!-- <li><a href="/generes">GENRES</a></li> -->
+            <li><a href="/posts">POSTS</a></li>
+            <li><a class="nt-mb" href="/blog" target="_blank">BLOG</a></li>
+        </nav><!--
+        --><section class="site-actions nt-mb">
+            <!-- <button>ADD ART</button> -->
+            <button>
+              <i class="material-icons">search</i>
+            </button>
+            <button ng-click="showUpload()">
+              <i class="material-icons">add</i>
+            </button>
+        </section><!--
+        --><section class="user-auth">
+        {% if user.is_authenticated %}
+            <button id="user-profile">
+              <i class="material-icons">reorder</i>
+            </button>
+
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                for="user-profile">
+              <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
+              <li class="mdl-menu__item"><i class="material-icons">list</i>Collection</li>
+              <a class="mdl-menu__item" href="/me/settings"><i class="material-icons">settings</i>Settings</a>
+              <a href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
+            </ul>
+
+        {% else %}
+            <h3 ng-cloak ng-hide="userIsNowLoggedIn" ng-click="authorize()">SIGNUP/LOGIN</h3>
+
+            <button ng-cloak ng-show="userIsNowLoggedIn" id="user-profile">
+              <i class="material-icons">reorder</i>
+            </button>
+
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                for="user-profile">
+              <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
+              <li class="mdl-menu__item"><i class="material-icons">list</i>Collection</li>
+              <a class="mdl-menu__item" href="/me/settings"><i class="material-icons">settings</i>Settings</a>
+              <a href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
+            </ul>
+        {% endif %}
+        </section>
+    </header>
+
+    {%endblock%}
+
+    {% block content_block %}{% endblock %}
+
+    <alert-support></alert-support>
+    <progress-support></progress-support>
+
+    <!-- Scripts Here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular-cookies.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular-sanitize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular-touch.min.js"></script>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+
+    <!-- build:js /static/build/base.js -->
+    <script type="text/javascript" src="/static/vendor/sly/sly.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/models/model.module.js"></script>
+    <script type="text/javascript" src="/static/js/models/user.model.js"></script>
+    <script type="text/javascript" src="/static/js/models/content.model.js"></script>
+    <script type="text/javascript" src="/static/js/models/post.model.js"></script>
+    <script type="text/javascript" src="/static/js/models/feed.model.js"></script>
+    <script type="text/javascript" src="/static/js/models/composition.model.js"></script>
+    <script type="text/javascript" src="/static/js/models/interpretation.model.js"></script>
+    <script type="text/javascript" src="/static/js/models/bucket.model.js"></script>
+    <script type="text/javascript" src="/static/js/models/activity.model.js"></script>
+
+    <script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
+    <script type="text/javascript" src="/static/js/authentication/login.modal.controller.js"></script>
+    <script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
+
+    <script type="text/javascript" src="/static/js/components/util/util.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/util/modal.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/util/progress.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/util/progress.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/util/alert.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/util/alert.directive.js"></script>
+
+    <script type="text/javascript" src="/static/js/components/sharing/sharing.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/sharing/tumblr.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/sharing/pinterest.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/sharing/facebook.directive.js"></script>
+
+    <script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
+
+    <script type="text/javascript" src="/static/js/components/analytics/analytics.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/analytics/analytics.directive.js"></script>
+
+    <script type="text/javascript" src="/static/bower_components/masonry/dist/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/imagesloaded/imagesloaded.js"></script>
+    <script type="text/javascript" src="/static/bower_components/angular-masonry/angular-masonry.js"></script>
+    <script type="text/javascript" src="/static/bower_components/nginfinitescroll/build/ng-infinite-scroll.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/components/bookmark.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/follow.service.js"></script>
+
+    <script type="text/javascript" src="/static/js/components/usermodal/usermodal.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/usermodal/usermodal.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/usermodal/usermodal.service.js"></script>
+
+    <script type="text/javascript" src="/static/bower_components/angular-upload/angular-upload.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/components/bucketmodal/bucketmodal.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/bucketmodal/bucketmodal.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/bucketmodal/bucketmodal.show.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/bucketmodal/bucketmodal.add.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/bucketmodal/bucketmodal.create.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/bucketmodal/bucketmodal.content.controller.js"></script>
+
+    <script type="text/javascript" src="/static/bower_components/angucomplete-alt/dist/angucomplete-alt.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/components/uploadmodal/uploadmodal.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/uploadmodal/uploadmodal.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/uploadmodal/uploadmodal.controller.js"></script>
+
+    <script type="text/javascript" src="/static/js/root/root.module.js"></script>
+    <script type="text/javascript" src="/static/js/root/header.controller.js"></script>
+
+    <!-- endbuild -->
+
+    {% block script_block %}{% endblock %}
+</body>
+</html>

@@ -1,5 +1,5 @@
 from .models import User
-from .serializers import NewUserSerializer, ExistingUserSerializer, PasswordUserSerializer, BookmarkSerializer, FollowSerializer
+from .serializers import NewUserSerializer, ExistingUserSerializer, PasswordUserSerializer
 from .artistSerializers import PaginatedUserCompositionSerializer, PaginatedUserInterpretationSerializer
 from django.http import Http404
 from rest_framework.response import Response
@@ -9,7 +9,7 @@ from rest_framework import generics, permissions
 from .permissions import IsHimselfOrReadOnly, IsHimself
 from django.contrib.auth import authenticate, login, logout
 from ShowCase.utils import check_object_permissions
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from rest_framework.views import APIView
 from compositions.models import Composition
 from compositions.serializers import CompositionSerializer
@@ -27,41 +27,64 @@ class UserList(APIView):
     # required.
     permission_classes = (permissions.AllowAny,)
 
-    def is_registered(self, email):
-        if (User.objects.filter(email=email).exists()):
-            print "already there"
-            return True
-        print "not here yet"
-        return False
+    def login_user(self, request, user):
+        if user.is_active:
+            user = authenticate(username=request.DATA['email'], password=request.DATA['password'])
+            if (user is None):
+                return Response(status=status.HTTP_409_CONFLICT)
+            login(request, user)
+            ser = ExistingUserSerializer(user, context={'request': request})
+            return Response(data=ser.data)
+        return Response(status=status.HTTP_402_PAYMENT_REQUIRED)
 
-    def register_user(self, ser):
-        if ser.is_valid():
-            print "user is valid"
-            ser.save()
-            return Response(status=status.HTTP_200_OK)
+    def post(self, request, format=None):
+        user_mail = request.DATA.get('email', '')
+        if (user_mail):
+            try:
+                user = User.objects.get(email=user_mail)
+                return self.login_user(request, user)
+            except User.DoesNotExist:
+                ser = NewUserSerializer(data=request.DATA, context={'request': request})
+                if ser.is_valid():
+                    ser.object.login_type = User.NATIVE
+                    user = ser.save()
+                    return self.login_user(request, user)
+                else:
+                    return Response(data=ser.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+                return Response(data={'email': 'This field is required'}, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['POST'])
+def login_user(request, format=None):
+    email = request.DATA.get('email')
+    password = request.DATA.get('password')
+    try:
+        user = User.objects.get(email=email)
+        if user.login_type == User.NATIVE:
+            user = authenticate(username=email, password=password)
+
+            if user is None:
+                return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+            if user.is_active:
+                login(request, user)
+                return Response(ExistingUserSerializer(user, context={'request': request}).data, status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_402_PAYMENT_REQUIRED)
+        else:
+            return Response(data={'error': 'Login via third party'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_409_CONFLICT)
+    except:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-    def post(self, request, format=None):
-        if self.is_registered(request.DATA.get('email', '')):
-            return Response(status=status.HTTP_200_OK)
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def logout_user(request, format=None):
+    logout(request)
 
-        login_type = request.DATA['login_type']
-
-        if login_type == "NT":
-            print "the native way"
-        elif (login_type == "FB" or login_type == "TW"):
-            print 'the social way'
-            request.DATA['password'] = '!@#$%^&$@$%'
-        else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-
-        print request.DATA
-
-        ser = NewUserSerializer(data=request.DATA, context={'request': request})
-        return self.register_user(ser)
-
+    next_url = request.GET.get('next', '/')
+    return redirect(next_url)
 
 class UserDetail(APIView):
 
@@ -92,13 +115,12 @@ class UserDetail(APIView):
         if ser.is_valid():
             ser.save()
             return Response(ser.data)
-        return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(data=ser.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
         user = self.get_user(pk, request)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
 
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated, IsHimself))
@@ -124,7 +146,6 @@ def reset_password(request, pk, format=None):
         return Response()
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated,))
@@ -177,34 +198,6 @@ def reset_picture(request, format=None):
     except:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['POST'])
-def login_user(request, format=None):
-    email = request.DATA.get('email')
-    password = request.DATA.get('password')
-    login_type= request.DATA.get('login_type')
-    try:
-        if login_type == "NT":
-            user = authenticate(username=email, password=password)
-        elif login_type == "FB" or login_type == "TW":
-            user = authenticate(username=email, password='!@#$%^&$@$%')
-
-        if user.is_active:
-            login(request, user)
-            return Response(ExistingUserSerializer(user, context={'request': request}).data, status=status.HTTP_200_OK)
-        return Response(status=status.HTTP_402_PAYMENT_REQUIRED)
-    except Exception:
-        if not User.objects.filter(email=email).exists():
-            return Response(status=status.HTTP_409_CONFLICT)
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-
-@api_view(['GET'])
-@permission_classes((permissions.AllowAny,))
-def logout_user(request, format=None):
-    logout(request)
-    return Response(status=status.HTTP_200_OK)
-
-
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
 def get_current_user(request, format=None):
@@ -246,9 +239,8 @@ def get_compositions(request, pk, format=None):
     except EmptyPage:
         raise Http404
 
-    serializer = PaginatedUserCompositionSerializer(this_page_compositions)
+    serializer = PaginatedUserCompositionSerializer(this_page_compositions, context={'request': request})
     return Response(data=serializer.data)
-
 
 
 @api_view(['GET'])
@@ -287,51 +279,6 @@ def get_uploads(request, pk, format=None):
     except EmptyPage:
         raise Http404
 
-    serializer = PaginatedUserCompositionSerializer(this_page_compositions)
+    serializer = PaginatedUserCompositionSerializer(this_page_compositions, context={'request': request})
     return Response(data=serializer.data)
 
-
-@api_view(['GET', 'POST', 'DELETE'])
-@permission_classes((permissions.IsAuthenticated, IsHimself))
-def user_bookmarks(request, pk, format=None):
-    check_object_permissions(
-        request, user_bookmarks.cls.permission_classes, User.objects.get(pk=pk))
-    if request.method == 'GET':
-        serializer = BookmarkSerializer(
-            request.user, context={request: request})
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        bookmarks = request.DATA.get('bookmarks')
-        if not bookmarks:
-            return Response({"bookmarks": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
-        request.user.bookmarks.add(*bookmarks)
-        return Response(status=status.HTTP_201_CREATED)
-    elif request.method == 'DELETE':
-        bookmarks = request.DATA.get('bookmarks')
-        if not bookmarks:
-            return Response({"bookmarks": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
-
-        request.user.bookmarks.remove(*bookmarks)
-        serializer = BookmarkSerializer(request.user)
-        return Response(serializer.data)
-
-
-@api_view(['GET', 'PUT', 'POST'])
-@permission_classes((permissions.IsAuthenticated, IsHimself))
-def user_follows(request, pk, format=None):
-    check_object_permissions(
-        request, user_follows.cls.permission_classes, User.objects.get(pk=pk))
-    if request.method == 'GET':
-        serializer = FollowSerializer(request.user, context={request: request})
-        return Response(serializer.data)
-    elif request.method == 'PUT':
-        follows = request.DATA.get('follows')
-        request.user.follows.add(*follows)
-        serializer = FollowSerializer(request.user)
-
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        follows = request.DATA['follows']
-        request.user.follows.remove(*follows)
-        serializer = FollowSerializer(request.user)
-        return Response(serializer.data)

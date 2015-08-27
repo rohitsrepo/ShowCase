@@ -37,3 +37,16 @@ class UserPostList(APIView):
 		serializer = PaginatedPostSerializer(this_page_posts, context={'request': request})
 		return Response(data=serializer.data)
 
+class UserPostDetail(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get_post_object(self, user_id, post_id):
+        try:
+            return Post.objects.get(creator_id=user_id, id=post_id)
+        except Post.DoesNotExist:
+            raise Http404
+
+    def get(self, request, user_id, post_id, format=None):
+        post = self.get_post_object(user_id, post_id)
+        serializer = PostSerializer(post, context={'request': request})
+        return Response(serializer.data)

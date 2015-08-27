@@ -1,0 +1,14 @@
+html, body {
+    height: 100%;
+    font-size: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
+    font-family: 'taile';
+    background: #F6FAFF;
+}
+
+.auth-user,
+.auth-user a {
+    color: white;
+}

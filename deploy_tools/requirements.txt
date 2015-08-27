@@ -2,6 +2,7 @@ Django==1.7
 Pillow==2.5.1
 argparse==1.2.1
 beautifulsoup4==4.3.2
+django-all-access==0.7.2
 django-filter==0.7
 django-model-utils==2.0.3
 django-notifications-hq==0.6.2
@@ -10,3 +11,4 @@ djangorestframework==2.3.13
 gunicorn==18.0
 selenium==2.44.0
 wsgiref==0.1.2
+stream-python==2.3.2

@@ -1,12 +1,25 @@
 angular.module('ExploreApp')
-.controller('exploreController', ['$scope', 'compositionModel', '$timeout', function ($scope, compositionModel, $timeout) {
+.controller('exploreController', ['$scope',
+    'compositionModel',
+    '$timeout',
+    'userModel',
+    'alert',
+    'progress',
+    'auth',
+    'bookService',
+    'bucketmodalService',
+    'usermodalService',
+	function ($scope, compositionModel, $timeout, userModel, alert, progress, auth, bookService, bucketmodalService, usermodalService) {
 
+    $scope.math = window.Math
 	$scope.arts = [];
 	$scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
 
 	var getArts = function () {
 
 	    if (!$scope.artsMeta.disableGetMore) {
+            progress.showProgress();
+
 	        var pageVal = $scope.artsMeta.pageVal;
 	        compositionModel.getExplores(pageVal).then(function (response) {
 	            $scope.artsMeta.next = response.next;
@@ -25,6 +38,8 @@ angular.module('ExploreApp')
     	            $scope.artsMeta.busy = false;
 	            }, 500);
 
+                progress.hideProgress();
+
 	        });
 	    }
 
@@ -40,5 +55,39 @@ angular.module('ExploreApp')
 	}
 
 	$scope.loadMoreArts();
+
+    $scope.handleBookMark = function (index) {
+        art = $scope.arts[index]
+        if (art.is_bookmarked) {
+            bookService.unmark(art).then(function () {
+            	art.is_bookmarked = false;
+            });
+        } else {
+            bookService.bookmark(art).then(function () {
+                console.log('resolved');
+            	art.is_bookmarked = true;
+            });;
+        }
+    };
+
+    $scope.showBookMarkers = function (index) {
+        var art = $scope.arts[index];
+
+        usermodalService.showBookMarkers(art).then(function (bookStatus) {
+        	if (bookStatus == 'bookmarked') {
+        		art.is_bookmarked = true;
+        	}
+        });
+    };
+
+    $scope.showArtBuckets = function (index) {
+        var art = $scope.arts[index];
+        bucketmodalService.showArtBuckets(art);
+    }
+
+    $scope.showAddToBucket = function (index) {
+        var art = $scope.arts[index];
+        bucketmodalService.showAddToBucket(art);
+    };
 
 }]);

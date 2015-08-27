@@ -1,15 +1,15 @@
 angular.module("RegisterApp")
-.controller("registerController", ["$scope", "auth", 'facebook', function ($scope, auth, facebook) {
+.controller("registerController", ["$scope", "auth", "progress", "alert", function ($scope, auth, progress, alert) {
 	"use strict";
 
-	$scope.hideSignUp = true;
-
 	$scope.register = function (user) {
-		user.login_type = "NT"
-		auth.registerUser(user);
-	};
+		progress.showProgress();
 
-	$scope.loginFB = function () {
-		facebook.login('/');
-	}
+		auth.registerUser(user).then(function () {
+			progress.hideProgress();
+		}, function (error) {
+			progress.hideProgress();
+			alert.showAlert(error);
+		});
+	};
 }]);

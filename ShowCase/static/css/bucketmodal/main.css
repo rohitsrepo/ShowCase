@@ -1,0 +1,355 @@
+.bucket-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3000;
+    background: rgba(255, 255, 255, 0.97);
+    overflow: auto;
+}
+
+.bucket-modal::-webkit-scrollbar {
+    width: 15px;
+}
+
+.bucket-modal::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+}
+
+.bucket-modal::-webkit-scrollbar-thumb {
+    background-color: black;
+    border: 5px solid white;
+}
+
+.bucket-modal .modal-actions-header {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.bucket-modal .modal-actions-header button {
+    color: rgba(0, 0, 0, 0.6);
+    background: transparent;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.bucket-modal .modal-actions-header button:hover {
+    color: rgba(0, 0, 0, 1);
+}
+
+.bucket-modal .scroll-holder {
+    width: 100%;
+    padding-top: 100px;
+    padding-bottom: 350px;
+}
+
+.bucket-modal .container {
+    width: 70%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.bucket-modal .container .buckets-header {
+    text-align: center;
+    font-size: 2em;
+    line-height: 1.5em;
+    margin-bottom: 20px;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+@media (max-width: 800px) {
+    .bucket-modal .container .buckets-header {
+        font-size: 1.5em;
+    }
+}
+
+.bucket-modal .container .buckets-header a {
+    text-decoration: underline;
+}
+
+.bucket-modal .container .buckets-header button {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 1px;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 0.4em;
+    display: block;
+    margin: 0 auto;
+}
+
+.bucket-modal .container .buckets-header button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+.bucket-modal .container .bucket {
+    width: 100%;
+    padding: 10px 20px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.bucket-modal .container .bucket .picture{
+    width: 100%;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+}
+
+.bucket .picture .details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 5px;
+    padding-top: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    transition: all 1s;
+}
+
+.bucket .picture .details:hover {
+    opacity: 0.5;
+}
+
+.bucket .picture .details h2 {
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+
+.bucket .picture .details .by-user {
+    font-size: 0.8em;
+    margin-top: 80px;
+    line-height: 1.5em;
+}
+
+.bucket .picture .details h3 {
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+.bucket .picture .details .arts-count {
+    font-size: 0.7em;
+    margin-top: 10px;
+}
+
+@media (max-width: 800px) {
+    .bucket-modal .container {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/*=============== No Such bucket ================*/
+.no-bucket {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.no-bucket .no-buckets-header {
+    font-size: 1.2em;
+    line-height: 2em;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.no-bucket h2 {
+    font-size: 2em;
+    line-height: 1.5em;
+    margin-bottom: 20px;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.no-bucket button {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 1px;
+    padding: 10px 25px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.no-bucket button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+/*============== Bucket Form =================*/
+.container .bucket-form {
+    display: block;
+    text-align: center;
+}
+
+.container .bucket-form input {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+    font-size: 1em;
+    border: none;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.54);
+}
+
+.container .bucket-form .error {
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.container .bucket-form button {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 1px;
+    padding: 10px 25px;
+    font-size: 0.75em;
+    cursor: pointer;
+    margin-top: 50px;
+}
+
+.container .bucket-form button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+.container .bucket-form button.disabled {
+    opacity: 0.5
+}
+
+/*=============== Footer actions ===================*/
+
+.bucket-modal .modal-actions-footer {
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+}
+
+.bucket-modal .modal-actions-footer button {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 1px;
+    padding: 5px 15px;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.bucket-modal .modal-actions-footer button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+/*================ Bucket Background ===================*/
+
+.background-source {
+    /*width: 550px;*/
+    margin: 0 auto;
+    text-align: center;
+}
+
+.background-source .source-upload {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.background-source .realfile,
+.background-source .fakefile {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.background-source .realfile {
+    z-index: 2;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.background-source .fakefile {
+    z-index: 1;
+}
+
+.background-source .fakefile h2 {
+    font-size: 1.4em;
+    line-height: 300px;
+    color: white;
+}
+
+.background-source .fakefile:hover h2 {
+    text-decoration: underline;
+}
+
+/*------ Url Upload -----*/
+
+.background-source .source-url {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.background-source .source-url .upload-url-form {
+    width: 100%;
+}
+.background-source .source-url .upload-url-form .url-submit,
+.background-source .source-url .upload-url-form input {
+    height: 30px;
+}
+
+.background-source .source-url .upload-url-form input {
+    width: 75%;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    float: left;
+    text-align: center;
+    font-size: 1em;
+}
+
+.background-source .source-url .upload-url-form .url-submit {
+    width: 20%;
+    float: right;
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    opacity: 0.5;
+}
+
+.background-source .source-url .upload-url-form .url-submit.enable {
+    opacity: 1;
+}
+
+.background-source .source-url .upload-url-form .url-submit.enable:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    cursor: pointer;
+}
+
+.background-source .source-url .upload-url-form .error {
+    padding-top: 10px;
+}
+
+.background-source .background-later {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px 10px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 50px;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+}
+
+.background-source .background-later:hover {
+    color: rgba(0, 0, 0, 0.9);
+}

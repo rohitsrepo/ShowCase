@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html ng-app="ExploreApp">
-<head>
+{% extends "base.html" %}
+{% block html_attr_block %}ng-app="ExploreApp"{% endblock %}
+
+{% block title_block %}
     <title>Explore Art | Thirddime</title>
-    <!-- TODO - modify meta tags -->
+{%endblock%}
+
+
+{% block meta_block %}
     <meta name="description" content="Browse through breathtaking artworks and their interpretations. Discover deeper layers behind each painting with a community of art lovers." />
-
-    <meta name="fragment" content="!">
-
     <link rel="canonical" href="http://thirddime.com" />
     <link ng-cloak ng-if="postsMeta.next" rel="next" href="http://thirddime.com#[[postsMeta.next]]" />
     <link ng-cloak ng-if="postsMeta.previous" rel="prev" href="http://thirddime.com#[[postsMeta.previous]]" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="og:title" content="ThirdDime - Explore art through interpretations and stories">
     <meta property="og:site_name" content="ThirdDime">
     <meta property="og:url" content="http://thirddime.com/">
@@ -19,95 +19,53 @@
     <meta property="og:image" content="http://thirddime.com/static/images/reader/banner.jpg">
     <meta property="og:type" content="website">
     <meta property="og:type" content="[462422103909005]">
+{%endblock%}
 
-    <link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
-
+{% block css_block %}
      <!-- build:css /static/build/explore.css -->
-    <link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
     <link rel="stylesheet" type="text/css" href="/static/css/explore/main.css">
     <!-- endbuild -->
+{%endblock%}
 
-    <script>
-         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-         ga('create', 'UA-58563444-1', 'auto');
-         ga('require', 'displayfeatures');
-         ga('send', 'pageview');
-    </script>
-</head>
-<body ng-controller="exploreController">
-    <topbar></topbar>
-    <div class="curtain-overlay-placeholder"></div>
+{% block body_attr_block %}ng-controller="exploreController"{% endblock %}
 
-    <header class="primary-header">
-        <h2>Explore artworks from all over ThirdDime</h2>
-    </header>
-
-    <div ng-cloak masonry load-images="false" preserve-order class="arts-container" infinite-scroll="loadMoreArts()" infinite-scroll-distance='1' infinite-scroll-disabled='artsMeta.busy || artsMeta.disableGetMore'>
-        <div class="masonry-brick container" ng-repeat="art in arts">
+{% block content_block %}
+    <div ng-cloak masonry masonry-options="{ transitionDuration: '0' }" class="arts-container explore-container" infinite-scroll="loadMoreArts()" infinite-scroll-distance='1' infinite-scroll-disabled='artsMeta.busy || artsMeta.disableGetMore'>
+        <div class="masonry-brick container explore-art-container" ng-repeat="art in arts">
             <div class="art">
                 <article class="art-content">
-                    <a ng-href="/arts/[[art.slug]]" target="_blank">
-                        <img ng-src="[[art.matter_350]]" alt="[[art.title]]" height="[[350 * art.matter_aspect]]px" width="350px">
-                        <div class="details-inset">
-                            <h6>[[art.views]] Views</h6>
-                            <h6>[[art.interpretations_count]] Interpretations</h6>
-                        </div>
-                    </a>
+                    <img ng-src="[[art.matter_550]]" alt="[[art.title]]" >
+                    <div class="details-inset">
+                        <section class="inset-details">
+                            <h6>[[art.views]] Views</h6><br>
+                            <h6 class="active" ng-click="showBookMarkers($index)">[[art.bookmarks_count]] Admirers</h6><br>
+                            <h6 class="active" ng-click="showArtBuckets($index)">[[art.buckets_count]] Series</h6>
+                        </section>
+
+                        <section class="inset-actions">
+                            <button ng-click="showAddToBucket($index)">To Series</button><!--
+                            --><button>Share</button>
+                        </section>
+
+                    </div>
                 </article>
                 <section class="details">
                     <h4><a ng-href="/arts/[[art.slug]]" target="_blank">[[art.title | titlecase]]</a></h4>
-                    <h5> by <a href="/@[[art.artist.slug]]" target="_blank">[[art.artist.full_name | titlecase]]</a></h5>
+                    <h5> by <a href="/@[[art.artist.slug]]" target="_blank">[[art.artist.name | titlecase]]</a></h5>
+                </section><!--
+                --><section class="actions">
+                    <button ng-click="handleBookMark($index)" ng-class="{'bookmark-active': art.is_bookmarked}">ADMIRE</button>
                 </section>
-            </div>
+            </div> <!-- art -->
         </div>
     </div>
+{% endblock %}
 
-    <!-- Scripts Here -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular-animate.min.js"></script>
-    
+{% block script_block %}
     <!-- build:js /static/build/explore.js -->
-    <script type="text/javascript" src="/static/bower_components/masonry/dist/masonry.pkgd.min.js"></script>
-    <script type="text/javascript" src="/static/bower_components/imagesloaded/imagesloaded.js"></script>
-    <script type="text/javascript" src="/static/bower_components/angular-masonry/angular-masonry.js"></script>
-
-    <script type="text/javascript" src="/static/bower_components/nginfinitescroll/build/ng-infinite-scroll.min.js"></script>
-    <script type="text/javascript" src="/static/bower_components/ng-facebook/ngFacebook.js"></script>
 
     <script type="text/javascript" src="/static/js/explore/explore.module.js"></script>
     <script type="text/javascript" src="/static/js/explore/explore.controller.js"></script>
-    <script type="text/javascript" src="/static/js/models/model.module.js"></script>
-    <script type="text/javascript" src="/static/js/models/user.model.js"></script>
-    <script type="text/javascript" src="/static/js/models/composition.model.js"></script>
-    <script type="text/javascript" src="/static/js/models/interpretation.model.js"></script>
-    <script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
-    <script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
-    <script type="text/javascript" src="/static/js/authentication/facebook.service.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
-    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
-    <script type="text/javascript" src="/static/js/components/sharing/sharing.module.js"></script>
-    <script type="text/javascript" src="/static/js/components/sharing/tumblr.directive.js"></script>
-    <script type="text/javascript" src="/static/js/components/sharing/pinterest.directive.js"></script>
-    <script type="text/javascript" src="/static/js/components/sharing/facebook.directive.js"></script>
-    <script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
-    <script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
-    <script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
-    <script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
-    <script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
-    <script type="text/javascript" src="/static/js/components/analytics/analytics.service.js"></script>
-    <script type="text/javascript" src="/static/js/components/analytics/analytics.directive.js"></script>
+
     <!-- endbuild -->
-</body>
-</html>
+{% endblock %}
