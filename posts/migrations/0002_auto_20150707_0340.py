@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.contrib.contenttypes.management import update_all_contenttypes
 from django.db import models, migrations
 
 def create_posts(apps, schema_editor):
+    update_all_contenttypes()
     Post = apps.get_model("posts", "Post")
     Interpretation = apps.get_model("interpretations", "Interpretation")
     User = apps.get_model("accounts", "User")
