@@ -39,6 +39,18 @@ ol, ul {
   }
 }
 
+@media (min-width: 800px) {
+  .show-mb {
+    display: none !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .show-mb {
+    display: block !important;
+  }
+}
+
 :focus {outline:none;}
 ::-moz-focus-inner {border:0;}
 

@@ -14,7 +14,7 @@
             <h2><a ng-href="/@[[bucket.owner.slug]]">[[bucket.owner.name | titlecase]]</a></h2>
         </header>
 
-        <div class="nt-mb" horizontal-sly class="content-scroll-holder" id="basic">
+        <div horizontal-sly class="content-scroll-holder nt-mb" id="basic">
             <ul class="content-container">
                 <section class="content-art" check-last ng-repeat="art in bucketArts" ng-style="{'height': '450px', 'width': '[[math.round(450/art.matter_aspect)]]px'}">
                     <img ng-src="[[art.matter_550]]">
@@ -27,7 +27,7 @@
             </ul>
         </div>
 
-        <div class="show-mb" >
+        <div class="show-mb bucket-content-mb" >
             <a ng-cloak ng-show="art.show" ng-href="/arts/[[art.slug]]" ng-repeat='art in bucketArts'>
                 <img ng-src="[[art.matter_550]]">
             </a>

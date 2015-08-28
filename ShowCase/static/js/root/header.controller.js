@@ -9,7 +9,7 @@ angular.module('module.root')
 
         if (path=='/arts') {
             $scope.exploreActive = true;
-        } else if (path='/posts') {
+        } else if (path=='/posts') {
             $scope.postsActive = true;
         }
     };

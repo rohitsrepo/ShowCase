@@ -72,7 +72,7 @@
 	line-height: 250px;
 	height: 450px;     /* Image height + Margin */
 	overflow: hidden;
-	background: rgba(0, 0, 0, 0.8);
+	/*background: rgba(0, 0, 0, 0.8);*/
 
     -webkit-filter: none;
     -moz-filter: none;
@@ -176,16 +176,18 @@
 	height: 20px;
 }
 
-.bucket-content .show-mb {
+/*-------- Mobile ---------*/
+
+.bucket-content .bucket-content-mb {
     width: 95%;
     margin: 0 auto;
 }
 
-.bucket-content .show-mb img {
+.bucket-content .bucket-content-mb img {
     width: 100%;
 }
 
-.bucket-content .show-mb a.ng-hide-remove {
+.bucket-content .bucket-content-mb a.ng-hide-remove {
         -webkit-animation: fadeIn 1s;
         animation: fadeIn 1s;
 }
