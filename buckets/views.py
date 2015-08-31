@@ -35,20 +35,10 @@ class BucketComposition(APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
     def get(self, request, bucket_id, format=None):
+        # TODO Add serialization and accordingly pagination logic
+
         bucket = get_object_or_404(Bucket, id=bucket_id)
         compositions = bucket.compositions.all()
-
-        # page_num = request.GET.get('page', 1)
-        # paginator = Paginator(compositions, 9)
-
-        # try:
-        #     this_page_compositions = paginator.page(page_num)
-        # except PageNotAnInteger:
-        #     this_page_compositions = paginator.page(1)
-        # except EmptyPage:
-        #     raise Http404
-
-        # serializer = PaginatedBucketCompositionSerializer(this_page_compositions, context={'request': request})
         serializer = CompositionSerializer(compositions, context={'request': request})
         return Response(serializer.data)
 

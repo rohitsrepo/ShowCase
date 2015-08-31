@@ -28,4 +28,10 @@ angular.module('module.root')
             $window.location.href = '/@' + user.slug;
         });
     };
+
+    $scope.gotoMySeries = function () {
+        auth.getCurrentUser().then(function (user) {
+            $window.location.href = '/@' + user.slug + '/series';
+        });
+    };
 }]);

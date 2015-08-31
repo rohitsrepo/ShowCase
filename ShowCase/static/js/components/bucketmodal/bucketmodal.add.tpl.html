@@ -1,6 +1,6 @@
 <section tabindex="0" class="bucket-modal">
     <section class="modal-actions-header">
-        <button ng-click="close()">X</button>
+        <i class="material-icons action" ng-click="close()">close</i>
     </section>
     <div class="scroll-holder">
         <ul class="container">
@@ -8,7 +8,7 @@
                 Select series to add <a ng-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a>
                 <button ng-click="showCreateBucket()">New Series</button>
             </h1>
-            
+
 
             <li class="bucket" ng-repeat="bucket in userBuckets">
                 <div class="picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">

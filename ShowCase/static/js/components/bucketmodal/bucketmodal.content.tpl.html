@@ -1,6 +1,7 @@
 <section tabindex="0" class="bucket-modal content">
     <section class="modal-actions-header">
-        <button ng-click="close()">X</button>
+        <i class="material-icons action content-action" ng-cloak ng-show="bucket.has_ownership">edit</i>
+        <i class="material-icons action content-action" ng-click="close()">close</i>
     </section>
 
     <div class="background-area" ng-if="bucket" ng-style="{'background-image': 'url([[bucket.background_url]])'}"></div>
@@ -19,6 +20,9 @@
                 <section class="content-art" check-last ng-repeat="art in bucketArts" ng-style="{'height': '450px', 'width': '[[math.round(450/art.matter_aspect)]]px'}">
                     <img ng-src="[[art.matter_550]]">
                     <section class="art-details">
+                        <div class="art-details-actions">
+                            <i class="material-icons action" ng-cloak ng-show="bucket.has_ownership">delete</i>
+                        </div>
                         <h1><a ng-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a></h1>
                         <div class="by-user">by</div>
                         <h2><a ng-href="/@[[art.artist.slug]]">[[art.artist.name | titlecase]]</a></h2>

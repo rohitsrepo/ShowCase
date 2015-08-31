@@ -29,7 +29,7 @@
     z-index: 10;
 }
 
-.bucket-modal .modal-actions-header button {
+.bucket-modal .modal-actions-header i.action {
     color: rgba(0, 0, 0, 0.6);
     background: transparent;
     border: none;
@@ -37,7 +37,7 @@
     cursor: pointer;
 }
 
-.bucket-modal .modal-actions-header button:hover {
+.bucket-modal .modal-actions-header i.action:hover {
     color: rgba(0, 0, 0, 1);
 }
 

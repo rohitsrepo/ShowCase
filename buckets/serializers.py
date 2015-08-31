@@ -17,11 +17,16 @@ class BucketSerializer(serializers.ModelSerializer):
     background_url = serializers.CharField(source='background_url', read_only=True)
     picture = serializers.CharField(source='picture', read_only=True)
     owner = UserSerializer(read_only=True)
+    has_ownership = serializers.SerializerMethodField('get_ownership')
 
     class Meta:
         model = Bucket
-        fields = ('id', 'owner', 'name', 'description', 'compositions_count', 'picture', 'has_background', 'background_url')
+        fields = ('id', 'owner', 'name', 'description', 'compositions_count', 'picture', 'has_background', 'background_url', 'has_ownership')
         read_only_fields = ('id', )
+
+    def get_ownership(self, obj):
+        request = self.context['request']
+        return obj.has_ownership(request.user.id)
 
 class BucketBackgroundSerializer(serializers.Serializer):
     upload_type = serializers.CharField(max_length=3);

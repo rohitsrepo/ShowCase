@@ -33,36 +33,17 @@
 	<section class="painting-area">
 
 		<div class="painting-container">
-			<ul class="palette" ng-show="isColorPaletteActive" ng-cloak>
-				<li style="background: rgb([[ dominantColor['0'] ]], [[ dominantColor['1'] ]], [[ dominantColor['2'] ]])"></li>
-				<br><br>
-				<li style="background: rgb([[ color['0'] ]], [[ color['1'] ]], [[ color['2'] ]])" ng-repeat="color in palette"></li>
-			</ul>
-			<img class="painting painting-original" fit-image src="{{composition.matter.url}}" ng-show="isGrayScaleActive=='inactive' && isOutlineActive=='inactive'" ng-cloak alt="{{composition.slug}}">
-			<!-- <img class="painting painting-grayscale" fit-image src="{{composition.get_grayscale_url}}" ng-if="isGrayScaleActive=='active'" ng-cloak alt="{{composition.slug}} grayscale">
-			<img class="painting painting-outline" fit-image src="{{composition.get_outline_url}}" ng-if="isOutlineActive=='active'" ng-cloak alt="{{composition.slug}} outline"> -->
+			<img class="painting painting-original" fit-image src="{{composition.matter.url}}" alt="{{composition.slug}}">
 		</div>
 
-
-		<!-- <section tools-drawer class="art-tools">
-			<button class="drawer-control">
-			  <i class="material-icons">face</i>
-			</button>
-			<button>
-			  <i class="material-icons">add</i>
-			</button>
-			<button>
-			  <i class="material-icons">add</i>
-			</button>
-			<button>
-			  <i class="material-icons">add</i>
-			</button>
-		</section> -->
 	</section>
 
     <section class="painting-details" >
         <div class="painting-details-container">
-            <h2>{{ composition.title | title }}</h2>
+            <header>
+                <i class="material-icons" ng-cloak ng-show="'{{has_ownership}}' === 'True'" ng-click="editArt()">edit</i>
+                <h2>{{ composition.title | title }}</h2>
+            </header>
 
             <section class="painting-parent">
                 <div class="by-header">Created By</div>

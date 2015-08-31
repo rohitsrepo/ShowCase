@@ -14,7 +14,7 @@
     right: 20px;
 }
 
-.bookmark-modal .modal-actions button {
+.bookmark-modal .modal-actions i.action {
     color: rgba(0, 0, 0, 0.6);
     background: transparent;
     border: none;
@@ -22,7 +22,7 @@
     cursor: pointer;
 }
 
-.bookmark-modal .modal-actions button:hover {
+.bookmark-modal .modal-actions i.action:hover {
     color: rgba(0, 0, 0, 1);
 }
 
@@ -134,7 +134,8 @@
 
 .marker-details .actions button:before {
     position: absolute;
-    content: '\2714';
+    content: '\E876';
+    font-family: 'Material Icons';
     left: 130%;
     top: 50%;
     transform: translateY(-50%);

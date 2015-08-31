@@ -16,7 +16,7 @@
   right: 25px;
 }
 
-.login-modal .modal-action button {
+.login-modal .modal-action i.action {
   cursor: pointer;
   background: transparent;
   border: none;
@@ -24,7 +24,7 @@
   font-size: 1.2em;
 }
 
-.login-modal .modal-action button:hover {
+.login-modal .modal-action i.action:hover {
   color: rgba(0, 0, 0, 0.65);
 }
 

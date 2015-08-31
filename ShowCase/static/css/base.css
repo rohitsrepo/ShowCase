@@ -466,7 +466,8 @@ body::-webkit-scrollbar-thumb {
 
 .art .actions button:before {
     position: absolute;
-    content: '\2714';
+    content: '\E876';
+    font-family: 'Material Icons';
     left: 130%;
     top: 50%;
     transform: translateY(-50%);

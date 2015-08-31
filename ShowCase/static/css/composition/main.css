@@ -12,7 +12,71 @@ html, body {
     height: 100%;
 }
 
-/* ================= HEADBAR IN SECOND VIEW ============== */
+/*=========== Painting area ============*/
+
+.painting-area .painting-container {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    background: white;
+    vertical-align: top;
+}
+
+.painting-area .painting {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.painting-original.ng-hide-remove {
+        -webkit-animation: fadeIn 0.6s;
+        animation: fadeIn 0.4s;
+        opacity: 0;
+}
+
+.painting-original.ng-hide-add {
+        -webkit-animation: fadeOut 0.6s;
+        animation: fadeOut 0.4s;
+}
+
+.painting-outline.ng-hide-remove {
+        -webkit-animation: fadeInRight 0.6s;
+        animation: fadeIn 0.4s;
+        opacity: 0;
+}
+
+.painting-outline.ng-hide-add {
+        -webkit-animation: fadeOutRight 0.4s;
+        animation: fadeOut 0.4s;
+}
+
+.painting-grayscale.ng-hide-remove {
+        -webkit-animation: fadeInLeft 0.6s;
+        animation: fadeIn 0.4s;
+        opacity: 0;
+}
+
+.painting-grayscale.ng-hide-add {
+        -webkit-animation: fadeOutLeft 0.4s;
+        animation: fadeOut 0.4s;
+}
+
+@media (max-width: 800px) {
+    .painting-area .painting-container {
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .fullscreen {
+        width: 90%;
+        height: auto;
+        margin: 0 auto;
+    }
+}
+
+/* ================= Art Details ============== */
+
 .painting-details {
     width: 100%;
     padding-top: 15px;
@@ -31,12 +95,22 @@ html, body {
     text-align: center;
 }
 
-.painting-details-container h2 {
-    font-size: 2em;
+.painting-details-container header {
     width: 70%;
+    display: block;
     margin: 0 auto;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.painting-details-container header h2 {
+    font-size: 2em;
     line-height: 1.5em;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+    display: inline-block;
+}
+
+.painting-details-container header i {
+    cursor: pointer;
 }
 
 .painting-details-container .painting-parent {
@@ -126,166 +200,6 @@ html, body {
         width: 100%;
         font-size: 0.8em;
     }
-}
-
-
-/*=========== Painting area ============*/
-
-.painting-area .painting-container {
-    width: 70%;
-    margin: 0 auto;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-    background: white;
-    vertical-align: top;
-}
-
-.painting-area .painting {
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-.painting-original.ng-hide-remove {
-        -webkit-animation: fadeIn 0.6s;
-        animation: fadeIn 0.4s;
-        opacity: 0;
-}
-
-.painting-original.ng-hide-add {
-        -webkit-animation: fadeOut 0.6s;
-        animation: fadeOut 0.4s;
-}
-
-.painting-outline.ng-hide-remove {
-        -webkit-animation: fadeInRight 0.6s;
-        animation: fadeIn 0.4s;
-        opacity: 0;
-}
-
-.painting-outline.ng-hide-add {
-        -webkit-animation: fadeOutRight 0.4s;
-        animation: fadeOut 0.4s;
-}
-
-.painting-grayscale.ng-hide-remove {
-        -webkit-animation: fadeInLeft 0.6s;
-        animation: fadeIn 0.4s;
-        opacity: 0;
-}
-
-.painting-grayscale.ng-hide-add {
-        -webkit-animation: fadeOutLeft 0.4s;
-        animation: fadeOut 0.4s;
-}
-
-@media (max-width: 800px) {
-    .painting-area .painting-container {
-        width: 95%;
-        margin: 0 auto;
-    }
-
-    .fullscreen {
-        width: 90%;
-        height: auto;
-        margin: 0 auto;
-    }
-}
-
-.palette {
-    position: absolute;
-    left: 50px;
-    top: 100px;
-}
-
-.palette li {
-    height: 50px;
-    width: 50px;
-}
-
-.palette.ng-hide-add {
-    -webkit-animation: fadeOutLeft 0.4s;
-    animation: fadeOutLeft 0.4s;
-}
-
-.palette.ng-hide-remove {
-    -webkit-animation: fadeInLeft 0.4s;
-    animation: fadeInLeft 0.4s;
-}
-
-/*-------------- Art Tools ---------------*/
-.painting-area .art-tools {
-    position: absolute;
-    bottom: 0;
-    right: 20px;
-    height: 60px;
-    overflow: hidden;
-    -webkit-transition: height 0.3s;
-    -moz-transition: height 0.3s;
-    transition: height 0.3s;
-}
-
-.art-tools button {
-    display: block;
-    height: 50px;
-    width: 50px;
-    min-width: 50px;
-    color: rgba(0, 0, 0, 0.9);
-    background: transparent;
-    padding: 0;
-    border: none;
-    border: 1px solid rgba(0, 0, 0, 0.9);
-    cursor: pointer;
-    margin: 0 auto;
-}
-
-.art-tools button.drawer-control {
-    height: 60px;
-    width: 60px;
-    min-width: 60px;
-}
-
-.painting-area .tools-extended button.drawer-control,
-.art-tools button:hover {
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-}
-
-.painting-area .tools-extended {
-    height: 210px;
-}
-
-.art-tools button i {
-    vertical-align: middle;
-}
-
-
-/*================ END MARKER =====================*/
-
-.end-marker {
-    width: 650px;
-    margin: 3em auto;
-    vertical-align: middle;
-}
-
-.end-marker hr {
-    width: 300px;
-    display: inline-block;
-    margin: 0;
-    margin-bottom: 1.4em;
-    opacity: 0.5;
-}
-
-.end-marker img {
-    width: 3em;
-    height: auto;
-    padding: 3px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
-    border: 1px solid #c8c7b4;
 }
 
 /*=========== Priamry Footer - Next Posts ===============*/

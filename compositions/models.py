@@ -111,6 +111,9 @@ class Composition(models.Model):
     def is_bookmarked(self, user_id):
         return self.bookers.filter(id=user_id).exists()
 
+    def has_ownership(self, user_id):
+        return self.uploader.id == user_id
+
     @property
     def bookmarks_count(self):
         return self.bookers.all().count()

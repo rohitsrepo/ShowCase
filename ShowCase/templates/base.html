@@ -72,7 +72,7 @@
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                 for="user-profile">
               <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
-              <li class="mdl-menu__item"><i class="material-icons">list</i>Collection</li>
+              <li class="mdl-menu__item" ng-click="gotoMySeries()"><i class="material-icons">list</i>Series</li>
               <a class="mdl-menu__item" href="/me/settings"><i class="material-icons">settings</i>Settings</a>
               <a href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
             </ul>

@@ -28,6 +28,9 @@ class Bucket(models.Model):
         if self.background:
             compress(self.background.path)
 
+    def has_ownership(self, user_id):
+        return self.owner.id == user_id
+
     @property
     def compositions_count(self):
         return self.compositions.all().count()
