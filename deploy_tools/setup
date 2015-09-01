@@ -1,0 +1,20 @@
+make five folder [source, static, media, database, virtualenv]
+get git
+get source in source folder
+sudo apt-get install python-virtualenv
+virtualenv virtualenv/
+pip install -r source/deploy_tools/requirements.txt
+    Pillow installation wil throw an error -> sudo apt-get install python-dev
+
+sudo apt-get install nodejs
+sudo apt-get install npm
+sudo npm install -g bower grunt-cli
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+source/ShowCase -> npm install
+source/ShowCase/static -> bower install bower.json
+python manage.py migrate
+
+python manage.py runserver
+
+sudo apt-get install libjpeg-dev
+pip install -I pillow
