@@ -104,7 +104,7 @@ class BucketBackground(APIView):
         if back_ser.is_valid():
             self.update_background(bucket, back_ser.object)
 
-            bucket_ser = BucketSerializer(bucket)
+            bucket_ser = BucketSerializer(bucket, context={'request': request})
             return Response(bucket_ser.data)
 
         return Response(data=bucket_ser.errors, status=status.HTTP_400_BAD_REQUEST)
