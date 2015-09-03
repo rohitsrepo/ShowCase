@@ -22,7 +22,7 @@ class Composition(models.Model):
         settings.AUTH_USER_MODEL, related_name='arts')
     slug = models.SlugField(max_length=200, unique=True)
     created = models.DateTimeField(auto_now_add=True)
-    matter = models.ImageField(upload_to=get_upload_file_name_composition)
+    matter = models.ImageField(upload_to=get_upload_file_name_composition, max_length=500)
     views = models.IntegerField(default=0)
 
     class Meta:
