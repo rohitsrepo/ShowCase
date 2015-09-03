@@ -7,6 +7,7 @@
 
 
 {% block meta_block %}
+    <base href="/">
     <meta name="description" content="Browse through breathtaking artworks and their interpretations. Discover deeper layers behind each painting with a community of art lovers." />
     <link rel="canonical" href="http://thirddime.com" />
     <link ng-cloak ng-if="postsMeta.next" rel="next" href="http://thirddime.com#[[postsMeta.next]]" />
@@ -39,7 +40,7 @@
                         <section class="inset-details">
                             <h6>[[art.views]] Views</h6><br>
                             <h6 class="active" ng-click="showBookMarkers($index)">[[art.bookmarks_count]] Admirers</h6><br>
-                            <h6 class="active" ng-click="showArtBuckets($index)">[[art.buckets_count]] Series</h6>
+                            <h6 class="active" ui-sref="buckets({artSlug: art.slug})">[[art.buckets_count]] Series</h6>
                         </section>
 
                         <section class="inset-actions">
@@ -59,6 +60,7 @@
             </div> <!-- art -->
         </div>
     </div>
+    <div ui-view class="anim-in-out anim-slide-left" data-anim-in-speed="1000"></div>
 {% endblock %}
 
 {% block script_block %}

@@ -1,13 +1,13 @@
 <section tabindex="0" class="bucket-modal">
     <section class="modal-actions-header">
-        <i class="material-icons action" ng-click="close()">close</i>
+        <i class="material-icons action" ui-sref="arts">close</i>
     </section>
     <div class="scroll-holder">
         <ul class="container">
             <h1 class="buckets-header" ng-cloak ng-hide="noSuchBucket.status">Series containing <a ng-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a></h1>
-            <li class="bucket" ng-repeat="bucket in artBuckets">
+            <li class="bucket" ng-repeat="bucket in artBuckets" ui-sref="bucket({userSlug: bucket.owner.slug, bucketSlug: bucket.slug})">
                 <div class="picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">
-                    <section class="details" ng-click="showArts($index)">
+                    <section class="details">
                         <h2>[[bucket.name | titlecase]]</h2>
                         <h3>[[bucket.description]]</h3>
                         <div class="by-user">By</div>

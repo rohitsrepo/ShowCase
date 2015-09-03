@@ -3,6 +3,8 @@ angular.module('module.root', [
     'infinite-scroll',
     "wu.masonry",
 	"ngAnimate",
+    'ui.router',
+    'anim-in-out',
     "module.model",
     "module.auth",
     'module.sharing',

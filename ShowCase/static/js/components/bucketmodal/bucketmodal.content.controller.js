@@ -15,7 +15,6 @@ angular.module('module.bucketmodal')
 
         bucketModel.bucketArts(bucket.id).then(function (arts) {
             $scope.bucketArts = arts;
-            console.log("gettting art now", bucket);
 
             $scope.bucketArts[currentShowIndex].show = true;
 
@@ -51,6 +50,7 @@ angular.module('module.bucketmodal')
 ])
 .directive('keyEventBinder', [function () {
     return function (scope, element, attrs) {
+        element.focus();
         element.bind('keydown', function (evt) {
             scope.slyCallBack(evt);
         });

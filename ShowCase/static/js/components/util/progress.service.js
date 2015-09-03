@@ -26,10 +26,7 @@ angular.module('module.util')
 
 	service.hideProgress = function () {
         activeCount--;
-
-        if (!activeCount) {
 		 $interval.cancel(intervalPromise);
-        }
 	};
 
 	return service;

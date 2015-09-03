@@ -1,5 +1,7 @@
 angular.module('ExploreApp')
 .controller('exploreController', ['$scope',
+    '$rootScope',
+    '$document',
     'compositionModel',
     '$timeout',
     'userModel',
@@ -9,11 +11,21 @@ angular.module('ExploreApp')
     'bookService',
     'bucketmodalService',
     'usermodalService',
-	function ($scope, compositionModel, $timeout, userModel, alert, progress, auth, bookService, bucketmodalService, usermodalService) {
+	function ($scope, $rootScope, $document, compositionModel, $timeout, userModel, alert, progress, auth, bookService, bucketmodalService, usermodalService) {
 
     $scope.math = window.Math
 	$scope.arts = [];
 	$scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
+
+    $rootScope.$on('$stateChangeStart',
+    function(event, toState, toParams, fromState, fromParams){
+        var body = $document.find('body');
+        if (fromState.name == 'arts') {
+            body.addClass('modal-open');
+        } else {
+            body.removeClass('modal-open');
+        }
+    })
 
 	var getArts = function () {
 
