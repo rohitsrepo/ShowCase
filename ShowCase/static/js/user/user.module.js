@@ -53,5 +53,18 @@ angular.module("UserApp", [
         url: "/series",
         templateUrl: "/static/js/user/profile.buckets.html",
         controller: 'profileBucketsController'
+    })
+    .state('bucket', {
+        url: "/series/{bucketSlug}",
+        templateUrl: "/static/js/components/bucketmodal/bucketmodal.content.tpl.html",
+        controller: 'bucketmodalContentController',
+        resolve: {
+            'bucket': ['$stateParams', 'bucketModel', function ($stateParams, bucketModel) {
+                return bucketModel.getBucket($stateParams.bucketSlug);
+            }],
+            'close': function () {
+                return 'NotModal';
+            }
+        }
     });
 }]);

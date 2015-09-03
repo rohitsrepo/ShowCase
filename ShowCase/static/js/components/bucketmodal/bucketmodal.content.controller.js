@@ -3,11 +3,10 @@ angular.module('module.bucketmodal')
     'bucketModel',
     'bucketmodalService',
     'close',
-    'KeydownCallback',
     'bucket',
     'progress',
     'alert',
-    function ($scope, bucketModel, bucketmodalService, close, KeydownCallback, bucket, progress, alert) {
+    function ($scope, bucketModel, bucketmodalService, close, bucket, progress, alert) {
 
         progress.showProgress();
         $scope.bucket = bucket;
@@ -16,6 +15,7 @@ angular.module('module.bucketmodal')
 
         bucketModel.bucketArts(bucket.id).then(function (arts) {
             $scope.bucketArts = arts;
+            console.log("gettting art now", bucket);
 
             $scope.bucketArts[currentShowIndex].show = true;
 
@@ -24,8 +24,6 @@ angular.module('module.bucketmodal')
             alert.showAlert('We are unable to art for this series');
             progress.hideProgress();
         });
-
-        $scope.KeydownCallback = KeydownCallback;
 
         $scope.nextArt = function () {
 
@@ -51,9 +49,15 @@ angular.module('module.bucketmodal')
 
     }
 ])
+.directive('keyEventBinder', [function () {
+    return function (scope, element, attrs) {
+        element.bind('keydown', function (evt) {
+            scope.slyCallBack(evt);
+        });
+    }
+}])
 .directive('horizontalSly', ['$timeout', function ($timeout) {
     return function (scope, element, attrs) {
-
 
         scope.$on('slyLastElement', function () {
 
@@ -90,7 +94,8 @@ angular.module('module.bucketmodal')
                 }).init();
             }, 0);
 
-            scope.KeydownCallback(function (evt) {
+            scope.slyCallBack = function (evt) {
+
                 if (evt.keyCode == 37) {
                     sly.prev();
                 }
@@ -98,11 +103,10 @@ angular.module('module.bucketmodal')
                 if (evt.keyCode == 39) {
                     sly.next();
                 }
-
-            });
-
-
+            };
         });
+
+
     };
 
 }])

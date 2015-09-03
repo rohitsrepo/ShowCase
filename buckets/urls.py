@@ -4,7 +4,8 @@ from . import views
 
 urlpatterns = patterns('',
                       url(r'^$', views.BucketList.as_view()),
-                      url(r'^/(?P<bucket_id>[0-9]+)$', views.BucketComposition.as_view()),
+                      url(r'^/(?P<bucket_slug>[\w-]+)$', views.BucketDetail.as_view()),
+                      url(r'^/(?P<bucket_id>[0-9]+)/arts$', views.BucketComposition.as_view()),
                       url(r'^/(?P<bucket_id>[0-9]+)/background$', views.BucketBackground.as_view()),
                     )
 

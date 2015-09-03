@@ -21,7 +21,7 @@ angular.module("module.model")
     };
 
     service.addToBucket = function (bucketId, compositionId) {
-        return $http.put('/buckets/' + bucketId, {'composition_id': compositionId}).then(function (response) {
+        return $http.put('/buckets/' + bucketId + '/arts', {'composition_id': compositionId}).then(function (response) {
             return response.data;
         }, function (error) {
             return $q.reject(error);
@@ -37,15 +37,23 @@ angular.module("module.model")
     };
 
     service.bucketArts = function (bucketId) {
-        return $http.get('/buckets/' + bucketId).then(function (response) {
+        return $http.get('/buckets/' + bucketId + '/arts').then(function (response) {
             return response.data;
         }, function (error) {
             return $q.reject(error);
         });
     };
 
-    service.updateBackground = function (bucket_id, bucket_background) {
-        return $http.post('/buckets/' + bucket_id + '/background', bucket_background).then(function (response) {
+    service.getBucket = function (bucketSlug) {
+        return $http.get('/buckets/' + bucketSlug).then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
+    service.updateBackground = function (bucketId, bucket_background) {
+        return $http.post('/buckets/' + bucketId + '/background', bucket_background).then(function (response) {
             return response.data;
         }, function (error) {
             return $q.reject(error);

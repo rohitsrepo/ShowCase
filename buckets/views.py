@@ -31,6 +31,14 @@ class BucketList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class BucketDetail(APIView):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+
+    def get(self, request, bucket_slug, format=None):
+        bucket = get_object_or_404(Bucket, slug=bucket_slug)
+        serializer = BucketSerializer(bucket, context={'request': request})
+        return Response(serializer.data)
+
 class BucketComposition(APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
