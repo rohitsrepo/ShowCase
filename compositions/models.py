@@ -24,6 +24,7 @@ class Composition(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     matter = models.ImageField(upload_to=get_upload_file_name_composition, max_length=500)
     views = models.IntegerField(default=0)
+    nsfw = models.BooleanField(default=False)
 
     class Meta:
         ordering = ('created',)
@@ -93,6 +94,12 @@ class Composition(models.Model):
 
     def get_matter_aspect(self):
         return self.matter.height/self.matter.width
+
+    def is_nsfw(self, user):
+        if user.is_anonymous() or user.nsfw:
+            return self.nsfw
+
+        return False
 
     @property
     def attached_images_path(self):

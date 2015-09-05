@@ -17,6 +17,7 @@ def composition_main(request, slug):
         'top_interpretation': top_interpretation,
         'is_bookmarked': composition.is_bookmarked(request.user.id),
         'has_ownership': composition.has_ownership(request.user.id),
+        'is_nsfw': composition.is_nsfw(request.user)
     })
     return render_to_response("composition.html", context)
 

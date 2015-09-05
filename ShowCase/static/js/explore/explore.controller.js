@@ -102,4 +102,9 @@ angular.module('ExploreApp')
         bucketmodalService.showAddToBucket(art);
     };
 
+    $scope.toggleNsfw = function (index) {
+        var art = $scope.arts[index];
+        art.nsfw = false;
+    }
+
 }]);

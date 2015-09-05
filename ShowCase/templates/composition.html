@@ -33,6 +33,12 @@
 	<section class="painting-area">
 
 		<div class="painting-container">
+            {% if is_nsfw %}
+            <div ng-click="hideNsfw = true" ng-hide="hideNsfw" class="nsfw-overlay">
+                <h3>This work has been marked not safe</h3>
+                <h4>Click anywhere to show the work</h4>
+            </div>
+            {% endif %}
 			<img class="painting painting-original" fit-image src="{{composition.matter.url}}" alt="{{composition.slug}}">
 		</div>
 

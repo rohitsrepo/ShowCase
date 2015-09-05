@@ -25,6 +25,12 @@ angular.module('module.bucketmodal')
             progress.hideProgress();
         });
 
+
+        $scope.toggleNsfw = function (index) {
+            var art = $scope.bucketArts[index];
+            art.nsfw = false;
+        }
+
         $scope.nextArt = function () {
 
             if ($scope.bucketArts.length > currentShowIndex + 1){
@@ -60,11 +66,10 @@ angular.module('module.bucketmodal')
 
             if (evt.keyCode == 27) {
                 $window.history.back();
+                return false;
             }
 
             scope.slyCallBack(evt);
-
-            return false;
         });
     }
 }])

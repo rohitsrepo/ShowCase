@@ -25,11 +25,12 @@ class CompositionSerializer(serializers.ModelSerializer):
     bookmarks_count = serializers.CharField(source='bookmarks_count')
     buckets_count = serializers.CharField(source='buckets_count')
     has_ownership = serializers.SerializerMethodField('get_ownership')
+    nsfw = serializers.SerializerMethodField('is_nsfw')
 
     class Meta:
         model = Composition
         fields = ('id', 'title', 'artist', 'description', 'created',
-		   'matter', 'matter_350', 'matter_550', 'matter_aspect', 'timesince', 'vote',
+		   'matter', 'matter_350', 'matter_550', 'matter_aspect', 'timesince', 'nsfw', 'vote',
            'slug', 'uploader', 'views', 'interpretations_count', 'is_bookmarked', 'bookmarks_count', 'buckets_count', 'has_ownership')
     	read_only_fields = ('slug', 'vote', 'views')
 
@@ -41,6 +42,10 @@ class CompositionSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return obj.is_bookmarked(request.user.id)
 
+    def is_nsfw(self, obj):
+        request = self.context['request']
+        return obj.is_nsfw(request.user)
+
 class PaginatedCompositionSerializer(PaginationSerializer):
     class Meta:
         object_serializer_class = CompositionSerializer
@@ -50,7 +55,7 @@ class NewCompositionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Composition
-        fields = ('title', 'artist', 'matter', 'slug')
+        fields = ('title', 'artist', 'matter', 'nsfw', 'slug')
         read_only_fields = ('slug', )
 
 class CompositionMatterSerializer(serializers.Serializer):

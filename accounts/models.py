@@ -49,6 +49,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     follows = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name='followers')
 
+    nsfw = models.BooleanField(default=True)
+
     objects = UserManager()
 
     USERNAME_FIELD = 'email'

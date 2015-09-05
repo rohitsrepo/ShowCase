@@ -15,11 +15,12 @@ angular.module('UserSettingsApp')
 
     $scope.user = {};
 
-    $scope.init = function (id, email, name, about, picture) {
+    $scope.init = function (id, email, name, about, nsfw, picture) {
         $scope.user.id = id;
         $scope.user.email = email;
         $scope.user.name = name;
         $scope.user.about = about;
+        $scope.user.nsfw = nsfw == 'True';
         $scope.user.picture = picture;
     };
 
@@ -48,6 +49,26 @@ angular.module('UserSettingsApp')
             alert.showAlert("Unable to update");
         });
     };
+
+    var updateNsfw = function (nsfw) {
+        userModel.resetNsfw(nsfw).then(function (response) {
+            progress.hideProgress();
+        }, function (response){
+            progress.hideProgress();
+            alert.showAlert("Unable to update");
+        });
+    }
+
+    var skipOnce = true;
+    $scope.$watch(function () {
+        return $scope.user.nsfw;
+    }, function () {
+        if (!skipOnce) {
+            console.log("updates")
+            updateNsfw($scope.user.nsfw);
+        }
+        skipOnce = false;
+    })
 
     $scope.uploadPicture = function (file) {
         progress.showProgress();

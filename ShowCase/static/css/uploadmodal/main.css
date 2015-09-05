@@ -201,6 +201,17 @@
    color: white;
 }
 
+.info-source .info-form .input-nsfw {
+    width: 100%;
+    margin-top: 30px;
+    padding-left: 15px;
+    text-align: left;
+}
+
+.info-source .info-form .input-nsfw input {
+    float: right;
+}
+
 /*------------ Bucket Selection -----------------*/
 .info-source .info-form .info-bucket-select {
     margin-top: 40px;

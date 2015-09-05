@@ -100,4 +100,9 @@ angular.module('UserApp')
         bucketmodalService.showAddToBucket(art);
     };
 
+    $scope.toggleNsfw = function (index) {
+        var art = $scope.arts[index];
+        art.nsfw = false;
+    }
+
 }]);

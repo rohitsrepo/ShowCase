@@ -164,6 +164,24 @@ def reset_name(request, format=None):
     except:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['POST'])
+@permission_classes((permissions.IsAuthenticated,))
+def reset_nsfw(request, format=None):
+    try:
+        nsfw = request.DATA['nsfw']
+        user = request.user
+        user.nsfw = nsfw
+        try:
+            user.full_clean()
+            user.save()
+            ser = ExistingUserSerializer(user, context={'request': request})
+            return Response(ser.data)
+        except ValidationError:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+    except:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated,))
 def reset_about(request, format=None):

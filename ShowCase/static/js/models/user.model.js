@@ -73,6 +73,14 @@ angular.module("module.model")
         })
     };
 
+    service.resetNsfw = function (nsfw) {
+        return $http.post("/users/reset-nsfw", {'nsfw': nsfw}).then(function (response) {
+            return response.data;
+        }, function (response, status){
+            return $q.reject(response);
+        })
+    };
+
 	service.getCompositions = function (user_id, page) {
 		return $http.get('/users/'+user_id+'/compositions?page='+page).then(function (response) {
 			return response.data;

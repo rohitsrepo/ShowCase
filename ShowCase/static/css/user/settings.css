@@ -122,14 +122,26 @@ html, body {
 }
 
 .settings form .actions.ng-hide-remove {
-        -webkit-animation: fadeInLeft 1s;
-        animation: fadeInLeft 1s;
-        opacity: 0;
+    -webkit-animation: fadeInLeft 1s;
+    animation: fadeInLeft 1s;
+    opacity: 0;
 }
 
 .settings form .actions.ng-hide-add {
-        -webkit-animation: fadeOutLeft 1s;
-        animation: fadeOutLeft 1s;
+    -webkit-animation: fadeOutLeft 1s;
+    animation: fadeOutLeft 1s;
+}
+
+.settings form .data .nsfw {
+    float: right;
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    height: auto;
+    font-size: 1em;
+    background: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 /*=============== Picture ==================*/

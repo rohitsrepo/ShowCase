@@ -42,6 +42,11 @@
                          input-class="artist-input">
             </angucomplete-alt>
 
+            <section class="input-nsfw clearfix">
+                <span>Not safe for work (NSFW)?</span>
+                <input class="nsfw" type="checkbox" ng-model="art.nsfw"/>
+            </section>
+
             <select class="info-bucket-select" name="bucketSelect" ng-model="art.bucket">
                 <option value="">Add to series?</option> <!-- not selected / blank option -->
                 <option ng-repeat="bucket in userBuckets" value="[[bucket.id]]">[[bucket.name]]</option>

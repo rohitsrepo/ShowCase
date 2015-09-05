@@ -30,7 +30,7 @@ class ExistingUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email','name', 'about', 'picture', 'slug', 'buckets_count', 'followers_count', 'paintings_count', 'uploads_count', 'is_followed')
+        fields = ('id', 'email','name', 'about', 'picture', 'slug', 'nsfw', 'buckets_count', 'followers_count', 'paintings_count', 'uploads_count', 'is_followed')
 
     def get_is_followed(self, obj):
         request = self.context['request']
