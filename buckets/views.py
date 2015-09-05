@@ -46,6 +46,9 @@ class BucketComposition(APIView):
         # TODO Add serialization and accordingly pagination logic
 
         bucket = get_object_or_404(Bucket, id=bucket_id)
+        bucket.views = bucket.views + 1
+        bucket.save();
+
         compositions = bucket.compositions.all()
         serializer = CompositionSerializer(compositions, context={'request': request})
         return Response(serializer.data)

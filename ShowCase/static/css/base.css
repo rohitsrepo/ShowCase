@@ -185,6 +185,7 @@ body::-webkit-scrollbar-thumb {
 .site-navigation li {
     display: inline-block;
     padding: 0 3%;
+    cursor: pointer;
 }
 
 .site-navigation li a {
@@ -440,6 +441,7 @@ body::-webkit-scrollbar-thumb {
   line-height: 1.5em;
   text-align: left;
   display: inline-block;
+  cursor: pointer;
 }
 
 .art .details h4 a {
@@ -455,6 +457,7 @@ body::-webkit-scrollbar-thumb {
   font-size: 0.9em;
   letter-spacing: 1px;
   display: inline-block;
+  cursor: pointer;
 }
 
 .art .details h5 a:hover {

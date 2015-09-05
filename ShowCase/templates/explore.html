@@ -55,8 +55,8 @@
                     </div>
                 </article>
                 <section class="details">
-                    <h4><a ng-href="/arts/[[art.slug]]" target="_blank">[[art.title | titlecase]]</a></h4>
-                    <h5> by <a href="/@[[art.artist.slug]]" target="_blank">[[art.artist.name | titlecase]]</a></h5>
+                    <h4><a custom-href="/arts/[[art.slug]]" target="_blank">[[art.title | titlecase]]</a></h4>
+                    <h5> by <a custom-href="/@[[art.artist.slug]]" target="_blank">[[art.artist.name | titlecase]]</a></h5>
                 </section><!--
                 --><section class="actions">
                     <button ng-click="handleBookMark($index)" ng-class="{'bookmark-active': art.is_bookmarked}">ADMIRE</button>

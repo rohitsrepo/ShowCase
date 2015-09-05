@@ -34,4 +34,12 @@ angular.module('module.root')
             $window.location.href = '/@' + user.slug + '/series';
         });
     };
+}])
+.directive('customHref', [function () {
+    return function (scope, element, attrs) {
+        element.bind('click', function () {
+            window.location.href = attrs['customHref'];
+        })
+
+    };
 }]);

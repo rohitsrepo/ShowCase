@@ -21,7 +21,7 @@ class BucketSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Bucket
-        fields = ('id', 'owner', 'name', 'description', 'slug', 'compositions_count', 'picture', 'has_background', 'background_url', 'has_ownership')
+        fields = ('id', 'owner', 'name', 'description', 'slug', 'views', 'compositions_count', 'picture', 'has_background', 'background_url', 'has_ownership')
         read_only_fields = ('id', )
 
     def get_ownership(self, obj):

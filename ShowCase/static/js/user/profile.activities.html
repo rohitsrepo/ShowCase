@@ -4,9 +4,9 @@
 
         <article ng-switch-when="AD" class="user-activity add-activity">
             <header class="clearfix">
-                <a ng-href="/@[[activity.creator.slug]]"><img class="activity-header-image" ng-src="[[activity.creator.picture]]"></a>
+                <a custom-href="/@[[activity.creator.slug]]"><img class="activity-header-image" ng-src="[[activity.creator.picture]]"></a>
                 <div class="activity-header-details">
-                    <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]'s</a>
+                    <a custom-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]'s</a>
                     artwork added
                     <div class="activity-user-creds">
                         <span ng-show="activity.creator.followers_count != 0">Followers [[activity.creator.followers_count]] </span>
@@ -36,8 +36,8 @@
 
             <footer class="user-activity-footer">
                 <section class="activity-image-details">
-                    <h4><a ng-href="/arts/[[activity.composition.slug]]" target="_blank">[[activity.composition.title | titlecase]]</a></h4>
-                    <h5> by <a ng-href="/@[[activity.composition.artist.slug]]" target="_blank">[[activity.composition.artist.name | titlecase]]</a></h5>
+                    <h4><a custom-href="/arts/[[activity.composition.slug]]" target="_blank">[[activity.composition.title | titlecase]]</a></h4>
+                    <h5> by <a custom-href="/@[[activity.composition.artist.slug]]" target="_blank">[[activity.composition.artist.name | titlecase]]</a></h5>
                 </section><!--
                 --><section class="actions">
                     <button ng-click="handleBookMark($index)" ng-class="{'bookmark-active': activity.composition.is_bookmarked}">ADMIRE</button>
@@ -47,9 +47,9 @@
 
         <article ng-switch-when="CR" class="user-activity create-activity">
             <header>
-                <a ng-href="/@[[activity.creator.slug]]"><img class="activity-header-image" ng-src="[[activity.creator.picture]]"></a>
+                <a custom-href="/@[[activity.creator.slug]]"><img class="activity-header-image" ng-src="[[activity.creator.picture]]"></a>
                 <div class="activity-header-details">
-                    <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a>
+                    <a custom-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a>
                     added artwork
                     <div class="activity-user-creds">
                         <span ng-show="activity.creator.followers_count != 0">Followers [[activity.creator.followers_count]] </span>
@@ -79,8 +79,8 @@
 
             <footer class="user-activity-footer">
                 <section class="activity-image-details">
-                    <h4><a ng-href="/arts/[[activity.composition.slug]]" target="_blank">[[activity.composition.title | titlecase]]</a></h4>
-                    <h5> by <a ng-href="/@[[activity.composition.artist.slug]]" target="_blank">[[activity.composition.artist.name | titlecase]]</a></h5>
+                    <h4><a custom-href="/arts/[[activity.composition.slug]]" target="_blank">[[activity.composition.title | titlecase]]</a></h4>
+                    <h5> by <a custom-href="/@[[activity.composition.artist.slug]]" target="_blank">[[activity.composition.artist.name | titlecase]]</a></h5>
                 </section><!--
                 --><section class="actions">
                     <button ng-click="handleBookMark($index)" ng-class="{'bookmark-active': activity.composition.is_bookmarked}">ADMIRE</button>
@@ -90,9 +90,9 @@
 
         <article ng-switch-when="BK" class="user-activity bucket-activity">
             <header>
-                <a ng-href="/@[[activity.creator.slug]]"><img class="activity-header-image" ng-src="[[activity.creator.picture]]"></a>
+                <a custom-href="/@[[activity.creator.slug]]"><img class="activity-header-image" ng-src="[[activity.creator.picture]]"></a>
                 <div class="activity-header-details">
-                    <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a>
+                    <a custom-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a>
                     added artwork to series
                     <span class="click-active" ng-click="showBucketArts($index)">[[activity.content.name | titlecase]]</span>
                     <div class="activity-user-creds">
@@ -122,8 +122,8 @@
 
             <footer class="user-activity-footer">
                 <section class="activity-image-details">
-                    <h4><a ng-href="/arts/[[activity.composition.slug]]" target="_blank">[[activity.composition.title | titlecase]]</a></h4>
-                    <h5> by <a ng-href="/@[[activity.composition.artist.slug]]" target="_blank">[[activity.composition.artist.name | titlecase]]</a></h5>
+                    <h4><a custom-href="/arts/[[activity.composition.slug]]" target="_blank">[[activity.composition.title | titlecase]]</a></h4>
+                    <h5> by <a custom-href="/@[[activity.composition.artist.slug]]" target="_blank">[[activity.composition.artist.name | titlecase]]</a></h5>
                 </section><!--
                 --><section class="actions">
                     <button ng-click="handleBookMark($index)" ng-class="{'bookmark-active': activity.composition.is_bookmarked}">ADMIRE</button>
@@ -143,7 +143,7 @@
             <h2>Take your time</h2>
             <h2>Sometimes it is hard to find</h2>
             <h4>Keep exploring</h4>
-            <a class="explore-art" ng-href="/arts">Explore Art</a>
+            <a class="explore-art" custom-href="/arts">Explore Art</a>
         </section>
     </section>
 

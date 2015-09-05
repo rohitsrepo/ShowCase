@@ -1,7 +1,25 @@
 /*------------- Bucket modal overrides ------------*/
+.bucket-modal .modal-actions-header,
 .bucket-modal .modal-actions-header i.content-action {
     color: rgba(255, 255, 255, 0.8);
     margin-left: 5px;
+    vertical-align: top;
+}
+
+.bucket-modal .modal-actions-header .counter {
+    display: inline-block;
+    text-align: center;
+    margin-left: 5px;
+}
+
+.bucket-modal .modal-actions-header .counter .count {
+    display: block;
+}
+
+.bucket-modal .modal-actions-header .counter i {
+    margin: 0;
+    margin-bottom: 5px;
+    cursor: default;
 }
 
 .bucket-modal .modal-actions-header i.content-action:hover {

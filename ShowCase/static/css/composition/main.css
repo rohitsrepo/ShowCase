@@ -229,6 +229,7 @@ html, body {
     font-size: 0.9em;
     line-height: 1em;
     display: inline;
+    cursor: pointer;
 }
 
 .painting-parent .by-user:hover {
@@ -385,6 +386,7 @@ html, body {
 .art-associates .art-buckets .art-bucket .details .arts-count {
     font-size: 0.7em;
     margin-top: 10px;
+    display: inline;
 }
 
 /*------------ Artist Works ------------------*/

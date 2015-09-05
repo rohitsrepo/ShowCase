@@ -17,6 +17,7 @@ class Bucket(models.Model):
     background = models.ImageField(upload_to=get_upload_file_name_background, blank=True, null=True)
     compositions = models.ManyToManyField(Composition, related_name='holders', through='BucketMembership')
     slug = models.SlugField(max_length=100, unique=True)
+    views = models.IntegerField(default=0)
 
     owner = models.ForeignKey(User, related_name='buckets')
     created = models.DateTimeField(auto_now_add=True)

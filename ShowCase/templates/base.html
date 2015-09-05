@@ -44,7 +44,7 @@
     {% block site_header_block %}
 
     <header header-scroll class="site-header" ng-controller="headerController">
-        <a class="site-logo" href="/">
+        <a class="site-logo" custom-href="/">
             <img src="/static/images/header-md.png"  analytics-click analytics-data="['Top Bar-Left', 'Logo']">
             <section class="site-name nt-mb" fade-on-scroll ng-cloak ng-hide="hideName" analytics-click analytics-data="['Top Bar-Left', 'Logo - Name']">
                 <h1 class="nt-mb">THIRDDIME</h1>
@@ -52,11 +52,11 @@
             </section>
         </a><!--
         --><nav class="site-navigation">
-            <li><a ng-class="{'active' : exploreActive}" href="/arts">ART</a></li>
-            <!-- <li><a href="/artist">ARTISTS</a></li> -->
-            <!-- <li><a href="/generes">GENRES</a></li> -->
-            <li><a ng-class="{'active' : postsActive}" href="/posts">POSTS</a></li>
-            <li><a class="nt-mb" href="/blog" target="_blank">BLOG</a></li>
+            <li><a ng-class="{'active' : exploreActive}" custom-href="/arts">ART</a></li>
+            <!-- <li><a custom-href="/artist">ARTISTS</a></li> -->
+            <!-- <li><a custom-href="/generes">GENRES</a></li> -->
+            <li><a ng-class="{'active' : postsActive}" custom-href="/posts">POSTS</a></li>
+            <li><a class="nt-mb" custom-href="/blog" target="_blank">BLOG</a></li>
         </nav><!--
         --><section class="site-actions nt-mb">
             <!-- <button>ADD ART</button> -->
@@ -77,8 +77,8 @@
                 for="user-profile">
               <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
               <li class="mdl-menu__item" ng-click="gotoMySeries()"><i class="material-icons">list</i>Series</li>
-              <a class="mdl-menu__item" href="/me/settings"><i class="material-icons">settings</i>Settings</a>
-              <a href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
+              <a class="mdl-menu__item" custom-href="/me/settings"><i class="material-icons">settings</i>Settings</a>
+              <a custom-href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
             </ul>
 
         {% else %}
@@ -92,8 +92,8 @@
                 for="user-profile">
               <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
               <li class="mdl-menu__item"><i class="material-icons">list</i>Collection</li>
-              <a class="mdl-menu__item" href="/me/settings"><i class="material-icons">settings</i>Settings</a>
-              <a href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
+              <a class="mdl-menu__item" custom-href="/me/settings"><i class="material-icons">settings</i>Settings</a>
+              <a custom-href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
             </ul>
         {% endif %}
         </section>

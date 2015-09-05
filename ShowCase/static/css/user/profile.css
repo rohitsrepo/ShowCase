@@ -256,4 +256,5 @@ header .details .actions h3:hover {
 
 .user-bucket-picture .user-bucket-details .arts-count {
     font-size: 0.8em;
+    display: inline;
 }

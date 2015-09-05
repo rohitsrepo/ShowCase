@@ -143,6 +143,7 @@
 .bucket .picture .details .arts-count {
     font-size: 0.7em;
     margin-top: 10px;
+    display: inline;
 }
 
 @media (max-width: 800px) {

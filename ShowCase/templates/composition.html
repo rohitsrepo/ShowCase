@@ -69,14 +69,14 @@
 
             <section class="painting-parent">
                 <div class="by-header">Created By</div>
-                <a class="by-user" href="/@{{composition.artist.slug}}">
+                <a class="by-user" custom-href="/@{{composition.artist.slug}}">
                     <h3>{{composition.artist.name | title}}</h3>
                 </a>
             </section>
 
             <section class="painting-parent">
                 <div class="by-header">Contributed By</div>
-                <a class="by-user" ng-href="/@{{composition.uploader.slug}}" class="uploader">
+                <a class="by-user" custom-href="/@{{composition.uploader.slug}}" class="uploader">
                     <h3>{{composition.uploader.name | title}}</h3>
                 </a>
             </section>
@@ -108,6 +108,7 @@
                             <div class="by-user">By</div>
                             <h3>[[bucket.owner.name | titlecase ]]</h3>
                             <div class="arts-count">[[bucket.compositions_count]] Artworks</div>
+                            <div class="arts-count">[[bucket.views]] Views</div>
                         </section>
                     </div>
                 </section>
