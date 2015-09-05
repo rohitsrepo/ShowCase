@@ -7,6 +7,7 @@
 
 {% block meta_block %}
 	<meta charset="UTF-8">
+    <base href="/">
 	<meta name="Description" content="Title: {{composition.title}}, Artist: {{composition.artist.name}}, Category: Painting Interpretations and Stories">
 	<link rel="canonical" href="http://thirddime.com/arts/{{composition.slug}}" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -27,7 +28,7 @@
 	<!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}', '{{composition.slug}}', '{{composition.title}}', '{{is_bookmarked}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{is_bookmarked}}')"{% endblock %}
 
 {% block content_block %}
 	<section class="painting-area">
@@ -101,7 +102,7 @@
             <div class="art-buckets-container" ng-class="{'add-scroll' : artBuckets.length > 3}">
                 <section class="art-bucket" ng-repeat="bucket in artBuckets">
                     <div class="art-bucket-picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">
-                        <section class="details">
+                        <section class="details" ui-sref="bucket({userSlug: bucket.owner.slug, bucketSlug: bucket.slug})">
                             <h2>[[bucket.name | titlecase]]</h2>
                             <h3>[[bucket.description]]</h3>
                             <div class="by-user">By</div>
@@ -156,6 +157,8 @@
                 </section>
             </div>
         </section>
+
+    <div ui-view></div>
 
     </section>
 {% endblock %}
