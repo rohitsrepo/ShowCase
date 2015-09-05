@@ -7,18 +7,18 @@ angular.module('module.tools')
 			scope.isPanZoomDisable = false;
 
 			var painting = $('.painting');
-			
+
 			element.bind('click', function () {
 				analytics.logEvent('Composition', 'ToolBar - PanZoom: ' + scope.isPanZoomActive);
 				if(element.hasClass('disable')){
 					return;
 				}
-			
+
 				if (!scope.isPanZoomActive){
 					painting.panzoom({
 						$zoomIn: $(".zoom-in"),
 			            $zoomOut: $(".zoom-out"),
-			            $reset: $(".reset")
+			            $reset: $(".zoom-reset")
 					});
 				} else {
 					painting.panzoom('reset');
@@ -27,17 +27,6 @@ angular.module('module.tools')
 
 				scope.$apply(function () {
 					scope.isPanZoomActive = !scope.isPanZoomActive;
-					if (scope.isPanZoomActive) {
-						scope.isFullScreenDisable = true;
-						scope.isViewFinderDisable = true;
-						scope.isGrayScaleDisable = true;
-						scope.isOutlineDisable = true;
-					} else {
-						scope.isFullScreenDisable = false;
-						scope.isViewFinderDisable = false;
-						scope.isGrayScaleDisable = false;
-						scope.isOutlineDisable = false;
-					}
 				});
 			});
 		}

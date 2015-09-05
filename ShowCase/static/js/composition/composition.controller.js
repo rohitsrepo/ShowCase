@@ -169,7 +169,8 @@ controller("compositionController", [
 .directive('toolsDrawer', [function () {
 	return function (scope, element, attrs) {
 		var open = false;
-		element.bind('click', function () {
+        var drawerControl = element.find('.drawer-control');
+		drawerControl.bind('click', function () {
 			if (open){
 				element.removeClass('tools-extended');
 			} else {
