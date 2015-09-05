@@ -4,7 +4,6 @@ angular.module('module.root', [
     "wu.masonry",
 	"ngAnimate",
     'ui.router',
-    'anim-in-out',
     "module.model",
     "module.auth",
     'module.sharing',

@@ -36,9 +36,11 @@ angular.module("ExploreApp", ['ui.router',
             'art': ['$stateParams', 'compositionModel', function ($stateParams, compositionModel) {
                 return compositionModel.getArt($stateParams.artSlug);
             }],
-            'close': function () {
-                return 'NotModal';
-            }
+            'close': ['$state', function ($state) {
+                return function () {
+                    $state.go('arts');
+                };
+            }]
         }
     })
     .state('bucket', {
@@ -49,9 +51,11 @@ angular.module("ExploreApp", ['ui.router',
             'bucket': ['$stateParams', 'bucketModel', function ($stateParams, bucketModel) {
                 return bucketModel.getBucket($stateParams.bucketSlug);
             }],
-            'close': function () {
-                return 'NotModal';
-            }
+            'close': ['$state', function ($state) {
+                return function () {
+                    $state.go('arts');
+                };
+            }]
         }
     });
 }]);

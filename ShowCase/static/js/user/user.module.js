@@ -62,9 +62,11 @@ angular.module("UserApp", [
             'bucket': ['$stateParams', 'bucketModel', function ($stateParams, bucketModel) {
                 return bucketModel.getBucket($stateParams.bucketSlug);
             }],
-            'close': function () {
-                return 'NotModal';
-            }
+            'close': ['$state', function ($state) {
+                return function () {
+                    $state.go('buckets');
+                };
+            }]
         }
     });
 }]);

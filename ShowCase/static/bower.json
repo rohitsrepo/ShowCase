@@ -31,6 +31,5 @@
     "angucomplete-alt": "~0.0.39",
     "angular-ui-router": "~0.2.6",
     "angular-masonry": "~0.11.1",
-    "angular-ui-router-anim-in-out": "~0.0.13"
   }
 }

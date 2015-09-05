@@ -40,4 +40,18 @@ angular.module('module.bucketmodal')
             close();
         };
     }
-]);
+])
+.directive('keyEventBinder', ['$window', function ($window) {
+    return function (scope, element, attrs) {
+        element.focus();
+        element.bind('keydown', function (evt) {
+
+            if (evt.keyCode == 27) {
+                $window.history.back();
+            }
+
+            return false;
+
+        });
+    }
+}]);

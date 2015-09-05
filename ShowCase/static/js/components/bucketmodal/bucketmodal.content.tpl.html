@@ -1,7 +1,8 @@
 <section key-event-binder tabindex="0" class="bucket-modal content">
     <section class="modal-actions-header">
         <i class="material-icons action content-action" ng-cloak ng-show="bucket.has_ownership">edit</i>
-        <i class="material-icons action content-action" ui-sref="arts">close</i>
+        <i class="material-icons action content-action" ng-click="back()">arrow_back</i>
+        <i class="material-icons action content-action" ng-click="close()">close</i>
     </section>
 
     <div class="background-area" ng-if="bucket" ng-style="{'background-image': 'url([[bucket.background_url]])'}"></div>

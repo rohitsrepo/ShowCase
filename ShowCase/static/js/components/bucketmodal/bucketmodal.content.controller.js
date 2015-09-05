@@ -1,12 +1,13 @@
 angular.module('module.bucketmodal')
 .controller('bucketmodalContentController', ['$scope',
+    '$window',
     'bucketModel',
     'bucketmodalService',
     'close',
     'bucket',
     'progress',
     'alert',
-    function ($scope, bucketModel, bucketmodalService, close, bucket, progress, alert) {
+    function ($scope, $window, bucketModel, bucketmodalService, close, bucket, progress, alert) {
 
         progress.showProgress();
         $scope.bucket = bucket;
@@ -42,17 +43,28 @@ angular.module('module.bucketmodal')
             }
         }
 
+        $scope.back = function () {
+            $window.history.back();
+        };
+
         $scope.close = function () {
             close();
         };
 
     }
 ])
-.directive('keyEventBinder', [function () {
+.directive('keyEventBinder', ['$window', function ($window) {
     return function (scope, element, attrs) {
         element.focus();
         element.bind('keydown', function (evt) {
+
+            if (evt.keyCode == 27) {
+                $window.history.back();
+            }
+
             scope.slyCallBack(evt);
+
+            return false;
         });
     }
 }])

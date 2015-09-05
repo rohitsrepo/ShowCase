@@ -17,12 +17,13 @@ angular.module('ExploreApp')
 	$scope.arts = [];
 	$scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
 
-    $rootScope.$on('$stateChangeStart',
+    // Disable scroll on parent page
+    $rootScope.$on('$stateChangeSuccess',
     function(event, toState, toParams, fromState, fromParams){
         var body = $document.find('body');
         if (fromState.name == 'arts') {
             body.addClass('modal-open');
-        } else {
+        } else if (toState.name == 'arts') {
             body.removeClass('modal-open');
         }
     })
