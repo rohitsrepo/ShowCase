@@ -121,7 +121,7 @@
 }
 
 .bucket .picture .details:hover {
-    opacity: 0.5;
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .bucket .picture .details h2 {

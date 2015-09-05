@@ -75,13 +75,26 @@ ol, ul {
           outline: none;
 }
 
-::selection {
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: black;
+    border: 5px solid white;
+}
+
+/*::selection {
   background: #E6B800;
 }
 
 ::-moz-selection {
   background: #E6B800;
-}
+}*/
 
 a {
   text-decoration: none;

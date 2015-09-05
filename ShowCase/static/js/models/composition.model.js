@@ -46,5 +46,13 @@ angular.module("module.model")
         });
     };
 
+    service.getAssociates = function (artId) {
+        return $http.get('/compositions/' + artId + '/associates').then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
 	return service;
 }]);

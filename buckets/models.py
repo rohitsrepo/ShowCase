@@ -52,7 +52,7 @@ class Bucket(models.Model):
             return self.background.url
         except:
             try:
-                composition = self.compositions.order_by('bucketmembership__added').last()
+                composition = self.compositions.exclude(nsfw=True).order_by('bucketmembership__added').last()
                 return composition.get_350_url()
             except:
                 return ''

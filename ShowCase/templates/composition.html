@@ -74,7 +74,7 @@
             </section>
 
             <section class="painting-parent">
-                <div class="by-header">Uploaded By</div>
+                <div class="by-header">Contributed By</div>
                 <a class="by-user" ng-href="/@{{composition.uploader.slug}}" class="uploader">
                     <h3>{{composition.uploader.name | title}}</h3>
                 </a>
@@ -92,6 +92,70 @@
             </section>
 
         </div>
+
+    </section>
+
+    <section class="art-associates">
+        <section class="associate-category art-buckets" ng-cloak ng-show="artBuckets.length > 0">
+            <h2>Series explaining this work</h2>
+            <div class="art-buckets-container" ng-class="{'add-scroll' : artBuckets.length > 3}">
+                <section class="art-bucket" ng-repeat="bucket in artBuckets">
+                    <div class="art-bucket-picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">
+                        <section class="details">
+                            <h2>[[bucket.name | titlecase]]</h2>
+                            <h3>[[bucket.description]]</h3>
+                            <div class="by-user">By</div>
+                            <h3>[[bucket.owner.name | titlecase ]]</h3>
+                            <div class="arts-count">[[bucket.compositions_count]] Artworks</div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section class="associate-category associate-works artist-works" ng-cloak ng-show="artistWorks.length > 0">
+            <h2>Other works by artist</h2>
+            <div class="associate-works-container" ng-class="{'add-scroll' : artistWorks.length > 3}">
+                <section class="work" ng-repeat="work in artistWorks">
+                    <div class="work-picture" ng-style="{'background-image': 'url([[work.matter_350]])'}">
+                        <div class="work-nsfw-overlay" ng-cloak ng-show="work.nsfw"  ng-click="work.nsfw = false">
+                            <h3>This work has been marked not safe</h3>
+                            <h4>Click anywhere to show the work</h4>
+                        </div>
+                        <a class="work-details" ng-href="/arts/[[work.slug]]">
+                            <h2>[[work.title | titlecase]]</h2>
+                            <div class="by-user">By</div>
+                            <h3>[[work.artist.name | titlecase ]]</h3>
+                            <div class="arts-count">[[work.views]] Views</div>
+                            <div class="arts-count">[[work.bookmarks_count]] Admirations</div>
+                            <div class="arts-count">[[work.buckets_count]] Series</div>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section class="associate-category associate-works uploader-works" ng-cloak ng-show="uploaderWorks.length > 0">
+            <h2>Other works by contributor</h2>
+            <div class="associate-works-container" ng-class="{'add-scroll' : uploaderWorks.length > 3}">
+                <section class="work" ng-repeat="work in uploaderWorks">
+                    <div class="work-picture" ng-style="{'background-image': 'url([[work.matter_350]])'}">
+                        <div class="work-nsfw-overlay" ng-cloak ng-show="work.nsfw"  ng-click="work.nsfw = false">
+                            <h3>This work has been marked not safe</h3>
+                            <h4>Click anywhere to show the work</h4>
+                        </div>
+                        <a class="work-details" ng-href="/arts/[[work.slug]]">
+                            <h2>[[work.title | titlecase]]</h2>
+                            <div class="by-user">By</div>
+                            <h3>[[work.artist.name | titlecase ]]</h3>
+                            <div class="arts-count">[[work.views]] Views</div>
+                            <div class="arts-count">[[work.bookmarks_count]] Admirations</div>
+                            <div class="arts-count">[[work.buckets_count]] Series</div>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </section>
 
     </section>
 {% endblock %}

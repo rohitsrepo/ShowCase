@@ -14,6 +14,7 @@ controller("compositionController", [
     'bookService',
     'usermodalService',
     'bucketmodalService',
+    'compositionModel',
 	function ($window,
 		$scope,
 		feedModel,
@@ -27,7 +28,8 @@ controller("compositionController", [
 		userModel,
         bookService,
         usermodalService,
-        bucketmodalService)
+        bucketmodalService,
+        compositionModel)
 	{
 
 	$scope.composition = {};
@@ -35,6 +37,14 @@ controller("compositionController", [
 	$scope.hideName = true;
 	$scope.interpretationModalshown = false;
     $scope.isBookMarked = false;
+
+    var getArtAssociates = function () {
+        compositionModel.getAssociates($scope.composition.id).then(function (response) {
+            $scope.artBuckets = response.artBuckets;
+            $scope.artistWorks = response.artistWorks;
+            $scope.uploaderWorks = response.uploaderWorks;
+        });
+    };
 
 	$scope.init = function (id, url, slug, title, isBookMarked) {
 		$scope.composition.id = id;
@@ -46,16 +56,9 @@ controller("compositionController", [
 		if (url) {
 			analytics.logEvent('Composition', 'Init: ' + url);
 		}
-	};
 
-	$scope.getNextPosts = function () {
-		$scope.disableNextPost = true;
-		var feed = $location.search()['feed'];
-		var postId = $location.search()['post'];
-		feedModel.nextPosts(feed, postId, $scope.composition.id).then(function (posts) {
-			$scope.nextPosts = posts;
-		});
-	}();
+        getArtAssociates(id);
+	};
 
     $scope.handleBookMark = function () {
     	var composition = $scope.composition;

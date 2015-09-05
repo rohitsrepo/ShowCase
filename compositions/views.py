@@ -295,3 +295,21 @@ def get_bookmarkers(request, composition_id, format=None):
     bookers = composition.bookers.all()
     serializer = BookmarkerSerializer(bookers, context={'request': request})
     return Response(data=serializer.data)
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_associates(request, composition_id, format=None):
+    composition = get_object_or_404(Composition, pk=composition_id)
+    artBuckets = composition.holders.all()
+    artistWorks = composition.artist.arts.exclude(id=composition_id)
+    uploaderWorks = composition.uploader.compositions.exclude(id=composition_id)
+
+    artBucketsSerializer = BucketSerializer(artBuckets, context={'request': request})
+    artistWorksSerializer = CompositionSerializer(artistWorks, context={'request': request})
+    uploaderWorksSerializer = CompositionSerializer(uploaderWorks, context={'request': request})
+
+    result = {'artBuckets': artBucketsSerializer.data,
+    'artistWorks': artistWorksSerializer.data,
+    'uploaderWorks': uploaderWorksSerializer.data}
+
+    return Response(result)
