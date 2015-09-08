@@ -1,10 +1,12 @@
-from .models import Composition
 from django.shortcuts import render_to_response
-from .serializers import PaginatedCompositionSerializer
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
+
+from .models import Composition
+from .serializers import PaginatedCompositionSerializer
 
 
 def get_explore_paginator():

@@ -4,10 +4,11 @@ from django.conf import settings
 
 from ShowCase.slugger import unique_slugify
 
+from accounts.models import User
 from compositions.models import Composition
 from compositions.imageTools import compress
+from feeds.models import Fresh, bind_fresh_feed
 from posts.models import Post, bind_post
-from accounts.models import User
 
 
 def get_upload_file_name_background(instance, filename):
@@ -76,6 +77,16 @@ class BucketMembership(models.Model):
     composition = models.ForeignKey(Composition)
     added = models.DateTimeField(auto_now_add=True)
 
+    def add_to_fresh_feed(self):
+        if self.bucket.compositions.count() > 3 and not self.get_fresh_post().exists():
+            Fresh.objects.create(feed_type=Fresh.BUCKET,
+                content_object=self.bucket)
+
+    def get_fresh_post(self):
+        return Fresh.objects.filter(feed_type=Fresh.BUCKET,
+                object_id=self.bucket.id,
+                content_object=ContentType.get_for_model(Bucket))
+
     def create_post(self):
         return Post(
             composition=self.composition,
@@ -91,3 +102,4 @@ class BucketMembership(models.Model):
             content_type=ContentType.objects.get_for_model(BUCKET))
 
 bind_post(BucketMembership)
+bind_fresh_feed(BucketMembership)

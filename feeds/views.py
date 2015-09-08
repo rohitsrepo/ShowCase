@@ -1,13 +1,17 @@
 from django.conf import settings
-from .models import StaffPost
-from .serializers import PaginatedPostSerializer, PostSerializer
-from rest_framework import permissions
-from rest_framework.decorators import api_view, permission_classes
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from rest_framework.response import Response
-from interpretations.models import Interpretation
 from django.db.models import Q
 from django.http import Http404
+
+from rest_framework import permissions
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import StaffPost, Fresh
+from .serializers import PaginatedPostSerializer, PostSerializer, PaginatedFeedPostSerializer
+
+from interpretations.models import Interpretation
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
@@ -43,7 +47,7 @@ def editors_pick_next(request, format=None):
 
     try :
         next_posts = StaffPost.objects.filter(~Q(composition__id = composition_id), Q(id__lt=post_id)).order_by('-id')[:post_count]
-    except: 
+    except:
         next_posts = default_editors_posts(composition_id, post_count)
 
     if (next_posts.count() == 0):
@@ -65,7 +69,7 @@ def add_interpretation_rank(posts, results):
     for post in posts:
         results[counter]['interpretation_rank'] = Interpretation.objects.filter(composition=post.composition, id__lt=post.interpretation.id).count()
         counter += 1
-   
+
 def add_voting_status(posts, user, results):
     counter = 0;
     for post in posts:
@@ -76,7 +80,24 @@ def add_comment_count(posts, results):
     counter = 0
     for post in posts:
         results[counter]['comments_count'] = post.interpretation.comments.count()
-        counter += 1    
-    
-    
+        counter += 1
+
+
+class FreshPostList(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, format=None):
+        page_num = request.GET.get('page', 1)
+        posts = Fresh.objects.all().order_by('-created')
+        paginator = Paginator(posts, 15)
+
+        try:
+            this_page_posts = paginator.page(page_num)
+        except PageNotAnInteger:
+            this_page_posts = paginator.page(1)
+        except EmptyPage:
+            raise Http404
+
+        serializer = PaginatedFeedPostSerializer(this_page_posts, context={'request': request})
+        return Response(data=serializer.data)
 

@@ -5,12 +5,11 @@ from django.conf import settings
 from django.utils.timesince import timesince
 from django.contrib.contenttypes.models import ContentType
 
-from compositions.models import Composition
 from posts.models import Post, bind_post
 
 
 class Interpretation(models.Model):
-    composition = models.ForeignKey(Composition)
+    composition = models.ForeignKey('compositions.Composition')
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     interpretation = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
