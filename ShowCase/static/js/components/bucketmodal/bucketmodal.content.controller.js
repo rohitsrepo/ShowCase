@@ -88,7 +88,7 @@ angular.module('module.bucketmodal')
 
     }
 ])
-.directive('keyEventBinder', ['$window', function ($window) {
+.directive('keyEventBinderContent', ['$window', function ($window) {
     return function (scope, element, attrs) {
         element.focus();
         element.bind('keydown', function (evt) {
@@ -101,6 +101,10 @@ angular.module('module.bucketmodal')
             scope.slyCallBack(evt);
 
         });
+
+        scope.$on('$destroy', function () {
+            element.unbind('keydown');
+        })
     }
 }])
 .directive('horizontalSly', ['$timeout', function ($timeout) {

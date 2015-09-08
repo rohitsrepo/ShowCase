@@ -41,7 +41,7 @@ angular.module('module.bucketmodal')
         };
     }
 ])
-.directive('keyEventBinder', ['$window', function ($window) {
+.directive('keyEventBinderShow', ['$window', function ($window) {
     return function (scope, element, attrs) {
         element.focus();
         element.bind('keydown', function (evt) {
@@ -51,5 +51,9 @@ angular.module('module.bucketmodal')
                 return false;
             }
         });
+
+        scope.$on('$destroy', function () {
+            element.unbind('keydown');
+        })
     }
 }]);
