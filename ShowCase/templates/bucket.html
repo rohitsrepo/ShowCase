@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block html_attr_block %}ng-app="BucketApp"{% endblock %}
+
+{% block title_block %}
+    <title>{{bucket.name | title}} by {{bucket.owner.name | title}} </title>
+{%endblock%}
+
+{% block meta_block %}
+    <meta charset="UTF-8">
+    <base href="/">
+    <meta name="Description" content="Title: {{bukcet.name}}, Artist: {{bucket.owner.name}}, Category: Painting Interpretations and Stories">
+    <link rel="canonical" href="http://thirddime.com/arts/{{bucket.slug}}" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="{{bucket.name}}">
+    <meta property="og:site_name" content="ThirdDime">
+    <meta property="og:url" content="http://thirddime.com/arts/{{bucket.slug}}">
+    <meta property="og:description" content="Series explaining {{bucket.name | title}}">
+    <meta property="og:image" content="http://thirddime.com/{{bucket.picture}}">
+    <meta property="og:type" content="website">
+    <meta property="og:type" content="[462422103909005]">
+{%endblock%}
+
+{% block css_block %}
+     <!-- build:css /static/build/bucket.css -->
+    <link rel="stylesheet" type="text/css" href="/static/css/bucket/main.css">
+    <!-- endbuild -->
+{%endblock%}
+
+{% block body_attr_block %}ng-controller="bucketController" ng-init="init({{bucket.id}}, '{{bukcet.name | escapejs}}', '{{bucket.slug}}', '{{is_watched}}', '{{is_me}}')"{% endblock %}
+
+{% block content_block %}
+
+    <section key-event-binder-content-solo tabindex="0" class="bucket-modal content">
+        <section class="modal-actions-header">
+            <i class="material-icons action content-action" ng-cloak ng-show="'{{has_ownership}}' == 'True'">edit</i>
+            <span class="counter">
+                <i class="material-icons action content-action">visibility</i>
+                <h6 class="count">{{bucket.views}}</h6>
+            </span>
+            <span class="counter counter-watchers">
+                <i class="material-icons action content-action" ng-cloak ng-hide="bucket.isWatched" ng-click="watchBucket()">star_border</i>
+                <i class="material-icons action content-action" ng-cloak ng-show="bucket.isWatched" ng-click="unwatchBucket()">star</i>
+                <h6 class="count">{{bucket.watchers_count}}</h6>
+            </span>
+            <a href="/@{{bucket.owner.slug}}/series"><i class="material-icons action content-action">arrow_back</i></a>
+        </section>
+
+        <div class="background-area" ng-if="bucket" ng-style="{'background-image': 'url([[bucket.background_url]])'}"></div>
+        <div class="background-overlay"></div>
+
+        <article class="bucket-content" swipe-effect ng-swipe-left="nextArt()" ng-swipe-right="prevArt()">
+            <header class="content-bucket-header">
+                <h1>{{bucket.name | title}}</h1>
+                <h2>{{bucket.description}}</h2>
+                <div class="by-user">by</div>
+                <h2><a custom-href="/@{{bucket.owner.slug}}">{{bucket.owner.name | title }}</a></h2>
+            </header>
+
+            <div horizontal-sly class="content-scroll-holder nt-mb" id="basic">
+                <ul class="content-container">
+                    <section class="content-art" check-last ng-repeat="art in bucketArts" ng-style="{'height': '450px', 'width': '[[math.round(450/art.matter_aspect)]]px'}">
+
+                        <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
+                            <h6>This work is marked not safe</h6>
+                            <h6>Click anywhere to show the work</h6>
+                        </div>
+
+                        <img ng-src="[[art.matter_550]]">
+                        <section class="art-details">
+                            <div class="art-details-actions">
+                                <i class="material-icons action" ng-cloak ng-show="'{{has_ownership}}' == 'True'">delete</i>
+                            </div>
+                            <h1><a custom-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a></h1>
+                            <div class="by-user">by</div>
+                            <h2><a custom-href="/@[[art.artist.slug]]">[[art.artist.name | titlecase]]</a></h2>
+                        </section>
+                    </section>
+                </ul>
+            </div>
+
+            <div class="show-mb bucket-content-mb" >
+                <a ng-cloak ng-show="art.show" custom-href="/arts/[[art.slug]]" ng-repeat='art in bucketArts'>
+                    <img ng-src="[[art.matter_550]]">
+                </a>
+            </div>
+
+            <div class="scrollbar nt-mb">
+                <div class="handle">
+                    <div class="mousearea"></div>
+                </div>
+            </div>
+
+        </article>
+
+    </section>
+
+    <div ui-view></div>
+
+{% endblock %}
+
+{% block script_block %}
+    <!-- build:js /static/build/bucket.js -->
+    <script type="text/javascript" src="/static/js/bucket/bucket.module.js"></script>
+    <script type="text/javascript" src="/static/js/bucket/bucket.controller.js"></script>
+    <!-- endbuild -->
+{% endblock %}

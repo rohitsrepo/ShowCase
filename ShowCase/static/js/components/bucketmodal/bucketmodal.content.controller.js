@@ -94,6 +94,7 @@ angular.module('module.bucketmodal')
         element.bind('keydown', function (evt) {
 
             if (evt.keyCode == 27) {
+                console.log("catching events");
                 $window.history.back();
                 return false;
             }

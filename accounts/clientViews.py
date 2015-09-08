@@ -1,8 +1,9 @@
-from .models import User
 from django.http import Http404
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render_to_response
 from django.contrib.auth.decorators import login_required
+
+from .models import User
 
 def site_main(request):
     context = RequestContext(request)
