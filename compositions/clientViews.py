@@ -7,19 +7,25 @@ def composition_main(request, slug):
     composition = get_object_or_404(Composition, slug=slug)
     composition.views = composition.views + 1
     composition.save()
-    try:
-        top_interpretation = composition.interpretation_set.all()[0].to_text()
-    except:
-        top_interpretation = "Explore Art through Stories and Interpretations."
 
     context = RequestContext(request, {
         'composition': composition,
-        'top_interpretation': top_interpretation,
         'is_bookmarked': composition.is_bookmarked(request.user.id),
         'has_ownership': composition.has_ownership(request.user.id),
         'is_nsfw': composition.is_nsfw(request.user)
     })
     return render_to_response("composition.html", context)
+
+def composition_series(request, slug):
+    composition = get_object_or_404(Composition, slug=slug)
+
+    context = RequestContext(request, {
+        'composition': composition,
+        'is_bookmarked': composition.is_bookmarked(request.user.id),
+        'has_ownership': composition.has_ownership(request.user.id),
+        'is_nsfw': composition.is_nsfw(request.user)
+    })
+    return render_to_response("composition_series.html", context)
 
 def add_interpretation(request, slug):
     composition = get_object_or_404(Composition, slug=slug)

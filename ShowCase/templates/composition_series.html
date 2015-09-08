@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block html_attr_block %}ng-app="CompositionSeriesApp"{% endblock %}
+
+{% block title_block %}
+	<title>{{composition.title | title}} by {{composition.artist.name | title}} | Interpretations and Stories</title>
+{%endblock%}
+
+{% block meta_block %}
+	<meta charset="UTF-8">
+    <base href="/">
+	<meta name="Description" content="Title: {{composition.title}}, Artist: {{composition.artist.name}}, Category: Painting Interpretations and Stories">
+	<link rel="canonical" href="http://thirddime.com/arts/{{composition.slug}}" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta property="og:title" content="{{composition.title}}">
+	<meta property="og:site_name" content="ThirdDime">
+	<meta property="og:url" content="http://thirddime.com/arts/{{composition.slug}}">
+	<meta property="og:description" content="Series explaining {{composition.title | title}}">
+	<meta property="og:image" content="http://thirddime.com/{{composition.matter.url}}">
+	<meta property="og:type" content="website">
+	<meta property="og:type" content="[462422103909005]">
+{%endblock%}
+
+{% block css_block %}
+	 <!-- build:css /static/build/composition.css -->
+	<link rel="stylesheet" type="text/css" href="/static/css/compositionseries/main.css">
+	<!-- endbuild -->
+{%endblock%}
+
+{% block body_attr_block %}ng-controller="compositionSeriesController" ng-init="init({{composition.id}}, '{{composition.matter.url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{is_bookmarked}}')"{% endblock %}
+
+{% block content_block %}
+
+    <section class="solo-art-buckets">
+        <ul class="container" ng-cloak>
+            <h1 class="solo-art-buckets-header" ng-cloak ng-hide="noSuchBucket.status">Series containing <a custom-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a></h1>
+            <li class="solo-art-bucket" ng-repeat="bucket in artBuckets" ui-sref="bucket({userSlug: bucket.owner.slug, bucketSlug: bucket.slug})">
+                <div class="picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">
+                    <section class="details">
+                        <h2>[[bucket.name | titlecase]]</h2>
+                        <h3>[[bucket.description]]</h3>
+                        <div class="by-user">By</div>
+                        <h3>[[bucket.owner.name | titlecase ]]</h3>
+                        <div class="arts-count">[[bucket.compositions_count]] Artworks</div>
+                        <div class="arts-count">[[bucket.views]] Views</div>
+                    </section>
+                </div>
+            </li>
+            <div ng-cloak ng-show="noSuchBucket.status" class="no-solo-bucket">
+                <h1 class="no-buckets-header">This work is not present in any series yet</h1>
+                <h2>Add this work to your series?</h2>
+                <button ng-click='noSuchBucket.action()'>To Series</button>
+            </div>
+        </ul> <!-- container -->
+    </section>
+
+    <div ui-view></div>
+	
+{% endblock %}
+
+{% block script_block %}
+	<!-- build:js /static/build/composition.js -->
+	<script type="text/javascript" src="/static/js/composition/composition.series.module.js"></script>
+	<script type="text/javascript" src="/static/js/composition/composition.series.controller.js"></script>
+    <!-- endbuild -->
+{% endblock %}

@@ -48,6 +48,7 @@ angular.module('module.bucketmodal')
 
             if (evt.keyCode == 27) {
                 $window.history.back();
+                return false;
             }
         });
     }

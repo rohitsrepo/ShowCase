@@ -1,7 +1,9 @@
 angular.module("CompositionApp").
 controller("compositionController", [
 	"$window",
+    '$document',
 	"$scope",
+    '$rootScope',
 	"feedModel",
 	"postModel",
 	"contentManager",
@@ -16,7 +18,9 @@ controller("compositionController", [
     'bucketmodalService',
     'compositionModel',
 	function ($window,
-		$scope,
+        $document,
+        $scope,
+        $rootScope,
 		feedModel,
 		postModel,
 		contentManager,
@@ -37,6 +41,17 @@ controller("compositionController", [
 	$scope.hideName = true;
 	$scope.interpretationModalshown = false;
     $scope.isBookMarked = false;
+
+    // Disable scroll on parent page
+    $rootScope.$on('$stateChangeSuccess',
+    function(event, toState, toParams, fromState, fromParams){
+        var body = $document.find('body');
+        body.addClass('modal-open');
+        
+        if (toState.name == 'art') {
+            body.removeClass('modal-open');
+        }
+    });
 
     var getArtAssociates = function () {
         compositionModel.getAssociates($scope.composition.id).then(function (response) {

@@ -1,8 +1,5 @@
-angular.module("CompositionApp", [
-    'ngSanitize',
-    'infinite-scroll',
-    'module.root',
-    'module.tools'])
+angular.module("CompositionSeriesApp", [
+    'module.root'])
 .value('$anchorScroll', angular.noop)
 .config(['$httpProvider',
     '$interpolateProvider',
@@ -25,23 +22,8 @@ angular.module("CompositionApp", [
 
     // Now set up the states
     $stateProvider
-    .state('art', {
-        url: "/arts/{compositionSlug}"
-    })
     .state('buckets', {
-        url: "/arts/{compositionSlug}/series",
-        templateUrl: "/static/js/components/bucketmodal/bucketmodal.show.tpl.html",
-        controller: 'bucketmodalShowController',
-        resolve: {
-            'art': ['$stateParams', 'compositionModel', function ($stateParams, compositionModel) {
-                return compositionModel.getArt($stateParams.compositionSlug);
-            }],
-            'close': ['$state', '$stateParams', function ($state, $stateParams) {
-                return function () {
-                    $state.go('art', {'compositionSlug': $stateParams.compositionSlug});
-                };
-            }]
-        }
+        url: "/arts/{compositionSlug}/series"
     })
     .state('bucket', {
         url: "/@{userSlug}/series/{bucketSlug}",

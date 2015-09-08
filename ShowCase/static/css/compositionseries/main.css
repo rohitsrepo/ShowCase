@@ -1,0 +1,90 @@
+.solo-art-buckets {
+	width: 100%;
+}
+
+.solo-art-buckets .container {
+	width: 70%;
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.solo-art-buckets .container .solo-art-buckets-header {
+    text-align: center;
+    font-size: 2em;
+    line-height: 1.5em;
+    margin-bottom: 20px;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+@media (max-width: 800px) {
+    .solo-art-buckets .container .solo-art-buckets-header {
+        font-size: 1.5em;
+    }
+}
+
+.solo-art-buckets .container .solo-art-buckets-header a {
+    text-decoration: underline;
+}
+
+.solo-art-buckets .container .solo-art-bucket {
+    width: 100%;
+    padding: 10px 20px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.solo-art-buckets .container .solo-art-bucket .picture{
+    width: 100%;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+}
+
+.solo-art-bucket .picture .details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 5px;
+    padding-top: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    transition: all 1s;
+}
+
+.solo-art-bucket .picture .details:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.solo-art-bucket .picture .details h2 {
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+
+.solo-art-bucket .picture .details .by-user {
+    font-size: 0.8em;
+    margin-top: 80px;
+    line-height: 1.5em;
+}
+
+.solo-art-bucket .picture .details h3 {
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+.solo-art-bucket .picture .details .arts-count {
+    font-size: 0.7em;
+    margin-top: 10px;
+    display: inline;
+}
+
+@media (max-width: 800px) {
+    .solo-art-buckets .container {
+        width: 100%;
+        max-width: none;
+    }
+}

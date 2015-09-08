@@ -26,7 +26,7 @@ angular.module('ExploreApp')
         } else if (toState.name == 'arts') {
             body.removeClass('modal-open');
         }
-    })
+    });
 
 	var getArts = function () {
 

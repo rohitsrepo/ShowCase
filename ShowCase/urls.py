@@ -21,6 +21,7 @@ urlpatterns = patterns('',
 urlpatterns += patterns('',
                        url(r'^arts$', TemplateView.as_view(template_name='explore.html'), name='explore'),
                        url(r'^arts/(?P<slug>[\w-]+)$', 'compositions.clientViews.composition_main', name="composition-page"),
+                       url(r'^arts/(?P<slug>[\w-]+)/series', 'compositions.clientViews.composition_series', name="composition-series"),
     )
 
 ## Account urls

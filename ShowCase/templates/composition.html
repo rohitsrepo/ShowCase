@@ -15,7 +15,7 @@
 	<meta property="og:title" content="{{composition.title}}">
 	<meta property="og:site_name" content="ThirdDime">
 	<meta property="og:url" content="http://thirddime.com/arts/{{composition.slug}}">
-	<meta property="og:description" content="{{top_interpretation}}">
+	<meta property="og:description" content="Explore art">
 	<meta property="og:image" content="http://thirddime.com/{{composition.matter.url}}">
 	<meta property="og:type" content="website">
 	<meta property="og:type" content="[462422103909005]">
@@ -23,7 +23,6 @@
 
 {% block css_block %}
 	 <!-- build:css /static/build/composition.css -->
-	<link rel="stylesheet" type="text/css" href="/static/vendor/zoome/zoome-min.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/composition/main.css">
 	<!-- endbuild -->
 {%endblock%}
@@ -84,7 +83,7 @@
             <section class="details-actions-details">
                 <h4 class="inactive">Views {{composition.views}}</h4>
                 <h4 ng-click="showBookMarkers()">Admirers {{composition.bookmarks_count}}</h4>
-                <h4 ng-click="showArtBuckets()">Series {{composition.buckets_count}}</h4>
+                <h4 ui-sref="buckets({compositionSlug: '{{composition.slug}}' })">Series {{composition.buckets_count}}</h4>
             </section>
 
             <section class="details-actions">
@@ -159,9 +158,10 @@
             </div>
         </section>
 
+    </section>
+    
     <div ui-view></div>
 
-    </section>
 {% endblock %}
 
 {% block script_block %}
@@ -169,7 +169,6 @@
 	<script type="text/javascript" src="/static/vendor/fullscreen/jquery.fullscreen.js"></script>
 	<script type="text/javascript" src="/static/bower_components/color-thief/dist/color-thief.min.js"></script>
 	<script type="text/javascript" src="/static/bower_components/jquery.panzoom/dist/jquery.panzoom.min.js"></script>
-	<script type="text/javascript" src="/static/vendor/zoome/zoome.min.js"></script>
 
 	<script type="text/javascript" src="/static/js/composition/composition.module.js"></script>
 	<script type="text/javascript" src="/static/js/composition/composition.controller.js"></script>
