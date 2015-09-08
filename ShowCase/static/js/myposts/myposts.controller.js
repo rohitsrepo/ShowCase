@@ -1,5 +1,7 @@
 angular.module('MypostsApp')
 .controller('mypostsController', ['$scope',
+    '$rootScope',
+    '$document',
     'auth',
     'activityModel',
     'bucketmodalService',
@@ -7,10 +9,21 @@ angular.module('MypostsApp')
     'usermodalService',
     'progress',
     'alert',
-    function ($scope, auth, activityModel, bucketmodalService, bookService, usermodalService, progress, alert) {
+    function ($scope, $rootScope, $document, auth, activityModel, bucketmodalService, bookService, usermodalService, progress, alert) {
 
     $scope.userActivities = [];
     $scope.activitiesMeta = {next_token: '', disableGetMore: false, busy: false, noPosts: false};
+
+    // Disable scroll on parent page
+    $rootScope.$on('$stateChangeSuccess',
+    function(event, toState, toParams, fromState, fromParams){
+        var body = $document.find('body');
+        body.addClass('modal-open');
+
+        if (toState.name == 'posts') {
+            body.removeClass('modal-open');
+        }
+    });
 
     var getActivities = function () {
 

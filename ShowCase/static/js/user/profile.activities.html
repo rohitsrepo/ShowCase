@@ -94,7 +94,7 @@
                 <div class="activity-header-details">
                     <a custom-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a>
                     added artwork to series
-                    <span class="click-active" ng-click="showBucketArts($index)">[[activity.content.name | titlecase]]</span>
+                    <span class="click-active" ui-sref="bucket({userSlug: activity.creator.slug, bucketSlug: activity.content.slug})">[[activity.content.name | titlecase]]</span>
                     <div class="activity-user-creds">
                         <span ng-show="activity.creator.followers_count != 0">Followers [[activity.creator.followers_count]] </span>
                         <span ng-show="activity.creator.buckets_count != 0">Series [[activity.creator.buckets_count]] </span>

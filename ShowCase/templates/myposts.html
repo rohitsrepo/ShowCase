@@ -7,6 +7,7 @@
 
 
 {% block meta_block %}
+    <base href="/">
     <meta name="description" content="Browse through breathtaking artworks and their interpretations. Discover deeper layers behind each painting with a community of art lovers." />
     <link rel="canonical" href="http://thirddime.com" />
     <link ng-cloak ng-if="postsMeta.next" rel="next" href="http://thirddime.com#[[postsMeta.next]]" />
@@ -40,6 +41,8 @@
         <h4>Keep exploring</h4>
         <a class="explore-art" custom-href="/arts">Explore Art</a>
     </div>
+
+    <div ui-view></div>
 {% endblock %}
 
 {% block script_block %}
