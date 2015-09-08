@@ -41,17 +41,17 @@
 			<section>
 					<h1>Explore Art through Interpretations and Stories</h1>
 					<h3>Browse through our growing collection of paintings and discover deeper layers behind each brushstroke.</h3>
-					<a href="/arts" class="explore" analytics-click analytics-data="['Reader', 'Button-Explore Art']">EXPLORE ART</a>
+					<a custom-href="/arts" class="explore" analytics-click analytics-data="['Reader', 'Button-Explore Art']">EXPLORE ART</a>
 			</section>
 			<footer class="head-footer">
 				<ul class="social clearfix">
-					<li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Pinterest']" href="https://www.pinterest.com/thirddime/thirddime-art/" >
+					<li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Pinterest']" custom-href="https://www.pinterest.com/thirddime/thirddime-art/" >
 						<img title="Pinterest" src="/static/css/reader/icons/pinterest-filled.svg">
 					</a></li>
-					<li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Twitter']" href="https://twitter.com/thirddime">
+					<li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Twitter']" custom-href="https://twitter.com/thirddime">
 						<img title="Twitter" src="/static/css/reader/icons/twitter-filled.svg">
 					</a></li>
-					<li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Facebook']" href="https://www.facebook.com/thirddimeart">
+					<li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Facebook']" custom-href="https://www.facebook.com/thirddimeart">
 						<img title="Facebook" src="/static/css/reader/icons/facebook-filled.svg">
 					</a></li>
 				</ul>
@@ -64,16 +64,16 @@
 	</section> -->
 	<!-- <section class="posts" infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore' ng-cloak>
 		<section class="post clearfix" ng-repeat="post in posts" analytics-scroll analytics-data="['Reader', 'Feed-Post-View:' + $index]">
-				<a target="_blank" ng-href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]">
+				<a target="_blank" custom-href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]">
 					<img class="artwork" ng-src="[[post.composition.matter_550]]" alt="[[post.interpretation.interpretation.slice(0, 140) + '.....Read more on ThirdDime.']]" analytics-click analytics-data="['Reader', 'Post-Image-Click', post.composition.slug]" />
 				</a>
 				<sidebar class="description">
 					<header class="description-header">
-						<a target="_blank" href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]">
+						<a target="_blank" custom-href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]">
 							<h4 analytics-click analytics-data="['Reader', 'Post-Title-Click', post.composition.slug]">[[post.composition.title | titlecase]]</h4>
 						</a>
 						<h5>by
-							<a href="/@[[post.composition.artist.slug]]" class="artist" target="_blank">
+							<a custom-href="/@[[post.composition.artist.slug]]" class="artist" target="_blank">
 								[[post.composition.artist.full_name | titlecase]]
 							</a>
                             .
@@ -82,13 +82,13 @@
 					</header>
 					<section class="comment">
 	   					<div class="comment-text" ng-cloak ng-hide="post.showComplete">
-	     					[[post.interpretation.interpretation.slice(0, 140)]]<a ng-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank"><span class="more" ng-cloak ng-show="post.interpretation.interpretation.length > 140" >.... (more)</span></a>
+	     					[[post.interpretation.interpretation.slice(0, 140)]]<a custom-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank"><span class="more" ng-cloak ng-show="post.interpretation.interpretation.length > 140" >.... (more)</span></a>
 	   					</div>
 	   					<div class="comment-text" ng-cloak ng-show="post.showComplete">
 	     					[[post.interpretation.interpretation]]
 	   					</div>
 	    				<footer class="comment-footer clearfix">
-	      					<h5>written by<a ng-href="/@[[post.interpretation.user.slug]]" target="_blank"> [[post.interpretation.user.full_name | titlecase]] </a></h5>
+	      					<h5>written by<a custom-href="/@[[post.interpretation.user.slug]]" target="_blank"> [[post.interpretation.user.full_name | titlecase]] </a></h5>
 	   					</footer>
 	  				</section>
 
@@ -99,17 +99,17 @@
 	      					</header>
 	  					<ul>
 	  					    <li>
-		  					    <a ng-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank">
+		  					    <a custom-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank">
 			  					    <img class="icon icon-left" ng-class="{'vote-active': post.voting_status=='Positive'}" src="/static/css/reader/icons/upvote.svg" ng-click="vote($index, true)">
 		  					    </a>
 	  					    </li>
 	  					    <li>
-		  					    <a ng-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank">
+		  					    <a custom-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank">
 			  					    <img class="icon icon-left" ng-class="{'vote-active': post.voting_status=='Negative'}" src="/static/css/reader/icons/downvote.svg" ng-click="vote($index, false)">
 		  					    </a>
 	  					   </li>
 	  					    <li>
-		  					    <a ng-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank">
+		  					    <a custom-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank">
 			  					    <img class="icon icon-left" src="/static/css/reader/icons/comment.svg" analytics-click analytics-data="['Reader', 'Post-Comment-Click', post.composition.slug]">
 		  					    </a>
 	  					    </li>

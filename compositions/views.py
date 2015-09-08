@@ -17,7 +17,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 
 from .models import Composition, InterpretationImage
-from .serializers import CompositionSerializer, NewCompositionSerializer, CompositionMatterSerializer, InterpretationImageSerializer, PaginatedCompositionSerializer, BookmarkerSerializer
+from .serializers import CompositionSerializer, NewCompositionSerializer, CompositionMatterSerializer, InterpretationImageSerializer, PaginatedCompositionSerializer
 from .permissions import IsOwnerOrReadOnly, IsHimself, IsImageUploader
 from .imageTools import crop
 
@@ -293,7 +293,7 @@ def random_composition(request, format=None):
 def get_bookmarkers(request, composition_id, format=None):
     composition = get_object_or_404(Composition, pk=composition_id)
     bookers = composition.bookers.all()
-    serializer = BookmarkerSerializer(bookers, context={'request': request})
+    serializer = ExistingUserSerializer(bookers, context={'request': request})
     return Response(data=serializer.data)
 
 @api_view(['GET'])
