@@ -30,5 +30,14 @@ angular.module("module.model")
         });
 	};
 
+    service.getFresh = function (pageNum) {
+        return $http.get('/feeds/fresh?page='+pageNum).then(function (response) {
+            return response.data;
+        }, function (response) {
+            return $q.reject(response);
+        });
+    };
+
+
 	return service;
 }]);

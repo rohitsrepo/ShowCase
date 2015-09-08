@@ -2,7 +2,7 @@ angular.module('ExploreApp')
 .controller('exploreController', ['$scope',
     '$rootScope',
     '$document',
-    'compositionModel',
+    'feedModel',
     '$timeout',
     'userModel',
     'alert',
@@ -11,11 +11,11 @@ angular.module('ExploreApp')
     'bookService',
     'bucketmodalService',
     'usermodalService',
-	function ($scope, $rootScope, $document, compositionModel, $timeout, userModel, alert, progress, auth, bookService, bucketmodalService, usermodalService) {
+	function ($scope, $rootScope, $document, feedModel, $timeout, userModel, alert, progress, auth, bookService, bucketmodalService, usermodalService) {
 
     $scope.math = window.Math
 	$scope.arts = [];
-	$scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
+	$scope.postsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
 
     // Disable scroll on parent page
     $rootScope.$on('$stateChangeSuccess',
@@ -28,27 +28,28 @@ angular.module('ExploreApp')
         }
     });
 
-	var getArts = function () {
+	var getPosts = function () {
 
-	    if (!$scope.artsMeta.disableGetMore) {
+	    if (!$scope.postsMeta.disableGetMore) {
             progress.showProgress();
 
-	        var pageVal = $scope.artsMeta.pageVal;
-	        compositionModel.getExplores(pageVal).then(function (response) {
-	            $scope.artsMeta.next = response.next;
-	            $scope.artsMeta.previous = response.previous;
+	        var pageVal = $scope.postsMeta.pageVal;
+	        feedModel.getFresh(pageVal).then(function (response) {
+	            $scope.postsMeta.next = response.next;
+	            $scope.postsMeta.previous = response.previous;
 
 	            for (var i = 0; i < response.results.length; i++) {
+                    console.log(response.results[i]);
 	                $scope.arts.push(response.results[i]);
 	            }
 
 	            if (response.next == null){
-	                $scope.artsMeta.disableGetMore = true;
+	                $scope.postsMeta.disableGetMore = true;
 	            }
 
 	            $timeout(function () {
-    			    $scope.artsMeta.pageVal += 1;
-    	            $scope.artsMeta.busy = false;
+    			    $scope.postsMeta.pageVal += 1;
+    	            $scope.postsMeta.busy = false;
 	            }, 500);
 
                 progress.hideProgress();
@@ -58,16 +59,16 @@ angular.module('ExploreApp')
 
 	};
 
-	$scope.loadMoreArts = function () {
-	    if ($scope.artsMeta.busy) {
+	$scope.loadMorePosts = function () {
+	    if ($scope.postsMeta.busy) {
 	        return;
 	    }
 
-	    $scope.artsMeta.busy = true;
-	    getArts();
+	    $scope.postsMeta.busy = true;
+	    getPosts();
 	}
 
-	$scope.loadMoreArts();
+	$scope.loadMorePosts();
 
     $scope.handleBookMark = function (index) {
         art = $scope.arts[index]
