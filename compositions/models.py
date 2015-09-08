@@ -1,12 +1,17 @@
 from __future__ import division
 import os
 import util
-from ShowCase.slugger import unique_slugify
+
 from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
-from posts.models import Post, bind_post
+from django.contrib.contenttypes.models import ContentType
+
+from ShowCase.slugger import unique_slugify
+
 from .imageTools import bind_image_resize_handler, WIDTH_READER, WIDTH_STICKY, resized_file_path
+
+from posts.models import Post, bind_post
 
 
 def get_upload_file_name_composition(instance, filename):
@@ -141,6 +146,13 @@ class Composition(models.Model):
             creator=self.uploader,
             post_type = Post.ADD,
             content_object=self)
+
+    def get_post(self):
+        return Post.objects.filter(composition=self,
+            creator=self.artist,
+            post_type__in=[POST.ADD, POST.CREATE],
+            object_id=self.id,
+            content_type=ContentType.objects.get_for_model(self))
 
 #Bind Signals
 bind_image_resize_handler(Composition)

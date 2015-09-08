@@ -60,5 +60,21 @@ angular.module("module.model")
         });
     };
 
+    service.watch = function (bucketId) {
+        return $http.put('/buckets/' + bucketId + '/watchers').then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
+    service.unwatch = function (bucketId) {
+        return $http.delete('/buckets/' + bucketId + '/watchers').then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
     return service;
 }]);

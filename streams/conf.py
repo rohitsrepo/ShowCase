@@ -7,6 +7,7 @@ LOCATION = getattr(settings, 'STREAM_LOCATION', None)
 
 
 USER_FEED = getattr(settings, 'STREAM_USER_FEED', 'user')
+BUCKET_FEED = getattr(settings, 'STREAM_BUCKET_FEED', 'bucket')
 NEWS_FEEDS = getattr(settings, 'STREAM_NEWS_FEEDS',
     {'flat':'flat', 'aggregated':'aggregated'}
 )

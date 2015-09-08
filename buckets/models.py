@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.contenttypes.models import ContentType
+from django.conf import settings
 
 from ShowCase.slugger import unique_slugify
 
@@ -22,6 +24,9 @@ class Bucket(models.Model):
     owner = models.ForeignKey(User, related_name='buckets')
     created = models.DateTimeField(auto_now_add=True)
 
+    watchers = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name='watched_buckets')
+
     def save(self, *args, **kwargs):
         unique_slugify(self, self.name)
         super(Bucket, self).save(*args, **kwargs)
@@ -35,6 +40,10 @@ class Bucket(models.Model):
     @property
     def compositions_count(self):
         return self.compositions.all().count()
+
+    @property
+    def watchers_count(self):
+        return self.watchers.count()
 
     @property
     def has_background(self):
@@ -58,6 +67,8 @@ class Bucket(models.Model):
             except:
                 return ''
 
+    def is_watched(self, user_id):
+        return self.watchers.filter(id=user_id).exists()
 
 
 class BucketMembership(models.Model):
@@ -71,5 +82,12 @@ class BucketMembership(models.Model):
             creator=self.bucket.owner,
             post_type = Post.BUCKET,
             content_object=self.bucket)
+
+    def get_post(self):
+        return Post.objects.filter(composition=self.composition,
+            creator=self.bucket.owner,
+            post_type=POST.BUCKET,
+            object_id=self.bucket.id,
+            content_type=ContentType.objects.get_for_model(BUCKET))
 
 bind_post(BucketMembership)

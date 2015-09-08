@@ -1,13 +1,14 @@
 angular.module('module.bucketmodal')
 .controller('bucketmodalContentController', ['$scope',
     '$window',
+    'auth',
     'bucketModel',
     'bucketmodalService',
     'close',
     'bucket',
     'progress',
     'alert',
-    function ($scope, $window, bucketModel, bucketmodalService, close, bucket, progress, alert) {
+    function ($scope, $window, auth, bucketModel, bucketmodalService, close, bucket, progress, alert) {
 
         progress.showProgress();
         $scope.bucket = bucket;
@@ -57,6 +58,34 @@ angular.module('module.bucketmodal')
             close();
         };
 
+        $scope.watchBucket = function () {
+            auth.runWithAuth(function () {
+                progress.showProgress();
+
+                bucketModel.watch($scope.bucket.id).then(function (response) {
+                    $scope.bucket.is_watched = true;
+                    progress.hideProgress();
+                }, function () {
+                    progress.hideProgress();
+                    alert.showAlert("Unable to complete action");
+                });
+            });
+        };
+
+        $scope.unwatchBucket = function () {
+            auth.runWithAuth(function () {
+                progress.showProgress();
+
+                bucketModel.unwatch($scope.bucket.id).then(function (response) {
+                    $scope.bucket.is_watched = false;
+                    progress.hideProgress();
+                }, function () {
+                    progress.hideProgress();
+                    alert.showAlert("Unable to complete action");
+                });
+            });
+        };
+
     }
 ])
 .directive('keyEventBinder', ['$window', function ($window) {
@@ -70,6 +99,7 @@ angular.module('module.bucketmodal')
             }
 
             scope.slyCallBack(evt);
+
         });
     }
 }])

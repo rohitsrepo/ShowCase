@@ -244,7 +244,7 @@ header .details .actions h3:hover {
 }
 
 .user-bucket-picture .user-bucket-details:hover {
-    opacity: 0.5;
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .user-bucket-picture .user-bucket-details h2 {

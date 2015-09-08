@@ -1,9 +1,12 @@
+from bs4 import BeautifulSoup
+
 from django.db import models
-from compositions.models import Composition
 from django.conf import settings
 from django.utils.timesince import timesince
+from django.contrib.contenttypes.models import ContentType
+
+from compositions.models import Composition
 from posts.models import Post, bind_post
-from bs4 import BeautifulSoup
 
 
 class Interpretation(models.Model):
@@ -49,6 +52,13 @@ class Interpretation(models.Model):
             creator=self.user,
             post_type = Post.INTERPRET,
             content_object=self)
+
+    def get_post(self):
+        return Post.objects.filter(composition=self.composition,
+            creator=self.user,
+            post_type=POST.INTERPRET,
+            object_id=self.id,
+            content_type=ContentType.objects.get_for_model(Interpretation))
 
 #Bind Signals
 bind_post(Interpretation)

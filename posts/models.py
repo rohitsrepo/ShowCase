@@ -4,8 +4,10 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save, post_delete
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-from streams.manager import bind_stream
+
 from postVotes.models import PostVote, bind_post_vote
+from streams.conf import USER_FEED, BUCKET_FEED
+from streams.manager import bind_stream
 
 class Post(models.Model):
     INTERPRET = 'IN'
@@ -48,6 +50,8 @@ class Post(models.Model):
         return self.id
 
     def create_activity(self):
+        activity_data = []
+
         activity = dict(
             actor=self.creator.id,
             verb=self.post_type,
@@ -56,7 +60,17 @@ class Post(models.Model):
             foreign_id=self.id,
             time=self.created,
         )
-        return activity
+
+        activity_data.append({'activity': activity,
+        'feed_type': USER_FEED,
+        'feed_id': activity['actor']})
+
+        if self.post_type == self.BUCKET:
+            activity_data.append({'activity': activity,
+            'feed_type': BUCKET_FEED,
+            'feed_id': activity['object']})
+
+        return activity_data
 
     def create_post_vote(self):
         return PostVote(positive=0, negative=0, post=self)
@@ -69,8 +83,8 @@ def model_created(sender, instance, created, raw, **kwargs):
 
 def model_deleted(sender, instance, **kwargs):
     try:
-        ctype = ContentType.objects.get_for_model(instance)
-        post = Post.objects.get(content_type = ctype, object_id = instance.id)
+        posts = instance.get_post()
+        posts.delete()
     except:
         pass
 

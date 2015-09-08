@@ -22,6 +22,10 @@
     cursor: default;
 }
 
+.bucket-modal .modal-actions-header .counter.counter-watchers i {
+    cursor: pointer;
+}
+
 .bucket-modal .modal-actions-header i.content-action:hover {
     color: white;
 }

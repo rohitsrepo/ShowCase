@@ -1,12 +1,16 @@
 import os
+
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.template.defaultfilters import slugify
 from django.conf import settings
-from .usermanager import UserManager
-from compositions.models import Composition
-from .picturehandler import bind_profile_picture_handler, WIDTH_PROFILE
+
 from ShowCase.slugger import unique_slugify
+
+from .usermanager import UserManager
+from .picturehandler import bind_profile_picture_handler, WIDTH_PROFILE
+
+from compositions.models import Composition
 
 
 def get_upload_file_name_users(instance, filename):
