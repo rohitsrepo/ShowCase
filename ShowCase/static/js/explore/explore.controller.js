@@ -39,7 +39,6 @@ angular.module('ExploreApp')
 	            $scope.postsMeta.previous = response.previous;
 
 	            for (var i = 0; i < response.results.length; i++) {
-                    console.log(response.results[i]);
 	                $scope.arts.push(response.results[i]);
 	            }
 

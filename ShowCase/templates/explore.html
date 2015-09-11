@@ -33,7 +33,7 @@
 {% block content_block %}
     <div ng-cloak masonry masonry-options="{ transitionDuration: '0' }" class="arts-container explore-container" infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore'>
         <div class="masonry-brick container explore-art-container" ng-switch='art.feed_type' ng-repeat="art in arts">
-            <div class="art" ng-switch-when='AR'>
+            <div class="art" ng-show="art.feed_type == 'AR'">
                 <article class="art-content">
                     <img ng-src="[[art.content.matter_550]]" alt="[[art.content.title]]" >
                     <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
@@ -63,7 +63,7 @@
                 </section>
             </div> <!-- art -->
 
-            <section class="feed-bucket" ng-switch-when='BK'>
+            <section class="feed-bucket" ng-show="art.feed_type == 'BK'">
                 <div class="bucket-picture" ng-style="{'background-image': 'url([[art.content.picture]])'}">
                     <section class="bucket-inset-details" ui-sref="bucket({userSlug: art.content.owner.slug, bucketSlug: art.content.slug})">
                         <h2>[[art.content.name | titlecase]]</h2>
