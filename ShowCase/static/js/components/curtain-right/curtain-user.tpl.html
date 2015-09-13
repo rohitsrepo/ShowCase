@@ -1,10 +1,11 @@
 <section class="curtain-right curtain-user" ng-controller="userCurtainController">
 	<a class="enable" custom-href="/@[[currentUser.slug]]"><h4>[[currentUser.name | titlecase]]</h4></a>
 	<div class="content user">
-		<a under-construction href="" analytics-click analytics-data="['Top Bar-Right', 'User - My Art']">MY ART</a>
-		<a  href="/upload-art" class="enable" analytics-click analytics-data="['Top Bar-Right', 'User - New Art']">NEW ART</a>
-		<a under-construction href="" analytics-click analytics-data="['Top Bar-Right', 'User - Interpretations']">INTERPRETATIONS</a>
-		<a under-construction href="" analytics-click analytics-data="['Top Bar-Right', 'User - Collection']">COLLECTION</a>
-		<a class="enable" href="/me/settings" analytics-click analytics-data="['Top Bar-Right', 'User - Settings']">SETTINGS</a>
+		<a ng-href="/@[[currentUser.slug]]" analytics-click analytics-data="['Top Bar-Right', 'User - My Art']">PROFILE</a>
+		<a href="/upload-art" analytics-click analytics-data="['Top Bar-Right', 'User - New Art']">NEW ART</a>
+		<a href="/@[[currentUser.slug]]/series" analytics-click analytics-data="['Top Bar-Right', 'User - Interpretations']">SERIES</a>
+        <a href="/@[[currentUser.slug]]/originals" analytics-click analytics-data="['Top Bar-Right', 'User - Collection']">ORIGINALS</a>
+		<a href="/@[[currentUser.slug]]/uploads" analytics-click analytics-data="['Top Bar-Right', 'User - Collection']">UPLOADS</a>
+		<a href="/me/settings" analytics-click analytics-data="['Top Bar-Right', 'User - Settings']">SETTINGS</a>
 	</div>
 </section>

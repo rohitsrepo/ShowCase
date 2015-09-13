@@ -46,6 +46,14 @@ angular.module("module.model")
         });
     };
 
+    service.deleteArt = function (artSlug) {
+        return $http.delete('/compositions/' + artSlug).then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
     service.getAssociates = function (artId) {
         return $http.get('/compositions/' + artId + '/associates').then(function (response) {
             return response.data;

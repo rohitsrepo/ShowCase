@@ -32,7 +32,7 @@ angular.module("UserApp", [
         controller: 'profileActivitiesController'
     })
     .state('paintings', {
-        url: "/paintings",
+        url: "/originals",
         templateUrl: "/static/js/user/profile.paintings.html",
         controller: 'profilePaintingsController',
         data: {'listType': 'paintings'}

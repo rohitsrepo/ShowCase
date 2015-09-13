@@ -179,6 +179,7 @@ class CompositionDetail(APIView):
 
     def delete(self, request, slug, format=None):
         composition = self.get_composition(slug, request)
+        self.check_object_permissions(self.request, composition)
         composition.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 

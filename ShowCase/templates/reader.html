@@ -20,12 +20,13 @@
         <meta property="og:type" content="website">
         <meta property="og:type" content="[462422103909005]">
 
-        <link href='http://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Lato:700,900' rel='stylesheet' type='text/css'>
     {%endblock%}
 
 
     {% block css_block %}
          <!-- build:css /static/build/reader.css -->
+        <link rel="stylesheet" type="text/css" href="/static/css/reader/topbar.css">
         <link rel="stylesheet" type="text/css" href="/static/css/reader/main.css">
         <!-- endbuild -->
     {%endblock%}
@@ -36,97 +37,83 @@
     {%endblock%}
 
     {% block content_block %}
-	<header class="banner">
-			<div class="curtain-overlay-placeholder"></div>
-			<section>
-					<h1>Explore Art through Interpretations and Stories</h1>
-					<h3>Browse through our growing collection of paintings and discover deeper layers behind each brushstroke.</h3>
-					<a custom-href="/arts" class="explore" analytics-click analytics-data="['Reader', 'Button-Explore Art']">EXPLORE ART</a>
-			</section>
-			<footer class="head-footer">
-				<ul class="social clearfix">
-					<li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Pinterest']" custom-href="https://www.pinterest.com/thirddime/thirddime-art/" >
-						<img title="Pinterest" src="/static/css/reader/icons/pinterest-filled.svg">
-					</a></li>
-					<li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Twitter']" custom-href="https://twitter.com/thirddime">
-						<img title="Twitter" src="/static/css/reader/icons/twitter-filled.svg">
-					</a></li>
-					<li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Facebook']" custom-href="https://www.facebook.com/thirddimeart">
-						<img title="Facebook" src="/static/css/reader/icons/facebook-filled.svg">
-					</a></li>
-				</ul>
-			</footer>
-	</header>
-	<!-- <div id="posts"></div>
-	<section class="feeds">
-			<h4 ng-class="{ 'active' : feedsMeta.showStaffPick }">EDITOR'S PICK</h4>
-			<hr>
-	</section> -->
-	<!-- <section class="posts" infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore' ng-cloak>
-		<section class="post clearfix" ng-repeat="post in posts" analytics-scroll analytics-data="['Reader', 'Feed-Post-View:' + $index]">
-				<a target="_blank" custom-href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]">
-					<img class="artwork" ng-src="[[post.composition.matter_550]]" alt="[[post.interpretation.interpretation.slice(0, 140) + '.....Read more on ThirdDime.']]" analytics-click analytics-data="['Reader', 'Post-Image-Click', post.composition.slug]" />
-				</a>
-				<sidebar class="description">
-					<header class="description-header">
-						<a target="_blank" custom-href="/arts/[[ post.composition.slug ]]#?[[post.search_parameter]]">
-							<h4 analytics-click analytics-data="['Reader', 'Post-Title-Click', post.composition.slug]">[[post.composition.title | titlecase]]</h4>
-						</a>
-						<h5>by
-							<a custom-href="/@[[post.composition.artist.slug]]" class="artist" target="_blank">
-								[[post.composition.artist.full_name | titlecase]]
-							</a>
-                            .
-						</h5>
-                        <h5>[[post.composition.views]] Views</h5>
-					</header>
-					<section class="comment">
-	   					<div class="comment-text" ng-cloak ng-hide="post.showComplete">
-	     					[[post.interpretation.interpretation.slice(0, 140)]]<a custom-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank"><span class="more" ng-cloak ng-show="post.interpretation.interpretation.length > 140" >.... (more)</span></a>
-	   					</div>
-	   					<div class="comment-text" ng-cloak ng-show="post.showComplete">
-	     					[[post.interpretation.interpretation]]
-	   					</div>
-	    				<footer class="comment-footer clearfix">
-	      					<h5>written by<a custom-href="/@[[post.interpretation.user.slug]]" target="_blank"> [[post.interpretation.user.full_name | titlecase]] </a></h5>
-	   					</footer>
-	  				</section>
+	<header class="banner" >
+        <section class="content">
+            <p class="line1">Art is what</p>
+            <p class="line1">you make of it</p>
+            <p class="line1">Let us help you</p>
+            <p class="line1">make of it</p>
+            <a custom-href="/arts" class="explore" analytics-click analytics-data="['Reader', 'Button-Explore Art']">EXPLORE ART</a>
+        </section>
+          <footer class="head-footer">
+              <ul class="social clearfix">
+                  <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Pinterest']" custom-href="https://www.pinterest.com/thirddime/thirddime-art/" >
+                      <img title="Pinterest" src="/static/css/reader/icons/pinterest-filled.svg">
+                  </a></li>
+                  <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Twitter']" custom-href="https://twitter.com/thirddime">
+                      <img title="Twitter" src="/static/css/reader/icons/twitter-filled.svg">
+                  </a></li>
+                  <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Facebook']" custom-href="https://www.facebook.com/thirddimeart">
+                      <img title="Facebook" src="/static/css/reader/icons/facebook-filled.svg">
+                  </a></li>
+              </ul>
+          </footer>
+    </header>
 
-	  				<footer class="description-footer">
-	  						<header class="clearfix nt-mb">
-		      					<h5 class="right">[[post.interpretation.timesince]] ago</h5>
-		      					<h5 class="left">[[post.interpretation.vote.total]] Votes. [[post.comments_count]] Comments</h5>
-	      					</header>
-	  					<ul>
-	  					    <li>
-		  					    <a custom-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank">
-			  					    <img class="icon icon-left" ng-class="{'vote-active': post.voting_status=='Positive'}" src="/static/css/reader/icons/upvote.svg" ng-click="vote($index, true)">
-		  					    </a>
-	  					    </li>
-	  					    <li>
-		  					    <a custom-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank">
-			  					    <img class="icon icon-left" ng-class="{'vote-active': post.voting_status=='Negative'}" src="/static/css/reader/icons/downvote.svg" ng-click="vote($index, false)">
-		  					    </a>
-	  					   </li>
-	  					    <li>
-		  					    <a custom-href="/arts/[[post.composition.slug]]#?scrollTo=inter[[post.interpretation_rank]]&[[post.search_parameter]]" target="_blank">
-			  					    <img class="icon icon-left" src="/static/css/reader/icons/comment.svg" analytics-click analytics-data="['Reader', 'Post-Comment-Click', post.composition.slug]">
-		  					    </a>
-	  					    </li>
-	  					    <li><img class="icon icon-right" tumblr-share source="[[post.composition.matter]]" description="[[post.interpretation.interpretation]]" src="/static/css/reader/icons/tumblr.svg" share-url='/arts/[[post.composition.slug]]'></li>
-	  					    <li><img class="icon icon-right" pinterest-share source="[[post.composition.matter]]" description="[[post.composition.title | titlecase]] - interpretations and stories" src="/static/css/reader/icons/pinterest.svg" share-url='/arts/[[post.composition.slug]]'></li>
-	  					    <li><img class="icon icon-right" facebook-share src="/static/css/reader/icons/facebook.svg" share-url='/arts/[[post.composition.slug]]'></li>
-	  					</ul>
-	  				</footer>
-				</sidebar>
-		</section>
-	</section> -->
+    <section class="concept-break">
+        <section class="content">
+            <p>Art is the only means of leaving monotonicity of reason, breaking continuity of narratives and transforming life into unknown</p>
+            <hr>
+            <p>We are building interfaces where you can share your perspective on art</p>
+        </section>
+    </section>
+
+    <section class="concept-what">
+        <header>
+            And we are starting with series...
+            <hr>
+        </header>
+
+        <ul class="to-do">
+            <li>Create correlated collection of artworks by finding your themes</li>
+            <li>Give appropriate titles, descriptions and backgrounds for others to find out the corelation</li>
+            <li>Soon we will build a list of unique and new perspectives for every artwork</li>
+        </ul>
+
+        <!-- <footer>And it won't end there.</footer> -->
+    </section>
+
+    <footer class="concept-close">
+        <header>
+            <h2>What we have here is the opportunity to create something new, just be yourself.</h2>
+            <a custom-href="/arts" class="explore" analytics-click analytics-data="['Reader', 'Button-Explore Art']">EXPLORE ART</a>
+        </header>
+        <footer class="bottom-footer">
+            <ul class="social clearfix">
+                <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Pinterest']" custom-href="https://www.pinterest.com/thirddime/thirddime-art/" >
+                    <img title="Pinterest" src="/static/css/reader/icons/pinterest-filled.svg">
+                </a></li>
+                <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Twitter']" custom-href="https://twitter.com/thirddime">
+                    <img title="Twitter" src="/static/css/reader/icons/twitter-filled.svg">
+                </a></li>
+                <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Facebook']" custom-href="https://www.facebook.com/thirddimeart">
+                    <img title="Facebook" src="/static/css/reader/icons/facebook-filled.svg">
+                </a></li>
+            </ul>
+
+            <nav class="links">
+                <a href="/about-us">About Us</a>
+                <a href="/blog">Blog</a>
+                <a href="/guidelines">Guidelines</a>
+                <a href="/contact-us">Contact Us</a>
+            </nav>
+        </footer>
+    </footer>
+
     {%endblock%}
 
     {% block script_block %}
         <!-- build:js /static/build/reader.js -->
-        <script type="text/javascript" src="/static/bower_components/nginfinitescroll/build/ng-infinite-scroll.min.js"></script>
-
         <script type="text/javascript" src="/static/js/reader/reader.module.js"></script>
         <script type="text/javascript" src="/static/js/reader/reader.controller.js"></script>
         <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>

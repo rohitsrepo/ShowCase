@@ -32,12 +32,18 @@ class BucketList(APIView):
 
 
 class BucketDetail(APIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
     def get(self, request, bucket_slug, format=None):
         bucket = get_object_or_404(Bucket, slug=bucket_slug)
         serializer = BucketSerializer(bucket, context={'request': request})
         return Response(serializer.data)
+
+    def delete(self, request, bucket_slug, format=None):
+        bucket = get_object_or_404(Bucket, slug=bucket_slug)
+        self.check_object_permissions(self.request, bucket)
+        bucket.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class BucketComposition(APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
