@@ -30,6 +30,15 @@
     color: white;
 }
 
+.bucket-modal .logo {
+  position: fixed;
+  cursor: pointer;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  width: 3em;
+  height: 3em;
+}
 /*-------- Bucket Content ---------------*/
 
 .bucket-modal.content .background-area {
@@ -55,7 +64,7 @@
 }
 
 .bucket-modal.content .bucket-content {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
     width: 100%;
     height: 100%;
     position: absolute;
@@ -72,27 +81,42 @@
 	padding-bottom: 50px;
     text-align: center;
     line-height: 1.5em;
-    color: white
+    color: white;
+    margin-bottom: 5%;
 }
 
 .content-bucket-header h1 {
-	font-size: 1.5em;
+	font-size: 2.5em;
 	font-weight: bold;
-}
-
-.content-bucket-header .by-user {
-	font-size: 0.8em;
-	display: inline-block;
+    line-height: 1.5em;
 }
 
 .content-bucket-header h2 {
-	font-size: 0.8em;
-	display: inline-block;
+    font-size: 1.5em;
+    color: white;
+    line-height: 1.5em;
 }
 
-.content-bucket-header h2 a {
-	text-decoration: underline;
+.content-bucket-header .by-user {
+    font-size: 0.7em;
+    display: inline-block;
+}
+
+.content-bucket-header hr {
+    width: 100px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.content-bucket-header h3 {
+    font-size: 0.7em;
+    display: inline-block;
+    color: white;
+}
+
+.content-bucket-header h3 a {
 	color: white;
+    cursor: pointer;
 }
 
 @media (max-width: 800px) {
@@ -112,6 +136,11 @@
     filter: none;
 }
 
+.content-scroll-holder.ng-hide-remove {
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+}
+
 .content-scroll-holder .content-container {
 	list-style: none;
 	margin: 0;
@@ -121,19 +150,13 @@
 }
 .content-scroll-holder .content-container .content-art {
 	float: left;
-	margin: 0;     /*If change this then change content-holder height*/
+	margin: 0 45px;     /*If change this then change content-holder height*/
 	padding: 0;
 	background: #333;
 	color: #ddd;
 	text-align: center;
-	cursor: pointer;
 	display: inline-block;
 	position: relative;
-	opacity: 0.5
-}
-.content-scroll-holder .content-container .content-art.active {
-	opacity: 1;
-	cursor: default;
 }
 
 .content-scroll-holder .content-container .content-art .nsfw-overlay {
@@ -153,7 +176,7 @@
 }
 
 .content-scroll-holder .content-container .content-art .nsfw-overlay.ng-hide-add {
-    -webkit-animation: fadeOut 0.6s;
+    -webkit-animation: fadeOut 0.4s;
     animation: fadeOut 0.4s;
 }
 
@@ -176,20 +199,20 @@
     padding-top: 100px;
     line-height: 0.5em;
     color: rgba(0, 0, 0, 0.9);
+    background: rgba(255, 255, 255, 0.6);
 }
 
-.content-container .content-art.active:hover .art-details {
+.content-container .content-art:hover .art-details {
 	opacity: 1;
-	background: rgba(255, 255, 255, 0.6);
 }
 
-.content-art.active .art-details .art-details-actions {
+.content-art .art-details .art-details-actions {
     position: absolute;
     top: 15px;
     right: 15px;
 }
 
-.content-art.active .art-details .art-details-actions .action {
+.content-art .art-details .art-details-actions .action {
     cursor: pointer;
 }
 
@@ -201,6 +224,7 @@
 	font-size: 0.5em;
 	text-decoration: underline;
     color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
 }
 
 .content-container .content-art .art-details .by-user {
@@ -211,13 +235,14 @@
 	font-size: 0.4em;
 	text-decoration: underline;
     color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
 }
 
 /*========== Scrollbar =====================*/
 .scrollbar {
 	margin: 0 auto;
 	margin-top: 60px;
-	height: 30px;
+	height: 4px;
     background: rgba(0, 0, 0, 0.7);
 	line-height: 0;
 	cursor: pointer;

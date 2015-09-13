@@ -577,6 +577,117 @@ body::-webkit-scrollbar-thumb {
     display: inline;
 }
 
+/*------------ Site loader --------------*/
+.site-loader {
+    width: 60px;
+    margin:auto;
+    vertical-align: middle;
+    color: white;
+}
+
+.site-loader .stick {
+    width: 10px;
+    height: 10px;
+    color: white;
+    background: white;
+    display:inline-block;
+    /*margin-left:$stick_distance;*/
+}
+
+.site-loader .stick:nth-child(n) {
+  transform:rotate(150deg);
+  -ms-transform:rotate(150deg);
+  -webkit-transform:rotate(150deg);
+   -moz-transform:rotate(150deg);
+   -webkit-animation: fall 4s infinite;
+   -moz-animation: fall 4s infinite;
+
+}
+.site-loader .stick:nth-child(2n) {
+   transform:rotate(-180deg);
+  -ms-transform:rotate(-180deg);
+  -webkit-transform:rotate(-180deg);
+  -moz-transform:rotate(-180deg);
+  -webkit-animation: rise 4s infinite;
+  -moz-animation: rise 4s infinite;
+
+}
+
+@-webkit-keyframes rise {
+  50% { transform:rotate(150deg);
+  -ms-transform:rotate(150deg);
+  -webkit-transform:rotate(150deg);
+  -moz-transform:rotate(150deg);
+    ;}
+}
+@-moz-keyframes rise {
+ 50% { transform:rotate(150deg);
+  -ms-transform:rotate(150deg);
+  -webkit-transform:rotate(150deg);
+   -moz-transform:rotate(150deg);
+}
+}
+@-o-keyframes rise {
+  50% { transform:rotate(150deg);
+  -ms-transform:rotate(150deg);
+  -webkit-transform:rotate(150deg);
+  -moz-transform:rotate(150deg);
+}
+@keyframes rise {
+  50% { transform:rotate(150deg);
+  -ms-transform:rotate(150deg);
+  -webkit-transform:rotate(150deg);
+  -moz-transform:rotate(150deg);
+}
+}}
+
+@-webkit-keyframes fall {
+  50% { transform:rotate(-180deg);
+  -ms-transform:rotate(-180deg);
+  -webkit-transform:rotate(-180deg);
+  -moz-transform:rotate(150deg);
+}
+}
+@-moz-keyframes fall {
+ 50% { transform:rotate(-180deg);
+  -ms-transform:rotate(-180deg);
+  -webkit-transform:rotate(-180deg);
+  -moz-transform:rotate(-180deg);
+
+ }
+}
+@-o-keyframes fall {
+  50% { transform:rotate(-180deg);
+  -ms-transform:rotate(-180deg);
+  -webkit-transform:rotate(-180deg);
+   -moz-transform:rotate(150deg);
+
+  }
+@keyframes fall {
+  50% { transform:rotate(-180deg);
+  -ms-transform:rotate(-180deg);
+  -webkit-transform:rotate(-180deg);
+  -moz-transform:rotate(150deg);
+
+  }
+}}
+
+@-webkit-keyframes fade {
+  50%{opacity:0.5}
+  100%{opacity:1}
+  ;}
+@-moz-keyframes fade {
+ 50%{opacity:0.5}
+  100%{opacity:1}
+}
+@-o-keyframes fade {
+   50%{opacity:0.5}
+  100%{opacity:1}
+@keyframes fade {
+   50%{opacity:0.5}
+  100%{opacity:1}
+}}
+
 /*================= Clearfix =====================*/
 .clearfix:before,
 .clearfix:after {

@@ -20,12 +20,14 @@
     <article class="bucket-content" swipe-effect ng-swipe-left="nextArt()" ng-swipe-right="prevArt()">
         <header class="content-bucket-header">
             <h1>[[bucket.name | titlecase]]</h1>
-            <h2>[[bucket.description]]</h2>
+            <hr>
             <div class="by-user">by</div>
-            <h2><a custom-href="/@[[bucket.owner.slug]]">[[bucket.owner.name | titlecase]]</a></h2>
+            <h3><a custom-href="/@{{bucket.owner.slug}}">{{bucket.owner.name | title }}</a></h3>
+            <hr>
+            <h2>[[bucket.description]]</h2>
         </header>
 
-        <div horizontal-sly class="content-scroll-holder nt-mb" id="basic">
+        <div horizontal-sly class="content-scroll-holder nt-mb" ng-cloak ng-show="slyInitComplete" id="basic">
             <ul class="content-container">
                 <section class="content-art" check-last ng-repeat="art in bucketArts" ng-style="{'height': '450px', 'width': '[[math.round(450/art.matter_aspect)]]px'}">
 
@@ -53,10 +55,26 @@
             </a>
         </div>
 
-        <div class="scrollbar nt-mb">
+        <div class="scrollbar nt-mb" ng-cloak ng-show="slyInitComplete">
             <div class="handle">
                 <div class="mousearea"></div>
             </div>
+        </div>
+
+
+        <div class="site-loader" ng-cloak ng-hide="slyInitComplete">
+            <span class="stick"></span>
+            <span class="stick"></span>
+            <span class="stick"></span>
+            <span class="stick"></span>
+            <span class="stick"></span>
+            <span class="stick"></span>
+            <span class="stick"></span>
+            <span class="stick"></span>
+            <span class="stick"></span>
+            <span class="stick"></span>
+            <span class="stick"></span>
+            <span class="stick"></span>
         </div>
 
     </article>

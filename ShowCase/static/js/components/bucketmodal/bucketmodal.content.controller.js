@@ -156,6 +156,9 @@ angular.module('module.bucketmodal')
                     sly.next();
                 }
             };
+
+            scope.slyInitComplete = true;
+
         });
 
 
