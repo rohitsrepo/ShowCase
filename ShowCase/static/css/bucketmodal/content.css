@@ -77,12 +77,11 @@
 
 /*============ HEADER ===========*/
 .content-bucket-header {
-	padding-top: 60px;
+	padding-top: 50px;
 	padding-bottom: 50px;
     text-align: center;
     line-height: 1.5em;
     color: white;
-    margin-bottom: 5%;
 }
 
 .content-bucket-header h1 {
@@ -119,7 +118,20 @@
     cursor: pointer;
 }
 
+@media (max-width: 1500px) {
+    .content-bucket-header {
+        margin-bottom: 0;
+        padding: 20px;
+    }
+}
+
 @media (max-width: 800px) {
+}
+
+@media (min-width: 1500px) {
+    .content-bucket-header {
+        margin-bottom: 5%;
+    }
 }
 
 /* ============== Content Holder ============== */
