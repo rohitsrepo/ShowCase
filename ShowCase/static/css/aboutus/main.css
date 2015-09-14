@@ -26,7 +26,6 @@ html, body {
 
 .banner  h1 {
   font-weight: bold;
-  font-style: italic;
   font-size: 4em;
   margin-bottom: 20px;
   padding-top: 12%;
@@ -55,6 +54,7 @@ html, body {
   width: 2.5em;
   height: 2.5em;
   opacity: 0.5;
+  cursor: pointer;
 }
 
 .head-footer .social li:hover {
@@ -70,13 +70,14 @@ html, body {
 
 .about-us {
 	width: 75%;
+    min-height: 40%;
 	margin: 0 auto;
+    padding: 100px 0;
 	text-align: center;
 }
 
 .about-us h3 {
   font-weight: bold;
-  font-style: italic;
   font-size: 2.2em;
   line-height: 1.2em;
   letter-spacing: 1px;

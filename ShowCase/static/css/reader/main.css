@@ -95,6 +95,7 @@ html, body {
   width: 2.5em;
   height: 2.5em;
   opacity: 0.5;
+  cursor: pointer;
 }
 
 .head-footer .social li:hover {
@@ -297,6 +298,7 @@ footer.concept-close header h2 {
   width: 2.5em;
   height: 2.5em;
   opacity: 0.5;
+  cursor: pointer;
 }
 
 .concept-close .bottom-footer .social li:hover {

@@ -652,6 +652,7 @@ footer.site-footer header h2 {
   width: 2.5em;
   height: 2.5em;
   opacity: 0.5;
+  cursor: pointer;
 }
 
 .site-footer .bottom-footer .social li:hover {
