@@ -67,6 +67,9 @@ angular.module("UserApp", [
                     $state.go('buckets');
                 };
             }]
+        },
+        data: {
+            'isState' : true
         }
     });
 }]);

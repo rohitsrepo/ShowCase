@@ -56,6 +56,9 @@ angular.module("ExploreApp", ['ui.router',
                     $state.go('arts');
                 };
             }]
+        },
+        data: {
+            'isState' : true
         }
     });
 }]);

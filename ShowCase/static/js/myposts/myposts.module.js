@@ -38,6 +38,9 @@ angular.module("MypostsApp", [
                     $state.go('posts');
                 };
             }]
+        },
+        data: {
+            'isState' : true
         }
     });
 }]);

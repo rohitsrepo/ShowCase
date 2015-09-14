@@ -1,6 +1,7 @@
 angular.module('module.bucketmodal')
 .controller('bucketmodalContentController', ['$scope',
     '$window',
+    '$state',
     'auth',
     'bucketModel',
     'bucketmodalService',
@@ -8,11 +9,12 @@ angular.module('module.bucketmodal')
     'bucket',
     'progress',
     'alert',
-    function ($scope, $window, auth, bucketModel, bucketmodalService, close, bucket, progress, alert) {
+    function ($scope, $window, $state, auth, bucketModel, bucketmodalService, close, bucket, progress, alert) {
 
         progress.showProgress();
         $scope.bucket = bucket;
         $scope.math = window.Math;
+        $scope.isState = $state.current.data && $state.current.data.isState;
         var currentShowIndex = 0;
 
         bucketModel.bucketArts(bucket.id).then(function (arts) {
@@ -51,7 +53,11 @@ angular.module('module.bucketmodal')
         }
 
         $scope.back = function () {
-            $window.history.back();
+            if ($scope.isState){
+                $window.history.back();
+            } else {
+                $scope.close();
+            }
         };
 
         $scope.close = function () {
@@ -94,9 +100,13 @@ angular.module('module.bucketmodal')
         element.bind('keydown', function (evt) {
 
             if (evt.keyCode == 27) {
-                console.log("catching events");
-                $window.history.back();
-                return false;
+                if (scope.isState){
+                    $window.history.back();
+                    return false;
+                } else {
+                    scope.close();
+                }
+
             }
 
             scope.slyCallBack(evt);

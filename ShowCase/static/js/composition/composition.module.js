@@ -56,6 +56,9 @@ angular.module("CompositionApp", [
                     $window.history.back();
                 };
             }]
+        },
+        data: {
+            'isState' : true
         }
     });
 }]);
