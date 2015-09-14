@@ -93,6 +93,7 @@ header .details .actions button:hover {
 header .details .actions button:before {
     position: absolute;
     content: '\E876';
+    font-family: 'Material Icons';
     left: 130%;
     top: 50%;
     transform: translateY(-50%);

@@ -27,7 +27,7 @@ body {
   line-height: 1;
   font-size: 100%;
   outline: none;
-  font-family: 'Lato', sans-serif;
+  font-family: 'taile', sans-serif;
 }
 ol, ul {
   list-style: none;
@@ -61,6 +61,7 @@ ol, ul {
 }
 
 @font-face {
+    font-family: 'taile';
     src: url(/static/fonts/TAILE.TTF);
     font-weight:400;
 }
@@ -145,6 +146,7 @@ body::-webkit-scrollbar-thumb {
 .site-header .site-logo{
     width: 20%;
     display: inline-block;
+    cursor: pointer;
 }
 
 .site-logo img {
