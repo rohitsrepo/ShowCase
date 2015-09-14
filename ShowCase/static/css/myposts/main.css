@@ -1,6 +1,19 @@
+html, body {
+  height: 100%;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+}
+
+.myposts-body .activities-template {
+    min-height: 100%;
+}
+
 /*----------- No activities -------------*/
 .no-user-posts {
     width: 60%;
+    min-height: 100%;
     margin: 0 auto;
     margin-top: 10%;
     text-align: center;

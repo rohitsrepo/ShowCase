@@ -30,10 +30,10 @@
     <!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="mypostsController"{% endblock %}
+{% block body_attr_block %}ng-controller="mypostsController" class="myposts-body"{% endblock %}
 
 {% block content_block %}
-    <div ng-include="'/static/js/user/profile.activities.html'"></div>
+    <div ng-include="'/static/js/user/profile.activities.html'" class="activities-template" ng-cloak ng-hide="activitiesMeta.noPosts"></div>
     <div ng-cloak ng-show="activitiesMeta.noPosts" class="no-user-posts">
         <h3>There are no posts yet</h3>
         <h3>You have not followed any user</h3>

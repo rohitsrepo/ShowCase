@@ -106,6 +106,35 @@
     <alert-support></alert-support>
     <progress-support></progress-support>
 
+    {% block site_footer_block %}
+        <footer class="site-footer">
+            <header>
+                <h2>What we have here is the opportunity to create something new, just be yourself.</h2>
+                <a custom-href="/arts" class="explore" analytics-click analytics-data="['Reader', 'Button-Explore Art']">EXPLORE ART</a>
+            </header>
+            <footer class="bottom-footer">
+                <ul class="social clearfix">
+                    <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Pinterest']" custom-href="https://www.pinterest.com/thirddime/thirddime-art/" >
+                        <img title="Pinterest" src="/static/css/reader/icons/pinterest-filled.svg">
+                    </a></li>
+                    <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Twitter']" custom-href="https://twitter.com/thirddime">
+                        <img title="Twitter" src="/static/css/reader/icons/twitter-filled.svg">
+                    </a></li>
+                    <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Facebook']" custom-href="https://www.facebook.com/thirddimeart">
+                        <img title="Facebook" src="/static/css/reader/icons/facebook-filled.svg">
+                    </a></li>
+                </ul>
+
+                <nav class="links">
+                    <a href="/about-us">About Us</a>
+                    <a href="/blog">Blog</a>
+                    <a href="/guidelines">Guidelines</a>
+                    <a href="/contact-us">Contact Us</a>
+                </nav>
+            </footer>
+        </footer>
+    {% endblock %}
+
     <!-- Scripts Here -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>

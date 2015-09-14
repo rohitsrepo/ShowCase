@@ -572,21 +572,125 @@ body::-webkit-scrollbar-thumb {
     display: inline;
 }
 
+/*============== EXPLORE BUTTON ====================*/
+.explore {
+  font-weight: 400;
+  display: inline-block;
+  padding: 12px 18px;
+  margin-top: 20px;
+  border: 2px solid black;
+  border-radius: 1px;
+  text-align: center;
+  font-size: 1.1em;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  color: white;
+  background-color: black;
+  transition: all 1s;
+}
+
+.explore:hover {
+  background-color: white;
+  border-color: white;
+  color: black
+}
+
+/*------------- Site Footer --------------*/
+footer.site-footer {
+    width: 100%;
+    min-height: 100%;
+    background: url('http://www.fubiz.net/wp-content/uploads/2015/01/Black-And-White-Watercolors-Illustrations_2-640x640.jpg');
+    background-size: cover;
+    text-align: center;
+    padding-top: 150px;
+    position: relative;
+    margin-top: 50px;
+}
+
+footer.site-footer header {
+    width: 800px;
+    margin: 0 auto;
+}
+
+footer.site-footer header h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    line-height: 1.2em;
+    letter-spacing: 1px;
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.site-footer .bottom-footer .links {
+    position: absolute;
+    bottom: 10px;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.site-footer .bottom-footer .links a {
+    color: white;
+    padding: 5px;
+    letter-spacing: 1px;
+}
+
+.site-footer .bottom-footer .links a:hover {
+}
+
+.site-footer .bottom-footer .social {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+.site-footer .bottom-footer .social li {
+  float: right;
+  width: 2.5em;
+  height: 2.5em;
+  opacity: 0.5;
+}
+
+.site-footer .bottom-footer .social li:hover {
+  opacity: 1;
+}
+
+.site-footer .bottom-footer .social li img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 800px) {
+    .site-footer .bottom-footer .social {
+        position: static;
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 50px;
+        text-align: center;
+      }
+
+  .head-footer .social li {
+    float: none;
+    display: inline-block;
+  }
+}
+
 /*------------ Site loader --------------*/
 .site-loader {
-    width: 60px;
-    margin:auto;
+    width: 50px;
     vertical-align: middle;
-    color: white;
+    text-align: left;
+    margin: 50px auto;
 }
 
 .site-loader .stick {
     width: 10px;
     height: 10px;
-    color: white;
-    background: white;
+    background: black;
     display:inline-block;
-    /*margin-left:$stick_distance;*/
+    margin-left:2px;
 }
 
 .site-loader .stick:nth-child(n) {

@@ -42,4 +42,14 @@ angular.module('module.root')
         })
 
     };
+}])
+.directive('siteLoader', [function () {
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+            siteLoaderHide: '='
+        },
+        template: '<div class="site-loader" ng-cloak ng-hide="siteLoaderHide"><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span></div>'
+    };
 }]);

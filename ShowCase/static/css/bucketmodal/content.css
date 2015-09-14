@@ -1,3 +1,7 @@
+.bucket-content .site-loader .stick {
+    background: white;
+}
+
 /*------------- Bucket modal overrides ------------*/
 .bucket-modal .modal-actions-header,
 .bucket-modal .modal-actions-header i.content-action {

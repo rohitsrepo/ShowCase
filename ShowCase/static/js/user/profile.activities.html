@@ -134,6 +134,9 @@
 
     <hr ng-repeat-end>
 
+    <site-loader site-loader-hide='!activitiesMeta.busy || activitiesMeta.disableGetMore || activitiesMeta.noActivities'></site-loader>
+
+
     <section class="no-user-activities" ng-cloak ng-show="activitiesMeta.noActivities" >
         <h3>There are no posts yet</h3>
 
