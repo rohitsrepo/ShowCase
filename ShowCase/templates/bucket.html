@@ -49,7 +49,7 @@
             </span>
         </section>
 
-        <div class="background-area" ng-if="bucket" ng-style="{'background-image': 'url([[bucket.background_url]])'}"></div>
+        <div class="background-area" ng-if="bucket" ng-style="{'background-image': 'url({{bucket.background_url}})'}"></div>
         <div class="background-overlay"></div>
 
         <article class="bucket-content" swipe-effect ng-swipe-left="nextArt()" ng-swipe-right="prevArt()">
