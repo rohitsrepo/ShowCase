@@ -1,18 +1,9 @@
-@font-face{
-  font-family: 'fertigo';
-  src: url('/static/fonts/fertigo/Fertigo.eot');
-  src: url('/static/fonts/fertigo/Fertigo.woff') format('woff'),
-       url('/static/fonts/fertigo/Fertigo.ttf') format('truetype'),
-       url('/static/fonts/fertigo/Fertigo.svg') format('svg');
-}
-
 html, body {
   height: 100%;
   font-size: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-smooth: always;
-  font-family: 'taile';
 }
 
 .auth-user,

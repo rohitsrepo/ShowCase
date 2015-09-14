@@ -27,7 +27,7 @@ body {
   line-height: 1;
   font-size: 100%;
   outline: none;
-  font-family: taile;
+  font-family: 'Lato', sans-serif;
 }
 ol, ul {
   list-style: none;
@@ -61,7 +61,6 @@ ol, ul {
 }
 
 @font-face {
-    font-family: taile;
     src: url(/static/fonts/TAILE.TTF);
     font-weight:400;
 }
@@ -157,7 +156,6 @@ body::-webkit-scrollbar-thumb {
 .site-logo .site-name {
     display: inline-block;
     height: 3.3em;
-    font-family: 'taile';
     font-weight: bold;
     text-align: left;
     cursor: pointer;
@@ -382,7 +380,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .details-inset .inset-details h6 {
-  font-family: 'taile', sans-serif;
   font-size: 0.85em;
   line-height: 2em;
   letter-spacing: 1px;
@@ -435,7 +432,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .art .details h4 {
-  /*font-family: 'fertigo', serif;*/
   font-size: 1.1em;
   font-weight: bold;
   line-height: 1.5em;
@@ -453,7 +449,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .art .details h5 a {
-  font-family: 'fertigo', serif;
   font-size: 0.9em;
   letter-spacing: 1px;
   display: inline-block;
@@ -465,7 +460,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .art .details h5 {
-  font-family: 'taile', sans-serif;
   font-size: 0.8em;
   color: rgba(0, 0, 0, 0.5);
 }
@@ -502,7 +496,6 @@ body::-webkit-scrollbar-thumb {
 .art .actions button:before {
     position: absolute;
     content: '\E876';
-    font-family: 'Material Icons';
     left: 130%;
     top: 50%;
     transform: translateY(-50%);
