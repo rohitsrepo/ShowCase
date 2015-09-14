@@ -1,5 +1,9 @@
 <section key-event-binder-content tabindex="0" class="bucket-modal content">
     <section class="modal-actions-header">
+        <section class="action-right">
+            <i class="material-icons action content-action" ng-click="back()">arrow_back</i>
+        </section>
+
         <i class="material-icons action content-action" ng-cloak ng-show="bucket.has_ownership">edit</i>
         <span class="counter">
             <i class="material-icons action content-action">visibility</i>
@@ -10,8 +14,7 @@
             <i class="material-icons action content-action" ng-cloak ng-show="bucket.is_watched" ng-click="unwatchBucket()">star</i>
             <h6 class="count">[[bucket.watchers_count]]</h6>
         </span>
-        <i class="material-icons action content-action" ng-click="back()">arrow_back</i>
-        <i class="material-icons action content-action" ng-click="close()">close</i>
+        <!-- <i class="material-icons action content-action" ng-click="close()">close</i> -->
     </section>
 
     <div class="background-area" ng-if="bucket" ng-style="{'background-image': 'url([[bucket.background_url]])'}"></div>
@@ -22,7 +25,7 @@
             <h1>[[bucket.name | titlecase]]</h1>
             <hr>
             <div class="by-user">by</div>
-            <h3><a custom-href="/@{{bucket.owner.slug}}">{{bucket.owner.name | title }}</a></h3>
+            <h3><a custom-href="/@{{bucket.owner.slug}}">[[bucket.owner.name | titlecase ]]</a></h3>
             <hr>
             <h2>[[bucket.description]]</h2>
         </header>

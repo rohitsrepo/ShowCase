@@ -47,7 +47,6 @@
                 <i class="material-icons action content-action" ng-cloak ng-show="bucket.isWatched" ng-click="unwatchBucket()">star</i>
                 <h6 class="count">{{bucket.watchers_count}}</h6>
             </span>
-            <a href="/@{{bucket.owner.slug}}/series"><i class="material-icons action content-action">arrow_back</i></a>
         </section>
 
         <div class="background-area" ng-if="bucket" ng-style="{'background-image': 'url([[bucket.background_url]])'}"></div>
