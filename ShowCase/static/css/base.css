@@ -635,6 +635,7 @@ footer.site-footer header h2 {
     color: white;
     padding: 5px;
     letter-spacing: 1px;
+    cursor: pointer;
 }
 
 .site-footer .bottom-footer .links a:hover {

@@ -1,83 +1,66 @@
-<!DOCTYPE html>
-<html ng-app="AboutUsApp">
-<head>
-	<title>About Us - ThirdDime</title>
+{% extends "base.html" %}
 
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% block html_attr_block %}ng-app="AboutUsApp" ng-controller="aboutusController"{% endblock %}
 
-	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
+    {% block title_block %}
+        <title>About Us - ThirdDime</title>
+    {%endblock%}
 
-	 <!-- build:css /static/build/aboutus.css -->
-	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/aboutus/main.css">
-	<!-- endbuild -->
 
-	<script>
-		 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		 ga('create', 'UA-58563444-1', 'auto');
-		 ga('require', 'displayfeatures');
-		 ga('send', 'pageview');
-	</script>
-</head>
-<body ng-controller="aboutusController">
-	<topbar></topbar>
-	<header class="banner">
-		<div class="curtain-overlay-placeholder"></div>
-		<h1>On the journey of thoughts</h1>
-		<footer class="head-footer">
-			<ul class="social clearfix">
-				<li><a target="_blank" href="https://www.pinterest.com/thirddime/thirddime-art/">
-					<img title="Pinterest" src="/static/css/reader/icons/pinterest-filled.svg">
-				</a></li>
-				<li><a target="_blank" href="https://twitter.com/thirddime">
-					<img title="Twitter" src="/static/css/reader/icons/twitter-filled.svg">
-				</a></li>
-				<li><a target="_blank" href="https://www.facebook.com/thirddimeart">
-					<img title="Facebook" src="/static/css/reader/icons/facebook-filled.svg">
-				</a></li>
-			</ul>
-		</footer>
-	</header>
+    {% block css_block %}
+         <!-- build:css /static/build/aboutus.css -->
+            <link rel="stylesheet" type="text/css" href="/static/css/reader/topbar.css">
+            <link rel="stylesheet" type="text/css" href="/static/css/aboutus/main.css">
+        <!-- endbuild -->
+    {%endblock%}
 
-	<section class="about-us">
-		<!-- <h1>About Us</h1> -->
-		<h3>Thirddime lets you effortlessly understand artworks.</h3>
-		<p>Explore our growing collection of artworks across all generations and genres, along with their interpretations, from fellow art lovers.</p>
+    {% block site_header_block %}
+    <topbar></topbar>
+    <div class="curtain-overlay-placeholder"></div>
+    {%endblock%}
 
-		<p>Submit your favourite artworks for discussion with different perspectives, assisted with our Visual tools, helping you discover deeper layers hidden behind each brushstroke.</p>
-	</section>
-	<!-- Scripts Here -->
-	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
-	<!-- build:js /static/build/aboutus.js -->
-	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
-	
-	<script type="text/javascript" src="/static/js/aboutus/aboutus.module.js"></script>
-	<script type="text/javascript" src="/static/js/aboutus/aboutus.controller.js"></script>
-	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
-	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
-	<script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
-	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
-	<script type="text/javascript" src="/static/js/components/analytics/analytics.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/analytics/analytics.directive.js"></script>
-	<!-- endbuild -->
-</body>
-</html>
+    {% block content_block %}
+    <header class="banner">
+        <div class="curtain-overlay-placeholder"></div>
+        <h1>On the journey of thoughts</h1>
+        <footer class="head-footer">
+            <ul class="social clearfix">
+                <li><a target="_blank" href="https://www.pinterest.com/thirddime/thirddime-art/">
+                    <img title="Pinterest" src="/static/css/reader/icons/pinterest-filled.svg">
+                </a></li>
+                <li><a target="_blank" href="https://twitter.com/thirddime">
+                    <img title="Twitter" src="/static/css/reader/icons/twitter-filled.svg">
+                </a></li>
+                <li><a target="_blank" href="https://www.facebook.com/thirddimeart">
+                    <img title="Facebook" src="/static/css/reader/icons/facebook-filled.svg">
+                </a></li>
+            </ul>
+        </footer>
+    </header>
+
+    <section class="about-us">
+        <!-- <h1>About Us</h1> -->
+        <h3>Thirddime lets you effortlessly understand artworks.</h3>
+        <p>Explore our growing collection of artworks across all generations and genres, along with their interpretations, from fellow art lovers.</p>
+
+        <p>Submit your favourite artworks for discussion with different perspectives, assisted with our Visual tools, helping you discover deeper layers hidden behind each brushstroke.</p>
+    </section>
+    {%endblock%}
+
+    {% block script_block %}
+        <!-- build:js /static/build/aboutus.js -->
+        <script type="text/javascript" src="/static/js/aboutus/aboutus.module.js"></script>
+        <script type="text/javascript" src="/static/js/aboutus/aboutus.controller.js"></script>
+        <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
+        <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
+        <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
+        <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
+        <script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
+        <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
+        <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
+        <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
+        <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
+        <script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
+        <script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
+        <!-- endbuild -->
+    {% endblock %}
