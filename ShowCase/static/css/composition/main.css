@@ -311,6 +311,12 @@ html, body {
     line-height: 2em;
 }
 
+@media (max-width: 800px) {
+    .art-associates {
+        width: 95%;
+    }
+}
+
 /*------------ Art buckets ----------------*/
 .art-associates .art-buckets {
     width: 100%;
@@ -377,6 +383,13 @@ html, body {
     font-size: 0.7em;
     margin-top: 10px;
     display: inline;
+}
+
+@media (max-width: 800px) {
+    .art-associates .art-buckets .art-bucket {
+        width: 100%;
+        display: block;
+    }
 }
 
 /*------------ Artist Works ------------------*/
@@ -467,4 +480,12 @@ html, body {
 .art-associates .associate-works .work .work-details .arts-count {
     font-size: 0.7em;
     display: inline;
+}
+
+
+@media (max-width: 800px) {
+    .art-associates .associate-works .work {
+        width: 100%;
+        display: block;
+    }
 }

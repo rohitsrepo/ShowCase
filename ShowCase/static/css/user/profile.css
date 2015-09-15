@@ -247,3 +247,12 @@ header .details .actions h3:hover {
     font-size: 0.8em;
     display: inline;
 }
+
+@media (max-width: 800px) {
+    .user-buckets {
+        width: 95%;
+    }
+    .user-buckets .user-bucket {
+        width: 100%;
+    }
+}

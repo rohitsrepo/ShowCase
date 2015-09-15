@@ -601,6 +601,7 @@ footer.site-footer {
     min-height: 100%;
     background: url('http://www.fubiz.net/wp-content/uploads/2015/01/Black-And-White-Watercolors-Illustrations_2-640x640.jpg');
     background-size: cover;
+    background-position: top center; 
     text-align: center;
     padding-top: 150px;
     position: relative;
@@ -608,7 +609,8 @@ footer.site-footer {
 }
 
 footer.site-footer header {
-    width: 800px;
+    max-width: 800px;
+    width: 80%;
     margin: 0 auto;
 }
 
@@ -665,17 +667,9 @@ footer.site-footer header h2 {
 }
 
 @media (max-width: 800px) {
-    .site-footer .bottom-footer .social {
-        position: static;
-        width: 90%;
-        margin: 0 auto;
-        margin-top: 50px;
-        text-align: center;
-      }
-
-  .head-footer .social li {
-    float: none;
-    display: inline-block;
+    
+  footer.site-footer {
+      padding-top: 50px;
   }
 }
 
