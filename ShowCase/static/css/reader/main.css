@@ -210,13 +210,12 @@ html, body {
 .concept-what .concept-series {
     width: 80%;
     margin: 70px auto;
-    height: 350px;
     color: rgba(0, 0, 0, 0.8);
 }
 
 .concept-what .concept-series .concept-series-container {
         width: 33%;
-        height: 100%;
+        height: 350px;
         padding: 20px;
         display: inline-block;
 }
