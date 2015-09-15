@@ -124,8 +124,16 @@
 
 @media (max-width: 1500px) {
     .content-bucket-header {
-        margin-bottom: 0;
-        padding: 20px;
+        padding: 20px 0;
+    }
+    .content-bucket-header h1 {
+        font-size: 1.5em;
+    }
+    .content-bucket-header h2 {
+        font-size: 1em;
+    }
+    .content-bucket-header hr {
+        width: 50px;
     }
 }
 
