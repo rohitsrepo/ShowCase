@@ -15,7 +15,7 @@ angular.module('ExploreApp')
 
     $scope.math = window.Math
 	$scope.arts = [];
-	$scope.postsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', feedType:'staff'};
+	$scope.postsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', feedType:'fresh'};
 
     var getPostFetcher = function () {
         if ($scope.postsMeta.feedType === 'fresh') {
