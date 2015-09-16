@@ -8,7 +8,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import StaffPost, Fresh
+from .models import StaffPost, Fresh, Staff
 from .serializers import PaginatedPostSerializer, PostSerializer, PaginatedFeedPostSerializer
 
 from interpretations.models import Interpretation
@@ -89,6 +89,24 @@ class FreshPostList(APIView):
     def get(self, request, format=None):
         page_num = request.GET.get('page', 1)
         posts = Fresh.objects.all().order_by('-created')
+        paginator = Paginator(posts, 15)
+
+        try:
+            this_page_posts = paginator.page(page_num)
+        except PageNotAnInteger:
+            this_page_posts = paginator.page(1)
+        except EmptyPage:
+            raise Http404
+
+        serializer = PaginatedFeedPostSerializer(this_page_posts, context={'request': request})
+        return Response(data=serializer.data)
+
+class StaffPostList(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, format=None):
+        page_num = request.GET.get('page', 1)
+        posts = Staff.objects.all().order_by('-created')
         paginator = Paginator(posts, 15)
 
         try:

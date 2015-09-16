@@ -11,6 +11,39 @@ html, body {
   color: white;
 }
 
+/*----------------- Art Feed ---------------------*/
+
+.arts-feeds {
+  width: 40%;
+  display: block;
+  margin: 40px auto;
+  padding-bottom: 20px;
+}
+
+.arts-feeds .arts-feed {
+    display: inline-block;
+    width: 50%;
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.4s;
+}
+
+.arts-feeds .arts-feed:hover,
+.arts-feeds .arts-feed.active  {
+    color: rgba(0, 0, 0, 0.9);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+
+@media (max-width: 800px) {
+  .arts-feeds {
+    width: 90%;
+  }
+}
 
 /*================ Painting Area ==================*/
 .explore-container {

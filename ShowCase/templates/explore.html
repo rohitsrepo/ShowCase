@@ -31,6 +31,10 @@
 {% block body_attr_block %}ng-controller="exploreController"{% endblock %}
 
 {% block content_block %}
+    <ul class="arts-feeds">
+       <li class="arts-feed" ng-click="switchPostSource('staff')" ng-class="{'active': postsMeta.feedType == 'staff'}">Staff's Pick</li><!--
+       --><li class="arts-feed" ng-click="switchPostSource('fresh')" ng-class="{'active': postsMeta.feedType == 'fresh'}">Fresh</li>
+    </ul>
     <div ng-cloak masonry masonry-options="{ transitionDuration: '0' }" class="arts-container explore-container" infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore'>
         <div class="masonry-brick container explore-art-container" ng-switch='art.feed_type' ng-repeat="art in arts">
             <div class="art" ng-show="art.feed_type == 'AR'">

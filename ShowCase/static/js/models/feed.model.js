@@ -38,6 +38,13 @@ angular.module("module.model")
         });
     };
 
+    service.getStaff = function (pageNum) {
+        return $http.get('/feeds/staff?page='+pageNum).then(function (response) {
+            return response.data;
+        }, function (response) {
+            return $q.reject(response);
+        });
+    };
 
 	return service;
 }]);

@@ -46,3 +46,20 @@ def model_deleted(sender, instance, **kwargs):
 def bind_fresh_feed(sender, **kwargs):
     post_save.connect(model_created, sender=sender)
     post_delete.connect(model_deleted, sender=sender)
+
+class Staff(models.Model):
+    BUCKET = 'BK'
+    ART = 'AR'
+
+    TYPE_CHOICES = (
+        (ART, 'art'),
+        (BUCKET, 'bucket'),
+    )
+
+    created = models.DateTimeField(auto_now_add=True)
+    public = models.BooleanField(default=True)
+    feed_type = models.CharField(max_length=2, choices=TYPE_CHOICES)
+
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')

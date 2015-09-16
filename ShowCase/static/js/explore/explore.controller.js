@@ -15,7 +15,15 @@ angular.module('ExploreApp')
 
     $scope.math = window.Math
 	$scope.arts = [];
-	$scope.postsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
+	$scope.postsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', feedType:'staff'};
+
+    var getPostFetcher = function () {
+        if ($scope.postsMeta.feedType === 'fresh') {
+            return feedModel.getFresh;
+        } else if ($scope.postsMeta.feedType === 'staff') {
+            return feedModel.getStaff;
+        }
+    };
 
     // Disable scroll on parent page
     $rootScope.$on('$stateChangeSuccess',
@@ -34,7 +42,7 @@ angular.module('ExploreApp')
             progress.showProgress();
 
 	        var pageVal = $scope.postsMeta.pageVal;
-	        feedModel.getFresh(pageVal).then(function (response) {
+	        getPostFetcher()(pageVal).then(function (response) {
 	            $scope.postsMeta.next = response.next;
 	            $scope.postsMeta.previous = response.previous;
 
@@ -68,6 +76,24 @@ angular.module('ExploreApp')
 	}
 
 	$scope.loadMorePosts();
+
+    $scope.switchPostSource = function (feedType) {
+        if (feedType !== $scope.postsMeta.feedType) {
+            $scope.postsMeta.disableGetMore = true;
+
+            $scope.postsMeta = {
+                pageVal: 1,
+                busy: false,
+                next:'',
+                previous:'',
+                feedType:feedType
+            };
+
+            $scope.arts = [];
+            $scope.postsMeta.disableGetMore = false;
+            getPosts();
+        }
+    };
 
     $scope.handleBookMark = function (index) {
         art = $scope.arts[index]
