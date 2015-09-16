@@ -7,7 +7,6 @@
 
 
 {% block meta_block %}
-    <base href="/">
     <meta name="description" content="Browse through breathtaking artworks and their interpretations. Discover deeper layers behind each painting with a community of art lovers." />
     <link rel="canonical" href="http://thirddime.com" />
     <link ng-cloak ng-if="postsMeta.next" rel="next" href="http://thirddime.com#[[postsMeta.next]]" />
@@ -59,8 +58,8 @@
                     </div>
                 </article>
                 <section class="details">
-                    <h4><a custom-href="/arts/[[art.content.slug]]" target="_blank">[[art.content.title | titlecase]]</a></h4>
-                    <h5> by <a custom-href="/@[[art.content.artist.slug]]" target="_blank">[[art.content.artist.name | titlecase]]</a></h5>
+                    <h4><a ng-href="/arts/[[art.content.slug]]" target="_blank">[[art.content.title | titlecase]]</a></h4>
+                    <h5> by <a ng-href="/@[[art.content.artist.slug]]" target="_blank">[[art.content.artist.name | titlecase]]</a></h5>
                 </section><!--
                 --><section class="actions">
                     <button ng-click="handleBookMark($index)" ng-class="{'bookmark-active': art.is_bookmarked}">ADMIRE</button>

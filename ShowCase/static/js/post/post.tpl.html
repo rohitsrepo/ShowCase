@@ -1,15 +1,15 @@
 <article class="post" ng-controller="postController">
-    <a class="user-picture" custom-href="/@[[post.creator.slug]]">
+    <a class="user-picture" ng-href="/@[[post.creator.slug]]">
             <img ng-src="[[post.creator.picture]]">
     </a>
     <section class="post-header">
-        <a custom-href="/@[[post.creator.slug]]" class="user-details">
+        <a ng-href="/@[[post.creator.slug]]" class="user-details">
             <h2>[[post.creator.name | titlecase]]</h2>
         </a>
         <section class="user-action">
             wrote about
         </section>
-        <a class="art-details" custom-href="/arts/[[post.composition.slug]]">
+        <a class="art-details" ng-href="/arts/[[post.composition.slug]]">
             [[post.composition.title]]
         </a>
         <section class="header-about">
@@ -44,11 +44,11 @@
             </form>
         </section>
         <section class="post-comment" ng-repeat="comment in post.comments">
-            <a class="commenter-picture" custom-href="/@[[comment.commenter.slug]]">
+            <a class="commenter-picture" ng-href="/@[[comment.commenter.slug]]">
                 <img ng-src="[[comment.commenter.picture]]">
             </a><!--
             --><section class="comment-details">
-                <a custom-href="/@[[comment.commenter.slug]]">
+                <a ng-href="/@[[comment.commenter.slug]]">
                     <h5>[[comment.commenter.name | titlecase]]</h5>
                 </a>
                 <p>[[comment.comment]]</p>

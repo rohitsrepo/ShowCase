@@ -7,7 +7,6 @@
 
 {% block meta_block %}
 	<meta charset="UTF-8">
-    <base href="/">
 	<meta name="Description" content="Title: {{composition.title}}, Artist: {{composition.artist.name}}, Category: Painting Interpretations and Stories">
 	<link rel="canonical" href="http://thirddime.com/arts/{{composition.slug}}" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -68,14 +67,14 @@
 
             <section class="painting-parent">
                 <div class="by-header">Created By</div>
-                <a class="by-user" custom-href="/@{{composition.artist.slug}}">
+                <a class="by-user" ng-href="/@{{composition.artist.slug}}">
                     <h3>{{composition.artist.name | title}}</h3>
                 </a>
             </section>
 
             <section class="painting-parent">
                 <div class="by-header">Contributed By</div>
-                <a class="by-user" custom-href="/@{{composition.uploader.slug}}" class="uploader">
+                <a class="by-user" ng-href="/@{{composition.uploader.slug}}" class="uploader">
                     <h3>{{composition.uploader.name | title}}</h3>
                 </a>
             </section>
@@ -123,7 +122,7 @@
                             <h3>This work has been marked not safe</h3>
                             <h4>Click anywhere to show the work</h4>
                         </div>
-                        <a class="work-details" custom-href="/arts/[[work.slug]]">
+                        <a class="work-details" ng-href="/arts/[[work.slug]]">
                             <h2>[[work.title | titlecase]]</h2>
                             <div class="by-user">By</div>
                             <h3>[[work.artist.name | titlecase ]]</h3>
@@ -145,7 +144,7 @@
                             <h3>This work has been marked not safe</h3>
                             <h4>Click anywhere to show the work</h4>
                         </div>
-                        <a class="work-details" custom-href="/arts/[[work.slug]]">
+                        <a class="work-details" ng-href="/arts/[[work.slug]]">
                             <h2>[[work.title | titlecase]]</h2>
                             <div class="by-user">By</div>
                             <h3>[[work.artist.name | titlecase ]]</h3>
@@ -159,7 +158,7 @@
         </section>
 
     </section>
-    
+
     <div ui-view></div>
 
 {% endblock %}

@@ -5,7 +5,7 @@
     <div class="scroll-holder">
         <ul class="container">
             <h1 class="buckets-header" ng-cloak ng-hide="noUserBucket.status">
-                Select series to add <a custom-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a>
+                Select series to add <a ng-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a>
                 <button ng-click="showCreateBucket()">New Series</button>
             </h1>
 

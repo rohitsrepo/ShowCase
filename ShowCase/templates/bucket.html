@@ -57,7 +57,7 @@
                 <h1>{{bucket.name | title}}</h1>
                 <hr>
                 <div class="by-user">by</div>
-                <h3><a custom-href="/@{{bucket.owner.slug}}">{{bucket.owner.name | title }}</a></h3>
+                <h3><a ng-href="/@{{bucket.owner.slug}}">{{bucket.owner.name | title }}</a></h3>
                 <hr>
                 <h2>{{bucket.description}}</h2>
             </header>
@@ -76,16 +76,16 @@
                             <div class="art-details-actions">
                                 <i class="material-icons action" ng-cloak ng-show="'{{has_ownership}}' == 'True'">delete</i>
                             </div>
-                            <h1><a custom-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a></h1>
+                            <h1><a ng-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a></h1>
                             <div class="by-user">by</div>
-                            <h2><a custom-href="/@[[art.artist.slug]]">[[art.artist.name | titlecase]]</a></h2>
+                            <h2><a ng-href="/@[[art.artist.slug]]">[[art.artist.name | titlecase]]</a></h2>
                         </section>
                     </section>
                 </ul>
             </div>
 
             <div class="show-mb bucket-content-mb" >
-                <a ng-cloak ng-show="art.show" custom-href="/arts/[[art.slug]]" ng-repeat='art in bucketArts'>
+                <a ng-cloak ng-show="art.show" ng-href="/arts/[[art.slug]]" ng-repeat='art in bucketArts'>
                     <img ng-src="[[art.matter_550]]">
                 </a>
             </div>

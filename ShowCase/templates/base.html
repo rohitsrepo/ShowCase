@@ -44,7 +44,7 @@
     {% block site_header_block %}
 
     <header header-scroll class="site-header" ng-controller="headerController">
-        <a class="site-logo" custom-href="/">
+        <a class="site-logo" ng-href="/">
             <img src="/static/images/header-md.png"  analytics-click analytics-data="['Top Bar-Left', 'Logo']">
             <section class="site-name nt-mb" fade-on-scroll ng-cloak ng-hide="hideName" analytics-click analytics-data="['Top Bar-Left', 'Logo - Name']">
                 <h1 class="nt-mb">THIRDDIME</h1>
@@ -52,11 +52,11 @@
             </section>
         </a><!--
         --><nav class="site-navigation">
-            <li><a ng-class="{'active' : exploreActive}" custom-href="/arts">ART</a></li>
-            <!-- <li><a custom-href="/artist">ARTISTS</a></li> -->
-            <!-- <li><a custom-href="/generes">GENRES</a></li> -->
-            <li><a ng-class="{'active' : postsActive}" custom-href="/posts">POSTS</a></li>
-            <li><a class="nt-mb" custom-href="/blog" target="_blank">BLOG</a></li>
+            <li><a ng-class="{'active' : exploreActive}" ng-href="/arts">ART</a></li>
+            <!-- <li><a ng-href="/artist">ARTISTS</a></li> -->
+            <!-- <li><a ng-href="/generes">GENRES</a></li> -->
+            <li><a ng-class="{'active' : postsActive}" ng-href="/posts">POSTS</a></li>
+            <li><a class="nt-mb" ng-href="/blog" target="_blank">BLOG</a></li>
         </nav><!--
         --><section class="site-actions nt-mb">
             <!-- <button>ADD ART</button> -->
@@ -77,8 +77,8 @@
                 for="user-profile">
               <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
               <li class="mdl-menu__item" ng-click="gotoMySeries()"><i class="material-icons">list</i>Series</li>
-              <a class="mdl-menu__item" custom-href="/me/settings"><i class="material-icons">settings</i>Settings</a>
-              <a custom-href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
+              <a class="mdl-menu__item" ng-href="/me/settings"><i class="material-icons">settings</i>Settings</a>
+              <a ng-href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
             </ul>
 
         {% else %}
@@ -92,8 +92,8 @@
                 for="user-profile">
               <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
               <li class="mdl-menu__item"><i class="material-icons">list</i>Collection</li>
-              <a class="mdl-menu__item" custom-href="/me/settings"><i class="material-icons">settings</i>Settings</a>
-              <a custom-href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
+              <a class="mdl-menu__item" ng-href="/me/settings"><i class="material-icons">settings</i>Settings</a>
+              <a ng-href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
             </ul>
         {% endif %}
         </section>
@@ -110,26 +110,26 @@
         <footer class="site-footer">
             <header>
                 <h2>What we have here is the opportunity to create something new, just be yourself.</h2>
-                <a custom-href="/arts" class="explore" analytics-click analytics-data="['Reader', 'Button-Explore Art']">EXPLORE ART</a>
+                <a ng-href="/arts" class="explore" analytics-click analytics-data="['Reader', 'Button-Explore Art']">EXPLORE ART</a>
             </header>
             <footer class="bottom-footer">
                 <ul class="social nt-mb clearfix">
-                    <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Pinterest']" custom-href="https://www.pinterest.com/thirddime/thirddime-art/" >
+                    <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Pinterest']" ng-href="https://www.pinterest.com/thirddime/thirddime-art/" >
                         <img title="Pinterest" src="/static/css/reader/icons/pinterest-filled.svg">
                     </a></li>
-                    <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Twitter']" custom-href="https://twitter.com/thirddime">
+                    <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Twitter']" ng-href="https://twitter.com/thirddime">
                         <img title="Twitter" src="/static/css/reader/icons/twitter-filled.svg">
                     </a></li>
-                    <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Facebook']" custom-href="https://www.facebook.com/thirddimeart">
+                    <li><a target="_blank" analytics-click analytics-data="['Reader', 'To Social Page: Facebook']" ng-href="https://www.facebook.com/thirddimeart">
                         <img title="Facebook" src="/static/css/reader/icons/facebook-filled.svg">
                     </a></li>
                 </ul>
 
                 <nav class="links">
-                    <a custom-href="/about-us">About Us</a>
-                    <a custom-href="/blog">Blog</a>
-                    <a custom-href="/guidelines">Guidelines</a>
-                    <a custom-href="/contact-us">Contact Us</a>
+                    <a ng-href="/about-us">About Us</a>
+                    <a ng-href="/blog">Blog</a>
+                    <a ng-href="/guidelines">Guidelines</a>
+                    <a ng-href="/contact-us">Contact Us</a>
                 </nav>
             </footer>
         </footer>

@@ -4,11 +4,11 @@
     </section>
     <div class="container">
         <section class="bookmarker" ng-repeat="marker in bookmarkers">
-            <a class="marker-picture" custom-href="/@[[marker.slug]]">
+            <a class="marker-picture" ng-href="/@[[marker.slug]]">
                 <img ng-src="[[marker.picture]]">
             </a>
             <div class="marker-details">
-                <a class="data" custom-href="/@[[marker.slug]]">
+                <a class="data" ng-href="/@[[marker.slug]]">
                     <h3 class="marker-name">[[marker.name | titlecase]]</h3>
                     <h4 ng-show="marker.followers_count != 0">[[marker.followers_count]] Followers</h4>
                     <h4 ng-show="marker.buckets_count != 0">[[marker.buckets_count]] Series</h4>

@@ -18,7 +18,10 @@ angular.module("ExploreApp", ['ui.router',
 	$httpProvider.defaults.xsrfCookieName = 'csrftoken';
 
     // use the HTML5 History API
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    });
 
     // For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise("/arts");

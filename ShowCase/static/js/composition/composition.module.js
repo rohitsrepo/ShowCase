@@ -16,12 +16,15 @@ angular.module("CompositionApp", [
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 
-	// csrf for django
-	$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-	$httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    // csrf for django
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
 
     // use the HTML5 History API
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
 
     // Now set up the states
     $stateProvider

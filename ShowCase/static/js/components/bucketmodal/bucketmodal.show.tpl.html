@@ -4,7 +4,7 @@
     </section>
     <div class="scroll-holder">
         <ul class="container">
-            <h1 class="buckets-header" ng-cloak ng-hide="noSuchBucket.status">Series containing <a custom-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a></h1>
+            <h1 class="buckets-header" ng-cloak ng-hide="noSuchBucket.status">Series containing <a ng-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a></h1>
             <li class="bucket" ng-repeat="bucket in artBuckets" ui-sref="bucket({userSlug: bucket.owner.slug, bucketSlug: bucket.slug})">
                 <div class="picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">
                     <section class="details">
