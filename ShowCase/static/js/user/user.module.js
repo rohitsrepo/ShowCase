@@ -18,6 +18,13 @@ angular.module("UserApp", [
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
 
+    // For any unmatched url, reload as we have not mentioned any base
+    $urlRouterProvider.otherwise(
+        function() {
+            window.location.reload();
+        
+    });
+
     // use the HTML5 History API
     $locationProvider.html5Mode(true);
 

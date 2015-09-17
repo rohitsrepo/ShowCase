@@ -23,8 +23,13 @@ angular.module("ExploreApp", ['ui.router',
       requireBase: false
     });
 
-    // For any unmatched url, redirect to /state1
-    $urlRouterProvider.otherwise("/arts");
+    // For any unmatched url, reload as we have not mentioned any base
+    $urlRouterProvider.otherwise(
+        function() {
+            window.location.reload();
+        
+    });
+
     //
     // Now set up the states
     $stateProvider
