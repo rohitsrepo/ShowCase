@@ -177,11 +177,16 @@ class CompositionDetail(APIView):
             return Response(ser.data)
         return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, slug, format=None):
-        composition = self.get_composition(slug, request)
-        self.check_object_permissions(self.request, composition)
-        composition.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    ## Deletes more than the composition
+    ## Also delete the buckets it does not even belong to
+    ## Use background job architecture to delete
+
+    # def delete(self, request, slug, format=None):
+    #     composition = self.get_composition(slug, request)
+    #     self.check_object_permissions(self.request, composition)
+    #     composition.delete()
+    #     return Response(status=status.HTTP_204_NO_CONTENT)
 
 class InterpretationImageList(APIView):
 

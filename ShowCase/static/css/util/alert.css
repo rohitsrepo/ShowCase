@@ -8,11 +8,13 @@
   margin-right: auto;
   margin-left: auto;
   width: 400px;
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.95);
   border-top: none;
   border-radius: 2px;
-  color: black;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
   display: inline;
   padding: 15px;
   line-height: 1.5em;
