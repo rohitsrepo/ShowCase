@@ -5,9 +5,10 @@ angular.module('BucketApp')
     'auth',
     'bucketModel',
     'bucketmodalService',
+    'confirmModalService',
     'progress',
     'alert',
-    function ($scope, $rootScope, $document, auth, bucketModel, bucketmodalService, progress, alert) {
+    function ($scope, $rootScope, $document, auth, bucketModel, bucketmodalService, confirmModalService, progress, alert) {
 
         $scope.noSuchBucket = {
             status: false,
@@ -105,13 +106,28 @@ angular.module('BucketApp')
             progress.hideProgress();
             var art = $scope.bucketArts[index];
 
-            bucketModel.removeFromBucket($scope.bucket.id, art.id).then(function () {
-                $scope.removeFromSly(index);
-                $scope.bucketArts.splice(index, 1);
-                progress.hideProgress();
-            }, function () {
-                progress.hideProgress();
-                alert.showAlert('Currently unable to remove this art from the series');
+            confirmModalService.showDeleteConfirm().then(function () {
+                bucketModel.removeFromBucket($scope.bucket.id, art.id).then(function () {
+                    $scope.removeFromSly(index);
+                    $scope.bucketArts.splice(index, 1);
+                    progress.hideProgress();
+                }, function () {
+                    progress.hideProgress();
+                    alert.showAlert('Currently unable to remove this art from the series');
+                });
+            });
+        };
+
+        $scope.deleteBucket = function () {
+            progress.showProgress();
+
+            confirmModalService.showDeleteConfirm().then(function () {
+                bucketModel.deleteBucket($scope.bucket.slug).then(function () {
+                    window.location.href = '/arts';
+                }, function () {
+                    progress.hideProgress();
+                    alert.showAlert('Currently unable to delete this series');
+                });
             });
         };
 

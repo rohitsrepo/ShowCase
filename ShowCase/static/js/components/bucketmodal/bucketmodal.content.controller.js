@@ -5,11 +5,12 @@ angular.module('module.bucketmodal')
     'auth',
     'bucketModel',
     'bucketmodalService',
+    'confirmModalService',
     'close',
     'bucket',
     'progress',
     'alert',
-    function ($scope, $window, $state, auth, bucketModel, bucketmodalService, close, bucket, progress, alert) {
+    function ($scope, $window, $state, auth, bucketModel, bucketmodalService, confirmModalService, close, bucket, progress, alert) {
 
         progress.showProgress();
         $scope.bucket = bucket;
@@ -100,24 +101,28 @@ angular.module('module.bucketmodal')
             progress.hideProgress();
             var art = $scope.bucketArts[index];
 
-            bucketModel.removeFromBucket($scope.bucket.id, art.id).then(function () {
-                $scope.removeFromSly(index);
-                $scope.bucketArts.splice(index, 1);
-                progress.hideProgress();
-            }, function () {
-                progress.hideProgress();
-                alert.showAlert('Currently unable to remove this art from the series');
+            confirmModalService.showDeleteConfirm().then(function () {
+                bucketModel.removeFromBucket($scope.bucket.id, art.id).then(function () {
+                    $scope.removeFromSly(index);
+                    $scope.bucketArts.splice(index, 1);
+                    progress.hideProgress();
+                }, function () {
+                    progress.hideProgress();
+                    alert.showAlert('Currently unable to remove this art from the series');
+                });
             });
         };
 
         $scope.deleteBucket = function () {
             progress.showProgress();
 
-            bucketModel.deleteBucket($scope.bucket.slug).then(function () {
-                window.location.href = '/@' + bucket.owner.slug + '/series';
-            }, function () {
-                progress.hideProgress();
-                alert.showAlert('Currently unable to delete this series');
+            confirmModalService.showDeleteConfirm().then(function () {
+                bucketModel.deleteBucket($scope.bucket.slug).then(function () {
+                    window.location.href = '/@' + bucket.owner.slug + '/series';
+                }, function () {
+                    progress.hideProgress();
+                    alert.showAlert('Currently unable to delete this series');
+                });
             });
         };
 

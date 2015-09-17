@@ -13,6 +13,7 @@ angular.module('module.root', [
     'module.bookmark',
     'module.follow',
     'module.usermodal',
+    'module.confirmModal',
     'module.bucketmodal',
     'module.uploadmodal',
     'module.util']);

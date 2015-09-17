@@ -1,0 +1,1 @@
+angular.module('module.confirmModal', ['module.util'])

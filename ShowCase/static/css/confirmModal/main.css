@@ -1,0 +1,88 @@
+.confirm-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 100px;
+    min-height: 100px;
+    height: 100%;
+    z-index: 3000;
+    background: rgba(0, 0, 0, 0.85);
+    overflow: auto;
+}
+
+.confirm-modal::-webkit-scrollbar {
+    width: 15px;
+}
+
+.confirm-modal::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+}
+
+.confirm-modal::-webkit-scrollbar-thumb {
+    background-color: black;
+    border: 5px solid white;
+}
+
+.confirm-modal .modal-actions-header {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+.confirm-modal .modal-actions-header i.action {
+    color: rgba(255, 255, 255, 0.6);
+    background: transparent;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.confirm-modal .modal-actions-header i.action:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+
+.confirm-modal .action-right {
+  position: fixed;
+  cursor: pointer;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  width: 3em;
+  height: 3em;
+}
+
+/*------------- Confirm Content ---------------*/
+
+.confirm-modal .confirm-modal-content {
+    width: 60%;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 10px;
+    background-color: white;
+    text-align: center;
+}
+
+.confirm-modal .confirm-modal-content h2 {
+    padding: 20px 0;
+}
+
+.confirm-modal-content .confirm-modal-actions .confirm-modal-action {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 1px;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin: 0 10px;
+    transition: all 0.2s;
+}
+
+.confirm-modal-content .confirm-modal-actions .confirm-modal-action:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}

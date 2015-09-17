@@ -94,6 +94,7 @@
     font-size: 0.4em;
     display: block;
     margin: 0 auto;
+    transition: all 0.15s;
 }
 
 .bucket-modal .container .buckets-header button:hover {
