@@ -74,7 +74,7 @@
                         <img ng-src="[[art.matter_550]]">
                         <section class="art-details">
                             <div class="art-details-actions">
-                                <i class="material-icons action" ng-cloak ng-show="'{{has_ownership}}' == 'True'">delete</i>
+                                <i class="material-icons action" ng-cloak ng-show="'{{has_ownership}}' == 'True'" ng-click="removeFromBucket($index)">delete</i>
                             </div>
                             <h1><a ng-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a></h1>
                             <div class="by-user">by</div>

@@ -29,7 +29,7 @@ angular.module("module.model")
     };
 
     service.removeFromBucket = function (bucketId, compositionId) {
-        return $http.delete('/buckets/' + bucketId + '/arts', {'composition_id': compositionId}).then(function (response) {
+        return $http.delete('/buckets/' + bucketId + '/arts/' + compositionId).then(function (response) {
             return response.data;
         }, function (error) {
             return $q.reject(error);

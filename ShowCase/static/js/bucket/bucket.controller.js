@@ -96,6 +96,19 @@ angular.module('BucketApp')
             });
         };
 
+        $scope.removeFromBucket = function (index) {
+            progress.hideProgress();
+            var art = $scope.bucketArts[index];
+
+            bucketModel.removeFromBucket($scope.bucket.id, art.id).then(function () {
+                $scope.removeFromSly(index);
+                $scope.bucketArts.splice(index, 1);
+                progress.hideProgress();
+            }, function () {
+                progress.hideProgress();
+                alert.showAlert('Currently unable to remove this art from the series');
+            });
+        };
 
     }
 ])

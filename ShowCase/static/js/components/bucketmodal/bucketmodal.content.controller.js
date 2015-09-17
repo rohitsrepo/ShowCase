@@ -24,7 +24,7 @@ angular.module('module.bucketmodal')
 
             progress.hideProgress();
         }, function () {
-            alert.showAlert('We are unable to art for this series');
+            alert.showAlert('We are currently unable to get art for this series');
             progress.hideProgress();
         });
 
@@ -89,6 +89,20 @@ angular.module('module.bucketmodal')
                     progress.hideProgress();
                     alert.showAlert("Unable to complete action");
                 });
+            });
+        };
+
+        $scope.removeFromBucket = function (index) {
+            progress.hideProgress();
+            var art = $scope.bucketArts[index];
+
+            bucketModel.removeFromBucket($scope.bucket.id, art.id).then(function () {
+                $scope.removeFromSly(index);
+                $scope.bucketArts.splice(index, 1);
+                progress.hideProgress();
+            }, function () {
+                progress.hideProgress();
+                alert.showAlert('Currently unable to remove this art from the series');
             });
         };
 
@@ -168,6 +182,9 @@ angular.module('module.bucketmodal')
             };
 
             scope.slyInitComplete = true;
+            scope.removeFromSly = function (index) {
+                sly.remove(index);
+            };
 
         });
 
