@@ -96,7 +96,7 @@ angular.module('ExploreApp')
     };
 
     $scope.handleBookMark = function (index) {
-        art = $scope.arts.content[index]
+        art = $scope.arts[index.content]
         if (art.is_bookmarked) {
             bookService.unmark(art).then(function () {
             	art.is_bookmarked = false;
@@ -109,7 +109,7 @@ angular.module('ExploreApp')
     };
 
     $scope.showBookMarkers = function (index) {
-        var art = $scope.arts.content[index];
+        var art = $scope.arts[index].content;
 
         usermodalService.showBookMarkers(art).then(function (bookStatus) {
         	if (bookStatus == 'bookmarked') {
@@ -119,17 +119,17 @@ angular.module('ExploreApp')
     };
 
     $scope.showArtBuckets = function (index) {
-        var art = $scope.arts.content[index];
+        var art = $scope.arts[index].content;
         bucketmodalService.showArtBuckets(art);
     }
 
     $scope.showAddToBucket = function (index) {
-        var art = $scope.arts.content[index];
+        var art = $scope.arts[index].content;
         bucketmodalService.showAddToBucket(art);
     };
 
     $scope.toggleNsfw = function (index) {
-        var art = $scope.arts.content[index];
+        var art = $scope.arts[index].content;
         art.nsfw = false;
     }
 
