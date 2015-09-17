@@ -51,6 +51,14 @@ class Composition(models.Model):
         Fresh.objects.create(feed_type=Fresh.ART,
             content_object=self)
 
+    def remove_fresh_post(self):
+        try:
+            Fresh.objects.filter(feed_type=Fresh.ART,
+                object_id=self.bucket.id,
+                content_type=ContentType.objects.get_for_model(Composition)).delete()
+        except:
+            pass
+
     def get_fresh_post(self):
         return Fresh.objects.filter(feed_type=Fresh.ART,
                 object_id=self.id,
@@ -60,6 +68,14 @@ class Composition(models.Model):
         return Staff.objects.filter(feed_type=Fresh.ART,
                 object_id=self.id,
                 content_type=ContentType.objects.get_for_model(Composition))
+
+    def remove_staff_post(self):
+        try:
+            Staff.objects.filter(feed_type=Fresh.ART,
+                object_id=self.bucket.id,
+                content_type=ContentType.objects.get_for_model(Composition)).delete()
+        except:
+            pass
 
     def timesince(self, now=None):
         from django.utils.timesince import timesince as _

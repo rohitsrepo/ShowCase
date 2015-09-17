@@ -87,8 +87,31 @@ class BucketMembership(models.Model):
                 object_id=self.bucket.id,
                 content_type=ContentType.objects.get_for_model(Bucket))
 
+    def remove_fresh_post(self):
+        try:
+            if bucket.compositions.count() == 0:
+                Fresh.objects.filter(feed_type=Fresh.BUCKET,
+                    object_id=self.bucket.id,
+                    content_type=ContentType.objects.get_for_model(Bucket)).delete()
+        except:
+            pass
+
+    def remove_staff_post(self):
+        try:
+            if bucket.compositions.count() == 0:
+                Staff.objects.filter(feed_type=Fresh.BUCKET,
+                    object_id=self.bucket.id,
+                    content_type=ContentType.objects.get_for_model(Bucket)).delete()
+        except:
+            pass
+
+    def add_to_staff_feed(self):
+        if self.bucket.compositions.count() > 3 and not self.get_staff_post().exists():
+            Staff.objects.create(feed_type=Staff.BUCKET,
+                content_object=self.bucket)
+
     def get_staff_post(self):
-        return Staff.objects.filter(feed_type=Fresh.BUCKET,
+        return Staff.objects.filter(feed_type=Staff.BUCKET,
                 object_id=self.bucket.id,
                 content_type=ContentType.objects.get_for_model(Bucket))
 

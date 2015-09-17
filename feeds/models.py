@@ -39,7 +39,7 @@ def model_created(sender, instance, created, raw, **kwargs):
 
 def model_deleted(sender, instance, **kwargs):
     try:
-        instance.get_fresh_post().delete()
+        instance.remove_fresh_post().delete()
     except:
         pass
 
@@ -68,7 +68,7 @@ class Staff(models.Model):
 # Define Signals
 def model_deleted_staff(sender, instance, **kwargs):
     try:
-        instance.get_staff_post().delete()
+        instance.remove_staff_post().delete()
     except:
         pass
 
