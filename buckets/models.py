@@ -85,7 +85,7 @@ class BucketMembership(models.Model):
     def get_fresh_post(self):
         return Fresh.objects.filter(feed_type=Fresh.BUCKET,
                 object_id=self.bucket.id,
-                content_object=ContentType.objects.get_for_model(Bucket))
+                content_type=ContentType.objects.get_for_model(Bucket))
 
     def create_post(self):
         return Post(

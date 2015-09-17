@@ -54,7 +54,7 @@ class Composition(models.Model):
     def get_fresh_post(self):
         return Fresh.objects.filter(feed_type=Fresh.ART,
                 object_id=self.id,
-                content_object=ContentType.get_for_model(Composition))
+                content_type=ContentType.objects.get_for_model(Composition))
 
     def timesince(self, now=None):
         from django.utils.timesince import timesince as _
