@@ -5,6 +5,7 @@
         </section>
 
         <i class="material-icons action content-action" ng-cloak ng-show="bucket.has_ownership">edit</i>
+        <i class="material-icons action content-action" ng-cloak ng-show="bucket.has_ownership" ng-click="deleteBucket()">delete</i>
         <span class="counter">
             <i class="material-icons action content-action">visibility</i>
             <h6 class="count">[[bucket.views]]</h6>
@@ -64,7 +65,7 @@
             </div>
         </div>
 
-        <site-loader site-loader-hide='slyInitComplete'></site-loader>
+        <site-loader site-loader-hide='slyInitComplete || !$scope.noArts'></site-loader>
 
     </article>
 

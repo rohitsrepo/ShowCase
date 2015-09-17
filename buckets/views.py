@@ -72,22 +72,6 @@ class BucketCompositionList(APIView):
 
         return Response(status=status.HTTP_201_CREATED)
 
-    def delete(self, request, bucket_id, format=None):
-        composition_id = request.DATA.get('composition_id')
-        if not composition_id:
-            return Response({"composition_id": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
-
-        bucket = get_object_or_404(Bucket, id=bucket_id)
-        self.check_object_permissions(request, bucket)
-
-        try:
-            membership = BucketMembership.objects.get(composition=composition_id, bucket=bucket)
-            membership.delete()
-        except BucketMembership.DoesNotExist:
-            pass
-
-        return Response(status=status.HTTP_201_CREATED)
-
 class BucketCompositionDetail(APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 

@@ -192,16 +192,31 @@ html, body {
     margin: 0 auto;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     text-align: center;
+    vertical-align: top;
 }
 
 .painting-details-container header h2 {
     font-size: 2em;
     line-height: 1.5em;
     display: inline-block;
+    vertical-align: top;
 }
 
-.painting-details-container header i {
+.painting-details-container .painting-actions {
+    padding: 10px;
+}
+
+.painting-details-container .painting-actions i {
     cursor: pointer;
+    color: rgba(0, 0, 0, 0.7);
+    transition: all 0.4s;
+}
+
+.painting-details-container .painting-actions i:hover {
+    color: rgba(0, 0, 0, 0.9);
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari */
+    transform: scale(1.1);
 }
 
 .painting-details-container .painting-parent {

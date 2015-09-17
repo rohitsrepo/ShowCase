@@ -7,7 +7,7 @@ from ShowCase.slugger import unique_slugify
 from accounts.models import User
 from compositions.models import Composition
 from compositions.imageTools import compress
-from feeds.models import Fresh, bind_fresh_feed
+from feeds.models import Fresh, bind_fresh_feed, Staff, bind_staff_feed
 from posts.models import Post, bind_post
 
 
@@ -87,6 +87,11 @@ class BucketMembership(models.Model):
                 object_id=self.bucket.id,
                 content_type=ContentType.objects.get_for_model(Bucket))
 
+    def get_staff_post(self):
+        return Staff.objects.filter(feed_type=Fresh.BUCKET,
+                object_id=self.bucket.id,
+                content_type=ContentType.objects.get_for_model(Bucket))
+
     def create_post(self):
         return Post(
             composition=self.composition,
@@ -103,3 +108,4 @@ class BucketMembership(models.Model):
 
 bind_post(BucketMembership)
 bind_fresh_feed(BucketMembership)
+bind_staff_feed(BucketMembership)

@@ -38,6 +38,7 @@
 
         <section class="modal-actions-header">
             <i class="material-icons action content-action" ng-cloak ng-show="'{{has_ownership}}' == 'True'">edit</i>
+            <i class="material-icons action content-action" ng-cloak ng-show="'{{has_ownership}}' == 'True'" ng-click="removeBucket()">delete</i>
             <span class="counter">
                 <i class="material-icons action content-action">visibility</i>
                 <h6 class="count">{{bucket.views}}</h6>
@@ -96,7 +97,7 @@
                 </div>
             </div>
 
-            <site-loader site-loader-hide='slyInitComplete'></site-loader>
+            <site-loader site-loader-hide='slyInitComplete || !$scope.noArts'></site-loader>
 
 
         </article>

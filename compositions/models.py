@@ -12,7 +12,7 @@ from ShowCase.slugger import unique_slugify
 from .imageTools import bind_image_resize_handler, WIDTH_READER, WIDTH_STICKY, resized_file_path
 
 from posts.models import Post, bind_post
-from feeds.models import Fresh, bind_fresh_feed
+from feeds.models import Fresh, bind_fresh_feed, Staff, bind_staff_feed
 
 def get_upload_file_name_composition(instance, filename):
     return '%s/%s/%s_%s_thirddime%s' % (instance.uploader.id, slugify(instance.artist.name), slugify(instance.artist.name), slugify(instance.title), '.' + filename.split('.')[-1])
@@ -53,6 +53,11 @@ class Composition(models.Model):
 
     def get_fresh_post(self):
         return Fresh.objects.filter(feed_type=Fresh.ART,
+                object_id=self.id,
+                content_type=ContentType.objects.get_for_model(Composition))
+
+    def get_staff_post(self):
+        return Staff.objects.filter(feed_type=Fresh.ART,
                 object_id=self.id,
                 content_type=ContentType.objects.get_for_model(Composition))
 
@@ -167,6 +172,7 @@ class Composition(models.Model):
 bind_image_resize_handler(Composition)
 bind_post(Composition)
 bind_fresh_feed(Composition)
+bind_staff_feed(Composition)
 
 
 # Intrepretation Image

@@ -6,20 +6,20 @@
         <ul class="container">
             <h1 class="buckets-header" ng-claok ng-hide="bucketCreated">Create a new series</h1>
             <form class="bucket-form" ng-claok ng-hide="bucketCreated" name="bucketForm">
-                 <input type="text" autofocus placeholder="Name" ng-model="newBucket.name" name="uName" required ng-maxlength="25">
+                 <input type="text" autofocus placeholder="Title" ng-model="newBucket.name" name="uName" required ng-maxlength="25">
                  <div ng-cloak ng-show="bucketForm.$dirty">
-                     <span class="error" ng-show="bucketForm.uName.$error.required">Please provide a name</span>
+                     <span class="error" ng-show="bucketForm.uName.$error.required">Please provide a title</span>
                      <span class="error" ng-show="bucketForm.uName.$error.maxlength">Please use less than 25 charactes</span>
                 </div>
 
-                 <input type="text" autofocus placeholder="Description" ng-model="newBucket.description" name="uDescription" ng-maxlength="111">
+                 <input type="text" autofocus placeholder="Your thoughts on title?" ng-model="newBucket.description" name="uDescription" ng-maxlength="111">
                  <div ng-cloak ng-show="bucketForm.$dirty">
                      <span class="error" ng-show="bucketForm.uDescription.$error.maxlength">Please use less than 111 charactes</span>
                 </div>
                 <button class="create-button" ng-class="{'disabled': bucketForm.$invalid}" ng-disabled="bucketForm.$invalid" ng-click="createNewBucket()">CREATE</button>
             </form>
 
-            <h1 class="buckets-header" ng-claok ng-show="bucketCreated">Add a background suiting to your theme?</h1>
+            <h1 class="buckets-header" ng-claok ng-show="bucketCreated">Add a background suiting to your title?</h1>
             <section ng-cloak ng-show="bucketCreated" class="background-source">
                 <section class="source-upload">
                     <input type="file" class="realfile" bucket-fileread>

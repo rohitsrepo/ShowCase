@@ -63,3 +63,14 @@ class Staff(models.Model):
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
+
+
+# Define Signals
+def model_deleted_staff(sender, instance, **kwargs):
+    try:
+        instance.get_staff_post().delete()
+    except:
+        pass
+
+def bind_staff_feed(sender, **kwargs):
+    post_delete.connect(model_deleted_staff, sender=sender)

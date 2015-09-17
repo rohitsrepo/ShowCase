@@ -18,13 +18,18 @@ angular.module('BucketApp')
         };
 
         $scope.math = window.Math;
+        $scope.noArts = false;
         var currentShowIndex = 0;
 
         var getArts = function (bucketId) {
 
             bucketModel.bucketArts(bucketId).then(function (arts) {
-                $scope.bucketArts = arts;
-                $scope.bucketArts[currentShowIndex].show = true;
+                if (arts.length > 0){
+                    $scope.bucketArts = arts;
+                    $scope.bucketArts[currentShowIndex].show = true;
+                } else {
+                    $scope.noArts = true;
+                }
                 progress.hideProgress();
             }, function () {
                 alert.showAlert('We are unable to art for this series');

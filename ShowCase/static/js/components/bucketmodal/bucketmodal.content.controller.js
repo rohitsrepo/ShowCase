@@ -13,14 +13,18 @@ angular.module('module.bucketmodal')
 
         progress.showProgress();
         $scope.bucket = bucket;
+        $scope.noArts = false;
         $scope.math = window.Math;
         $scope.isState = $state.current.data && $state.current.data.isState;
         var currentShowIndex = 0;
 
         bucketModel.bucketArts(bucket.id).then(function (arts) {
-            $scope.bucketArts = arts;
-
-            $scope.bucketArts[currentShowIndex].show = true;
+            if (arts.length > 0){
+                $scope.bucketArts = arts;
+                $scope.bucketArts[currentShowIndex].show = true;
+            } else {
+                $scope.noArts = true;
+            }
 
             progress.hideProgress();
         }, function () {
@@ -106,6 +110,17 @@ angular.module('module.bucketmodal')
             });
         };
 
+        $scope.deleteBucket = function () {
+            progress.showProgress();
+
+            bucketModel.deleteBucket($scope.bucket.slug).then(function () {
+                window.location.href = '/@' + bucket.owner.slug + '/series';
+            }, function () {
+                progress.hideProgress();
+                alert.showAlert('Currently unable to delete this series');
+            });
+        };
+
     }
 ])
 .directive('keyEventBinderContent', ['$window', function ($window) {
@@ -123,7 +138,9 @@ angular.module('module.bucketmodal')
 
             }
 
-            scope.slyCallBack(evt);
+            if (scope.slyCallBack && typeof scope.slyCallBack == 'function'){
+                scope.slyCallBack(evt);
+            }
 
         });
 
