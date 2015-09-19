@@ -171,7 +171,10 @@ class CompositionDetail(APIView):
 
     def put(self, request, slug, format=None):
         composition = self.get_composition(slug, request)
-        ser = CompositionSerializer(composition, data=request.DATA, partial=True)
+        self.check_object_permissions(self.request, composition)
+
+        ser = CompositionSerializer(composition, data=request.DATA, context={'request': request})
+        
         if ser.is_valid():
             ser.save()
             return Response(ser.data)

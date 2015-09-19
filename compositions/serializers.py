@@ -13,7 +13,7 @@ class CompositionUserSerializer(serializers.ModelSerializer):
         fields = ('id', 'full_name', 'picture', 'slug', 'name')
 
 class CompositionSerializer(serializers.ModelSerializer):
-    matter = URLImageField(source='matter')
+    matter = URLImageField(source='matter', read_only=True)
     matter_550 = serializers.CharField(source='get_550_url', read_only=True)
     matter_350 = serializers.CharField(source='get_350_url', read_only=True)
     matter_aspect = serializers.FloatField(source='get_matter_aspect', read_only=True)
@@ -22,17 +22,17 @@ class CompositionSerializer(serializers.ModelSerializer):
     uploader = CompositionUserSerializer(read_only=True)
     artist = CompositionUserSerializer(read_only=True)
     is_bookmarked = serializers.SerializerMethodField('get_is_bookmarked')
-    bookmarks_count = serializers.CharField(source='bookmarks_count')
-    buckets_count = serializers.CharField(source='buckets_count')
+    bookmarks_count = serializers.CharField(source='bookmarks_count', read_only=True)
+    buckets_count = serializers.CharField(source='buckets_count', read_only=True)
     has_ownership = serializers.SerializerMethodField('get_ownership')
     nsfw = serializers.SerializerMethodField('is_nsfw')
 
     class Meta:
         model = Composition
         fields = ('id', 'title', 'artist', 'description', 'created',
-		   'matter', 'matter_350', 'matter_550', 'matter_aspect', 'timesince', 'nsfw', 'vote',
+		   'matter', 'matter_350', 'matter_550', 'matter_aspect', 'timesince', 'nsfw', 
            'slug', 'uploader', 'views', 'interpretations_count', 'is_bookmarked', 'bookmarks_count', 'buckets_count', 'has_ownership')
-    	read_only_fields = ('slug', 'vote', 'views')
+    	read_only_fields = ('id', 'slug', 'views', 'created')
 
     def get_ownership(self, obj):
         request = self.context['request']

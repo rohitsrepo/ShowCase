@@ -45,6 +45,17 @@ class BucketDetail(APIView):
         bucket.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+    def put(self, request, bucket_slug, format=None):
+        bucket = get_object_or_404(Bucket, slug=bucket_slug)
+        self.check_object_permissions(self.request, bucket)
+
+        ser = BucketSerializer(bucket, data=request.DATA, context={'request': request})
+        
+        if ser.is_valid():
+            ser.save()
+            return Response(ser.data)
+        return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class BucketCompositionList(APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
