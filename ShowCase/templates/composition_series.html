@@ -2,23 +2,24 @@
 {% block html_attr_block %}ng-app="CompositionSeriesApp"{% endblock %}
 
 {% block title_block %}
-	<title>{{composition.title | title}} by {{composition.artist.name | title}} | Interpretations and Stories</title>
+	<title>Series explaining {{composition.title | title}} by {{composition.artist.name | title}}</title>
 {%endblock%}
 
 {% block meta_block %}
 	<meta charset="UTF-8">
     <base href="/">
-	<meta name="Description" content="Title: {{composition.title}}, Artist: {{composition.artist.name}}, Category: Painting Interpretations and Stories">
+	<meta name="Description" content="Title: {{composition.title}}, Artist: {{composition.artist.name}}, Category: Artwork Interpretations and Stories">
 	<link rel="canonical" href="http://thirddime.com/arts/{{composition.slug}}" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 	<meta property="og:title" content="{{composition.title}}">
 	<meta property="og:site_name" content="ThirdDime">
 	<meta property="og:url" content="http://thirddime.com/arts/{{composition.slug}}">
 	<meta property="og:description" content="Series explaining {{composition.title | title}}">
 	<meta property="og:image" content="http://thirddime.com/{{composition.matter.url}}">
 	<meta property="og:type" content="website">
-	<meta property="og:type" content="[462422103909005]">
+    <meta property="fb:app_id" content="462422103909005">
 {%endblock%}
 
 {% block css_block %}

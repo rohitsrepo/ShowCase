@@ -8,17 +8,18 @@
 {% block meta_block %}
     <meta charset="UTF-8">
     <base href="/">
-    <meta name="Description" content="Title: {{bukcet.name}}, Artist: {{bucket.owner.name}}, Category: Painting Interpretations and Stories">
+    <meta name="Description" content="Title: {{bukcet.name}}, Artist: {{bucket.owner.name}}, Category: Art series">
     <link rel="canonical" href="http://thirddime.com/arts/{{bucket.slug}}" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:title" content="{{bucket.name}}">
+
+    <meta property="og:title" content="{{bucket.name | title}}">
     <meta property="og:site_name" content="ThirdDime">
-    <meta property="og:url" content="http://thirddime.com/arts/{{bucket.slug}}">
-    <meta property="og:description" content="Series explaining {{bucket.name | title}}">
-    <meta property="og:image" content="http://thirddime.com/{{bucket.picture}}">
+    <meta property="og:url" content="http://thirddime.com/@{{bukcet.owner.slug}}/series/{{bucket.slug}}">
+    <meta property="og:description" content="{{bucket.description}}">
+    <meta property="og:image" content="http://thirddime.com/{{bucket.background_url}}">
     <meta property="og:type" content="website">
-    <meta property="og:type" content="[462422103909005]">
+    <meta property="fb:app_id" content="462422103909005">
 {%endblock%}
 
 {% block css_block %}

@@ -3,22 +3,21 @@
 {% block html_attr_block %}ng-app="ReaderApp" ng-controller="readerController"{% endblock %}
 
     {% block title_block %}
-        <title>ThirdDime - Explore art through interpretations and stories</title>
+        <title>ThirdDime - Beyond the brushstrokes</title>
     {%endblock%}
 
     {% block meta_block %}
-        <meta name="description" content="Browse through breathtaking artworks and their interpretations. Discover deeper layers behind each painting with a community of art lovers." />
+        <meta name="description" content="Browse through breathtaking artworks and context around it. Contribute and find thoughts an artwork provokes with our community of art lovers." />
         <link rel="canonical" href="http://thirddime.com" />
-        <link ng-cloak ng-if="postsMeta.next" rel="next" href="http://thirddime.com#[[postsMeta.next]]" />
-        <link ng-cloak ng-if="postsMeta.previous" rel="prev" href="http://thirddime.com#[[postsMeta.previous]]" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <meta property="og:title" content="ThirdDime - Explore art through interpretations and stories">
+
+        <meta property="og:title" content="Beyond the brushstrokes">
         <meta property="og:site_name" content="ThirdDime">
         <meta property="og:url" content="http://thirddime.com/">
-        <meta property="og:description" content="Behind the BrushStrokes.">
+        <meta property="og:description" content="Browse through breathtaking artworks and context around it. Contribute and find thoughts an artwork provokes with our community of art lovers.">
+        <meta property="fb:app_id" content="462422103909005">
         <meta property="og:image" content="http://thirddime.com/static/images/reader/banner.jpg">
         <meta property="og:type" content="website">
-        <meta property="og:type" content="[462422103909005]">
 
         <link href='https://fonts.googleapis.com/css?family=Lato:700,900' rel='stylesheet' type='text/css'>
     {%endblock%}
