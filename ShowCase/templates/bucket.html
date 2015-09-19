@@ -8,19 +8,19 @@
 {% block meta_block %}
     <meta charset="UTF-8">
     <base href="/">
-    <meta name="Description" content="Title: {{bukcet.name}}, Artist: {{bucket.owner.name}}, Category: Art series">
+    <meta name="Description" content="Title: {{bucket.name}}, Artist: {{bucket.owner.name}}, Category: Art series">
     <link rel="canonical" href="http://thirddime.com/arts/{{bucket.slug}}" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <meta property="og:title" content="{{bucket.name | title}}">
     <meta property="og:site_name" content="ThirdDime">
-    <meta property="og:url" content="http://thirddime.com/@{{bukcet.owner.slug}}/series/{{bucket.slug}}">
+    <meta property="og:url" content="http://thirddime.com/@{{bucket.owner.slug}}/series/{{bucket.slug}}">
     <meta property="og:description" content="{{bucket.description}}">
     <meta property="og:image" content="http://thirddime.com/{{bucket.background_url}}">
     <meta property="og:type" content="website">
     <meta property="fb:app_id" content="462422103909005">
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@thirddime">
     <meta name="twitter:title" content="{{bucket.name | title}}">
@@ -34,7 +34,7 @@
     <!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="bucketController" ng-init="init({{bucket.id}}, '{{bukcet.name | escapejs}}', '{{bucket.slug}}', '{{is_watched}}', '{{is_me}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="bucketController" ng-init="init({{bucket.id}}, '{{bucket.name | escapejs}}', '{{bucket.slug}}', '{{is_watched}}', '{{is_me}}')"{% endblock %}
 
 {% block content_block %}
 

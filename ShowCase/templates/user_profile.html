@@ -15,16 +15,24 @@
 
     <meta property="og:title" content="{{artist.name | title}}">
     <meta property="og:site_name" content="ThirdDime">
-    <meta property="og:url" content="http://thirddime.com/artists/@{{artist.slug}}">
-    <meta property="og:description" content="Explore artworks of {{artist.name}} and thoughts around them.">
+    <meta property="og:url" content="http://thirddime.com/@{{artist.slug}}">
+    {% if artist.is_artist %}
+    <meta property="og:description" content="Explore artworks by {{artist.name}} and thoughts around them.">
+    {% else %}
+    <meta property="og:description" content="Explore {{artist.name}}'s thoughts around art.">
+    {% endif %}
     <meta property="og:image" content="http://thirddime.com/{{artist.picture.url}}">
     <meta property="og:type" content="website">
     <meta property="fb:app_id" content="462422103909005">
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@thirddime">
     <meta name="twitter:title" content="{{artist.name | title}}">
-    <meta name="twitter:description" content="Explore artworks of {{artist.name}} and thoughts around them.">
+    {% if artist.is_artist %}
+    <meta property="og:description" content="Explore artworks by {{artist.name}} and thoughts around them.">
+    {% else %}
+    <meta property="og:description" content="Explore {{artist.name}}'s thoughts around art.">
+    {% endif %}
     <meta name="twitter:image" content="http://thirddime.com/{{artist.picture.url}}">
 {%endblock%}
 
