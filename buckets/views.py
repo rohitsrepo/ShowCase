@@ -50,7 +50,7 @@ class BucketDetail(APIView):
         self.check_object_permissions(self.request, bucket)
 
         ser = BucketSerializer(bucket, data=request.DATA, context={'request': request})
-        
+
         if ser.is_valid():
             ser.save()
             return Response(ser.data)
@@ -66,7 +66,7 @@ class BucketCompositionList(APIView):
         bucket.views = bucket.views + 1
         bucket.save();
 
-        compositions = bucket.compositions.all()
+        compositions = bucket.compositions.all().order_by('-bucketmembership__added')
         serializer = CompositionSerializer(compositions, context={'request': request})
         return Response(serializer.data)
 

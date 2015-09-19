@@ -17,7 +17,10 @@
     <meta property="og:site_name" content="ThirdDime">
     <meta property="og:url" content="http://thirddime.com/@{{bucket.owner.slug}}/series/{{bucket.slug}}">
     <meta property="og:description" content="{{bucket.description}}">
-    <meta property="og:image" content="http://thirddime.com/{{bucket.background_url}}">
+    <meta property="og:image" content="http://thirddime.com/{{bucket.picture}}">
+    {% for image in open_graph_images %}
+    <meta property="og:image" content="http://thirddime.com/{{image}}">
+    {% endfor %}
     <meta property="og:type" content="website">
     <meta property="fb:app_id" content="462422103909005">
 
@@ -25,7 +28,10 @@
     <meta name="twitter:site" content="@thirddime">
     <meta name="twitter:title" content="{{bucket.name | title}}">
     <meta name="twitter:description" content="{{bucket.description}}">
-    <meta name="twitter:image" content="http://thirddime.com/{{bucket.background_url}}">
+    <meta name="twitter:image" content="http://thirddime.com/{{bucket.picture}}">
+    {% for image in open_graph_images %}
+    <meta property="og:image" content="http://thirddime.com/{{image}}">
+    {% endfor %}
 {%endblock%}
 
 {% block css_block %}
