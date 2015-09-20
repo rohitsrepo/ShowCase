@@ -138,8 +138,8 @@ angular.module('BucketApp')
         $scope.showShare = function () {
             var title = 'Series: "' + $scope.bucket.name + '" by: ' + $scope.bucket.owner
             var description = $scope.bucket.description + '...Complete series can be found at: http://thirddime.com'
-            console.log("sending image", $scope.bucket.background);
-            shareModalService.shareThisPage(title, description, $scope.bucket.background);
+            var media = 'http://thirddime.com' + $scope.bucket.background;
+            shareModalService.shareThisPage(title, description, media);
         };
 
     }
