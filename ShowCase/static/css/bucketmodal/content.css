@@ -51,6 +51,11 @@
     .bucket-modal .modal-actions-header i.content-action {
         margin: 0 5px;
     }
+
+    .bucket-modal .logo {
+        left: 10px;
+        top: 10px;
+    }
 }
 
 /*-------- Bucket Content ---------------*/

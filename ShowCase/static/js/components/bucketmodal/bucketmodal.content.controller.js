@@ -6,11 +6,12 @@ angular.module('module.bucketmodal')
     'bucketModel',
     'bucketmodalService',
     'confirmModalService',
+    'shareModalService',
     'close',
     'bucket',
     'progress',
     'alert',
-    function ($scope, $window, $state, auth, bucketModel, bucketmodalService, confirmModalService, close, bucket, progress, alert) {
+    function ($scope, $window, $state, auth, bucketModel, bucketmodalService, confirmModalService, shareModalService, close, bucket, progress, alert) {
 
         progress.showProgress();
         $scope.bucket = bucket;
@@ -124,6 +125,15 @@ angular.module('module.bucketmodal')
                     alert.showAlert('Currently unable to delete this series');
                 });
             });
+        };
+
+        $scope.showShare = function () {
+            var base_url = 'http://thirddime.com';
+            var share_url = base_url + '/@' + $scope.bucket.owner.slug + '/series/' + $scope.bucket.slug;
+            var title = 'Series: "' + $scope.bucket.name + '" by: ' + $scope.bucket.owner.name;
+            var description = $scope.bucket.description + '...Complete series can be found at: ' + share_url;
+            var media = base_url + $scope.bucket.picture;
+            shareModalService.shareThisPage(share_url, title, description, media);
         };
 
     }

@@ -54,6 +54,22 @@
   height: 3em;
 }
 
+@media (max-width: 800px) {
+    .bucket-modal .modal-actions-header {
+        right: 10px;
+        top: 10px;
+    }
+
+    .bucket-modal .action-right {
+        top: 10px;
+        left: 10px;
+        width: 2em;
+        height: 2em;
+    }
+}
+
+/*------------ Scroll holder -----------------*/
+
 .bucket-modal .scroll-holder {
     width: 100%;
     padding-top: 100px;

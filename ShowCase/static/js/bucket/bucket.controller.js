@@ -136,10 +136,11 @@ angular.module('BucketApp')
         };
 
         $scope.showShare = function () {
+            var share_url = window.location.href;
             var title = 'Series: "' + $scope.bucket.name + '" by: ' + $scope.bucket.owner
             var description = $scope.bucket.description + '...Complete series can be found at: http://thirddime.com'
             var media = 'http://thirddime.com' + $scope.bucket.background;
-            shareModalService.shareThisPage(title, description, media);
+            shareModalService.shareThisPage(share_url, title, description, media);
         };
 
     }

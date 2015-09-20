@@ -73,41 +73,45 @@ angular.module('module.shareModal')
         window.open(url, "targetWindow", "\n          toolbar=no,\n          location=no,\n          status=no,\n          menubar=no,\n          scrollbars=yes,\n          resizable=yes,\n          left=" + popup.left + ",\n          top=" + popup.top + ",\n          width=" + popup.width + ",\n          height=" + popup.height + "\n        ");
     }
 
-    function shareFacebook () {
-        _updateHref('https://www.facebook.com/sharer/sharer.php', {
-          u: window.location.href
-        });
-    };
-
-    function shareTwitter (description) {
-        return function () {
-            _updateHref('https://twitter.com/intent/tweet', {
-                text: description,
-                url: window.location.href
+    function shareFacebook (url) {
+        return function (url) {
+            _updateHref('https://www.facebook.com/sharer/sharer.php', {
+              u: url
             });
         }
     };
 
-    function shareGoogle () {
-        _updateHref('https://plus.google.com/share', {
-            url: window.location.href
-        });
+    function shareTwitter (url, description) {
+        return function () {
+            _updateHref('https://twitter.com/intent/tweet', {
+                text: description,
+                url: url
+            });
+        }
     };
 
-    function sharePinterest (description, image) {
+    function shareGoogle (url) {
+        return function () {
+            _updateHref('https://plus.google.com/share', {
+                url: url
+            });
+        }
+    };
+
+    function sharePinterest (url, description, image) {
         return function () {
             _updateHref('https://www.pinterest.com/pin/create/button', {
-                url: window.location.href,
+                url: url,
                 media: image,
                 description: description
             });
         }
     };
 
-    function shareTumblr (description, image) {
+    function shareTumblr (url, description, image) {
         return function () {
             _updateHref('http://www.tumblr.com/share/photo', {
-                clickthru: window.location.href,
+                clickthru: url,
                 source: image,
                 description: description
             });
@@ -123,43 +127,43 @@ angular.module('module.shareModal')
         }
     };
 
-    function shareReddit (title) {
+    function shareReddit (url, title) {
         return function () {
             _updateHref('http://www.reddit.com/submit', {
-                url: window.location.href,
+                url: url,
                 title: title
             });
         }
     };
 
-    function shareWhatsapp (description) {
+    function shareWhatsapp (url, description) {
         return function () {
             _updateHref('whatsapp://send', {
-                text: description + ' ' + window.location.href
+                text: description + ' ' + url
             });
         }
     };
 
     var service = {};
 
-    var pageActions = function (title, description, image) {
+    var shareActions = function (url, title, description, image) {
         return {
-            'shareFacebook': shareFacebook,
-            'shareTwitter': shareTwitter(title),
-            'shareGoogle': shareGoogle,
-            'shareWhatsapp': shareWhatsapp(title),
-            'shareReddit': shareReddit(title),
-            'sharePinterest': sharePinterest(title, image),
-            'shareTumblr': shareTumblr(title, image),
+            'shareFacebook': shareFacebook(url),
+            'shareTwitter': shareTwitter(url, title),
+            'shareGoogle': shareGoogle(url),
+            'shareWhatsapp': shareWhatsapp(url, title),
+            'shareReddit': shareReddit(url, title),
+            'sharePinterest': sharePinterest(url, title, image),
+            'shareTumblr': shareTumblr(url, title, image),
             'shareViaEmail': shareViaEmail(title, description)
         }
     };
 
-    service.shareThisPage = function (title, description, image) {
+    service.shareThisPage = function (url, title, description, image) {
         modalService.showModal({
             'templateUrl': '/static/js/components/shareModal/shareModal.tpl.html',
             'controller': 'shareModalController',
-            'inputs' : {'actions': pageActions(title, description, image)}
+            'inputs' : {'actions': shareActions(url, title, description, image)}
         });
     };
 
