@@ -4,12 +4,23 @@ angular.module('BucketApp')
     '$document',
     'auth',
     'bucketModel',
+    'followBucketService',
     'bucketmodalService',
     'confirmModalService',
     'shareModalService',
     'progress',
     'alert',
-    function ($scope, $rootScope, $document, auth, bucketModel, bucketmodalService, confirmModalService, shareModalService, progress, alert) {
+    function ($scope,
+        $rootScope,
+        $document,
+        auth,
+        bucketModel,
+        followBucketService,
+        bucketmodalService,
+        confirmModalService,
+        shareModalService,
+        progress,
+        alert) {
 
         $scope.noSuchBucket = {
             status: false,
@@ -79,30 +90,14 @@ angular.module('BucketApp')
         }
 
         $scope.watchBucket = function () {
-            auth.runWithAuth(function () {
-                progress.showProgress();
-
-                bucketModel.watch($scope.bucket.id).then(function (response) {
-                    $scope.bucket.isWatched = true;
-                    progress.hideProgress();
-                }, function () {
-                    progress.hideProgress();
-                    alert.showAlert("Unable to complete action");
-                });
+            followBucketService.watchBucket($scope.bucket.id).then(function () {
+                $scope.bucket.isWatched = true;
             });
         };
 
         $scope.unwatchBucket = function () {
-            auth.runWithAuth(function () {
-                progress.showProgress();
-
-                bucketModel.unwatch($scope.bucket.id).then(function (response) {
-                    $scope.bucket.isWatched = false;
-                    progress.hideProgress();
-                }, function () {
-                    progress.hideProgress();
-                    alert.showAlert("Unable to complete action");
-                });
+            followBucketService.unwatchBucket($scope.bucket.id).then(function () {
+                $scope.bucket.isWatched = false;
             });
         };
 

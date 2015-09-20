@@ -82,6 +82,11 @@
                         <h3>[[art.content.owner.name | titlecase ]]</h3>
                         <div class="arts-count">[[art.content.compositions_count]] Artworks</div>
                         <div class="arts-count">[[art.content.views]] Views</div>
+                        <section class="bucket-inset-details-actions">
+                            <i class="material-icons" ng-click="shareBucket($event, $index)" >share</i>
+                            <i class="material-icons" ng-cloak ng-hide="art.content.is_watched" ng-click="watchBucket($event, $index)">star_border</i>
+                            <i class="material-icons" ng-cloak ng-show="art.content.is_watched" ng-click="unwatchBucket($event, $index)">star</i>
+                        </section>
                     </section>
                 </div>
             </section>

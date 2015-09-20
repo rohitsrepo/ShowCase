@@ -20,6 +20,19 @@ angular.module("CompositionSeriesApp", [
     // use the HTML5 History API
     $locationProvider.html5Mode(true);
 
+    // use the HTML5 History API
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    });
+
+    // For any unmatched url, reload as we have not mentioned any base
+    $urlRouterProvider.otherwise(
+        function() {
+            window.location.reload();
+
+    });
+
     // Now set up the states
     $stateProvider
     .state('buckets', {

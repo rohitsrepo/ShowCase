@@ -12,6 +12,7 @@ angular.module('module.root', [
     'module.analytics',
     'module.bookmark',
     'module.follow',
+    'module.followBucket',
     'module.usermodal',
     'module.confirmModal',
     'module.shareModal',

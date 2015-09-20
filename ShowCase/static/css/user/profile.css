@@ -238,14 +238,44 @@ header .details .actions h3:hover {
 
 .user-bucket-picture .user-bucket-details h2 {
     color: white;
-    font-size: 1.3em;
-    line-height: 2.5em;
-    margin-bottom: 150px;
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+
+.user-bucket-picture .user-bucket-details .by-user {
+    font-size: 0.8em;
+    margin-top: 80px;
+    line-height: 1.5em;
+}
+
+.user-bucket-picture .user-bucket-details h3 {
+    font-size: 1em;
+    line-height: 1.5em;
 }
 
 .user-bucket-picture .user-bucket-details .arts-count {
-    font-size: 0.8em;
+    font-size: 0.7em;
+    margin-top: 10px;
     display: inline;
+}
+
+
+.user-bucket-picture .user-bucket-details .user-bucket-details-actions {
+    display: block;
+}
+
+.user-bucket-picture .user-bucket-details .user-bucket-details-actions i {
+    display: inline-block;
+    margin: 0 3px;
+    margin-top: 15px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1em;
+    font-weight: 200;
+}
+
+.user-bucket-picture .user-bucket-details .user-bucket-details-actions i:hover {
+    color: rgba(255, 255, 255, 0.95);
 }
 
 @media (max-width: 800px) {

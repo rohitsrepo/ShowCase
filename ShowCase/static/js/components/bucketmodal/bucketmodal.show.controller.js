@@ -2,11 +2,13 @@ angular.module('module.bucketmodal')
 .controller('bucketmodalShowController', ['$scope',
     'bucketModel',
     'bucketmodalService',
+    'followBucketService',
+    'shareModalService',
     'close',
     'art',
     'progress',
     'alert',
-    function ($scope, bucketModel, bucketmodalService, close, art, progress, alert) {
+    function ($scope, bucketModel, bucketmodalService, followBucketService, shareModalService, close, art, progress, alert) {
 
         $scope.noSuchBucket = {
             status: false,
@@ -38,6 +40,39 @@ angular.module('module.bucketmodal')
 
         $scope.close = function () {
             close();
+        };
+
+        $scope.shareBucket = function (event, index) {
+            // Stop route change on click
+            event.stopPropagation();
+
+            var bucket = $scope.artBuckets[index];
+            var base_url = "http://thirddime.com";
+            var share_url = base_url + "/@" + bucket.owner.slug + '/series/' + bucket.slug;
+            var title = 'Series: "' + bucket.name + '" by: ' + bucket.owner.name;
+            var description = bucket.description + '...Complete series can be found at: ' + share_url;
+            var media = 'http://thirddime.com' + bucket.picture;
+            shareModalService.shareThisPage(share_url, title, description, media);
+        };
+
+        $scope.watchBucket = function (event, index) {
+            // Stop route change on click
+            event.stopPropagation();
+
+            var bucket = $scope.artBuckets[index];
+            followBucketService.watchBucket(bucket.id).then(function () {
+                bucket.is_watched = true;
+            });
+        };
+
+        $scope.unwatchBucket = function (event, index) {
+            // Stop route change on click
+            event.stopPropagation();
+
+            var bucket = $scope.artBuckets[index];
+            followBucketService.unwatchBucket(bucket.id).then(function () {
+                bucket.is_watched = false;
+            });
         };
     }
 ])

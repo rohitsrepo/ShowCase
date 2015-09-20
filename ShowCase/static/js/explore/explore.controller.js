@@ -12,6 +12,7 @@ angular.module('ExploreApp')
     'bucketmodalService',
     'usermodalService',
     'shareModalService',
+    'followBucketService',
 	function ($scope,
         $rootScope,
         $document,
@@ -24,11 +25,12 @@ angular.module('ExploreApp')
         bookService,
         bucketmodalService,
         usermodalService,
-        shareModalService) {
+        shareModalService,
+        followBucketService) {
 
     $scope.math = window.Math
 	$scope.arts = [];
-	$scope.postsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', feedType:'fresh'};
+	$scope.postsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', feedType:'staff'};
 
     var getPostFetcher = function () {
         if ($scope.postsMeta.feedType === 'fresh') {
@@ -155,6 +157,39 @@ angular.module('ExploreApp')
             '" at ' + share_url;
         var media = 'http://thirddime.com' + art.matter;
         shareModalService.shareThisPage(share_url, title, description, media);
+    };
+
+    $scope.shareBucket = function (event, index) {
+        // Stop route change on click
+        event.stopPropagation();
+
+        var bucket = $scope.arts[index].content;
+        var base_url = "http://thirddime.com";
+        var share_url = base_url + "/@" + bucket.owner.slug + '/series/' + bucket.slug;
+        var title = 'Series: "' + bucket.name + '" by: ' + bucket.owner.name;
+        var description = bucket.description + '...Complete series can be found at: ' + share_url;
+        var media = 'http://thirddime.com' + bucket.picture;
+        shareModalService.shareThisPage(share_url, title, description, media);
+    };
+
+    $scope.watchBucket = function (event, index) {
+        // Stop route change on click
+        event.stopPropagation();
+
+        var bucket = $scope.arts[index].content;
+        followBucketService.watchBucket(bucket.id).then(function () {
+            bucket.is_watched = true;
+        });
+    };
+
+    $scope.unwatchBucket = function (event, index) {
+        // Stop route change on click
+        event.stopPropagation();
+
+        var bucket = $scope.arts[index].content;
+        followBucketService.unwatchBucket(bucket.id).then(function () {
+            bucket.is_watched = false;
+        });
     };
 
 }]);

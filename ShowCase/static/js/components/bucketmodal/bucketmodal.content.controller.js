@@ -71,30 +71,14 @@ angular.module('module.bucketmodal')
         };
 
         $scope.watchBucket = function () {
-            auth.runWithAuth(function () {
-                progress.showProgress();
-
-                bucketModel.watch($scope.bucket.id).then(function (response) {
-                    $scope.bucket.is_watched = true;
-                    progress.hideProgress();
-                }, function () {
-                    progress.hideProgress();
-                    alert.showAlert("Unable to complete action");
-                });
+            followBucketService.watchBucket($scope.bucket.id).then(function () {
+                $scope.bucket.is_watched = true;
             });
         };
 
         $scope.unwatchBucket = function () {
-            auth.runWithAuth(function () {
-                progress.showProgress();
-
-                bucketModel.unwatch($scope.bucket.id).then(function (response) {
-                    $scope.bucket.is_watched = false;
-                    progress.hideProgress();
-                }, function () {
-                    progress.hideProgress();
-                    alert.showAlert("Unable to complete action");
-                });
+            followBucketService.unwatchBucket($scope.bucket.id).then(function () {
+                $scope.bucket.is_watched = false;
             });
         };
 

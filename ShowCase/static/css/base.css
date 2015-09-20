@@ -553,6 +553,24 @@ body::-webkit-scrollbar-thumb {
     display: inline;
 }
 
+.feed-bucket .bucket-picture .bucket-inset-details .bucket-inset-details-actions {
+    display: block;
+}
+
+.feed-bucket .bucket-picture .bucket-inset-details .bucket-inset-details-actions i {
+    display: inline-block;
+    margin: 0 3px;
+    margin-top: 15px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1em;
+    font-weight: 200;
+}
+
+.feed-bucket .bucket-picture .bucket-inset-details .bucket-inset-details-actions i:hover {
+    color: rgba(255, 255, 255, 0.95);
+}
+
 /*============== EXPLORE BUTTON ====================*/
 .explore {
   font-weight: 400;
