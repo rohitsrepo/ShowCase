@@ -21,7 +21,7 @@
     {% else %}
     <meta property="og:description" content="Explore {{artist.name}}'s thoughts around art.">
     {% endif %}
-    <meta property="og:image" content="http://thirddime.com/{{artist.picture.url}}">
+    <meta property="og:image" content="http://thirddime.com{{artist.picture.url}}">
     <meta property="og:type" content="website">
     <meta property="fb:app_id" content="462422103909005">
 
@@ -33,7 +33,7 @@
     {% else %}
     <meta property="og:description" content="Explore {{artist.name}}'s thoughts around art.">
     {% endif %}
-    <meta name="twitter:image" content="http://thirddime.com/{{artist.picture.url}}">
+    <meta name="twitter:image" content="http://thirddime.com{{artist.picture.url}}">
 {%endblock%}
 
 {% block css_block %}

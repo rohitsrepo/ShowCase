@@ -6,14 +6,16 @@
 .bucket-modal .modal-actions-header,
 .bucket-modal .modal-actions-header i.content-action {
     color: rgba(255, 255, 255, 0.8);
-    margin-left: 5px;
+    margin: 0 10px;
     vertical-align: top;
 }
 
 .bucket-modal .modal-actions-header .counter {
     display: inline-block;
     text-align: center;
-    margin-left: 5px;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
 }
 
 .bucket-modal .modal-actions-header .counter .count {
@@ -21,7 +23,7 @@
 }
 
 .bucket-modal .modal-actions-header .counter i {
-    margin: 0;
+    margin-top: 0;
     margin-bottom: 5px;
     cursor: default;
 }
@@ -43,6 +45,14 @@
   width: 3em;
   height: 3em;
 }
+
+@media (max-width: 800px) {
+    .bucket-modal .modal-actions-header,
+    .bucket-modal .modal-actions-header i.content-action {
+        margin: 0 5px;
+    }
+}
+
 /*-------- Bucket Content ---------------*/
 
 .bucket-modal.content .background-area {

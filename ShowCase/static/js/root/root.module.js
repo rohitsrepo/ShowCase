@@ -14,6 +14,7 @@ angular.module('module.root', [
     'module.follow',
     'module.usermodal',
     'module.confirmModal',
+    'module.shareModal',
     'module.bucketmodal',
     'module.uploadmodal',
     'module.util']);

@@ -17,9 +17,9 @@
     <meta property="og:site_name" content="ThirdDime">
     <meta property="og:url" content="http://thirddime.com/@{{bucket.owner.slug}}/series/{{bucket.slug}}">
     <meta property="og:description" content="{{bucket.description}}">
-    <meta property="og:image" content="http://thirddime.com/{{bucket.picture}}">
+    <meta property="og:image" content="http://thirddime.com{{bucket.picture}}">
     {% for image in open_graph_images %}
-    <meta property="og:image" content="http://thirddime.com/{{image}}">
+    <meta property="og:image" content="http://thirddime.com{{image}}">
     {% endfor %}
     <meta property="og:type" content="website">
     <meta property="fb:app_id" content="462422103909005">
@@ -28,9 +28,9 @@
     <meta name="twitter:site" content="@thirddime">
     <meta name="twitter:title" content="{{bucket.name | title}}">
     <meta name="twitter:description" content="{{bucket.description}}">
-    <meta name="twitter:image" content="http://thirddime.com/{{bucket.picture}}">
+    <meta name="twitter:image" content="http://thirddime.com{{bucket.picture}}">
     {% for image in open_graph_images %}
-    <meta property="og:image" content="http://thirddime.com/{{image}}">
+    <meta property="og:image" content="http://thirddime.com{{image}}">
     {% endfor %}
 {%endblock%}
 
@@ -40,7 +40,7 @@
     <!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="bucketController" ng-init="init({{bucket.id}}, '{{bucket.name | escapejs}}', '{{bucket.slug}}', '{{is_watched}}', '{{is_me}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="bucketController" ng-init="init({{bucket.id}}, '{{bucket.name | escapejs}}', '{{bucket.description | escapejs}}', '{{bucket.picture}}', '{{bucket.slug}}', '{{bucket.owner.name | escapejs}}', '{{is_watched}}', '{{is_me}}')"{% endblock %}
 
 {% block content_block %}
 
@@ -50,16 +50,17 @@
         </section>
 
         <section class="modal-actions-header">
-            <i class="material-icons action content-action" ng-cloak ng-show="'{{has_ownership}}' == 'True'">edit</i>
-            <i class="material-icons action content-action" ng-cloak ng-show="'{{has_ownership}}' == 'True'" ng-click="deleteBucket()">delete</i>
-            <span class="counter">
-                <i class="material-icons action content-action">visibility</i>
-                <h6 class="count">{{bucket.views}}</h6>
-            </span>
+            <i class="material-icons action content-action nt-mb" ng-cloak ng-show="'{{has_ownership}}' == 'True'">edit</i>
+            <i class="material-icons action content-action nt-mb" ng-cloak ng-show="'{{has_ownership}}' == 'True'" ng-click="deleteBucket()">delete</i>
+            <i class="material-icons action content-action" ng-click="showShare()">share</i>
             <span class="counter counter-watchers">
                 <i class="material-icons action content-action" ng-cloak ng-hide="bucket.isWatched" ng-click="watchBucket()">star_border</i>
                 <i class="material-icons action content-action" ng-cloak ng-show="bucket.isWatched" ng-click="unwatchBucket()">star</i>
-                <h6 class="count">{{bucket.watchers_count}}</h6>
+                <!-- <h6 class="count nt-mb">{{bucket.watchers_count}}</h6> -->
+            </span>
+            <span class="counter nt-mb">
+                <i class="material-icons action content-action">visibility</i>
+                <h6 class="count">{{bucket.views}}</h6>
             </span>
         </section>
 

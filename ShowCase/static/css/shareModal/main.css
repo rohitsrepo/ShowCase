@@ -1,0 +1,189 @@
+@font-face {
+    font-family: 'rondo';
+    src: url('/static/fonts/rondo/rondo.eot?#') format('eot'),
+        url('/static/fonts/rondo/rondo.svg#rondo') format('svg'),
+        url('/static/fonts/rondo/rondo.woff') format('woff'),
+        url('/static/fonts/rondo/rondo.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*---------- Share Modal ----------*/
+
+.share-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 100px;
+    min-height: 100px;
+    height: 100%;
+    z-index: 3000;
+    background: rgba(0, 0, 0, 0.85);
+    overflow: auto;
+}
+
+.share-modal::-webkit-scrollbar {
+    width: 15px;
+}
+
+.share-modal::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+}
+
+.share-modal::-webkit-scrollbar-thumb {
+    background-color: black;
+    border: 5px solid white;
+}
+
+.share-modal .modal-actions-header {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+.share-modal .modal-actions-header i.action {
+    color: rgba(255, 255, 255, 0.6);
+    background: transparent;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.share-modal .modal-actions-header i.action:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+
+.share-modal .action-right {
+  position: fixed;
+  cursor: pointer;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  width: 3em;
+  height: 3em;
+}
+
+/*------------- Confirm Content ---------------*/
+
+.share-modal .share-modal-content {
+    width: 50%;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 200px;
+    padding: 10px;
+    text-align: center;
+}
+
+.share-modal-content .share-modal-action {
+    display: inline-block;
+    background: transparent;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 3em;
+    margin: 15px 15px;
+    transition: all 0.2s;
+    text-align: center;
+    color: white;
+    transition: all 0.4s;
+}
+
+.share-modal-content .share-modal-action:hover {
+    border-radius: 50%;
+    background-color: white;
+}
+
+.share-modal-content .share-modal-action:before {
+    font-family: 'rondo';
+    content: attr(data-icon);
+    speak: none;
+    /* Enable Ligatures */
+    -webkit-font-feature-settings:"liga","dlig";-moz-font-feature-settings:"liga=1, dlig=1";-moz-font-feature-settings:"liga","dlig";-ms-font-feature-settings:"liga","dlig";-o-font-feature-settings:"liga","dlig";
+    font-feature-settings:"liga","dlig";
+    text-rendering:optimizeLegibility;
+    content: "\66\69\76\65\68\75\6e\64\72\65\64";
+}
+
+.share-modal-content .share-modal-action.facebook:before {
+    content: "\66\61\63\65\62\6f\6f\6b";
+}
+
+.share-modal-content .share-modal-action.facebook:hover {
+    background-color: #3b5998;
+}
+
+.share-modal-content .share-modal-action.twitter:before {
+    content: "\74\77\69\74\74\65\72";
+}
+
+.share-modal-content .share-modal-action.twitter:hover {
+    background-color: #00aced;
+}
+
+.share-modal-content .share-modal-action.google:before {
+    content: "\67\6f\6f\67\6c\65\70\6c\75\73";
+}
+
+.share-modal-content .share-modal-action.google:hover {
+    background-color: #dd4b39;
+}
+
+.share-modal-content .share-modal-action.reddit:before {
+    content: "\72\65\64\64\69\74";
+}
+
+.share-modal-content .share-modal-action.reddit:hover {
+    background-color: #ff5700;
+}
+
+.share-modal-content .share-modal-action.pinterest:before {
+    content: "\70\69\6e\74\65\72\65\73\74";
+}
+
+.share-modal-content .share-modal-action.pinterest:hover {
+    background-color: #cb2027;
+}
+
+.share-modal-content .share-modal-action.tumblr:before {
+    content: "\74\75\6d\62\6c\72";
+}
+
+.share-modal-content .share-modal-action.tumblr:hover {
+    background-color: #32506d;
+}
+
+.share-modal-content .share-modal-action.instagram:before {
+    content: "\69\6e\73\74\61\67\72\61\6d";
+}
+
+.share-modal-content .share-modal-action.instagram:hover {
+    background-color: #125688;
+}
+
+.share-modal-content .share-modal-action.deviantart:before {
+    content: "\64\65\76\69\61\6e\74\61\72\74";
+}
+
+.share-modal-content .share-modal-action.deviantart:hover {
+    color: #B8DB4D;
+    background-color: #336600;
+}
+
+.share-modal-content .share-modal-action.whatsapp:before {
+}
+
+.share-modal-content .share-modal-action.whatsapp:hover {
+    background-color: #4dc247;
+}
+
+.share-modal-content .share-modal-action.mail:before {
+    content: "\65\6d\61\69\6c";
+}
+
+.share-modal-content .share-modal-action.mail:hover {
+    color: black;
+    background-color: white;
+}

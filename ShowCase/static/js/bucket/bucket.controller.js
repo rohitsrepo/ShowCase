@@ -6,9 +6,10 @@ angular.module('BucketApp')
     'bucketModel',
     'bucketmodalService',
     'confirmModalService',
+    'shareModalService',
     'progress',
     'alert',
-    function ($scope, $rootScope, $document, auth, bucketModel, bucketmodalService, confirmModalService, progress, alert) {
+    function ($scope, $rootScope, $document, auth, bucketModel, bucketmodalService, confirmModalService, shareModalService, progress, alert) {
 
         $scope.noSuchBucket = {
             status: false,
@@ -39,10 +40,13 @@ angular.module('BucketApp')
         };
 
         $scope.bucket = [];
-        $scope.init = function (id, name, slug, isWatched, isMe) {
+        $scope.init = function (id, name, description, background, slug, owner, isWatched, isMe) {
             $scope.bucket.id = id;
             $scope.bucket.slug = slug;
             $scope.bucket.name = name;
+            $scope.bucket.description = description;
+            $scope.bucket.background = background;
+            $scope.bucket.owner = owner;
             $scope.bucket.isWatched = isWatched == 'True';
 
             $scope.isMe = isMe == 'True';
@@ -129,6 +133,11 @@ angular.module('BucketApp')
                     alert.showAlert('Currently unable to delete this series');
                 });
             });
+        };
+
+        $scope.showShare = function () {
+            var title = '"' + $scope.bucket.name + '" by: ' + $scope.bucket.owner
+            shareModalService.shareThisPage(title, $scope.background);
         };
 
     }

@@ -1,0 +1,1 @@
+angular.module('module.shareModal', ['module.util'])

@@ -47,7 +47,7 @@ ol, ul {
 
 @media (max-width: 800px) {
   .show-mb {
-    display: block !important;
+    display: default !important;
   }
 }
 
