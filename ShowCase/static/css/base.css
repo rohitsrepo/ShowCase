@@ -478,38 +478,14 @@ body::-webkit-scrollbar-thumb {
   letter-spacing: 1px;
 }
 
-.art .actions button {
-  background: transparent;
-  border: none;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 2px;
-  font-size: 0.8em;
-  padding: 10px 30px;
-  color: rgba(0, 0, 0, 0.8);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
+.art .actions i {
+    margin-top: 4px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.7);
 }
 
-.art .actions button:hover,
-.art .actions button.bookmark-active {
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-}
-
-.art .actions button:before {
-    position: absolute;
-    content: '\E876';
-    left: 130%;
-    top: 50%;
-    transform: translateY(-50%);
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
-}
-
-.art .actions button.bookmark-active:before {
-    left: 80%;
+.art .actions i:hover {
+    color: rgba(0, 0, 0, 0.95);
 }
 
 @media (max-width: 800px) {

@@ -15,7 +15,7 @@ angular.module('ExploreApp')
 
     $scope.math = window.Math
 	$scope.arts = [];
-	$scope.postsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', feedType:'staff'};
+	$scope.postsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', feedType:'fresh'};
 
     var getPostFetcher = function () {
         if ($scope.postsMeta.feedType === 'fresh') {
@@ -96,7 +96,7 @@ angular.module('ExploreApp')
     };
 
     $scope.handleBookMark = function (index) {
-        art = $scope.arts[index.content]
+        art = $scope.arts[index].content;
         if (art.is_bookmarked) {
             bookService.unmark(art).then(function () {
             	art.is_bookmarked = false;

@@ -10,7 +10,7 @@
                 <div class="details-inset">
                     <section class="inset-details">
                         <h6>[[art.views]] Views</h6><br>
-                        <h6 class="active" ng-click="showBookMarkers($index)">[[art.bookmarks_count]] Admirers</h6><br>
+                        <h6 class="active" ng-click="showBookMarkers($index)">[[art.bookmarks_count]] Bookmarks</h6><br>
                         <h6 class="active" ng-click="showArtBuckets($index)">[[art.buckets_count]] Series</h6>
                     </section>
 
@@ -26,7 +26,8 @@
                 <h5> by <a ng-href="/@[[art.artist.slug]]">[[art.artist.name | titlecase]]</a></h5>
             </section><!--
             --><section class="actions">
-                <button ng-click="handleBookMark($index)" ng-class="{'bookmark-active': art.is_bookmarked}">ADMIRE</button>
+                    <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-hide="art.is_bookmarked">bookmark_border</i>
+                    <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-show="art.is_bookmarked">bookmark</i>
             </section>
         </div> <!-- art -->
     </div>

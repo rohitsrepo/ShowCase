@@ -221,39 +221,14 @@
   letter-spacing: 1px;
 }
 
-.user-activity-footer .actions button {
-  background: transparent;
-  border: none;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 2px;
-  font-size: 0.8em;
-  padding: 10px 30px;
-  color: rgba(0, 0, 0, 0.8);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
+.user-activity-footer .actions i {
+    margin-top: 4px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.7);
 }
 
-.user-activity-footer .actions button:hover,
-.user-activity-footer .actions button.bookmark-active {
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-}
-
-
-.user-activity-footer .actions button:before {
-    position: absolute;
-    content: '#';
-    left: 130%;
-    top: 50%;
-    transform: translateY(-50%);
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
-}
-
-.user-activity-footer .actions button.bookmark-active:before {
-    left: 80%;
+.user-activity-footer .actions i:hover {
+    color: rgba(0, 0, 0, 0.95);
 }
 
 @media (max-width: 800px) {

@@ -40,7 +40,8 @@
                     <h5> by <a ng-href="/@[[activity.composition.artist.slug]]" target="_blank">[[activity.composition.artist.name | titlecase]]</a></h5>
                 </section><!--
                 --><section class="actions">
-                    <button ng-click="handleBookMark($index)" ng-class="{'bookmark-active': activity.composition.is_bookmarked}">ADMIRE</button>
+                    <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-hide="activity.composition.is_bookmarked">bookmark_border</i>
+                    <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-show="activity.composition.is_bookmarked">bookmark</i>
                 </section>
             </footer>
         </article>
@@ -83,7 +84,8 @@
                     <h5> by <a ng-href="/@[[activity.composition.artist.slug]]" target="_blank">[[activity.composition.artist.name | titlecase]]</a></h5>
                 </section><!--
                 --><section class="actions">
-                    <button ng-click="handleBookMark($index)" ng-class="{'bookmark-active': activity.composition.is_bookmarked}">ADMIRE</button>
+                    <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-hide="activity.composition.is_bookmarked">bookmark_border</i>
+                    <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-show="activity.composition.is_bookmarked">bookmark</i>
                 </section>
             </footer>
         </article>
@@ -126,7 +128,8 @@
                     <h5> by <a ng-href="/@[[activity.composition.artist.slug]]" target="_blank">[[activity.composition.artist.name | titlecase]]</a></h5>
                 </section><!--
                 --><section class="actions">
-                    <button ng-click="handleBookMark($index)" ng-class="{'bookmark-active': activity.composition.is_bookmarked}">ADMIRE</button>
+                    <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-hide="activity.composition.is_bookmarked">bookmark_border</i>
+                    <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-show="activity.composition.is_bookmarked">bookmark</i>
                 </section>
             </footer>
         </article>
