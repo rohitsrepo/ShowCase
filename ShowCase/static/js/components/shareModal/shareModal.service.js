@@ -111,9 +111,9 @@ angular.module('module.shareModal')
     function shareTumblr (url, description, image) {
         return function () {
             _updateHref('http://www.tumblr.com/share/photo', {
-                clickthru: url,
+                click_thru: url,
                 source: image,
-                description: description
+                caption: description
             });
         }
     };
