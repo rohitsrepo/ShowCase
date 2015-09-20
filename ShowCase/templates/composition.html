@@ -33,7 +33,7 @@
 	<!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{is_bookmarked}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{composition.artist.name | escapejs}}', '{{is_bookmarked}}')"{% endblock %}
 
 {% block content_block %}
 	<section class="painting-area">
@@ -48,19 +48,24 @@
 			<img class="painting painting-original" fit-image src="{{composition.matter.url}}" alt="{{composition.slug}}">
 		</div>
 
-        <section tools-drawer class="art-tools">
-           <button class="drawer-control" pan-zoom>
-             <i class="material-icons">keyboard_capslock</i>
-           </button>
-           <button>
-             <i class="material-icons zoom-in">zoom_in</i>
-           </button>
-           <button>
-             <i class="material-icons zoom-reset">youtube_searched_for</i>
-           </button>
-           <button>
-             <i class="material-icons zoom-out">zoom_out</i>
-           </button>
+        <section class="art-actions">
+            <button class="art-action" ng-click="showShare()">
+                <i class="material-icons">share</i>
+            </button>
+            <section tools-drawer class="zoom-tools">
+               <button class="drawer-control" pan-zoom>
+                 <i class="material-icons">search</i>
+               </button>
+               <button>
+                 <i class="material-icons zoom-in">zoom_in</i>
+               </button>
+               <button>
+                 <i class="material-icons zoom-reset">youtube_searched_for</i>
+               </button>
+               <button>
+                 <i class="material-icons zoom-out">zoom_out</i>
+               </button>
+            </section>
         </section>
 
 	</section>

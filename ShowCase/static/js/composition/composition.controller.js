@@ -17,6 +17,7 @@ controller("compositionController", [
     'usermodalService',
     'bucketmodalService',
     'compositionModel',
+    'shareModalService',
 	function ($window,
         $document,
         $scope,
@@ -33,7 +34,8 @@ controller("compositionController", [
         bookService,
         usermodalService,
         bucketmodalService,
-        compositionModel)
+        compositionModel,
+        shareModalService)
 	{
 
 	$scope.composition = {};
@@ -47,7 +49,7 @@ controller("compositionController", [
     function(event, toState, toParams, fromState, fromParams){
         var body = $document.find('body');
         body.addClass('modal-open');
-        
+
         if (toState.name == 'art') {
             body.removeClass('modal-open');
         }
@@ -61,11 +63,12 @@ controller("compositionController", [
         });
     };
 
-	$scope.init = function (id, url, slug, title, isBookMarked) {
+	$scope.init = function (id, url, slug, title, artist, isBookMarked) {
 		$scope.composition.id = id;
         $scope.composition.url = url;
         $scope.composition.slug = slug;
-		$scope.composition.title = title;
+        $scope.composition.title = title;
+		$scope.composition.artist = artist;
         $scope.composition.is_bookMarked = isBookMarked == 'True';
 
 		if (url) {
@@ -104,6 +107,15 @@ controller("compositionController", [
     $scope.showAddToBucket = function () {
         bucketmodalService.showAddToBucket($scope.composition);
     }
+
+    $scope.showShare = function () {
+        var share_url = window.location.href;
+        var title = 'Artwork: "' + $scope.composition.title + '" by: ' + $scope.composition.artist
+        var description = 'Find thoughts about artwork "' + $scope.composition.title+
+            '" at ' + share_url;
+        var media = 'http://thirddime.com' + $scope.composition.url;
+        shareModalService.shareThisPage(share_url, title, description, media);
+    };
 }])
 .directive('postTemplate', [function () {
 	return {
