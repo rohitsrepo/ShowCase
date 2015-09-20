@@ -110,7 +110,7 @@ controller("compositionController", [
 
     $scope.showShare = function () {
         var share_url = window.location.href;
-        var title = 'Artwork: "' + $scope.composition.title + '" by: ' + $scope.composition.artist
+        var title = 'Artwork: "' + $scope.composition.title + '" by: ' + $scope.composition.artist;
         var description = 'Find thoughts about artwork "' + $scope.composition.title+
             '" at ' + share_url;
         var media = 'http://thirddime.com' + $scope.composition.url;

@@ -4,9 +4,17 @@ angular.module('UserApp')
     'bucketmodalService',
     'bookService',
     'usermodalService',
+    'shareModalService',
     'progress',
     'alert',
-    function ($scope, activityModel, bucketmodalService, bookService, usermodalService, progress, alert) {
+    function ($scope,
+        activityModel,
+        bucketmodalService,
+        bookService,
+        usermodalService,
+        shareModalService,
+        progress,
+        alert) {
 
         $scope.userActivities = [];
         $scope.activitiesMeta = {next_token: '', disableGetMore: false, busy: false, noActivities: false};
@@ -85,6 +93,17 @@ angular.module('UserApp')
         $scope.showAddToBucket = function (index) {
             var art = $scope.userActivities[index].composition;
             bucketmodalService.showAddToBucket(art);
+        };
+
+        $scope.shareArt = function (index) {
+            var art = $scope.userActivities[index].composition;
+            var base_url = "http://thirddime.com";
+            var share_url = base_url + "/arts/" + art.slug;
+            var title = 'Artwork: "' + art.title + '" by: ' + art.artist.name;
+            var description = 'Find thoughts about artwork "' + art.title+
+                '" at ' + share_url;
+            var media = 'http://thirddime.com' + art.matter;
+            shareModalService.shareThisPage(share_url, title, description, media);
         };
     }
 ]);

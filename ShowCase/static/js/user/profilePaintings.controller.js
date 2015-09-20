@@ -7,7 +7,16 @@ angular.module('UserApp')
     'alert',
     'usermodalService',
     'bucketmodalService',
-    function ($scope, $state, userModel, bookService, progress, alert, usermodalService, bucketmodalService) {
+    'shareModalService',
+    function ($scope,
+        $state,
+        userModel,
+        bookService,
+        progress,
+        alert,
+        usermodalService,
+        bucketmodalService,
+        shareModalService) {
     $scope.arts = [];
     $scope.math = window.Math;
     $scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', noWorks: false};
@@ -103,6 +112,17 @@ angular.module('UserApp')
     $scope.toggleNsfw = function (index) {
         var art = $scope.arts[index];
         art.nsfw = false;
-    }
+    };
+
+    $scope.shareArt = function (index) {
+        var art = $scope.arts[index];
+        var base_url = "http://thirddime.com";
+        var share_url = base_url + "/arts/" + art.slug;
+        var title = 'Artwork: "' + art.title + '" by: ' + art.artist.name;
+        var description = 'Find thoughts about artwork "' + art.title+
+            '" at ' + share_url;
+        var media = 'http://thirddime.com' + art.matter;
+        shareModalService.shareThisPage(share_url, title, description, media);
+    };
 
 }]);

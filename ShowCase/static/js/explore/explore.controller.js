@@ -11,7 +11,20 @@ angular.module('ExploreApp')
     'bookService',
     'bucketmodalService',
     'usermodalService',
-	function ($scope, $rootScope, $document, feedModel, $timeout, userModel, alert, progress, auth, bookService, bucketmodalService, usermodalService) {
+    'shareModalService',
+	function ($scope,
+        $rootScope,
+        $document,
+        feedModel,
+        $timeout,
+        userModel,
+        alert,
+        progress,
+        auth,
+        bookService,
+        bucketmodalService,
+        usermodalService,
+        shareModalService) {
 
     $scope.math = window.Math
 	$scope.arts = [];
@@ -131,6 +144,17 @@ angular.module('ExploreApp')
     $scope.toggleNsfw = function (index) {
         var art = $scope.arts[index].content;
         art.nsfw = false;
-    }
+    };
+
+    $scope.shareArt = function (index) {
+        var art = $scope.arts[index].content;
+        var base_url = "http://thirddime.com";
+        var share_url = base_url + "/arts/" + art.slug;
+        var title = 'Artwork: "' + art.title + '" by: ' + art.artist.name;
+        var description = 'Find thoughts about artwork "' + art.title+
+            '" at ' + share_url;
+        var media = 'http://thirddime.com' + art.matter;
+        shareModalService.shareThisPage(share_url, title, description, media);
+    };
 
 }]);

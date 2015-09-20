@@ -67,6 +67,7 @@
                     <h5> by <a ng-href="/@[[art.content.artist.slug]]" target="_blank">[[art.content.artist.name | titlecase]]</a></h5>
                 </section><!--
                 --><section class="actions">
+                    <i class="material-icons" ng-click="shareArt($index)" >share</i>
                     <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-hide="art.content.is_bookmarked">bookmark_border</i>
                     <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-show="art.content.is_bookmarked">bookmark</i>
                 </section>
