@@ -74,7 +74,7 @@ angular.module('module.shareModal')
     }
 
     function shareFacebook (url) {
-        return function (url) {
+        return function () {
             _updateHref('https://www.facebook.com/sharer/sharer.php', {
               u: url
             });
