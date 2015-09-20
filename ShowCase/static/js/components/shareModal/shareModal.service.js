@@ -117,8 +117,8 @@ angular.module('module.shareModal')
     function shareViaEmail (subject, description) {
         return function () {
             _updateHref('mailto:', {
-                subject: this.config.networks.email.title,
-                body: this.config.networks.email.description
+                subject: subject,
+                body: description
             });
         }
     };
@@ -142,7 +142,7 @@ angular.module('module.shareModal')
 
     var service = {};
 
-    var pageActions = function (title, image) {
+    var pageActions = function (title, description, image) {
         return {
             'shareFacebook': shareFacebook,
             'shareTwitter': shareTwitter(title),
@@ -150,15 +150,16 @@ angular.module('module.shareModal')
             'shareWhatsapp': shareWhatsapp(title),
             'shareReddit': shareReddit(title),
             'sharePinterest': sharePinterest(title, image),
-            'shareTumblr': shareTumblr(title, image)
+            'shareTumblr': shareTumblr(title, image),
+            'shareViaEmail': shareViaEmail(title, description)
         }
     };
 
-    service.shareThisPage = function (title, image) {
+    service.shareThisPage = function (title, description, image) {
         modalService.showModal({
             'templateUrl': '/static/js/components/shareModal/shareModal.tpl.html',
             'controller': 'shareModalController',
-            'inputs' : {'actions': pageActions(title, image)}
+            'inputs' : {'actions': pageActions(title, description, image)}
         });
     };
 
