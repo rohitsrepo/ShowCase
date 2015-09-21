@@ -108,11 +108,11 @@ angular.module('module.shareModal')
         }
     };
 
-    function shareTumblr (url, description, image) {
+    function shareTumblr (url, title, description) {
         return function () {
-            _updateHref('http://www.tumblr.com/share/photo', {
-                click_thru: url,
-                source: image,
+            _updateHref('https://www.tumblr.com/widgets/share/tool', {
+                canonicalUrl: url,
+                title: title,
                 caption: description
             });
         }
@@ -154,7 +154,7 @@ angular.module('module.shareModal')
             'shareWhatsapp': shareWhatsapp(url, title),
             'shareReddit': shareReddit(url, title),
             'sharePinterest': sharePinterest(url, title, image),
-            'shareTumblr': shareTumblr(url, title, image),
+            'shareTumblr': shareTumblr(url, title, description),
             'shareViaEmail': shareViaEmail(title, description)
         }
     };
