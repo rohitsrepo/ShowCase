@@ -96,6 +96,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    ' django.middleware.common.BrokenLinkEmailsMiddleware',
 )
 
 ROOT_URLCONF = 'ShowCase.urls'
@@ -166,3 +167,11 @@ POSTS_PER_PAGE = 10
 
 STREAM_API_KEY = 'x399sdbsgtmx'
 STREAM_API_SECRET = 'njhq6uzms7bezq6hxwsz434b6xpp37r97nwc3bg99ps8cmgrf6qvqhyjmgdbuhe9'
+
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@thirddime.com'
+EMAIL_HOST_PASSWORD = '671b18a15bd67beabc3b0738bd5f8d7a'
+
+SERVER_EMAIL = 'Server Logs <server@thirddime.com>'
+ADMINS = (('Rohit', 'rgarg1992@gmail.com'),)
+MANAGERS = (('Rohit', 'rgarg1992@gmail.com'),)
