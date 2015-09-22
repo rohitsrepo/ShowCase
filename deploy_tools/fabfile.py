@@ -48,6 +48,14 @@ def _update_settings(source_folder, site_name):
         'STREAM_API_SECRET =.+$',
         'STREAM_API_SECRET = "can7n5vuyw5k556e7nz7wjzx98r6umm3yn3uy559rch8xd4m5aqu9rmxgw8xyy5r"'
         )
+    sed(settings_path,
+        'EMAIL_HOST_USER =.+$',
+        'EMAIL_HOST_USER = "postmaster@thirddime.com"'
+        )
+    sed(settings_path,
+        'EMAIL_HOST_PASSWORD =.+$',
+        'EMAIL_HOST_PASSWORD = "671b18a15bd67beabc3b0738bd5f8d7a"'
+        )
 
     secret_key_file = source_folder + '/ShowCase/secret_key.py'
     if not exists(secret_key_file):
