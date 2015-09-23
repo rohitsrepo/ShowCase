@@ -20,7 +20,7 @@ html, body {
 .banner {
     width: 100%;
     min-height: 100%;
-    background: url('http://www.lukechueh.com/images/paintings/paintings-whole/Black-In-White-Big.jpg') no-repeat center right;
+    background: url('http://thirddime.com/media/2132/luke-chueh/luke-chueh_black-in-white_thirddime.jpg') no-repeat center right;
     background-size: cover;
     position: relative;
 }
@@ -122,6 +122,33 @@ html, body {
         float: none;
         display: inline-block;
     }
+}
+
+/*========== Head Footer - Attribution ============*/
+.head-footer .attribution {
+    position: absolute;
+    bottom: 15px;
+    left: 25px;
+    color: white;
+    line-height: 1.2em;
+    letter-spacing: 1px;
+}
+
+.head-footer .attribution h3 a {
+    font-size: 0.9em;
+    color: white;
+}
+
+.head-footer .attribution h4 {
+    font-family: 'taile', sans-serif;
+    font-size: 0.85em;
+}
+
+.head-footer .attribution h4 a {
+    color: white;
+    font-size: 0.85em;
+    font-family: 'taile', sans-serif;
+    font-family: 'taile', sans-serif;
 }
 
 /*------------ Concept Break ------------------*/
@@ -284,9 +311,9 @@ html, body {
 footer.concept-close {
         width: 100%;
         min-height: 100%;
-        background: url('http://www.fubiz.net/wp-content/uploads/2015/01/Black-And-White-Watercolors-Illustrations_2-640x640.jpg');
+        background: url('http://thirddime.com/media/2132/elicia-edijanto/elicia-edijanto_glowing-sun_thirddime.jpg');
         background-size: cover;
-        background-position: top center; 
+        background-position: center center;
         text-align: center;
         padding-top: 150px;
         position: relative;
@@ -354,4 +381,32 @@ footer.concept-close header h2 {
     footer.concept-close {
         padding-top: 50px;
     }
+}
+
+/*========== Concpet Close - Attribution ============*/
+.bottom-footer .attribution {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    color: white;
+    line-height: 1.2em;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+.bottom-footer .attribution h3 a {
+    font-size: 0.9em;
+    color: white;
+}
+
+.bottom-footer .attribution h4 {
+    font-family: 'taile', sans-serif;
+    font-size: 0.85em;
+}
+
+.bottom-footer .attribution h4 a {
+    color: white;
+    font-size: 0.85em;
+    font-family: 'taile', sans-serif;
+    font-family: 'taile', sans-serif;
 }
