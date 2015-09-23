@@ -597,12 +597,13 @@ body::-webkit-scrollbar-thumb {
 /*------------- Site Footer --------------*/
 footer.site-footer {
     width: 100%;
-    min-height: 100%;
-    background: url('http://www.fubiz.net/wp-content/uploads/2015/01/Black-And-White-Watercolors-Illustrations_2-640x640.jpg');
+    height: 400px;
+    /*background: url('http://www.fubiz.net/wp-content/uploads/2015/01/Black-And-White-Watercolors-Illustrations_2-640x640.jpg');*/
+    background-color: rgba(0, 0, 0, 0.8);
     background-size: cover;
     background-position: top center;
     text-align: center;
-    padding-top: 150px;
+    padding-top: 100px;
     position: relative;
     margin-top: 50px;
 }
@@ -615,8 +616,8 @@ footer.site-footer header {
 
 footer.site-footer header h2 {
     font-size: 1.8em;
-    font-weight: bold;
-    line-height: 1.2em;
+    font-family: 'taile', sans-serif;
+    line-height: 1.5em;
     letter-spacing: 1px;
     text-align: center;
     color: white;
