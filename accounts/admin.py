@@ -100,9 +100,9 @@ class UserChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('name', 'login_type')
-    list_filter = ['name']
+    list_display = ('name', 'login_type', 'is_active', 'is_artist')
+    list_filter = ['name', 'date_joined']
     search_fields = ['name']
-    fields = ['name', 'login_type', 'groups']
+    fields = ['name', 'email', 'groups']
 
 admin.site.register(User, UserAdmin)

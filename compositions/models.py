@@ -64,14 +64,18 @@ class Composition(models.Model):
                 object_id=self.id,
                 content_type=ContentType.objects.get_for_model(Composition))
 
+    def add_to_staff_feed(self):
+        Staff.objects.create(feed_type=Staff.ART,
+            content_object=self)
+
     def get_staff_post(self):
-        return Staff.objects.filter(feed_type=Fresh.ART,
+        return Staff.objects.filter(feed_type=Staff.ART,
                 object_id=self.id,
                 content_type=ContentType.objects.get_for_model(Composition))
 
     def remove_staff_post(self):
         try:
-            Staff.objects.filter(feed_type=Fresh.ART,
+            Staff.objects.filter(feed_type=Staff.ART,
                 object_id=self.bucket.id,
                 content_type=ContentType.objects.get_for_model(Composition)).delete()
         except:

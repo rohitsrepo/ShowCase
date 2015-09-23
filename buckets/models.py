@@ -71,6 +71,10 @@ class Bucket(models.Model):
     def is_watched(self, user_id):
         return self.watchers.filter(id=user_id).exists()
 
+    def add_to_staff_feed(self):
+        Staff.objects.create(feed_type=Staff.BUCKET,
+            content_object=self)
+
 
 class BucketMembership(models.Model):
     bucket = models.ForeignKey(Bucket, related_name='membership')
@@ -78,7 +82,7 @@ class BucketMembership(models.Model):
     added = models.DateTimeField(auto_now_add=True)
 
     def add_to_fresh_feed(self):
-        if self.bucket.compositions.count() > 3 and not self.get_fresh_post().exists():
+        if self.bucket.compositions.count() >= 3 and not self.get_fresh_post().exists():
             Fresh.objects.create(feed_type=Fresh.BUCKET,
                 content_object=self.bucket)
 
