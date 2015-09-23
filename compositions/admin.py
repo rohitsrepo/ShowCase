@@ -9,7 +9,7 @@ class InterpretationInline(admin.StackedInline):
 
 
 class CompositionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug')
+    list_display = ('title', 'slug', 'created', 'views')
     list_filter = ['created', 'uploader']
     search_fields = ['title', 'slug', 'description', 'artist__name', 'uploader__name']
     fields = ['title', 'description', 'uploader', 'matter']
