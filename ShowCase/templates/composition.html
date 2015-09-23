@@ -113,7 +113,8 @@
     <section class="art-associates">
         <section class="associate-category art-buckets" ng-cloak ng-show="artBuckets.length > 0">
             <h2>Series explaining this work</h2>
-            <div class="art-buckets-container" ng-class="{'add-scroll' : artBuckets.length > 3}">
+
+            <div class="art-buckets-container">
                 <section class="art-bucket" ng-repeat="bucket in artBuckets">
                     <div class="art-bucket-picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">
                         <section class="details" ui-sref="bucket({userSlug: bucket.owner.slug, bucketSlug: bucket.slug})">
@@ -127,11 +128,16 @@
                     </div>
                 </section>
             </div>
+
+            <section class="associated-buckets-actions" ng-cloak ng-show="artBuckets.length > 5">
+                <a ui-sref="buckets({compositionSlug: '{{composition.slug}}' })">See all<i class="material-icons">arrow_forward</i></a>
+            </section>
         </section>
 
         <section class="associate-category associate-works artist-works" ng-cloak ng-show="artistWorks.length > 0">
             <h2>Other works by artist</h2>
-            <div class="associate-works-container" ng-class="{'add-scroll' : artistWorks.length > 3}">
+
+            <div class="associate-works-container">
                 <section class="work" ng-repeat="work in artistWorks">
                     <div class="work-picture" ng-style="{'background-image': 'url([[work.matter_350]])'}">
                         <div class="work-nsfw-overlay" ng-cloak ng-show="work.nsfw"  ng-click="work.nsfw = false">
@@ -149,11 +155,16 @@
                     </div>
                 </section>
             </div>
+
+            <section class="associated-works-actions" ng-cloak ng-show="artistWorks.length > 5">
+                <a ng-href="/@{{composition.artist.slug}}/originals">See all<i class="material-icons">arrow_forward</i></a>
+            </section>
         </section>
 
         <section class="associate-category associate-works uploader-works" ng-cloak ng-show="uploaderWorks.length > 0">
             <h2>Other works by contributor</h2>
-            <div class="associate-works-container" ng-class="{'add-scroll' : uploaderWorks.length > 3}">
+
+            <div class="associate-works-container">
                 <section class="work" ng-repeat="work in uploaderWorks">
                     <div class="work-picture" ng-style="{'background-image': 'url([[work.matter_350]])'}">
                         <div class="work-nsfw-overlay" ng-cloak ng-show="work.nsfw"  ng-click="work.nsfw = false">
@@ -171,6 +182,10 @@
                     </div>
                 </section>
             </div>
+
+            <section class="associated-works-actions" ng-cloak ng-show="uploadWorks.length > 5">
+                <a ng-href="/@{{composition.uploader.slug}}/contributions">See all<i class="material-icons">arrow_forward</i></a>
+            </section>
         </section>
 
     </section>

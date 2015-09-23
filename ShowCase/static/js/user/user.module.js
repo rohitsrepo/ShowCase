@@ -22,7 +22,7 @@ angular.module("UserApp", [
     $urlRouterProvider.otherwise(
         function() {
             window.location.reload();
-        
+
     });
 
     // use the HTML5 History API
@@ -45,7 +45,7 @@ angular.module("UserApp", [
         data: {'listType': 'paintings'}
     })
     .state('uploads', {
-        url: "/uploads",
+        url: "/contributions",
         templateUrl: "/static/js/user/profile.paintings.html",
         controller: 'profilePaintingsController',
         data: {'listType': 'uploads'}

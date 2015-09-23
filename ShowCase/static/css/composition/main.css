@@ -375,16 +375,31 @@ html, body {
 /*------------ Art buckets ----------------*/
 .art-associates .art-buckets {
     width: 100%;
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.art-associates .art-buckets h2 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-decoration: underline;
+}
+
+.art-associates .art-buckets .associated-buckets-actions {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+}
+
+.art-associates .art-buckets .associated-buckets-actions i {
+    vertical-align: bottom;
+    font-size: 1.2em;
+    padding-left: 5px;
 }
 
 .art-associates .art-buckets .art-buckets-container {
     width: 100%;
-    max-height: 500px;
-    overflow-y: hidden;
-}
-
-.art-associates .art-buckets .art-buckets-container.add-scroll {
-    overflow-y: auto;
 }
 
 .art-associates .art-buckets .art-bucket {
@@ -451,16 +466,31 @@ html, body {
 
 .art-associates .associate-works {
     width: 100%;
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.art-associates .associate-works h2 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-decoration: underline;
+}
+
+.art-associates .associate-works .associated-works-actions {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+}
+
+.art-associates .associate-works .associated-works-actions i {
+    vertical-align: bottom;
+    font-size: 1.2em;
+    padding-left: 5px;
 }
 
 .art-associates .associate-works .associate-works-container {
     width: 100%;
-    max-height: 500px;
-    overflow-y: hidden;
-}
-
-.art-associates .associate-works .associate-works-container.add-scroll {
-    overflow-y: auto;
 }
 
 .art-associates .associate-works .work {

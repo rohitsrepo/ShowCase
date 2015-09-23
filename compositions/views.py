@@ -174,7 +174,7 @@ class CompositionDetail(APIView):
         self.check_object_permissions(self.request, composition)
 
         ser = CompositionSerializer(composition, data=request.DATA, context={'request': request})
-        
+
         if ser.is_valid():
             ser.save()
             return Response(ser.data)
@@ -309,9 +309,9 @@ def get_bookmarkers(request, composition_id, format=None):
 @permission_classes((permissions.AllowAny,))
 def get_associates(request, composition_id, format=None):
     composition = get_object_or_404(Composition, pk=composition_id)
-    artBuckets = composition.holders.all()
-    artistWorks = composition.artist.arts.exclude(id=composition_id)
-    uploaderWorks = composition.uploader.compositions.exclude(id=composition_id)
+    artBuckets = composition.holders.all().order_by('-views')[:6]
+    artistWorks = composition.artist.arts.exclude(id=composition_id).order_by('-created')[:6]
+    uploaderWorks = composition.uploader.compositions.exclude(id=composition_id).order_by('-created')[:6]
 
     artBucketsSerializer = BucketSerializer(artBuckets, context={'request': request})
     artistWorksSerializer = CompositionSerializer(artistWorks, context={'request': request})
