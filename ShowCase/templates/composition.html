@@ -49,6 +49,12 @@
 		</div>
 
         <section class="art-actions">
+            <button class="art-action" ng-click="handleBookMark()" ng-cloak ng-hide="composition.is_bookMarked">
+                <i class="material-icons">bookmark_border</i>
+            </button>
+            <button class="art-action" ng-click="handleBookMark()" ng-cloak ng-show="composition.is_bookMarked">
+                <i class="material-icons">bookmark</i>
+            </button>
             <button class="art-action" ng-click="showShare()">
                 <i class="material-icons">share</i>
             </button>
@@ -97,12 +103,11 @@
 
             <section class="details-actions-details">
                 <h4 class="inactive">Views {{composition.views}}</h4>
-                <h4 ng-click="showBookMarkers()">Admirers {{composition.bookmarks_count}}</h4>
+                <h4 ng-click="showBookMarkers()">Bookmarks {{composition.bookmarks_count}}</h4>
                 <h4 ui-sref="buckets({compositionSlug: '{{composition.slug}}' })">Series {{composition.buckets_count}}</h4>
             </section>
 
             <section class="details-actions">
-                <button class="action admire" ng-class="{'active': composition.is_bookMarked}" ng-click="handleBookMark()">ADMIRE</button>
                 <button class="action collect" ng-click="showAddToBucket()">Add To Series</button>
             </section>
 
