@@ -69,6 +69,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         self.email = self.normalize_email(self.email)
         super(User, self).save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return '/@' + self.slug
+
     def __unicode__(self):
         return self.get_full_name()
 
@@ -106,13 +109,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         else:
             email = '@'.join([email_name, domain_part.lower()])
         return email
-
-    def get_absolute_url(self):
-        """
-        Return link to user profile(Showcase)
-        """
-
-        return "#/{0}".format(self.id)
 
     def get_sitemap_url(self):
         return "http://thirddime.com/@{0}".format(self.slug)

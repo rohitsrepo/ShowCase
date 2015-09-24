@@ -42,6 +42,9 @@ class Composition(models.Model):
 
         self.make_artist()
 
+    def get_absolute_url(self):
+        return '/arts/' + self.slug
+
     def make_artist(self):
         if not self.artist.is_artist:
             self.artist.is_artist = True
@@ -98,9 +101,6 @@ class Composition(models.Model):
             title = self.title
 
         return title.encode('utf-8')
-
-    def get_absolute_url(self):
-        return "#/compositions/{0}/{1}".format(self.id, self.slug)
 
     def get_sitemap_url(self):
         return "/arts/{0}".format(self.slug)

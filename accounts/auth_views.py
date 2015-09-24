@@ -29,7 +29,7 @@ class CustomUserCallback(OAuthCallback):
         choice = [c[0] for c in User.LOGIN_CHOICES if c[1] == provider.name]
         return choice[0]
 
-    def try_adding_picture(self, info, user), provider:
+    def try_adding_picture(self, info, user, provider):
         picture_url = info.get('picture', None)
 
         if (picture_url != None):

@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.contenttypes.management import update_all_contenttypes
 from django.db import models, migrations
 
 def create_fresh_posts(apps, schema_editor):
+    update_all_contenttypes()
     Fresh = apps.get_model("feeds", "Fresh")
     Composition = apps.get_model("compositions", "Composition")
     Bucket = apps.get_model("buckets", "Bucket")

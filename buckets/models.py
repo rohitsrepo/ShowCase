@@ -35,6 +35,9 @@ class Bucket(models.Model):
         if self.background:
             compress(self.background.path)
 
+    def get_absolute_url(self):
+        return '/@' + self.owner.slug + '/series/' + self.slug
+
     def has_ownership(self, user_id):
         return self.owner.id == user_id
 
