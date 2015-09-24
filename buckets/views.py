@@ -149,5 +149,17 @@ def get_composition_buckets(request, composition_id, format=None):
 def get_user_buckets(request, user_id, format=None):
     user = get_object_or_404(User, pk=user_id)
     buckets = user.buckets.all()
+
+    composition_id = request.GET.get('composition', '');
+
+    if composition_id:
+        try:
+            composition_id = int(composition_id)
+            serializer = BucketSerializer(buckets, context={'request': request,
+                'composition_id': composition_id})
+            return Response(data=serializer.data)
+        except ValueError:
+            pass
+
     serializer = BucketSerializer(buckets, context={'request': request})
     return Response(data=serializer.data)

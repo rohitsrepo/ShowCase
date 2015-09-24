@@ -8,11 +8,12 @@ angular.module('module.bucketmodal')
     'progress',
     'alert',
     function ($scope, bucketModel, bucketmodalService, close, art, user, progress, alert) {
+        var addingCount = 0;
 
         $scope.showCreateBucket = function () {
             bucketmodalService.showCreateBucket().then(function (result) {
                 if (result && result.created) {
-                    $scope.userBuckets.push(result.bucket);
+                    $scope.userBuckets.unshift(result.bucket);
                     $scope.noUserBucket.status = false;
                 }
             });
@@ -25,30 +26,45 @@ angular.module('module.bucketmodal')
             }
         }
 
-        progress.showProgress();
+        $scope.gettingBuckets = true;
         $scope.art = art;
-        bucketModel.userBuckets(user.id).then(function (buckets) {
+        bucketModel.userBuckets(user.id, art.id).then(function (buckets) {
             $scope.userBuckets = buckets;
 
             if ($scope.userBuckets.length == 0){
                 $scope.noUserBucket.status = true;
             }
 
-            progress.hideProgress();
+            $scope.gettingBuckets = false;
         }, function () {
             alert.showAlert('We are unable to fetch data');
-            progress.hideProgress();
+            $scope.gettingBuckets = false;
         });
 
         $scope.addToThisBucket = function (index) {
-            progress.showProgress();
+            if (addingCount) {
+                addingCount++;
+            } else {
+                $scope.addingToBucket = true;
+            }
+
             var bucket = $scope.userBuckets[index];
 
             bucketModel.addToBucket(bucket.id, art.id).then(function () {
-                progress.hideProgress();
-                close();
+                if (addingCount) {
+                    addingCount--;
+                } else {
+                    $scope.addingToBucket = false;
+                }
+
+                bucket.composition_added = true;
             }, function () {
-                progress.hideProgress();
+                if (addingCount) {
+                    addingCount--;
+                } else {
+                    $scope.addingToBucket = false;
+                }
+
                 alert.showAlert('Unable to add art to bucket');
             })
         };

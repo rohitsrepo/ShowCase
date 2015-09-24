@@ -78,6 +78,9 @@ class Bucket(models.Model):
         Staff.objects.create(feed_type=Staff.BUCKET,
             content_object=self)
 
+    def is_composition_added(self, composition_id):
+        return self.compositions.filter(id=composition_id).exists()
+
 
 class BucketMembership(models.Model):
     bucket = models.ForeignKey(Bucket, related_name='membership')

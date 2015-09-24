@@ -1,24 +1,28 @@
-<section tabindex="0" class="bucket-modal">
+<section tabindex="0" class="bucket-modal add-modal">
     <section class="modal-actions-header">
         <i class="material-icons action" ng-click="close()">close</i>
     </section>
     <div class="scroll-holder">
         <ul class="container">
+            <section class="picture-holder" ng-if="art.matter_550" ng-style="{'background-image': 'url([[art.matter_550]])'}">
+                <section class="bucket-adding-overlay ng-hide" ng-cloak ng-show="addingToBucket || gettingBuckets">
+                    <site-loader site-loader-hide='false'></site-loader>
+                </section>
+            </section>
+
             <h1 class="buckets-header" ng-cloak ng-hide="noUserBucket.status">
-                Select series to add <a ng-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a>
-                <button ng-click="showCreateBucket()">New Series</button>
+                Select series to add artwork
+                <section class="actions">
+                    <button class="action" ng-click="showCreateBucket()">New Series</button>
+                </section>
             </h1>
 
+            <section class="buckets">
+                <li class="bucket" ng-class="{'added': bucket.composition_added}" ng-repeat="bucket in userBuckets">
+                    <h2 ng-click="addToThisBucket($index)">[[bucket.name | titlecase]]</h2>
+                </li>
+            </section>
 
-            <li class="bucket" ng-repeat="bucket in userBuckets">
-                <div class="picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">
-                    <section class="details" ng-click="addToThisBucket($index)">
-                        <h2>[[bucket.name | titlecase]]</h2>
-                        <h3>[[bucket.description]]</h3>
-                        <div class="arts-count">[[bucket.compositions_count]] Artworks</div>
-                    </section>
-                </div>
-            </li>
             <div ng-cloak ng-show="noUserBucket.status" class="no-bucket">
                 <h1 class="no-buckets-header">You have not created any series yet</h1>
                 <h2>Time to give your thoughts a mould</h2>

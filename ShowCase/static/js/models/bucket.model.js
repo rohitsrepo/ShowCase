@@ -12,8 +12,8 @@ angular.module("module.model")
         });
     };
 
-    service.userBuckets = function (userId) {
-        return $http.get('/users/' + userId + '/buckets').then(function (response) {
+    service.userBuckets = function (userId, artId) {
+        return $http.get('/users/' + userId + '/buckets?composition=' + artId).then(function (response) {
             return response.data;
         }, function (error) {
             return $q.reject(error);
