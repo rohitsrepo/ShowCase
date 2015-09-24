@@ -63,9 +63,11 @@ controller("compositionController", [
         });
     };
 
-	$scope.init = function (id, url, slug, title, artist, isBookMarked) {
+	$scope.init = function (id, url, matter_550, slug, title, artist, isBookMarked) {
 		$scope.composition.id = id;
         $scope.composition.url = url;
+        $scope.composition.matter = url;
+        $scope.composition.matter_550 = matter_550;
         $scope.composition.slug = slug;
         $scope.composition.title = title;
 		$scope.composition.artist = artist;

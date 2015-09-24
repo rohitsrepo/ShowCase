@@ -399,10 +399,10 @@ body::-webkit-scrollbar-thumb {
 .details-inset .inset-actions {
   width: 100%;
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
   left: 0;
-  background: rgba(0, 0, 0, 0.4);
   opacity: 0;
+  text-align: center;
 }
 
 .art:hover .art-content .details-inset .inset-actions ,
@@ -411,10 +411,9 @@ body::-webkit-scrollbar-thumb {
   transition: all 0.3s;
 }
 
-
-
 .details-inset .inset-actions button {
   width: 50%;
+  margin: 0 auto;
   display: inline-block;
   background: transparent;
   border: none;
@@ -423,10 +422,13 @@ body::-webkit-scrollbar-thumb {
   color: white;
   cursor: pointer;
   opacity: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
 .details-inset .inset-actions button:hover {
   background: rgba(0, 0, 0, 1);
+  border: 1px solid white;
 }
 
 .art .details {
