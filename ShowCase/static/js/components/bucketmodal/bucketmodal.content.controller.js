@@ -111,6 +111,12 @@ angular.module('module.bucketmodal')
             });
         };
 
+        $scope.showEditBucket = function () {
+            bucketmodalService.showEditBucket($scope.bucket).then(function (bucket) {
+                window.location.href = "/@" + bucket.owner.slug + '/series/' + bucket.slug;
+            });
+        };
+
         $scope.showShare = function () {
             var base_url = 'http://thirddime.com';
             var share_url = base_url + '/@' + $scope.bucket.owner.slug + '/series/' + $scope.bucket.slug;

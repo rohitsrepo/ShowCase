@@ -50,7 +50,7 @@
         </section>
 
         <section class="modal-actions-header">
-            <i class="material-icons action content-action nt-mb" ng-cloak ng-show="'{{has_ownership}}' == 'True'">edit</i>
+            <i class="material-icons action content-action nt-mb" ng-cloak ng-show="'{{has_ownership}}' == 'True'" ng-click="showEditBucket()">edit</i>
             <i class="material-icons action content-action nt-mb" ng-cloak ng-show="'{{has_ownership}}' == 'True'" ng-click="deleteBucket()">delete</i>
             <i class="material-icons action content-action" ng-click="showShare()">share</i>
             <span class="counter counter-watchers">

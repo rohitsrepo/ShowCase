@@ -49,7 +49,7 @@ class BucketDetail(APIView):
         bucket = get_object_or_404(Bucket, slug=bucket_slug)
         self.check_object_permissions(self.request, bucket)
 
-        ser = BucketSerializer(bucket, data=request.DATA, context={'request': request})
+        ser = BucketSerializer(bucket, data=request.DATA, context={'request': request}, many=False)
 
         if ser.is_valid():
             ser.save()
@@ -134,7 +134,7 @@ class BucketBackground(APIView):
             bucket_ser = BucketSerializer(bucket, context={'request': request})
             return Response(bucket_ser.data)
 
-        return Response(data=bucket_ser.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(data=back_ser.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))

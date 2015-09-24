@@ -46,6 +46,30 @@ angular.module('module.bucketmodal')
         return deferred.promise;
     };
 
+    service.showEditBucket = function (bucket) {
+        var deferred = $q.defer();
+
+        auth.runWithAuth(function () {
+            modalService.showModal({
+                'templateUrl': '/static/js/components/bucketmodal/bucketmodal.edit.tpl.html',
+                'controller': 'bucketmodalEditController',
+                inputs: {'bucket': bucket}
+            }).then(function (modal) {
+                modal.close.then(function(result) {
+                    if (result.edited) {
+                        deferred.resolve(result.bucket);
+                    } else {
+                        deferred.reject(result.bucket);
+                    }
+                }, function(result) {
+                    deferred.reject(result);
+                });
+            });
+        });
+
+        return deferred.promise;
+    };
+
     service.showBucketArts = function (bucket) {
         modalService.showModal({
             'templateUrl': '/static/js/components/bucketmodal/bucketmodal.content.tpl.html',

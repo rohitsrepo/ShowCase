@@ -4,7 +4,7 @@
             <i class="material-icons action content-action" ng-click="back()">arrow_back</i>
         </section>
 
-        <i class="material-icons action content-action nt-mb" ng-cloak ng-show="bucket.has_ownership">edit</i>
+        <i class="material-icons action content-action nt-mb" ng-cloak ng-show="bucket.has_ownership" ng-click="showEditBucket()">edit</i>
         <i class="material-icons action content-action nt-mb" ng-cloak ng-show="bucket.has_ownership" ng-click="deleteBucket()">delete</i>
         <i class="material-icons action content-action" ng-click="showShare()">share</i>
         <span class="counter counter-watchers">

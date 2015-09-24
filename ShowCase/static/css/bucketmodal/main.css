@@ -7,7 +7,7 @@
     min-height: 100px;
     height: 100%;
     z-index: 3000;
-    background: rgba(255, 255, 255, 0.97);
+    background: rgba(0, 0, 0, 0.9);
     overflow: auto;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .bucket-modal .modal-actions-header i.action {
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(255, 255, 255, 0.8);
     background: transparent;
     border: none;
     font-size: 1.2em;
@@ -80,6 +80,13 @@
     width: 70%;
     max-width: 900px;
     margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 2px;
+
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 .bucket-modal .container .buckets-header {
@@ -237,6 +244,7 @@
 .container .bucket-form {
     display: block;
     text-align: center;
+    position: relative;
 }
 
 .container .bucket-form input {
@@ -303,6 +311,7 @@
     /*width: 550px;*/
     margin: 0 auto;
     text-align: center;
+    position: relative;
 }
 
 .background-source .source-upload {

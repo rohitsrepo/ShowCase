@@ -1,0 +1,82 @@
+.edit-modal .site-loader .stick {
+    background: white;
+}
+
+/*-------- Container ---------*/
+
+.edit-modal .container {
+    height: 600px;
+    width: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+.edit-modal .container .edit-toggle {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-top: 30px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.edit-modal .container .edit-toggle.left{
+    text-align: left;
+}
+
+.edit-modal .container .edit-toggle.right{
+    text-align: right;
+}
+
+.edit-modal .container .edit-toggle i {
+    vertical-align: bottom;
+    font-size: 1em;
+    padding: 0 5px;
+    width: 30px;
+}
+
+/*--------- Edit Details form ----------*/
+
+.container .buckets-header.details.ng-hide-remove,
+.edit-modal .container .edit-toggle.right.ng-hide-remove-active,
+.container .bucket-form.animate.ng-hide-remove {
+    -webkit-animation: fadeInLeft 0.4s;
+    animation: fadeInLeft 0.4s;
+}
+
+.container .bucket-form .details-uploading-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 10;
+}
+
+.container .bucket-form .details-uploading-overlay.ng-hide-add,
+.container .bucket-form .details-uploading-overlay.ng-hide-remove {
+    -webkit-animation: fadeIn 0.6s;
+    animation: fadeIn 0.6s;
+}
+
+/*-------- Background ---------*/
+.container .buckets-header.background.ng-hide-remove,
+.edit-modal .container .edit-toggle.left.ng-hide-remove,
+.container .background-source.ng-hide-remove {
+    -webkit-animation: fadeInRight 0.6s;
+    animation: fadeInRight 0.6s;
+}
+
+.container .background-source .source-uploading-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 10;
+}
+
+.container .background-source .source-uploading-overlay.ng-hide-add,
+.container .background-source .source-uploading-overlay.ng-hide-remove {
+    -webkit-animation: fadeIn 0.6s;
+    animation: fadeIn 0.6s;
+}

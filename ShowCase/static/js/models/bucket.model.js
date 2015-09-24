@@ -60,6 +60,14 @@ angular.module("module.model")
         });
     };
 
+    service.editBucket = function (bucket) {
+        return $http.put('/buckets/' + bucket.slug, bucket).then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
     service.deleteBucket = function (bucketSlug) {
         return $http.delete('/buckets/' + bucketSlug).then(function (response) {
             return response.data;

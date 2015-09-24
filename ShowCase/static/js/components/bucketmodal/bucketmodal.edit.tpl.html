@@ -1,0 +1,58 @@
+<section tabindex="0" class="bucket-modal edit-modal">
+    <section class="modal-actions-header">
+        <i class="material-icons action" ng-click="close()">close</i>
+    </section>
+    <div class="scroll-holder">
+        <ul class="container">
+            <h1 class="buckets-header details" ng-hide="editingBackground">Edit series</h1>
+            <form class="bucket-form" ng-class="{'animate' : loaded}" ng-hide="editingBackground" name="bucketForm">
+                <section class="details-uploading-overlay ng-hide" ng-cloak ng-show="uploadingDetails">
+                    <site-loader site-loader-hide='false'></site-loader>
+                </section>
+
+                 <input type="text" autofocus placeholder="Title" ng-model="bucket.name" name="uName" required ng-maxlength="25">
+                 <div ng-cloak ng-show="bucketForm.$dirty">
+                     <span class="error" ng-show="bucketForm.uName.$error.required">Please provide a title</span>
+                     <span class="error" ng-show="bucketForm.uName.$error.maxlength">Please use less than 25 charactes</span>
+                </div>
+
+                 <input type="text" autofocus placeholder="Your thoughts on title?" ng-model="bucket.description" name="uDescription" ng-maxlength="111">
+                 <div ng-cloak ng-show="bucketForm.$dirty">
+                     <span class="error" ng-show="bucketForm.uDescription.$error.maxlength">Please use less than 111 charactes</span>
+                </div>
+                <button class="create-button" ng-class="{'disabled': bucketForm.$invalid}" ng-disabled="bucketForm.$invalid" ng-click="editBucket()">UPDATE</button>
+            </form>
+
+            <h3 class="edit-toggle right" ng-hide="editingBackground" ng-click="toggleEditMode()"><i class="material-icons">arrow_backward</i>Edit background</h3>
+
+            <h1 class="buckets-header background" ng-show="editingBackground">Edit background suiting to your title</h1>
+            <section ng-show="editingBackground" class="background-source">
+                <section class="source-uploading-overlay" ng-cloak ng-show="uploadingBackground">
+                    <site-loader site-loader-hide='false'></site-loader>
+                </section>
+                <section class="source-upload">
+                    <input type="file" class="realfile" bucket-fileread>
+                    <div class="fakefile">
+                        <h2>Upload new image for series</h2>
+                    </div>
+                </section>
+                <section class="source-url">
+                    <form class="upload-url-form" name="uplUrlForm">
+                        <div class="form-container clearfix">
+                            <input type="url" placeholder="or Enter url for the image" name="input" ng-model="bucket.upload_url" required>
+                            <button ng-disabled="[[uplUrlForm.$invalid]]" ng-class="{'enable': uplUrlForm.$valid}" class="url-submit" ng-click="urlBackgroundUpload()">SUBMIT</button>
+                        </div>
+                        <div class="error" ng-show="uplUrlForm.input.$error.required && uplUrlForm.$dirty">
+                          Url Required
+                        </div>
+                        <div class="error" ng-show="uplUrlForm.input.$error.url  && uplUrlForm.$dirty">
+                          Not valid url
+                        </div>
+                  </form>
+                </section>
+            </section>
+
+            <h3 class="edit-toggle left" ng-show="editingBackground" ng-click="toggleEditMode()">Edit details<i class="material-icons">arrow_forward</i></h3>
+        </ul> <!-- container -->
+    </div>
+</section>

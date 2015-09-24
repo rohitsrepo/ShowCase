@@ -50,7 +50,7 @@ angular.module('BucketApp')
             });
         };
 
-        $scope.bucket = [];
+        $scope.bucket = {};
         $scope.init = function (id, name, description, background, slug, owner, isWatched, isMe) {
             $scope.bucket.id = id;
             $scope.bucket.slug = slug;
@@ -127,6 +127,12 @@ angular.module('BucketApp')
                     progress.hideProgress();
                     alert.showAlert('Currently unable to delete this series');
                 });
+            });
+        };
+
+        $scope.showEditBucket = function () {
+            bucketmodalService.showEditBucket($scope.bucket).then(function (bucket) {
+                window.location.href = "/@" + bucket.owner.slug + '/series/' + bucket.slug;
             });
         };
 
