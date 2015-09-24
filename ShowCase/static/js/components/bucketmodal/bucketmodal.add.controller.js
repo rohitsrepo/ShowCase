@@ -26,10 +26,12 @@ angular.module('module.bucketmodal')
             }
         }
 
+        $scope.bucketsLoaded = false;
         $scope.gettingBuckets = true;
         $scope.art = art;
         bucketModel.userBuckets(user.id, art.id).then(function (buckets) {
             $scope.userBuckets = buckets;
+            $scope.bucketsLoaded = true;
 
             if ($scope.userBuckets.length == 0){
                 $scope.noUserBucket.status = true;

@@ -10,7 +10,7 @@
                 </section>
             </section>
 
-            <h1 class="buckets-header ng-hide" ng-cloak ng-hide="noUserBucket.status">
+            <h1 class="buckets-header ng-hide" ng-cloak ng-hide="noUserBucket.status || !bucketsLoaded">
                 Select series to add artwork
                 <section class="actions">
                     <button class="action" ng-click="showCreateBucket()">New Series</button>
@@ -23,7 +23,7 @@
                 </li>
             </section>
 
-            <div ng-cloak ng-show="noUserBucket.status" class="no-bucket">
+            <div ng-cloak ng-show="noUserBucket.status && bucketsLoaded" class="no-bucket">
                 <h1 class="no-buckets-header">You have not created any series yet</h1>
                 <h2>Time to give your thoughts a mould</h2>
                 <button ng-click='noUserBucket.action()'>Create New Series</button>
