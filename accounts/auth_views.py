@@ -29,25 +29,34 @@ class CustomUserCallback(OAuthCallback):
         choice = [c[0] for c in User.LOGIN_CHOICES if c[1] == provider.name]
         return choice[0]
 
-    def try_adding_picture(self, info, user):
+    def try_adding_picture(self, info, user), provider:
         picture_url = info.get('picture', None)
 
-        if (picture_url == None):
-            return;
+        if (picture_url != None):
+            try:
+                content = urllib.urlretrieve(picture_url)
+                user.picture = File(open(content[0]))
+                user.save()
+                return;
+            except Exception, e:
+                pass
 
-        try:
-            content = urllib.urlretrieve(picture_url)
-            user.picture = File(open(content[0]))
-            user.save()
-        except Exception, e:
-            pass
+        if provider.name == 'facebook':
+            try:
+                picture_url = 'http://graph.facebook.com/' + info.get('id') + '/picture?type=large'
+                content = urllib.urlretrieve(picture_url)
+                user.picture = File(open(content[0]))
+                user.save()
+                return;
+            except Exception, e:
+                pass
 
     def get_or_create_user(self, provider, access, info):
 
         try:
             user =  User.objects.get(email=info['email'])
             if (user.has_default_picture()):
-                self.try_adding_picture(info, user)
+                self.try_adding_picture(info, user, provider)
 
             return user
         except User.DoesNotExist:
@@ -59,12 +68,12 @@ class CustomUserCallback(OAuthCallback):
             }
 
             user = User.objects.create_user(**kwargs)
-            self.try_adding_picture(info, user)
+            self.try_adding_picture(info, user, provider)
             return user
 
     def handle_existing_user(self, provider, user, access, info):
         if (user.has_default_picture()):
-                self.try_adding_picture(info, user)
+                self.try_adding_picture(info, user, provider)
 
         return super(CustomUserCallback, self).handle_existing_user(provider, user, access, info)
 
