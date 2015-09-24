@@ -87,6 +87,11 @@ html, body {
 }
 
 @media (max-width: 800px) {
+    .painting-area {
+        margin-bottom: 70px;
+        overflow: show;
+    }
+
     .painting-area .painting-container {
         width: 95%;
         margin: 0 auto;
@@ -175,6 +180,12 @@ html, body {
 }
 
 @media (max-width: 800px) {
+    .painting-area .art-actions {
+        bottom: -70px;
+        width: 100%;
+        text-align: center;
+    }
+
     .painting-area .art-actions .art-action {
         display: inline-block;
         vertical-align: bottom;

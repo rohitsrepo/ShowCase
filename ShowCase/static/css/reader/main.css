@@ -114,12 +114,18 @@ html, body {
         position: static;
         width: 90%;
         margin: 0 auto;
+    }
+
+    .head-footer .social {
+        display: block;
+        position: default;
         margin-top: 50px;
         text-align: center;
     }
 
     .head-footer .social li {
         float: none;
+        padding: 0 3px;
         display: inline-block;
     }
 }
@@ -149,6 +155,28 @@ html, body {
     font-size: 0.85em;
     font-family: 'taile', sans-serif;
     font-family: 'taile', sans-serif;
+}
+
+@media (max-width: 800px) {
+    .head-footer .attribution {
+        display: block;
+        position: static;
+        line-height: 1em;
+        padding-top: 10px;
+        padding-left: 5px;
+    }
+
+    .head-footer .attribution h3 a {
+        font-size: 0.7em;
+    }
+
+    .head-footer .attribution h4 {
+        font-size: 0.6em;
+    }
+
+    .head-footer .attribution h4 a {
+        font-size: 1em;
+    }
 }
 
 /*------------ Concept Break ------------------*/
@@ -381,6 +409,21 @@ footer.concept-close header h2 {
     footer.concept-close {
         padding-top: 50px;
     }
+
+    .concept-close .bottom-footer {
+            position: absolute;
+            bottom: 10px;
+            left:0;
+            right:0;
+            margin-left:auto;
+            margin-right:auto;
+            padding-top: 10px;
+    }
+
+    .concept-close .bottom-footer .links {
+            position: static;
+            line-height: 1.5em;
+    }
 }
 
 /*========== Concpet Close - Attribution ============*/
@@ -392,6 +435,7 @@ footer.concept-close header h2 {
     line-height: 1.2em;
     letter-spacing: 1px;
     text-align: left;
+    padding-left: 5px;
 }
 
 .bottom-footer .attribution h3 a {
@@ -409,4 +453,25 @@ footer.concept-close header h2 {
     font-size: 0.85em;
     font-family: 'taile', sans-serif;
     font-family: 'taile', sans-serif;
+}
+
+@media (max-width: 800px) {
+    .bottom-footer .attribution {
+        display: block;
+        position: static;
+        line-height: 1em;
+        padding-top: 10px;
+    }
+
+    .bottom-footer .attribution h3 a {
+        font-size: 0.7em;
+    }
+
+    .bottom-footer .attribution h4 {
+        font-size: 0.6em;
+    }
+
+    .bottom-footer .attribution h4 a {
+        font-size: 1em;
+    }
 }
