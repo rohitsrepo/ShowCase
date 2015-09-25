@@ -36,6 +36,12 @@
     width: 30px;
 }
 
+@media (max-width: 800px) {
+    .edit-modal .container {
+       width: 90%;
+    }
+}
+
 /*--------- Edit Details form ----------*/
 
 .container .buckets-header.details.ng-hide-remove,

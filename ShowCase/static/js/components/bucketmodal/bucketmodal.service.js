@@ -56,10 +56,10 @@ angular.module('module.bucketmodal')
                 inputs: {'bucket': bucket}
             }).then(function (modal) {
                 modal.close.then(function(result) {
-                    if (result.edited) {
+                    if (result && result.edited) {
                         deferred.resolve(result.bucket);
                     } else {
-                        deferred.reject(result.bucket);
+                        deferred.reject(result);
                     }
                 }, function(result) {
                     deferred.reject(result);

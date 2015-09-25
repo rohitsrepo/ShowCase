@@ -11,7 +11,7 @@ angular.module('module.bucketmodal')
 
         $scope.bucket = bucket;
         $scope.editingBackground = false;
-        var result = {};
+        var result = {edited: false};
 
         $scope.editBucket = function () {
             $scope.uploadingDetails = true;

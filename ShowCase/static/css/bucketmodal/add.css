@@ -19,6 +19,12 @@
     }
 }
 
+@media (max-width: 800px) {
+    .add-modal .container {
+       width: 90%;
+    }
+}
+
 /*------------- Picture Holder -----------*/
 
 .add-modal .container .picture-holder {
@@ -28,6 +34,7 @@
     background-size: cover;
     background-position: center center;
     position: relative;
+    border-radius: 3px;
 }
 
 .add-modal .container .picture-holder .bucket-adding-overlay {
@@ -54,6 +61,11 @@
     }
 }
 
+@media (max-width: 800px) {
+    .add-modal .container .picture-holder {
+       height: 100px;
+    }
+}
 /*------------- Buckets Header ----------------*/
 
 .add-modal .container .buckets-header {
