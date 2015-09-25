@@ -6,6 +6,8 @@ WIDTH_PROFILE = 120
 
 def resize_picture_path(filename, width):
     file, ext = os.path.splitext(filename)
+    if not ext:
+        ext = '.png'
     return file + "_" + str(width) + ext
 
 def _resize(im, width, filename):

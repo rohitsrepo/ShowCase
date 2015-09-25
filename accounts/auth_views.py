@@ -86,11 +86,11 @@ class CustomUserCallback(OAuthCallback):
         return reverse('auth-success', kwargs={'provider': provider.name})
 
 def auth_success(request, provider):
-    response = HttpResponse("Successfully logged in.....redirecting");
+    response = HttpResponse("Successfully logged in.....Please close this tab");
     response.set_cookie('userLoggedIn', provider);
     return response
 
 def auth_failure(request, provider):
-    response = HttpResponse("Failed to log in.....redirecting");
+    response = HttpResponse("Failed to log in.....Please close this tab");
     response.set_cookie('userLoggedNot', provider);
     return response

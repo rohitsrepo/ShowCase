@@ -110,6 +110,10 @@ html, body {
 }
 
 @media (max-width: 800px) {
+    .head-footer {
+        margin-top: 10px;
+    }
+
     .head-footer .social {
         position: static;
         width: 90%;
