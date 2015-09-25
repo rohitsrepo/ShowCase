@@ -16,6 +16,8 @@ angular.module('module.uploadmodal')
 
         $scope.art = {};
         $scope.imageUploaded = false;
+        $scope.uploadingImage = false;
+        $scope.uploadingDetails = false;
 
         var showInfoForm = function (imageData) {
             $scope.artImage = imageData;
@@ -28,7 +30,7 @@ angular.module('module.uploadmodal')
         };
 
         $scope.uploadArt = function (artImageFile) {
-            progress.showProgress();
+            $scope.uploadingImage = true;
 
             $scope.art.upload_type = 'upl'
             $scope.art.upload_image = artImageFile
@@ -40,24 +42,24 @@ angular.module('module.uploadmodal')
             }).then(
                 function (response) {
                     showInfoForm(response.data);
-                    progress.hideProgress();
+                    $scope.uploadingImage = false;
                 },
                 function (response) {
-                    progress.hideProgress();
+                    $scope.uploadingImage = false;
                     alert.showAlert('Unable to upload image');
                 }
             );
         };
 
         $scope.urlUpload = function () {
-            progress.showProgress()
+            $scope.uploadingImage = true;
             $scope.art.upload_type = 'url'
 
             compositionModel.urlImageUploader($scope.art).then(function (response) {
                 showInfoForm(response);
-                progress.hideProgress();
+                $scope.uploadingImage = false;
             } , function () {
-                progress.hideProgress();
+                $scope.uploadingImage = false;
                 alert.showAlert("Error fetching data for the image");
             })
         }
@@ -84,16 +86,15 @@ angular.module('module.uploadmodal')
         }
 
         $scope.submitArtInfo = function () {
-            progress.showProgress();
+            $scope.uploadingDetails = true;
 
             if (checkOrAddArtist()){
                 $scope.art.image_id = $scope.artImage.id;
 
                 compositionModel.addArt($scope.art).then(function (art) {
-                    progress.hideProgress();
                     $window.location.href="/arts/" + art.slug;
                 }, function () {
-                    progress.hideProgress();
+                    $scope.uploadingDetails = false;
                     alert.showAlert("Unable to update art info");
                 })
 

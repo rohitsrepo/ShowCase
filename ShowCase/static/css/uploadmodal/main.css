@@ -9,6 +9,11 @@
     overflow: auto;
 }
 
+.upload-modal .site-loader .stick {
+    background: white;
+}
+
+
 .upload-modal::-webkit-scrollbar {
     width: 15px;
 }
@@ -54,13 +59,29 @@
     border-radius: 3px;
 }
 
+.image-source .art-upload-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 10;
+}
+
 .image-source .artwork-image-source {
     width: 100%;
     height: 100%;
     padding: 20px;
+    position: relative;
 }
 
-.image-source .artwork-image-source header {
+.image-source .art-upload-overlay.ng-hide-remove {
+    -webkit-animation: fadeIn 0.4s;
+    animation: fadeIn 0.4s;
+}
+
+.image-source header {
     font-size: 1.5em;
     font-weight: bold;
     line-height: 2em;
@@ -204,9 +225,28 @@
     vertical-align: top;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
+    position: relative;
+
+    -webkit-animation: fadeIn 0.4s;
+    animation: fadeIn 0.4s;
 }
 
-.info-source .info-form header {
+.info-source .info-form .art-upload-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 10;
+}
+
+.info-source .info-form .art-upload-overlay.ng-hide-remove {
+    -webkit-animation: fadeIn 0.4s;
+    animation: fadeIn 0.4s;
+}
+
+.info-source header {
     font-size: 1.5em;
     font-weight: bold;
     line-height: 2em;
@@ -268,7 +308,6 @@
 @media (min-width: 1500px) {
     .info-source {
         margin-top: 200px;
-        width: 90%;
     }
 }
 
