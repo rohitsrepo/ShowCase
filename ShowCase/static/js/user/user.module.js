@@ -51,7 +51,7 @@ angular.module("UserApp", [
         data: {'listType': 'uploads'}
     })
     .state('bookmarks', {
-        url: "/admirations",
+        url: "/bookmarks",
         templateUrl: "/static/js/user/profile.paintings.html",
         controller: 'profilePaintingsController',
         data: {'listType': 'bookmarks'}

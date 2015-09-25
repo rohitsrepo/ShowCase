@@ -81,8 +81,12 @@
 
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                 for="user-profile">
+              <li class="mdl-menu__item" ng-click="showUpload()"><i class="material-icons">add_box</i>Add Artwork</li>
+              <li class="mdl-menu__item" ng-click="showCreateBucket()"><i class="material-icons">view_carousel</i>Create Series</li>
               <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
-              <li class="mdl-menu__item" ng-click="gotoMySeries()"><i class="material-icons">list</i>Series</li>
+              <li class="mdl-menu__item indent_right" ng-click="gotoMyContributions()"><i class="material-icons">photo</i>Contributions</li>
+              <li class="mdl-menu__item indent_right" ng-click="gotoMySeries()"><i class="material-icons">view_array</i>Series</li>
+              <li class="mdl-menu__item indent_right" ng-click="gotoMyBookmarks()"><i class="material-icons">bookmark</i>Bookmarks</li>
               <a class="mdl-menu__item" ng-href="/me/settings"><i class="material-icons">settings</i>Settings</a>
               <a ng-href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
             </ul>

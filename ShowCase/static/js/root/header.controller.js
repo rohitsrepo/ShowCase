@@ -1,5 +1,11 @@
 angular.module('module.root')
-.controller('headerController', ['$scope', '$window', '$location', 'auth', 'uploadmodalService', function ($scope, $window, $location, auth, uploadmodalService) {
+.controller('headerController', ['$scope',
+    '$window',
+    '$location',
+    'auth',
+    'uploadmodalService',
+    'bucketmodalService',
+    function ($scope, $window, $location, auth, uploadmodalService, bucketmodalService) {
 
     $scope.exploreActive = false;
     $scope.postsActive = false;
@@ -34,6 +40,23 @@ angular.module('module.root')
             $window.location.href = '/@' + user.slug + '/series';
         });
     };
+
+    $scope.gotoMyBookmarks = function () {
+        auth.getCurrentUser().then(function (user) {
+            $window.location.href = '/@' + user.slug + '/bookmarks';
+        });
+    };
+
+    $scope.gotoMyContributions = function () {
+        auth.getCurrentUser().then(function (user) {
+            $window.location.href = '/@' + user.slug + '/contributions';
+        });
+    };
+
+    $scope.showCreateBucket = function () {
+        bucketmodalService.showCreateBucket();
+    };
+
 }])
 .directive('customHref', [function () {
     return function (scope, element, attrs) {

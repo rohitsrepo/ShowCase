@@ -21,10 +21,10 @@ angular.module('module.bucketmodal')
         $scope.bucketForShowLoaded = false;
         $scope.art = art;
         bucketModel.artBuckets(art.id).then(function (buckets) {
-            $scope.artBuckets = [];
+            $scope.showArtBuckets = buckets;
             $scope.bucketForShowLoaded = true;
 
-            if ($scope.artBuckets.length == 0){
+            if ($scope.showArtBuckets.length == 0){
                 $scope.noSuchBucket.status = true;
             }
 
@@ -34,7 +34,7 @@ angular.module('module.bucketmodal')
         });
 
         $scope.showArts = function (index) {
-            var bucket = $scope.artBuckets[index];
+            var bucket = $scope.showArtBuckets[index];
             bucketmodalService.showBucketArts(bucket);
         }
 
@@ -46,7 +46,7 @@ angular.module('module.bucketmodal')
             // Stop route change on click
             event.stopPropagation();
 
-            var bucket = $scope.artBuckets[index];
+            var bucket = $scope.showArtBuckets[index];
             var base_url = "http://thirddime.com";
             var share_url = base_url + "/@" + bucket.owner.slug + '/series/' + bucket.slug;
             var title = 'Series: "' + bucket.name + '" by: ' + bucket.owner.name;
@@ -59,7 +59,7 @@ angular.module('module.bucketmodal')
             // Stop route change on click
             event.stopPropagation();
 
-            var bucket = $scope.artBuckets[index];
+            var bucket = $scope.showArtBuckets[index];
             followBucketService.watchBucket(bucket.id).then(function () {
                 bucket.is_watched = true;
             });
@@ -69,7 +69,7 @@ angular.module('module.bucketmodal')
             // Stop route change on click
             event.stopPropagation();
 
-            var bucket = $scope.artBuckets[index];
+            var bucket = $scope.showArtBuckets[index];
             followBucketService.unwatchBucket(bucket.id).then(function () {
                 bucket.is_watched = false;
             });

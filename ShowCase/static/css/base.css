@@ -287,6 +287,10 @@ body::-webkit-scrollbar-thumb {
     padding-right: 4px;
 }
 
+.user-auth .mdl-menu .mdl-menu__item.indent_right {
+    padding-left: 40px;
+}
+
 @media (max-width: 800px) {
   .site-header .user-auth {
     width: 20%;
