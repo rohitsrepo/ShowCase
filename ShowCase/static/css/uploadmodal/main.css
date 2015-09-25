@@ -5,7 +5,7 @@
     width: 100%;
     height: 100%;
     z-index: 3000;
-    background: rgba(255, 255, 255, 0.97);
+    background: rgba(0, 0, 0, 0.6);
     overflow: auto;
 }
 
@@ -45,22 +45,37 @@
 /*============== Image Source =============*/
 
 .image-source {
-    width: 60%;
-    max-width: 800px;
+    width: 400px;
+    height: 500px;
     margin: 0 auto;
     text-align: center;
     margin-top: 75px;
+    background-color: white;
+    border-radius: 3px;
 }
 
-.image-source .source-upload {
+.image-source .artwork-image-source {
     width: 100%;
-    height: 400px;
+    height: 100%;
+    padding: 20px;
+}
+
+.image-source .artwork-image-source header {
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 2em;
+}
+
+.image-source .artwork-image-source .source-upload {
+    width: 100%;
+    height: 300px;
     position: relative;
     background: rgba(0, 0, 0, 0.7);
+    border-radius: 3px;
 }
 
-.image-source .realfile,
-.image-source .fakefile {
+.image-source .artwork-image-source .realfile,
+.image-source .artwork-image-source .fakefile {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -68,23 +83,23 @@
     left: 0;
 }
 
-.image-source .realfile {
+.image-source .artwork-image-source .realfile {
     z-index: 2;
     opacity: 0;
     cursor: pointer;
 }
 
-.image-source .fakefile {
+.image-source .artwork-image-source .fakefile {
     z-index: 1;
 }
 
-.image-source .fakefile h2 {
-    font-size: 2em;
-    line-height: 400px;
+.image-source .artwork-image-source .fakefile h2 {
+    font-size: 1.5em;
+    padding-top: 125px;
     color: white;
 }
 
-.image-source .fakefile:hover h2 {
+.image-source .artwork-image-source .fakefile:hover h2 {
     text-decoration: underline;
 }
 
@@ -92,6 +107,27 @@
     .image-source {
         margin-top: 200px;
     }
+}
+
+@media (max-width: 800px) {
+    .image-source {
+        width: 90%;
+        font-size: 0.8em;
+    }
+}
+
+.image-source .uploaded-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.image-source .uploaded-image img {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /*------ Url Upload -----*/
@@ -110,17 +146,17 @@
 }
 
 .source-url .upload-url-form input {
-    width: 85%;
+    width: 70%;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     display: inline-block;
     float: left;
     text-align: center;
-    font-size: 1.3em;
+    font-size: 1.1em;
 }
 
 .source-url .upload-url-form .url-submit {
-    width: 10%;
+    width: 24%;
     float: right;
     background: transparent;
     border: none;
@@ -146,60 +182,71 @@
 /*================ Art Info Source =================*/
 
 .info-source {
-    width: 85%;
-    max-width: 900px;
+    width: 400px;
+    height: 500px;
     margin: 0 auto;
     text-align: center;
-    margin-top: 200px;
-}
-
-.info-source .uploaded-image {
-    width: 60%;
-    display: inline-block;
-    float: left;
-    vertical-align: top;
-}
-
-.info-source .uploaded-image img {
-    width: 100%;
+    margin-top: 75px;
+    background: white;
+    padding: 20px;
+    text-align: center;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 .info-source .info-form {
-    width: 35%;
-    display: inline-block;
-    float: right;
+    width: 100%;
+    padding: 20px;
+    margin: 0 auto;
+    display: block;
     vertical-align: top;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
 }
 
-.info-source .info-form .title {
-    margin: 10px 0;
+.info-source .info-form header {
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 2em;
+    margin-bottom: 30px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
 }
 
 .info-source .info-form .title,
 .info-source .info-form .artist-input,
+.info-source .info-form .input-nsfw,
 .info-source .info-form .info-bucket-select {
     width: 100%;
     height: 30px;
-    font-size: 1.3em;
-    font-weight: bold;
-    padding-left: 15px;
+    font-size: 1.1em;
+    margin: 20px 0;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     display: block;
+    text-align: center;
 }
 
 .angucomplete-dropdown {
    border: 1px solid rgba(0, 0, 0, 0.3);
+   max-height: 300px;
+   overflow: scroll;
+   background-color: white;
+   color: black;
 }
 
 .angucomplete-selected-row {
-   background-color: #E6B800;
+   background-color: rgba(0, 0, 0, 0.6);
 }
 
 .angucomplete-row {
    padding: 5px 15px;
    cursor: pointer;
    text-align: left;
+   text-align: center;
+   color: black;
 }
 
 .angucomplete-row:hover {
@@ -209,19 +256,37 @@
 
 .info-source .info-form .input-nsfw {
     width: 100%;
-    margin-top: 30px;
-    padding-left: 15px;
     text-align: left;
+    padding-top: 30px;
+    border: none;
 }
 
 .info-source .info-form .input-nsfw input {
     float: right;
 }
 
+@media (min-width: 1500px) {
+    .info-source {
+        margin-top: 200px;
+        width: 90%;
+    }
+}
+
+@media (max-width: 800px) {
+    .info-source {
+        width: 90%;
+        font-size: 0.8em;
+    }
+}
+
 /*------------ Bucket Selection -----------------*/
 .info-source .info-form .info-bucket-select {
     margin-top: 40px;
+    width: 100%;
+    display: inline-block;
     font-weight: normal;
+    text-align: center;
+    background-color: white;
 }
 
 /*----- Submit Button ----------*/
@@ -231,8 +296,10 @@
     margin: 15px auto;
     margin-top: 30px;
     background: transparent;
+    background-color: black;
+    color: white;
     border: none;
-    border: 1px solid rgba(0, 0, 0, 0.9);
+    border: 1px solid white;
     opacity: 0.5;
     padding: 10px 10px;
 }
@@ -243,6 +310,6 @@
 }
 
 .info-source .info-form .info-submit-button.enable:hover {
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
+    background: white;
+    color: black;
 }

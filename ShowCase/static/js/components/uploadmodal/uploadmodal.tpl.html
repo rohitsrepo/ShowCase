@@ -3,34 +3,39 @@
         <button ng-click="close()">X</button>
     </section>
 
-    <section ng-cloak ng-hide="imageUploaded" class="image-source">
-        <section class="source-upload">
-            <input type="file" class="realfile" fileread>
-            <div class="fakefile">
-                <h2>Upload image for the artwork</h2>
-            </div>
+    <section class="image-source" ng-cloak ng-hide="imageUploaded">
+        <section class="artwork-image-source" ng-cloak ng-hide="imageUploaded">
+            <header>Add new artwork</header>
+            <section class="source-upload">
+                <input type="file" class="realfile" fileread>
+                <div class="fakefile">
+                    <h2>Upload image for the artwork</h2>
+                </div>
+            </section>
+            <section class="source-url">
+                <form class="upload-url-form" name="uplUrlForm">
+                    <div class="form-container clearfix">
+                        <input type="url" placeholder="or Paste url for the image" name="input" ng-model="art.upload_url" required>
+                        <button ng-disabled="[[uplUrlForm.$invalid]]" ng-class="{'enable': uplUrlForm.$valid}" class="url-submit" ng-click="urlUpload()">SUBMIT</button>
+                    </div>
+                    <div class="error" ng-show="uplUrlForm.input.$error.required && uplUrlForm.$dirty">
+                      Url Required
+                    </div>
+                    <div class="error" ng-show="uplUrlForm.input.$error.url  && uplUrlForm.$dirty">
+                      Not valid url
+                    </div>
+              </form>
+            </section>
         </section>
-        <section class="source-url">
-            <form class="upload-url-form" name="uplUrlForm">
-                <div class="form-container clearfix">
-                    <input type="url" placeholder="or Enter url for the image" name="input" ng-model="art.upload_url" required>
-                    <button ng-disabled="[[uplUrlForm.$invalid]]" ng-class="{'enable': uplUrlForm.$valid}" class="url-submit" ng-click="urlUpload()">SUBMIT</button>
-                </div>
-                <div class="error" ng-show="uplUrlForm.input.$error.required && uplUrlForm.$dirty">
-                  Url Required
-                </div>
-                <div class="error" ng-show="uplUrlForm.input.$error.url  && uplUrlForm.$dirty">
-                  Not valid url
-                </div>
-          </form>
+
+        <section class="uploaded-image ng-hide" ng-cloak ng-show="imageUploaded">
+            <img ng-src="[[artImage.url]]">
         </section>
     </section>
 
-    <section ng-cloak ng-show="imageUploaded" class="info-source clearfix">
-        <section class="uploaded-image">
-            <img ng-src="[[artImage.url]]">
-        </section>
+    <section ng-cloak ng-if="imageUploaded" class="info-source clearfix" ng-style="{'background-image': 'url([[artImage.url]])'}">
         <form class="info-form" name="infoForm">
+            <header>Add details for artwork</header>
             <input type="text" class="title" autofocus="autofocus" placeholder="Title*" ng-model="art.title" name="uTitle" maxlength="100" required>
 
             <angucomplete-alt placeholder="Artist*"
