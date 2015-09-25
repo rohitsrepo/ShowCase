@@ -1,0 +1,12 @@
+.create-modal .site-loader .stick {
+    background: white;
+}
+
+/*-------- Container ---------*/
+
+.create-modal .container {
+    height: 500px;
+    width: 400px;
+    position: relative;
+    overflow: hidden;
+}

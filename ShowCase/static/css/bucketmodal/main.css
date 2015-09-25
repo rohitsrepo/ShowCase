@@ -40,7 +40,7 @@
 }
 
 .bucket-modal .modal-actions-header i.action:hover {
-    color: rgba(0, 0, 0, 1);
+    color: rgba(255, 255, 255, 1);
 }
 
 
@@ -72,8 +72,9 @@
 
 .bucket-modal .scroll-holder {
     width: 100%;
-    padding-top: 100px;
-    padding-bottom: 350px;
+    height: 100%;
+    padding-top: 50px;
+    overflow: hidden;
 }
 
 .bucket-modal .container {
@@ -91,7 +92,8 @@
 
 .bucket-modal .container .buckets-header {
     text-align: center;
-    font-size: 2em;
+    font-size: 1.5em;
+    font-weight: bold;
     line-height: 1.5em;
     margin-bottom: 20px;
     color: rgba(0, 0, 0, 0.9);
@@ -100,6 +102,12 @@
 @media (max-width: 800px) {
     .bucket-modal .container .buckets-header {
         font-size: 1.5em;
+    }
+}
+
+@media (min-width: 1500px) {
+    .bucket-modal .scroll-holder {
+        padding-top: 100px;
     }
 }
 
@@ -317,7 +325,7 @@
 
 .background-source .source-upload {
     width: 100%;
-    height: 300px;
+    height: 200px;
     position: relative;
     background: rgba(0, 0, 0, 0.7);
 }
@@ -343,7 +351,7 @@
 
 .background-source .fakefile h2 {
     font-size: 1.4em;
-    line-height: 300px;
+    line-height: 200px;
     color: white;
 }
 

@@ -5,7 +5,7 @@
 /*-------- Container ---------*/
 
 .edit-modal .container {
-    height: 600px;
+    height: 500px;
     width: 400px;
     position: relative;
     overflow: hidden;

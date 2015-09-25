@@ -1,4 +1,4 @@
-<section tabindex="0" class="bucket-modal">
+<section tabindex="0" class="bucket-modal create-modal">
     <section class="modal-actions-header">
         <i class="material-icons action" ng-click="close()">close</i>
     </section>
@@ -19,7 +19,7 @@
                 <button class="create-button" ng-class="{'disabled': bucketForm.$invalid}" ng-disabled="bucketForm.$invalid" ng-click="createNewBucket()">CREATE</button>
             </form>
 
-            <h1 class="buckets-header" ng-claok ng-show="bucketCreated">Add a background suiting to your title?</h1>
+            <h1 class="buckets-header background" ng-claok ng-show="bucketCreated">Add a background suiting to your title?</h1>
             <section ng-cloak ng-show="bucketCreated" class="background-source">
                 <section class="source-upload">
                     <input type="file" class="realfile" bucket-fileread>

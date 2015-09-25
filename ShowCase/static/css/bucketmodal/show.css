@@ -1,0 +1,25 @@
+.show-modal .site-loader .stick {
+    background: white;
+}
+
+.show-modal {
+	background: white;
+}
+
+.show-modal .scroll-holder {
+    overflow: auto;
+}
+
+.show-modal .modal-actions-header i.action {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.show-modal .modal-actions-header i.action:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+@media (min-width: 1500px) {
+    .show-modal .container {
+       width: 500px;
+    }
+}
