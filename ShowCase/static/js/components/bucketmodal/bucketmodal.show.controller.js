@@ -18,19 +18,19 @@ angular.module('module.bucketmodal')
             }
         }
 
-        progress.showProgress();
+        $scope.bucketForShowLoaded = false;
         $scope.art = art;
         bucketModel.artBuckets(art.id).then(function (buckets) {
-            $scope.artBuckets = buckets;
+            $scope.artBuckets = [];
+            $scope.bucketForShowLoaded = true;
 
             if ($scope.artBuckets.length == 0){
                 $scope.noSuchBucket.status = true;
             }
 
-            progress.hideProgress();
         }, function () {
             alert.showAlert('We are unable to fetch data');
-            progress.hideProgress();
+            $scope.bucketForShowLoaded = true;
         });
 
         $scope.showArts = function (index) {

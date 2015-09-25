@@ -1,7 +1,3 @@
-.show-modal .site-loader .stick {
-    background: white;
-}
-
 .show-modal {
 	background: white;
 }
@@ -16,10 +12,4 @@
 
 .show-modal .modal-actions-header i.action:hover {
     color: rgba(255, 255, 255, 1);
-}
-
-@media (min-width: 1500px) {
-    .show-modal .container {
-       width: 500px;
-    }
 }

@@ -11,12 +11,14 @@ angular.module('module.bucketmodal')
         $scope.newBucket = {};
         $scope.bucketCreated = false;
         var result = {};
+        $scope.uploadingDetails = false;
+        $scope.uploadingBackground = false;
 
         $scope.createNewBucket = function () {
-            progress.showProgress();
+            $scope.uploadingDetails = true;
 
             bucketModel.create($scope.newBucket).then(function (bucket) {
-                progress.hideProgress();
+                $scope.uploadingDetails = false;
 
                 result = {
                     'created': true,
@@ -25,28 +27,28 @@ angular.module('module.bucketmodal')
 
                 $scope.bucketCreated = true;
             }, function () {
-                progress.hideProgress();
+                $scope.uploadingDetails = false;
                 alert.showAlert('Unable to create new series');
             });
         }
 
         $scope.urlBackgroundUpload = function () {
-            progress.showProgress()
-            $scope.newBucket.upload_type = 'url'
+            $scope.uploadingBackground = true;
+            $scope.newBucket.upload_type = 'url';
 
             bucketModel.updateBackground(result.bucket.id, $scope.newBucket).then(function (bucket) {
                 result.bucket = bucket
                 close(result);
 
-                progress.hideProgress();
+                $scope.uploadingBackground = false;
             } , function () {
-                progress.hideProgress();
+                $scope.uploadingBackground = false;
                 alert.showAlert("Error fetching data for the image");
             })
         };
 
         $scope.uploadBackground = function (backgroundImageFile) {
-            progress.showProgress();
+            $scope.uploadingBackground = true;
 
             $scope.newBucket.upload_type = 'upl'
             $scope.newBucket.upload_image = backgroundImageFile
@@ -60,10 +62,10 @@ angular.module('module.bucketmodal')
                     result.bucket = response.data;
                     close(result);
 
-                    progress.hideProgress();
+                    $scope.uploadingBackground = false;
                 },
                 function (response) {
-                    progress.hideProgress();
+                    $scope.uploadingBackground = false;
                     alert.showAlert('Unable to upload image');
                 }
             );
