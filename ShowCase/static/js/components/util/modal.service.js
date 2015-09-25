@@ -77,17 +77,20 @@ function LoginModal() {
         var inputs = {
           $scope: modalScope,
           close: function(result, delay) {
-            if(delay === undefined || delay === null) delay = 0;
+
+            modalCount = modalCount - 1;
+            // Remove style from body
+            if (modalCount == 0){
+                body.removeClass('modal-open');
+            }
+
+            if(delay === undefined || delay === null) delay = 100;
+            modalElement.addClass('modal-close');
             window.setTimeout(function() {
               //  Resolve the 'close' promise.
               closeDeferred.resolve(result);
 
-              modalCount = modalCount - 1;
 
-              // Remove style from body
-              if (modalCount == 0){
-                  body.removeClass('modal-open');
-              }
 
               //  We can now clean up the scope and remove the element from the DOM.
               modalScope.$destroy();
@@ -122,6 +125,7 @@ function LoginModal() {
         var linkFn = $compile(modalElementTemplate);
         var modalElement = linkFn(modalScope);
         inputs.$element = modalElement;
+        modalElement.addClass('modal-open');
 
         //  Create the controller, explicitly specifying the scope to use.
         var modalController = $controller(controllerName, inputs);

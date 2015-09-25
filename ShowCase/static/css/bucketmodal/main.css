@@ -11,6 +11,16 @@
     overflow: auto;
 }
 
+.bucket-modal.modal-open {
+    -webkit-animation: fadeIn 0.1s;
+    animation: fadeIn 0.1s;
+}
+
+.bucket-modal.modal-close {
+    -webkit-animation: fadeOut 0.1s;
+    animation: fadeOut 0.1s;
+}
+
 .bucket-modal::-webkit-scrollbar {
     width: 15px;
 }
@@ -88,6 +98,16 @@
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
+}
+
+.bucket-modal.modal-open .scroll-holder .container {
+    -webkit-animation: fadeIn 0.1s;
+    animation: fadeIn 0.1s;
+}
+
+.bucket-modal.modal-close .scroll-holder .container {
+    -webkit-animation: fadeIn 0.2s;
+    animation: fadeIn 0.2s;
 }
 
 .bucket-modal .container .buckets-header {
