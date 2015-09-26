@@ -24,7 +24,7 @@ angular.module('module.usermodal')
 
         var getNoUserMessage = function () {
             if (modalType == 'bookmarkers') {
-                return 'Do you find this work praise-worthy?';
+                return 'Do you find this work worth keeping?';
             } else if (modalType == 'follows') {
                 return '';
             } else if (modalType == 'followers') {
@@ -34,7 +34,7 @@ angular.module('module.usermodal')
 
         var getNoUserActionMessage = function () {
             if (modalType == 'bookmarkers') {
-                return 'ADMIRE';
+                return 'BOOKMARK';
             } else if (modalType == 'follows') {
                 return '';
             } else if (modalType == 'followers') {

@@ -11,13 +11,13 @@
 }
 
 .login-modal.modal-open {
-    -webkit-animation: fadeIn 0.4s;
-    animation: fadeIn 0.4s;
+    -webkit-animation: fadeIn 0.1s;
+    animation: fadeIn 0.1s;
 }
 
 .login-modal.modal-close {
-    -webkit-animation: fadeOut 0.4s;
-    animation: fadeOut 0.4s;
+    -webkit-animation: fadeOut 0.1s;
+    animation: fadeOut 0.1s;
 }
 
 .login-modal .modal-action {
@@ -30,12 +30,12 @@
   cursor: pointer;
   background: transparent;
   border: none;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 1.2em;
 }
 
 .login-modal .modal-action i.action:hover {
-  color: rgba(0, 0, 0, 0.65);
+    color: rgba(255, 255, 255, 1);
 }
 
 .login-modal .modal-content {

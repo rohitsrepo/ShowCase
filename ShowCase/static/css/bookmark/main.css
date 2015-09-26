@@ -5,7 +5,17 @@
     height: 100%;
     width: 100%;
     z-index: 3000;
-    background: rgba(255, 255, 255, 0.97);
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.bookmark-modal.modal-open {
+    -webkit-animation: fadeIn 0.1s;
+    animation: fadeIn 0.1s;
+}
+
+.bookmark-modal.modal-close {
+    -webkit-animation: fadeOut 0.1s;
+    animation: fadeOut 0.1s;
 }
 
 .bookmark-modal .modal-actions {
@@ -15,7 +25,7 @@
 }
 
 .bookmark-modal .modal-actions i.action {
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(255, 255, 255, 0.7);
     background: transparent;
     border: none;
     font-size: 1.2em;
@@ -23,22 +33,26 @@
 }
 
 .bookmark-modal .modal-actions i.action:hover {
-    color: rgba(0, 0, 0, 1);
+    color: rgba(255, 255, 255, 1);
 }
 
 .bookmark-modal .container {
-    width: 40%;
-    height: 60%;
+    width: 500px;
+    height: 500px;
     max-width: 500px;
     margin: 0 auto;
     margin-top: 150px;
     overflow: auto;
+    background-color: white;
+    padding-top: 20px;
+    overflow: scroll;
 }
 
 
 @media (max-width: 800px) {
   .bookmark-modal .container  {
-      width: 100%;
+      width: 95%;
+      margin-top: 50px;
   }
 }
 
