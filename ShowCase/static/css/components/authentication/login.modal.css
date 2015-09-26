@@ -6,8 +6,18 @@
   top: 0;
   left: 0;
   z-index: 3000;
-  background: rgba(255, 255, 255, 0.99);
+  background: rgba(0, 0, 0, 0.6);
   overflow: auto;
+}
+
+.login-modal.modal-open {
+    -webkit-animation: fadeIn 0.4s;
+    animation: fadeIn 0.4s;
+}
+
+.login-modal.modal-close {
+    -webkit-animation: fadeOut 0.4s;
+    animation: fadeOut 0.4s;
 }
 
 .login-modal .modal-action {
@@ -29,9 +39,35 @@
 }
 
 .login-modal .modal-content {
-  width: 70%;
+  width: 600px;
+  height: 600px;
   margin: 0 auto;
   padding-top: 120px;
+  background-color: white;
+  margin-top: 75px;
+  padding: 40px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+@media (min-width: 1500px) {
+    .login-modal .modal-content {
+        margin-top: 200px;
+    }
+}
+
+@media (max-width: 800px) {
+    .login-modal {
+        font-size: 0.85em;
+    }
+
+    .login-modal .modal-content {
+        width: 90%;
+        font-size: 0.8em;
+        margin-top: 20px;
+        padding: 5px;
+        padding-top: 10px;
+    }
 }
 
 .modal-content header {
@@ -42,7 +78,7 @@
 
 .modal-content header h2 {
   color: rgba(0, 0, 0, 0.8);
-  font-size: 3em;
+  font-size: 2em;
   font-weight: bold;
   line-height: 1.5em;
   letter-spacing: 1px;
@@ -53,22 +89,22 @@
   font-size: 1.2em;
 }
 
-@media (max-width: 800px) {
-  .login-modal .modal-content {
-      width: 100%;
-  }
-}
-
 /*------------- Social Login ------------*/
 
 .modal-content .login-social {
-  width: 60%;
+  width: 90%;
   margin: 0 auto;
   text-align: center;
+  padding-top: 20px;
+}
+
+.modal-content .login-social.ng-hide-remove {
+    -webkit-animation: fadeInLeft 0.4s;
+    animation: fadeInLeft 0.4s;
 }
 
 .social-actions .social-action {
-  width: 60%;
+  width: 90%;
   margin: 0 auto;
   margin-bottom: 2em;
   font-size: 0.9em;
@@ -114,6 +150,13 @@
   text-decoration: underline;
 }
 
+.login-social footer h6 i {
+    font-size: 1.1em;
+    padding-left: 5px;
+    width: 30px;
+    vertical-align: bottom;
+}
+
 @media (max-width: 800px) {
   .modal-content .login-social {
       width: 100%;
@@ -129,11 +172,43 @@
   width: 100%;
 }
 
+.modal-content .login-native.ng-hide-remove {
+    -webkit-animation: fadeInRight 0.4s;
+    animation: fadeInRight 0.4s;
+}
+
+.login-native header {
+    width: 100%;
+}
+
+.login-native header button {
+    width: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px 0;
+    transition: all 0.4s;
+}
+
+.login-native header button.active {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white
+}
+
+.login-native header button:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
 .login-native .native-form {
-  width: 50%;
+  width: 100%;
   display: inline-block;
   padding: 0 50px;
   vertical-align: top;
+}
+
+.login-native .native-form.ng-hide-remove {
+    -webkit-animation: fadeIn 0.4s;
+    animation: fadeIn 0.4s;
 }
 
 .login-native .native-form input {
@@ -169,7 +244,7 @@
   color: #1C2023;
   margin-top: 20px;
   margin-bottom: 20px;
-  font-size: 15px;
+  font-size: 1em;
   word-spacing: .5em;
 }
 
@@ -202,13 +277,22 @@
   text-decoration: underline;
 }
 
+.login-native footer h6 i {
+    font-size: 1.1em;
+    width: 30px;
+    vertical-align: bottom;
+}
+
 @media (max-width: 800px) {
   .login-native .native-form  {
       width: 95%;
   }
 
   .login-native .native-form.login-form  {
-      border-bottom: 2px solid rgba(0, 0, 0, 0.9);
       margin-bottom: 20px;
+  }
+
+  .login-native .native-form.login-form input {
+      width: 100%;
   }
 }

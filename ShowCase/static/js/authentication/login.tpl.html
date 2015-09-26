@@ -19,12 +19,18 @@
 
 			<footer>
 				<h4>We will never post anything without your permission</h4>
-				<h6 ng-click="toggleLoginType()">SignUp or SignIn using email</h6>
+				<h6 ng-click="toNative()">SignUp or SignIn using email<i class="material-icons">arrow_forward</i></h6>
 			</footer>
 		</section>
 
 		<section ng-cloak ng-show="showNative" class="login-native">
-			<form class="native-form login-form" name="nativeLoginForm"> <!-- ng-keyup="$event.keyCode == 13 ? login(existingUser) : null" -->
+
+            <header>
+                <button ng-click="toNativeLogin()" ng-class="{'active': showNativeLogin}">Log In</button><!--
+                --><button ng-click="toNativeCreate()" ng-class="{'active': !showNativeLogin}">Sign Up</button>
+            </header>
+
+			<form class="native-form login-form" name="nativeLoginForm" ng-cloak ng-show="showNativeLogin">
 
 				<input type="email" autofocus="autofocus" placeholder="E-mail" ng-model="existingUser.email" name="uEmail" required> <!-- ng-model-options="{ updateOn: 'blur' }" -->
 				<div ng-cloak ng-show="nativeLoginForm.$submitted">
@@ -37,7 +43,7 @@
 			    </div>
 				<input class="native-action-button" ng-class="{'disabled': nativeLoginForm.$invalid}" ng-disabled="nativeLoginForm.$invalid"  type="button" name="login" value="LOGIN" ng-click="login(existingUser)">
 			</form><!--
-			--><form class="native-form" name="nativeRegisterForm" novalidate>
+			--><form class="native-form ng-hide" name="nativeRegisterForm" novalidate  ng-cloak ng-hide="showNativeLogin">
 				<input type="text" placeholder="Name" ng-model="newUser.name" name="uname" maxlength="80" required>
 				<div ng-cloak ng-show="nativeRegisterForm.$submitted">
 				    <span ng-show="nativeRegisterForm.uname.$error.required">Please provide a name.</span>
@@ -55,7 +61,7 @@
 			</form>
 
 			<footer>
-				<h6 ng-click="toggleLoginType()">SignUp or SignIn using social media</h6>
+				<h6 ng-click="toSocial()"><i class="material-icons">arrow_backward</i>SignUp or SignIn using social media</h6>
 			</footer>
 		</section>
 	</div>

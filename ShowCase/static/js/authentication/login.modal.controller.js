@@ -3,15 +3,29 @@ angular.module('module.auth')
     function ($scope, $location, $interval, $window, auth, close, progress, alert) {
 	"use strict";
 
-	$scope.showNative = false;
+    $scope.showNative = false;
+    $scope.showNativeLogin = true;
 
 	$scope.closeModal = function () {
 		close();
 	}
 
-	$scope.toggleLoginType = function () {
-		$scope.showNative = !$scope.showNative;
-	};
+    $scope.toNative = function () {
+        $scope.showNative = true;
+        $scope.showNativeLogin = true;
+    };
+
+    $scope.toSocial = function () {
+        $scope.showNative = false;
+    };
+
+    $scope.toNativeLogin = function () {
+        $scope.showNativeLogin = true;
+    };
+
+    $scope.toNativeCreate = function () {
+        $scope.showNativeLogin = false;
+    };
 
 	$scope.login = function (user) {
 		progress.showProgress();
