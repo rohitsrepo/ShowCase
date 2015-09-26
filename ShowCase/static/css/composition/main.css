@@ -7,6 +7,7 @@ html, body {
 .painting-area {
     height: 90%;
     position: relative;
+    overflow: show;
 }
 
 .painting-area .painting-container {
@@ -14,10 +15,10 @@ html, body {
     height: 100%;
     margin: 0 auto;
     text-align: center;
-    overflow: hidden;
     position: relative;
     background: white;
     vertical-align: top;
+    overflow: show;
 }
 
 .painting-area .painting-container .nsfw-overlay {
@@ -90,11 +91,21 @@ html, body {
     .painting-area {
         margin-bottom: 70px;
         overflow: show;
+        height: auto;
     }
 
     .painting-area .painting-container {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
+        height: auto;
+    }
+
+    .painting-area .painting-container .painting {
+        width: 100%;
+        height: auto;
+        max-height: auto;
+        position: static;
+        transform: none;
     }
 
     .fullscreen {
