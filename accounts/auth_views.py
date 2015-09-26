@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+
 from allaccess.views import OAuthRedirect, OAuthCallback
 from .models import User
 from django.core.urlresolvers import reverse
@@ -86,11 +87,9 @@ class CustomUserCallback(OAuthCallback):
         return reverse('auth-success', kwargs={'provider': provider.name})
 
 def auth_success(request, provider):
-    response = HttpResponse("Successfully logged in.....Please close this tab");
-    response.set_cookie('userLoggedIn', provider);
-    return response
+    response = "Successfully logged in.....Please close this tab"
+    return render(request, 'post_login.html', {"response": response})
 
 def auth_failure(request, provider):
-    response = HttpResponse("Failed to log in.....Please close this tab");
-    response.set_cookie('userLoggedNot', provider);
-    return response
+    response = "Failed to log in.....Please close this tab"
+    return render(request, 'post_login.html', {"response": response})

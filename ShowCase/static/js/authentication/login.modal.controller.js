@@ -1,6 +1,6 @@
 angular.module('module.auth')
-.controller("loginModalController", ["$scope", '$location', '$interval','$cookies', '$window', 'auth', 'close', 'progress', 'alert',
-    function ($scope, $location, $interval, $cookies, $window, auth, close, progress, alert) {
+.controller("loginModalController", ["$scope", '$location', '$interval', '$window', 'auth', 'close', 'progress', 'alert',
+    function ($scope, $location, $interval, $window, auth, close, progress, alert) {
 	"use strict";
 
 	$scope.showNative = false;
@@ -43,19 +43,9 @@ angular.module('module.auth')
 				loopCleaner();
 
 				auth.getCurrentUser().then(function (user) {
+                    alert.showAlert("Welcome " + user.name);
 					close("LoggedIn");
 				}, function () {})
-			}
-			
-			if ($cookies.userLoggedIn == provider){
-				loopCleaner();
-				loginWindow.close();
-				close("LoggedIn");
-			}
-
-			if ($cookies.userLoggedNot == provider){
-				loopCleaner();
-				loginWindow.close();
 			}
 		}
 	};
@@ -67,8 +57,6 @@ angular.module('module.auth')
 
 
 		var loggingIn = true;
-		$cookies.userLoggedIn = '';
-		$cookies.userLoggedNot = '';
 
 		var url = '/users/login/' + provider + '/'
 		var loginWindow = $window.open(url, '_blank', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600');
@@ -77,8 +65,6 @@ angular.module('module.auth')
 
 		function clearLoginLoop () {
 			$interval.cancel(checkLoginLoop);
-			$cookies.userLoggedIn = '';
-			$cookies.userLoggedNot = '';
 			loggingIn = false;
 		};
 	};
