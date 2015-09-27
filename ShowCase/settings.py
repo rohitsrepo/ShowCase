@@ -109,8 +109,12 @@ WSGI_APPLICATION = 'ShowCase.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '../database/showCase_db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'thirddime',
+        'USER': 'thirduser',
+        'PASSWORD': 'sir_newton_third',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 

@@ -18,3 +18,13 @@ python manage.py runserver
 
 sudo apt-get install libjpeg-dev
 pip install -I pillow
+
+sudo apt-get install mysql-server
+sudo apt-get install libmysqlclient-dev
+
+sudo mysql_secure_installation
+
+Create DATAbase thirddime CHARACTER SET utf8;
+Insert into mysql.user (Host,user, password) Values ('localhost', 'thirduser', PASSWORD('sir_newton_third'));
+Grant All Privileges on thirddime.* to thirduser;
+FLUSH privileges;
