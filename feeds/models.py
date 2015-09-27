@@ -34,7 +34,7 @@ class Fresh(models.Model):
 
 # Define Signals
 def model_created(sender, instance, created, raw, **kwargs):
-    if created:
+    if created and not raw:
         instance.add_to_fresh_feed()
 
 def model_deleted(sender, instance, **kwargs):

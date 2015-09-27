@@ -38,7 +38,7 @@ def crop(filepath, box):
 	return cropped_file
 
 def image_model_created(sender, instance, created, raw, **kwargs):
-    if created:
+    if created and not raw:
         generate_size_versions(instance.image_path)
         GrayScaleAndSketch(instance.image_path)
 

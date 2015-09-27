@@ -55,7 +55,7 @@ class PostVote(models.Model):
 
 #Define Signals
 def model_created(sender, instance, created, raw, **kwargs):
-    if created:
+    if created and not raw:
         vote = instance.create_post_vote()
         vote.save()
 

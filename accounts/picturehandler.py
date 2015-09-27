@@ -26,7 +26,7 @@ def resize_profile(filepath):
 def user_created(sender, instance, created, raw, **kwargs):
     #TODO this should not happen on every save
     #TODO delete old file on picture update
-    if not instance.has_default_picture():
+    if not instance.has_default_picture() and not raw:
         resize_profile(instance.picture.path)
 
 def user_delete(sender, instance, **kwargs):

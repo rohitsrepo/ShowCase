@@ -77,7 +77,7 @@ class Post(models.Model):
 
 # Define Signals
 def model_created(sender, instance, created, raw, **kwargs):
-    if created:
+    if created and not raw:
         post = instance.create_post()
         post.save()
 
@@ -100,7 +100,8 @@ bind_post_vote(Post)
 @receiver(post_delete, sender=Post)
 def remove_post_target(sender, **kwargs):
     try:
-        instance = kwargs.get('instance')
-        instance.content_object.delete()
+        # instance = kwargs.get('instance')
+        # instance.content_object.delete()
+        pass
     except:
         pass
