@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='login_type',
-            field=models.CharField(default=b'native', max_length=2, choices=[(b'FB', b'facebook'), (b'TW', b'twitter'), (b'NT', b'native')]),
+            field=models.CharField(default=b'NT', max_length=2, choices=[(b'FB', b'facebook'), (b'TW', b'twitter'), (b'NT', b'native')]),
             preserve_default=True,
         ),
     ]
