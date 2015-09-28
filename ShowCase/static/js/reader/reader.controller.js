@@ -7,7 +7,7 @@ angular.module("ReaderApp")
 	"use strict";
 
     $scope.readerBuckets = []
-    var buckets = ['social-satire', 'dance-of-light', 'children-of-war']
+    var buckets = ['through-dull-glass', 'dance-of-light', 'children-of-war']
 
     var getBuckets = function () {
         angular.forEach(buckets, function (value) {

@@ -1,1 +1,1 @@
-angular.module('module.usermodal', ['module.model', 'module.bookmark', 'module.util']);
+angular.module('module.usermodal', ['module.root']);

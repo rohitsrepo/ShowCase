@@ -1,11 +1,13 @@
 <section class="curtain-right curtain-user" ng-controller="userCurtainController">
 	<a class="enable" ng-href="/@[[currentUser.slug]]"><h4>[[currentUser.name | titlecase]]</h4></a>
 	<div class="content user">
-		<a ng-href="/@[[currentUser.slug]]" analytics-click analytics-data="['Top Bar-Right', 'User - My Art']">PROFILE</a>
-		<a href="/upload-art" analytics-click analytics-data="['Top Bar-Right', 'User - New Art']">NEW ART</a>
-		<a href="/@[[currentUser.slug]]/series" analytics-click analytics-data="['Top Bar-Right', 'User - Interpretations']">SERIES</a>
-        <a href="/@[[currentUser.slug]]/originals" analytics-click analytics-data="['Top Bar-Right', 'User - Collection']">ORIGINALS</a>
-		<a href="/@[[currentUser.slug]]/uploads" analytics-click analytics-data="['Top Bar-Right', 'User - Collection']">UPLOADS</a>
-		<a href="/me/settings" analytics-click analytics-data="['Top Bar-Right', 'User - Settings']">SETTINGS</a>
+        <li analytics-click analytics-data="['Top Bar-Right', 'User - New Art']" ng-click="showUpload()"><i class="material-icons">add_box</i>ADD ARTWORK</li>
+        <li analytics-click analytics-data="['Top Bar-Right', 'User - New Series']" ng-click="showCreateBucket()"><i class="material-icons">view_carousel</i>CREATE SERIES</li>
+        <a ng-href="/@[[currentUser.slug]]" analytics-click analytics-data="['Top Bar-Right', 'User - My Art']"><i class="material-icons">face</i>PROFILE</a>
+		<a href="/@[[currentUser.slug]]/contributions" analytics-click analytics-data="['Top Bar-Right', 'User - Interpretations']"><i class="material-icons">photo</i>CONTRIBUTIONS</a>
+        <a href="/@[[currentUser.slug]]/series" analytics-click analytics-data="['Top Bar-Right', 'User - Collection']"><i class="material-icons">view_array</i>SERIES</a>
+		<a href="/@[[currentUser.slug]]/bookmarks" analytics-click analytics-data="['Top Bar-Right', 'User - Collection']"><i class="material-icons">bookmark</i>BOOKMARKS</a>
+		<a href="/me/settings" analytics-click analytics-data="['Top Bar-Right', 'User - Settings']"><i class="material-icons">settings</i>SETTINGS</a>
+        <a ng-href="/users/logout?next={{request.path}}"><i class="material-icons">eject</i>Logout</a>
 	</div>
 </section>

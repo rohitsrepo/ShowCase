@@ -23,7 +23,7 @@ angular.module('module.root')
 
 	$scope.authorize = function () {
 		auth.runWithAuth();
-	}
+	};
 
     $scope.showUpload = function () {
         uploadmodalService.showUpload();
