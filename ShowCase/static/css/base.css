@@ -109,6 +109,12 @@ body.modal-open {
     overflow: hidden;
 }
 
+@media (max-width: 800px) {
+    body {
+        padding: 0;
+    }
+}
+
 /*============= Scroll Bar ===========*/
 
 body::-webkit-scrollbar {
@@ -142,6 +148,12 @@ body::-webkit-scrollbar-thumb {
     top: -85px;
 }
 
+@media (max-width: 800px) {
+    .site-header {
+        position: static;
+    }
+}
+
 /*-------------- Site Logo ------------------*/
 .site-header .site-logo{
     width: 20%;
@@ -150,14 +162,14 @@ body::-webkit-scrollbar-thumb {
 }
 
 .site-logo img {
-    width: 3.4em;
-    height: 3.4em;
+    width: 2.4em;
+    height: 2.4em;
     vertical-align: bottom;
 }
 
 .site-logo .site-name {
     display: inline-block;
-    height: 3.3em;
+    height: 2.3em;
     font-weight: bold;
     text-align: left;
     cursor: pointer;
@@ -165,13 +177,25 @@ body::-webkit-scrollbar-thumb {
 
 .site-logo .site-name h1 {
     display: inline-block;
-    font-size: 1.55em;
+    font-size: 1.15em;
     margin-top: 8px;
+    letter-spacing: 1px;
 }
 
 .site-logo .site-name h2 {
     display: block;
-    font-size: 0.6em;
+    font-size: 0.55em;
+}
+
+@media (max-width: 800px) {
+    .site-header .site-logo {
+        width: 2em;
+    }
+
+    .site-logo img {
+       width: 1.9em;
+       height: 1.9em;
+    }
 }
 
 /*---------------- Site navigation -----------------*/
@@ -189,20 +213,33 @@ body::-webkit-scrollbar-thumb {
 }
 
 .site-navigation li a {
-    font-size: 1.1em;
+    font-size: 0.75em;
+    font-weight: bold;
     letter-spacing: 1px;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .site-navigation li a:hover,
 .site-navigation li a.active {
     color: rgba(0, 0, 0, 1);
-    border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+
+.site-navigation li a.active {
+    border-bottom: 2px solid rgba(0, 0, 0, 1);
 }
 
 @media (max-width: 800px) {
   .site-header .site-navigation {
     text-align: center;
-    width: 60%;
+    width: 100%;
+  }
+
+  .site-navigation li {
+    padding: 0 4%;
+  }
+
+  .site-navigation li a {
+    font-size: 1em;
   }
 }
 
@@ -212,6 +249,7 @@ body::-webkit-scrollbar-thumb {
     display: inline-block;
     vertical-align: top;
     padding: 10px 0;
+    padding-top: 13px;
     padding-right: 10px;
     text-align: right;
 }
@@ -221,9 +259,10 @@ body::-webkit-scrollbar-thumb {
     background: transparent;
     box-shadow: none;
     border: none;
-    height: 35px;
-    width: 35px;
-    min-width: 35px;
+    height: 24px;
+    width: 24px;
+    min-width: 24px;
+    padding: 4px;
     cursor: pointer;
     transition: all 0.2s;
 }
@@ -235,6 +274,15 @@ body::-webkit-scrollbar-thumb {
 
 .site-actions button i {
   vertical-align: middle;
+    font-size: 1.2em;
+}
+
+@media (max-width: 800px) {
+    .site-header .site-actions {
+        padding: 5px 0;
+        margin: 0;
+        width: 50%;
+    };
 }
 
 /*---------------- User Auth -----------------*/
@@ -250,11 +298,13 @@ body::-webkit-scrollbar-thumb {
     background: transparent;
     box-shadow: none;
     border: none;
-    height: 35px;
-    width: 35px;
-    min-width: 35px;
+    height: 24px;
+    width: 24px;
+    min-width: 24px;
+    padding: 4px;
     cursor: pointer;
     transition: all 0.2s;
+    margin-top: 4px;
 }
 
 .user-auth button:hover {
@@ -264,10 +314,12 @@ body::-webkit-scrollbar-thumb {
 
 .user-auth button i {
   vertical-align: middle;
+    font-size: 1.2em;
 }
 
 .user-auth h3 {
-    font-size: 1.1em;
+    font-size: 0.75em;
+    font-weight: bold;
     color: rgba(0, 0, 0, 0.7);
     letter-spacing: 1px;
     cursor: pointer;
@@ -292,10 +344,23 @@ body::-webkit-scrollbar-thumb {
 }
 
 @media (max-width: 800px) {
-  .site-header .user-auth {
-    width: 20%;
-    text-align: right;
-  }
+    .site-header .user-auth {
+      width: 30%;
+      text-align: right;
+      padding: 5px 0;
+      margin: 0;
+    }
+
+    .user-auth button {
+        padding: 0;
+        margin: 0;
+    }
+
+    .user-auth h3 {
+        padding: 5px 0;
+        padding-top: 8px;
+    }
+
 }
 
 /*================= Arts Stream ===============*/

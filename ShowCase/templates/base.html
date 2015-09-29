@@ -57,14 +57,14 @@
                 <h2 class="nt-mb">BEYOND THE BRUSHSTROKES</h2>
             </section>
         </a><!--
-        --><nav class="site-navigation">
+        --><nav class="site-navigation nt-mb">
             <li><a ng-class="{'active' : exploreActive}" ng-href="/arts">ART</a></li>
             <!-- <li><a ng-href="/artist">ARTISTS</a></li> -->
             <!-- <li><a ng-href="/generes">GENRES</a></li> -->
             <li><a ng-class="{'active' : postsActive}" ng-href="/posts">POSTS</a></li>
-            <li><a class="nt-mb" ng-href="/blog" target="_blank">BLOG</a></li>
+            <li><a ng-href="/blog" target="_blank">BLOG</a></li>
         </nav><!--
-        --><section class="site-actions nt-mb">
+        --><section class="site-actions">
             <!-- <button>ADD ART</button> -->
             <!-- <button>
               <i class="material-icons">search</i>
@@ -106,7 +106,14 @@
               <a ng-href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
             </ul>
         {% endif %}
-        </section>
+        </section><!--
+        --><nav class="site-navigation show-mb">
+            <li><a ng-class="{'active' : exploreActive}" ng-href="/arts">ART</a></li>
+            <!-- <li><a ng-href="/artist">ARTISTS</a></li> -->
+            <!-- <li><a ng-href="/generes">GENRES</a></li> -->
+            <li><a ng-class="{'active' : postsActive}" ng-href="/posts">POSTS</a></li>
+            <li><a ng-href="/blog" target="_blank">BLOG</a></li>
+        </nav>
     </header>
 
     {%endblock%}
