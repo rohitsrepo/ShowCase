@@ -11,13 +11,15 @@ def resized_file_path(filename, width):
     return file + "_" + str(width) + ext
 
 def _resize(im, width, filename):
-	resize_ratio = width/float(im.size[0])
-	height = im.size[1]*resize_ratio
-	size = (width, height)
-	im.thumbnail(size)
+    resize_ratio = width/float(im.size[0])
+    height = im.size[1]*resize_ratio
+    size = (width, height)
+    im.thumbnail(size)
 
-	resized_filepath = resized_file_path(filename, width)
-	im.save(resized_filepath)
+    resized_filepath = resized_file_path(filename, width)
+    if im.mode != "RGB":
+        im = im.convert("RGB")
+    im.save(resized_filepath)
 
 def generate_size_versions(filepath):
     im = Image.open(filepath)
@@ -25,17 +27,17 @@ def generate_size_versions(filepath):
     _resize(im.copy(), WIDTH_STICKY, filepath)
 
 def compress(filepath, quality=80):
-	im = Image.open(filepath)
-	im.save(filepath, quality=quality, optimize=True, progressive=True)
+    im = Image.open(filepath)
+    im.save(filepath, quality=quality, optimize=True, progressive=True)
 
 def crop(filepath, box):
-	im = Image.open(filepath)
-	im_crop = im.crop(box);
+    im = Image.open(filepath)
+    im_crop = im.crop(box);
 
-	file, ext = os.path.splitext(filepath)
-	cropped_file = file + "_" + "crop" + ext
-	im_crop.save(cropped_file)
-	return cropped_file
+    file, ext = os.path.splitext(filepath)
+    cropped_file = file + "_" + "crop" + ext
+    im_crop.save(cropped_file)
+    return cropped_file
 
 def image_model_created(sender, instance, created, raw, **kwargs):
     if created and not raw:
