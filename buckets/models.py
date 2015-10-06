@@ -86,7 +86,7 @@ class BucketMembership(models.Model):
     bucket = models.ForeignKey(Bucket, related_name='membership')
     composition = models.ForeignKey(Composition)
     added = models.DateTimeField(auto_now_add=True)
-    description = models.CharField(max_length=111, blank=True, null=True)
+    description = models.TextField(max_length=500, blank=True)
 
     def add_to_fresh_feed(self):
         if self.bucket.compositions.count() >= 3 and not self.get_fresh_post().exists():

@@ -198,6 +198,19 @@
 	position: relative;
 }
 
+.content-scroll-holder .content-container .content-art-description {
+    float: left;
+    margin: 0 45px;     /*If change this then change content-holder height*/
+    padding: 0;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 0.35em;
+    line-height: 2em;
+}
+
 .content-scroll-holder .content-container .content-art .nsfw-overlay {
     width: 100%;
     height: 100%;

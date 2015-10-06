@@ -82,7 +82,7 @@ class BucketCompositionList(APIView):
 
             return Response(status=status.HTTP_201_CREATED)
         else:
-            return Response(data=serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class BucketCompositionDetail(APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
@@ -141,7 +141,7 @@ class BucketBackground(APIView):
 @permission_classes((permissions.AllowAny,))
 def get_composition_buckets(request, composition_id, format=None):
     composition = get_object_or_404(Composition, pk=composition_id)
-    buckets = composition.holders.all()
+    buckets = composition.holders.all().order_by('-created')
     serializer = BucketSerializer(buckets, context={'request': request})
     return Response(data=serializer.data)
 
@@ -149,7 +149,7 @@ def get_composition_buckets(request, composition_id, format=None):
 @permission_classes((permissions.AllowAny,))
 def get_user_buckets(request, user_id, format=None):
     user = get_object_or_404(User, pk=user_id)
-    buckets = user.buckets.all()
+    buckets = user.buckets.all().order_by('-created')
 
     composition_id = request.GET.get('composition', '');
 

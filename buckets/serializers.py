@@ -112,4 +112,4 @@ class BucketMembershipSerializer(serializers.ModelSerializer):
 
 class BucketMembershipCreateSerializer(serializers.Serializer):
     composition_id = serializers.IntegerField(required=True)
-    description = serializers.CharField(max_length=111, required=False)
+    description = serializers.CharField(max_length=500, required=False)

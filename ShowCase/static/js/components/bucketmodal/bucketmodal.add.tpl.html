@@ -30,9 +30,9 @@
                     Why this series?
                 </h1>
                 <form class="art-bucket-description" name="addToBucketDescriptionForm">
-                     <input type="text" autofocus placeholder="Optionally tell us why does this artwork belong to this series" ng-model="newMembership.description" name="uDescription" ng-maxlength="111">
+                     <textarea type="text" autofocus placeholder="Optionally tell us why does this artwork belong to this series" ng-model="newMembership.description" name="uDescription" ng-maxlength="500"></textarea>
                      <div ng-cloak ng-show="addToBucketDescriptionForm.$dirty">
-                         <span class="error" ng-show="addToBucketDescriptionForm.uDescription.$error.maxlength">Please use less than 111 charactes</span>
+                         <span class="error" ng-show="addToBucketDescriptionForm.uDescription.$error.maxlength">Please use less than 500 charactes</span>
                     </div>
                     <section class="add-bucket-description-actions">
                         <button ng-click="close()">Later</button>

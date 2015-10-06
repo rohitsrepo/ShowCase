@@ -79,7 +79,11 @@
 
             <div horizontal-sly class="content-scroll-holder nt-mb" ng-cloak ng-show="slyInitComplete" id="basic">
                 <ul class="content-container">
-                    <section class="content-art" check-last ng-repeat="art in bucketArts" ng-style="{'height': '450px', 'width': '[[math.round(450/art.composition.matter_aspect)]]px'}">
+                    <section class="content-art-description" ng-repeat-start="art in bucketArts" ng-if="art.description" ng-style="{'height': '450px', 'width': '300px'}">
+                        <p>[[art.description]]</p>
+                    </section>
+
+                    <section class="content-art" check-last ng-repeat-end ng-style="{'height': '450px', 'width': '[[math.round(450/art.composition.matter_aspect)]]px'}">
 
                         <div ng-cloak ng-show="art.composition.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
                             <h6>This work is marked not safe</h6>

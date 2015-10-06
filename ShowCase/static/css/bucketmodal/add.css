@@ -191,7 +191,7 @@
     text-align: center;
 }
 
-.source-description .art-bucket-description input {
+.source-description .art-bucket-description textarea {
     width: 90%;
     margin: 0 auto;
     padding: 10px;
@@ -200,6 +200,7 @@
     color: rgba(0, 0, 0, 0.8);
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+    resize: none;
 }
 
 .source-description .art-bucket-description .add-bucket-description-actions {

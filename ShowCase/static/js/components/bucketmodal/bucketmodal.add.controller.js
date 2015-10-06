@@ -88,11 +88,7 @@ angular.module('module.bucketmodal')
                 } else {
                     $scope.addingToBucket = false;
                 }
-
-                $scope.newMembership.bucket.composition_added = true;
-                $scope.addingDescription = false;
-                $scope.newMembership.description = '';
-                $scope.newMembership.index = '';
+                
                 alert.showAlert('Unable to add art to bucket');
             })
         };
