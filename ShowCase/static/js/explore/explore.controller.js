@@ -123,16 +123,6 @@ angular.module('ExploreApp')
         }
     };
 
-    $scope.showBookMarkers = function (index) {
-        var art = $scope.arts[index].content;
-
-        usermodalService.showBookMarkers(art).then(function (bookStatus) {
-        	if (bookStatus == 'bookmarked') {
-        		art.is_bookmarked = true;
-        	}
-        });
-    };
-
     $scope.showArtBuckets = function (index) {
         var art = $scope.arts[index].content;
         bucketmodalService.showArtBuckets(art);

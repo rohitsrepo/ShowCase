@@ -96,16 +96,6 @@ angular.module('MypostsApp')
         }
     };
 
-    $scope.showBookMarkers = function (index) {
-        var art = $scope.userActivities[index].composition;
-
-        usermodalService.showBookMarkers(art).then(function (bookStatus) {
-            if (bookStatus == 'bookmarked') {
-                art.is_bookmarked = true;
-            }
-        });
-    };
-
     $scope.showArtBuckets = function (index) {
         var art = $scope.userActivities[index].composition;
         bucketmodalService.showArtBuckets(art);

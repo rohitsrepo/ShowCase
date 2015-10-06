@@ -16,7 +16,6 @@ urlpatterns = patterns('',
                        url(r'^/(?P<composition_id>[0-9]+)/interpretation-images$', views.InterpretationImageList.as_view()),
                        url(r'^/(?P<composition_id>[0-9]+)/interpretation-images/(?P<image_id>[0-9]+)$', views.InterpretationImageDetail.as_view()),
                        url(r'^/(?P<composition_id>[0-9]+)/posts$', CompositionPostList.as_view()),
-                       url(r'^/(?P<composition_id>[0-9]+)/bookmarkers$', 'compositions.views.get_bookmarkers'),
                        url(r'^/(?P<composition_id>[0-9]+)/buckets$', 'buckets.views.get_composition_buckets'),
                )
 

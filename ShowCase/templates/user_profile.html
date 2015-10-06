@@ -69,16 +69,16 @@
                 <a class="contribution" ui-sref-active="active" ui-sref="activities">
                     <h4>Activities</h4>
                 </a><!--
-                --><a class="contribution" ng-cloak ng-show="[[{{artist.buckets_count}} != 0]]" ui-sref-active="active" ui-sref="buckets">
+                --><a class="contribution" ng-cloak ng-show="[[{{artist.buckets_count}} != 0]] || artist.is_me" ui-sref-active="active" ui-sref="buckets">
                     <h4>Series {{artist.buckets_count}}</h4>
                 </a><!--
-                --><a class="contribution" ng-cloak ng-show="[[{{artist.bookmarks_count}} != 0]]" ui-sref-active="active" ui-sref="bookmarks">
+                --><a class="contribution" ng-cloak ng-show="artist.is_me" ui-sref-active="active" ui-sref="bookmarks">
                     <h4>Bookmarks {{artist.bookmarks_count}}</h4>
                 </a><!--
-                --><a class="contribution" ng-cloak ng-show="[[{{artist.paintings_count}} != 0]]" ui-sref-active="active" ui-sref="paintings">
+                --><a class="contribution" ng-cloak ng-show="[[{{artist.paintings_count}} != 0]] || artist.is_me" ui-sref-active="active" ui-sref="paintings">
                     <h4>Originals {{artist.paintings_count}}</h4>
                 </a><!--
-                --><a class="contribution" ng-cloak ng-show="[[{{artist.uploads_count}} != 0]]" ui-sref-active="active" ui-sref="uploads">
+                --><a class="contribution" ng-cloak ng-show="[[{{artist.uploads_count}} != 0]] || artist.is_me" ui-sref-active="active" ui-sref="uploads">
                     <h4>Contributions {{artist.uploads_count}}</h4>
                 </a>
             </section> <!-- contributions -->

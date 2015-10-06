@@ -299,14 +299,6 @@ def random_composition(request, format=None):
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
-def get_bookmarkers(request, composition_id, format=None):
-    composition = get_object_or_404(Composition, pk=composition_id)
-    bookers = composition.bookers.all()
-    serializer = ExistingUserSerializer(bookers, context={'request': request})
-    return Response(data=serializer.data)
-
-@api_view(['GET'])
-@permission_classes((permissions.AllowAny,))
 def get_associates(request, composition_id, format=None):
     composition = get_object_or_404(Composition, pk=composition_id)
     artBuckets = composition.holders.all().order_by('-views')[:6]

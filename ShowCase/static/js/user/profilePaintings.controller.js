@@ -88,17 +88,6 @@ angular.module('UserApp')
         }
     };
 
-    $scope.showBookMarkers = function (index) {
-        var art = $scope.arts[index];
-
-        usermodalService.showBookMarkers(art).then(function (bookStatus) {
-            if (bookStatus == 'bookmarked') {
-                console.log("mark it booked");
-                art.is_bookmarked = true;
-            }
-        });
-    };
-
     $scope.showArtBuckets = function (index) {
         var art = $scope.arts[index];
         bucketmodalService.showArtBuckets(art);
