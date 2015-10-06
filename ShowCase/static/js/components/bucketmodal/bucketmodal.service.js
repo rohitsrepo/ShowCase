@@ -46,6 +46,17 @@ angular.module('module.bucketmodal')
         return deferred.promise;
     };
 
+    service.showEditBucketMembership = function (bucket, membership) {
+        auth.runWithAuth(function () {
+            modalService.showModal({
+                'templateUrl': '/static/js/components/bucketmodal/bucketmodal.membership.edit.tpl.html',
+                'controller': 'bucketmodalEditMembershipController',
+                inputs: {'bucket': bucket,
+                'membership': membership}
+            })
+        });
+    };
+
     service.showEditBucket = function (bucket) {
         var deferred = $q.defer();
 

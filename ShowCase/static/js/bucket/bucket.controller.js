@@ -103,11 +103,15 @@ angular.module('BucketApp')
 
         $scope.removeFromBucket = function (index) {
             progress.hideProgress();
-            var art = $scope.bucketArts[index];
+            var membership = $scope.bucketArts[index];
 
             confirmModalService.showDeleteConfirm().then(function () {
-                bucketModel.removeFromBucket($scope.bucket.id, art.id).then(function () {
+                bucketModel.removeFromBucket($scope.bucket.id, membership.composition.id).then(function () {
                     $scope.removeFromSly(index);
+                    if (membership.description) {
+                        $scope.removeFromSly(index - 1);
+                    }
+
                     $scope.bucketArts.splice(index, 1);
                     progress.hideProgress();
                 }, function () {
@@ -142,6 +146,11 @@ angular.module('BucketApp')
             var description = $scope.bucket.description + '...Complete series can be found at: ' + share_url;
             var media = 'http://thirddime.com' + $scope.bucket.background;
             shareModalService.shareThisPage(share_url, title, description, media);
+        };
+
+        $scope.editBucketMembership = function (index) {
+            var membership = $scope.bucketArts[index];
+            bucketmodalService.showEditBucketMembership($scope.bucket, membership);
         };
 
     }

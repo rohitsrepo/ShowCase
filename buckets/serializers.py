@@ -109,6 +109,7 @@ class BucketMembershipSerializer(serializers.ModelSerializer):
     class Meta:
         model = BucketMembership
         fields = ('bucket', 'composition', 'description', 'added')
+        read_only_fields = ('bucket', 'added')
 
 class BucketMembershipCreateSerializer(serializers.Serializer):
     composition_id = serializers.IntegerField(required=True)

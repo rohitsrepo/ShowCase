@@ -38,6 +38,22 @@ angular.module("module.model")
         });
     };
 
+    service.getBucketMembership = function (bucketId, compositionId) {
+        return $http.get('/buckets/' + bucketId + '/arts/' + compositionId).then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
+    service.updateBucketMembership = function (bucketId, compositionId, membership) {
+        return $http.put('/buckets/' + bucketId + '/arts/' + compositionId, membership).then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
     service.create = function (bucket) {
         return $http.post('/buckets', bucket).then(function (response) {
             return response.data;

@@ -87,6 +87,24 @@ class BucketCompositionList(APIView):
 class BucketCompositionDetail(APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
+
+    def get(self, request, bucket_id, composition_id, format=None):
+        membership = get_object_or_404(BucketMembership, bucket=bucket_id, composition=composition_id)
+        serializer = BucketMembershipSerializer(membership, context={'request': request})
+        return Response(serializer.data)
+
+    def put(self, request, bucket_id, composition_id, format=None):
+        membership = get_object_or_404(BucketMembership, bucket=bucket_id, composition=composition_id)
+        serializer = BucketMembershipSerializer(membership, data=request.DATA, context={'request': request})
+        if serializer.is_valid():
+            bucket = get_object_or_404(Bucket, id=bucket_id)
+            self.check_object_permissions(request, bucket)
+            serializer.save()
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def delete(self, request, bucket_id, composition_id, format=None):
         bucket = get_object_or_404(Bucket, id=bucket_id)
         self.check_object_permissions(request, bucket)

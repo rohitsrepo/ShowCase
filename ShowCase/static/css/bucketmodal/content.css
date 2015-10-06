@@ -208,15 +208,19 @@
     background: transparent;
     color: white;
     font-size: 0.35em;
-    line-height: 1.5em;
+    line-height: 1.7em;
     text-align: center;
-    padding-top: 40px;
 }
 
 .content-scroll-holder .content-container .content-art-description p {
     display: inline-block;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 20px 10px;
+    padding: 40px 15px;
+    padding-bottom: 60px;
+
+    background: -webkit-linear-gradient(black 80%, transparent); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(black 80%, transparent); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(black 80%, transparent); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(black 80%, transparent); /* Standard syntax */
 }
 
 .content-scroll-holder .content-container .content-art-description p i {
@@ -224,6 +228,7 @@
     display: inline-block;
     vertical-align: middle;
     padding-left: 5px;
+    color: rgba(255, 255, 255, 0.81);
 }
 
 .content-scroll-holder .content-container .content-art .nsfw-overlay {
@@ -265,8 +270,8 @@
     transition: all 0.5s;
     padding-top: 100px;
     line-height: 0.5em;
-    color: rgba(0, 0, 0, 0.9);
-    background: rgba(255, 255, 255, 0.6);
+    color: white;
+    background: rgba(0, 0, 0, 0.75);
 }
 
 .content-container .content-art:hover .art-details {
@@ -290,8 +295,8 @@
 .content-container .content-art .art-details h1 a {
 	font-size: 0.5em;
 	text-decoration: underline;
-    color: rgba(0, 0, 0, 0.9);
     cursor: pointer;
+    color: white;
 }
 
 .content-container .content-art .art-details .by-user {
@@ -301,7 +306,7 @@
 .content-container .content-art .art-details h2 a {
 	font-size: 0.4em;
 	text-decoration: underline;
-    color: rgba(0, 0, 0, 0.9);
+    color: white;
     cursor: pointer;
 }
 

@@ -1,0 +1,29 @@
+<section tabindex="0" class="bucket-modal add-modal">
+    <div class="scroll-holder">
+        <ul class="container">
+        <section class="container-actions-header">
+            <i class="material-icons action" ng-click="close()">close</i>
+        </section>
+            <section class="picture-holder" ng-if="membership.composition.matter_550" ng-style="{'background-image': 'url([[membership.composition.matter_550]])'}">
+                <section class="bucket-adding-overlay ng-hide" ng-cloak ng-show="updatingMembership">
+                    <site-loader site-loader-hide='false'></site-loader>
+                </section>
+            </section>
+
+            <section class="source-description">
+                <h1 class="buckets-header">
+                    Why this series?
+                </h1>
+                <form class="art-bucket-description" name="addToBucketDescriptionForm">
+                     <textarea type="text" autofocus placeholder="Optionally tell us why does this artwork belong to this series" ng-model="membership.description" name="uDescription" ng-maxlength="500"></textarea>
+                     <div ng-cloak ng-show="addToBucketDescriptionForm.$dirty">
+                         <span class="error" ng-show="addToBucketDescriptionForm.uDescription.$error.maxlength">Please use less than 500 charactes</span>
+                    </div>
+                    <section class="add-bucket-description-actions">
+                        <button ng-click="updateBucketMembership()">Done</button>
+                    </section>
+                </form>
+            </section>
+        </ul> <!-- container -->
+    </div>
+</section>
