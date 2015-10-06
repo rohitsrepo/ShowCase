@@ -201,14 +201,22 @@
 .content-scroll-holder .content-container .content-art-description {
     float: left;
     margin: 0 45px;     /*If change this then change content-holder height*/
-    padding: 0;
+    margin-right: 0;
+    padding: 10px;
     text-align: center;
     display: inline-block;
     position: relative;
     background: rgba(0, 0, 0, 0.8);
     color: white;
     font-size: 0.35em;
-    line-height: 2em;
+    line-height: 450px;
+    text-align: center;
+}
+
+.content-scroll-holder .content-container .content-art-description p {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
 }
 
 .content-scroll-holder .content-container .content-art .nsfw-overlay {
