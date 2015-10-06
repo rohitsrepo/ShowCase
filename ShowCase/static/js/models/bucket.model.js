@@ -20,8 +20,10 @@ angular.module("module.model")
         });
     };
 
-    service.addToBucket = function (bucketId, compositionId) {
-        return $http.put('/buckets/' + bucketId + '/arts', {'composition_id': compositionId}).then(function (response) {
+    service.addToBucket = function (bucketId, compositionId, description) {
+        return $http.put('/buckets/' + bucketId + '/arts',
+            {'composition_id': compositionId, 'description': description})
+        .then(function (response) {
             return response.data;
         }, function (error) {
             return $q.reject(error);

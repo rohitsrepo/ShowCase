@@ -12,7 +12,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Bucket, BucketMembership
 from .permissions import IsOwnerOrReadOnly
-from .serializers import BucketSerializer, BucketBackgroundSerializer
+from .serializers import BucketSerializer, BucketBackgroundSerializer, BucketMembershipCreateSerializer, BucketMembershipSerializer
 
 from compositions.models import Composition
 from compositions.serializers import CompositionSerializer
@@ -60,28 +60,29 @@ class BucketCompositionList(APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
     def get(self, request, bucket_id, format=None):
-        # TODO Add serialization and accordingly pagination logic
-
         bucket = get_object_or_404(Bucket, id=bucket_id)
         bucket.views = bucket.views + 1
         bucket.save();
 
-        compositions = bucket.compositions.all().order_by('-bucketmembership__added')
-        serializer = CompositionSerializer(compositions, context={'request': request})
+        memberships = BucketMembership.objects.filter(bucket=bucket).order_by('-added')
+        serializer = BucketMembershipSerializer(memberships, context={'request': request})
         return Response(serializer.data)
 
     def put(self, request, bucket_id, format=None):
-        composition_id = request.DATA.get('composition_id')
-        if not composition_id:
-            return Response({"composition_id": "This field is required"}, status=status.HTTP_400_BAD_REQUEST)
+        serializer = BucketMembershipCreateSerializer(data=request.DATA, context={'request': request})
+        if serializer.is_valid():
+            bucket = get_object_or_404(Bucket, id=bucket_id)
+            self.check_object_permissions(request, bucket)
+            composition = get_object_or_404(Composition, id=serializer.data['composition_id'])
 
-        bucket = get_object_or_404(Bucket, id=bucket_id)
-        self.check_object_permissions(request, bucket)
-        composition = get_object_or_404(Composition, id=composition_id)
+            bucket, created = BucketMembership.objects.get_or_create(bucket=bucket, composition=composition)
 
-        BucketMembership.objects.get_or_create(bucket=bucket, composition=composition)
+            bucket.description = description=serializer.data['description']
+            bucket.save()
 
-        return Response(status=status.HTTP_201_CREATED)
+            return Response(status=status.HTTP_201_CREATED)
+        else:
+            return Response(data=serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class BucketCompositionDetail(APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)

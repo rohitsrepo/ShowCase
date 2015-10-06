@@ -1,26 +1,44 @@
 <section tabindex="0" class="bucket-modal add-modal">
-    <section class="modal-actions-header">
-        <i class="material-icons action" ng-click="close()">close</i>
-    </section>
     <div class="scroll-holder">
         <ul class="container">
+        <section class="container-actions-header">
+            <i class="material-icons action" ng-click="close()">close</i>
+        </section>
             <section class="picture-holder" ng-if="art.matter_550" ng-style="{'background-image': 'url([[art.matter_550]])'}">
                 <section class="bucket-adding-overlay ng-hide" ng-cloak ng-show="addingToBucket || gettingBuckets">
                     <site-loader site-loader-hide='false'></site-loader>
                 </section>
             </section>
 
-            <h1 class="buckets-header ng-hide" ng-cloak ng-hide="noUserBucket.status || !bucketsLoaded">
-                Select series to add artwork
-                <section class="actions">
-                    <button class="action" ng-click="showCreateBucket()">New Series</button>
-                </section>
-            </h1>
+            <section class="source-bucket ng-hide" ng-cloak ng-hide="noUserBucket.status || !bucketsLoaded || addingDescription">
+                <h1 class="buckets-header" >
+                    Select series to add artwork
+                    <section class="actions">
+                        <button class="action" ng-click="showCreateBucket()">New Series</button>
+                    </section>
+                </h1>
 
-            <section class="buckets">
-                <li class="bucket" ng-class="{'added': bucket.composition_added}" ng-repeat="bucket in userBuckets">
-                    <h2 ng-click="addToThisBucket($index)">[[bucket.name | titlecase]]</h2>
-                </li>
+                <section class="buckets">
+                    <li class="bucket" ng-class="{'added': bucket.composition_added}" ng-repeat="bucket in userBuckets">
+                        <h2 ng-click="addToThisBucket($index)">[[bucket.name | titlecase]]</h2>
+                    </li>
+                </section>
+            </section>
+
+            <section class="source-description ng-hide" ng-cloak ng-show="!noUserBucket.status &&bucketsLoaded && addingDescription">
+                <h1 class="buckets-header">
+                    Why this series?
+                </h1>
+                <form class="art-bucket-description" name="addToBucketDescriptionForm">
+                     <input type="text" autofocus placeholder="Optionally tell us why does this artwork belong to this series" ng-model="newMembership.description" name="uDescription" ng-maxlength="111">
+                     <div ng-cloak ng-show="addToBucketDescriptionForm.$dirty">
+                         <span class="error" ng-show="addToBucketDescriptionForm.uDescription.$error.maxlength">Please use less than 111 charactes</span>
+                    </div>
+                    <section class="add-bucket-description-actions">
+                        <button ng-click="close()">Later</button>
+                        <button ng-click="completeAddToBucket()">Done</button>
+                    </section>
+                </form>
             </section>
 
             <div ng-cloak ng-show="noUserBucket.status && bucketsLoaded" class="no-bucket">

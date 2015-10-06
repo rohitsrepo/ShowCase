@@ -11,6 +11,7 @@
     width: 400px;
     padding: 0;
     border-radius: 3px;
+    overflow: hidden;
 }
 
 @media (min-width: 1500px) {
@@ -24,6 +25,30 @@
        width: 90%;
     }
 }
+
+/*---------- Container Actions ------------*/
+
+.container-actions-header {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+.container-actions-header i.action {
+    color: rgba(255, 255, 255, 0.8);
+    background: transparent;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.container-actions-header i.action:hover {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
 
 /*------------- Picture Holder -----------*/
 
@@ -68,7 +93,11 @@
 }
 /*------------- Buckets Header ----------------*/
 
-.add-modal .container .buckets-header {
+.add-modal .container .source-bucket {
+    width: 100%;
+}
+
+.container .source-bucket .buckets-header {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     font-size: 1.5em;
@@ -79,14 +108,14 @@
     position: relative;
 }
 
-.add-modal .container .buckets-header .actions {
+.container .source-bucket .buckets-header .actions {
     position: absolute;
     bottom: -15px;
     right: 10px;
     text-align: right;
 }
 
-.add-modal .container .buckets-header .actions .action {
+.container .source-bucket .buckets-header .actions .action {
     height: 30px;
     background-color: white;
     font-size: 0.5em;
@@ -95,20 +124,20 @@
     z-index: 1;
 }
 
-.add-modal .container .buckets-header .actions .action:hover {
+.container .source-bucket .buckets-header .actions .action:hover {
     background-color: black;
     color: white;
 }
 
 /*----------- Bucket --------------*/
 
-.add-modal .container .buckets {
+.container  .source-bucket .buckets {
     width: 100%;
-    max-height: 250px;
+    max-height: 250px; /* Depends on the height for description form*/
     overflow: auto;
 }
 
-.add-modal .container .bucket {
+.container  .source-bucket .bucket {
     width: 100%;
     text-align: center;
     cursor: pointer;
@@ -118,7 +147,7 @@
     position: relative;
 }
 
-.add-modal .container .bucket.added:before {
+.container  .source-bucket .bucket.added:before {
     position: absolute;
     content: '\E876';
     font-family: 'Material Icons';
@@ -127,14 +156,71 @@
     transform: translateY(-50%);
 }
 
-.add-modal .container .bucket:hover {
+.container  .source-bucket .bucket:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
 @media (min-width: 1500px) {
-    .add-modal .container .buckets {
+    .container  .source-bucket .buckets {
         max-height: 350px;
     }
 }
 
-/*-------------- No Bucket -----------------*/
+/*-------- Description for artwork ------------*/
+.add-modal .container .source-description {
+    width: 100%;
+}
+
+.add-modal .container .source-description.ng-hide-remove {
+    -webkit-animation: fadeIn 0.2s;
+    animation: fadeIn 0.2s;
+}
+
+.container .source-description .buckets-header {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    font-size: 1.5em;
+    color: white;
+    margin: 0;
+    padding: 30px 0;
+}
+
+.container .source-description .art-bucket-description {
+    width: 100%;
+    height: 250px; /* Depends on the max-height for buckets area*/
+    text-align: center;
+}
+
+.source-description .art-bucket-description input {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+    height: 100px;
+    font-size: 1em;
+    color: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+.source-description .art-bucket-description .add-bucket-description-actions {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.art-bucket-description .add-bucket-description-actions button {
+    display: inline-block;
+    width: 30%;
+    background: transparent;
+    border: none;
+    border: 1px solid black;
+    cursor: pointer;
+    padding: 5px 0;
+
+    transition: all 0.1s;
+}
+
+.art-bucket-description .add-bucket-description-actions button:hover {
+    background-color: black;
+    color: white;
+}

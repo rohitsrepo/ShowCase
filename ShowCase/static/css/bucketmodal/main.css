@@ -94,6 +94,7 @@
     background: white;
     padding: 20px;
     border-radius: 2px;
+    position: relative;
 
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;

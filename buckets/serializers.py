@@ -1,9 +1,13 @@
 from rest_framework import serializers
-from .models import Bucket
-from compositions.models import Composition
-from accounts.models import User
-from ShowCase.serializers import URLImageField
 from rest_framework.pagination import PaginationSerializer
+
+from ShowCase.serializers import URLImageField
+
+from .models import Bucket, BucketMembership
+
+from accounts.models import User
+from compositions.models import Composition
+from compositions.serializers import CompositionSerializer
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -99,3 +103,13 @@ class PaginatedBucketCompositionSerializer(PaginationSerializer):
     class Meta:
         object_serializer_class = BucketCompositionSerializer
 
+class BucketMembershipSerializer(serializers.ModelSerializer):
+    composition = CompositionSerializer(read_only=True)
+
+    class Meta:
+        model = BucketMembership
+        fields = ('bucket', 'composition', 'description', 'added')
+
+class BucketMembershipCreateSerializer(serializers.Serializer):
+    composition_id = serializers.IntegerField(required=True)
+    description = serializers.CharField(max_length=111, required=False)

@@ -27,7 +27,10 @@ angular.module('module.bucketmodal')
         }
 
         $scope.bucketsLoaded = false;
+        $scope.newMembership = {};
         $scope.gettingBuckets = true;
+        $scope.addingDescription = false;
+
         $scope.art = art;
         bucketModel.userBuckets(user.id, art.id).then(function (buckets) {
             $scope.userBuckets = buckets;
@@ -44,22 +47,41 @@ angular.module('module.bucketmodal')
         });
 
         $scope.addToThisBucket = function (index) {
+            var bucket = $scope.userBuckets[index];
+
+            if (bucket.composition_added == true) {
+                alert.showAlert("Artwork is already present in this series")
+                return;
+            }
+
+            $scope.addingDescription = true;
+            $scope.newMembership.bucket = bucket;
+        }
+
+        $scope.completeAddToBucket = function () {
+
             if (addingCount) {
                 addingCount++;
             } else {
                 $scope.addingToBucket = true;
             }
 
-            var bucket = $scope.userBuckets[index];
+            bucketModel.addToBucket($scope.newMembership.bucket.id,
+                art.id,
+                $scope.newMembership.description)
+            .then(function () {
 
-            bucketModel.addToBucket(bucket.id, art.id).then(function () {
                 if (addingCount) {
                     addingCount--;
                 } else {
                     $scope.addingToBucket = false;
                 }
 
-                bucket.composition_added = true;
+                $scope.newMembership.bucket.composition_added = true;
+                $scope.addingDescription = false;
+                $scope.newMembership.description = '';
+                $scope.newMembership.index = '';
+                $scope.close();
             }, function () {
                 if (addingCount) {
                     addingCount--;
@@ -67,11 +89,18 @@ angular.module('module.bucketmodal')
                     $scope.addingToBucket = false;
                 }
 
+                $scope.newMembership.bucket.composition_added = true;
+                $scope.addingDescription = false;
+                $scope.newMembership.description = '';
+                $scope.newMembership.index = '';
                 alert.showAlert('Unable to add art to bucket');
             })
         };
 
         $scope.close = function () {
+            if ($scope.addingDescription) {
+                bucketModel.addToBucket($scope.newMembership.bucket.id, art.id, '');
+            }
             close();
         };
     }
