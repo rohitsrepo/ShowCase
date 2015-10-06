@@ -80,7 +80,7 @@
             <div horizontal-sly class="content-scroll-holder nt-mb" ng-cloak ng-show="slyInitComplete" id="basic">
                 <ul class="content-container">
                     <section class="content-art-description" ng-repeat-start="art in bucketArts" ng-if="art.description" ng-style="{'height': '450px', 'width': '350px'}">
-                        <p>[[art.description]]</p>
+                        <p>[[art.description]]<i class="material-icons">play_arrow</i></p>
                     </section>
 
                     <section class="content-art" check-last ng-repeat-end ng-style="{'height': '450px', 'width': '[[math.round(450/art.composition.matter_aspect)]]px'}">
