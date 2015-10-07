@@ -4,6 +4,7 @@ angular.module('module.bucketmodal')
     '$state',
     'auth',
     'bucketModel',
+    'bookService',
     'bucketmodalService',
     'confirmModalService',
     'shareModalService',
@@ -11,7 +12,19 @@ angular.module('module.bucketmodal')
     'bucket',
     'progress',
     'alert',
-    function ($scope, $window, $state, auth, bucketModel, bucketmodalService, confirmModalService, shareModalService, close, bucket, progress, alert) {
+    function ($scope,
+        $window,
+        $state,
+        auth,
+        bucketModel,
+        bookService,
+        bucketmodalService,
+        confirmModalService,
+        shareModalService,
+        close,
+        bucket,
+        progress,
+        alert) {
 
         progress.showProgress();
         $scope.bucket = bucket;
@@ -80,6 +93,19 @@ angular.module('module.bucketmodal')
             followBucketService.unwatchBucket($scope.bucket.id).then(function () {
                 $scope.bucket.is_watched = false;
             });
+        };
+
+        $scope.handleBookMarkBucket = function () {
+            var bucket = $scope.bucket;
+            if (bucket.is_bookmarked) {
+                bookService.unmarkBucket(bucket).then(function () {
+                    bucket.is_bookmarked = false;
+                });
+            } else {
+                bookService.bookmarkBucket(bucket).then(function () {
+                    bucket.is_bookmarked = true;
+                });;
+            }
         };
 
         $scope.removeFromBucket = function (index) {

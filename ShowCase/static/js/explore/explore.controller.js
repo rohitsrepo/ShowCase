@@ -111,14 +111,29 @@ angular.module('ExploreApp')
     };
 
     $scope.handleBookMark = function (index) {
-        art = $scope.arts[index].content;
+        var art = $scope.arts[index].content;
         if (art.is_bookmarked) {
             bookService.unmarkArt(art).then(function () {
-            	art.is_bookmarked = false;
+                art.is_bookmarked = false;
             });
         } else {
             bookService.bookmarkArt(art).then(function () {
-            	art.is_bookmarked = true;
+                art.is_bookmarked = true;
+            });;
+        }
+    };
+
+    $scope.handleBookMarkBucket = function (event, index) {
+        event.stopPropagation();
+
+        var bucket = $scope.arts[index].content;
+        if (bucket.is_bookmarked) {
+            bookService.unmarkBucket(bucket).then(function () {
+                bucket.is_bookmarked = false;
+            });
+        } else {
+            bookService.bookmarkBucket(bucket).then(function () {
+                bucket.is_bookmarked = true;
             });;
         }
     };

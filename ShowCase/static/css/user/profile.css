@@ -26,28 +26,28 @@ html, body {
     margin: 0 auto;
 }
 
-.primary-header header {
+.primary-header .primary-header-header {
     width: 100%;
     text-align: center;
 }
 
-.primary-header header .picture {
+.primary-header .primary-header-header .picture {
 	text-align: center;
     margin-bottom: 10px;
     display: block;
 }
 
-.primary-header header img {
+.primary-header .primary-header-header img {
     width: 200px;
 }
 
-.primary-header header .details {
+.primary-header .primary-header-header .details {
     display: inline-block;
     vertical-align: top;
     padding-top: 20px;
 }
 
-.primary-header header h1, h2 {
+.primary-header .primary-header-header h1, h2 {
     line-height: 1.3em;
     letter-spacing: 1px;
     color: rgba(0, 0, 0, 0.9);
@@ -63,7 +63,7 @@ html, body {
     color: rgba(0, 0, 0, 0.6);
 }
 
-.primary-header header .details .actions {
+.primary-header .primary-header-header .details .actions {
     display: block;
     vertical-align: top;
     text-align: center;

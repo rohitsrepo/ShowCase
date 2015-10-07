@@ -40,7 +40,7 @@
     <!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="bucketController" ng-init="init({{bucket.id}}, '{{bucket.name | escapejs}}', '{{bucket.description | escapejs}}', '{{bucket.picture}}', '{{bucket.slug}}', '{{bucket.owner.name | escapejs}}', '{{is_watched}}', '{{is_me}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="bucketController" ng-init="init({{bucket.id}}, '{{bucket.name | escapejs}}', '{{bucket.description | escapejs}}', '{{bucket.picture}}', '{{bucket.slug}}', '{{bucket.owner.name | escapejs}}', '{{is_watched}}', '{{is_bookmarked}}', '{{is_me}}')"{% endblock %}
 
 {% block content_block %}
 
@@ -56,6 +56,8 @@
             <span class="counter counter-watchers">
                 <i class="material-icons action content-action" ng-cloak ng-hide="bucket.isWatched" ng-click="watchBucket()">star_border</i>
                 <i class="material-icons action content-action" ng-cloak ng-show="bucket.isWatched" ng-click="unwatchBucket()">star</i>
+                <i class="material-icons action content-action" ng-cloak ng-hide="bucket.is_bookmarked" ng-click="handleBookMarkBucket()">bookmark_border</i>
+                <i class="material-icons action content-action" ng-cloak ng-show="bucket.is_bookmarked" ng-click="handleBookMarkBucket()">bookmark</i>
                 <!-- <h6 class="count nt-mb">{{bucket.watchers_count}}</h6> -->
             </span>
             <span class="counter nt-mb">

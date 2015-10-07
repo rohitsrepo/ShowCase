@@ -1,6 +1,6 @@
 <div ng-cloak masonry masonry-options="{ transitionDuration: '0' }" class="arts-container profile-container" infinite-scroll="loadMoreBookmarks()" infinite-scroll-distance='1' infinite-scroll-disabled='bookmarksMeta.busy || bookmarksMeta.disableGetMore'>
     <div class="masonry-brick container profile-art-container" ng-repeat="bookmark in bookmarks">
-        <div class="art">
+        <div class="art" ng-show="bookmark.bookmark_type == 'AR' ">
             <article class="art-content">
                 <img ng-src="[[bookmark.content.matter_350]]" alt="[[bookmark.content.title]]">
                 <div ng-cloak ng-show="bookmark.content.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
@@ -30,6 +30,27 @@
                     <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-show="bookmark.content.is_bookmarked">bookmark</i>
             </section>
         </div> <!-- art -->
+
+
+        <section class="feed-bucket" ng-show="bookmark.bookmark_type == 'BK'">
+            <div class="bucket-picture" ng-style="{'background-image': 'url([[bookmark.content.picture]])'}">
+                <section class="bucket-inset-details" ui-sref="bucket({userSlug: bookmark.content.owner.slug, bucketSlug: bookmark.content.slug})">
+                    <h2>[[bookmark.content.name | titlecase]]</h2>
+                    <h3>[[bookmark.content.description]]</h3>
+                    <div class="by-user">By</div>
+                    <h3>[[bookmark.content.owner.name | titlecase ]]</h3>
+                    <div class="arts-count">[[bookmark.content.compositions_count]] Artworks</div>
+                    <div class="arts-count">[[bookmark.content.views]] Views</div>
+                    <section class="bucket-inset-details-actions">
+                        <i class="material-icons" ng-click="shareBucket($event, $index)" >share</i>
+                        <i class="material-icons" ng-cloak ng-hide="bookmark.content.is_watched" ng-click="watchBucket($event, $index)">star_border</i>
+                        <i class="material-icons" ng-cloak ng-show="bookmark.content.is_watched" ng-click="unwatchBucket($event, $index)">star</i>
+                        <i class="material-icons" ng-cloak ng-hide="bookmark.content.is_bookmarked" ng-click="handleBookMarkBucket($event, $index)">bookmark_border</i>
+                        <i class="material-icons" ng-cloak ng-show="bookmark.content.is_bookmarked" ng-click="handleBookMarkBucket($event, $index)">bookmark</i>
+                    </section>
+                </section>
+            </div>
+        </section>
     </div>
 
     <section ng-cloak ng-show="bookmarksMeta.noWorks" class="empty-placeholder">

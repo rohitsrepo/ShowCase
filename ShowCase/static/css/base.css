@@ -605,23 +605,27 @@ body::-webkit-scrollbar-thumb {
 .feed-bucket .bucket-picture .bucket-inset-details h2 {
     font-size: 1.5em;
     line-height: 1.5em;
+    color: white;
 }
 
 .feed-bucket .bucket-picture .bucket-inset-details .by-user {
     font-size: 0.8em;
     margin-top: 80px;
     line-height: 1.5em;
+    color: white;
 }
 
 .feed-bucket .bucket-picture .bucket-inset-details h3 {
     font-size: 1em;
     line-height: 1.5em;
+    color: white;
 }
 
 .feed-bucket .bucket-picture .bucket-inset-details .arts-count {
     font-size: 0.7em;
     margin-top: 10px;
     display: inline;
+    color: white;
 }
 
 .feed-bucket .bucket-picture .bucket-inset-details .bucket-inset-details-actions {

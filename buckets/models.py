@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
+from django.contrib.contenttypes.fields import GenericRelation
 
 from ShowCase.slugger import unique_slugify
 
 from accounts.models import User
+from bookmarks.models import BookMark
 from compositions.models import Composition
 from compositions.imageTools import compress
 from feeds.models import Fresh, bind_fresh_feed, Staff, bind_staff_feed
@@ -27,6 +29,8 @@ class Bucket(models.Model):
 
     watchers = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name='watched_buckets')
+
+    bookers = GenericRelation(BookMark, related_query_name='booked_buckets')
 
     def save(self, *args, **kwargs):
         unique_slugify(self, self.name)
@@ -73,6 +77,14 @@ class Bucket(models.Model):
 
     def is_watched(self, user_id):
         return self.watchers.filter(id=user_id).exists()
+
+
+    def is_bookmarked(self, user_id):
+        return self.bookers.filter(owner=user_id).exists()
+
+    @property
+    def bookmarks_count(self):
+        return self.bookers.count()
 
     def add_to_staff_feed(self):
         Staff.objects.create(feed_type=Staff.BUCKET,

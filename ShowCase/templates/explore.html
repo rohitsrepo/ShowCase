@@ -85,6 +85,8 @@
                             <i class="material-icons" ng-click="shareBucket($event, $index)" >share</i>
                             <i class="material-icons" ng-cloak ng-hide="art.content.is_watched" ng-click="watchBucket($event, $index)">star_border</i>
                             <i class="material-icons" ng-cloak ng-show="art.content.is_watched" ng-click="unwatchBucket($event, $index)">star</i>
+                            <i class="material-icons" ng-cloak ng-hide="art.content.is_bookmarked" ng-click="handleBookMarkBucket($event, $index)">bookmark_border</i>
+                            <i class="material-icons" ng-cloak ng-show="art.content.is_bookmarked" ng-click="handleBookMarkBucket($event, $index)">bookmark</i>
                         </section>
                     </section>
                 </div>

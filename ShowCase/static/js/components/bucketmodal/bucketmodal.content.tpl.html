@@ -10,6 +10,8 @@
         <span class="counter counter-watchers">
             <i class="material-icons action content-action" ng-cloak ng-hide="bucket.is_watched" ng-click="watchBucket()">star_border</i>
             <i class="material-icons action content-action" ng-cloak ng-show="bucket.is_watched" ng-click="unwatchBucket()">star</i>
+            <i class="material-icons action content-action" ng-cloak ng-hide="bucket.is_bookmarked" ng-click="handleBookMarkBucket()">bookmark_border</i>
+            <i class="material-icons action content-action" ng-cloak ng-show="bucket.is_bookmarked" ng-click="handleBookMarkBucket()">bookmark</i>
             <!-- <h6 class="count">[[bucket.watchers_count]]</h6> -->
         </span>
         <span class="counter nt-mb">

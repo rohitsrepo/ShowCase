@@ -33,6 +33,7 @@ angular.module('UserApp')
                 $scope.bookmarksMeta.previous = response.previous;
 
                 for (var i = 0; i < response.results.length; i++) {
+                    console.log(response.results[i]);
                     $scope.bookmarks.push(response.results[i]);
                 }
 

@@ -12,6 +12,7 @@ def series_main(request, user_slug, bucket_slug):
         raise Http404
 
     is_watched = bucket.is_watched(request.user.id)
+    is_bookmarked = bucket.is_bookmarked(request.user.id)
     has_ownership = bucket.has_ownership(request.user.id)
 
     open_graph_images = [composition.matter.url for composition in bucket.compositions.all().order_by('-bucketmembership__added')[:5]]
@@ -24,5 +25,6 @@ def series_main(request, user_slug, bucket_slug):
      'is_watched': is_watched,
      'is_me': is_me,
      'has_ownership': has_ownership,
+     'is_bookmarked': is_bookmarked,
      'open_graph_images': open_graph_images})
     return render_to_response("bucket.html", context)

@@ -25,6 +25,7 @@ class BucketSerializer(serializers.ModelSerializer):
     has_ownership = serializers.SerializerMethodField('get_ownership')
     is_watched = serializers.SerializerMethodField('get_is_watched')
     composition_added = serializers.SerializerMethodField('get_composition_added')
+    is_bookmarked = serializers.SerializerMethodField('get_is_bookmarked')
 
     class Meta:
         model = Bucket
@@ -41,7 +42,8 @@ class BucketSerializer(serializers.ModelSerializer):
             'background_url',
             'has_ownership',
             'is_watched',
-            'composition_added')
+            'composition_added',
+            'is_bookmarked')
         read_only_fields = ('id', 'slug', 'views' )
 
     def get_ownership(self, obj):
@@ -51,6 +53,10 @@ class BucketSerializer(serializers.ModelSerializer):
     def get_is_watched(self, obj):
         request = self.context['request']
         return obj.is_watched(request.user.id)
+
+    def get_is_bookmarked(self, obj):
+        request = self.context['request']
+        return obj.is_bookmarked(request.user.id)
 
     def get_composition_added(self, obj):
         composition_id = self.context.get('composition_id', '')

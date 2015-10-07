@@ -4,6 +4,7 @@ angular.module('BucketApp')
     '$document',
     'auth',
     'bucketModel',
+    'bookService',
     'followBucketService',
     'bucketmodalService',
     'confirmModalService',
@@ -15,6 +16,7 @@ angular.module('BucketApp')
         $document,
         auth,
         bucketModel,
+        bookService,
         followBucketService,
         bucketmodalService,
         confirmModalService,
@@ -51,14 +53,15 @@ angular.module('BucketApp')
         };
 
         $scope.bucket = {};
-        $scope.init = function (id, name, description, background, slug, owner, isWatched, isMe) {
+        $scope.init = function (id, name, description, background, slug, owner, is_watched, is_bookmarked, isMe) {
             $scope.bucket.id = id;
             $scope.bucket.slug = slug;
             $scope.bucket.name = name;
             $scope.bucket.description = description;
             $scope.bucket.background = background;
             $scope.bucket.owner = owner;
-            $scope.bucket.isWatched = isWatched == 'True';
+            $scope.bucket.isWatched = is_watched == 'True';
+            $scope.bucket.is_bookmarked = is_bookmarked == 'True';
 
             $scope.isMe = isMe == 'True';
 
@@ -99,6 +102,19 @@ angular.module('BucketApp')
             followBucketService.unwatchBucket($scope.bucket.id).then(function () {
                 $scope.bucket.isWatched = false;
             });
+        };
+
+        $scope.handleBookMarkBucket = function () {
+            var bucket = $scope.bucket;
+            if (bucket.is_bookmarked) {
+                bookService.unmarkBucket(bucket).then(function () {
+                    bucket.is_bookmarked = false;
+                });
+            } else {
+                bookService.bookmarkBucket(bucket).then(function () {
+                    bucket.is_bookmarked = true;
+                });;
+            }
         };
 
         $scope.removeFromBucket = function (index) {
