@@ -33,7 +33,7 @@
 	<!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}', '{{composition.get_550_url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{composition.artist.name | escapejs}}', '{{is_bookmarked}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}', '{{composition.get_550_url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{composition.artist.name | escapejs}}', '{{is_bookmarked}}', '{{is_admired}}')"{% endblock %}
 
 {% block content_block %}
 	<section class="painting-area">
@@ -49,14 +49,20 @@
 		</div>
 
         <section class="art-actions">
+            <button class="art-action" ng-click="handleAdmire()" ng-cloak ng-hide="composition.is_admired">
+                <i class="material-icons">favorite_border</i>
+            </button>
+            <button class="art-action" ng-click="handleAdmire()" ng-cloak ng-show="composition.is_admired">
+                <i class="material-icons">favorite</i>
+            </button>
+            <button class="art-action" ng-click="showShare()">
+                <i class="material-icons">share</i>
+            </button>
             <button class="art-action" ng-click="handleBookMark()" ng-cloak ng-hide="composition.is_bookMarked">
                 <i class="material-icons">bookmark_border</i>
             </button>
             <button class="art-action" ng-click="handleBookMark()" ng-cloak ng-show="composition.is_bookMarked">
                 <i class="material-icons">bookmark</i>
-            </button>
-            <button class="art-action" ng-click="showShare()">
-                <i class="material-icons">share</i>
             </button>
             <section tools-drawer class="zoom-tools">
                <button class="drawer-control" pan-zoom>

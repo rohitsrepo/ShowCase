@@ -39,21 +39,21 @@ class BookmarksList(APIView):
     def post(self, request, format=None):
         serializer = BookmarkContentCreateSerializer(data=request.DATA, context={'request': request})
         if serializer.is_valid():
-            if (serializer.data['bookmark_type'] == BookMark.ART):
+            if (serializer.data['content_type'] == BookMark.ART):
                 content_object = get_object_or_404(Composition, id=serializer.data['object_id'])
                 ctype = ContentType.objects.get(app_label='compositions', model='composition')
-                bookmark_type = BookMark.ART
-            elif (serializer.data['bookmark_type'] == BookMark.BUCKET):
+                content_type = BookMark.ART
+            elif (serializer.data['content_type'] == BookMark.BUCKET):
                 content_object = get_object_or_404(Bucket, id=serializer.data['object_id'])
                 ctype = ContentType.objects.get(app_label='buckets', model='bucket')
-                bookmark_type = BookMark.BUCKET
+                content_type = BookMark.BUCKET
             else:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
 
             BookMark.objects.get_or_create(owner=request.user,
                 object_id=content_object.id,
                 content_type=ctype,
-                bookmark_type=bookmark_type)
+                bookmark_type=content_type)
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
@@ -62,9 +62,9 @@ class BookmarksList(APIView):
     def delete(self, request, format=None):
         serializer = BookmarkContentCreateSerializer(data=request.DATA, context={'request': request})
         if serializer.is_valid():
-            if (serializer.data['bookmark_type'] == BookMark.ART):
+            if (serializer.data['content_type'] == BookMark.ART):
                 ctype = ContentType.objects.get(app_label='compositions', model='composition')
-            elif (serializer.data['bookmark_type'] == BookMark.BUCKET):
+            elif (serializer.data['content_type'] == BookMark.BUCKET):
                 ctype = ContentType.objects.get(app_label='buckets', model='bucket')
             else:
                 return Response(status=status.HTTP_400_BAD_REQUEST)

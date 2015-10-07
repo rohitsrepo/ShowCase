@@ -25,10 +25,11 @@ class ContentObjectRelatedField(serializers.RelatedField):
 class BookmarkSerializer(serializers.ModelSerializer):
     content = ContentObjectRelatedField(source='content_object')
     owner = ExistingUserSerializer(read_only=True)
+    content_type = serializers.CharField(source='bookmark_type', read_only=True)
 
     class Meta:
         model = BookMark
-        fields = ('id', 'owner', 'created', 'bookmark_type', 'content')
+        fields = ('id', 'owner', 'created', 'content_type', 'content')
 
 class PaginatedBookmarkSerializer(PaginationSerializer):
     class Meta:
@@ -36,10 +37,10 @@ class PaginatedBookmarkSerializer(PaginationSerializer):
 
 
 class BookmarkContentCreateSerializer(serializers.Serializer):
-    bookmark_type = serializers.CharField(max_length=2)
+    content_type = serializers.CharField(max_length=2)
     object_id = serializers.IntegerField()
 
-    def validate_bookmark_type(self, attrs, value):
+    def validate_content_type(self, attrs, value):
         field_value = attrs[value]
         if (field_value == BookMark.ART or field_value==BookMark.BUCKET):
             return attrs

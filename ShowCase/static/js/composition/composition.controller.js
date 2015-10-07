@@ -14,6 +14,7 @@ controller("compositionController", [
 	'alert',
 	'userModel',
     'bookService',
+    'admireService',
     'usermodalService',
     'bucketmodalService',
     'compositionModel',
@@ -32,6 +33,7 @@ controller("compositionController", [
 		alert,
 		userModel,
         bookService,
+        admireService,
         usermodalService,
         bucketmodalService,
         compositionModel,
@@ -63,7 +65,7 @@ controller("compositionController", [
         });
     };
 
-	$scope.init = function (id, url, matter_550, slug, title, artist, isBookMarked) {
+	$scope.init = function (id, url, matter_550, slug, title, artist, isBookMarked, is_admired) {
 		$scope.composition.id = id;
         $scope.composition.url = url;
         $scope.composition.matter = url;
@@ -72,6 +74,7 @@ controller("compositionController", [
         $scope.composition.title = title;
 		$scope.composition.artist = artist;
         $scope.composition.is_bookMarked = isBookMarked == 'True';
+        $scope.composition.is_admired = is_admired == 'True';
 
 		if (url) {
 			analytics.logEvent('Composition', 'Init: ' + url);
@@ -90,6 +93,20 @@ controller("compositionController", [
         } else {
             bookService.bookmarkArt(composition).then(function () {
             	composition.is_bookMarked = true;
+            });;
+        }
+    };
+
+    $scope.handleAdmire = function () {
+        var art = $scope.composition;
+
+        if (art.is_admired) {
+            admireService.unadmireArt(art).then(function () {
+                art.is_admired = false;
+            });
+        } else {
+            admireService.admireArt(art).then(function () {
+                art.is_admired = true;
             });;
         }
     };

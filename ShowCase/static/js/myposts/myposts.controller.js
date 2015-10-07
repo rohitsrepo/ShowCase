@@ -6,6 +6,7 @@ angular.module('MypostsApp')
     'activityModel',
     'bucketmodalService',
     'bookService',
+    'admireService',
     'usermodalService',
     'shareModalService',
     'progress',
@@ -17,6 +18,7 @@ angular.module('MypostsApp')
         activityModel,
         bucketmodalService,
         bookService,
+        admireService,
         usermodalService,
         shareModalService,
         progress,
@@ -92,6 +94,20 @@ angular.module('MypostsApp')
         } else {
             bookService.bookmarkArt(art).then(function () {
                 art.is_bookmarked = true;
+            });;
+        }
+    };
+
+    $scope.handleAdmireArt = function (index) {
+        art = $scope.userActivities[index].composition;
+
+        if (art.is_admired) {
+            admireService.unadmireArt(art).then(function () {
+                art.is_admired = false;
+            });
+        } else {
+            admireService.admireArt(art).then(function () {
+                art.is_admired = true;
             });;
         }
     };

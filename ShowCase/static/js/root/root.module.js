@@ -11,6 +11,7 @@ angular.module('module.root', [
     'module.titlecase',
     'module.analytics',
     'module.bookmark',
+    'module.admiration',
     'module.follow',
     'module.followBucket',
     'module.usermodal',

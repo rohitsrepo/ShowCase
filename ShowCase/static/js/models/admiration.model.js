@@ -1,5 +1,5 @@
 angular.module("module.model")
-.factory('bookmarkModel', ['$http', '$q', function ($http, $q) {
+.factory('admirationModel', ['$http', '$q', function ($http, $q) {
     "use strict";
 
     var service = {};
@@ -7,8 +7,8 @@ angular.module("module.model")
     service.TypeBucket = 'BK';
     service.TypeArt = 'AR';
 
-    service.bookmark = function (object_id, content_type) {
-        return $http.post('/bookmarks',
+    service.admire = function (object_id, content_type) {
+        return $http.post('/admirations',
             {'content_type': content_type,
             'object_id': object_id})
         .then(function (response) {
@@ -18,8 +18,8 @@ angular.module("module.model")
         });
     };
 
-    service.unmark = function (object_id, content_type) {
-        return $http({'url': '/bookmarks',
+    service.unadmire = function (object_id, content_type) {
+        return $http({'url': '/admirations',
             'method': 'DELETE',
             'data': {'content_type': content_type,
             'object_id': object_id},
@@ -31,8 +31,8 @@ angular.module("module.model")
         });
     };
 
-    service.getBookMarks = function (user_id, page) {
-        return $http.get('/bookmarks?page='+page).then(function (response) {
+    service.getAdmirations = function (user_id, page) {
+        return $http.get('/admirations/' + user_id + '?page='+page).then(function (response) {
             return response.data;
         }, function (response) {
             return $q.reject(response);

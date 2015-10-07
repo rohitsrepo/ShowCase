@@ -11,6 +11,7 @@ def composition_main(request, slug):
     context = RequestContext(request, {
         'composition': composition,
         'is_bookmarked': composition.is_bookmarked(request.user.id),
+        'is_admired': composition.is_admired(request.user.id),
         'has_ownership': composition.has_ownership(request.user.id),
         'is_nsfw': composition.is_nsfw(request.user)
     })
@@ -22,6 +23,7 @@ def composition_series(request, slug):
     context = RequestContext(request, {
         'composition': composition,
         'is_bookmarked': composition.is_bookmarked(request.user.id),
+        'is_admired': composition.is_admired(request.user.id),
         'has_ownership': composition.has_ownership(request.user.id),
         'is_nsfw': composition.is_nsfw(request.user)
     })

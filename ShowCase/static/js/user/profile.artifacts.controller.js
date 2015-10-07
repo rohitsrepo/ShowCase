@@ -1,8 +1,9 @@
 angular.module('UserApp')
-.controller('profilePaintingsController', ['$scope',
+.controller('profileArtifactsController', ['$scope',
     '$state',
     'userModel',
     'bookmarkModel',
+    'admirationModel',
     'bookService',
     'admireService',
     'progress',
@@ -14,6 +15,7 @@ angular.module('UserApp')
         $state,
         userModel,
         bookmarkModel,
+        admirationModel,
         bookService,
         admireService,
         progress,
@@ -21,17 +23,15 @@ angular.module('UserApp')
         usermodalService,
         bucketmodalService,
         shareModalService) {
-    $scope.arts = [];
+    $scope.artifacts = [];
     $scope.math = window.Math;
-    $scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', noWorks: false};
+    $scope.artifactsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', noWorks: false};
 
-    var artFetcher = function () {
+    var artifactFetcher = function () {
         var listType = $state.current.data.listType
 
-        if (listType == 'paintings'){
-            return userModel.getCompositions;
-        } else if (listType == 'uploads') {
-            return userModel.getUploads;
+        if (listType == 'admirations') {
+            return admirationModel.getAdmirations;
         } else if (listType == 'bookmarks') {
             return bookmarkModel.getBookMarks
         }
@@ -39,48 +39,48 @@ angular.module('UserApp')
 
     var getCompositions = function () {
 
-        if (!$scope.artsMeta.disableGetMore) {
-            var pageVal = $scope.artsMeta.pageVal;
+        if (!$scope.artifactsMeta.disableGetMore) {
+            var pageVal = $scope.artifactsMeta.pageVal;
             progress.showProgress();
-            artFetcher($scope.artist.id, pageVal).then(function (response) {
-                $scope.artsMeta.next = response.next;
-                $scope.artsMeta.previous = response.previous;
+            artifactFetcher($scope.artist.id, pageVal).then(function (response) {
+                $scope.artifactsMeta.next = response.next;
+                $scope.artifactsMeta.previous = response.previous;
 
                 for (var i = 0; i < response.results.length; i++) {
-                    $scope.arts.push(response.results[i]);
+                    console.log(response.results[i]);
+                    $scope.artifacts.push(response.results[i]);
                 }
 
                 if (response.next == null){
-                    $scope.artsMeta.disableGetMore = true;
+                    $scope.artifactsMeta.disableGetMore = true;
                 }
 
-                if ($scope.arts.length == 0){
-                    console.log('settion it to false');
-                    $scope.artsMeta.noWorks = true;
+                if ($scope.artifacts.length == 0){
+                    $scope.artifactsMeta.noWorks = true;
                 }
 
                 progress.hideProgress();
-                $scope.artsMeta.busy = false;
+                $scope.artifactsMeta.busy = false;
             }, function () {
                 alert.showAlert('We are facing some problems fetching data');
                 progress.hideProgress();
             });
         }
 
-        $scope.artsMeta.pageVal += 1;
+        $scope.artifactsMeta.pageVal += 1;
     };
 
-    $scope.loadMoreCompositions = function () {
-        if ($scope.artsMeta.busy) {
+    $scope.loadMoreArtifacts = function () {
+        if ($scope.artifactsMeta.busy) {
             return;
         }
 
-        $scope.artsMeta.busy = true;
+        $scope.artifactsMeta.busy = true;
         getCompositions();
     }
 
     $scope.handleBookMark = function (index) {
-        var art = $scope.arts[index];
+        var art = $scope.artifacts[index].content;
         if (art.is_bookmarked) {
             bookService.unmarkArt(art).then(function () {
                 art.is_bookmarked = false;
@@ -92,8 +92,23 @@ angular.module('UserApp')
         }
     };
 
+    $scope.handleBookMarkBucket = function (event, index) {
+        event.stopPropagation();
+
+        var bucket = $scope.artifacts[index].content;
+        if (bucket.is_bookmarked) {
+            bookService.unmarkBucket(bucket).then(function () {
+                bucket.is_bookmarked = false;
+            });
+        } else {
+            bookService.bookmarkBucket(bucket).then(function () {
+                bucket.is_bookmarked = true;
+            });;
+        }
+    };
+
     $scope.handleAdmireArt = function (index) {
-        var art = $scope.arts[index];
+        var art = $scope.artifacts[index].content;
         
         if (art.is_admired) {
             admireService.unadmireArt(art).then(function () {
@@ -106,23 +121,38 @@ angular.module('UserApp')
         }
     };
 
+    $scope.handleAdmireBucket = function (event, index) {
+        event.stopPropagation();
+
+        var bucket = $scope.artifacts[index].content;
+        if (bucket.is_admired) {
+            admireService.unadmireBucket(bucket).then(function () {
+                bucket.is_admired = false;
+            });
+        } else {
+            admireService.admireBucket(bucket).then(function () {
+                bucket.is_admired = true;
+            });;
+        }
+    };
+
     $scope.showArtBuckets = function (index) {
-        var art = $scope.arts[index];
+        var art = $scope.artifacts[index].content;
         bucketmodalService.showArtBuckets(art);
     }
 
     $scope.showAddToBucket = function (index) {
-        var art = $scope.arts[index];
+        var art = $scope.artifacts[index].content;
         bucketmodalService.showAddToBucket(art);
     };
 
     $scope.toggleNsfw = function (index) {
-        var art = $scope.arts[index];
+        var art = $scope.artifacts[index].content;
         art.nsfw = false;
     };
 
     $scope.shareArt = function (index) {
-        var art = $scope.arts[index];
+        var art = $scope.artifacts[index].content;
         var base_url = "http://thirddime.com";
         var share_url = base_url + "/arts/" + art.slug;
         var title = 'Artwork: "' + art.title + '" by: ' + art.artist.name;

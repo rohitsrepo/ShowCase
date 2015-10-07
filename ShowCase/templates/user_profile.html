@@ -72,6 +72,9 @@
                 --><a class="contribution" ng-cloak ng-show="[[{{artist.buckets_count}} != 0]] || artist.is_me" ui-sref-active="active" ui-sref="buckets">
                     <h4>Series {{artist.buckets_count}}</h4>
                 </a><!--
+                --><a class="contribution" ng-cloak ng-show="[[{{artist.admirations_count}} != 0]] || artist.is_me" ui-sref-active="active" ui-sref="admirations">
+                    <h4>Admirations {{artist.admirations_count}}</h4>
+                </a><!--
                 --><a class="contribution" ng-cloak ng-show="artist.is_me" ui-sref-active="active" ui-sref="bookmarks">
                     <h4>Bookmarks {{artist.bookmarks_count}}</h4>
                 </a><!--
@@ -98,7 +101,7 @@
 
     <script type="text/javascript" src="/static/js/user/user.module.js"></script>
     <script type="text/javascript" src="/static/js/user/userProfile.controller.js"></script>
-    <script type="text/javascript" src="/static/js/user/profile.bookmarks.controller.js"></script>
+    <script type="text/javascript" src="/static/js/user/profile.artifacts.controller.js"></script>
     <script type="text/javascript" src="/static/js/user/profilePaintings.controller.js"></script>
     <script type="text/javascript" src="/static/js/user/profileBuckets.controller.js"></script>
     <script type="text/javascript" src="/static/js/user/profileActivities.controller.js"></script>

@@ -5,6 +5,7 @@ angular.module('module.bucketmodal')
     'auth',
     'bucketModel',
     'bookService',
+    'admireService',
     'bucketmodalService',
     'confirmModalService',
     'shareModalService',
@@ -18,6 +19,7 @@ angular.module('module.bucketmodal')
         auth,
         bucketModel,
         bookService,
+        admireService,
         bucketmodalService,
         confirmModalService,
         shareModalService,
@@ -159,6 +161,20 @@ angular.module('module.bucketmodal')
         $scope.editBucketMembership = function (index) {
             var membership = $scope.bucketArts[index];
             bucketmodalService.showEditBucketMembership($scope.bucket, membership);
+        };
+
+        $scope.handleAdmireBucket = function () {
+            var bucket = $scope.bucket;
+
+            if (bucket.is_admired) {
+                admireService.unadmireBucket(bucket).then(function () {
+                    bucket.is_admired = false;
+                });
+            } else {
+                admireService.admireBucket(bucket).then(function () {
+                    bucket.is_admired = true;
+                });;
+            }
         };
 
     }

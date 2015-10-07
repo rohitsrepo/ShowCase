@@ -9,6 +9,7 @@ angular.module('ExploreApp')
     'progress',
     'auth',
     'bookService',
+    'admireService',
     'bucketmodalService',
     'usermodalService',
     'shareModalService',
@@ -23,6 +24,7 @@ angular.module('ExploreApp')
         progress,
         auth,
         bookService,
+        admireService,
         bucketmodalService,
         usermodalService,
         shareModalService,
@@ -123,6 +125,19 @@ angular.module('ExploreApp')
         }
     };
 
+    $scope.handleAdmireArt = function (index) {
+        var art = $scope.arts[index].content;
+        if (art.is_admired) {
+            admireService.unadmireArt(art).then(function () {
+                art.is_admired = false;
+            });
+        } else {
+            admireService.admireArt(art).then(function () {
+                art.is_admired = true;
+            });;
+        }
+    };
+
     $scope.handleBookMarkBucket = function (event, index) {
         event.stopPropagation();
 
@@ -134,6 +149,21 @@ angular.module('ExploreApp')
         } else {
             bookService.bookmarkBucket(bucket).then(function () {
                 bucket.is_bookmarked = true;
+            });;
+        }
+    };
+
+    $scope.handleAdmireBucket = function (event, index) {
+        event.stopPropagation();
+
+        var bucket = $scope.arts[index].content;
+        if (bucket.is_admired) {
+            admireService.unadmireBucket(bucket).then(function () {
+                bucket.is_admired = false;
+            });
+        } else {
+            admireService.admireBucket(bucket).then(function () {
+                bucket.is_admired = true;
             });;
         }
     };

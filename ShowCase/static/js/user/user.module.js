@@ -52,9 +52,15 @@ angular.module("UserApp", [
     })
     .state('bookmarks', {
         url: "/bookmarks",
-        templateUrl: "/static/js/user/profile.bookmarks.html",
-        controller: 'profileBookmarksController',
+        templateUrl: "/static/js/user/profile.artifacts.html",
+        controller: 'profileArtifactsController',
         data: {'listType': 'bookmarks'}
+    })
+    .state('admirations', {
+        url: "/admirations",
+        templateUrl: "/static/js/user/profile.artifacts.html",
+        controller: 'profileArtifactsController',
+        data: {'listType': 'admirations'}
     })
     .state('buckets', {
         url: "/series",

@@ -39,6 +39,8 @@
                     <h5> by <a ng-href="/@[[activity.composition.artist.slug]]" target="_blank">[[activity.composition.artist.name | titlecase]]</a></h5>
                 </section><!--
                 --><section class="actions">
+                    <i class="material-icons" ng-cloak ng-hide="activity.composition.is_admired" ng-click="handleAdmireArt($index)">favorite_border</i>
+                    <i class="material-icons" ng-cloak ng-show="activity.composition.is_admired" ng-click="handleAdmireArt($index)">favorite</i>
                     <i class="material-icons" ng-click="shareArt($index)" >share</i>
                     <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-hide="activity.composition.is_bookmarked">bookmark_border</i>
                     <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-show="activity.composition.is_bookmarked">bookmark</i>
@@ -83,6 +85,8 @@
                     <h5> by <a ng-href="/@[[activity.composition.artist.slug]]" target="_blank">[[activity.composition.artist.name | titlecase]]</a></h5>
                 </section><!--
                 --><section class="actions">
+                    <i class="material-icons" ng-cloak ng-hide="activity.composition.is_admired" ng-click="handleAdmireArt($index)">favorite_border</i>
+                    <i class="material-icons" ng-cloak ng-show="activity.composition.is_admired" ng-click="handleAdmireArt($index)">favorite</i>
                     <i class="material-icons" ng-click="shareArt($index)" >share</i>
                     <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-hide="activity.composition.is_bookmarked">bookmark_border</i>
                     <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-show="activity.composition.is_bookmarked">bookmark</i>
@@ -127,6 +131,8 @@
                     <h5> by <a ng-href="/@[[activity.composition.artist.slug]]" target="_blank">[[activity.composition.artist.name | titlecase]]</a></h5>
                 </section><!--
                 --><section class="actions">
+                    <i class="material-icons" ng-cloak ng-hide="activity.composition.is_admired" ng-click="handleAdmireArt($index)">favorite_border</i>
+                    <i class="material-icons" ng-cloak ng-show="activity.composition.is_admired" ng-click="handleAdmireArt($index)">favorite</i>
                     <i class="material-icons" ng-click="shareArt($index)" >share</i>
                     <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-hide="activity.composition.is_bookmarked">bookmark_border</i>
                     <i class="material-icons" ng-click="handleBookMark($index)" ng-cloak ng-show="activity.composition.is_bookmarked">bookmark</i>

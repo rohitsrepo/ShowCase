@@ -5,6 +5,7 @@ angular.module('BucketApp')
     'auth',
     'bucketModel',
     'bookService',
+    'admireService',
     'followBucketService',
     'bucketmodalService',
     'confirmModalService',
@@ -17,6 +18,7 @@ angular.module('BucketApp')
         auth,
         bucketModel,
         bookService,
+        admireService,
         followBucketService,
         bucketmodalService,
         confirmModalService,
@@ -53,14 +55,14 @@ angular.module('BucketApp')
         };
 
         $scope.bucket = {};
-        $scope.init = function (id, name, description, background, slug, owner, is_watched, is_bookmarked, isMe) {
+        $scope.init = function (id, name, description, background, slug, owner, is_admired, is_bookmarked, isMe) {
             $scope.bucket.id = id;
             $scope.bucket.slug = slug;
             $scope.bucket.name = name;
             $scope.bucket.description = description;
             $scope.bucket.background = background;
             $scope.bucket.owner = owner;
-            $scope.bucket.isWatched = is_watched == 'True';
+            $scope.bucket.is_admired = is_admired == 'True';
             $scope.bucket.is_bookmarked = is_bookmarked == 'True';
 
             $scope.isMe = isMe == 'True';
@@ -91,18 +93,6 @@ angular.module('BucketApp')
                 $scope.bucketArts[currentShowIndex].show = true;
             }
         }
-
-        $scope.watchBucket = function () {
-            followBucketService.watchBucket($scope.bucket.id).then(function () {
-                $scope.bucket.isWatched = true;
-            });
-        };
-
-        $scope.unwatchBucket = function () {
-            followBucketService.unwatchBucket($scope.bucket.id).then(function () {
-                $scope.bucket.isWatched = false;
-            });
-        };
 
         $scope.handleBookMarkBucket = function () {
             var bucket = $scope.bucket;
@@ -167,6 +157,20 @@ angular.module('BucketApp')
         $scope.editBucketMembership = function (index) {
             var membership = $scope.bucketArts[index];
             bucketmodalService.showEditBucketMembership($scope.bucket, membership);
+        };
+
+        $scope.handleAdmireBucket = function () {
+            var bucket = $scope.bucket;
+
+            if (bucket.is_admired) {
+                admireService.unadmireBucket(bucket).then(function () {
+                    bucket.is_admired = false;
+                });
+            } else {
+                admireService.admireBucket(bucket).then(function () {
+                    bucket.is_admired = true;
+                });;
+            }
         };
 
     }

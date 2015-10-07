@@ -25,10 +25,11 @@ class ContentObjectRelatedField(serializers.RelatedField):
 class AdmirationSerializer(serializers.ModelSerializer):
     content = ContentObjectRelatedField(source='content_object')
     owner = ExistingUserSerializer(read_only=True)
+    content_type = serializers.CharField(source='admire_type', read_only=True)
 
     class Meta:
         model = Admiration
-        fields = ('id', 'owner', 'created', 'admire_type', 'content')
+        fields = ('id', 'owner', 'created', 'content_type', 'content')
 
 class PaginatedAdmirationSerializer(PaginationSerializer):
     class Meta:
@@ -36,10 +37,10 @@ class PaginatedAdmirationSerializer(PaginationSerializer):
 
 
 class AdmirationContentCreateSerializer(serializers.Serializer):
-    admire_type = serializers.CharField(max_length=2)
+    content_type = serializers.CharField(max_length=2)
     object_id = serializers.IntegerField()
 
-    def validate_admire_type(self, attrs, value):
+    def validate_content_type(self, attrs, value):
         field_value = attrs[value]
         if (field_value == Admiration.ART or field_value==Admiration.BUCKET):
             return attrs

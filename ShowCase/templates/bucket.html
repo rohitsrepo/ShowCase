@@ -40,7 +40,7 @@
     <!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="bucketController" ng-init="init({{bucket.id}}, '{{bucket.name | escapejs}}', '{{bucket.description | escapejs}}', '{{bucket.picture}}', '{{bucket.slug}}', '{{bucket.owner.name | escapejs}}', '{{is_watched}}', '{{is_bookmarked}}', '{{is_me}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="bucketController" ng-init="init({{bucket.id}}, '{{bucket.name | escapejs}}', '{{bucket.description | escapejs}}', '{{bucket.picture}}', '{{bucket.slug}}', '{{bucket.owner.name | escapejs}}', '{{is_admired}}', '{{is_bookmarked}}', '{{is_me}}')"{% endblock %}
 
 {% block content_block %}
 
@@ -52,10 +52,11 @@
         <section class="modal-actions-header">
             <i class="material-icons action content-action" ng-cloak ng-show="'{{has_ownership}}' == 'True'" ng-click="showEditBucket()">edit</i>
             <i class="material-icons action content-action" ng-cloak ng-show="'{{has_ownership}}' == 'True'" ng-click="deleteBucket()">delete</i>
-            <i class="material-icons action content-action" ng-click="showShare()">share</i>
+            
             <span class="counter counter-watchers">
-                <i class="material-icons action content-action" ng-cloak ng-hide="bucket.isWatched" ng-click="watchBucket()">star_border</i>
-                <i class="material-icons action content-action" ng-cloak ng-show="bucket.isWatched" ng-click="unwatchBucket()">star</i>
+                <i class="material-icons action content-action" ng-cloak ng-hide="bucket.is_admired" ng-click="handleAdmireBucket()">favorite_border</i>
+                <i class="material-icons action content-action" ng-cloak ng-show="bucket.is_admired" ng-click="handleAdmireBucket()">favorite</i>
+                <i class="material-icons action content-action" ng-click="showShare()">share</i>
                 <i class="material-icons action content-action" ng-cloak ng-hide="bucket.is_bookmarked" ng-click="handleBookMarkBucket()">bookmark_border</i>
                 <i class="material-icons action content-action" ng-cloak ng-show="bucket.is_bookmarked" ng-click="handleBookMarkBucket()">bookmark</i>
                 <!-- <h6 class="count nt-mb">{{bucket.watchers_count}}</h6> -->

@@ -135,6 +135,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     def bookmarks_count(self):
         return self.bookmarks.count()
 
+    @property
+    def admirations_count(self):
+        return self.admirations.count()
+
     def is_followed(self, user_id):
         return self.followers.filter(id=user_id).exists()
 

@@ -2,10 +2,10 @@ angular.module('module.bookmark', ['module.model', 'module.util'])
 .factory('bookService', ['$q', 'auth', 'bookmarkModel', 'progress', 'alert', function ($q, auth, bookmarkModel, progress, alert) {
 	var service = {};
 
-	var bookmark = function (object_id, bookmark_type) {
+	var bookmark = function (object_id, content_type) {
 		return auth.runWithAuth(function () {
 			progress.showProgress();
-			return bookmarkModel.bookmark(object_id, bookmark_type).then(function (response) {
+			return bookmarkModel.bookmark(object_id, content_type).then(function (response) {
 				progress.hideProgress();
 				return $q.when();
 			}, function () {
@@ -24,10 +24,10 @@ angular.module('module.bookmark', ['module.model', 'module.util'])
         return bookmark(bucket.id, bookmarkModel.TypeBucket);
     };
 
-	var unmark = function (object_id, bookmark_type) {
+	var unmark = function (object_id, content_type) {
 		return auth.runWithAuth(function () {
 			progress.showProgress();
-			return bookmarkModel.unmark(object_id, bookmark_type).then(function (response) {
+			return bookmarkModel.unmark(object_id, content_type).then(function (response) {
 				progress.hideProgress();
 				return $q.when();
 			}, function () {
