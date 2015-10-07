@@ -82,6 +82,7 @@ INSTALLED_APPS = (
     'allaccess',
     'streams',
     'buckets',
+    'bookmarks',
 )
 
 AUTHENTICATION_BACKENDS = (
