@@ -8,6 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('accounts', '0011_user_nsfw'),
+        ('bookmarks', '0001_initial'),
     ]
 
     operations = [
