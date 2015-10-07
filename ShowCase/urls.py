@@ -54,6 +54,7 @@ urlpatterns += patterns('',
                        url(r'^content', include('contentManager.urls')),
                        url(r'^buckets', include('buckets.urls')),
                        url(r'^bookmarks', include('bookmarks.urls')),
+                       url(r'^admirations', include('admirations.urls')),
 		       )
 
 # Robots.txt

@@ -15,6 +15,7 @@ from .imageTools import bind_image_resize_handler, WIDTH_READER, WIDTH_STICKY, r
 from posts.models import Post, bind_post
 from feeds.models import Fresh, bind_fresh_feed, Staff, bind_staff_feed
 from bookmarks.models import BookMark
+from admirations.models import Admiration
 
 def get_upload_file_name_composition(instance, filename):
     return '%s/%s/%s_%s_thirddime%s' % (instance.uploader.id, slugify(instance.artist.name), slugify(instance.artist.name), slugify(instance.title), '.' + filename.split('.')[-1])
@@ -34,6 +35,7 @@ class Composition(models.Model):
     nsfw = models.BooleanField(default=False)
 
     bookers = GenericRelation(BookMark, related_query_name='booked_compositions')
+    admirers = GenericRelation(Admiration, related_query_name='admired_compositions')
 
     class Meta:
         ordering = ('created',)
@@ -158,15 +160,22 @@ class Composition(models.Model):
     def image_path(self):
         return self.matter.path
 
-    def is_bookmarked(self, user_id):
-        return self.bookers.filter(owner=user_id).exists()
-
     def has_ownership(self, user_id):
         return self.uploader.id == user_id
+
+    def is_bookmarked(self, user_id):
+        return self.bookers.filter(owner=user_id).exists()
 
     @property
     def bookmarks_count(self):
         return self.bookers.count()
+
+    def is_admired(self, user_id):
+        return self.admirers.filter(owner=user_id).exists()
+
+    @property
+    def admirers_count(self):
+        return self.admirers.count()
 
     @property
     def buckets_count(self):

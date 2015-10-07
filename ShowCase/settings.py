@@ -83,6 +83,7 @@ INSTALLED_APPS = (
     'streams',
     'buckets',
     'bookmarks',
+    'admirations',
 )
 
 AUTHENTICATION_BACKENDS = (
