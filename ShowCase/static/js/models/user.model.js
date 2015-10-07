@@ -97,30 +97,6 @@ angular.module("module.model")
         });
     };
 
-    service.bookmark = function (art_id) {
-    	return $http.post('/users/bookmarks', {'bookmarks': [art_id]}).then(function (response) {
-    		return response.data;
-    	}, function (response) {
-    		return $q.reject(response);
-    	});
-    };
-
-    service.unmark = function (art_id) {
-    	return $http.delete('/users/bookmarks/'+art_id).then(function (response) {
-    		return response.data;
-    	}, function (response) {
-    		return $q.reject(response);
-    	});
-    };
-
-    service.getBookMarks = function (user_id, page) {
-        return $http.get('/users/bookmarks?page='+page).then(function (response) {
-            return response.data;
-        }, function (response) {
-            return $q.reject(response);
-        });
-    };
-
     service.follow = function (user_id) {
     	return $http.post('/users/follows', {'follows': [user_id]}).then(function (response) {
     		return response.data;

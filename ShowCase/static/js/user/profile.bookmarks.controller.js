@@ -1,5 +1,5 @@
 angular.module('UserApp')
-.controller('profilePaintingsController', ['$scope',
+.controller('profileBookmarksController', ['$scope',
     '$state',
     'userModel',
     'bookmarkModel',
@@ -19,66 +19,54 @@ angular.module('UserApp')
         usermodalService,
         bucketmodalService,
         shareModalService) {
-    $scope.arts = [];
+    $scope.bookmarks = [];
     $scope.math = window.Math;
-    $scope.artsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', noWorks: false};
-
-    var artFetcher = function () {
-        var listType = $state.current.data.listType
-
-        if (listType == 'paintings'){
-            return userModel.getCompositions;
-        } else if (listType == 'uploads') {
-            return userModel.getUploads;
-        } else if (listType == 'bookmarks') {
-            return bookmarkModel.getBookMarks
-        }
-    }();
+    $scope.bookmarksMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', noWorks: false};
 
     var getCompositions = function () {
 
-        if (!$scope.artsMeta.disableGetMore) {
-            var pageVal = $scope.artsMeta.pageVal;
+        if (!$scope.bookmarksMeta.disableGetMore) {
+            var pageVal = $scope.bookmarksMeta.pageVal;
             progress.showProgress();
-            artFetcher($scope.artist.id, pageVal).then(function (response) {
-                $scope.artsMeta.next = response.next;
-                $scope.artsMeta.previous = response.previous;
+            bookmarkModel.getBookMarks($scope.artist.id, pageVal).then(function (response) {
+                $scope.bookmarksMeta.next = response.next;
+                $scope.bookmarksMeta.previous = response.previous;
 
                 for (var i = 0; i < response.results.length; i++) {
-                    $scope.arts.push(response.results[i]);
+                    $scope.bookmarks.push(response.results[i]);
                 }
 
                 if (response.next == null){
-                    $scope.artsMeta.disableGetMore = true;
+                    $scope.bookmarksMeta.disableGetMore = true;
                 }
 
-                if ($scope.arts.length == 0){
+                if ($scope.bookmarks.length == 0){
                     console.log('settion it to false');
-                    $scope.artsMeta.noWorks = true;
+                    $scope.bookmarksMeta.noWorks = true;
                 }
 
                 progress.hideProgress();
-                $scope.artsMeta.busy = false;
+                $scope.bookmarksMeta.busy = false;
             }, function () {
                 alert.showAlert('We are facing some problems fetching data');
                 progress.hideProgress();
             });
         }
 
-        $scope.artsMeta.pageVal += 1;
+        $scope.bookmarksMeta.pageVal += 1;
     };
 
-    $scope.loadMoreCompositions = function () {
-        if ($scope.artsMeta.busy) {
+    $scope.loadMoreBookmarks = function () {
+        if ($scope.bookmarksMeta.busy) {
             return;
         }
 
-        $scope.artsMeta.busy = true;
+        $scope.bookmarksMeta.busy = true;
         getCompositions();
     }
 
     $scope.handleBookMark = function (index) {
-        art = $scope.arts[index]
+        var art = $scope.bookmarks[index].content;
         if (art.is_bookmarked) {
             bookService.unmarkArt(art).then(function () {
                 art.is_bookmarked = false;
@@ -91,22 +79,22 @@ angular.module('UserApp')
     };
 
     $scope.showArtBuckets = function (index) {
-        var art = $scope.arts[index];
+        var art = $scope.bookmarks[index].content;
         bucketmodalService.showArtBuckets(art);
     }
 
     $scope.showAddToBucket = function (index) {
-        var art = $scope.arts[index];
+        var art = $scope.bookmarks[index].content;
         bucketmodalService.showAddToBucket(art);
     };
 
     $scope.toggleNsfw = function (index) {
-        var art = $scope.arts[index];
+        var art = $scope.bookmarks[index].content;
         art.nsfw = false;
     };
 
     $scope.shareArt = function (index) {
-        var art = $scope.arts[index];
+        var art = $scope.bookmarks[index].content;
         var base_url = "http://thirddime.com";
         var share_url = base_url + "/arts/" + art.slug;
         var title = 'Artwork: "' + art.title + '" by: ' + art.artist.name;

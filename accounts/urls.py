@@ -3,7 +3,6 @@ from django.conf.urls import patterns, url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 
 from . import views
-from . import userbookmarks
 from . import userfollows
 from .auth_views import EmailPermissionRedirect, CustomUserCallback
 
@@ -26,8 +25,6 @@ urlpatterns = patterns('',
                       url(r'^/reset-picture$', 'accounts.views.reset_picture'),
                       url(r'^/(?P<pk>[0-9]+)$', views.UserDetail.as_view(), name='user-detail'),
                       url(r'^/(?P<pk>[0-9]+)/set_password$', 'accounts.views.reset_password'),
-                      url(r'^/bookmarks$', userbookmarks.UserBookmarksList.as_view()),
-                      url(r'^/bookmarks/(?P<pk>[0-9]+)$', userbookmarks.UserBookmarksDelete.as_view()),
                       url(r'^/follows$', userfollows.UserFollowsAdd.as_view()),
                       url(r'^/follows/(?P<pk>[0-9]+)$', userfollows.UserFollowsDelete.as_view()),
                       url(r'^/(?P<pk>[0-9]+)/follows$', userfollows.UserFollowsRead.as_view()),

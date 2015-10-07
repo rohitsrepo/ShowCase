@@ -55,7 +55,7 @@ angular.module('module.usermodal')
         var getNoUserAction = function () {
             if (modalType == 'bookmarkers') {
                 return function () {
-                    bookService.bookmark(target).then(function () {
+                    bookService.bookmarkArt(target).then(function () {
                         close(getActionResult());
                     })
                 };

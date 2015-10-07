@@ -53,6 +53,7 @@ urlpatterns += patterns('',
                        url(r'^feeds', include('feeds.urls')),
                        url(r'^content', include('contentManager.urls')),
                        url(r'^buckets', include('buckets.urls')),
+                       url(r'^bookmarks', include('bookmarks.urls')),
 		       )
 
 # Robots.txt

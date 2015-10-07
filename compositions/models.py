@@ -6,6 +6,7 @@ from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericRelation
 
 from ShowCase.slugger import unique_slugify
 
@@ -13,6 +14,7 @@ from .imageTools import bind_image_resize_handler, WIDTH_READER, WIDTH_STICKY, r
 
 from posts.models import Post, bind_post
 from feeds.models import Fresh, bind_fresh_feed, Staff, bind_staff_feed
+from bookmarks.models import BookMark
 
 def get_upload_file_name_composition(instance, filename):
     return '%s/%s/%s_%s_thirddime%s' % (instance.uploader.id, slugify(instance.artist.name), slugify(instance.artist.name), slugify(instance.title), '.' + filename.split('.')[-1])
@@ -30,6 +32,8 @@ class Composition(models.Model):
     matter = models.ImageField(upload_to=get_upload_file_name_composition, max_length=500)
     views = models.IntegerField(default=0)
     nsfw = models.BooleanField(default=False)
+
+    bookers = GenericRelation(BookMark, related_query_name='booked_compositions')
 
     class Meta:
         ordering = ('created',)
@@ -155,14 +159,14 @@ class Composition(models.Model):
         return self.matter.path
 
     def is_bookmarked(self, user_id):
-        return self.bookers.filter(id=user_id).exists()
+        return self.bookers.filter(owner=user_id).exists()
 
     def has_ownership(self, user_id):
         return self.uploader.id == user_id
 
     @property
     def bookmarks_count(self):
-        return self.bookers.all().count()
+        return self.bookers.count()
 
     @property
     def buckets_count(self):

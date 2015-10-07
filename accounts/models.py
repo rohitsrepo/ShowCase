@@ -48,8 +48,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     login_type = models.CharField(default='NT', max_length=2, choices=LOGIN_CHOICES)
 
-    bookmarks = models.ManyToManyField(Composition, related_name='bookers')
-
     follows = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name='followers')
 

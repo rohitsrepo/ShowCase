@@ -52,8 +52,8 @@ angular.module("UserApp", [
     })
     .state('bookmarks', {
         url: "/bookmarks",
-        templateUrl: "/static/js/user/profile.paintings.html",
-        controller: 'profilePaintingsController',
+        templateUrl: "/static/js/user/profile.bookmarks.html",
+        controller: 'profileBookmarksController',
         data: {'listType': 'bookmarks'}
     })
     .state('buckets', {

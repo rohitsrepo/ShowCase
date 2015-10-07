@@ -84,11 +84,11 @@ controller("compositionController", [
     	var composition = $scope.composition;
 
         if (composition.is_bookMarked) {
-            bookService.unmark(composition).then(function () {
+            bookService.unmarkArt(composition).then(function () {
             	composition.is_bookMarked = false;
             });
         } else {
-            bookService.bookmark(composition).then(function () {
+            bookService.bookmarkArt(composition).then(function () {
             	composition.is_bookMarked = true;
             });;
         }

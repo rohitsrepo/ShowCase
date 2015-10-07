@@ -65,11 +65,11 @@ angular.module('UserApp')
         $scope.handleBookMark = function (index) {
             art = $scope.userActivities[index].composition;
             if (art.is_bookmarked) {
-                bookService.unmark(art).then(function () {
+                bookService.unmarkArt(art).then(function () {
                     art.is_bookmarked = false;
                 });
             } else {
-                bookService.bookmark(art).then(function () {
+                bookService.bookmarkArt(art).then(function () {
                     art.is_bookmarked = true;
                 });;
             }
