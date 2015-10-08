@@ -17,13 +17,11 @@ class UserSerializer(serializers.ModelSerializer):
 
 class BucketSerializer(serializers.ModelSerializer):
     compositions_count = serializers.CharField(source='compositions_count', read_only=True)
-    watchers_count = serializers.CharField(source='watchers_count', read_only=True)
     has_background = serializers.CharField(source='has_background', read_only=True)
     background_url = serializers.CharField(source='background_url', read_only=True)
     picture = serializers.CharField(source='picture', read_only=True)
     owner = UserSerializer(read_only=True)
     has_ownership = serializers.SerializerMethodField('get_ownership')
-    is_watched = serializers.SerializerMethodField('get_is_watched')
     composition_added = serializers.SerializerMethodField('get_composition_added')
     is_bookmarked = serializers.SerializerMethodField('get_is_bookmarked')
     is_admired = serializers.SerializerMethodField('get_is_admired')
@@ -37,12 +35,10 @@ class BucketSerializer(serializers.ModelSerializer):
             'slug',
             'views',
             'compositions_count',
-            'watchers_count',
             'picture',
             'has_background',
             'background_url',
             'has_ownership',
-            'is_watched',
             'composition_added',
             'is_bookmarked',
             'is_admired')
@@ -51,10 +47,6 @@ class BucketSerializer(serializers.ModelSerializer):
     def get_ownership(self, obj):
         request = self.context['request']
         return obj.has_ownership(request.user.id)
-
-    def get_is_watched(self, obj):
-        request = self.context['request']
-        return obj.is_watched(request.user.id)
 
     def get_is_bookmarked(self, obj):
         request = self.context['request']

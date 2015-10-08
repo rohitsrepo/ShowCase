@@ -2,7 +2,6 @@ angular.module('module.bucketmodal')
 .controller('bucketmodalShowController', ['$scope',
     'bucketModel',
     'bucketmodalService',
-    'followBucketService',
     'shareModalService',
     'bookService',
     'admireService',
@@ -13,7 +12,6 @@ angular.module('module.bucketmodal')
     function ($scope,
         bucketModel,
         bucketmodalService,
-        followBucketService,
         shareModalService,
         bookService,
         admireService,
@@ -65,26 +63,6 @@ angular.module('module.bucketmodal')
             var description = bucket.description + '...Complete series can be found at: ' + share_url;
             var media = 'http://thirddime.com' + bucket.picture;
             shareModalService.shareThisPage(share_url, title, description, media);
-        };
-
-        $scope.watchBucket = function (event, index) {
-            // Stop route change on click
-            event.stopPropagation();
-
-            var bucket = $scope.showArtBuckets[index];
-            followBucketService.watchBucket(bucket.id).then(function () {
-                bucket.is_watched = true;
-            });
-        };
-
-        $scope.unwatchBucket = function (event, index) {
-            // Stop route change on click
-            event.stopPropagation();
-
-            var bucket = $scope.showArtBuckets[index];
-            followBucketService.unwatchBucket(bucket.id).then(function () {
-                bucket.is_watched = false;
-            });
         };
 
         $scope.handleBookMarkBucket = function (event, index) {

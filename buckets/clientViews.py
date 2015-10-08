@@ -11,7 +11,6 @@ def series_main(request, user_slug, bucket_slug):
     except Bucket.DoesNotExist:
         raise Http404
 
-    is_watched = bucket.is_watched(request.user.id)
     is_bookmarked = bucket.is_bookmarked(request.user.id)
     is_admired = bucket.is_admired(request.user.id)
     has_ownership = bucket.has_ownership(request.user.id)
@@ -23,7 +22,6 @@ def series_main(request, user_slug, bucket_slug):
         is_me = True
 
     context = RequestContext(request, {'bucket': bucket,
-     'is_watched': is_watched,
      'is_me': is_me,
      'has_ownership': has_ownership,
      'is_bookmarked': is_bookmarked,

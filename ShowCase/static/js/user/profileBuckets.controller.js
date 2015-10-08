@@ -4,11 +4,10 @@ angular.module('UserApp')
     'bookService',
     'admireService',
     'bucketmodalService',
-    'followBucketService',
     'shareModalService',
     'progress',
     'alert',
-    function ($scope, bucketModel, bookService, admireService, bucketmodalService, followBucketService, shareModalService, progress, alert) {
+    function ($scope, bucketModel, bookService, admireService, bucketmodalService, shareModalService, progress, alert) {
 
     $scope.noSuchBucket = {
         status: false,
@@ -45,26 +44,6 @@ angular.module('UserApp')
         var description = bucket.description + '...Complete series can be found at: ' + share_url;
         var media = 'http://thirddime.com' + bucket.picture;
         shareModalService.shareThisPage(share_url, title, description, media);
-    };
-
-    $scope.watchBucket = function (event, index) {
-        // Stop route change on click
-        event.stopPropagation();
-
-        var bucket = $scope.userBuckets[index];
-        followBucketService.watchBucket(bucket.id).then(function () {
-            bucket.is_watched = true;
-        });
-    };
-
-    $scope.unwatchBucket = function (event, index) {
-        // Stop route change on click
-        event.stopPropagation();
-
-        var bucket = $scope.userBuckets[index];
-        followBucketService.unwatchBucket(bucket.id).then(function () {
-            bucket.is_watched = false;
-        });
     };
 
     $scope.handleBookMarkBucket = function (event, index) {

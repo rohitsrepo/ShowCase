@@ -13,7 +13,6 @@ angular.module('module.root', [
     'module.bookmark',
     'module.admiration',
     'module.follow',
-    'module.followBucket',
     'module.usermodal',
     'module.confirmModal',
     'module.shareModal',

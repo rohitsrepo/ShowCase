@@ -85,18 +85,6 @@ angular.module('module.bucketmodal')
             close();
         };
 
-        $scope.watchBucket = function () {
-            followBucketService.watchBucket($scope.bucket.id).then(function () {
-                $scope.bucket.is_watched = true;
-            });
-        };
-
-        $scope.unwatchBucket = function () {
-            followBucketService.unwatchBucket($scope.bucket.id).then(function () {
-                $scope.bucket.is_watched = false;
-            });
-        };
-
         $scope.handleBookMarkBucket = function () {
             var bucket = $scope.bucket;
             if (bucket.is_bookmarked) {

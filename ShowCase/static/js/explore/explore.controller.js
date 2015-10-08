@@ -13,7 +13,6 @@ angular.module('ExploreApp')
     'bucketmodalService',
     'usermodalService',
     'shareModalService',
-    'followBucketService',
 	function ($scope,
         $rootScope,
         $document,
@@ -27,8 +26,7 @@ angular.module('ExploreApp')
         admireService,
         bucketmodalService,
         usermodalService,
-        shareModalService,
-        followBucketService) {
+        shareModalService) {
 
     $scope.math = window.Math
 	$scope.arts = [];
@@ -205,26 +203,6 @@ angular.module('ExploreApp')
         var description = bucket.description + '...Complete series can be found at: ' + share_url;
         var media = 'http://thirddime.com' + bucket.picture;
         shareModalService.shareThisPage(share_url, title, description, media);
-    };
-
-    $scope.watchBucket = function (event, index) {
-        // Stop route change on click
-        event.stopPropagation();
-
-        var bucket = $scope.arts[index].content;
-        followBucketService.watchBucket(bucket.id).then(function () {
-            bucket.is_watched = true;
-        });
-    };
-
-    $scope.unwatchBucket = function (event, index) {
-        // Stop route change on click
-        event.stopPropagation();
-
-        var bucket = $scope.arts[index].content;
-        followBucketService.unwatchBucket(bucket.id).then(function () {
-            bucket.is_watched = false;
-        });
     };
 
 }]);

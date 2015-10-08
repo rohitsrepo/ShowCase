@@ -27,10 +27,6 @@ class Bucket(models.Model):
 
     owner = models.ForeignKey(User, related_name='buckets')
     created = models.DateTimeField(auto_now_add=True)
-
-    watchers = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, related_name='watched_buckets')
-
     bookers = GenericRelation(BookMark, related_query_name='booked_buckets')
     admirers = GenericRelation(Admiration, related_query_name='admired_buckets')
 
@@ -50,10 +46,6 @@ class Bucket(models.Model):
     @property
     def compositions_count(self):
         return self.compositions.all().count()
-
-    @property
-    def watchers_count(self):
-        return self.watchers.count()
 
     @property
     def has_background(self):
@@ -76,9 +68,6 @@ class Bucket(models.Model):
                 return composition.get_350_url()
             except:
                 return ''
-
-    def is_watched(self, user_id):
-        return self.watchers.filter(id=user_id).exists()
 
     def is_bookmarked(self, user_id):
         return self.bookers.filter(owner=user_id).exists()
