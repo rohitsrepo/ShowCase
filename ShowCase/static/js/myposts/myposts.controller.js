@@ -110,6 +110,46 @@ angular.module('MypostsApp')
         }
     };
 
+    $scope.shareBucket = function (event, bucket) {
+        // Stop route change on click
+        event.stopPropagation();
+
+        var base_url = "http://thirddime.com";
+        var share_url = base_url + "/@" + bucket.owner.slug + '/series/' + bucket.slug;
+        var title = 'Series: "' + bucket.name + '" by: ' + bucket.owner.name;
+        var description = bucket.description + '...Complete series can be found at: ' + share_url;
+        var media = 'http://thirddime.com' + bucket.picture;
+        shareModalService.shareThisPage(share_url, title, description, media);
+    };
+
+    $scope.handleBookMarkBucket = function (event, bucket) {
+        event.stopPropagation();
+
+        if (bucket.is_bookmarked) {
+            bookService.unmarkBucket(bucket).then(function () {
+                bucket.is_bookmarked = false;
+            });
+        } else {
+            bookService.bookmarkBucket(bucket).then(function () {
+                bucket.is_bookmarked = true;
+            });;
+        }
+    };
+
+    $scope.handleAdmireBucket = function (event, bucket) {
+        event.stopPropagation();
+
+        if (bucket.is_admired) {
+            admireService.unadmireBucket(bucket).then(function () {
+                bucket.is_admired = false;
+            });
+        } else {
+            admireService.admireBucket(bucket).then(function () {
+                bucket.is_admired = true;
+            });;
+        }
+    };
+
     $scope.showArtBuckets = function (art) {
         bucketmodalService.showArtBuckets(art);
     }

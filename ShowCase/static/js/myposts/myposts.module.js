@@ -21,7 +21,7 @@ angular.module("MypostsApp", [
     $urlRouterProvider.otherwise(
         function() {
             window.location.reload();
-        
+
     });
 
     // use the HTML5 History API
@@ -34,6 +34,21 @@ angular.module("MypostsApp", [
     $stateProvider
     .state('posts', {
         url: "/posts"
+    })
+    .state('buckets', {
+        url: "/arts/{artSlug}/series",
+        templateUrl: "/static/js/components/bucketmodal/bucketmodal.show.tpl.html",
+        controller: 'bucketmodalShowController',
+        resolve: {
+            'art': ['$stateParams', 'compositionModel', function ($stateParams, compositionModel) {
+                return compositionModel.getArt($stateParams.artSlug);
+            }],
+            'close': ['$state', function ($state) {
+                return function () {
+                    $state.go('arts');
+                };
+            }]
+        }
     })
     .state('bucket', {
         url: "/@{userSlug}/series/{bucketSlug}",

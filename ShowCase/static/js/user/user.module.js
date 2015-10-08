@@ -63,6 +63,21 @@ angular.module("UserApp", [
         data: {'listType': 'admirations'}
     })
     .state('buckets', {
+        url: "/arts/{artSlug}/series",
+        templateUrl: "/static/js/components/bucketmodal/bucketmodal.show.tpl.html",
+        controller: 'bucketmodalShowController',
+        resolve: {
+            'art': ['$stateParams', 'compositionModel', function ($stateParams, compositionModel) {
+                return compositionModel.getArt($stateParams.artSlug);
+            }],
+            'close': ['$state', function ($state) {
+                return function () {
+                    $state.go('arts');
+                };
+            }]
+        }
+    })
+    .state('userbuckets', {
         url: "/series",
         templateUrl: "/static/js/user/profile.buckets.html",
         controller: 'profileBucketsController'

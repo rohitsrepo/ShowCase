@@ -147,11 +147,11 @@
                         <div class="arts-count">[[activity.content.compositions_count]] Artworks</div>
                         <div class="arts-count">[[activity.content.views]] Views</div>
                         <section class="bucket-inset-details-actions">
-                            <i class="material-icons" ng-cloak ng-hide="activity.content.is_admired" ng-click="handleAdmireBucket($event, $index)">favorite_border</i>
-                            <i class="material-icons" ng-cloak ng-show="activity.content.is_admired" ng-click="handleAdmireBucket($event, $index)">favorite</i>
-                            <i class="material-icons" ng-click="shareBucket($event, $index)" >share</i>
-                            <i class="material-icons" ng-cloak ng-hide="activity.content.is_bookmarked" ng-click="handleBookMarkBucket($event, $index)">bookmark_border</i>
-                            <i class="material-icons" ng-cloak ng-show="activity.content.is_bookmarked" ng-click="handleBookMarkBucket($event, $index)">bookmark</i>
+                            <i class="material-icons" ng-cloak ng-hide="activity.content.is_admired" ng-click="handleAdmireBucket($event, activity.content)">favorite_border</i>
+                            <i class="material-icons" ng-cloak ng-show="activity.content.is_admired" ng-click="handleAdmireBucket($event, activity.content)">favorite</i>
+                            <i class="material-icons" ng-click="shareBucket($event, activity.content)" >share</i>
+                            <i class="material-icons" ng-cloak ng-hide="activity.content.is_bookmarked" ng-click="handleBookMarkBucket($event, activity.content)">bookmark_border</i>
+                            <i class="material-icons" ng-cloak ng-show="activity.content.is_bookmarked" ng-click="handleBookMarkBucket($event, activity.content)">bookmark</i>
                         </section>
                     </section>
                 </div>

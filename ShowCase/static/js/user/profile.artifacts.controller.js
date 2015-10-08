@@ -47,7 +47,6 @@ angular.module('UserApp')
                 $scope.artifactsMeta.previous = response.previous;
 
                 for (var i = 0; i < response.results.length; i++) {
-                    console.log(response.results[i]);
                     $scope.artifacts.push(response.results[i]);
                 }
 
@@ -109,7 +108,7 @@ angular.module('UserApp')
 
     $scope.handleAdmireArt = function (index) {
         var art = $scope.artifacts[index].content;
-        
+
         if (art.is_admired) {
             admireService.unadmireArt(art).then(function () {
                 art.is_admired = false;
