@@ -160,13 +160,6 @@ class CompositionDetail(APIView):
     def get(self, request, slug, format=None):
         composition = self.get_composition(slug, request)
         ser = CompositionSerializer(composition, context={'request': request})
-        ser.data['IsBookmarked'] = False
-        ser.data['IsVoted'] = False
-        if(composition.bookers.filter(slug=request.user.id).exists()):
-            ser.data['IsBookmarked'] = True
-        if request.user.is_authenticated() and request.user.votes.filter(composition=composition).exists():
-            ser.data['IsVoted'] = True
-
         return Response(ser.data)
 
     def put(self, request, slug, format=None):

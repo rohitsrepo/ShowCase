@@ -52,7 +52,7 @@
         <section class="modal-actions-header">
             <i class="material-icons action content-action" ng-cloak ng-show="'{{has_ownership}}' == 'True'" ng-click="showEditBucket()">edit</i>
             <i class="material-icons action content-action" ng-cloak ng-show="'{{has_ownership}}' == 'True'" ng-click="deleteBucket()">delete</i>
-            
+
             <span class="counter counter-watchers">
                 <i class="material-icons action content-action" ng-cloak ng-hide="bucket.is_admired" ng-click="handleAdmireBucket()">favorite_border</i>
                 <i class="material-icons action content-action" ng-cloak ng-show="bucket.is_admired" ng-click="handleAdmireBucket()">favorite</i>
@@ -100,8 +100,16 @@
                                 <i class="material-icons action" ng-cloak ng-show="'{{has_ownership}}' == 'True'" ng-click="editBucketMembership($index)">edit</i>
                             </div>
                             <h1><a ng-href="/arts/[[art.composition.slug]]">[[art.composition.title | titlecase]]</a></h1>
+                            <button class="add-bucket-action" ng-click="showAddToBucket($index)">Add to series</button>
                             <div class="by-user">by</div>
                             <h2><a ng-href="/@[[art.composition.artist.slug]]">[[art.composition.artist.name | titlecase]]</a></h2>
+                            <section class="user-actions">
+                                <i class="material-icons" ng-cloak ng-hide="art.composition.is_admired" ng-click="handleAdmireArt($index)">favorite_border</i>
+                                <i class="material-icons" ng-cloak ng-show="art.composition.is_admired" ng-click="handleAdmireArt($index)">favorite</i>
+                                <i class="material-icons" ng-click="shareArt($index)" >share</i>
+                                <i class="material-icons" ng-click="handleBookMarkArt($index)" ng-cloak ng-hide="art.composition.is_bookmarked">bookmark_border</i>
+                                <i class="material-icons" ng-click="handleBookMarkArt($index)" ng-cloak ng-show="art.composition.is_bookmarked">bookmark</i>
+                            </section>
                         </section>
                     </section>
                 </ul>

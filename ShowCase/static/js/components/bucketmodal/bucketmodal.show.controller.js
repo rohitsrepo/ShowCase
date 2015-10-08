@@ -4,11 +4,23 @@ angular.module('module.bucketmodal')
     'bucketmodalService',
     'followBucketService',
     'shareModalService',
+    'bookService',
+    'admireService',
     'close',
     'art',
     'progress',
     'alert',
-    function ($scope, bucketModel, bucketmodalService, followBucketService, shareModalService, close, art, progress, alert) {
+    function ($scope,
+        bucketModel,
+        bucketmodalService,
+        followBucketService,
+        shareModalService,
+        bookService,
+        admireService,
+        close,
+        art,
+        progress,
+        alert) {
 
         $scope.noSuchBucket = {
             status: false,
@@ -73,6 +85,36 @@ angular.module('module.bucketmodal')
             followBucketService.unwatchBucket(bucket.id).then(function () {
                 bucket.is_watched = false;
             });
+        };
+
+        $scope.handleBookMarkBucket = function (event, index) {
+            event.stopPropagation();
+
+            var bucket = $scope.showArtBuckets[index];
+            if (bucket.is_bookmarked) {
+                bookService.unmarkBucket(bucket).then(function () {
+                    bucket.is_bookmarked = false;
+                });
+            } else {
+                bookService.bookmarkBucket(bucket).then(function () {
+                    bucket.is_bookmarked = true;
+                });;
+            }
+        };
+
+        $scope.handleAdmireBucket = function (event, index) {
+            event.stopPropagation();
+
+            var bucket = $scope.showArtBuckets[index];
+            if (bucket.is_admired) {
+                admireService.unadmireBucket(bucket).then(function () {
+                    bucket.is_admired = false;
+                });
+            } else {
+                admireService.admireBucket(bucket).then(function () {
+                    bucket.is_admired = true;
+                });;
+            }
         };
     }
 ])

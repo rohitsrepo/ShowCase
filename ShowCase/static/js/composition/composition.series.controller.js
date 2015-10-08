@@ -4,16 +4,26 @@ angular.module('CompositionSeriesApp')
     '$document',
     'bucketModel',
     'bucketmodalService',
+    'bookService',
+    'admireService',
     'progress',
     'alert',
-    function ($scope, $rootScope, $document, bucketModel, bucketmodalService, progress, alert) {
+    function ($scope,
+        $rootScope,
+        $document,
+        bucketModel,
+        bucketmodalService,
+        bookService,
+        admireService,
+        progress,
+        alert) {
 
         // Disable scroll on parent page
         $rootScope.$on('$stateChangeSuccess',
         function(event, toState, toParams, fromState, fromParams){
             var body = $document.find('body');
             body.addClass('modal-open');
-            
+
             if (toState.name == 'buckets') {
                 body.removeClass('modal-open');
             }
@@ -29,7 +39,7 @@ angular.module('CompositionSeriesApp')
 
         var getSeries = function (artId) {
             progress.showProgress();
-            
+
             bucketModel.artBuckets(artId).then(function (buckets) {
                 $scope.artBuckets = buckets;
 
@@ -55,6 +65,36 @@ angular.module('CompositionSeriesApp')
             getSeries(id);
         };
 
-        
+        $scope.handleBookMarkBucket = function (event, index) {
+            event.stopPropagation();
+
+            var bucket = $scope.artBuckets[index];
+            if (bucket.is_bookmarked) {
+                bookService.unmarkBucket(bucket).then(function () {
+                    bucket.is_bookmarked = false;
+                });
+            } else {
+                bookService.bookmarkBucket(bucket).then(function () {
+                    bucket.is_bookmarked = true;
+                });;
+            }
+        };
+
+        $scope.handleAdmireBucket = function (event, index) {
+            event.stopPropagation();
+
+            var bucket = $scope.artBuckets[index];
+            if (bucket.is_admired) {
+                admireService.unadmireBucket(bucket).then(function () {
+                    bucket.is_admired = false;
+                });
+            } else {
+                admireService.admireBucket(bucket).then(function () {
+                    bucket.is_admired = true;
+                });;
+            }
+        };
+
+
     }
 ]);

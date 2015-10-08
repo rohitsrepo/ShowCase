@@ -268,7 +268,7 @@
 	height: 100%;
 	opacity: 0;
     transition: all 0.5s;
-    padding-top: 100px;
+    padding-top: 50px;
     line-height: 0.5em;
     color: white;
     background: rgba(0, 0, 0, 0.75);
@@ -289,14 +289,51 @@
 }
 
 .content-container .content-art .art-details h1 {
-	padding-bottom: 100px;
+	padding-bottom: 20px;
+}
+
+.content-container .content-art .art-details .add-bucket-action {
+  width: 200px;
+  margin: 0 auto;
+  margin-bottom: 80px;
+  display: inline-block;
+  background: transparent;
+  border: none;
+  font-size: 0.3em;
+  padding: 8px 10px;
+  color: white;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.1s;
+}
+
+.content-container .content-art .art-details .add-bucket-action:hover {
+  background: rgba(0, 0, 0, 1);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.content-container .content-art .art-details .user-actions {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.content-art .art-details .user-actions i {
+    display: inline-block;
+    padding: 0 5px;
+    font-size: 0.35em;
+    cursor: pointer;
 }
 
 .content-container .content-art .art-details h1 a {
 	font-size: 0.5em;
-	text-decoration: underline;
     cursor: pointer;
     color: white;
+}
+
+.content-container .content-art .art-details h1 a:hover {
+    text-decoration: underline;
 }
 
 .content-container .content-art .art-details .by-user {
@@ -304,10 +341,13 @@
 }
 
 .content-container .content-art .art-details h2 a {
-	font-size: 0.4em;
-	text-decoration: underline;
+	font-size: 0.35em;
     color: white;
     cursor: pointer;
+}
+
+.content-container .content-art .art-details h2 a:hover {
+    text-decoration: underline;
 }
 
 /*========== Scrollbar =====================*/
