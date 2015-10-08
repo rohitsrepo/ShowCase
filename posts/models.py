@@ -14,15 +14,22 @@ class Post(models.Model):
     ADD = 'AD'
     CREATE = 'CR'
     BUCKET = 'BK'
+    ADMIRE_ART = 'MA'
+    ADMIRE_BUCKET = 'MB'
 
     TYPE_CHOICES = (
         (INTERPRET, 'interpret'),
         (ADD, 'add'),
         (CREATE, 'create'),
         (BUCKET, 'bucket'),
+        (ADMIRE_ART, 'admire_art'),
+        (ADMIRE_BUCKET, 'admire_bucket'),
     )
 
-    composition = models.ForeignKey('compositions.Composition', related_name='posts')
+    composition = models.ForeignKey('compositions.Composition',
+        related_name='posts',
+        blank=True,
+        null=True)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_posts')
     created = models.DateTimeField(auto_now_add=True)
     public = models.BooleanField(default=True)
@@ -51,12 +58,15 @@ class Post(models.Model):
 
     def create_activity(self):
         activity_data = []
+        target_id = 0
+        if self.composition:
+            target_id = self.composition.id
 
         activity = dict(
             actor=self.creator.id,
             verb=self.post_type,
             object=self.object_id,
-            target=self.composition.id,
+            target=target_id,
             foreign_id=self.id,
             time=self.created,
         )

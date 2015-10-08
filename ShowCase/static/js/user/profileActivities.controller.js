@@ -64,8 +64,7 @@ angular.module('UserApp')
             bucketmodalService.showBucketArts(activity.content);
         };
 
-        $scope.handleBookMark = function (index) {
-            art = $scope.userActivities[index].composition;
+        $scope.handleBookMark = function (art) {
             if (art.is_bookmarked) {
                 bookService.unmarkArt(art).then(function () {
                     art.is_bookmarked = false;
@@ -78,8 +77,7 @@ angular.module('UserApp')
         };
 
 
-        $scope.handleAdmireArt = function (index) {
-            var art = $scope.userActivities[index].composition;
+        $scope.handleAdmireArt = function (art) {
             if (art.is_admired) {
                 admireService.unadmireArt(art).then(function () {
                     art.is_admired = false;
@@ -91,18 +89,15 @@ angular.module('UserApp')
             }
         };
 
-        $scope.showArtBuckets = function (index) {
-            var art = $scope.userActivities[index].composition;
+        $scope.showArtBuckets = function (art) {
             bucketmodalService.showArtBuckets(art);
         }
 
-        $scope.showAddToBucket = function (index) {
-            var art = $scope.userActivities[index].composition;
+        $scope.showAddToBucket = function (art) {
             bucketmodalService.showAddToBucket(art);
         };
 
-        $scope.shareArt = function (index) {
-            var art = $scope.userActivities[index].composition;
+        $scope.shareArt = function (art) {
             var base_url = "http://thirddime.com";
             var share_url = base_url + "/arts/" + art.slug;
             var title = 'Artwork: "' + art.title + '" by: ' + art.artist.name;

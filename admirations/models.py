@@ -3,6 +3,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
+from posts.models import Post, bind_post
 
 class Admiration(models.Model):
     BUCKET = 'BK'
@@ -20,3 +21,26 @@ class Admiration(models.Model):
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
+
+    def create_post(self):
+        if self.admire_type == self.BUCKET:
+            post_type = Post.ADMIRE_BUCKET
+        elif self.admire_type == self.ART:
+            post_type = Post.ADMIRE_ART
+        else:
+            raise("Invalid admire type found")
+
+        return Post(
+            creator=self.owner,
+            post_type = post_type,
+            content_object=self.content_object)
+
+    def get_post(self):
+        return Post.objects.filter(
+            creator=self.owner,
+            post_type=POST.ADMIRE,
+            object_id=self.id,
+            content_type=ContentType.objects.get_for_model(Admiration))
+
+bind_post(Admiration)
+

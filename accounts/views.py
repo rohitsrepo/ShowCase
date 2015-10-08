@@ -225,16 +225,13 @@ def get_current_user(request, format=None):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 @api_view(['GET'])
-@permission_classes((permissions.AllowAny,))
+@permission_classes((permissions.IsAuthenticated, ))
 def search_artist(request, format=None):
     if not request.user.is_authenticated():
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
     query = request.GET.get('q', '')
-    artists = User.objects.filter(
-        Q(pk=request.user.id) | Q(is_artist=True),
-        Q(name__icontains=query)
-    )[:20]
+    artists = User.objects.filter(Q(name__icontains=query))[:20]
 
     ser = ExistingUserSerializer(artists, context={'request': request})
 
