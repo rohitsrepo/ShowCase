@@ -1,13 +1,16 @@
 from django.http import Http404
 from django.template import RequestContext
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.contrib.auth.decorators import login_required
 
 from .models import User
 
 def site_main(request):
-    context = RequestContext(request)
-    return render_to_response("reader.html", context)
+    if request.user.is_authenticated():
+        return redirect('/home')
+    else:
+        context = RequestContext(request)
+        return render_to_response("reader.html", context)
 
 def artist_main(request, slug):
     artist = get_object_or_404(User, slug=slug)
