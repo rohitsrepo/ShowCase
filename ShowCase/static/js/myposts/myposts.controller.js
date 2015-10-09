@@ -33,7 +33,7 @@ angular.module('MypostsApp')
         var body = $document.find('body');
         body.addClass('modal-open');
 
-        if (toState.name == 'posts') {
+        if (toState.name == 'home') {
             body.removeClass('modal-open');
         }
     });
@@ -58,7 +58,7 @@ angular.module('MypostsApp')
         if (!$scope.activitiesMeta.disableGetMore) {
             var next_token = $scope.activitiesMeta.next_token;
             progress.showProgress();
-            activityModel.newsActivities($scope.user.id, next_token).then(function (response) {
+            activityModel.newsActivities(currentUser.id, next_token).then(function (response) {
                 $scope.activitiesMeta.next_token = response.next_token;
 
                 var activity;
@@ -86,6 +86,7 @@ angular.module('MypostsApp')
         }
     };
 
+    var currentUser;
     $scope.loadMoreActivities = function () {
         if ($scope.activitiesMeta.busy) {
             return;
@@ -93,10 +94,19 @@ angular.module('MypostsApp')
 
         $scope.activitiesMeta.busy = true;
 
-        auth.getCurrentUser().then(function (user) {
-            $scope.user = user;
+        if (!currentUser){
+            auth.getCurrentUser().then(function (user) {
+                currentUser = user;
+                getActivities();
+            }, function () {
+                currentUser = {'id': 0};
+                getActivities();
+            });
+        } else {
             getActivities();
-        });
+        }
+
+
     };
 
     $scope.showBucketArts = function (index) {

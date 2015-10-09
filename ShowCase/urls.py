@@ -42,7 +42,7 @@ urlpatterns += patterns('',
 ## Post Urls
 urlpatterns += patterns('',
                        url(r'^@(?P<user_slug>[\w-]+)/posts/(?P<post_id>[0-9]+)$', 'posts.clientViews.post_main'),
-                       url(r'^posts$', 'streams.clientViews.posts_main', name='myposts'),
+                       url(r'^home$', 'streams.clientViews.posts_main', name='home'),
     )
 
 # API urls

@@ -58,10 +58,10 @@
             </section>
         </a><!--
         --><nav class="site-navigation nt-mb">
+            <li><a ng-class="{'active' : homeActive}" ng-href="/home">HOME</a></li>
             <li><a ng-class="{'active' : exploreActive}" ng-href="/arts">FRESH</a></li>
             <!-- <li><a ng-href="/artist">ARTISTS</a></li> -->
             <!-- <li><a ng-href="/generes">GENRES</a></li> -->
-            <li><a ng-class="{'active' : postsActive}" ng-href="/posts">POSTS</a></li>
             <li><a ng-href="/blog" target="_blank">BLOG</a></li>
         </nav><!--
         --><section class="site-actions">
@@ -108,10 +108,10 @@
         {% endif %}
         </section><!--
         --><nav class="site-navigation show-mb">
-            <li><a ng-class="{'active' : exploreActive}" ng-href="/arts">ART</a></li>
+            <li><a ng-class="{'active' : homeActive}" ng-href="/home">HOME</a></li>
+            <li><a ng-class="{'active' : exploreActive}" ng-href="/arts">FRESH</a></li>
             <!-- <li><a ng-href="/artist">ARTISTS</a></li> -->
             <!-- <li><a ng-href="/generes">GENRES</a></li> -->
-            <li><a ng-class="{'active' : postsActive}" ng-href="/posts">POSTS</a></li>
             <li><a ng-href="/blog" target="_blank">BLOG</a></li>
         </nav>
     </header>

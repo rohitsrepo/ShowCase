@@ -32,8 +32,8 @@ angular.module("MypostsApp", [
 
     // Now set up the states
     $stateProvider
-    .state('posts', {
-        url: "/posts"
+    .state('home', {
+        url: "/home"
     })
     .state('buckets', {
         url: "/arts/{artSlug}/series",
@@ -45,7 +45,7 @@ angular.module("MypostsApp", [
             }],
             'close': ['$state', function ($state) {
                 return function () {
-                    $state.go('arts');
+                    $state.go('home');
                 };
             }]
         }
@@ -60,7 +60,7 @@ angular.module("MypostsApp", [
             }],
             'close': ['$state', function ($state) {
                 return function () {
-                    $state.go('posts');
+                    $state.go('home');
                 };
             }]
         },

@@ -8,15 +8,15 @@ angular.module('module.root')
     function ($scope, $window, $location, auth, uploadmodalService, bucketmodalService) {
 
     $scope.exploreActive = false;
-    $scope.postsActive = false;
+    $scope.homeActive = false;
 
     function initActiveLink() {
         path = window.location.pathname;
 
         if (path=='/arts') {
             $scope.exploreActive = true;
-        } else if (path=='/posts') {
-            $scope.postsActive = true;
+        } else if (path=='/home') {
+            $scope.homeActive = true;
         }
     };
     initActiveLink();
