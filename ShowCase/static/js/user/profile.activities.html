@@ -1,9 +1,9 @@
 <div ng-cloak masonry masonry-options="{ transitionDuration: '0' }" class="arts-container activities-arts-container" infinite-scroll="loadMoreActivities()" infinite-scroll-distance='1' infinite-scroll-disabled='activitiesMeta.busy || activitiesMeta.disableGetMore'>
         <div class="masonry-brick container activities-art-container" ng-repeat="activity in userActivities">
             <div class="art" ng-show="activity.grade == 1">
-                <header ng-show="activity.post_type == 'CR'">Artwork by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
-                <header ng-show="activity.post_type == 'MA'">Artwork admired by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
-                <header ng-show="activity.post_type == 'AD'">Artwork added by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
+                <header ng-show="activity.post_type == 'CR' && !showHeader">Artwork by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
+                <header ng-show="activity.post_type == 'MA' && !showHeader">Artwork admired by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
+                <header ng-show="activity.post_type == 'AD' && !showHeader">Artwork added by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
                 <article class="art-content">
                     <img ng-src="[[activity.content.matter_550]]" alt="[[activity.content.title]]" >
                     <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">

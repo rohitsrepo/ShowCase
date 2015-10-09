@@ -100,6 +100,7 @@ angular.module('MypostsApp')
                 getActivities();
             }, function () {
                 currentUser = {'id': 0};
+                $scope.showHeader = true;
                 getActivities();
             });
         } else {
