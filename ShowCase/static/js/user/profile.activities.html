@@ -1,7 +1,9 @@
 <div ng-cloak masonry masonry-options="{ transitionDuration: '0' }" class="arts-container activities-arts-container" infinite-scroll="loadMoreActivities()" infinite-scroll-distance='1' infinite-scroll-disabled='activitiesMeta.busy || activitiesMeta.disableGetMore'>
-        <div class="masonry-brick container activities-art-container" ng-switch='activity.post_type' ng-repeat="activity in userActivities">
-            <div class="art" ng-switch-when="CR">
-                <header>Artwork by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
+        <div class="masonry-brick container activities-art-container" ng-repeat="activity in userActivities">
+            <div class="art" ng-show="activity.grade == 1">
+                <header ng-show="activity.post_type == 'CR'">Artwork by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
+                <header ng-show="activity.post_type == 'MA'">Artwork admired by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
+                <header ng-show="activity.post_type == 'AD'">Artwork added by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
                 <article class="art-content">
                     <img ng-src="[[activity.content.matter_550]]" alt="[[activity.content.title]]" >
                     <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
@@ -34,75 +36,7 @@
                 </section>
             </div>
 
-            <div class="art" ng-switch-when="MA">
-                <header>Artwork admired by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
-                <article class="art-content">
-                    <img ng-src="[[activity.content.matter_550]]" alt="[[activity.content.title]]" >
-                    <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
-                        <h6>This work is marked not safe</h6>
-                        <h6>Click anywhere to show the work</h6>
-                    </div>
-                    <div class="details-inset">
-                        <section class="inset-details">
-                            <h6>[[activity.content.views]] Views</h6><br>
-                            <h6>[[activity.content.bookmarks_count]] Bookmarks</h6><br>
-                            <h6 class="active" ui-sref="buckets({artSlug: activity.content.slug})">[[activity.content.buckets_count]] Series</h6>
-                        </section>
-
-                        <section class="inset-actions">
-                            <button ng-click="showAddToBucket(activity.content)">Add To Series</button>
-                        </section>
-
-                    </div>
-                </article>
-                <section class="details">
-                    <h4><a ng-href="/arts/[[activity.content.slug]]" target="_blank">[[activity.content.title | titlecase]]</a></h4>
-                    <h5> by <a ng-href="/@[[activity.content.artist.slug]]" target="_blank">[[activity.content.artist.name | titlecase]]</a></h5>
-                </section><!--
-                --><section class="actions">
-                    <i class="material-icons" ng-cloak ng-hide="activity.content.is_admired" ng-click="handleAdmireArt(activity.content)">favorite_border</i>
-                    <i class="material-icons" ng-cloak ng-show="activity.content.is_admired" ng-click="handleAdmireArt(activity.content)">favorite</i>
-                    <i class="material-icons" ng-click="shareArt(activity.content)" >share</i>
-                    <i class="material-icons" ng-click="handleBookMark(activity.content)" ng-cloak ng-hide="activity.content.is_bookmarked">bookmark_border</i>
-                    <i class="material-icons" ng-click="handleBookMark(activity.content)" ng-cloak ng-show="activity.content.is_bookmarked">bookmark</i>
-                </section>
-            </div>
-
-            <div class="art" ng-switch-when="AD">
-                <header>Artwork added by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
-                <article class="art-content">
-                    <img ng-src="[[activity.content.matter_550]]" alt="[[activity.content.title]]" >
-                    <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
-                        <h6>This work is marked not safe</h6>
-                        <h6>Click anywhere to show the work</h6>
-                    </div>
-                    <div class="details-inset">
-                        <section class="inset-details">
-                            <h6>[[activity.content.views]] Views</h6><br>
-                            <h6>[[activity.content.bookmarks_count]] Bookmarks</h6><br>
-                            <h6 class="active" ui-sref="buckets({artSlug: activity.content.slug})">[[activity.content.buckets_count]] Series</h6>
-                        </section>
-
-                        <section class="inset-actions">
-                            <button ng-click="showAddToBucket(activity.content)">Add To Series</button>
-                        </section>
-
-                    </div>
-                </article>
-                <section class="details">
-                    <h4><a ng-href="/arts/[[activity.content.slug]]" target="_blank">[[activity.content.title | titlecase]]</a></h4>
-                    <h5> by <a ng-href="/@[[activity.content.artist.slug]]" target="_blank">[[activity.content.artist.name | titlecase]]</a></h5>
-                </section><!--
-                --><section class="actions">
-                    <i class="material-icons" ng-cloak ng-hide="activity.content.is_admired" ng-click="handleAdmireArt(activity.content)">favorite_border</i>
-                    <i class="material-icons" ng-cloak ng-show="activity.content.is_admired" ng-click="handleAdmireArt(activity.content)">favorite</i>
-                    <i class="material-icons" ng-click="shareArt(activity.content)" >share</i>
-                    <i class="material-icons" ng-click="handleBookMark(activity.content)" ng-cloak ng-hide="activity.content.is_bookmarked">bookmark_border</i>
-                    <i class="material-icons" ng-click="handleBookMark(activity.content)" ng-cloak ng-show="activity.content.is_bookmarked">bookmark</i>
-                </section>
-            </div>
-
-            <div class="art" ng-switch-when="BK">
+            <div class="art" ng-show="activity.grade == 2">
                 <header>Artwork added to series [[activity.content.name]] by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
                 <article class="art-content">
                     <img ng-src="[[activity.composition.matter_550]]" alt="[[activity.composition.title]]" >
@@ -136,7 +70,7 @@
                 </section>
             </div>
 
-            <section class="feed-bucket" ng-switch-when="MB">
+            <section class="feed-bucket" ng-show="activity.grade == 3">
                 <header>Series admired by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
                 <div class="bucket-picture" ng-style="{'background-image': 'url([[activity.content.picture]])'}">
                     <section class="bucket-inset-details" ui-sref="bucket({userSlug: activity.content.owner.slug, bucketSlug: activity.content.slug})">

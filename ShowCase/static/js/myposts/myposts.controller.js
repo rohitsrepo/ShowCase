@@ -38,6 +38,21 @@ angular.module('MypostsApp')
         }
     });
 
+    var classifyActivity = function (activity) {
+        switch (activity.post_type){
+            case 'CR':
+            case 'MA':
+            case 'AD':
+                return 1;
+            case 'BK':
+                return 2;
+            case 'MB':
+                return 3;
+            default:
+                console.log('Invalid activity type found');
+        };
+    };
+
     var getActivities = function () {
 
         if (!$scope.activitiesMeta.disableGetMore) {
@@ -46,8 +61,12 @@ angular.module('MypostsApp')
             activityModel.newsActivities($scope.user.id, next_token).then(function (response) {
                 $scope.activitiesMeta.next_token = response.next_token;
 
+                var activity;
                 for (var i = 0; i < response.results.length; i++) {
-                    $scope.userActivities.push(response.results[i]);
+                    activity = response.results[i];
+                    activity['grade'] = classifyActivity(activity);
+
+                    $scope.userActivities.push(activity);
                 }
 
                 if (response.next_token == ""){
