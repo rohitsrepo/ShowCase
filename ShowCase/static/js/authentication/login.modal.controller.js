@@ -5,6 +5,7 @@ angular.module('module.auth')
 
     $scope.showNative = false;
     $scope.showNativeLogin = true;
+    $scope.nativeAuthInProgress = false;
 
 	$scope.closeModal = function () {
 		close();
@@ -29,24 +30,30 @@ angular.module('module.auth')
 
 	$scope.login = function (user) {
 		progress.showProgress();
+        $scope.nativeAuthInProgress = true;
 
 		auth.loginRaw(user.email, user.password).then(function () {
 			progress.hideProgress();
+            $scope.nativeAuthInProgress = false;
 			close("LoggedIn");
 		}, function (error) {
 			progress.hideProgress();
+            $scope.nativeAuthInProgress = false;
 			alert.showAlert(error);
 		});
 	};
 
 	$scope.register = function (user) {
 		progress.showProgress();
+        $scope.nativeAuthInProgress = true;
 
 		auth.registerUserRaw(user).then(function () {
 			progress.hideProgress();
+            $scope.nativeAuthInProgress = false;
 			close("LoggedIn");
 		}, function (error) {
 			progress.hideProgress();
+            $scope.nativeAuthInProgress = false;
 			alert.showAlert(error);
 		});
 	};

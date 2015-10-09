@@ -35,8 +35,8 @@
                          <span class="error" ng-show="addToBucketDescriptionForm.uDescription.$error.maxlength">Please use less than 500 charactes</span>
                     </div>
                     <section class="add-bucket-description-actions">
-                        <button ng-click="close()">Later</button>
-                        <button ng-click="completeAddToBucket()">Done</button>
+                        <button ng-click="completeAddToBucket('')">Skip</button>
+                        <button ng-click="completeAddToBucket(newMembership.description)">Done</button>
                     </section>
                 </form>
             </section>

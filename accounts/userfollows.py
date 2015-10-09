@@ -14,10 +14,6 @@ from .serializers import ExistingUserSerializer
 
 from streams.manager import follow_user, unfollow_user
 
-def follow_staff_user(user_id):
-    staff_user = User.objects.get(email='info@thirddime.com')
-    follow_user(user_id, staff_user.id)
-
 class UserFollowsAdd(APIView):
 
     permission_classes = ((permissions.IsAuthenticatedOrReadOnly,))

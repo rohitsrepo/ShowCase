@@ -1,6 +1,7 @@
 import os
 
 from django.db import models
+from django.db.models.signals import post_save
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.template.defaultfilters import slugify
 from django.conf import settings
@@ -11,6 +12,7 @@ from .usermanager import UserManager
 from .picturehandler import bind_profile_picture_handler, WIDTH_PROFILE
 
 from compositions.models import Composition
+from streams.manager import follow_user
 
 
 def get_upload_file_name_users(instance, filename):
@@ -144,3 +146,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 # Bind Signals
 bind_profile_picture_handler(User)
+
+def follow_staff_user(user_id):
+    staff_user = User.objects.get(email='info@thirddime.com')
+    follow_user(user_id, staff_user.id)
+
+def user_created(sender, instance, created, raw, **kwargs):
+    if created and not raw:
+        follow_staff_user(instance.id)
+
+post_save.connect(user_created, sender=User)

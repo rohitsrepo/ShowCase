@@ -58,7 +58,7 @@ angular.module('module.bucketmodal')
             $scope.newMembership.bucket = bucket;
         }
 
-        $scope.completeAddToBucket = function () {
+        $scope.completeAddToBucket = function (description) {
 
             if (addingCount) {
                 addingCount++;
@@ -68,7 +68,7 @@ angular.module('module.bucketmodal')
 
             bucketModel.addToBucket($scope.newMembership.bucket.id,
                 art.id,
-                $scope.newMembership.description)
+                description)
             .then(function () {
 
                 if (addingCount) {
@@ -88,15 +88,12 @@ angular.module('module.bucketmodal')
                 } else {
                     $scope.addingToBucket = false;
                 }
-                
+
                 alert.showAlert('Unable to add art to bucket');
             })
         };
 
         $scope.close = function () {
-            if ($scope.addingDescription) {
-                bucketModel.addToBucket($scope.newMembership.bucket.id, art.id, '');
-            }
             close();
         };
     }
