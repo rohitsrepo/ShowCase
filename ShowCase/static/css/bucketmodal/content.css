@@ -124,12 +124,14 @@
     width: 100px;
     display: inline-block;
     vertical-align: middle;
+    border-width: 3px;
 }
 
 .content-bucket-header h3 {
-    font-size: 0.7em;
+    font-size: 0.75em;
     display: inline-block;
     color: white;
+    font-weight: bold;
 }
 
 .content-bucket-header h3 a {
@@ -211,7 +213,7 @@
     background: transparent;
     color: white;
     font-size: 0.35em;
-    line-height: 1.7em;
+    line-height: 1.65em;
     text-align: center;
     border: 5px solid rgba(255, 255, 255, 0.95);
     border-right: 0;
@@ -223,14 +225,6 @@
     padding: 40px 15px;
     padding-bottom: 60px;
     letter-spacing: 1px;
-}
-
-.content-scroll-holder .content-container .content-art-description p i {
-    font-size: 1.2em;
-    display: inline-block;
-    vertical-align: middle;
-    padding-left: 5px;
-    color: rgba(255, 255, 255, 0.81);
 }
 
 .content-scroll-holder .content-container .content-art .nsfw-overlay {
