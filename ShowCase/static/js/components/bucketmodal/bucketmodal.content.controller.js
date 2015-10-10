@@ -6,6 +6,7 @@ angular.module('module.bucketmodal')
     'bucketModel',
     'bookService',
     'admireService',
+    'followService',
     'bucketmodalService',
     'confirmModalService',
     'shareModalService',
@@ -20,6 +21,7 @@ angular.module('module.bucketmodal')
         bucketModel,
         bookService,
         admireService,
+        followService,
         bucketmodalService,
         confirmModalService,
         shareModalService,
@@ -162,6 +164,19 @@ angular.module('module.bucketmodal')
                 admireService.admireBucket(bucket).then(function () {
                     bucket.is_admired = true;
                 });;
+            }
+        };
+
+        $scope.handleFollow = function () {
+            var targetUser = $scope.bucket.owner;
+            if (targetUser.is_followed) {
+                followService.unfollow(targetUser).then(function () {
+                    targetUser.is_followed = false;
+                });
+            } else {
+                followService.follow(targetUser).then(function () {
+                    targetUser.is_followed = true;
+                });
             }
         };
 

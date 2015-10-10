@@ -204,7 +204,86 @@
     margin-left: 0;
 }
 
-.content-scroll-holder .content-container .content-art-description {
+.content-scroll-holder .content-container .bucket-credits {
+    float: left;
+    margin-left: 45px;
+    text-align: center;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+
+.content-scroll-holder .content-container .bucket-credits header {
+    color: white;
+    background: black;
+    padding: 10px;
+    height: 80%;
+}
+
+.content-scroll-holder .content-container .bucket-credits header a h3 {
+    font-size: 0.4em;
+    line-height: 1.5em;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.content-scroll-holder .content-container .bucket-credits header a .owner-picture {
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.content-scroll-holder .content-container .bucket-credits header a h2 {
+    font-size: 0.65em;
+    line-height: 1.5em;
+    margin: 0;
+    margin-top: 40px;
+    padding: 0;
+    color: white;
+}
+
+.content-scroll-holder .content-container .bucket-credits .owner-data {
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    padding: 10px;
+}
+
+.content-scroll-holder .content-container .bucket-credits .owner-data button {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 5px 25px;
+    font-size: 0.3em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin: 5px auto;
+    margin-top: 20px
+}
+
+.content-container .bucket-credits .owner-data button.active,
+.content-container .bucket-credits .owner-data button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+.content-container .bucket-credits .owner-data button.active:before {
+    position: absolute;
+    content: '\E876';
+    font-family: 'Material Icons';
+    left: 80%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.content-container .content-art-description {
     float: left;
     margin-left: 45px;
     text-align: center;

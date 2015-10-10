@@ -40,7 +40,7 @@
     <!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="bucketController" ng-init="init({{bucket.id}}, '{{bucket.name | escapejs}}', '{{bucket.description | escapejs}}', '{{bucket.picture}}', '{{bucket.slug}}', '{{bucket.owner.name | escapejs}}', '{{is_admired}}', '{{is_bookmarked}}', '{{is_me}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="bucketController" ng-init="init({{bucket.id}}, '{{bucket.name | escapejs}}', '{{bucket.description | escapejs}}', '{{bucket.picture}}', '{{bucket.slug}}', '{{bucket.owner.name | escapejs}}', {{bucket.owner.id}}, '{{bucket.owner.slug}}', '{{is_followed}}', '{{is_admired}}', '{{is_bookmarked}}', '{{is_me}}')"{% endblock %}
 
 {% block content_block %}
 
@@ -110,6 +110,21 @@
                                 <i class="material-icons" ng-click="handleBookMarkArt($index)" ng-cloak ng-hide="art.composition.is_bookmarked">bookmark_border</i>
                                 <i class="material-icons" ng-click="handleBookMarkArt($index)" ng-cloak ng-show="art.composition.is_bookmarked">bookmark</i>
                             </section>
+                        </section>
+                    </section>
+
+                    <section class="bucket-credits" ng-style="{'height': '450px', 'width': '400px'}">
+                        <header>
+                            <a ng-href="/@{{bucket.owner.slug}}">
+                                <h3>Series created by</h3>
+                                <section class="owner-picture" ng-style="{'background-image': 'url({{bucket.owner.picture}})'}">
+                                </section>
+
+                                <h2>{{bucket.owner.name | title}}</h2>
+                            </a>
+                        </header>
+                        <section class="owner-data">
+                            <button ng-class="{'active': bucket.owner.is_followed}" ng-click="handleFollow()">Follow</button>
                         </section>
                     </section>
                 </ul>

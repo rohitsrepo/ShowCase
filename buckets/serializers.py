@@ -10,10 +10,16 @@ from compositions.models import Composition
 from compositions.serializers import CompositionSerializer
 
 class UserSerializer(serializers.ModelSerializer):
+    picture = serializers.Field(source='get_picture_url')
+    is_followed = serializers.SerializerMethodField('get_is_followed')
 
     class Meta:
         model = User
-        fields = ('slug', 'name')
+        fields = ('id', 'slug', 'name', 'picture', 'is_followed')
+
+    def get_is_followed(self, obj):
+        request = self.context['request']
+        return obj.is_followed(request.user.id)
 
 class BucketSerializer(serializers.ModelSerializer):
     compositions_count = serializers.CharField(source='compositions_count', read_only=True)

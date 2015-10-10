@@ -90,20 +90,13 @@ header .details .actions button:hover {
     color: white;
 }
 
-header .details .actions button:before {
+header .details .actions button.active:before {
     position: absolute;
     content: '\E876';
     font-family: 'Material Icons';
-    left: 130%;
+    left: 80%;
     top: 50%;
     transform: translateY(-50%);
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
-}
-
-header .details .actions button.active:before {
-    left: 80%;
 }
 
 header .details .actions h3 {

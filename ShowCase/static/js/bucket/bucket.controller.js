@@ -6,6 +6,7 @@ angular.module('BucketApp')
     'bucketModel',
     'bookService',
     'admireService',
+    'followService',
     'bucketmodalService',
     'confirmModalService',
     'shareModalService',
@@ -18,6 +19,7 @@ angular.module('BucketApp')
         bucketModel,
         bookService,
         admireService,
+        followService,
         bucketmodalService,
         confirmModalService,
         shareModalService,
@@ -53,13 +55,16 @@ angular.module('BucketApp')
         };
 
         $scope.bucket = {};
-        $scope.init = function (id, name, description, background, slug, owner, is_admired, is_bookmarked, isMe) {
+        $scope.init = function (id, name, description, background, slug, ownerName, ownerId, ownerSlug, ownerIsFollowed, is_admired, is_bookmarked, isMe) {
             $scope.bucket.id = id;
             $scope.bucket.slug = slug;
             $scope.bucket.name = name;
             $scope.bucket.description = description;
             $scope.bucket.background = background;
-            $scope.bucket.owner = owner;
+            $scope.bucket.owner = {'name': ownerName,
+                                    'id': ownerId,
+                                    'slug': ownerSlug,
+                                    'is_followed': ownerIsFollowed == 'True'};
             $scope.bucket.is_admired = is_admired == 'True';
             $scope.bucket.is_bookmarked = is_bookmarked == 'True';
 
@@ -146,7 +151,7 @@ angular.module('BucketApp')
 
         $scope.showShare = function () {
             var share_url = window.location.href;
-            var title = 'Series: "' + $scope.bucket.name + '" by: ' + $scope.bucket.owner
+            var title = 'Series: "' + $scope.bucket.name + '" by: ' + $scope.bucket.owner['name'];
             var description = $scope.bucket.description + '...Complete series can be found at: ' + share_url;
             var media = 'http://thirddime.com' + $scope.bucket.background;
             shareModalService.shareThisPage(share_url, title, description, media);
@@ -213,6 +218,19 @@ angular.module('BucketApp')
                 admireService.admireArt(art).then(function () {
                     art.is_admired = true;
                 });;
+            }
+        };
+
+        $scope.handleFollow = function () {
+            var targetUser = $scope.bucket.owner;
+            if (targetUser.is_followed) {
+                followService.unfollow(targetUser).then(function () {
+                    targetUser.is_followed = false;
+                });
+            } else {
+                followService.follow(targetUser).then(function () {
+                    targetUser.is_followed = true;
+                });
             }
         };
 
