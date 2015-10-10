@@ -108,7 +108,6 @@
             </section>
 
             <section class="details-actions-details">
-                <h4 class="inactive">Views {{composition.views}}</h4>
                 <h4 class="inactive">Bookmarks {{composition.bookmarks_count}}</h4>
                 <h4 ui-sref="buckets({compositionSlug: '{{composition.slug}}' })">Series {{composition.buckets_count}}</h4>
             </section>
@@ -159,7 +158,6 @@
                             <h2>[[work.title | titlecase]]</h2>
                             <div class="by-user">By</div>
                             <h3>[[work.artist.name | titlecase ]]</h3>
-                            <div class="arts-count">[[work.views]] Views</div>
                             <div class="arts-count">[[work.bookmarks_count]] Admirations</div>
                             <div class="arts-count">[[work.buckets_count]] Series</div>
                         </a>
@@ -186,7 +184,6 @@
                             <h2>[[work.title | titlecase]]</h2>
                             <div class="by-user">By</div>
                             <h3>[[work.artist.name | titlecase ]]</h3>
-                            <div class="arts-count">[[work.views]] Views</div>
                             <div class="arts-count">[[work.bookmarks_count]] Admirations</div>
                             <div class="arts-count">[[work.buckets_count]] Series</div>
                         </a>

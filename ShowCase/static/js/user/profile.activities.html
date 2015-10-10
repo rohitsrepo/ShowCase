@@ -12,7 +12,6 @@
                     </div>
                     <div class="details-inset">
                         <section class="inset-details">
-                            <h6>[[activity.content.views]] Views</h6><br>
                             <h6>[[activity.content.bookmarks_count]] Bookmarks</h6><br>
                             <h6 class="active" ui-sref="buckets({artSlug: activity.content.slug})">[[activity.content.buckets_count]] Series</h6>
                         </section>
@@ -37,7 +36,7 @@
             </div>
 
             <div class="art" ng-show="activity.grade == 2">
-                <header>Artwork added to series [[activity.content.name]] by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
+                <header ng-show="!showHeader">Artwork added to series [[activity.content.name]] by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
                 <article class="art-content">
                     <img ng-src="[[activity.composition.matter_550]]" alt="[[activity.composition.title]]" >
                     <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
@@ -46,7 +45,6 @@
                     </div>
                     <div class="details-inset">
                         <section class="inset-details">
-                            <h6>[[activity.composition.views]] Views</h6><br>
                             <h6>[[activity.composition.bookmarks_count]] Bookmarks</h6><br>
                             <h6 class="active" ui-sref="buckets({artSlug: activity.composition.slug})">[[activity.composition.buckets_count]] Series</h6>
                         </section>
@@ -71,7 +69,7 @@
             </div>
 
             <section class="feed-bucket" ng-show="activity.grade == 3">
-                <header>Series admired by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
+                <header ng-show="!showHeader">Series admired by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
                 <div class="bucket-picture" ng-style="{'background-image': 'url([[activity.content.picture]])'}">
                     <section class="bucket-inset-details" ui-sref="bucket({userSlug: activity.content.owner.slug, bucketSlug: activity.content.slug})">
                         <h2>[[activity.content.name | titlecase]]</h2>
