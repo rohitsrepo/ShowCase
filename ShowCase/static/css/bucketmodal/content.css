@@ -73,7 +73,7 @@
 }
 
 .bucket-modal.content .background-overlay {
-	background: rgba(0, 0, 0, 0.7);
+	background: rgba(0, 0, 0, 0.65);
 	width: 100%;
 	height: 100%;
     position: absolute;
@@ -198,10 +198,13 @@
 	position: relative;
 }
 
+.content-scroll-holder .content-container .content-art.has-description {
+    margin-left: 0;
+}
+
 .content-scroll-holder .content-container .content-art-description {
     float: left;
-    margin: 0 45px;     /*If change this then change content-holder height*/
-    margin-right: 0;
+    margin-left: 45px;
     text-align: center;
     display: inline-block;
     position: relative;
@@ -210,17 +213,16 @@
     font-size: 0.35em;
     line-height: 1.7em;
     text-align: center;
+    border: 5px solid rgba(255, 255, 255, 0.95);
+    border-right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .content-scroll-holder .content-container .content-art-description p {
     display: inline-block;
     padding: 40px 15px;
     padding-bottom: 60px;
-
-    background: -webkit-linear-gradient(black 80%, transparent); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(black 80%, transparent); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(black 80%, transparent); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(black 80%, transparent); /* Standard syntax */
+    letter-spacing: 1px;
 }
 
 .content-scroll-holder .content-container .content-art-description p i {
@@ -255,9 +257,11 @@
 .content-scroll-holder .content-container .content-art img {
 	width: 100%;
 	height: 100%;
-	border: 10px solid rgba(255, 255, 255, 1);
-	border-left-width: 5px;
-	border-right-width: 5px;
+	border: 5px solid rgba(255, 255, 255, 0.95);
+}
+
+.content-scroll-holder .content-container .content-art.has-description img {
+    border-left: 0;
 }
 
 .content-scroll-holder .content-container .content-art .art-details {
