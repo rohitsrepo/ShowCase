@@ -126,7 +126,7 @@ class BucketMembership(models.Model):
             pass
 
     def add_to_staff_feed(self):
-        if self.bucket.compositions.count() > 3 and not self.get_staff_post().exists():
+        if self.bucket.compositions.count() > 5 and not self.get_staff_post().exists():
             Staff.objects.create(feed_type=Staff.BUCKET,
                 content_object=self.bucket)
 
