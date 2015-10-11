@@ -192,7 +192,7 @@ angular.module('module.bucketmodal')
                     $window.history.back();
                     return false;
                 } else {
-                    scope.close();
+                    // scope.close();
                 }
 
             }

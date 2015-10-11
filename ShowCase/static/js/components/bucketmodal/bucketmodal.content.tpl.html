@@ -63,7 +63,7 @@
                     <header>
                         <a ng-href="/@[[bucket.owner.slug]]">
                             <h3>Series created by</h3>
-                            <section class="owner-picture" ng-style="{'background-image': 'url([[bucket.owner.picture]])'}">
+                            <section class="owner-picture" ng-if="bucket.owner.picture" ng-style="{'background-image': 'url([[bucket.owner.picture]])'}">
                             </section>
 
                             <h2>[[bucket.owner.name | titlecase]]</h2>
