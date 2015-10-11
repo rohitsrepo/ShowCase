@@ -64,28 +64,45 @@ angular.module('UserSettingsApp')
         return $scope.user.nsfw;
     }, function () {
         if (!skipOnce) {
-            console.log("updates")
             updateNsfw($scope.user.nsfw);
         }
         skipOnce = false;
     })
 
-    $scope.uploadPicture = function (file) {
+    $scope.profilePicture = {};
+
+    $scope.urlPictureUpload = function () {
         progress.showProgress();
+        $scope.profilePicture.upload_type = 'url';
+
+        userModel.resetPicture($scope.profilePicture).then(function () {
+            progress.hideProgress();
+            window.location.reload();
+        } , function () {
+            progress.hideProgress();
+            alert.showAlert("Error fetching data for the image");
+        })
+    };
+
+    $scope.uploadPicture = function (pictureFile) {
+        progress.showProgress();
+
+        $scope.profilePicture.upload_type = 'upl';
+        $scope.profilePicture.upload_image = pictureFile;
+
         upload({
             url: '/users/reset-picture',
             method: 'POST',
-            data: {'picture': file}
+            data: $scope.profilePicture
         }).then(
             function (response) {
                 progress.hideProgress();
-                console.log(response);
-                $scope.user.picture = response.data.picture
-                // update the user image with response
+                window.location.reload();
             },
             function (response) {
+                $scope.uploadingBackground = false;
                 progress.hideProgress();
-                alert.showAlert("Unable to update");
+                alert.showAlert('Unable to upload image');
             }
         );
     };

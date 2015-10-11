@@ -21,14 +21,41 @@
 
 {% block content_block %}
     <header class="primary-header" ng-init="init('{{user.id}}', '{{user.email}}', '{{user.name}}', '{{user.about}}','{{user.nsfw}}', '{{user.picture.url}}')">
-        <h1>Settings</h1>
+        <h1>Account Settings</h1>
         <!-- <hr> -->
     </header>
 
     <ul class="settings">
+
+        <li class="user-picture">
+            <header ng-style="{'background-image': 'url({{user.picture.url}})'}"></header>
+            <section class="picture">
+                <input type="file" class="file" upload-picture  />
+                <div class="cover">
+                    <h4>Click to upload new profile picture</h4>
+                </div>
+            </section>
+
+            <section class="picture-url">
+                <form class="upload-url-form" name="uplUrlForm">
+                    <div class="form-container clearfix">
+                        <input type="url" placeholder="or Enter url for the image" name="input" ng-model="profilePicture.upload_url" required>
+                        <button ng-disabled="[[uplUrlForm.$invalid]]" ng-class="{'enable': uplUrlForm.$valid}" class="url-submit" ng-click="urlPictureUpload()">SUBMIT</button>
+                    </div>
+                    <div class="error ng-hide" ng-show="uplUrlForm.input.$error.required && uplUrlForm.$dirty">
+                      Url Required
+                    </div>
+                    <div class="error ng-hide" ng-show="uplUrlForm.input.$error.url  && uplUrlForm.$dirty">
+                      Not valid url
+                    </div>
+              </form>
+            </section>
+        </li>
+
         <li>
             <form name="nameForm" ng-class="{active: nameForm.$dirty}">
                 <section class="data">
+                    <label>Full Name</label>
                     <input type="text" placeholder="Name" ng-model="user.name" name="uname" maxlength="80" required>
                     <div ng-cloak ng-show="nameForm.$submitted || nameForm.uname.$dirty">
                         <span ng-show="nameForm.uname.$error.required">Please provide a name.</span>
@@ -42,6 +69,7 @@
         <li>
             <form name="aboutForm">
                 <section class="data">
+                    <label>About you</label>
                     <input type="text" placeholder="About you" ng-model="user.about" name="uabout" maxlength="40">
                </section>
                <div class="actions" ng-cloak ng-show="aboutForm.$dirty">
@@ -56,15 +84,6 @@
                     <input class="nsfw" type="checkbox" ng-model="user.nsfw"/>
                 </section>
            </form>
-        </li>
-        <li>
-            <section class="picture">
-                <input type="file" class="file" upload-picture  />
-                <div class="cover">
-                    <!-- <h4>Select image of the piece</h4> -->
-                    <img ng-src="[[user.picture]]">
-                </div>
-            </section>
         </li>
     </ul>
 {% endblock %}

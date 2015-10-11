@@ -25,7 +25,6 @@ html, body {
 
 .primary-header {
 	width: 100%;
-	height: 20%;
     padding-top: 5%;
 }
 
@@ -48,14 +47,14 @@ html, body {
 /*============== Settings ==================*/
 
 .settings {
-    width: 50%;
+    width: 500px;
     max-width: 600px;
     margin: 0 auto;
 }
 
 .settings li {
     width: 100%;
-    padding: 20px 0;
+    padding: 30px 0;
 }
 
 .settings li h3 {
@@ -84,36 +83,44 @@ html, body {
     vertical-align: top;
 }
 
+.settings form .data label {
+    font-weight: bold;
+    padding-bottom: 5px;
+    display: block;
+}
+
 .settings form .data input {
     width: 100%;
-    height: 50px;
+    display: block;
     text-align: center;
     border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    font-size: 30px;
-    margin-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 1.5em;
 }
 
 .settings form .data input:focus {
-    border: 1px solid rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .settings form .actions{
     position: absolute;
     right: -80px;
-    top: 0;
+    bottom: 0;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: bottom;
 }
 
 .settings form .actions button {
     width: 100%;
-    height: 50px;
     display: inline-block;
+    font-size: 0.8em;
+    padding: 7px 5px;
     border: 1px solid rgba(0, 0, 0, 0.9);
     color: rgba(0, 0, 0, 0.9);
     cursor: pointer;
     background: transparent;
+    vertical-align: bottom;
 }
 
 .settings form .actions button:hover {
@@ -146,12 +153,24 @@ html, body {
 
 /*=============== Picture ==================*/
 
-.picture {
+.user-picture header {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.user-picture .picture {
     width: 100%;
+    border: 1px solid black;
     position: relative;
 }
 
-.picture .file {
+.user-picture .picture .file {
     position: absolute;
     top: 0;
     width: 100%;
@@ -160,14 +179,74 @@ html, body {
     filter:alpha(opacity: 0);
     opacity: 0;
     z-index: 1;
+    cursor: pointer;
 }
 
-.picture .cover {
+.user-picture .picture .cover {
     width: 100%;
     height: 100%;
     position: relative;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
 }
 
-.picture img {
+.user-picture .picture .cover h4 {
+    font-size: 1.2em;
+    line-height: 2em;
+    text-align: center;
+    margin-top:;
+}
+
+.user-picture .picture img {
     width: 100%;
+}
+
+/*-------------- Source Url ---------------*/
+
+.user-picture .picture-url {
+    width: 100%;
+    margin-top: 20px;
+    display: block;
+}
+
+.picture-url .upload-url-form {
+    width: 100%;
+}
+.picture-url .upload-url-form .url-submit,
+.picture-url .upload-url-form input {
+    height: 30px;
+}
+
+.picture-url .upload-url-form input {
+    width: 75%;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    float: left;
+    text-align: center;
+    font-size: 1em;
+}
+
+.picture-url .upload-url-form .url-submit {
+    width: 20%;
+    float: right;
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    opacity: 0.5;
+}
+
+.picture-url .upload-url-form .url-submit.enable {
+    opacity: 1;
+}
+
+.picture-url .upload-url-form .url-submit.enable:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    cursor: pointer;
+}
+
+.picture-url .upload-url-form .error {
+    padding-top: 10px;
+    display: none;
 }

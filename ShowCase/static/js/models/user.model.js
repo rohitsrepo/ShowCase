@@ -81,6 +81,14 @@ angular.module("module.model")
         })
     };
 
+    service.resetPicture = function (profilePictureData) {
+        return $http.post('/users/reset-picture', profilePictureData).then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
 	service.getCompositions = function (user_id, page) {
 		return $http.get('/users/'+user_id+'/compositions?page='+page).then(function (response) {
 			return response.data;
