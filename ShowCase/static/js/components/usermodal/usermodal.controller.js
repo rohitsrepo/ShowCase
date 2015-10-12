@@ -5,91 +5,26 @@ angular.module('module.usermodal')
     'close',
     'bookService',
     'followService',
-    'target',
+    'inputData',
     'auth',
     'progress',
     'alert',
-    'modalType',
-    function ($scope, compositionModel, userModel, close, bookService, followService, target, auth, progress, alert, modalType) {
-
-        var getNoUserInfo = function () {
-            if (modalType == 'bookmarkers') {
-                return 'No admirers yet';
-            } else if (modalType == 'follows') {
-                return 'User is not following anyone yet';
-            } else if (modalType == 'followers') {
-                return 'User is not followed by anyone yet';
-            }
-        };
-
-        var getNoUserMessage = function () {
-            if (modalType == 'bookmarkers') {
-                return 'Do you find this work worth keeping?';
-            } else if (modalType == 'follows') {
-                return '';
-            } else if (modalType == 'followers') {
-                return 'Is there a hint of matching taste?';
-            }
-        };
-
-        var getNoUserActionMessage = function () {
-            if (modalType == 'bookmarkers') {
-                return 'BOOKMARK';
-            } else if (modalType == 'follows') {
-                return '';
-            } else if (modalType == 'followers') {
-                return 'FOLLOW';
-            }
-        };
-
-        var getActionResult = function () {
-            if (modalType == 'bookmarkers') {
-                return 'bookmarked';
-            } else if (modalType == 'follows') {
-                return '';
-            } else if (modalType == 'followers') {
-                return 'followed';
-            }
-        };
-
-        var getNoUserAction = function () {
-            if (modalType == 'bookmarkers') {
-                return function () {
-                    bookService.bookmarkArt(target).then(function () {
-                        close(getActionResult());
-                    })
-                };
-            } else if (modalType == 'follows') {
-                return function () {};
-            } else if (modalType == 'followers') {
-                return function () {
-                    followService.follow(target).then(function () {
-                        close(getActionResult());
-                    })
-                };
-            }
-        };
+    function ($scope, compositionModel, userModel, close, bookService, followService, inputData, auth, progress, alert) {
 
         $scope.noSuchUser = {
             status: false,
-            info: getNoUserInfo(),
-            message: getNoUserMessage(),
-            actionMessage: getNoUserActionMessage(),
-            action: getNoUserAction()
+            info: inputData.noUserInfo,
+            message: inputData.noUserMessage,
+            actionMessage: inputData.noUserActionMessage,
+            action: function () {
+                inputData.noUserAction().then(function () {
+                    close(inputData.noUserActionResult);
+                })
+            }
         };
 
-        var userFetcher = function () {
-            if (modalType == 'bookmarkers') {
-                return compositionModel.getBookMarkers;
-            } else if (modalType == 'follows') {
-                return userModel.getFollows;
-            } else if (modalType == 'followers') {
-                return userModel.getFollowers;
-            }
-        }();
-
         progress.showProgress();
-        userFetcher(target.id).then(function (bookmarkers) {
+        inputData.usersFetcher().then(function (bookmarkers) {
             $scope.bookmarkers = bookmarkers;
 
             if ($scope.bookmarkers.length == 0) {

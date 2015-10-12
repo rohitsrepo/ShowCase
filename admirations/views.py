@@ -11,15 +11,38 @@ from rest_framework.views import APIView
 from ShowCase.utils import check_object_permissions
 
 from .models import Admiration
-from .serializers import PaginatedAdmirationSerializer, AdmirationContentCreateSerializer
+from .serializers import AdmirationSerializer, PaginatedAdmirationSerializer, AdmirationContentCreateSerializer
 
 from accounts.models import User
+from accounts.serializers import ExistingUserSerializer
 from compositions.models import Composition
 from buckets.models import Bucket
 
 class AdmirationsList(APIView):
 
-    permission_classes = ((permissions.IsAuthenticated,))
+    permission_classes = ((permissions.IsAuthenticatedOrReadOnly,))
+
+    def get(self, request, format=None):
+        print "get data"
+        print request.GET
+        serializer = AdmirationContentCreateSerializer(data=request.GET, context={'request': request})
+        if serializer.is_valid():
+            if (serializer.data['content_type'] == Admiration.ART):
+                content_object = get_object_or_404(Composition, id=serializer.data['object_id'])
+            elif (serializer.data['content_type'] == Admiration.BUCKET):
+                content_object = get_object_or_404(Bucket, id=serializer.data['object_id'])
+            else:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+
+            admirations = Admiration.objects.filter(
+                object_id=serializer.data['object_id'],
+                admire_type=serializer.data['content_type'])
+            admirers = [admiration.owner for admiration in admirations]
+            ser = ExistingUserSerializer(admirers, context={'request': request})
+
+            return Response(ser.data)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def post(self, request, format=None):
         serializer = AdmirationContentCreateSerializer(data=request.DATA, context={'request': request})
@@ -68,7 +91,7 @@ class AdmirationsList(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class AdmirationsListRead(APIView):
+class UserAdmirationsList(APIView):
 
     permission_classes = ((permissions.AllowAny,))
 

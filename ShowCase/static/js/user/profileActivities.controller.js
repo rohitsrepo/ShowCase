@@ -32,7 +32,7 @@ angular.module('UserApp')
                 case 'MB':
                     return 3;
                 default:
-                    console.log('Invalid activity type found');
+                    console.log('Invalid activity type found', activity.post_type);
             };
         };
 

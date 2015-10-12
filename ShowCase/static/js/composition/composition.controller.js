@@ -113,9 +113,17 @@ controller("compositionController", [
 
     $scope.showBookMarkers = function () {
         usermodalService.showBookMarkers($scope.composition).then(function (bookStatus) {
-        	if (bookStatus == 'bookmarked') {
-        		$scope.composition.is_bookMarked = true;
-        	}
+            if (bookStatus == 'bookmarked') {
+                $scope.composition.is_bookMarked = true;
+            }
+        });
+    }
+
+    $scope.showAdmirers = function () {
+        usermodalService.showArtAdmirers($scope.composition).then(function (admireStatus) {
+            if (admireStatus == 'admired') {
+                $scope.composition.is_admired = true;
+            }
         });
     }
 

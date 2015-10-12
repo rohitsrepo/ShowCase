@@ -31,7 +31,7 @@ angular.module('UserApp')
         var listType = $state.current.data.listType
 
         if (listType == 'admirations') {
-            return admirationModel.getAdmirations;
+            return admirationModel.getUserAdmirations;
         } else if (listType == 'bookmarks') {
             return bookmarkModel.getBookMarks
         }

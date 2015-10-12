@@ -31,8 +31,16 @@ angular.module("module.model")
         });
     };
 
-    service.getAdmirations = function (user_id, page) {
+    service.getUserAdmirations = function (user_id, page) {
         return $http.get('/admirations/' + user_id + '?page='+page).then(function (response) {
+            return response.data;
+        }, function (response) {
+            return $q.reject(response);
+        });
+    };
+
+    service.getAdmirations = function (object_id, content_type) {
+        return $http.get('/admirations?object_id='+object_id+'&content_type='+content_type).then(function (response) {
             return response.data;
         }, function (response) {
             return $q.reject(response);
