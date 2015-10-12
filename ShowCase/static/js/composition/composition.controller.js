@@ -135,6 +135,89 @@ controller("compositionController", [
         var media = 'http://thirddime.com' + $scope.composition.url;
         shareModalService.shareThisPage(share_url, title, description, media);
     };
+
+    $scope.shareArt = function (event, art) {
+        event.stopPropagation();
+
+        var base_url = "http://thirddime.com";
+        var share_url = base_url + "/arts/" + art.slug;
+        var title = 'Artwork: "' + art.title + '" by: ' + art.artist.name;
+        var description = 'Find thoughts about artwork "' + art.title+
+            '" at ' + share_url;
+        var media = 'http://thirddime.com' + art.matter;
+        shareModalService.shareThisPage(share_url, title, description, media);
+    };
+
+    $scope.shareBucket = function (event, index) {
+        // Stop route change on click
+        event.stopPropagation();
+
+        var bucket = $scope.artBuckets[index];
+        var base_url = "http://thirddime.com";
+        var share_url = base_url + "/@" + bucket.owner.slug + '/series/' + bucket.slug;
+        var title = 'Series: "' + bucket.name + '" by: ' + bucket.owner.name;
+        var description = bucket.description + '...Complete series can be found at: ' + share_url;
+        var media = 'http://thirddime.com' + bucket.picture;
+        shareModalService.shareThisPage(share_url, title, description, media);
+    };
+
+    $scope.handleBookMarkArt = function (event, art) {
+        event.stopPropagation();
+
+        if (art.is_bookmarked) {
+            bookService.unmarkArt(art).then(function () {
+                art.is_bookmarked = false;
+            });
+        } else {
+            bookService.bookmarkArt(art).then(function () {
+                art.is_bookmarked = true;
+            });;
+        }
+    };
+
+    $scope.handleAdmireArt = function (event, art) {
+        event.stopPropagation();
+
+        if (art.is_admired) {
+            admireService.unadmireArt(art).then(function () {
+                art.is_admired = false;
+            });
+        } else {
+            admireService.admireArt(art).then(function () {
+                art.is_admired = true;
+            });;
+        }
+    };
+
+    $scope.handleBookMarkBucket = function (event, index) {
+        event.stopPropagation();
+
+        var bucket = $scope.artBuckets[index];
+        if (bucket.is_bookmarked) {
+            bookService.unmarkBucket(bucket).then(function () {
+                bucket.is_bookmarked = false;
+            });
+        } else {
+            bookService.bookmarkBucket(bucket).then(function () {
+                bucket.is_bookmarked = true;
+            });;
+        }
+    };
+
+    $scope.handleAdmireBucket = function (event, index) {
+        event.stopPropagation();
+
+        var bucket = $scope.artBuckets[index];
+        if (bucket.is_admired) {
+            admireService.unadmireBucket(bucket).then(function () {
+                bucket.is_admired = false;
+            });
+        } else {
+            admireService.admireBucket(bucket).then(function () {
+                bucket.is_admired = true;
+            });;
+        }
+    };
 }])
 .directive('postTemplate', [function () {
 	return {

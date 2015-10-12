@@ -219,7 +219,7 @@ header .details .actions h3:hover {
     height: 100%;
     text-align: center;
     padding: 5px;
-    padding-top: 75px;
+    padding-top: 50px;
     background: rgba(0, 0, 0, 0.5);
     color: white;
     transition: all 1s;
@@ -241,6 +241,10 @@ header .details .actions h3:hover {
     line-height: 1.5em;
 }
 
+.user-bucket-picture .user-bucket-details.long-description .by-user {
+    margin-top: 30px;
+}
+
 .user-bucket-picture .user-bucket-details h3 {
     font-size: 1em;
     line-height: 1.5em;
@@ -251,7 +255,6 @@ header .details .actions h3:hover {
     margin-top: 10px;
     display: inline;
 }
-
 
 .user-bucket-picture .user-bucket-details .user-bucket-details-actions {
     display: block;

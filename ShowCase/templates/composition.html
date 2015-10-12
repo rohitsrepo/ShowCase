@@ -127,13 +127,20 @@
             <div class="art-buckets-container">
                 <section class="art-bucket" ng-repeat="bucket in artBuckets">
                     <div class="art-bucket-picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">
-                        <section class="details" ui-sref="bucket({userSlug: bucket.owner.slug, bucketSlug: bucket.slug})">
+                        <section class="details" ng-class="{'long-description': bucket.description.length > 50}" ui-sref="bucket({userSlug: bucket.owner.slug, bucketSlug: bucket.slug})">
                             <h2>[[bucket.name | titlecase]]</h2>
                             <h3>[[bucket.description]]</h3>
                             <div class="by-user">By</div>
                             <h3>[[bucket.owner.name | titlecase ]]</h3>
                             <div class="arts-count">[[bucket.compositions_count]] Artworks</div>
                             <div class="arts-count">[[bucket.views]] Views</div>
+                            <section class="art-bucket-details-actions">
+                                <i class="material-icons" ng-cloak ng-hide="bucket.is_admired" ng-click="handleAdmireBucket($event, $index)">favorite_border</i>
+                                <i class="material-icons" ng-cloak ng-show="bucket.is_admired" ng-click="handleAdmireBucket($event, $index)">favorite</i>
+                                <i class="material-icons" ng-click="shareBucket($event, $index)" >share</i>
+                                <i class="material-icons" ng-cloak ng-hide="bucket.is_bookmarked" ng-click="handleBookMarkBucket($event, $index)">bookmark_border</i>
+                                <i class="material-icons" ng-cloak ng-show="bucket.is_bookmarked" ng-click="handleBookMarkBucket($event, $index)">bookmark</i>
+                            </section>
                         </section>
                     </div>
                 </section>
@@ -154,12 +161,19 @@
                             <h3>This work has been marked not safe</h3>
                             <h4>Click anywhere to show the work</h4>
                         </div>
-                        <a class="work-details" custom-href="/arts/[[work.slug]]">
+                        <a class="work-details" ng-class="{'long-title': work.title.length> 22}" custom-href="/arts/[[work.slug]]">
                             <h2>[[work.title | titlecase]]</h2>
                             <div class="by-user">By</div>
                             <h3>[[work.artist.name | titlecase ]]</h3>
                             <div class="arts-count">[[work.bookmarks_count]] Admirations</div>
                             <div class="arts-count">[[work.buckets_count]] Series</div>
+                            <section class="work-details-actions">
+                                <i class="material-icons" ng-cloak ng-hide="work.is_admired" ng-click="handleAdmireArt($event, work)">favorite_border</i>
+                                <i class="material-icons" ng-cloak ng-show="work.is_admired" ng-click="handleAdmireArt($event, work)">favorite</i>
+                                <i class="material-icons" ng-click="shareArt($event, work)" >share</i>
+                                <i class="material-icons" ng-cloak ng-hide="work.is_bookmarked" ng-click="handleBookMarkArt($event, work)">bookmark_border</i>
+                                <i class="material-icons" ng-cloak ng-show="work.is_bookmarked" ng-click="handleBookMarkArt($event, work)">bookmark</i>
+                            </section>
                         </a>
                     </div>
                 </section>
@@ -180,12 +194,19 @@
                             <h3>This work has been marked not safe</h3>
                             <h4>Click anywhere to show the work</h4>
                         </div>
-                        <a class="work-details" custom-href="/arts/[[work.slug]]">
+                        <a class="work-details" ng-class="{'long-title': work.title.length> 22}" custom-href="/arts/[[work.slug]]">
                             <h2>[[work.title | titlecase]]</h2>
                             <div class="by-user">By</div>
                             <h3>[[work.artist.name | titlecase ]]</h3>
                             <div class="arts-count">[[work.bookmarks_count]] Admirations</div>
                             <div class="arts-count">[[work.buckets_count]] Series</div>
+                            <section class="work-details-actions">
+                                <i class="material-icons" ng-cloak ng-hide="work.is_admired" ng-click="handleAdmireArt($event, work)">favorite_border</i>
+                                <i class="material-icons" ng-cloak ng-show="work.is_admired" ng-click="handleAdmireArt($event, work)">favorite</i>
+                                <i class="material-icons" ng-click="shareArt($event, work)" >share</i>
+                                <i class="material-icons" ng-cloak ng-hide="work.is_bookmarked" ng-click="handleBookMarkArt($event, work)">bookmark_border</i>
+                                <i class="material-icons" ng-cloak ng-show="work.is_bookmarked" ng-click="handleBookMarkArt($event, work)">bookmark</i>
+                            </section>
                         </a>
                     </div>
                 </section>

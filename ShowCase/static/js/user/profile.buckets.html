@@ -1,7 +1,7 @@
  <div class="user-buckets">
     <li class="user-bucket" ng-repeat="bucket in userBuckets" ui-sref="bucket({bucketSlug: bucket.slug})">
         <div class="user-bucket-picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">
-            <section class="user-bucket-details" >
+            <section class="user-bucket-details" ng-class="{'long-description': bucket.description.length > 50}">
                 <h2>[[bucket.name | titlecase]]</h2>
                 <h3>[[bucket.description]]</h3>
                 <div class="by-user">By</div>
