@@ -79,7 +79,9 @@ angular.module('UserApp')
         getCompositions();
     }
 
-    $scope.handleBookMark = function (index) {
+    $scope.handleBookMark = function (event, index) {
+        event.stopPropagation();
+
         var art = $scope.arts[index];
         if (art.is_bookmarked) {
             bookService.unmarkArt(art).then(function () {
@@ -92,9 +94,11 @@ angular.module('UserApp')
         }
     };
 
-    $scope.handleAdmireArt = function (index) {
+    $scope.handleAdmireArt = function (event, index) {
+        event.stopPropagation();
+
         var art = $scope.arts[index];
-        
+
         if (art.is_admired) {
             admireService.unadmireArt(art).then(function () {
                 art.is_admired = false;
@@ -111,7 +115,9 @@ angular.module('UserApp')
         bucketmodalService.showArtBuckets(art);
     }
 
-    $scope.showAddToBucket = function (index) {
+    $scope.showAddToBucket = function (event, index) {
+        event.stopPropagation();
+
         var art = $scope.arts[index];
         bucketmodalService.showAddToBucket(art);
     };
@@ -121,7 +127,9 @@ angular.module('UserApp')
         art.nsfw = false;
     };
 
-    $scope.shareArt = function (index) {
+    $scope.shareArt = function (event, index) {
+        event.stopPropagation();
+
         var art = $scope.arts[index];
         var base_url = "http://thirddime.com";
         var share_url = base_url + "/arts/" + art.slug;

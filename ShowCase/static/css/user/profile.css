@@ -256,23 +256,39 @@ header .details .actions h3:hover {
     display: inline;
 }
 
+.user-bucket-picture .user-bucket-details .user-bucket-details-actions,
+.user-bucket-picture .user-bucket-details .bookmark-action {
+    position: absolute;
+    top: 20px;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.user-bucket-picture .user-bucket-details:hover .user-bucket-details-actions,
+.user-bucket-picture .user-bucket-details:hover .bookmark-action {
+    opacity: 1;
+}
+
 .user-bucket-picture .user-bucket-details .user-bucket-details-actions {
-    display: block;
+    right: 20px;
 }
 
-.user-bucket-picture .user-bucket-details .user-bucket-details-actions i {
-    display: inline-block;
-    margin: 0 3px;
-    margin-top: 15px;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 1.1em;
-    font-weight: 200;
+.user-bucket-picture .user-bucket-details .bookmark-action {
+    left: 20px;
 }
 
-.user-bucket-picture .user-bucket-details .user-bucket-details-actions i:hover {
-    color: rgba(255, 255, 255, 0.95);
+.user-bucket-picture .user-bucket-details .user-bucket-details-actions i,
+.user-bucket-picture .user-bucket-details .bookmark-action i {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1em;
+    padding: 0 2px;
 }
+
+.user-bucket-picture .user-bucket-details .user-bucket-details-actions i:hover,
+.user-bucket-picture .user-bucket-details .bookmark-action i:hover {
+    color: white;
+}
+
 
 @media (max-width: 800px) {
     .user-buckets {

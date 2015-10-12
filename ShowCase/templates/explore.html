@@ -65,8 +65,8 @@
                     <h4><a ng-href="/arts/[[art.content.slug]]" target="_blank">[[art.content.title | titlecase]]</a></h4>
                     <h5> by <a ng-href="/@[[art.content.artist.slug]]" target="_blank">[[art.content.artist.name | titlecase]]</a></h5>
                 </section><!--
-                --><section class="scores" ng-cloak ng-show="art.content.buckets_count> 0" ng-click="showArtBuckets($index)">
-                    <i class="material-icons">view_carousel</i> <span>[[art.content.buckets_count]]</span>
+                --><section class="scores" ng-cloak ng-show="art.content.buckets_count> 0" ui-sref="buckets({artSlug: art.content.slug})">
+                    <span>[[art.content.buckets_count]] Series</span>
                 </section>
             </div> <!-- art -->
 

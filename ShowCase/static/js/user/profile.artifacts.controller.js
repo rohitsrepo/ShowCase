@@ -78,7 +78,8 @@ angular.module('UserApp')
         getCompositions();
     }
 
-    $scope.handleBookMark = function (index) {
+    $scope.handleBookMark = function (event, index) {
+        event.stopPropagation();
         var art = $scope.artifacts[index].content;
         if (art.is_bookmarked) {
             bookService.unmarkArt(art).then(function () {
@@ -106,7 +107,8 @@ angular.module('UserApp')
         }
     };
 
-    $scope.handleAdmireArt = function (index) {
+    $scope.handleAdmireArt = function (event, index) {
+        event.stopPropagation();
         var art = $scope.artifacts[index].content;
 
         if (art.is_admired) {
@@ -140,7 +142,8 @@ angular.module('UserApp')
         bucketmodalService.showArtBuckets(art);
     }
 
-    $scope.showAddToBucket = function (index) {
+    $scope.showAddToBucket = function (event, index) {
+        event.stopPropagation();
         var art = $scope.artifacts[index].content;
         bucketmodalService.showAddToBucket(art);
     };
@@ -150,7 +153,8 @@ angular.module('UserApp')
         art.nsfw = false;
     };
 
-    $scope.shareArt = function (index) {
+    $scope.shareArt = function (event, index) {
+        event.stopPropagation();
         var art = $scope.artifacts[index].content;
         var base_url = "http://thirddime.com";
         var share_url = base_url + "/arts/" + art.slug;
@@ -158,6 +162,19 @@ angular.module('UserApp')
         var description = 'Find thoughts about artwork "' + art.title+
             '" at ' + share_url;
         var media = 'http://thirddime.com' + art.matter;
+        shareModalService.shareThisPage(share_url, title, description, media);
+    };
+
+    $scope.shareBucket = function (event, index) {
+        // Stop route change on click
+        event.stopPropagation();
+
+        var bucket = $scope.artifacts[index].content;
+        var base_url = "http://thirddime.com";
+        var share_url = base_url + "/@" + bucket.owner.slug + '/series/' + bucket.slug;
+        var title = 'Series: "' + bucket.name + '" by: ' + bucket.owner.name;
+        var description = bucket.description + '...Complete series can be found at: ' + share_url;
+        var media = 'http://thirddime.com' + bucket.picture;
         shareModalService.shareThisPage(share_url, title, description, media);
     };
 

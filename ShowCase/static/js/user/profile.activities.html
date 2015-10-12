@@ -10,28 +10,29 @@
                         <h6>This work is marked not safe</h6>
                         <h6>Click anywhere to show the work</h6>
                     </div>
-                    <div class="details-inset">
-                        <section class="inset-details">
-                            <h6>[[activity.content.bookmarks_count]] Bookmarks</h6><br>
-                            <h6 class="active" ui-sref="buckets({artSlug: activity.content.slug})">[[activity.content.buckets_count]] Series</h6>
-                        </section>
-
+                    <a custom-href="/arts/[[activity.content.slug]]" class="details-inset">
                         <section class="inset-actions">
-                            <button ng-click="showAddToBucket(activity.content)">Add To Series</button>
+                            <i class="material-icons" ng-click="shareArt($event, activity.content)" >share</i>
+                            <i class="material-icons" ng-cloak ng-hide="activity.content.is_admired" ng-click="handleAdmireArt($event, activity.content)">favorite_border</i>
+                            <i class="material-icons" ng-cloak ng-show="activity.content.is_admired" ng-click="handleAdmireArt($event, activity.content)">favorite</i>
                         </section>
 
-                    </div>
+                        <section class="bookmark-action">
+                            <i class="material-icons" ng-click="handleBookMarkArt($event, activity.content)" ng-cloak ng-hide="activity.content.is_bookmarked">bookmark_border</i>
+                            <i class="material-icons" ng-click="handleBookMarkArt($event, activity.content)" ng-cloak ng-show="activity.content.is_bookmarked">bookmark</i>
+                        </section>
+
+                        <section class="series-action">
+                            <button ng-click="showAddToBucket($event, activity.content)">Add To Series</button>
+                        </section>
+                    </a>
                 </article>
                 <section class="details">
                     <h4><a ng-href="/arts/[[activity.content.slug]]" target="_blank">[[activity.content.title | titlecase]]</a></h4>
                     <h5> by <a ng-href="/@[[activity.content.artist.slug]]" target="_blank">[[activity.content.artist.name | titlecase]]</a></h5>
                 </section><!--
-                --><section class="actions">
-                    <i class="material-icons" ng-cloak ng-hide="activity.content.is_admired" ng-click="handleAdmireArt(activity.content)">favorite_border</i>
-                    <i class="material-icons" ng-cloak ng-show="activity.content.is_admired" ng-click="handleAdmireArt(activity.content)">favorite</i>
-                    <i class="material-icons" ng-click="shareArt(activity.content)" >share</i>
-                    <i class="material-icons" ng-click="handleBookMark(activity.content)" ng-cloak ng-hide="activity.content.is_bookmarked">bookmark_border</i>
-                    <i class="material-icons" ng-click="handleBookMark(activity.content)" ng-cloak ng-show="activity.content.is_bookmarked">bookmark</i>
+                --><section class="scores" ng-cloak ng-show="activity.content.buckets_count> 0" ui-sref="buckets({artSlug: activity.content.slug})">
+                    <span>[[activity.content.buckets_count]] Series</span>
                 </section>
             </div>
 
@@ -43,28 +44,29 @@
                         <h6>This work is marked not safe</h6>
                         <h6>Click anywhere to show the work</h6>
                     </div>
-                    <div class="details-inset">
-                        <section class="inset-details">
-                            <h6>[[activity.composition.bookmarks_count]] Bookmarks</h6><br>
-                            <h6 class="active" ui-sref="buckets({artSlug: activity.composition.slug})">[[activity.composition.buckets_count]] Series</h6>
-                        </section>
-
+                    <a custom-href="/arts/[[activity.composition.slug]]" class="details-inset">
                         <section class="inset-actions">
-                            <button ng-click="showAddToBucket(activity.composition)">Add To Series</button>
+                            <i class="material-icons" ng-click="shareArt($event, activity.composition)" >share</i>
+                            <i class="material-icons" ng-cloak ng-hide="activity.composition.is_admired" ng-click="handleAdmireArt($event, activity.composition)">favorite_border</i>
+                            <i class="material-icons" ng-cloak ng-show="activity.composition.is_admired" ng-click="handleAdmireArt($event, activity.composition)">favorite</i>
                         </section>
 
-                    </div>
+                        <section class="bookmark-action">
+                            <i class="material-icons" ng-click="handleBookMarkArt($event, activity.composition)" ng-cloak ng-hide="activity.composition.is_bookmarked">bookmark_border</i>
+                            <i class="material-icons" ng-click="handleBookMarkArt($event, activity.composition)" ng-cloak ng-show="activity.composition.is_bookmarked">bookmark</i>
+                        </section>
+
+                        <section class="series-action">
+                            <button ng-click="showAddToBucket($event, activity.composition)">Add To Series</button>
+                        </section>
+                    </a>
                 </article>
                 <section class="details">
                     <h4><a ng-href="/arts/[[activity.composition.slug]]" target="_blank">[[activity.composition.title | titlecase]]</a></h4>
                     <h5> by <a ng-href="/@[[activity.composition.artist.slug]]" target="_blank">[[activity.composition.artist.name | titlecase]]</a></h5>
                 </section><!--
-                --><section class="actions">
-                    <i class="material-icons" ng-cloak ng-hide="activity.composition.is_admired" ng-click="handleAdmireArt(activity.composition)">favorite_border</i>
-                    <i class="material-icons" ng-cloak ng-show="activity.composition.is_admired" ng-click="handleAdmireArt(activity.composition)">favorite</i>
-                    <i class="material-icons" ng-click="shareArt(activity.composition)" >share</i>
-                    <i class="material-icons" ng-click="handleBookMark(activity.composition)" ng-cloak ng-hide="activity.composition.is_bookmarked">bookmark_border</i>
-                    <i class="material-icons" ng-click="handleBookMark(activity.composition)" ng-cloak ng-show="activity.composition.is_bookmarked">bookmark</i>
+                --><section class="scores" ng-cloak ng-show="activity.composition.buckets_count> 0" ui-sref="buckets({artSlug: activity.composition.slug})">
+                    <span>[[activity.composition.buckets_count]] Series</span>
                 </section>
             </div>
 
@@ -72,19 +74,23 @@
                 <header ng-show="!showHeader">Series admired by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
                 <div class="bucket-picture" ng-style="{'background-image': 'url([[activity.content.picture]])'}">
                     <section class="bucket-inset-details" ui-sref="bucket({userSlug: activity.content.owner.slug, bucketSlug: activity.content.slug})">
+                        <section class="bucket-inset-details-actions">
+                            <i class="material-icons" ng-click="shareBucket($event, activity.content)" >share</i>
+                            <i class="material-icons" ng-cloak ng-hide="activity.content.is_admired" ng-click="handleAdmireBucket($event, activity.content)">favorite_border</i>
+                            <i class="material-icons" ng-cloak ng-show="activity.content.is_admired" ng-click="handleAdmireBucket($event, activity.content)">favorite</i>
+                        </section>
+
+                        <section class="bookmark-action">
+                            <i class="material-icons" ng-cloak ng-hide="activity.content.is_bookmarked" ng-click="handleBookMarkBucket($event, activity.content)">bookmark_border</i>
+                            <i class="material-icons" ng-cloak ng-show="activity.content.is_bookmarked" ng-click="handleBookMarkBucket($event, activity.content)">bookmark</i>
+                        </section>
+
                         <h2>[[activity.content.name | titlecase]]</h2>
                         <h3>[[activity.content.description]]</h3>
                         <div class="by-user">By</div>
                         <h3>[[activity.content.owner.name | titlecase ]]</h3>
                         <div class="arts-count">[[activity.content.compositions_count]] Artworks</div>
                         <div class="arts-count">[[activity.content.views]] Views</div>
-                        <section class="bucket-inset-details-actions">
-                            <i class="material-icons" ng-cloak ng-hide="activity.content.is_admired" ng-click="handleAdmireBucket($event, activity.content)">favorite_border</i>
-                            <i class="material-icons" ng-cloak ng-show="activity.content.is_admired" ng-click="handleAdmireBucket($event, activity.content)">favorite</i>
-                            <i class="material-icons" ng-click="shareBucket($event, activity.content)" >share</i>
-                            <i class="material-icons" ng-cloak ng-hide="activity.content.is_bookmarked" ng-click="handleBookMarkBucket($event, activity.content)">bookmark_border</i>
-                            <i class="material-icons" ng-cloak ng-show="activity.content.is_bookmarked" ng-click="handleBookMarkBucket($event, activity.content)">bookmark</i>
-                        </section>
                     </section>
                 </div>
             </section>
