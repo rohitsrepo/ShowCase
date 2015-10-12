@@ -2,8 +2,9 @@ angular.module('ExploreApp')
 .controller('exploreController', ['$scope',
     '$rootScope',
     '$document',
-    'feedModel',
     '$timeout',
+    '$state',
+    'feedModel',
     'userModel',
     'alert',
     'progress',
@@ -16,8 +17,9 @@ angular.module('ExploreApp')
 	function ($scope,
         $rootScope,
         $document,
-        feedModel,
         $timeout,
+        $state,
+        feedModel,
         userModel,
         alert,
         progress,
@@ -84,7 +86,9 @@ angular.module('ExploreApp')
 
 	$scope.loadMorePosts();
 
-    $scope.handleBookMark = function (index) {
+    $scope.handleBookMark = function (event, index) {
+        event.stopPropagation();
+
         var art = $scope.arts[index].content;
         if (art.is_bookmarked) {
             bookService.unmarkArt(art).then(function () {
@@ -97,7 +101,9 @@ angular.module('ExploreApp')
         }
     };
 
-    $scope.handleAdmireArt = function (index) {
+    $scope.handleAdmireArt = function (event, index) {
+        event.stopPropagation();
+
         var art = $scope.arts[index].content;
         if (art.is_admired) {
             admireService.unadmireArt(art).then(function () {
@@ -142,10 +148,12 @@ angular.module('ExploreApp')
 
     $scope.showArtBuckets = function (index) {
         var art = $scope.arts[index].content;
-        bucketmodalService.showArtBuckets(art);
+        $state.go('buckets', {'artSlug': art.slug});
     }
 
-    $scope.showAddToBucket = function (index) {
+    $scope.showAddToBucket = function (event, index) {
+        event.stopPropagation();
+
         var art = $scope.arts[index].content;
         bucketmodalService.showAddToBucket(art);
     };
@@ -155,7 +163,9 @@ angular.module('ExploreApp')
         art.nsfw = false;
     };
 
-    $scope.shareArt = function (index) {
+    $scope.shareArt = function (event, index) {
+        event.stopPropagation();
+
         var art = $scope.arts[index].content;
         var base_url = "http://thirddime.com";
         var share_url = base_url + "/arts/" + art.slug;

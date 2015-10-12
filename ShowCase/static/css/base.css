@@ -438,6 +438,39 @@ body::-webkit-scrollbar-thumb {
 .art:hover .art-content .details-inset {
   transition: all 0.3s;
   background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.art .art-content .details-inset .inset-actions,
+.art .art-content .details-inset .bookmark-action {
+    position: absolute;
+    top: 20px;
+    opacity: 0;
+}
+
+.art .art-content .details-inset .inset-actions {
+    right: 20px;
+}
+
+.art .art-content .details-inset .bookmark-action {
+    left: 20px;
+}
+
+.art .art-content .details-inset .inset-actions i,
+.art .art-content .details-inset .bookmark-action i {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2em;
+    padding: 0 2px;
+}
+
+.art .art-content .details-inset .inset-actions i:hover,
+.art .art-content .details-inset .bookmark-action i:hover {
+    color: white;
+}
+
+.art:hover .art-content .details-inset .inset-actions,
+.art:hover .art-content .details-inset .bookmark-action {
+    opacity: 1;
 }
 
 .details-inset .inset-details {
@@ -445,8 +478,8 @@ body::-webkit-scrollbar-thumb {
   display: inline-block;
 }
 
-.art:hover .art-content .details-inset .inset-details,
-.art:hover .art-content .details-inset .inset-details h6 {
+.art:hover .art-content .details-inset .inset-actions,
+.art:hover .art-content .details-inset .inset-actions h6 {
   opacity: 1;
   transition: all 0.3s;
   display: inline;
@@ -465,7 +498,7 @@ body::-webkit-scrollbar-thumb {
     cursor: pointer;
 }
 
-.details-inset .inset-actions {
+.details-inset .series-action {
   width: 100%;
   position: absolute;
   bottom: 10px;
@@ -474,15 +507,16 @@ body::-webkit-scrollbar-thumb {
   text-align: center;
 }
 
-.art:hover .art-content .details-inset .inset-actions ,
-.art:hover .art-content .details-inset .inset-actions button {
+.art:hover .art-content .details-inset .series-action ,
+.art:hover .art-content .details-inset .series-action button {
   opacity: 1;
   transition: all 0.3s;
 }
 
-.details-inset .inset-actions button {
+.details-inset .series-action button {
   width: 50%;
   margin: 0 auto;
+  margin-bottom: 10px;
   display: inline-block;
   background: transparent;
   border: none;
@@ -492,16 +526,16 @@ body::-webkit-scrollbar-thumb {
   cursor: pointer;
   opacity: 0;
   background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.details-inset .inset-actions button:hover {
+.details-inset .series-action button:hover {
   background: rgba(0, 0, 0, 1);
   border: 1px solid white;
 }
 
 .art .details {
-  width: 60%;
+  width: 85%;
   padding: 10px;
   display: inline-block;
 }
@@ -536,30 +570,47 @@ body::-webkit-scrollbar-thumb {
 
 .art .details h5 {
   font-size: 0.8em;
+  line-height: 1.5em;
   color: rgba(0, 0, 0, 0.5);
 }
 
-.art .actions {
-  width: 40%;
+.art .details h6 {
+  font-size: 0.75em;
+  /*font-weight: bold;*/
+  letter-spacing: 1px;
+  display: block;
+  cursor: pointer;
+  line-height: 1.5em;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.art .details h6:hover {
+  text-decoration: underline;
+}
+
+.art .scores {
+  /*width: 40%;*/
   display: inline-block;
-  vertical-align: top;
-  padding-top: 10px;
+  padding-top: 20px;
   padding-right: 15px;
   text-align: right;
   letter-spacing: 1px;
-}
-
-.art .actions i {
-    margin: 0 3px;
-    margin-top: 10px;
-    cursor: pointer;
+    vertical-align: top;
     color: rgba(0, 0, 0, 0.6);
-    font-size: 1.2em;
-    font-weight: 200;
+    cursor: pointer;
 }
 
-.art .actions i:hover {
-    color: rgba(0, 0, 0, 0.95);
+.art .scores i {
+    font-size: 1.2em;
+    vertical-align: top;
+}
+
+.art .scores span {
+    font-size: 0.9em;
+    vertical-align: baseline;
+    margin-top: 3px;
+    display: inline-block;
+    font-family: 'taile', sans-serif;
 }
 
 @media (max-width: 800px) {
@@ -596,7 +647,7 @@ body::-webkit-scrollbar-thumb {
     transition: all 1s;
     text-align: center;
     padding: 5px;
-    padding-top: 40px;
+    padding-top: 60px;
 }
 
 .feed-bucket .bucket-picture .bucket-inset-details:hover {
@@ -629,23 +680,40 @@ body::-webkit-scrollbar-thumb {
     color: white;
 }
 
+.feed-bucket .bucket-picture .bucket-inset-details .bucket-inset-details-actions,
+.feed-bucket .bucket-picture .bucket-inset-details .bookmark-action {
+    position: absolute;
+    top: 20px;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.feed-bucket .bucket-picture .bucket-inset-details:hover .bucket-inset-details-actions,
+.feed-bucket .bucket-picture .bucket-inset-details:hover .bookmark-action {
+    opacity: 1;
+}
+
 .feed-bucket .bucket-picture .bucket-inset-details .bucket-inset-details-actions {
-    display: block;
+    right: 20px;
 }
 
-.feed-bucket .bucket-picture .bucket-inset-details .bucket-inset-details-actions i {
-    display: inline-block;
-    margin: 0 3px;
-    margin-top: 15px;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 1.1em;
-    font-weight: 200;
+.feed-bucket .bucket-picture .bucket-inset-details .bookmark-action {
+    left: 20px;
 }
 
-.feed-bucket .bucket-picture .bucket-inset-details .bucket-inset-details-actions i:hover {
-    color: rgba(255, 255, 255, 0.95);
+.feed-bucket .bucket-picture .bucket-inset-details .bucket-inset-details-actions i,
+.feed-bucket .bucket-picture .bucket-inset-details .bookmark-action i {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2em;
+    padding: 0 2px;
 }
+
+
+.feed-bucket .bucket-picture .bucket-inset-details .bucket-inset-details-actions i:hover,
+.feed-bucket .bucket-picture .bucket-inset-details .bookmark-action i:hover {
+    color: white;
+}
+
 
 /*============== EXPLORE BUTTON ====================*/
 .explore {

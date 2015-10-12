@@ -24,6 +24,7 @@ class CompositionSerializer(serializers.ModelSerializer):
     is_bookmarked = serializers.SerializerMethodField('get_is_bookmarked')
     is_admired = serializers.SerializerMethodField('get_is_admired')
     bookmarks_count = serializers.CharField(source='bookmarks_count', read_only=True)
+    admirers_count = serializers.CharField(source='admirers_count', read_only=True)
     buckets_count = serializers.CharField(source='buckets_count', read_only=True)
     has_ownership = serializers.SerializerMethodField('get_ownership')
     nsfw = serializers.SerializerMethodField('is_nsfw')
@@ -32,7 +33,8 @@ class CompositionSerializer(serializers.ModelSerializer):
         model = Composition
         fields = ('id', 'title', 'artist', 'description', 'created',
 		   'matter', 'matter_350', 'matter_550', 'matter_aspect', 'timesince', 'nsfw',
-           'slug', 'uploader', 'views', 'interpretations_count', 'is_bookmarked', 'is_admired', 'bookmarks_count', 'buckets_count', 'has_ownership')
+           'slug', 'uploader', 'views', 'interpretations_count', 'is_bookmarked',
+           'is_admired', 'admirers_count', 'bookmarks_count', 'buckets_count', 'has_ownership')
     	read_only_fields = ('id', 'slug', 'views', 'created')
 
     def get_ownership(self, obj):
