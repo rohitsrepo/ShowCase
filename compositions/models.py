@@ -181,17 +181,31 @@ class Composition(models.Model):
     def buckets_count(self):
         return self.holders.all().count()
 
+    def getNotificationTarget(self, post):
+        if post.post_type == Post.CREATE:
+            if not (self.artist.id == self.uploader.id):
+                return [self.artist]
+        elif post.post_type == Post.ADMIRE_ART:
+            targets = [self.artist]
+            if not (self.artist.id == self.uploader.id):
+                targets.append(self.uploader)
+
+            return targets
+
+        return None
+
     def create_post(self):
-        Post.objects.create(
-            composition=self,
-            creator=self.artist,
-            post_type = Post.CREATE,
-            content_object=self)
+        if not (self.artist.id == self.uploader.id):
+            Post.objects.create(
+                composition=self,
+                creator=self.uploader,
+                post_type = Post.ADD,
+                content_object=self)
 
         return Post(
             composition=self,
-            creator=self.uploader,
-            post_type = Post.ADD,
+            creator=self.artist,
+            post_type = Post.CREATE,
             content_object=self)
 
     def get_post(self):

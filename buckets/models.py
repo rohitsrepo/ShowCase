@@ -90,6 +90,19 @@ class Bucket(models.Model):
     def is_composition_added(self, composition_id):
         return self.compositions.filter(id=composition_id).exists()
 
+    def getNotificationTarget(self, post):
+        if post.post_type == Post.BUCKET:
+            targets = [post.composition.artist]
+            if not (post.composition.artist.id == post.composition.uploader.id):
+                targets.append(post.composition.uploader)
+
+            return targets
+
+        elif post.post_type == Post.ADMIRE_BUCKET:
+            return [self.owner]
+
+        return None
+
 
 class BucketMembership(models.Model):
     bucket = models.ForeignKey(Bucket, related_name='membership')

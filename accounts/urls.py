@@ -7,7 +7,7 @@ from . import userfollows
 from .auth_views import EmailPermissionRedirect, CustomUserCallback
 
 from posts.views import UserPostList, UserPostDetail
-from streams.views import UserActivities, UserNews
+from streams.views import UserActivities, UserNews, UserNotifications
 
 urlpatterns = patterns('',
                       url(r'^$', views.UserList.as_view()),
@@ -38,6 +38,7 @@ urlpatterns = patterns('',
                       url(r'^/(?P<user_id>[0-9]+)/buckets$', 'buckets.views.get_user_buckets'),
                       url(r'^/(?P<user_id>[0-9]+)/activities$', UserActivities.as_view()),
                       url(r'^/(?P<user_id>[0-9]+)/news$', UserNews.as_view()),
+                      url(r'^/notifications$', UserNotifications.as_view()),
                     )
 
 urlpatterns = format_suffix_patterns(urlpatterns)

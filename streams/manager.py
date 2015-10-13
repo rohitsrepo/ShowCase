@@ -1,4 +1,4 @@
-from .conf import USER_FEED, NEWS_FEEDS, BUCKET_FEED
+from .conf import USER_FEED, NEWS_FEEDS, BUCKET_FEED, NOTIFICATION_FEED
 from django.db.models.signals import post_delete, post_save
 from streams.client import stream_client
 
@@ -28,6 +28,15 @@ def get_user_feed(user_id, feed_type=None):
             feed_type = USER_FEED
         feed = stream_client.feed(feed_type, user_id)
         return feed
+
+def get_user_notification_feed(user_id):
+    return get_user_feed(user_id, NOTIFICATION_FEED)
+
+def mark_activity_read(user_feed, activity_id):
+    user_feed.get(limit=5, mark_read=[activity_id])
+
+def mark_activity_seen(user_feed, activity_id):
+    user_feed.get(limit=5, mark_seen=[activity_id])
 
 def get_feed(feed, user_id):
         return stream_client.feed(feed, user_id)

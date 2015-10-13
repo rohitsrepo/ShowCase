@@ -6,7 +6,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
 from postVotes.models import PostVote, bind_post_vote
-from streams.conf import USER_FEED, BUCKET_FEED
+from streams.conf import USER_FEED, BUCKET_FEED, NOTIFICATION_FEED
 from streams.manager import bind_stream
 
 class Post(models.Model):
@@ -74,6 +74,13 @@ class Post(models.Model):
         activity_data.append({'activity': activity,
         'feed_type': USER_FEED,
         'feed_id': activity['actor']})
+
+        notification_targets = self.content_object.getNotificationTarget(self)
+        if notification_targets:
+            for notification_target in notification_targets:
+                activity_data.append({'activity': activity,
+                'feed_type': NOTIFICATION_FEED,
+                'feed_id': notification_target.id})
 
         if self.post_type == self.BUCKET:
             activity_data.append({'activity': activity,

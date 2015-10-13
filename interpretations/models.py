@@ -59,5 +59,12 @@ class Interpretation(models.Model):
             object_id=self.id,
             content_type=ContentType.objects.get_for_model(Interpretation))
 
+    def getNotificationTarget(self, post):
+        targets = [self.composition.artist]
+        if not (self.composition.artist.id == self.composition.uploader.id):
+            targets.append(self.composition.uploader)
+
+        return targets
+
 #Bind Signals
 bind_post(Interpretation)
