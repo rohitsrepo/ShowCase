@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework import status, permissions
 from rest_framework.response import Response
 
-from .manager import get_user_feed, get_news_feeds, get_user_notification_feed
+from .manager import get_user_feed, get_news_feeds, get_user_notification_feed, mark_activity_seen
 from .serializers import NotificationSerializer
 
 from posts.models import Post
@@ -79,5 +79,32 @@ class UserNotifications(APIView):
         user_activities, new_next_token = self.fetch_activity_notification(notification_feed, next_token, True)
         serializer = NotificationSerializer(user_activities, context={'request': request})
 
-        return Response(data={'results': serializer.data, 'next_token': new_next_token, 'count': len(serializer.data)})
+        return Response(data={
+            'results': serializer.data,
+            'next_token': new_next_token,
+            'count': len(serializer.data),
+            'feed_token': notification_feed.token
+        })
+
+    def put(self, request, format=None):
+        notification_feed = get_user_notification_feed(request.user.id)
+        activity_ids = request.DATA.get('activity_ids', '')
+
+        if not activity_ids:
+            return Response(data={'error': 'activity_ids is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        mark_activity_seen(notification_feed, activity_ids)
+        return Response(status=status.HTTP_201_CREATED)
+
+    def post(self, request, format=None):
+
+        activities = request.DATA.get('activities', '')
+
+        if not activities:
+            return Response(data={'error': 'activities is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = NotificationSerializer(activities, context={'request': request})
+
+        return Response(data=serializer.data)
+
 

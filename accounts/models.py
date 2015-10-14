@@ -9,7 +9,7 @@ from django.conf import settings
 from ShowCase.slugger import unique_slugify
 
 from .usermanager import UserManager
-from .picturehandler import bind_profile_picture_handler, WIDTH_PROFILE
+from .picturehandler import bind_profile_picture_handler, WIDTH_PROFILE, resize_picture_path
 
 from compositions.models import Composition
 from streams.manager import follow_user
@@ -88,9 +88,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.name
 
     def _format_url(self, suffix):
-        file_path, file_name = os.path.split(self.picture.url)
-        name, extension = os.path.splitext(file_name)
-        return os.path.join(file_path, '{0}_{1}{2}'.format(name, suffix, extension))
+        return resize_picture_path(self.picture.url, suffix)
 
     def get_picture_url(self):
         return self._format_url(WIDTH_PROFILE)

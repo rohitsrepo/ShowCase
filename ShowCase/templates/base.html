@@ -75,11 +75,51 @@
         </section><!--
         --><section class="user-auth">
         {% if user.is_authenticated %}
+
+            <button id="user-notifications" ng-class="{'active': activeNotifications.status}" ng-click="showNotifications()">
+              <span class="badge-wrapper" ng-class="{'mdl-badge': activeNotifications.status}" data-badge="[[activeNotifications.count]]"><i class="material-icons">notifications_none</i></span>
+            </button>
+
+            <ul class="user-notification-container mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="user-notifications">
+
+
+
+              <a class="user-notification mdl-menu__item" custom-href="[[notification.target_link]]" ng-repeat="notification in notifications">
+                <section class="actor-picture">
+                    <img ng-src="[[notification.actors[0].picture]]">
+                </section>
+                <section class="notification-details">
+                    <span ng-cloak ng-show="notification.actor_count>2">[[notification.actors[0].name]],</span>
+                    <span ng-cloak ng-show="notification.actor_count<=2">[[notification.actors[0].name]]</span>
+                    <span ng-cloak ng-show="notification.actor_count == 2">
+                        and [[notification.actors[1].name]]
+                    </span>
+                    <span ng-cloak ng-show="notification.actor_count>2">
+                        [[notification.actors[1].name]]
+                        and [[notification.actor_count - 2]]
+                        <span ng-cloak ng-show="notification.actor_count>3">others</span>
+                        <span ng-cloak ng-show="notification.actor_count==3">other</span>
+                    </span>
+                    [[notification.action]]
+                    [[notification.target_name | titlecase]]
+                </section>
+              </a>
+              <button class="more-notifications " ng-click="showMoreNotifications($event)" ng-hide="noNotifications || noMoreNotifications">
+                  <span ng-hide="loadingNotifications">Show more</span>
+                  <span ng-show="loadingNotifications">Loading Notifications...</span>
+              </button>
+              <section class="no-notifications ng-hide" ng-cloak ng-show="noNotifications">
+                  <h4>There are no notifications yet.</h4>
+                  <h5>Take it easy</h5>
+                  <a ng-href="/home" class="explore" analytics-click analytics-data="['Reader', 'Button-Explore Art']">EXPLORE ART</a>
+              </section>
+            </ul>
+
             <button id="user-profile">
               <i class="material-icons">reorder</i>
             </button>
 
-            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+            <ul class="user-profile-options mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                 for="user-profile">
               <li class="mdl-menu__item" ng-click="showUpload()"><i class="material-icons">add_box</i>Add Artwork</li>
               <li class="mdl-menu__item" ng-click="showCreateBucket()"><i class="material-icons">view_carousel</i>Create Series</li>
@@ -164,6 +204,7 @@
 
     <!-- build:js /static/build/base.js -->
     <script type="text/javascript" src="/static/vendor/sly/sly.min.js"></script>
+    <script type="text/javascript" src="/static/vendor/stream/stream.js"></script>
 
     <script type="text/javascript" src="/static/js/models/model.module.js"></script>
     <script type="text/javascript" src="/static/js/models/user.model.js"></script>

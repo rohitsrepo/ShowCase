@@ -32,11 +32,11 @@ def get_user_feed(user_id, feed_type=None):
 def get_user_notification_feed(user_id):
     return get_user_feed(user_id, NOTIFICATION_FEED)
 
-def mark_activity_read(user_feed, activity_id):
-    user_feed.get(limit=5, mark_read=[activity_id])
+def mark_activity_read(user_feed, activity_ids):
+    user_feed.get(limit=5, mark_read=activity_ids)
 
-def mark_activity_seen(user_feed, activity_id):
-    user_feed.get(limit=5, mark_seen=[activity_id])
+def mark_activity_seen(user_feed, activity_ids):
+    user_feed.get(limit=5, mark_seen=activity_ids)
 
 def get_feed(feed, user_id):
         return stream_client.feed(feed, user_id)
