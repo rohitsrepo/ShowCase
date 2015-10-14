@@ -32,6 +32,8 @@ class ContentObjectRelatedField(serializers.RelatedField):
             bucket_id = value[0]['object']
             bucket = Bucket.objects.get(pk=bucket_id)
             serializer = BucketSerializer(bucket, context={'request': self.context['request']})
+        elif verb=='FL':
+            return {};
         else:
             raise Exception('Unexpected type of notification activity')
 

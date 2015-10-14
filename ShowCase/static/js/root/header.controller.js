@@ -61,6 +61,11 @@ angular.module('module.root')
             target_name = notification.content_object.name;
             target_link = '/@' + notification.content_object.owner.slug + '/series/' + notification.content_object.slug;
         }
+        else if (verb == 'FL') {
+            action = 'started following you';
+            target_name = '';
+            target_link = '/@' + $scope.user.slug;
+        }
         else {
             console.error('Invalid notification activity type');
         }

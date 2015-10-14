@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.http import Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import get_object_or_404
@@ -12,7 +14,7 @@ from ShowCase.utils import check_object_permissions
 from .models import User
 from .serializers import ExistingUserSerializer
 
-from streams.manager import follow_user, unfollow_user
+from streams.manager import follow_user, unfollow_user, add_notification
 
 class UserFollowsAdd(APIView):
 
@@ -29,7 +31,16 @@ class UserFollowsAdd(APIView):
         request.user.follows.add(*follows)
 
         for follow in follows:
+            activity = dict(
+                actor=request.user.id,
+                verb='FL',
+                object=follow,
+                foreign_id=request.user.id,
+                time=datetime.now(),
+            )
+
             follow_user(request.user.id, follow)
+            add_notification(follow, activity)
 
         return Response(status=status.HTTP_201_CREATED)
 

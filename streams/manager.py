@@ -32,6 +32,11 @@ def get_user_feed(user_id, feed_type=None):
 def get_user_notification_feed(user_id):
     return get_user_feed(user_id, NOTIFICATION_FEED)
 
+
+def add_notification(user_id, activity):
+    notification_feed = get_user_feed(user_id, NOTIFICATION_FEED)
+    notification_feed.add_activity(activity)
+
 def mark_activity_read(user_feed, activity_ids):
     user_feed.get(limit=5, mark_read=activity_ids)
 
