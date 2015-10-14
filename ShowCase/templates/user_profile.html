@@ -49,9 +49,7 @@
     <header class="primary-header" ng-init="init('{{artist.id}}', '{{is_followed}}', '{{is_me}}')">
         <div class="container">
             <header class="primary-header-header">
-                <div class="picture">
-                    <img src="{{artist.picture.url}}">
-                </div>
+                <div class="picture" ng-style="{'background-image': 'url({{artist.picture.url}})'}"></div>
 
                 <div class="details">
                     <h1>{{artist.name | title}}</h1>
