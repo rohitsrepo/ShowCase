@@ -56,7 +56,8 @@ html, body {
     padding-top: 20px;
 }
 
-.primary-header .primary-header-header h1, h2 {
+.primary-header .primary-header-header .details h1,
+.primary-header .primary-header-header .details h2 {
     line-height: 1.3em;
     letter-spacing: 1px;
     color: rgba(0, 0, 0, 0.9);

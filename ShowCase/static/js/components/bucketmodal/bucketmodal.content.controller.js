@@ -167,6 +167,50 @@ angular.module('module.bucketmodal')
             }
         };
 
+        $scope.shareArt = function (index) {
+            var art = $scope.bucketArts[index].composition;
+            var base_url = "http://thirddime.com";
+            var share_url = base_url + "/arts/" + art.slug;
+            var title = 'Artwork: "' + art.title + '" by: ' + art.artist.name;
+            var description = 'Find thoughts about artwork "' + art.title+
+                '" at ' + share_url;
+            var media = 'http://thirddime.com' + art.matter;
+            shareModalService.shareThisPage(share_url, title, description, media);
+        };
+
+        $scope.showAddToBucket = function (index) {
+            var art = $scope.bucketArts[index].composition;
+            bucketmodalService.showAddToBucket(art);
+        };
+
+        $scope.handleBookMarkArt = function (index) {
+            var art = $scope.bucketArts[index].composition;
+
+            if (art.is_bookmarked) {
+                bookService.unmarkArt(art).then(function () {
+                    art.is_bookmarked = false;
+                });
+            } else {
+                bookService.bookmarkArt(art).then(function () {
+                    art.is_bookmarked = true;
+                });;
+            }
+        };
+
+        $scope.handleAdmireArt = function (index) {
+            var art = $scope.bucketArts[index].composition;
+
+            if (art.is_admired) {
+                admireService.unadmireArt(art).then(function () {
+                    art.is_admired = false;
+                });
+            } else {
+                admireService.admireArt(art).then(function () {
+                    art.is_admired = true;
+                });;
+            }
+        };
+
         $scope.handleFollow = function () {
             var targetUser = $scope.bucket.owner;
             if (targetUser.is_followed) {
