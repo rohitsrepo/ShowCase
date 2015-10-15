@@ -5,6 +5,9 @@ from django.db import models
 
 from posts.models import Post, bind_post
 
+class AdmirationOption(models.Model):
+    word = models.CharField(max_length=50)
+
 class Admiration(models.Model):
     BUCKET = 'BK'
     ART = 'AR'
@@ -17,6 +20,7 @@ class Admiration(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='admirations')
     created = models.DateTimeField(auto_now_add=True)
     admire_type = models.CharField(max_length=2, choices=TYPE_CHOICES)
+    admire_as = models.ForeignKey(AdmirationOption)
 
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()

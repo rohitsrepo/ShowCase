@@ -38,12 +38,51 @@ angular.module('BucketApp')
         $scope.noArts = false;
         var currentShowIndex = 0;
 
+        var admirationOptions = angular.copy(admireService.admirationOptions);
+        admirationOptions.splice(0,1);
+        $scope.admirationOptions = [];
+        var currentOptionIndex = -1;
+
+        for(i=0; i< admirationOptions.length; i++){
+            $scope.admirationOptions.push({
+                'word': admirationOptions[i],
+                'count': -1,
+                'id': 0
+            });
+        }
+
+        var getAdmirationOptions = function () {
+            admireService.getAdmirationOptionsBucket($scope.bucket).then(function (options) {
+
+                for(i=0; i< $scope.admirationOptions.length; i++){
+                    for(j=0; j< options.length; j++){
+                        if ($scope.admirationOptions[i].word === options[j].word){
+                            $scope.admirationOptions[i].count = options[j].count;
+                            $scope.admirationOptions[i].id = options[j].id;
+
+                            if (options[j].id == $scope.bucket.admire_as){
+                                currentOptionIndex = i;
+                                $scope.admirationOptions[i].selected = true;
+                            }
+
+                            break;
+                        }
+
+                        if ($scope.admirationOptions[i].count == -1) {
+                            $scope.admirationOptions[i].count = 0;
+                        }
+                    }
+                }
+            });
+        };
+
         var getArts = function (bucketId) {
 
             bucketModel.bucketArts(bucketId).then(function (arts) {
                 if (arts.length > 0){
                     $scope.bucketArts = arts;
                     $scope.bucketArts[currentShowIndex].show = true;
+                    getAdmirationOptions();
                 } else {
                     $scope.noArts = true;
                 }
@@ -55,7 +94,7 @@ angular.module('BucketApp')
         };
 
         $scope.bucket = {};
-        $scope.init = function (id, name, description, background, slug, ownerName, ownerId, ownerSlug, ownerIsFollowed, is_admired, is_bookmarked, isMe) {
+        $scope.init = function (id, name, description, background, slug, ownerName, ownerId, ownerSlug, ownerIsFollowed, is_admired, admire_as, is_bookmarked, isMe) {
             $scope.bucket.id = id;
             $scope.bucket.slug = slug;
             $scope.bucket.name = name;
@@ -66,11 +105,13 @@ angular.module('BucketApp')
                                     'slug': ownerSlug,
                                     'is_followed': ownerIsFollowed == 'True'};
             $scope.bucket.is_admired = is_admired == 'True';
+            $scope.bucket.admire_as = admire_as;
             $scope.bucket.is_bookmarked = is_bookmarked == 'True';
 
             $scope.isMe = isMe == 'True';
 
             getArts(id);
+
         };
 
 
@@ -173,7 +214,27 @@ angular.module('BucketApp')
             bucketmodalService.showEditBucketMembership($scope.bucket, membership);
         };
 
-        $scope.handleAdmireBucket = function () {
+        $scope.admireBucket = function (index){
+            if (index == currentOptionIndex) {
+                return;
+            }
+
+            var option = $scope.admirationOptions[index];
+            var bucket = $scope.bucket;
+            admireService.admireBucket(bucket, option.word).then(function () {
+                if (bucket.is_admired) {
+                    $scope.admirationOptions[currentOptionIndex].selected=false;
+                    $scope.admirationOptions[currentOptionIndex].count--;
+                }
+
+                bucket.is_admired = true;
+                option.count++;
+                option.selected = true;
+                currentOptionIndex = index;
+            });
+        }
+
+        $scope.handleAdmireBucket = function (option) {
             var bucket = $scope.bucket;
 
             if (bucket.is_admired) {
@@ -181,7 +242,7 @@ angular.module('BucketApp')
                     bucket.is_admired = false;
                 });
             } else {
-                admireService.admireBucket(bucket).then(function () {
+                admireService.admireBucket(bucket, option).then(function () {
                     bucket.is_admired = true;
                 });;
             }

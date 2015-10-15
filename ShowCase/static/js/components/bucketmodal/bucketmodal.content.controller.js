@@ -37,10 +37,51 @@ angular.module('module.bucketmodal')
         $scope.isState = $state.current.data && $state.current.data.isState;
         var currentShowIndex = 0;
 
+        var admirationOptions = angular.copy(admireService.admirationOptions);
+        admirationOptions.splice(0,1);
+        $scope.admirationOptions = [];
+        var currentOptionIndex = -1;
+
+        for(i=0; i< admirationOptions.length; i++){
+            $scope.admirationOptions.push({
+                'word': admirationOptions[i],
+                'count': -1,
+                'id': 0
+            });
+        }
+        console.log("init", $scope.admirationOptions);
+
+
+        var getAdmirationOptions = function () {
+            admireService.getAdmirationOptionsBucket($scope.bucket).then(function (options) {
+
+                for(i=0; i< $scope.admirationOptions.length; i++){
+                    for(j=0; j< options.length; j++){
+                        if ($scope.admirationOptions[i].word === options[j].word){
+                            $scope.admirationOptions[i].count = options[j].count;
+                            $scope.admirationOptions[i].id = options[j].id;
+
+                            if (options[j].id == $scope.bucket.admire_as){
+                                currentOptionIndex = i;
+                                $scope.admirationOptions[i].selected = true;
+                            }
+
+                            break;
+                        }
+
+                        if ($scope.admirationOptions[i].count == -1) {
+                            $scope.admirationOptions[i].count = 0;
+                        }
+                    }
+                }
+            });
+        };
+
         bucketModel.bucketArts(bucket.id).then(function (arts) {
             if (arts.length > 0){
                 $scope.bucketArts = arts;
                 $scope.bucketArts[currentShowIndex].show = true;
+                getAdmirationOptions();
             } else {
                 $scope.noArts = true;
             }
@@ -152,6 +193,26 @@ angular.module('module.bucketmodal')
             var membership = $scope.bucketArts[index];
             bucketmodalService.showEditBucketMembership($scope.bucket, membership);
         };
+
+        $scope.admireBucket = function (index){
+            if (index == currentOptionIndex) {
+                return;
+            }
+
+            var option = $scope.admirationOptions[index];
+            var bucket = $scope.bucket;
+            admireService.admireBucket(bucket, option.word).then(function () {
+                if (bucket.is_admired) {
+                    $scope.admirationOptions[currentOptionIndex].selected=false;
+                    $scope.admirationOptions[currentOptionIndex].count--;
+                }
+
+                bucket.is_admired = true;
+                option.count++;
+                option.selected = true;
+                currentOptionIndex = index;
+            });
+        }
 
         $scope.handleAdmireBucket = function () {
             var bucket = $scope.bucket;

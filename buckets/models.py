@@ -83,6 +83,12 @@ class Bucket(models.Model):
     def admirers_count(self):
         return self.admirers.count()
 
+    def admire_as(self, user_id):
+        try:
+            return self.admirers.get(owner=user_id).admire_as.id
+        except:
+            return 0
+
     def add_to_staff_feed(self):
         Staff.objects.create(feed_type=Staff.BUCKET,
             content_object=self)

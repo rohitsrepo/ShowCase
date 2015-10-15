@@ -7,10 +7,12 @@ angular.module("module.model")
     service.TypeBucket = 'BK';
     service.TypeArt = 'AR';
 
-    service.admire = function (object_id, content_type) {
+    service.admire = function (object_id, content_type, admire_word) {
+        admire_word = admire_word || '';
         return $http.post('/admirations',
             {'content_type': content_type,
-            'object_id': object_id})
+            'object_id': object_id,
+            'word': admire_word})
         .then(function (response) {
             return response.data;
         }, function (response) {
@@ -41,6 +43,14 @@ angular.module("module.model")
 
     service.getAdmirations = function (object_id, content_type) {
         return $http.get('/admirations?object_id='+object_id+'&content_type='+content_type).then(function (response) {
+            return response.data;
+        }, function (response) {
+            return $q.reject(response);
+        });
+    };
+
+    service.getAdmirationOptions = function (object_id, content_type) {
+        return $http.get('/admirations/options?object_id='+object_id+'&content_type='+content_type).then(function (response) {
             return response.data;
         }, function (response) {
             return $q.reject(response);

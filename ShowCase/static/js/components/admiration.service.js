@@ -2,10 +2,22 @@ angular.module('module.admiration', ['module.model', 'module.util'])
 .factory('admireService', ['$q', 'auth', 'admirationModel', 'progress', 'alert', function ($q, auth, admirationModel, progress, alert) {
 	var service = {};
 
-	var admire = function (object_id, content_type) {
+    service.admirationOptions = ['',
+        'Beautiful',
+        'Unusual',
+        'Thought-Provoking',
+        'Repulsive',
+        'Soothing',
+        'Saddening',
+        'Dark',
+        'Touching',
+        'Entertaining'
+    ]
+
+	var admire = function (object_id, content_type, option) {
 		return auth.runWithAuth(function () {
 			progress.showProgress();
-			return admirationModel.admire(object_id, content_type).then(function (response) {
+			return admirationModel.admire(object_id, content_type, option).then(function (response) {
 				progress.hideProgress();
 				return $q.when();
 			}, function () {
@@ -17,11 +29,11 @@ angular.module('module.admiration', ['module.model', 'module.util'])
 	};
 
     service.admireArt = function (art) {
-        return admire(art.id, admirationModel.TypeArt);
+        return admire(art.id, admirationModel.TypeArt, '');
     };
 
-    service.admireBucket = function (bucket) {
-        return admire(bucket.id, admirationModel.TypeBucket);
+    service.admireBucket = function (bucket, option) {
+        return admire(bucket.id, admirationModel.TypeBucket, option);
     };
 
 	var unadmire = function (object_id, content_type) {
@@ -44,6 +56,26 @@ angular.module('module.admiration', ['module.model', 'module.util'])
 
     service.unadmireBucket = function (bucket) {
         return unadmire(bucket.id, admirationModel.TypeBucket);
+    };
+
+    var getAdmirationOptions = function (object_id, content_type) {
+        progress.showProgress();
+        return admirationModel.getAdmirationOptions(object_id, content_type).then(function (response) {
+            progress.hideProgress();
+            return $q.when(response);
+        }, function () {
+            progress.hideProgress();
+            alert.showAlert('Unable to complete your request');
+            return $q.reject();
+        });
+    };
+
+    service.getAdmirationOptionsArt = function (art) {
+        return getAdmirationOptions(art.id, admirationModel.TypeArt);
+    };
+
+    service.getAdmirationOptionsBucket = function (bucket) {
+        return getAdmirationOptions(bucket.id, admirationModel.TypeBucket);
     };
 
 	return service;

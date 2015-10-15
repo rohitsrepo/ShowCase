@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.pagination import PaginationSerializer
 
-from .models import Admiration
+from .models import Admiration, AdmirationOption
 
 from accounts.serializers import ExistingUserSerializer
 from compositions.models import Composition
@@ -22,14 +22,21 @@ class ContentObjectRelatedField(serializers.RelatedField):
 
         return serializer.data
 
+class AdmirationOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = AdmirationOption
+        fields = ('id', 'word')
+
 class AdmirationSerializer(serializers.ModelSerializer):
     content = ContentObjectRelatedField(source='content_object')
     owner = ExistingUserSerializer(read_only=True)
     content_type = serializers.CharField(source='admire_type', read_only=True)
+    admire_as = AdmirationOptionSerializer(read_only=True)
 
     class Meta:
         model = Admiration
-        fields = ('id', 'owner', 'created', 'content_type', 'content')
+        fields = ('id', 'owner', 'created', 'admire_as', 'content_type', 'content')
 
 class PaginatedAdmirationSerializer(PaginationSerializer):
     class Meta:
@@ -45,3 +52,11 @@ class AdmirationContentCreateSerializer(serializers.Serializer):
         if (field_value == Admiration.ART or field_value==Admiration.BUCKET):
             return attrs
         raise serializers.ValidationError('Invalid admire type received');
+
+
+class OptionSerializer(serializers.ModelSerializer):
+    count = serializers.IntegerField(source='count')
+
+    class Meta:
+        model = AdmirationOption
+        fields = ('id', 'word', 'count')
