@@ -12,12 +12,12 @@
                     <section class="inset-actions">
                         <i class="material-icons" ng-click="shareArt($event, $index)" >share</i>
                         <i class="material-icons" ng-cloak ng-hide="art.is_admired" ng-click="handleAdmireArt($event, $index)">favorite_border</i>
-                        <i class="material-icons" ng-cloak ng-show="art.is_admired" ng-click="handleAdmireArt($event, $index)">favorite</i>
+                        <i class="material-icons admire-on-icon" ng-cloak ng-show="art.is_admired" ng-click="handleAdmireArt($event, $index)">favorite</i>
                     </section>
 
                     <section class="bookmark-action">
                         <i class="material-icons" ng-click="handleBookMark($event, $index)" ng-cloak ng-hide="art.is_bookmarked">bookmark_border</i>
-                        <i class="material-icons" ng-click="handleBookMark($event, $index)" ng-cloak ng-show="art.is_bookmarked">bookmark</i>
+                        <i class="material-icons bookmark-on-icon" ng-click="handleBookMark($event, $index)" ng-cloak ng-show="art.is_bookmarked">bookmark</i>
                     </section>
 
                     <section class="series-action">

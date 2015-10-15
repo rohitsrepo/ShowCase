@@ -131,8 +131,9 @@ controller("compositionController", [
         bucketmodalService.showArtBuckets($scope.composition);
     }
 
-    $scope.showAddToBucket = function () {
-        bucketmodalService.showAddToBucket($scope.composition);
+    $scope.showAddToBucket = function (event, art) {
+        event.stopPropagation();
+        bucketmodalService.showAddToBucket(art);
     }
 
     $scope.showShare = function () {

@@ -46,7 +46,7 @@ angular.module('BucketApp')
         for(i=0; i< admirationOptions.length; i++){
             $scope.admirationOptions.push({
                 'word': admirationOptions[i],
-                'count': -1,
+                'count': 0,
                 'id': 0
             });
         }
@@ -66,10 +66,6 @@ angular.module('BucketApp')
                             }
 
                             break;
-                        }
-
-                        if ($scope.admirationOptions[i].count == -1) {
-                            $scope.admirationOptions[i].count = 0;
                         }
                     }
                 }
@@ -222,7 +218,7 @@ angular.module('BucketApp')
             var option = $scope.admirationOptions[index];
             var bucket = $scope.bucket;
             admireService.admireBucket(bucket, option.word).then(function () {
-                if (bucket.is_admired) {
+                if (bucket.is_admired && currentOptionIndex >=0) {
                     $scope.admirationOptions[currentOptionIndex].selected=false;
                     $scope.admirationOptions[currentOptionIndex].count--;
                 }

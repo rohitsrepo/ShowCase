@@ -83,22 +83,42 @@
     display: inline;
 }
 
+.solo-art-bucket .picture .details .bucket-details-actions,
+.solo-art-bucket .picture .details .bookmark-action {
+    position: absolute;
+    top: 20px;
+    transition: all 0.3s;
+}
+
+.solo-art-bucket .picture .details:hover .bucket-details-actions i,
+.solo-art-bucket .picture .details:hover .bookmark-action i {
+    opacity: 1;
+}
+
 .solo-art-bucket .picture .details .bucket-details-actions {
-    display: block;
+    right: 20px;
 }
 
-.solo-art-bucket .picture .details .bucket-details-actions i {
-    display: inline-block;
-    margin: 0 3px;
-    margin-top: 15px;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 1.1em;
-    font-weight: 200;
+.solo-art-bucket .picture .details .bookmark-action {
+    left: 20px;
 }
 
-.solo-art-bucket .picture .details .bucket-details-actions i:hover {
-    color: rgba(255, 255, 255, 0.95);
+.solo-art-bucket .picture .details .bucket-details-actions i,
+.solo-art-bucket .picture .details .bookmark-action i {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2em;
+    padding: 0 2px;
+    opacity: 0;
+}
+
+.solo-art-bucket .picture .details .bucket-details-actions i.admire-on-icon,
+.solo-art-bucket .picture .details .bookmark-action i.bookmark-on-icon {
+    opacity: 1;
+}
+
+.solo-art-bucket .picture .details .bucket-details-actions i:hover,
+.solo-art-bucket .picture .details .bookmark-action i:hover {
+    color: white;
 }
 
 @media (max-width: 800px) {

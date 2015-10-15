@@ -486,22 +486,42 @@ html, body {
     display: inline;
 }
 
+.art-bucket .details .art-bucket-details-actions,
+.art-bucket .details .bookmark-action {
+    position: absolute;
+    top: 20px;
+    transition: all 0.3s;
+}
+
+.art-bucket .details:hover .art-bucket-details-actions i,
+.art-bucket .details:hover .bookmark-action i {
+    opacity: 1;
+}
+
 .art-bucket .details .art-bucket-details-actions {
-    display: block;
+    right: 20px;
 }
 
-.art-bucket .details .art-bucket-details-actions i {
-    display: inline-block;
-    margin: 0 3px;
-    margin-top: 15px;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 1.1em;
-    font-weight: 200;
+.art-bucket .details .bookmark-action {
+    left: 20px;
 }
 
-.art-bucket .details .art-bucket-details-actions i:hover {
-    color: rgba(255, 255, 255, 0.95);
+.art-bucket .details .art-bucket-details-actions i,
+.art-bucket .details .bookmark-action i {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2em;
+    padding: 0 2px;
+    opacity: 0;
+}
+
+.art-bucket .details .art-bucket-details-actions i.admire-on-icon,
+.art-bucket .details .bookmark-action i.bookmark-on-icon {
+    opacity: 1;
+}
+
+.art-bucket .details .art-bucket-details-actions i:hover,
+.art-bucket .details .bookmark-action i:hover {
+    color: white;
 }
 
 @media (max-width: 800px) {
@@ -626,7 +646,81 @@ html, body {
     display: inline;
 }
 
+.associate-works .work .work-details .work-inset-details-actions,
+.associate-works .work .work-details .bookmark-action {
+    position: absolute;
+    top: 20px;
+}
+
+.associate-works .work .work-details:hover .work-inset-details-actions i,
+.associate-works .work .work-details:hover .bookmark-action i {
+    opacity: 1;
+}
+
+.associate-works .work .work-details .work-inset-details-actions {
+    right: 20px;
+}
+
+.associate-works .work .work-details .bookmark-action {
+    left: 20px;
+}
+
+.associate-works .work .work-details .work-inset-details-actions i,
+.associate-works .work .work-details .bookmark-action i {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2em;
+    padding: 0 2px;
+    opacity: 0;
+}
+
+.associate-works .work .work-details .work-inset-details-actions i.admire-on-icon,
+.associate-works .work .work-details .bookmark-action i.bookmark-on-icon {
+    opacity: 1;
+}
+
+.associate-works .work .work-details .work-inset-details-actions i:hover,
+.associate-works .work .work-details .bookmark-action i:hover {
+    color: white;
+}
+
 .work .work-details .work-details-actions {
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  opacity: 0;
+  text-align: center;
+    transition: all 0.3s;
+}
+
+.work .work-details:hover .work-details-actions ,
+.work .work-details:hover .work-details-actions button {
+  opacity: 1;
+}
+
+.work .work-details .work-details-actions button {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  display: inline-block;
+  background: transparent;
+  border: none;
+  font-size: 0.8em;
+  padding: 8px 10px;
+  color: white;
+  cursor: pointer;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s;
+}
+
+.work .work-details .work-details-actions button:hover {
+  background: rgba(0, 0, 0, 1);
+  border: 1px solid white;
+}
+
+/*.work .work-details .work-details-actions {
     display: block;
 }
 
@@ -642,7 +736,7 @@ html, body {
 
 .work .work-details .work-details-actions i:hover {
     color: rgba(255, 255, 255, 0.95);
-}
+}*/
 
 
 @media (max-width: 800px) {

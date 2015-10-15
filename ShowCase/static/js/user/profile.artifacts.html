@@ -11,12 +11,12 @@
                     <section class="inset-actions">
                         <i class="material-icons" ng-click="shareArt($event, $index)" >share</i>
                         <i class="material-icons" ng-cloak ng-hide="artifact.content.is_admired" ng-click="handleAdmireArt($event, $index)">favorite_border</i>
-                        <i class="material-icons" ng-cloak ng-show="artifact.content.is_admired" ng-click="handleAdmireArt($event, $index)">favorite</i>
+                        <i class="material-icons admire-on-icon" ng-cloak ng-show="artifact.content.is_admired" ng-click="handleAdmireArt($event, $index)">favorite</i>
                     </section>
 
                     <section class="bookmark-action">
                         <i class="material-icons" ng-click="handleBookMark($event, $index)" ng-cloak ng-hide="artifact.content.is_bookmarked">bookmark_border</i>
-                        <i class="material-icons" ng-click="handleBookMark($event, $index)" ng-cloak ng-show="artifact.content.is_bookmarked">bookmark</i>
+                        <i class="material-icons bookmark-on-icon" ng-click="handleBookMark($event, $index)" ng-cloak ng-show="artifact.content.is_bookmarked">bookmark</i>
                     </section>
 
                     <section class="series-action">
@@ -39,13 +39,12 @@
                 <section class="bucket-inset-details" ui-sref="bucket({userSlug: artifact.content.owner.slug, bucketSlug: artifact.content.slug})">
                     <section class="bucket-inset-details-actions">
                         <i class="material-icons" ng-click="shareBucket($event, $index)" >share</i>
-                        <i class="material-icons" ng-cloak ng-hide="artifact.content.is_admired" ng-click="handleAdmireBucket($event, $index)">favorite_border</i>
-                        <i class="material-icons" ng-cloak ng-show="artifact.content.is_admired" ng-click="handleAdmireBucket($event, $index)">favorite</i>
+                        <i class="material-icons admire-on-icon" ng-cloak ng-show="artifact.content.is_admired">favorite</i>
                     </section>
 
                     <section class="bookmark-action">
                         <i class="material-icons" ng-cloak ng-hide="artifact.content.is_bookmarked" ng-click="handleBookMarkBucket($event, $index)">bookmark_border</i>
-                        <i class="material-icons" ng-cloak ng-show="artifact.content.is_bookmarked" ng-click="handleBookMarkBucket($event, $index)">bookmark</i>
+                        <i class="material-icons bookmark-on-icon" ng-cloak ng-show="artifact.content.is_bookmarked" ng-click="handleBookMarkBucket($event, $index)">bookmark</i>
                     </section>
 
                     <h2>[[artifact.content.name | titlecase]]</h2>

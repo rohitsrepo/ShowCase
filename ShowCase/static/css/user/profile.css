@@ -270,12 +270,10 @@ header .details .actions h3:hover {
 .user-bucket-picture .user-bucket-details .bookmark-action {
     position: absolute;
     top: 20px;
-    opacity: 0;
-    transition: all 0.3s;
 }
 
-.user-bucket-picture .user-bucket-details:hover .user-bucket-details-actions,
-.user-bucket-picture .user-bucket-details:hover .bookmark-action {
+.user-bucket-picture .user-bucket-details:hover .user-bucket-details-actions i,
+.user-bucket-picture .user-bucket-details:hover .bookmark-action i {
     opacity: 1;
 }
 
@@ -292,6 +290,12 @@ header .details .actions h3:hover {
     color: rgba(255, 255, 255, 0.7);
     font-size: 1em;
     padding: 0 2px;
+    opacity: 0;
+}
+
+.user-bucket-picture .user-bucket-details .user-bucket-details-actions i.admire-on-icon,
+.user-bucket-picture .user-bucket-details .bookmark-action i.bookmark-on-icon {
+    opacity: 1;
 }
 
 .user-bucket-picture .user-bucket-details .user-bucket-details-actions i:hover,
