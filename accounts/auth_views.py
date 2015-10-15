@@ -11,10 +11,10 @@ class EmailPermissionRedirect(OAuthRedirect):
     def get_additional_parameters(self, provider):
         if provider.name == 'facebook':
             # Request permission to see user's email
-            return {'scope': 'email'}
+            return {'scope': ['email', 'user_friends']}
         if provider.name == 'google':
             # Request permission to see user's profile and email
-            perms = ['userinfo.email', 'userinfo.profile']
+            perms = ['userinfo.email', 'userinfo.profile', 'plus.login', 'plus.me']
             scope = ' '.join(['https://www.googleapis.com/auth/' + p for p in perms])
             return {'scope': scope}
         return super(EmailPermissionRedirect, self).get_additional_parameters(provider)
