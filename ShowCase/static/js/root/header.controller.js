@@ -47,8 +47,8 @@ angular.module('module.root')
             target_link = '/arts/' + notification.content_object.slug;
         }
         else if (verb == 'BK') {
-            action = 'added to series';
-            target_name = notification.content_object.title;
+            action = 'added artwork ' + notification.content_object.title + ' to series';
+            target_name = '';
             target_link = '/arts/' + notification.content_object.slug;
         }
         else if (verb == 'MA') {
