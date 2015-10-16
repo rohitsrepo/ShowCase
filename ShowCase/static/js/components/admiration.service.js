@@ -11,7 +11,9 @@ angular.module('module.admiration', ['module.model', 'module.util'])
         'Saddening',
         'Dark',
         'Touching',
-        'Entertaining'
+        'Entertaining',
+        'Interesting',
+        'Inspiring'
     ]
 
 	var admire = function (object_id, content_type, option) {
