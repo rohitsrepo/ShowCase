@@ -20,7 +20,7 @@
 
                 <section class="buckets">
                     <li class="bucket" ng-class="{'added': bucket.composition_added}" ng-repeat="bucket in userBuckets">
-                        <h2 ng-click="addToThisBucket($index)">[[bucket.name | titlecase]]</h2>
+                        <h2 ng-click="addToThisBucket($index)">[[bucket.name | titlecase]] <span class="bucket-draft-marker ng-hide" ng-show="!bucket.is_public">[In Draft]</span></h2>
                     </li>
                 </section>
             </section>

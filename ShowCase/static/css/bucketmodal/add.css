@@ -160,6 +160,12 @@
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+.container  .source-bucket .bucket .bucket-draft-marker {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.7em;
+    vertical-align: middle;
+}
+
 @media (min-width: 1500px) {
     .container  .source-bucket .buckets {
         max-height: 350px;
