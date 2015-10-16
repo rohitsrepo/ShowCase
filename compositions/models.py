@@ -36,6 +36,7 @@ class Composition(models.Model):
 
     bookers = GenericRelation(BookMark, related_query_name='booked_compositions')
     admirers = GenericRelation(Admiration, related_query_name='admired_compositions')
+    added_with_bucket = models.BooleanField(default=False)
 
     class Meta:
         ordering = ('created',)
@@ -195,18 +196,28 @@ class Composition(models.Model):
         return None
 
     def create_post(self):
-        if not (self.artist.id == self.uploader.id):
-            Post.objects.create(
+        if not self.added_with_bucket:
+
+            if not (self.artist.id == self.uploader.id):
+                Post.objects.create(
+                    composition=self,
+                    creator=self.uploader,
+                    post_type = Post.ADD,
+                    content_object=self)
+
+            return Post(
                 composition=self,
-                creator=self.uploader,
-                post_type = Post.ADD,
+                creator=self.artist,
+                post_type = Post.CREATE,
                 content_object=self)
 
-        return Post(
-            composition=self,
-            creator=self.artist,
-            post_type = Post.CREATE,
-            content_object=self)
+        else:
+            if not (self.artist.id == self.uploader.id):
+                return Post(
+                    composition=self,
+                    creator=self.artist,
+                    post_type = Post.CREATE,
+                    content_object=self)
 
     def get_post(self):
         return Post.objects.filter(composition=self,

@@ -112,11 +112,18 @@ class CompositionList(APIView):
             image_path = get_image_path(user, image_id)
             return File(open(image_path))
 
-    def addToBucket(self, user, request_data, composition):
+    def get_valid_bucket(self, user, request_data):
         if ('bucket' in request_data.keys()):
             bucket_id = request_data['bucket']
-            bucket = user.buckets.get(id=bucket_id)
-            BucketMembership.objects.get_or_create(bucket=bucket, composition=composition)
+            try:
+                return user.buckets.get(id=bucket_id)
+            except:
+                return False
+        else:
+            return False
+
+    def addToBucket(self, bucket, composition):
+        BucketMembership.objects.get_or_create(bucket=bucket, composition=composition)
 
     def remove_temp_image(self, user, image_id):
         if image_id:
@@ -132,12 +139,17 @@ class CompositionList(APIView):
             ser = NewCompositionSerializer(data=request.DATA, files=request.FILES, context={'request': request})
 
             if ser.is_valid():
+                bucket = self.get_valid_bucket(request.user, request.DATA)
+                if bucket:
+                    ser.object.added_with_bucket = True
+
                 ser.object.uploader = request.user
                 composition = ser.save()
 
                 self.remove_temp_image(request.user, request.DATA.get('image_id', ''))
 
-                self.addToBucket(request.user, request.DATA, composition)
+                if bucket:
+                    self.addToBucket(bucket, composition)
                 return Response(ser.data, status=status.HTTP_201_CREATED)
 
             return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)

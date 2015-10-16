@@ -78,9 +78,10 @@ class Post(models.Model):
         notification_targets = self.content_object.getNotificationTarget(self)
         if notification_targets:
             for notification_target in notification_targets:
-                activity_data.append({'activity': activity,
-                'feed_type': NOTIFICATION_FEED,
-                'feed_id': notification_target.id})
+                if not (notification_target.id == activity['actor']):
+                    activity_data.append({'activity': activity,
+                    'feed_type': NOTIFICATION_FEED,
+                    'feed_id': notification_target.id})
 
         if self.post_type == self.BUCKET:
             activity_data.append({'activity': activity,
@@ -96,7 +97,8 @@ class Post(models.Model):
 def model_created(sender, instance, created, raw, **kwargs):
     if created and not raw:
         post = instance.create_post()
-        post.save()
+        if post:
+            post.save()
 
 def model_deleted(sender, instance, **kwargs):
     try:
