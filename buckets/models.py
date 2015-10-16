@@ -24,6 +24,7 @@ class Bucket(models.Model):
     compositions = models.ManyToManyField(Composition, related_name='holders', through='BucketMembership')
     slug = models.SlugField(max_length=100, unique=True)
     views = models.IntegerField(default=0)
+    public = models.BooleanField(default=False)
 
     owner = models.ForeignKey(User, related_name='buckets')
     created = models.DateTimeField(auto_now_add=True)
@@ -109,6 +110,16 @@ class Bucket(models.Model):
 
         return None
 
+    def get_fresh_post(self):
+        return Fresh.objects.filter(feed_type=Fresh.BUCKET,
+                object_id=self.id,
+                content_type=ContentType.objects.get_for_model(Bucket))
+
+    def add_to_fresh_feed(self):
+        if self.public and not self.get_fresh_post().exists():
+            Fresh.objects.create(feed_type=Fresh.BUCKET,
+                content_object=self)
+
 
 class BucketMembership(models.Model):
     bucket = models.ForeignKey(Bucket, related_name='membership')
@@ -117,7 +128,7 @@ class BucketMembership(models.Model):
     description = models.TextField(max_length=500, blank=True)
 
     def add_to_fresh_feed(self):
-        if self.bucket.compositions.count() >= 3 and not self.get_fresh_post().exists():
+        if self.bucket.public and not self.get_fresh_post().exists():
             Fresh.objects.create(feed_type=Fresh.BUCKET,
                 content_object=self.bucket)
 

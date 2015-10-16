@@ -26,11 +26,12 @@ class ExistingUserSerializer(serializers.ModelSerializer):
     paintings_count = serializers.Field(source='paintings_count')
     uploads_count = serializers.Field(source='uploads_count')
     buckets_count = serializers.Field(source='buckets_count')
+    drafts_count = serializers.Field(source='drafts_count')
     is_followed = serializers.SerializerMethodField('get_is_followed')
 
     class Meta:
         model = User
-        fields = ('id', 'email','name', 'about', 'picture', 'slug', 'nsfw', 'buckets_count', 'followers_count', 'paintings_count', 'uploads_count', 'is_followed')
+        fields = ('id', 'email','name', 'about', 'picture', 'slug', 'nsfw', 'buckets_count', 'drafts_count', 'followers_count', 'paintings_count', 'uploads_count', 'is_followed')
 
     def get_is_followed(self, obj):
         request = self.context['request']

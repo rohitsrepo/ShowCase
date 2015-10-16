@@ -32,6 +32,7 @@ class BucketSerializer(serializers.ModelSerializer):
     is_bookmarked = serializers.SerializerMethodField('get_is_bookmarked')
     is_admired = serializers.SerializerMethodField('get_is_admired')
     admire_as = serializers.SerializerMethodField('get_admire_as')
+    is_public = serializers.Field(source='public')
 
     class Meta:
         model = Bucket
@@ -41,6 +42,7 @@ class BucketSerializer(serializers.ModelSerializer):
             'description',
             'slug',
             'views',
+            'is_public',
             'compositions_count',
             'picture',
             'has_background',

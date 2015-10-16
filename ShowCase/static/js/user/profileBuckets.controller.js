@@ -1,5 +1,6 @@
 angular.module('UserApp')
 .controller('profileBucketsController', ['$scope',
+    '$state',
     'bucketModel',
     'bookService',
     'admireService',
@@ -7,15 +8,23 @@ angular.module('UserApp')
     'shareModalService',
     'progress',
     'alert',
-    function ($scope, bucketModel, bookService, admireService, bucketmodalService, shareModalService, progress, alert) {
+    function ($scope, $state, bucketModel, bookService, admireService, bucketmodalService, shareModalService, progress, alert) {
 
     $scope.noSuchBucket = {
         status: false,
         action: function () {}
     }
 
+    var bucketFetcher = function () {
+        if ($state.current.data.pageType == 'drafts') {
+            return bucketModel.myDrafts;
+        } else {
+            return bucketModel.userBuckets;
+        }
+    }()
+
     progress.showProgress();
-    bucketModel.userBuckets($scope.artist.id).then(function (buckets) {
+    bucketFetcher($scope.artist.id).then(function (buckets) {
         $scope.userBuckets = buckets;
 
         if ($scope.userBuckets.length == 0){

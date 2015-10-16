@@ -40,7 +40,7 @@
     <!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="bucketController" ng-init="init({{bucket.id}}, '{{bucket.name | escapejs}}', '{{bucket.description | escapejs}}', '{{bucket.picture}}', '{{bucket.slug}}', '{{bucket.owner.name | escapejs}}', {{bucket.owner.id}}, '{{bucket.owner.slug}}', '{{is_followed}}', '{{is_admired}}', '{{admire_as}}', '{{is_bookmarked}}', '{{is_me}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="bucketController" ng-init="init({{bucket.id}}, '{{bucket.name | escapejs}}', '{{bucket.description | escapejs}}', '{{bucket.picture}}', '{{bucket.slug}}', '{{bucket.owner.name | escapejs}}', {{bucket.owner.id}}, '{{bucket.owner.slug}}', '{{is_followed}}', '{{bucket.public}}', '{{is_admired}}', '{{admire_as}}', '{{is_bookmarked}}', '{{is_me}}')"{% endblock %}
 
 {% block content_block %}
 
@@ -50,6 +50,7 @@
         </section>
 
         <section class="modal-actions-header">
+            <button class="bucket-public-action" ng-cloak ng-show="'{{has_ownership}}' == 'True' && !bucket.is_public" ng-click="makeBucketPublic()">Make Public</button>
             <i class="material-icons action content-action" ng-cloak ng-show="'{{has_ownership}}' == 'True'" ng-click="showEditBucket()">edit</i>
             <i class="material-icons action content-action" ng-cloak ng-show="'{{has_ownership}}' == 'True'" ng-click="deleteBucket()">delete</i>
 

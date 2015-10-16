@@ -87,6 +87,12 @@ angular.module('module.bucketmodal')
             progress.hideProgress();
         });
 
+        $scope.makeBucketPublic = function () {
+            bucketModel.makeBucketPublic($scope.bucket.id).then(function () {
+                $scope.bucket.is_public = true;
+            });
+        };
+
 
         $scope.toggleNsfw = function (index) {
             var art = $scope.bucketArts[index];

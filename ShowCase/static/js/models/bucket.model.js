@@ -12,8 +12,32 @@ angular.module("module.model")
         });
     };
 
-    service.userBuckets = function (userId, artId) {
-        return $http.get('/users/' + userId + '/buckets?composition=' + artId).then(function (response) {
+    service.makeBucketPublic = function (bucketId) {
+        return $http.put('/buckets/' + bucketId + '/public').then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
+    service.userBuckets = function (userId) {
+        return $http.get('/users/' + userId + '/buckets').then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
+    service.myBuckets = function (artId) {
+        return $http.get('/users/me/buckets?composition=' + artId).then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
+    service.myDrafts = function () {
+        return $http.get('/users/me/drafts').then(function (response) {
             return response.data;
         }, function (error) {
             return $q.reject(error);

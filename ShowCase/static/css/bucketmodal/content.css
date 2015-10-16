@@ -10,6 +10,21 @@
     vertical-align: top;
 }
 
+.bucket-modal .modal-actions-header .bucket-public-action{
+    background: transparent;
+    border: none;
+    background-color: white;
+    transition: all 0.4s;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-right: 20px;
+    border: 2px solid black;
+}
+
+.bucket-modal .modal-actions-header .bucket-public-action:hover {
+    border: 2px solid white;
+}
+
 .bucket-modal .modal-actions-header .counter {
     display: inline-block;
     text-align: center;

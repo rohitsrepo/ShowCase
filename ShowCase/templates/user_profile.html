@@ -68,7 +68,9 @@
                     <h4>Activities</h4>
                 </a><!--
                 --><a class="contribution" ng-cloak ng-show="[[{{artist.buckets_count}} != 0]] || artist.is_me" ui-sref-active="active" ui-sref="userbuckets">
-                    <h4>Series {{artist.buckets_count}}</h4>
+                    <h4>Series {{artist.buckets_count}}</h4></a><!--
+                --><a class="contribution" ng-cloak ng-show="artist.is_me" ui-sref-active="active" ui-sref="userdrafts">
+                    <h4>Drafts {{artist.drafts_count}}</h4>
                 </a><!--
                 --><a class="contribution" ng-cloak ng-show="[[{{artist.admirations_count}} != 0]] || artist.is_me" ui-sref-active="active" ui-sref="admirations">
                     <h4>Admirations {{artist.admirations_count}}</h4>

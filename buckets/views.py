@@ -11,7 +11,7 @@ from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Bucket, BucketMembership
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnlyIfPublic
 from .serializers import BucketSerializer, BucketBackgroundSerializer, BucketMembershipCreateSerializer, BucketMembershipSerializer
 
 from compositions.models import Composition
@@ -32,10 +32,11 @@ class BucketList(APIView):
 
 
 class BucketDetail(APIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnlyIfPublic)
 
     def get(self, request, bucket_slug, format=None):
         bucket = get_object_or_404(Bucket, slug=bucket_slug)
+        self.check_object_permissions(self.request, bucket)
         serializer = BucketSerializer(bucket, context={'request': request})
         return Response(serializer.data)
 
@@ -57,10 +58,11 @@ class BucketDetail(APIView):
         return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class BucketCompositionList(APIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnlyIfPublic)
 
     def get(self, request, bucket_id, format=None):
         bucket = get_object_or_404(Bucket, id=bucket_id)
+        self.check_object_permissions(self.request, bucket)
         bucket.views = bucket.views + 1
         bucket.save();
 
@@ -85,8 +87,7 @@ class BucketCompositionList(APIView):
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class BucketCompositionDetail(APIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
-
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnlyIfPublic)
 
     def get(self, request, bucket_id, composition_id, format=None):
         membership = get_object_or_404(BucketMembership, bucket=bucket_id, composition=composition_id)
@@ -118,7 +119,7 @@ class BucketCompositionDetail(APIView):
         return Response(status=status.HTTP_201_CREATED)
 
 class BucketBackground(APIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnlyIfPublic)
 
     def get_image_from_web(self, image_url):
         img_temp = NamedTemporaryFile(delete=True)
@@ -159,16 +160,12 @@ class BucketBackground(APIView):
 @permission_classes((permissions.AllowAny,))
 def get_composition_buckets(request, composition_id, format=None):
     composition = get_object_or_404(Composition, pk=composition_id)
-    buckets = composition.holders.all().order_by('-created')
+    buckets = composition.holders.filter(public=True).order_by('-created')
     serializer = BucketSerializer(buckets, context={'request': request})
     return Response(data=serializer.data)
 
-@api_view(['GET'])
-@permission_classes((permissions.AllowAny,))
-def get_user_buckets(request, user_id, format=None):
-    user = get_object_or_404(User, pk=user_id)
-    buckets = user.buckets.all().order_by('-created')
 
+def serialize_user_buckets(request, buckets):
     composition_id = request.GET.get('composition', '');
 
     if composition_id:
@@ -182,3 +179,36 @@ def get_user_buckets(request, user_id, format=None):
 
     serializer = BucketSerializer(buckets, context={'request': request})
     return Response(data=serializer.data)
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_user_buckets(request, user_id, format=None):
+    user = get_object_or_404(User, pk=user_id)
+    buckets = user.buckets.filter(public=True).order_by('-created')
+    return serialize_user_buckets(request, buckets)
+
+@api_view(['GET'])
+@permission_classes((permissions.IsAuthenticated,))
+def get_my_buckets(request, format=None):
+    buckets = request.user.buckets.all().order_by('-created')
+    return serialize_user_buckets(request, buckets)
+
+@api_view(['GET'])
+@permission_classes((permissions.IsAuthenticated,))
+def get_my_drafts(request, format=None):
+    buckets = request.user.buckets.filter(public=False).order_by('-created')
+    return serialize_user_buckets(request, buckets)
+
+
+@api_view(['PUT'])
+@permission_classes((permissions.IsAuthenticated,))
+def make_bucket_public(request, bucket_id, format=None):
+    bucket = get_object_or_404(Bucket, id=bucket_id)
+    if not (bucket.owner.id == request.user.id):
+        return Response(status=status.HTTP_403_FORBIDDEN)
+
+    bucket.public = True;
+    bucket.save()
+    bucket.add_to_fresh_feed()
+
+    return Response(status=status.HTTP_201_CREATED)

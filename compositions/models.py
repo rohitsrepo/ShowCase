@@ -179,7 +179,7 @@ class Composition(models.Model):
 
     @property
     def buckets_count(self):
-        return self.holders.all().count()
+        return self.holders.filter(public=True).count()
 
     def getNotificationTarget(self, post):
         if post.post_type == Post.CREATE:

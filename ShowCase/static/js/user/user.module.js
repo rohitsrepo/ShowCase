@@ -80,7 +80,18 @@ angular.module("UserApp", [
     .state('userbuckets', {
         url: "/series",
         templateUrl: "/static/js/user/profile.buckets.html",
-        controller: 'profileBucketsController'
+        controller: 'profileBucketsController',
+        data: {
+            pageType: 'series'
+        }
+    })
+    .state('userdrafts', {
+        url: "/drafts",
+        templateUrl: "/static/js/user/profile.buckets.html",
+        controller: 'profileBucketsController',
+        data: {
+            pageType: 'drafts'
+        }
     })
     .state('bucket', {
         url: "/series/{bucketSlug}",

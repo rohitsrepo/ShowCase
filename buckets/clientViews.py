@@ -11,6 +11,13 @@ def series_main(request, user_slug, bucket_slug):
     except Bucket.DoesNotExist:
         raise Http404
 
+    if not bucket.public:
+        if request.user.is_authenticated():
+            if not (request.user.slug == user_slug):
+                raise Http404
+        else:
+            raise Http404
+
     is_bookmarked = bucket.is_bookmarked(request.user.id)
     is_admired = bucket.is_admired(request.user.id)
     admire_as = bucket.admire_as(request.user.id)

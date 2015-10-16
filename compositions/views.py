@@ -294,7 +294,7 @@ def random_composition(request, format=None):
 @permission_classes((permissions.AllowAny,))
 def get_associates(request, composition_id, format=None):
     composition = get_object_or_404(Composition, pk=composition_id)
-    artBuckets = composition.holders.all().order_by('-views')[:6]
+    artBuckets = composition.holders.filter(public=True).order_by('-views')[:6]
     artistWorks = composition.artist.arts.exclude(id=composition_id).order_by('-created')[:6]
     uploaderWorks = composition.uploader.compositions.exclude(id=composition_id).order_by('-created')[:6]
 

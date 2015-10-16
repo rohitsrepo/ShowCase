@@ -205,6 +205,12 @@ angular.module('module.root')
         });
     };
 
+    $scope.gotoMyDrafts = function () {
+        auth.getCurrentUser().then(function (user) {
+            $window.location.href = '/@' + user.slug + '/drafts';
+        });
+    };
+
     $scope.gotoMyBookmarks = function () {
         auth.getCurrentUser().then(function (user) {
             $window.location.href = '/@' + user.slug + '/bookmarks';

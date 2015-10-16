@@ -24,7 +24,7 @@ angular.module('module.uploadmodal')
             $scope.imageUploaded = true;
 
             // Load user buckets
-            bucketModel.userBuckets(user.id).then(function (buckets) {
+            bucketModel.myBuckets().then(function (buckets) {
                 $scope.userBuckets = buckets;
             });
         };

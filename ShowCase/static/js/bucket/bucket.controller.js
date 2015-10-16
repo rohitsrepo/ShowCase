@@ -90,7 +90,10 @@ angular.module('BucketApp')
         };
 
         $scope.bucket = {};
-        $scope.init = function (id, name, description, background, slug, ownerName, ownerId, ownerSlug, ownerIsFollowed, is_admired, admire_as, is_bookmarked, isMe) {
+        $scope.init = function (id, name, description, background, slug, ownerName,
+            ownerId, ownerSlug, ownerIsFollowed, is_public, is_admired,
+            admire_as, is_bookmarked, isMe) {
+
             $scope.bucket.id = id;
             $scope.bucket.slug = slug;
             $scope.bucket.name = name;
@@ -100,6 +103,7 @@ angular.module('BucketApp')
                                     'id': ownerId,
                                     'slug': ownerSlug,
                                     'is_followed': ownerIsFollowed == 'True'};
+            $scope.bucket.is_public = is_public == 'True';
             $scope.bucket.is_admired = is_admired == 'True';
             $scope.bucket.admire_as = admire_as;
             $scope.bucket.is_bookmarked = is_bookmarked == 'True';
@@ -108,6 +112,12 @@ angular.module('BucketApp')
 
             getArts(id);
 
+        };
+
+        $scope.makeBucketPublic = function () {
+            bucketModel.makeBucketPublic($scope.bucket.id).then(function () {
+                $scope.bucket.is_public = true;
+            });
         };
 
 

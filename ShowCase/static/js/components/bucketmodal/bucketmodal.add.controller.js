@@ -32,7 +32,7 @@ angular.module('module.bucketmodal')
         $scope.addingDescription = false;
 
         $scope.art = art;
-        bucketModel.userBuckets(user.id, art.id).then(function (buckets) {
+        bucketModel.myBuckets(art.id).then(function (buckets) {
             $scope.userBuckets = buckets;
             $scope.bucketsLoaded = true;
 
