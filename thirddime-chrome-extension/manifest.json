@@ -1,0 +1,29 @@
+{
+  "name": "ThirdDime",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_title": "That's the tool tip"
+  },
+  "background": {
+    "scripts": [
+      "scripts/js/background.js"
+    ],
+    "persistent": true
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "css": ["content.css"],
+      "js": [
+        "libs/jquery-2.1.4.js",
+        "scripts/js/content.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions" : ["tabs"]
+}

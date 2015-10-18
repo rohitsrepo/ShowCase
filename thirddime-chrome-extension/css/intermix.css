@@ -1,0 +1,27 @@
+.ng-hide {
+    display: none;
+}
+
+.ticketButton {
+    float: right;
+}
+
+.btn-group {
+    display: inline-block;
+}
+
+.glyphicon .glyphicon-plus {
+    color: green;
+    font-size: 20px
+}
+
+legend {
+    color: #FEFFFF;
+    background-color: #5BC0DE;
+    border-bottom: 1px solid #FFFFFF;
+}
+
+.well {
+    background-color: #FFFFFF;
+    border: 1px solid #D9EDF7;
+}
