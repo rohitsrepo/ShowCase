@@ -38,6 +38,8 @@ class Composition(models.Model):
     admirers = GenericRelation(Admiration, related_query_name='admired_compositions')
     added_with_bucket = models.BooleanField(default=False)
 
+    major = models.CharField(max_length=7, default="#000000")
+
     class Meta:
         ordering = ('created',)
 

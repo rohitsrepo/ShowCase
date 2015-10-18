@@ -2,6 +2,7 @@ import os
 from PIL import Image
 from .utils import GrayScaleAndSketch
 from django.db.models.signals import post_delete, post_save
+from colorTools import colorz
 
 WIDTH_STICKY = 350
 WIDTH_READER = 550
@@ -42,6 +43,9 @@ def crop(filepath, box):
 def image_model_created(sender, instance, created, raw, **kwargs):
     if created and not raw:
         generate_size_versions(instance.image_path)
+        major = colorz(instance.matter.path)
+        instance.major = major[0]
+        instance.save()
         GrayScaleAndSketch(instance.image_path)
 
 def image_model_delete(sender, instance, **kwargs):
