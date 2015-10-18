@@ -25,7 +25,7 @@ from accounts.models import User
 from accounts.serializers import ExistingUserSerializer
 from buckets.serializers import BucketSerializer
 from buckets.models import BucketMembership
-from ShowCase.utils import check_object_permissions
+from ShowCase.utils import check_object_permissions, BrowserSimulator
 
 class CompositionError(Exception):
     pass
@@ -43,7 +43,8 @@ def get_image_object(user, name):
     return {'url': url, 'id': id}
 
 def get_image_from_web(image_url, image_path):
-    urllib.urlretrieve(image_url, image_path)
+    opener = BrowserSimulator()
+    opener.retrieve(image_url, image_path)
 
 def get_image_from_upload(image_file, image_path):
     with open(image_path, 'wb') as dest:
