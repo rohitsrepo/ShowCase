@@ -2,213 +2,63 @@
     color:  rgba(0, 0, 0, 0.8);
 }
 
-body {
-    font-family: 'taile', sans-serif;
-}
-
-/*===================== BASE ==========================*/
-
-.upload-area {
-    width: 90%;
-    margin: 0 auto;
-    padding-top: 10%;
-}
-
-::-webkit-input-placeholder {
-   color: #8D8D8D;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-   color: #8D8D8D;  
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   color: #8D8D8D;  
-}
-
-:-ms-input-placeholder {  
-   color: #8D8D8D;  
-}
-
-.upload-form input[type=text],textarea {
-    display: block;
+html, body {
+    height: 100%;
     width: 100%;
-    margin: 20px 0;
-    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
+    font-family: 'Lato', sans-serif;
 }
 
-.upload-form input[type=text],textarea:focus {
-    outline: none;
+/*============== Image Source =============*/
+
+.upload-page.image-source {
+    padding-top: 75px;
+    margin-top: 0;
 }
 
-/*================== DETAILS ===================*/
 
-.details {
-    width: 30%;
-    padding-left: 5%;
-    display: inline-block;
-    vertical-align: top;
+
+@media (min-width: 1500px) {
+    .upload-page .image-source {
+        margin-top: 0;
+        padding-top: 75px;
+        padding-bottom: 550px;
+    }
 }
 
-/*================== UPLOAD BUTTON =====================*/
-
-.upload-form .upload-button {
-    position: absolute;
-    top: 50px;
-    right: 70px;
-    margin-bottom: 20px auto;
-    width: 100px;
-    height: 40px;
-    background-color: #E6B800;
-    border: none;
-    font-size: 20px;
-    font-weight: bold;
-    font-family: Arial;
-    color: #5B5B5B;
-    border-radius: 5%;
-    cursor: pointer;
+@media (max-width: 800px) {
+    .upload-page .image-source {
+        width: 90%;
+        font-size: 0.8em;
+        margin-top: 0;
+    }
 }
 
-.upload-form .uploading-button {
-    width: 150px;
-    cursor: default;
+
+
+.upload-page .info-source {
+    padding-top: 75px;
+    margin-top: 0;
 }
 
-.upload-form .upload-button:hover {
-    color: white;
+
+@media (min-width: 1500px) {
+    .upload-page .info-source {
+        padding-top: 75px;
+        padding-bottom: 550px;
+        margin-top: 0;
+    }
 }
 
-.upload-form .upload-button.ng-hide-remove {
-    -webkit-animation: fadeIn 0.8s;
-    animation: fadeIn 0.8s;
-    opacity: 0;
+@media (max-width: 800px) {
+    .upload-page .info-source {
+        width: 90%;
+        font-size: 0.8em;
+        margin-top: 0;
+    }
 }
-
-.upload-form .upload-button.ng-hide-add {
-    -webkit-animation: fadeOutRight 0.8s;
-    animation: fadeOut 0.8s;
-}
-
-/*======================= TITLE ======================*/
-
-.upload-form .title {
-    height: 60px;
-    font-size: 40px;
-    font-weight: bold;
-}
-
-/*====================== ARTIST ======================*/
-
-.upload-form .artist-input {
-    height: 40px;
-    font-size: 30px;
-    font-weight: bold;
-    border: 0;
-    width: 100%;
- }
-
- .angucomplete-dropdown{
-    border: 0;
- }
-
- .angucomplete-selected-row {
-    background-color: #E6B800;
- }
-
-/*==================== DESCRIPTION ===================*/
-
- .upload-form .description {
-    height: 80px;
-    font-size: 20px;
-    font-weight: bold;
- }
-
-/*===================== MATTER ==================*/
-
-.matter-area {
-    margin: 20px 0;
-    width: 50%;
-    display: inline-block;
-}
-
-.fileinputs {
-     position: relative;
- }
-
-.fileinputs .file {
-    width: 100%;
-    height: 400px;
-    cursor: pointer;
- }
-
-.fakefile {
-     position: absolute;
-     top: 0px;
-     left: 0px;
-     z-index: 1;
-     width: 100%;
-     height: 400px;
-    background-color: #E6B800;
- }
-
-.fakefile h4 {
-    cursor: pointer;
-    font-size: 30px;
-    font-weight: bold;
-    color: #5B5B5B;
-    font-family: Arial;
-    text-align: center;
-    padding-top: 180px;
- }
-
-.fileinputs input.file {
-     position: relative;
-     text-align: right;
-     -moz-opacity:0 ;
-     filter:alpha(opacity: 0);
-     opacity: 0;
-     z-index: 2;
- }
-
- /*================= MATTER TO UPLOAD =====================*/
-
-.fileinputs .overlay {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 400px;
-    background: white;
-    z-index: 3;
- }
-
- .fileinputs canvas {
-     position: absolute;
-     top: 0px;
-     right: 0px;
-     margin-left: auto;
-     margin-right: auto;
-     left: 0px;
-     z-index: 4;
-     margin: 0 auto;
-     width: auto;
-     height: 400px;
- }
-
- .fileinputs button {
-     position: absolute;
-     top: 0px;
-     left: 0px;
-     height: 25px;
-     width: 25px;
-     z-index: 5;
-     background: black;
-     border: none;
-     cursor: pointer;
-     opacity: 0.2;
-     color: white;
- }
-
- .fileinputs button:hover {
-    opacity: 0.6;
- }

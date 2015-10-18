@@ -1,19 +1,13 @@
-angular.module('module.uploadmodal')
-.controller('uploadmodalController', ['$scope',
+angular.module("UploadApp")
+.controller('uploadController', ['$scope',
     '$window',
     'compositionModel',
     'bucketModel',
     'upload',
-    'close',
     'progress',
     'alert',
-    function ($scope, $window, compositionModel, bucketModel, upload, close, progress, alert) {
-
-        $scope.close = function () {
-            close();
-        };
-
-        $scope.art = {};
+    function ($scope, $window, compositionModel, bucketModel, upload, progress, alert) {
+    $scope.art = {};
         $scope.imageUploaded = false;
         $scope.uploadingImage = false;
         $scope.uploadingDetails = false;
@@ -57,7 +51,7 @@ angular.module('module.uploadmodal')
             compositionModel.urlImageUploader($scope.art).then(function (response) {
                 showInfoForm(response);
                 $scope.uploadingImage = false;
-            } , function () {
+            } , function (response) {
                 $scope.uploadingImage = false;
                 alert.showAlert("Error fetching data for the image");
             })
@@ -103,6 +97,26 @@ angular.module('module.uploadmodal')
                 alert.showAlert("Please provide artist name");
             }
         }
+
+        function getJsonFromUrl() {
+          var query = location.search.substr(1);
+          var result = {};
+          query.split("&").forEach(function(part) {
+            var item = part.split("=");
+            result[item[0]] = decodeURIComponent(item[1]);
+          });
+          return result;
+        }
+
+        function init () {
+            var search = getJsonFromUrl()
+            if (search.artImage){
+                $scope.art.upload_url=search.artImage;
+                $scope.urlUpload();
+            }
+        };
+
+        init();
     }
 ])
 .directive("fileread", [function () {

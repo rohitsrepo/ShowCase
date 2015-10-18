@@ -8,11 +8,10 @@ angular.module('module.uploadmodal')
 	    		modalService.showModal({
 	    		    'templateUrl': '/static/js/components/uploadmodal/uploadmodal.tpl.html',
 	    		    'controller': 'uploadmodalController',
-	    		    'inputs': {'user': user}
 	    		});
     		}
     	});
-        
+
     };
 
     return service;

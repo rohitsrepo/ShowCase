@@ -1,5 +1,4 @@
 angular.module("ReaderApp", [
-    'infinite-scroll',
     "module.curtainRight",
     "module.curtainLeft",
     "module.topbar",

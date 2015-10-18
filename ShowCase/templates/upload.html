@@ -1,104 +1,127 @@
-<!DOCTYPE html>
-<html ng-app="UploadApp">
-<head>
-	<title>Upload Art - ThirdDime</title>
+{% extends "base.html" %}
+{% block html_attr_block %}ng-app="UploadApp"{% endblock %}
 
-	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
-
-	<!-- build:css /static/build/upload.css -->
-	<link rel="stylesheet" type="text/css" href="/static/bower_components/angucomplete-alt/angucomplete-alt.css">
-	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/upload/main.css">
-	<!-- endbuild -->
-</head>
-<body ng-controller="uploadController">
-	<!-- {% verbatim %} -->
-	<topbar></topbar>
-	<div class="curtain-overlay-placeholder"></div>
-
-	<section class="upload-area">
-		<form name="uploadForm" class="upload-form" novalidate>
-
-			<button class="upload-button" ng-cloak ng-show="!uploadForm.$invalid  && art.matter && art.matter && !showUploading" ng-click="uploadArt()">
-			UPLOAD</button>
-			<button class="upload-button uploading-button" ng-cloak ng-show="showUploading">
-			UPLOADING...</button>
+{% block title_block %}
+    <title>contribute Artwork | Thirddime</title>
+{%endblock%}
 
 
-			<section class="matter-area">
-				<section class="fileinputs">
-	                <input type="file" class="file" fileread="art.matter"  />
-			        <div class="fakefile">
-			            <h4>Select image of the piece</h4>
-			        </div>
+{% block meta_block %}
+    <meta name="description" content="Contribute artwork to for ThirdDime community to explore." />
+    <link rel="canonical" href="http://thirddime.com/contribute-artwork" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-                	<section ng-cloak ng-if="art.matter">
-	                	<div class="overlay"></div>
-	                	<section ng-thumb="{ file: art.matter, height: 400 }"></section>
-	                    <button type="button" ng-click="art.matter=undefined" >
-		                    X
-	                    </button>
-                    </section>
-			    </section>
-			</section>
+    <meta property="og:title" content="Contribute artwork to ThirdDime">
+    <meta property="og:site_name" content="ThirdDime">
+    <meta property="og:url" content="http://thirddime.com/contribute-artwork">
+    <meta property="og:description" content="Contribute artwork to for ThirdDime community to explore.">
+    <meta property="fb:app_id" content="462422103909005">
+    <meta property="og:image" content="http://thirddime.com/static/images/reader/banner.jpg">
+    <meta property="og:type" content="website">
 
-			<section class="details">
-				<input type="text" class="title" autofocus="autofocus" placeholder="Title" ng-model="art.title" name="uTitle" maxlength="100" required>
-				<div ng-cloak ng-show="uploadForm.$submitted">
-				    <span ng-cloak ng-show="uploadForm.uTitle.$error.required">Please provide a title.</span>
-			   </div>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@thirddime">
+    <meta name="twitter:title" content="Contribute artwork to for ThirdDime community to explore.">
+    <meta name="twitter:description" content="Contribute artwork to for ThirdDime community to explore.">
+    <meta name="twitter:image" content="http://thirddime.com/static/images/reader/banner.jpg">
+{%endblock%}
 
-				<angucomplete-alt placeholder="Artist"
-							 pause="400"
-							 selected-object="selectArtist"
-							 remote-url="/users/search?q="
-							 title-field="name",
-							 search-fields="name"
-							 input-class="artist-input">
-				</angucomplete-alt>
-				<textarea class="description" placeholder="Few words about this piece..." ng-model="art.description" maxlength="1000"></textarea>
-			</section>
-		</form>
-	</section>
+{% block css_block %}
+     <!-- build:css /static/build/upload.css -->
+        <link rel="stylesheet" type="text/css" href="/static/css/reader/topbar.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/upload/main.css">
+    <!-- endbuild -->
+{%endblock%}
 
-    <progress-support></progress-support>
+{% block body_attr_block %}ng-controller="uploadController" class="upload-page" {% endblock %}
 
-	<script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
-	<!-- build:js /static/build/upload.js -->
-	<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
-	<script type="text/javascript" src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
+{% block site_header_block %}
+    <topbar></topbar>
+    <div class="curtain-overlay-placeholder"></div>
+{%endblock%}
 
-	<script type="text/javascript" src="/static/bower_components/angular-upload/angular-upload.min.js"></script>
-	<script type="text/javascript" src="/static/bower_components/angucomplete-alt/dist/angucomplete-alt.min.js"></script>
-	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
-	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
-	<script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
-	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
-	<script type="text/javascript" src="/static/js/upload/upload.module.js"></script>
-	<script type="text/javascript" src="/static/js/upload/upload.controller.js"></script>
-	<script type="text/javascript" src="/static/js/upload/thumb.directive.js"></script>
-	<script type="text/javascript" src="/static/js/upload/fileread.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
-	<script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
-    <script type="text/javascript" src="/static/js/components/util/util.module.js"></script>
-    <script type="text/javascript" src="/static/js/components/util/progress.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/util/progress.directive.js"></script>
-    <script type="text/javascript" src="/static/js/components/util/alert.service.js"></script>
-    <script type="text/javascript" src="/static/js/components/util/alert.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/scrollTo.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/fadeOnScroll.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
-	<!-- endbuild -->
-	<!-- {% endverbatim %} -->
-</body>
-</html>
+{% block content_block %}
+    <section class="image-source" ng-cloak ng-hide="imageUploaded">
+            <header>Add new artwork</header>
+            <section class="artwork-image-source" ng-cloak ng-hide="imageUploaded">
+                <section class="art-upload-overlay ng-hide" ng-cloak ng-show="uploadingImage">
+                    <site-loader site-loader-hide='false'></site-loader>
+                </section>
+
+                <section class="source-upload">
+                    <input type="file" class="realfile" fileread>
+                    <div class="fakefile">
+                        <h2>Upload image for the artwork</h2>
+                    </div>
+                </section>
+                <section class="source-url">
+                    <form class="upload-url-form" name="uplUrlForm">
+                        <div class="form-container clearfix">
+                            <input type="url" placeholder="or Paste url for the image" name="input" ng-model="art.upload_url" required>
+                            <button ng-disabled="[[uplUrlForm.$invalid]]" ng-class="{'enable': uplUrlForm.$valid}" class="url-submit" ng-click="urlUpload()">SUBMIT</button>
+                        </div>
+                        <div class="error" ng-show="uplUrlForm.input.$error.required && uplUrlForm.$dirty">
+                          Url Required
+                        </div>
+                        <div class="error" ng-show="uplUrlForm.input.$error.url  && uplUrlForm.$dirty">
+                          Not valid url
+                        </div>
+                  </form>
+                </section>
+            </section>
+
+            <section class="uploaded-image ng-hide" ng-cloak ng-show="imageUploaded">
+                <img ng-src="[[artImage.url]]">
+            </section>
+        </section>
+
+        <section ng-cloak ng-if="imageUploaded" class="info-source clearfix" ng-style="{'background-image': 'url([[artImage.url]])'}">
+                <header>Add details for artwork</header>
+            <form class="info-form" name="infoForm">
+                <section class="art-upload-overlay ng-hide" ng-cloak ng-show="uploadingDetails">
+                    <site-loader site-loader-hide='false'></site-loader>
+                </section>
+
+                <input type="text" class="title" autofocus="autofocus" placeholder="Title*" ng-model="art.title" name="uTitle" maxlength="100" required>
+
+                <angucomplete-alt placeholder="Artist*"
+                             pause="400"
+                             selected-object="selectArtist"
+                             remote-url="/users/search?q="
+                             title-field="name",
+                             search-fields="name"
+                             input-class="artist-input">
+                </angucomplete-alt>
+
+                <section class="input-nsfw clearfix">
+                    <span>Not safe for work (NSFW)?</span>
+                    <input class="nsfw" type="checkbox" ng-model="art.nsfw"/>
+                </section>
+
+                <select class="info-bucket-select" name="bucketSelect" ng-model="art.bucket">
+                    <option value="">Add to series?</option> <!-- not selected / blank option -->
+                    <option ng-repeat="bucket in userBuckets" value="[[bucket.id]]">[[bucket.name]]</option>
+                </select>
+
+                <button class="info-submit-button" ng-class="{'enable': infoForm.$valid}" ng-disabled="[[infoForm.$invalid]]" ng-click="submitArtInfo()">SUBMIT</button>
+            </form>
+        </section>
+{% endblock %}
+
+{% block script_block %}
+    <!-- build:js /static/build/upload.js -->
+    <script type="text/javascript" src="/static/js/upload/upload.module.js"></script>
+    <script type="text/javascript" src="/static/js/upload/upload.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
+    <!-- endbuild -->
+{% endblock %}

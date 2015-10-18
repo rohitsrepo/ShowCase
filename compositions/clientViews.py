@@ -34,3 +34,8 @@ def add_interpretation(request, slug):
 
     context = RequestContext(request, {'composition': composition})
     return render_to_response("interpret.html", context)
+
+
+def upload_artwork(request):
+    context = RequestContext(request, {})
+    return render_to_response("upload.html", context)
