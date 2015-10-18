@@ -1,12 +1,13 @@
 
 
 .activities-arts-container {
-    width: 90%;
+    /*width: 90%;*/
 }
 
 .activities-arts-container .activities-art-container header {
-    width: 100%;
+    width: 400px;
     padding: 10px 5px;
+    margin: 0 auto;
     color: rgba(0, 0, 0, 0.54);
     font-size: 0.75em;
     letter-spacing: 1px;

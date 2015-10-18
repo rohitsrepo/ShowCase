@@ -18,6 +18,7 @@ angular.module('UserApp')
         progress,
         alert) {
 
+        $scope.math = window.Math;
         $scope.userActivities = [];
         $scope.activitiesMeta = {next_token: '', disableGetMore: false, busy: false, noActivities: false};
 
