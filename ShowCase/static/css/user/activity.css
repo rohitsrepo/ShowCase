@@ -30,3 +30,10 @@
 .activities-arts-container .activities-art-container .feed-bucket .bucket-picture {
     height: 350px;
 }
+
+@media (max-width: 800px) {
+
+    .activities-arts-container .activities-art-container header {
+        width: 100%;
+    }
+}

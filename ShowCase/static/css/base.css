@@ -731,6 +731,16 @@ body::-webkit-scrollbar-thumb {
   .arts-container .container {
       width: 100%;
   }
+
+  .art .art-content {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .art .details {
+    width: 70%;
+    padding-left: 5px;
+  }
 }
 
 /*================== Post-Bucket =======================*/
@@ -831,6 +841,12 @@ body::-webkit-scrollbar-thumb {
 .bucket-inset-details .bucket-inset-details-actions i:hover,
 .bucket-inset-details .bookmark-action i:hover {
     color: white;
+}
+
+@media (max-width: 800px) {
+  .feed-bucket {
+    width: 100%;
+  }
 }
 
 
