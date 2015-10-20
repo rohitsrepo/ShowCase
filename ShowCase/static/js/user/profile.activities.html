@@ -1,4 +1,4 @@
-<div ng-cloak masonry masonry-options="{ transitionDuration: '0' }" class="arts-container activities-arts-container" infinite-scroll="loadMoreActivities()" infinite-scroll-distance='1' infinite-scroll-disabled='activitiesMeta.busy || activitiesMeta.disableGetMore'>
+<div ng-cloak masonry load-images="onMobile" masonry-options="{ transitionDuration: '0' }" class="arts-container activities-arts-container" infinite-scroll="loadMoreActivities()" infinite-scroll-distance='1' infinite-scroll-disabled='activitiesMeta.busy || activitiesMeta.disableGetMore'>
         <div class="masonry-brick container activities-art-container" ng-repeat="activity in userActivities">
             <div class="art" ng-show="activity.grade == 1">
                 <header ng-show="activity.post_type == 'CR' && !showHeader">Artwork by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>

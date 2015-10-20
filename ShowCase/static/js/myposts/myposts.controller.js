@@ -28,6 +28,14 @@ angular.module('MypostsApp')
     $scope.userActivities = [];
     $scope.activitiesMeta = {next_token: '', disableGetMore: false, busy: false, noPosts: false};
 
+    var mq = window.matchMedia( "(max-width: 800px)" );
+    if (mq.matches) {
+        $scope.onMobile = true;
+    }
+    else {
+        $scope.onMobile = false;
+    }
+
     // Disable scroll on parent page
     $rootScope.$on('$stateChangeSuccess',
     function(event, toState, toParams, fromState, fromParams){

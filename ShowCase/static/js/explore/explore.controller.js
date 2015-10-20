@@ -34,6 +34,14 @@ angular.module('ExploreApp')
 	$scope.arts = [];
 	$scope.postsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:''};
 
+    var mq = window.matchMedia( "(max-width: 800px)" );
+    if (mq.matches) {
+        $scope.onMobile = true;
+    }
+    else {
+        $scope.onMobile = false;
+    }
+
     // Disable scroll on parent page
     $rootScope.$on('$stateChangeSuccess',
     function(event, toState, toParams, fromState, fromParams){

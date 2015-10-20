@@ -1,4 +1,4 @@
-<div ng-cloak masonry masonry-options="{ transitionDuration: '0' }" class="arts-container profile-container" infinite-scroll="loadMoreArtifacts()" infinite-scroll-distance='1' infinite-scroll-disabled='artifactsMeta.busy || artifactsMeta.disableGetMore'>
+<div ng-cloak masonry load-images="onMobile" masonry-options="{ transitionDuration: '0' }" class="arts-container profile-container" infinite-scroll="loadMoreArtifacts()" infinite-scroll-distance='1' infinite-scroll-disabled='artifactsMeta.busy || artifactsMeta.disableGetMore'>
     <div class="masonry-brick container profile-art-container" ng-repeat="artifact in artifacts">
         <div class="art" ng-show="artifact.content_type == 'AR' ">
             <article class="art-content" ng-style="{'height': '[[math.round(400*artifact.content.matter_aspect)]]px', 'width': '400px', 'background-color': '[[artifact.content.major]]'}">

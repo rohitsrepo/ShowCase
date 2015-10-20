@@ -27,6 +27,14 @@ angular.module('UserApp')
     $scope.math = window.Math;
     $scope.artifactsMeta = {pageVal: 1, disableGetMore: false, busy: false, next:'', previous:'', noWorks: false};
 
+    var mq = window.matchMedia( "(max-width: 800px)" );
+    if (mq.matches) {
+        $scope.onMobile = true;
+    }
+    else {
+        $scope.onMobile = false;
+    }
+
     var artifactFetcher = function () {
         var listType = $state.current.data.listType
 

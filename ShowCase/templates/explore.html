@@ -35,7 +35,7 @@
 {% block body_attr_block %}ng-controller="exploreController"{% endblock %}
 
 {% block content_block %}
-    <div ng-cloak masonry load-images="false" masonry-options="{ transitionDuration: '0' }" class="arts-container explore-container" infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore'>
+    <div ng-cloak masonry load-images="onMobile" masonry-options="{ transitionDuration: '0' }" class="arts-container explore-container" infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore'>
         <div class="masonry-brick container explore-art-container" ng-repeat="art in arts">
             <div class="art" ng-show="art.feed_type == 'AR'">
                 <article class="art-content" ng-style="{'height': '[[math.round(400*art.content.matter_aspect)]]px', 'width': '400px', 'background-color': '[[art.content.major]]'}">

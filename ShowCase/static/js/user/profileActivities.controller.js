@@ -22,6 +22,14 @@ angular.module('UserApp')
         $scope.userActivities = [];
         $scope.activitiesMeta = {next_token: '', disableGetMore: false, busy: false, noActivities: false};
 
+        var mq = window.matchMedia( "(max-width: 800px)" );
+        if (mq.matches) {
+            $scope.onMobile = true;
+        }
+        else {
+            $scope.onMobile = false;
+        }
+
         var classifyActivity = function (activity) {
             switch (activity.post_type){
                 case 'CR':
