@@ -65,6 +65,7 @@
     .bucket-modal .modal-actions-header,
     .bucket-modal .modal-actions-header i.content-action {
         margin: 0 5px;
+        color: black;
     }
 
     .bucket-modal .logo {
@@ -586,17 +587,253 @@
 }
 
 /*-------- Mobile ---------*/
-
-.bucket-content .bucket-content-mb {
-    width: 95%;
-    margin: 0 auto;
-}
-
-.bucket-content .bucket-content-mb img {
+.bucket-modal.content .bucket-content-mb {
+    background: white;
     width: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    transition: all 0.5s;
 }
 
-.bucket-content .bucket-content-mb a.ng-hide-remove {
+.bucket-content-mb .content-bucket-header {
+    padding: 0 5px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    line-height: 1.5em;
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 0.6em;
+}
+
+.bucket-content-mb .content-bucket-header h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+.bucket-content-mb .content-bucket-header h2 {
+    font-size: 1.5em;
+    color: rgba(0, 0, 0, 0.9);
+    line-height: 1.5em;
+}
+
+.bucket-content-mb .content-bucket-header .by-user {
+    font-size: 0.7em;
+    display: inline-block;
+}
+
+.bucket-content-mb .content-bucket-header hr {
+    width: 100px;
+    display: inline-block;
+    vertical-align: middle;
+    border-width: 3px;
+}
+
+.bucket-content-mb .content-bucket-header h3 {
+    font-size: 0.75em;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.bucket-content-mb .content-bucket-header h3 a {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.bucket-content-mb a {
+    width: 100%;
+    margin: 0;
+}
+
+.bucket-content-mb a img {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 8%;
+    vertical-align: bottom;
+}
+
+.bucket-content-mb a.ng-hide-remove {
         -webkit-animation: fadeIn 1s;
         animation: fadeIn 1s;
+}
+
+.bucket-content-mb .content-art-description {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    background: transparent;
+    color: white;
+    font-size: 0.8em;
+    line-height: 1.65em;
+    text-align: center;
+    border-right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.bucket-content-mb .content-art-description p {
+    display: inline-block;
+    padding: 25px 15px;
+    letter-spacing: 1px;
+    white-space: pre-line;
+    text-align: left;
+}
+
+/*----------------- Admire as action ---------------*/
+.bucket-content-mb .admire-as-action {
+    width: 100%;
+    margin-bottom: 8%;
+    text-align: center;
+    display: inline-block;
+    background: black;
+    line-height: normal;
+    color: white;
+}
+
+.bucket-content-mb .admire-as-action header {
+    padding-top: 15px;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: normal;
+}
+
+.bucket-content-mb .admire-as-action .solo-admire-action {
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.bucket-content-mb .admire-as-action .solo-admire-action hr {
+    display: inline-block;
+    width: 125px;
+    margin: 0;
+    vertical-align: middle;
+    border-width: 2px;
+    line-height: normal;
+}
+
+.bucket-content-mb .admire-as-action .solo-admire-action i {
+    color: white;
+    display: inline-block;
+    padding: 5px;
+    font-size: 1.3em;
+    cursor: pointer;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.bucket-content-mb .admire-as-action .admire-as-options {
+    color: white;
+    padding: 10px 15px;
+    height: 80%;
+    text-align: center;
+    line-height: normal;
+}
+
+.bucket-content-mb .admire-as-action .admire-as-options .admire-as-option {
+    color: white;
+    background: transparent;
+    border: none;
+    border: 2px solid white;
+    display: inline-block;
+    padding: 10px 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin: 8px 5px;
+    transition: all 0.2s;
+}
+
+.bucket-content-mb .admire-as-action .admire-as-options .admire-as-option.not-selected {
+    color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.bucket-content-mb .admire-as-action .admire-as-options .admire-as-option.selected,
+.bucket-content-mb .admire-as-action .admire-as-options .admire-as-option:hover {
+    background-color: white;
+    color: black;
+}
+
+/*---------------- Bucket credits ----------------*/
+
+.bucket-content-mb .bucket-credits {
+    width: 100%;
+    margin-bottom: 8%;
+    text-align: center;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+
+.bucket-content-mb .bucket-credits header {
+    color: white;
+    background: black;
+    padding: 10px;
+    height: 80%;
+}
+
+.bucket-content-mb .bucket-credits header a h3 {
+    font-size: 1.1em;
+    line-height: 1.5em;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.bucket-content-mb .bucket-credits header a .owner-picture {
+    height: 100px;
+    width: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.bucket-content-mb .bucket-credits header a h2 {
+    font-size: 1.2em;
+    line-height: 1.5em;
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    color: white;
+}
+
+.bucket-content-mb .bucket-credits .owner-data {
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    padding: 10px;
+}
+
+.bucket-content-mb .bucket-credits .owner-data button {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 5px 25px;
+    font-size: 0.8em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin: 5px auto;
+    margin-top: 20px
+}
+
+.bucket-content-mb .bucket-credits .owner-data button.active,
+.bucket-content-mb .bucket-credits .owner-data button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+.bucket-content-mb .bucket-credits .owner-data button.active:before {
+    position: absolute;
+    content: '\E876';
+    font-family: 'Material Icons';
+    left: 80%;
+    top: 50%;
+    transform: translateY(-50%);
 }
