@@ -84,6 +84,7 @@ INSTALLED_APPS = (
     'buckets',
     'bookmarks',
     'admirations',
+    'follow',
 )
 
 AUTHENTICATION_BACKENDS = (
