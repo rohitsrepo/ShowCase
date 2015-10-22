@@ -14,6 +14,7 @@ angular.module("module.curtainRight")
 
 		auth.login(user.email, user.password, $location.absUrl()).then(function () {
 			progress.hideProgress();
+            $window.location.reload();
 		}, function (error) {
 			progress.hideProgress();
 			alert.showAlert(error);
@@ -26,6 +27,7 @@ angular.module("module.curtainRight")
                 loopCleaner();
 
                 auth.getCurrentUser().then(function (user) {
+                    $window.location.reload();
                     alert.showAlert("Welcome " + user.name);
                     close("LoggedIn");
                 }, function () {})

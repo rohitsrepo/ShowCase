@@ -4,7 +4,8 @@
 			<h4>Login</h4>
 			<fieldset class="social">
 				<a class="facebook" ng-click="socialLogger('facebook')" analytics-click analytics-data="['Top Bar-Right', 'SignUp-FaceBook']">LOGIN WITH FACEBOOK</a>
-				<a class="google" ng-click="socialLogger('google')" analytics-click analytics-data="['Top Bar-Right', 'SignUp-Google']">LOGIN WITH GOOGLE</a>
+                <a class="google" ng-click="socialLogger('google')" analytics-click analytics-data="['Top Bar-Right', 'SignUp-Google']">LOGIN WITH GOOGLE</a>
+				<a class="twitter" ng-click="socialLogger('twitter')" analytics-click analytics-data="['Top Bar-Right', 'SignUp-Twitter']">LOGIN WITH TWITTER</a>
 			</fieldset>
 			<h6>Or</h6>
 			<form name="loginForm" class="native" ng-keyup="$event.keyCode == 13 ? login(user) : null">

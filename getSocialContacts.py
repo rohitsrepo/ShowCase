@@ -149,11 +149,36 @@ def get_social_contact_google(tracker):
         tracker.remarks += "Failed to get friends for access {0}, provider {1} and user {2}".format(access.id, access.provider.name, access.user.name)
         tracker.save()
 
+def get_friends_twitter(tracker):
+    return get_contacts_twitter(tracker, 'https://api.twitter.com/1.1/friends/ids.json')
+
+def get_followers_twitter(tracker):
+    return get_contacts_twitter(tracker, 'https://api.twitter.com/1.1/followers/ids.json')
+
+def get_contacts_twitter(tracker, url):
+    from allaccess.clients import get_client
+    client = get_client(tracker.access.provider)
+
+    try:
+        response = client.request('get', url, token=tracker.access.access_token)
+        return response.json()
+    except e:
+        tracker.remarks = 'Failed to get twitter friends: {0}'.format(e)
+        tracker.save()
+        return None
+
+
 def get_social_contact(tracker):
     if tracker.access.provider.name == 'facebook':
-        return get_social_contact_fb(tracker)
+        contacts = get_social_contact_fb(tracker)
+        return (contacts, contacts)
     elif tracker.access.provider.name == 'google':
-        return get_social_contact_google(tracker)
+        contacts = get_social_contact_google(tracker)
+        return (contacts, contacts)
+    elif tracker.access.provider.name == 'twitter':
+        friends = get_friends_twitter(tracker)
+        followers = get_followers_twitter(tracker)
+        return (friends, followers)
     else:
         return "NATIVE"
 
@@ -162,4 +187,4 @@ def update_follows_by_social():
     trackers = get_non_processed_accounts()
 
     for tracker in trackers:
-        return get_social_contact(tracker)
+        print get_social_contact(tracker)
