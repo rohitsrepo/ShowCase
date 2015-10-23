@@ -85,6 +85,7 @@ INSTALLED_APPS = (
     'bookmarks',
     'admirations',
     'follow',
+    'djcelery',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -182,3 +183,6 @@ EMAIL_HOST_PASSWORD = ''
 SERVER_EMAIL = 'Server Logs <server@thirddime.com>'
 ADMINS = (('Rohit', 'rgarg1992@gmail.com'),)
 MANAGERS = (('Rohit', 'rgarg1992@gmail.com'),)
+
+CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
+CELERY_TASK_RESULT_EXPIRES=3600

@@ -16,6 +16,31 @@ from .serializers import ExistingUserSerializer
 
 from streams.manager import follow_user, unfollow_user, add_notification
 
+def follow_feed(user_id, target_user):
+    activity = dict(
+        actor=user_id,
+        verb='FL',
+        object=target_user,
+        foreign_id=user_id,
+        time=datetime.now(),
+    )
+
+    follow_user(user_id, target_user)
+    add_notification(target_user, activity)
+
+def follow_bulk(user, target_users):
+    user.follows.add(*target_users)
+
+    for target_user in target_users:
+        follow_feed(user.id, target_user.id)
+
+
+def add_followers_bulk(users, target_user):
+    target_user.followers.add(*users)
+
+    for user in users:
+        follow_feed(user.id, target_user.id)
+
 class UserFollowsAdd(APIView):
 
     permission_classes = ((permissions.IsAuthenticatedOrReadOnly,))
@@ -31,16 +56,7 @@ class UserFollowsAdd(APIView):
         request.user.follows.add(*follows)
 
         for follow in follows:
-            activity = dict(
-                actor=request.user.id,
-                verb='FL',
-                object=follow,
-                foreign_id=request.user.id,
-                time=datetime.now(),
-            )
-
-            follow_user(request.user.id, follow)
-            add_notification(follow, activity)
+            follow_feed(request.user.id, follow)
 
         return Response(status=status.HTTP_201_CREATED)
 
