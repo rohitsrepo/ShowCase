@@ -251,7 +251,12 @@ def update_follow_from_social(access_id):
             len(followers),
             len(following_users))
 
+
+        tracker.status = True
+        tracker.remarks = remarks
+        tracker.save()
+
         return remarks
 
-        # tracker.status = True
-        # tracker.save()
+    else:
+        return "This access has already been processed."

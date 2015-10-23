@@ -1,10 +1,12 @@
 import urllib
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.core.files import File
+from django.contrib.auth import authenticate, login
 
 from .models import User
+from allaccess.models import AccountAccess
 
 from allaccess.views import OAuthRedirect, OAuthCallback
 from follow.tasks import follow_from_social
@@ -93,7 +95,21 @@ class CustomUserCallback(OAuthCallback):
         if (user.has_default_picture()):
                 self.try_adding_picture(info, user, provider)
 
+        follow_from_social.delay(access.id)
+
         return super(CustomUserCallback, self).handle_existing_user(provider, user, access, info)
+
+    def handle_new_user(self, provider, access, info):
+            "Create a shell auth.User and redirect."
+            user = self.get_or_create_user(provider, access, info)
+            access.user = user
+            AccountAccess.objects.filter(pk=access.pk).update(user=user)
+            user = authenticate(provider=access.provider, identifier=access.identifier)
+            login(self.request, user)
+
+            follow_from_social.delay(access.id)
+
+            return redirect(self.get_login_redirect(provider, user, access, True))
 
     def get_error_redirect(self, provider, reason):
         "Return url to redirect on login failure."
