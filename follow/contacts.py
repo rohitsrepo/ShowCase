@@ -79,6 +79,11 @@ def get_social_page_fb(tracker, url, access_token = ''):
                     tracker.save()
                     raise
 
+
+            else:
+                access = tracker.access
+                raise Exception("Response not ok for user contactsfor this access: {0} with provider: {1} and user: {2}".format(access.id,access.provider.name,access.user.name))
+
         except requests.exceptions.ConnectionError:
             tracker.remarks += "Could not reach friends url: {0}".format(response.url)
             tracker.save()
@@ -99,6 +104,7 @@ def get_social_contact_fb(tracker):
     except:
         tracker.remarks += "Failed to get friends for access {0}, provider {1} and user {2}".format(access.id, access.provider.name, access.user.name)
         tracker.save()
+        raise
 
 def get_social_page_google(tracker, url, access_token = ''):
         try:
@@ -107,8 +113,6 @@ def get_social_page_google(tracker, url, access_token = ''):
                 response = requests.get(url, params=ast.literal_eval(access_token))
             else:
                 response = requests.get(url)
-
-            print response
 
             if response.ok:
                 try:
@@ -130,6 +134,12 @@ def get_social_page_google(tracker, url, access_token = ''):
                     tracker.save()
                     raise
 
+            else:
+                access = tracker.access
+                raise Exception("Response not ok for user contacts for this access: {0} with provider: {1} and user: {2}".format(access.id,
+                    access.provider.name,
+                    access.user.name))
+
         except requests.exceptions.ConnectionError:
             tracker.remarks += "Could not reach friends url: {0}".format(response.url)
             tracker.save()
@@ -145,6 +155,7 @@ def get_social_contact_google(tracker):
     except:
         tracker.remarks += "Failed to get friends for access {0}, provider {1} and user {2}".format(access.id, access.provider.name, access.user.name)
         tracker.save()
+        raise
 
 def get_friends_twitter(tracker):
     return get_contacts_twitter(tracker, 'https://api.twitter.com/1.1/friends/ids.json')
@@ -158,23 +169,31 @@ def get_contacts_twitter(tracker, url):
 
     try:
         response = client.request('get', url, token=tracker.access.access_token)
-        return response.json()
-    except e:
+
+        if response.ok:
+            return response.json()
+        else:
+            access = tracker.access
+            raise Exception("Response not ok for user contacts for this access: {0} with provider: {1} and user: {2}".format(access.id,
+                access.provider.name,
+                access.user.name))
+    except:
         tracker.remarks = 'Failed to get twitter friends: {0}'.format(e)
         tracker.save()
-        return None
+        raise
 
 
 def get_social_contact(tracker):
     if tracker.access.provider.name == 'facebook':
         contacts = get_social_contact_fb(tracker)
-        print contacts
-        contact_ids = [contact['id'] for contact in contacts]
-        return (contact_ids, contact_ids)
+        if contacts:
+            contact_ids = [contact['id'] for contact in contacts]
+            return (contact_ids, contact_ids)
     elif tracker.access.provider.name == 'google':
         contacts = get_social_contact_google(tracker)
-        contact_ids = [contact['id'] for contact in contacts]
-        return (contact_ids, contact_ids)
+        if contacts:
+            contact_ids = [contact['id'] for contact in contacts]
+            return (contact_ids, contact_ids)
     elif tracker.access.provider.name == 'twitter':
         friends = get_friends_twitter(tracker)['ids']
         followers = get_followers_twitter(tracker)['ids']
@@ -195,16 +214,20 @@ def update_follow_from_social(access_id):
     tracker, created = SocialTracker.objects.get_or_create(access=access)
 
     if not tracker.status:
-        (to_follow, followers) = get_social_contact(tracker)
+        user_contacts  = get_social_contact(tracker)
 
-        print "Got the CROWD"
-        print (to_follow, followers)
+        if not user_contacts:
+            return "Found no contacts for this access: {0} with provider: {1} and user: {2}".format(
+                access.id,
+                access.provider.name,
+                access.user.name)
+
+        (to_follow, followers) = (user_contacts[0], user_contacts[1])
 
         to_follow_users = []
         for target in to_follow:
             try:
                 target_user = AccountAccess.objects.get(identifier = target).user
-                print "follow: " + target_user.name
                 to_follow_users.append(target_user)
             except AccountAccess.DoesNotExist:
                 pass
@@ -228,7 +251,7 @@ def update_follow_from_social(access_id):
             len(followers),
             len(following_users))
 
-        print remarks
+        return remarks
 
         # tracker.status = True
         # tracker.save()

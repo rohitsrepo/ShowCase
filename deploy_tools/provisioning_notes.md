@@ -9,7 +9,7 @@ Provisioning a new site
 * pip
 * virtualenv
 * python-dev
-
+* rabbitmq-server
 * OpenCV (Generate outline and graysclae things)
 * libjpeg-dev (Image optimization with pillow)
 
@@ -38,3 +38,6 @@ Assume we have a user account at /home/username
          ├── source
          ├── static
          └── virtualenv
+         --- logs
+         	--- celery
+         	--- flower

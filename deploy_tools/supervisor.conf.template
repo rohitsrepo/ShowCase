@@ -1,0 +1,19 @@
+[program:celery_showcase]
+command=/home/rasuka/Desktop/star/beta/virtualenv/bin/celery worker --app=ShowCase -l info 
+stdout_logfile=/home/rasuka/Desktop/star/beta/logs/celery/celeryd.log
+stderr_logfile=/home/rasuka/Desktop/star/beta/logs/celery/celeryd_err.log
+autostart=true
+autorestart=true
+startsecs=10
+stopwaitsecs=600
+killasgroup=true
+priority=998
+
+[program:flower_showcase]
+command=/home/rasuka/Desktop/star/beta/virtualenv/bin/flower -A ShowCase --basic_auth="rohit:rohit"
+stdout_logfile=/home/rasuka/Desktop/star/beta/logs/flower/flowerd.log
+stderr_logfile=/home/rasuka/Desktop/star/beta/logs/flower/flowerd_err.log
+autostart=true
+autorestart=true
+startsecs=10
+priority=997

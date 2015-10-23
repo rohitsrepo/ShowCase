@@ -1,10 +1,13 @@
-from django.shortcuts import render
+import urllib
 
-from allaccess.views import OAuthRedirect, OAuthCallback
-from .models import User
+from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.core.files import File
-import urllib
+
+from .models import User
+
+from allaccess.views import OAuthRedirect, OAuthCallback
+from follow.tasks import follow_from_social
 
 class EmailPermissionRedirect(OAuthRedirect):
 
@@ -45,6 +48,20 @@ class CustomUserCallback(OAuthCallback):
         if provider.name == 'facebook':
             try:
                 picture_url = 'http://graph.facebook.com/' + info.get('id') + '/picture?type=large'
+                content = urllib.urlretrieve(picture_url)
+                user.picture = File(open(content[0]))
+                user.save()
+                return;
+            except Exception, e:
+                pass
+
+        if provider.name == 'twitter':
+            try:
+                using_default = info.get('default_profile_image')
+                if using_default:
+                    return
+
+                picture_url = info.get('profile_image_url_https')
                 content = urllib.urlretrieve(picture_url)
                 user.picture = File(open(content[0]))
                 user.save()
