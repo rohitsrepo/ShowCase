@@ -11,7 +11,7 @@ def send_follow(user, target_user):
     ctx = {
         'target_name': target_user.name,
         'target_slug': target_user.slug,
-        'target_picture': target_user.picture,
+        'target_picture': target_user.picture.url,
     }
 
     message = get_template('mails/follow/follow.html').render(Context(ctx))
