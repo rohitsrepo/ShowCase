@@ -13,6 +13,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Bucket, BucketMembership
 from .permissions import IsOwnerOrReadOnlyIfPublic
 from .serializers import BucketSerializer, BucketBackgroundSerializer, BucketMembershipCreateSerializer, BucketMembershipSerializer
+from .tasks import send_added_to_bucket_mail
 
 from compositions.models import Composition
 from compositions.serializers import CompositionSerializer
@@ -81,6 +82,9 @@ class BucketCompositionList(APIView):
 
             bucket.description = description=serializer.data['description']
             bucket.save()
+
+            if created:
+                send_added_to_bucket_mail.delay(bucket.id)
 
             return Response(status=status.HTTP_201_CREATED)
         else:

@@ -1,10 +1,10 @@
 from django.template import Context
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
-
-from buckets.models import BucketMembership
+from django.db.models.loading import get_model
 
 def send_added_to_bucket(bucket_membership_id):
+    BucketMembership = get_model('buckets', 'BucketMembership')
     bucket_membership = BucketMembership.objects.get(id = bucket_membership_id)
 
     bucket = bucket_membership.bucket

@@ -13,6 +13,7 @@ from .picturehandler import bind_profile_picture_handler, WIDTH_PROFILE, resize_
 
 from compositions.models import Composition
 from streams.manager import follow_user
+from .tasks import send_welcome_mail
 
 
 def get_upload_file_name_users(instance, filename):
@@ -65,9 +66,16 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = 'users'
 
     def save(self, *args, **kwargs):
+        new = False
+        if self.pk is None:
+            new = True
+
         unique_slugify(self, self.name)
         self.email = self.normalize_email(self.email)
         super(User, self).save(*args, **kwargs)
+
+        if new and self.is_active:
+            send_welcome_mail.delay(self.id)
 
     def get_absolute_url(self):
         return '/@' + self.slug
@@ -130,7 +138,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def buckets_count(self):
         return self.buckets.filter(public=True).count()
-    
+
     @property
     def drafts_count(self):
         return self.buckets.filter(public=False).count()

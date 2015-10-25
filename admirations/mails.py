@@ -1,10 +1,10 @@
 from django.template import Context
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
-
-from admirations.models import Admiration
+from django.db.models.loading import get_model
 
 def send_admired(admiration_id):
+    Admiration = get_model('admirations', 'Admiration')
     admiration = Admiration.objects.get(id=admiration_id)
 
     if admiration.admire_type == Admiration.ART:
@@ -48,6 +48,7 @@ def send_admired_composition(admiration):
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
     msg.content_subtype = 'html'
 
+    count = 1
     while count:
         try:
             msg.send(fail_silently=False)
@@ -80,6 +81,7 @@ def send_admired_bucket(admiration):
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
     msg.content_subtype = 'html'
 
+    count = 1
     while count:
         try:
             msg.send(fail_silently=False)

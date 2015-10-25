@@ -14,32 +14,10 @@ from ShowCase.utils import check_object_permissions
 from .models import User
 from .serializers import ExistingUserSerializer
 
+from follow.contacts import follow_feed
+from follow.tasks import send_follow_mail
 from streams.manager import follow_user, unfollow_user, add_notification
 
-def follow_feed(user_id, target_user):
-    activity = dict(
-        actor=user_id,
-        verb='FL',
-        object=target_user,
-        foreign_id=user_id,
-        time=datetime.now(),
-    )
-
-    follow_user(user_id, target_user)
-    add_notification(target_user, activity)
-
-def follow_bulk(user, target_users):
-    user.follows.add(*target_users)
-
-    for target_user in target_users:
-        follow_feed(user.id, target_user.id)
-
-
-def add_followers_bulk(users, target_user):
-    target_user.followers.add(*users)
-
-    for user in users:
-        follow_feed(user.id, target_user.id)
 
 class UserFollowsAdd(APIView):
 
@@ -57,6 +35,7 @@ class UserFollowsAdd(APIView):
 
         for follow in follows:
             follow_feed(request.user.id, follow)
+            send_follow_mail.delay(follow, request.user.id)
 
         return Response(status=status.HTTP_201_CREATED)
 

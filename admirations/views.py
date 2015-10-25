@@ -14,6 +14,7 @@ from rest_framework.views import APIView
 from ShowCase.utils import check_object_permissions
 
 from .models import Admiration, AdmirationOption
+from .tasks import send_admired_mail
 from .serializers import AdmirationSerializer, PaginatedAdmirationSerializer, AdmirationContentCreateSerializer, OptionSerializer
 
 from accounts.models import User
@@ -84,6 +85,8 @@ class AdmirationsList(APIView):
                     admire_as=admire_option)
 
             admire_serializer = AdmirationSerializer(admire_object, context={'request': request})
+
+            send_admired_mail.delay(admire_object.id)
 
             return Response(admire_serializer.data, status=status.HTTP_201_CREATED)
         else:

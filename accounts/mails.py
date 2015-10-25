@@ -1,10 +1,10 @@
 from django.template import Context
 from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMessage
-
-from .models import User
+from django.db.models.loading import get_model
 
 def send_warm_welcome(user_id):
+    User = get_model('accounts', 'User')
     user = User.objects.get(id=user_id)
 
     subject = 'Welcome to ThirdDime'
@@ -23,6 +23,7 @@ def send_warm_welcome(user_id):
             count += count
 
 def send_welcome(user_id):
+    User = get_model('accounts', 'User')
     user = User.objects.get(id=user_id)
 
     subject = "Welcome to ThirdDime"

@@ -1,9 +1,36 @@
 import requests
+from datetime import datetime
 
 from allaccess.models import AccountAccess
-from accounts.userfollows import follow_bulk, add_followers_bulk
+# from accounts.userfollows import follow_bulk, add_followers_bulk
 from follow.models import SocialTracker
 
+from streams.manager import follow_user, unfollow_user, add_notification
+
+def follow_feed(user_id, target_user):
+    activity = dict(
+        actor=user_id,
+        verb='FL',
+        object=target_user,
+        foreign_id=user_id,
+        time=datetime.now(),
+    )
+
+    follow_user(user_id, target_user)
+    add_notification(target_user, activity)
+
+def follow_bulk(user, target_users):
+    user.follows.add(*target_users)
+
+    for target_user in target_users:
+        follow_feed(user.id, target_user.id)
+
+
+def add_followers_bulk(users, target_user):
+    target_user.followers.add(*users)
+
+    for user in users:
+        follow_feed(user.id, target_user.id)
 
 def populate_tracker():
     # Raw sql query would be better for Server scenarios

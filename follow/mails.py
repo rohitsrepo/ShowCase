@@ -1,10 +1,10 @@
 from django.template import Context
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
-
-from accounts.models import User
+from django.db.models.loading import get_model
 
 def send_follow(user_id, action_user_id):
+    User = get_model('accounts', 'User')
     user = User.objects.get(id=user_id)
     action_user = User.objects.get(id=action_user_id)
 
@@ -22,6 +22,7 @@ def send_follow(user_id, action_user_id):
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
     msg.content_subtype = 'html'
 
+    count = 1
     while count:
         try:
             msg.send(fail_silently=False)
