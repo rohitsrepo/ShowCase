@@ -2,7 +2,11 @@ from django.template import Context
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 
-def send_added_to_bucket(bucket_membership):
+from buckets.models import BucketMembership
+
+def send_added_to_bucket(bucket_membership_id):
+    bucket_membership = BucketMembership.objects.get(id = bucket_membership_id)
+
     bucket = bucket_membership.bucket
     composition = bucket_membership.composition
     target_user = bucket.owner
@@ -38,5 +42,15 @@ def send_added_to_bucket(bucket_membership):
     message = get_template('mails/buckets/to_bucket.html').render(Context(ctx))
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
     msg.content_subtype = 'html'
-    msg.send(fail_silently=False)
+
+    count = 1
+    while count:
+        try:
+            msg.send(fail_silently=False)
+            break;
+        except:
+            if (count > 3):
+                raise
+            count += count
+
 

@@ -4,7 +4,9 @@ from django.core.mail import EmailMessage
 
 from admirations.models import Admiration
 
-def send_admired_mail(admiration):
+def send_admired(admiration_id):
+    admiration = Admiration.objects.get(id=admiration_id)
+
     if admiration.admire_type == Admiration.ART:
         send_admired_composition(admiration)
     elif admiration.admire_type == Admiration.BUCKET:
@@ -45,7 +47,15 @@ def send_admired_composition(admiration):
     message = get_template('mails/admiration/admired_artwork.html').render(Context(ctx))
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
     msg.content_subtype = 'html'
-    msg.send(fail_silently=False)
+
+    while count:
+        try:
+            msg.send(fail_silently=False)
+            break;
+        except:
+            if (count > 3):
+                raise
+            count += count
 
 
 def send_admired_bucket(admiration):
@@ -69,4 +79,12 @@ def send_admired_bucket(admiration):
     message = get_template('mails/admiration/admired_series.html').render(Context(ctx))
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
     msg.content_subtype = 'html'
-    msg.send(fail_silently=False)
+
+    while count:
+        try:
+            msg.send(fail_silently=False)
+            break;
+        except:
+            if (count > 3):
+                raise
+            count += count
