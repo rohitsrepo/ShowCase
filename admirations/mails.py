@@ -22,11 +22,11 @@ def send_admired_composition(admiration):
     to_user = []
 
     composition_owner = composition.uploader
-    if (composition_owner.is_active):
+    if (composition_owner.is_active and not (target_user.id == composition_owner.id)):
         to_user.append(composition_owner.email)
 
     composition_artist = composition.artist
-    if composition_artist.is_active and not(composition_owner == composition_artist):
+    if composition_artist.is_active and not(composition_owner == composition_artist) and not (target_user.id == composition_artist.id):
         to_user.append(composition_artist.email)
 
     if not to_user:
@@ -61,6 +61,9 @@ def send_admired_composition(admiration):
 
 def send_admired_bucket(admiration):
     target_user = admiration.owner
+    if target_user.id == series.owner.id:
+        return "send_admired_bucket: Action user is same as the target user"
+
     series = admiration.content_object
 
     subject = target_user.name + " admired series " + series.name

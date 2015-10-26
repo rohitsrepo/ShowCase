@@ -4,6 +4,9 @@ from django.core.mail import EmailMessage
 from django.db.models.loading import get_model
 
 def send_follow(user_id, action_user_id):
+    if user_id == action_user_id:
+        return "send_follow: Action user is same as the target user"
+
     User = get_model('accounts', 'User')
     user = User.objects.get(id=user_id)
     action_user = User.objects.get(id=action_user_id)

@@ -14,11 +14,11 @@ def send_added_to_bucket(bucket_membership_id):
     to_user = []
 
     composition_owner = composition.uploader
-    if (composition_owner.is_active):
+    if (composition_owner.is_active  and not (target_user.id == composition_owner.id)):
         to_user.append(composition_owner.email)
 
     composition_artist = composition.artist
-    if composition_artist.is_active and not(composition_owner == composition_artist):
+    if composition_artist.is_active and not(composition_owner == composition_artist) and not (target_user.id == composition_artist.id):
         to_user.append(composition_artist.email)
 
     if not to_user:
