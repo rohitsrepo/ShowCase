@@ -166,3 +166,10 @@ def user_created(sender, instance, created, raw, **kwargs):
         follow_staff_user(instance.id)
 
 post_save.connect(user_created, sender=User)
+
+
+class MailOptions(models.Model):
+    user = models.OneToOneField(User)
+    admiration = models.BooleanField(default=True)
+    to_bucket = models.BooleanField(default=True)
+    follow = models.BooleanField(default=True)
