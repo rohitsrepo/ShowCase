@@ -17,7 +17,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 
 from .models import Composition, InterpretationImage
-from .serializers import CompositionSerializer, NewCompositionSerializer, CompositionMatterSerializer, InterpretationImageSerializer, PaginatedCompositionSerializer
+from .serializers import CompositionSerializer, NewCompositionSerializer, EditCompositionSerializer, CompositionMatterSerializer, InterpretationImageSerializer, PaginatedCompositionSerializer
 from .permissions import IsOwnerOrReadOnly, IsHimself, IsImageUploader
 from .imageTools import crop
 
@@ -162,6 +162,32 @@ class CompositionDetail(APIView):
 
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
+    def is_number(self, string_val):
+        try:
+            int(float(string_val))
+            return True
+        except ValueError:
+            return False
+
+    def validate_or_create_artist(self, request_data):
+        artist = request_data.get('artist')
+        if not self.is_number(artist):
+            try:
+                artist = json.loads(artist)
+                if artist.get('id') == -1:
+                    artist_name = artist.get('name')
+                    matching_artists = User.objects.filter(name__iexact=artist_name)
+
+                    if not matching_artists:
+                        new_artist = User.objects.create_artist(artist_name)
+                        request_data['artist'] = new_artist.id
+                    else:
+                        request_data['artist'] = matching_artists[0].id
+                else:
+                    raise CompositionError("Invalid artist data {}".format(artist))
+            except:
+                raise CompositionError("Unable to parse artist data {}".format(artist))
+
     def get_composition(self, slug, request):
         try:
             composition = Composition.objects.get(slug=slug)
@@ -179,7 +205,9 @@ class CompositionDetail(APIView):
         composition = self.get_composition(slug, request)
         self.check_object_permissions(self.request, composition)
 
-        ser = CompositionSerializer(composition, data=request.DATA, context={'request': request})
+        self.validate_or_create_artist(request.DATA)
+
+        ser = EditCompositionSerializer(composition, data=request.DATA, context={'request': request})
 
         if ser.is_valid():
             ser.save()

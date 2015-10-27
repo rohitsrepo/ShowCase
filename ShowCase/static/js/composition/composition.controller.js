@@ -19,6 +19,7 @@ controller("compositionController", [
     'bucketmodalService',
     'compositionModel',
     'shareModalService',
+    'editArtModalService',
 	function ($window,
         $document,
         $scope,
@@ -37,7 +38,8 @@ controller("compositionController", [
         usermodalService,
         bucketmodalService,
         compositionModel,
-        shareModalService)
+        shareModalService,
+        editArtModalService)
 	{
 
 	$scope.composition = {};
@@ -65,14 +67,16 @@ controller("compositionController", [
         });
     };
 
-	$scope.init = function (id, url, matter_550, slug, title, artist, isBookMarked, is_admired) {
+	$scope.init = function (id, url, matter_550, slug, title, artist_name, artist_id, isBookMarked, is_admired) {
 		$scope.composition.id = id;
         $scope.composition.url = url;
         $scope.composition.matter = url;
         $scope.composition.matter_550 = matter_550;
         $scope.composition.slug = slug;
         $scope.composition.title = title;
-		$scope.composition.artist = artist;
+		$scope.composition.artist = {
+            'name': artist_name,
+            'id': artist_id};
         $scope.composition.is_bookMarked = isBookMarked == 'True';
         $scope.composition.is_admired = is_admired == 'True';
 
@@ -138,7 +142,7 @@ controller("compositionController", [
 
     $scope.showShare = function () {
         var share_url = window.location.href;
-        var title = 'Artwork: "' + $scope.composition.title + '" by: ' + $scope.composition.artist;
+        var title = 'Artwork: "' + $scope.composition.title + '" by: ' + $scope.composition.artist.name;
         var description = 'Find thoughts about artwork "' + $scope.composition.title+
             '" at ' + share_url;
         var media = 'http://thirddime.com' + $scope.composition.url;
@@ -226,6 +230,10 @@ controller("compositionController", [
                 bucket.is_admired = true;
             });;
         }
+    };
+
+    $scope.showEditArt = function () {
+        editArtModalService.showEditArt($scope.composition);
     };
 }])
 .directive('postTemplate', [function () {

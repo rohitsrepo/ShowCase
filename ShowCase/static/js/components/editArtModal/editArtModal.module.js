@@ -1,0 +1,1 @@
+angular.module('module.editArtModal', ['angucomplete-alt', 'module.util', 'module.model'])

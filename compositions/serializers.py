@@ -65,6 +65,13 @@ class NewCompositionSerializer(serializers.ModelSerializer):
         fields = ('title', 'artist', 'matter', 'nsfw', 'slug')
         read_only_fields = ('slug', )
 
+class EditCompositionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Composition
+        fields = ('id', 'title', 'artist', 'nsfw', 'slug')
+        read_only_fields = ('id', 'slug')
+
 class CompositionMatterSerializer(serializers.Serializer):
     upload_type = serializers.CharField(max_length=3);
     upload_image = serializers.ImageField(required=False)

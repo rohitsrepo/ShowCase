@@ -64,7 +64,7 @@ angular.module('module.uploadmodal')
         }
 
         function checkOrAddArtist () {
-            if ($scope.art.artist === undefined || JSON.parse($scope.art.artist).id == -1){
+            if ($scope.art.artist === undefined || ((typeof($scope.art.artist) == 'string') && (JSON.parse($scope.art.artist).id == -1))){
                 var artistName = $('.artist-input')[0].value;
                 if (artistName === '') {
                     return false;
@@ -72,7 +72,6 @@ angular.module('module.uploadmodal')
 
                 $scope.art.artist = JSON.stringify({'id': -1,'name': artistName})
             }
-
             return true;
         }
 

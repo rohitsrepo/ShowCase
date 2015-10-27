@@ -1,6 +1,7 @@
 angular.module("CompositionApp", [
     'ngSanitize',
     'infinite-scroll',
+    'module.editArtModal',
     'module.root',
     'module.tools'])
 .value('$anchorScroll', angular.noop)

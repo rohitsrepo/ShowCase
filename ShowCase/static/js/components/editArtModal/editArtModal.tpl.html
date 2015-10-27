@@ -1,0 +1,33 @@
+<section tabindex="0" class="upload-modal">
+    <section class="upload-modal-actions-header">
+        <button ng-click="close()">X</button>
+    </section>
+
+    <section class="info-source clearfix" ng-if="art.matter_550" ng-style="{'background-image': 'url([[art.matter_550]])'}">
+            <header>Edit details for artwork</header>
+        <form class="info-form" name="infoForm">
+            <section class="art-upload-overlay ng-hide" ng-cloak ng-show="uploadingDetails">
+                <site-loader site-loader-hide='false'></site-loader>
+            </section>
+
+            <input type="text" class="title" autofocus="autofocus" placeholder="Title*" ng-model="art.title" name="uTitle" maxlength="100" required>
+
+            <angucomplete-alt placeholder="Artist*"
+                         pause="400"
+                         selected-object="selectArtist"
+                         remote-url="/users/search?q="
+                         title-field="name",
+                         search-fields="name"
+                         input-class="artist-input",
+                         initial-value="[[artistName]]">
+            </angucomplete-alt>
+
+            <section class="input-nsfw clearfix">
+                <span>Not safe for work (NSFW)?</span>
+                <input class="nsfw" type="checkbox" ng-model="art.nsfw"/>
+            </section>
+
+            <button class="info-submit-button" ng-class="{'enable': infoForm.$valid && infoForm.$dirty}" ng-disabled="[[infoForm.$invalid]]" ng-click="submitArtInfo()">SUBMIT</button>
+        </form>
+    </section>
+</section>

@@ -35,7 +35,7 @@
 	<!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}', '{{composition.get_550_url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{composition.artist.name | escapejs}}', '{{is_bookmarked}}', '{{is_admired}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}', '{{composition.get_550_url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{composition.artist.name | escapejs}}', '{{composition.artist.id}}', '{{is_bookmarked}}', '{{is_admired}}')"{% endblock %}
 
 {% block content_block %}
 	<section class="painting-area">
@@ -91,7 +91,7 @@
             </header>
 
             <section class="painting-actions" ng-cloak ng-show="'{{has_ownership}}' === 'True'">
-                <i class="material-icons"  ng-click="editArt()">edit</i>
+                <i class="material-icons"  ng-click="showEditArt()">edit</i>
                 <!-- <i class="material-icons" ng-click="deleteArt()">delete</i> -->
             </section>
 
@@ -259,5 +259,9 @@
     <script type="text/javascript" src="/static/js/composition/tools/viewFinder.directive.js"></script>
     <script type="text/javascript" src="/static/js/composition/tools/fullscreen.directive.js"></script>
     <script type="text/javascript" src="/static/js/composition/tools/panZoom.directive.js"></script>
+
+    <script type="text/javascript" src="/static/js/components/editArtModal/editArtModal.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/editArtModal/editArtModal.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/editArtModal/editArtModal.controller.js"></script>
     <!-- endbuild -->
 {% endblock %}

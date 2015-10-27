@@ -47,7 +47,7 @@ angular.module("module.model")
     };
 
     service.updateArt = function (artSlug, data) {
-        return $http.get('/compositions/' + artSlug, data).then(function (response) {
+        return $http.put('/compositions/' + artSlug, data).then(function (response) {
             return response.data;
         }, function (error) {
             return $q.reject(error);
