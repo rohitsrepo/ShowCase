@@ -1,9 +1,10 @@
 <section tabindex="0" class="bucket-modal create-modal">
-    <section class="modal-actions-header">
-        <i class="material-icons action" ng-click="close()">close</i>
-    </section>
+
     <div class="scroll-holder">
         <ul class="container">
+            <section class="container-actions-header">
+                <i class="material-icons action" ng-click="close()">close</i>
+            </section>
             <h1 class="buckets-header" ng-cloak ng-hide="bucketCreated">Create a new series</h1>
             <form class="bucket-form" ng-cloak ng-hide="bucketCreated" name="bucketForm">
                  <section class="details-uploading-overlay ng-hide" ng-cloak ng-show="uploadingDetails">

@@ -52,6 +52,7 @@
   padding: 40px;
   border-radius: 3px;
   overflow: hidden;
+  position: relative;
 }
 
 @media (min-width: 1500px) {
@@ -72,6 +73,27 @@
         padding: 5px;
         padding-top: 10px;
     }
+}
+
+/*---------- Container Actions ------------*/
+
+.modal-content-action {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+.modal-content-action i.action {
+    color: rgba(0, 0, 0, 0.3);
+    background: transparent;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.modal-content-action i.action:hover {
+    color: black;
 }
 
 .modal-content header {

@@ -1,9 +1,9 @@
 <section tabindex="0" class="bucket-modal edit-modal">
-    <section class="modal-actions-header">
-        <i class="material-icons action" ng-click="close()">close</i>
-    </section>
     <div class="scroll-holder">
         <ul class="container">
+            <section class="container-actions-header">
+                <i class="material-icons action" ng-click="close()">close</i>
+            </section>
             <h1 class="buckets-header details" ng-hide="editingBackground">Edit series</h1>
             <form class="bucket-form" ng-class="{'animate' : loaded}" ng-hide="editingBackground" name="bucketForm">
                 <section class="details-uploading-overlay ng-hide" ng-cloak ng-show="uploadingDetails">
@@ -30,7 +30,7 @@
                 <section class="source-uploading-overlay" ng-cloak ng-show="uploadingBackground">
                     <site-loader site-loader-hide='false'></site-loader>
                 </section>
-                
+
                 <section class="source-upload">
                     <input type="file" class="realfile" bucket-fileread>
                     <div class="fakefile">

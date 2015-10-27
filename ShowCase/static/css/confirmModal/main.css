@@ -54,6 +54,27 @@
   height: 3em;
 }
 
+/*---------- Container Actions ------------*/
+
+.confirm-modal-actions-header {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+.confirm-modal-actions-header i.action {
+    color: rgba(0, 0, 0, 0.3);
+    background: transparent;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.confirm-modal-actions-header i.action:hover {
+    color: black;
+}
+
 /*------------- Confirm Content ---------------*/
 
 .confirm-modal .confirm-modal-content {
@@ -64,6 +85,7 @@
     padding: 10px;
     background-color: white;
     text-align: center;
+    position: relative;
 }
 
 .confirm-modal .confirm-modal-content h2 {
