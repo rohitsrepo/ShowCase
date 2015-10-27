@@ -275,10 +275,8 @@ html, body {
 }
 
 .painting-details-container .painting-actions i:hover {
-    color: rgba(0, 0, 0, 0.9);
-    -ms-transform: scale(1.1); /* IE 9 */
-    -webkit-transform: scale(1.1); /* Safari */
-    transform: scale(1.1);
+    color: rgba(0, 0, 0, 1);
+    
 }
 
 .painting-details-container .painting-parent {

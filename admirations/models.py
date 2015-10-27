@@ -40,11 +40,18 @@ class Admiration(models.Model):
             content_object=self.content_object)
 
     def get_post(self):
+        if self.admire_type == self.BUCKET:
+            post_type = Post.ADMIRE_BUCKET
+        elif self.admire_type == self.ART:
+            post_type = Post.ADMIRE_ART
+        else:
+            raise("Invalid admire type found")
+
         return Post.objects.filter(
             creator=self.owner,
-            post_type=POST.ADMIRE,
-            object_id=self.id,
-            content_type=ContentType.objects.get_for_model(Admiration))
+            post_type=post_type,
+            object_id=self.object_id,
+            content_type=self.content_type)
 
 bind_post(Admiration)
 

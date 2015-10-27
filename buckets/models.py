@@ -175,9 +175,9 @@ class BucketMembership(models.Model):
     def get_post(self):
         return Post.objects.filter(composition=self.composition,
             creator=self.bucket.owner,
-            post_type=POST.BUCKET,
+            post_type=Post.BUCKET,
             object_id=self.bucket.id,
-            content_type=ContentType.objects.get_for_model(BUCKET))
+            content_type=ContentType.objects.get_for_model(Bucket))
 
 bind_post(BucketMembership)
 bind_fresh_feed(BucketMembership)

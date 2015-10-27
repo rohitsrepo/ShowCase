@@ -40,8 +40,7 @@ angular.module('module.editArtModal')
         }
 
         $scope.submitArtInfo = function () {
-            console.log($scope.art)
-            // $scope.uploadingDetails = true;
+            $scope.uploadingDetails = true;
 
             if (checkOrAddArtist()){
 

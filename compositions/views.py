@@ -25,6 +25,7 @@ from accounts.models import User
 from accounts.serializers import ExistingUserSerializer
 from buckets.serializers import BucketSerializer
 from buckets.models import BucketMembership
+from feeds.models import Fresh
 from ShowCase.utils import check_object_permissions, BrowserSimulator
 
 class CompositionError(Exception):
@@ -219,11 +220,15 @@ class CompositionDetail(APIView):
     ## Also delete the buckets it does not even belong to
     ## Use background job architecture to delete
 
-    # def delete(self, request, slug, format=None):
-    #     composition = self.get_composition(slug, request)
-    #     self.check_object_permissions(self.request, composition)
-    #     composition.delete()
-    #     return Response(status=status.HTTP_204_NO_CONTENT)
+    def delete(self, request, slug, format=None):
+        composition = self.get_composition(slug, request)
+        self.check_object_permissions(self.request, composition)
+        Fresh.objects.get(feed_type=Fresh.ART,
+            object_id=composition.id).delete()
+        composition.bookers.all().delete()
+        composition.admirers.all().delete()
+        composition.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class InterpretationImageList(APIView):
 

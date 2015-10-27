@@ -224,7 +224,7 @@ class Composition(models.Model):
     def get_post(self):
         return Post.objects.filter(composition=self,
             creator=self.artist,
-            post_type__in=[POST.ADD, POST.CREATE],
+            post_type__in=[Post.ADD, Post.CREATE],
             object_id=self.id,
             content_type=ContentType.objects.get_for_model(self))
 

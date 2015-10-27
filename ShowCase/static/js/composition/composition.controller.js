@@ -20,6 +20,7 @@ controller("compositionController", [
     'compositionModel',
     'shareModalService',
     'editArtModalService',
+    'confirmModalService',
 	function ($window,
         $document,
         $scope,
@@ -39,7 +40,8 @@ controller("compositionController", [
         bucketmodalService,
         compositionModel,
         shareModalService,
-        editArtModalService)
+        editArtModalService,
+        confirmModalService)
 	{
 
 	$scope.composition = {};
@@ -234,6 +236,18 @@ controller("compositionController", [
 
     $scope.showEditArt = function () {
         editArtModalService.showEditArt($scope.composition);
+    };
+
+    $scope.deleteArt = function () {
+        confirmModalService.showDeleteConfirm().then(function () {
+            progress.showProgress();
+            compositionModel.deleteArt($scope.composition.slug).then(function () {
+                window.location.href = '/arts';
+            }, function () {
+                progress.hideProgress();
+                alert.showAlert('Currently unable to delete this artwork');
+            });
+        });
     };
 }])
 .directive('postTemplate', [function () {
