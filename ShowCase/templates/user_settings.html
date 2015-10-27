@@ -81,7 +81,24 @@
             <form name="nsfwForm">
                 <section class="data clearfix">
                     <span>Do not show works that are marked NSFW</span>
-                    <input class="nsfw" type="checkbox" ng-model="user.nsfw"/>
+                    <input class="check" type="checkbox" ng-model="user.nsfw"/>
+                </section>
+           </form>
+        </li>
+        <li>
+            <form name="mailOptionsForm" class="mailOptionsForm">
+                <label>Mail Options</label>
+                <section class="data clearfix">
+                    <span>Admiration of content</span>
+                    <input class="check" type="checkbox" ng-model="mailOptions.admiration"/>
+                </section>
+                <section class="data clearfix">
+                    <span>User starts following</span>
+                    <input class="check" type="checkbox" ng-model="mailOptions.follow"/>
+                </section>
+                <section class="data clearfix">
+                    <span>Artwork added to series</span>
+                    <input class="check" type="checkbox" ng-model="mailOptions.to_bucket"/>
                 </section>
            </form>
         </li>

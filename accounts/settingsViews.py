@@ -7,10 +7,11 @@ from django.core.files import File
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.views import APIView
 from rest_framework import permissions
 
-from .models import User
-from .serializers import ExistingUserSerializer, PasswordUserSerializer, ProfilePictureSerializer
+from .models import User, MailOptions
+from .serializers import ExistingUserSerializer, PasswordUserSerializer, ProfilePictureSerializer, MailOptionsSerializer
 
 from ShowCase.utils import check_object_permissions
 
@@ -129,3 +130,19 @@ def update_picture(user, upload_object):
     user.save();
 
 
+class MailOptionsDetail(APIView):
+    permission_classes = (permissions.IsAuthenticated, )
+
+    def get(self, request, format=None):
+        mailOptions = MailOptions.objects.get(user=request.user)
+        ser = MailOptionsSerializer(mailOptions)
+        return Response(ser.data)
+
+    def put(self, request, format=None):
+        mailOptions = MailOptions.objects.get(user=request.user)
+        ser = MailOptionsSerializer(mailOptions, data=request.DATA, context={'request': request})
+        if ser.is_valid():
+            ser.save()
+            return Response(ser.data)
+
+        return Response(data=ser.errors, status=status.HTTP_400_BAD_REQUEST)

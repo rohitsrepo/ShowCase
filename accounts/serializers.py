@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, MailOptions
 from django.forms import widgets
 from django.contrib.auth.hashers import make_password
 from rest_framework.pagination import PaginationSerializer
@@ -86,3 +86,10 @@ class ProfilePictureSerializer(serializers.Serializer):
                 raise serializers.ValidationError('Upload url can not be empty')
 
         return data
+
+class MailOptionsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MailOptions
+        fields = ('id', 'follow', 'to_bucket', 'admiration')
+        read_only_fields = ('id',)

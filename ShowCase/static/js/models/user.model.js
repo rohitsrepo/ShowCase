@@ -81,6 +81,22 @@ angular.module("module.model")
         })
     };
 
+    service.getMailOptions = function () {
+        return $http.get("/users/mail-options").then(function (response) {
+            return response.data;
+        }, function (response, status){
+            return $q.reject(response);
+        })
+    };
+
+    service.resetMailOptions = function (mailOptions) {
+        return $http.put("/users/mail-options", mailOptions).then(function (response) {
+            return response.data;
+        }, function (response, status){
+            return $q.reject(response);
+        })
+    };
+
     service.resetPicture = function (profilePictureData) {
         return $http.post('/users/reset-picture', profilePictureData).then(function (response) {
             return response.data;

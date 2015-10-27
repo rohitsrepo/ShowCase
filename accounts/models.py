@@ -164,6 +164,7 @@ def follow_staff_user(user_id):
 def user_created(sender, instance, created, raw, **kwargs):
     if created and not raw:
         follow_staff_user(instance.id)
+        MailOptions.objects.create(user=instance)
 
 post_save.connect(user_created, sender=User)
 

@@ -69,6 +69,32 @@ angular.module('UserSettingsApp')
         skipOnce = false;
     })
 
+    userModel.getMailOptions().then(function (response) {
+        $scope.mailOptions = response
+    }, function (response){
+        alert.showAlert("Unable to get mail options");
+    });
+
+    var updateMailOptions = function (mailOptions) {
+        progress.showProgress();
+        userModel.resetMailOptions(mailOptions).then(function (response) {
+            progress.hideProgress();
+        }, function (response){
+            progress.hideProgress();
+            alert.showAlert("Unable to update mail options");
+        });
+    }
+
+    var skipOnceMail = true;
+    $scope.$watch(function () {
+        return $scope.mailOptions;
+    }, function () {
+        if (!skipOnceMail) {
+            updateMailOptions($scope.mailOptions);
+        }
+        skipOnceMail = false;
+    }, true)
+
     $scope.profilePicture = {};
 
     $scope.urlPictureUpload = function () {

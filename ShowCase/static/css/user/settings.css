@@ -139,7 +139,17 @@ html, body {
     animation: fadeOutLeft 1s;
 }
 
-.settings form .data .nsfw {
+.settings .mailOptionsForm label {
+    font-weight: bold;
+    padding-bottom: 5px;
+    display: block;
+}
+
+.settings form .data {
+    padding: 5px 0;
+}
+
+.settings form .data .check {
     float: right;
     display: inline-block;
     vertical-align: top;
