@@ -22,11 +22,17 @@ def send_admired_composition(admiration):
     to_user = []
 
     composition_owner = composition.uploader
-    if (composition_owner.is_active and not (target_user.id == composition_owner.id)):
+
+    MailOptions = get_model('accounts', 'MailOptions')
+    owner_mail_options = MailOptions.objects.get(user=composition_owner)
+
+    if (composition_owner.is_active and not (target_user.id == composition_owner.id) and owner_mail_options.admiration):
         to_user.append(composition_owner.email)
 
     composition_artist = composition.artist
-    if composition_artist.is_active and not(composition_owner == composition_artist) and not (target_user.id == composition_artist.id):
+    artist_mail_options = MailOptions.objects.get(user=composition_artist)
+
+    if composition_artist.is_active and not(composition_owner == composition_artist) and not (target_user.id == composition_artist.id) and artist_mail_options.admiration:
         to_user.append(composition_artist.email)
 
     if not to_user:

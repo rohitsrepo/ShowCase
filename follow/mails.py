@@ -9,6 +9,11 @@ def send_follow(user_id, action_user_id):
 
     User = get_model('accounts', 'User')
     user = User.objects.get(id=user_id)
+    MailOptions = get_model('accounts', 'MailOptions')
+    mail_options = MailOptions.objects.get(user=user)
+    if not mail_options.follow:
+        return "User disabeled follow mails"
+    
     action_user = User.objects.get(id=action_user_id)
 
     subject = action_user.name + " is now following you"
