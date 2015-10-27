@@ -20,7 +20,7 @@
         <!-- <i class="material-icons action content-action" ng-click="close()">close</i> -->
     </section>
 
-    <div class="background-area" ng-if="bucket" ng-style="{'background-image': 'url([[bucket.background_url]])'}"></div>
+    <div class="background-area" ng-if="bucket.background_url" ng-style="{'background-image': 'url([[bucket.background_url]])'}"></div>
     <div class="background-overlay"></div>
 
     <article class="bucket-content nt-mb" swipe-effect ng-swipe-left="nextArt()" ng-swipe-right="prevArt()">
