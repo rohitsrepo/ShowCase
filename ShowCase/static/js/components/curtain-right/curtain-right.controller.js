@@ -44,7 +44,7 @@ angular.module("module.curtainRight")
         var loggingIn = true;
 
         var url = '/users/login/' + provider + '/'
-        var loginWindow = $window.open(url, '_blank', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600');
+        var loginWindow = $window.open(url, '_blank', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=600,width=600');
 
         var checkLoginLoop = $interval(loginSocial(clearLoginLoop, loginWindow, provider), 1000);
 

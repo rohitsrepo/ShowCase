@@ -13,13 +13,17 @@
 
 {% block css_block %}
 	<!-- build:css /static/build/login.css -->
-	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/reader/topbar.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/login/main.css">
 	<!-- endbuild -->
 {%endblock%}
 
 {% block body_attr_block %}ng-controller="loginController"{% endblock %}
+
+{% block site_header_block %}
+    <topbar></topbar>
+    <div class="curtain-overlay-placeholder"></div>
+{%endblock%}
 
 {% block content_block %}
 	<header class="primary-header">
@@ -28,8 +32,9 @@
 	</header>
 	<section class="auth clearfix">
 		<section class="social">
-			<a class="facebook" href="/users/login/facebook/">LOGIN WITH FACEBOOK</a>
-			<a class="google" href="/users/login/google/">LOGIN WITH GOOGLE</a>
+			<a class="facebook" ng-click="socialLogger('facebook')">LOGIN WITH FACEBOOK</a>
+			<a class="google" ng-click="socialLogger('google')">LOGIN WITH GOOGLE</a>
+			<a class="twitter" ng-click="socialLogger('twitter')">LOGIN WITH TWITTER</a>
 		</section>
 		<h5>Or</h5>	
 		<section class="native">
@@ -58,5 +63,16 @@
 	<!-- build:js /static/build/login.js -->
 	<script type="text/javascript" src="/static/js/login/login.module.js"></script>
 	<script type="text/javascript" src="/static/js/login/login.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-right.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-right/curtain-user.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.module.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.service.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.controller.js"></script>
+    <script type="text/javascript" src="/static/js/components/curtain-left/curtain-left.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
 	<!-- endbuild -->
 {% endblock %}

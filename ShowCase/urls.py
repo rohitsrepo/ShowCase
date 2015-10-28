@@ -27,8 +27,8 @@ urlpatterns += patterns('',
 
 ## Account urls
 urlpatterns += patterns('',
-                       url(r'^register$', TemplateView.as_view(template_name='register.html'), name="register"),
-                       url(r'^login/$', TemplateView.as_view(template_name='login.html'), name="login"),
+                       url(r'^register$', 'accounts.clientViews.register_main', name="register"),
+                       url(r'^login/$', 'accounts.clientViews.login_main', name="login"),
                        url(r'^@(?P<user_slug>[\w-]+)/series/(?P<bucket_slug>[\w-]+)', 'buckets.clientViews.series_main', name="series-page"),
                        url(r'^@(?P<slug>[\w-]+)', 'accounts.clientViews.artist_main', name="artist-page"),
                        url(r'^me/settings$', 'accounts.clientViews.user_settings', name="user-settings"),

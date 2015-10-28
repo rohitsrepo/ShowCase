@@ -36,3 +36,17 @@ def user_settings(request):
 
     context = RequestContext(request)
     return render_to_response("user_settings.html", context)
+
+def register_main(request):
+    if request.user.is_authenticated():
+        return redirect('/home')
+    else:
+        context = RequestContext(request)
+        return render_to_response("register.html", context)
+
+def login_main(request):
+    if request.user.is_authenticated():
+        return redirect('/home')
+    else:
+        context = RequestContext(request)
+        return render_to_response("login.html", context)

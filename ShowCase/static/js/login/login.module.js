@@ -1,4 +1,8 @@
-angular.module("LoginApp", ['module.root'])
+angular.module("LoginApp", [
+    "module.curtainRight",
+    "module.curtainLeft",
+    "module.topbar",
+    'module.root'])
 .config(['$httpProvider', '$interpolateProvider', '$locationProvider', function ($httpProvider, $interpolateProvider, $locationProvider) {
 	"use strict";
 
