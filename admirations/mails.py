@@ -8,9 +8,9 @@ def send_admired(admiration_id):
     admiration = Admiration.objects.get(id=admiration_id)
 
     if admiration.admire_type == Admiration.ART:
-        send_admired_composition(admiration)
+        return send_admired_composition(admiration)
     elif admiration.admire_type == Admiration.BUCKET:
-        send_admired_bucket(admiration)
+        return send_admired_bucket(admiration)
     else:
         raise Exception('send_admired_mail: Invalid admiration type found. Admiration:{0} with type: {1}'
             .format(admiration.id, admiration.admire_type))
@@ -36,7 +36,7 @@ def send_admired_composition(admiration):
         to_user.append(composition_artist.email)
 
     if not to_user:
-        raise Exception('send_admired_composition: Counld not find valid recepient for admiration: {0}'.format(admiration.id))
+        return 'send_admired_composition: Counld not find valid recepient for admiration: {0}'.format(admiration.id)
 
     to = to_user
     subject = target_user.name + " admired artwork " + composition.title
@@ -67,10 +67,14 @@ def send_admired_composition(admiration):
 
 def send_admired_bucket(admiration):
     target_user = admiration.owner
+    series = admiration.content_object
     if target_user.id == series.owner.id:
         return "send_admired_bucket: Action user is same as the target user"
 
-    series = admiration.content_object
+    MailOptions = get_model('accounts', 'MailOptions')
+    mail_options = MailOptions.objects.get(user=series.owner)
+    if not mail_options.admiration:
+        return "User disabeled admiration mails"
 
     subject = target_user.name + " admired series " + series.name
     to = [series.owner.email]

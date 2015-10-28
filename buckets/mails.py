@@ -28,7 +28,7 @@ def send_added_to_bucket(bucket_membership_id):
         to_user.append(composition_artist.email)
 
     if not to_user:
-        raise Exception('send_added_to_bucket: Counld not find valid recepient for bucket_membership: {0}'.format(bucket_membership.id))
+        return 'send_added_to_bucket: Counld not find valid recepient for bucket_membership: {0}'.format(bucket_membership.id)
 
     to = to_user
     subject = target_user.name + " added artwork " + composition.title + " to series " + bucket.name

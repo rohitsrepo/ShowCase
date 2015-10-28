@@ -83,10 +83,11 @@ class AdmirationsList(APIView):
                     content_type=ctype,
                     admire_type=content_type,
                     admire_as=admire_option)
+                
+                send_admired_mail.delay(admire_object.id)
 
             admire_serializer = AdmirationSerializer(admire_object, context={'request': request})
 
-            send_admired_mail.delay(admire_object.id)
 
             return Response(admire_serializer.data, status=status.HTTP_201_CREATED)
         else:
