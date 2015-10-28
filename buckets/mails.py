@@ -32,7 +32,7 @@ def send_added_to_bucket(bucket_membership_id):
 
     to = to_user
     subject = target_user.name + " added artwork " + composition.title + " to series " + bucket.name
-    from_email = 'ThirdDime <info@thirddime.com>'
+    from_email = 'ThirdDime <notifications@thirddime.com>'
 
     ctx = {
         'target_name': target_user.name,

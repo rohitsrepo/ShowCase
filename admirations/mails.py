@@ -40,7 +40,7 @@ def send_admired_composition(admiration):
 
     to = to_user
     subject = target_user.name + " admired artwork " + composition.title
-    from_email = 'ThirdDime <info@thirddime.com>'
+    from_email = 'ThirdDime <notifications@thirddime.com>'
 
     ctx = {
         'target_name': target_user.name,
@@ -74,7 +74,7 @@ def send_admired_bucket(admiration):
 
     subject = target_user.name + " admired series " + series.name
     to = [series.owner.email]
-    from_email = 'ThirdDime <info@thirddime.com>'
+    from_email = 'ThirdDime <notifications@thirddime.com>'
 
     ctx = {
         'target_name': target_user.name,

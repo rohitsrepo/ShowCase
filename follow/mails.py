@@ -18,7 +18,7 @@ def send_follow(user_id, action_user_id):
 
     subject = action_user.name + " is now following you"
     to = [user.email]
-    from_email = 'ThirdDime <info@thirddime.com>'
+    from_email = 'ThirdDime <notifications@thirddime.com>'
 
     ctx = {
         'target_name': action_user.name,
