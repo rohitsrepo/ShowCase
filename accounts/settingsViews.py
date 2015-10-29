@@ -3,6 +3,10 @@ import urllib2
 from django.core.exceptions import ValidationError
 from django.core.files.temp import NamedTemporaryFile
 from django.core.files import File
+from django.contrib.auth.tokens import default_token_generator
+from django.shortcuts import get_object_or_404
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_text
 
 from rest_framework.response import Response
 from rest_framework import status
@@ -11,35 +15,53 @@ from rest_framework.views import APIView
 from rest_framework import permissions
 
 from .models import User, MailOptions
-from .serializers import ExistingUserSerializer, PasswordUserSerializer, ProfilePictureSerializer, MailOptionsSerializer
+from .serializers import ExistingUserSerializer, PasswordUserSerializer, SetPasswordSerializer, ProfilePictureSerializer, MailOptionsSerializer
+from .tasks import send_reset_password_mail
 
 from ShowCase.utils import check_object_permissions
 
 
 @api_view(['POST'])
-@permission_classes((permissions.IsAuthenticated,))
-def reset_password(request, pk, format=None):
-    '''
-    Changes user password.
+@permission_classes((permissions.AllowAny,))
+def reset_password(request, format=None):
 
-    Offloading validation like both values entered in new password fields are same, to frontend.
-    '''
-    try:
-        user = User.objects.get(pk=pk)
-    except User.DoesNotExist:
-        raise Http404
+    serializer = PasswordUserSerializer(data=request.DATA)
 
-    check_object_permissions(
-        request, reset_password.cls.permission_classes, user)
-
-    serializer = PasswordUserSerializer(
-        data=request.DATA, context={'user': user})
     if serializer.is_valid():
-        user.set_password(serializer.object['new_password'])
-        user.save()
-        return Response()
+        user = get_object_or_404(User, email=serializer.data['email'])
+
+        if not user.is_active:
+            return Response(data={'error': 'User account is not active'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+        base_url = 'http://thirddime.com/reset-password-confirm/'
+        reset_url = base_url + urlsafe_base64_encode(force_bytes(user.pk)) + '-' + default_token_generator.make_token(user) + '/' 
+
+        send_reset_password_mail.delay(user.id, reset_url)
+
+        return Response(status=status.HTTP_200_OK)
     else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes((permissions.AllowAny,))
+def reset_password_confirm(request, uidb64, token, format=None):
+
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        serializer = SetPasswordSerializer(data=request.DATA)
+        if serializer.is_valid():
+            user.set_password(serializer.data['password'])
+            user.save()
+            return Response()
+
+    return Response(status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated,))

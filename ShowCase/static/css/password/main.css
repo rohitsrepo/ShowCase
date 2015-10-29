@@ -1,0 +1,71 @@
+html, body {
+    height: 100%;
+    font-size: 100%;
+    font-family: "taile";
+        padding: 0;
+        margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.name {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+/*---------------Content-------------------*/
+
+.reset-password-content {
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+    padding-top: 100px;
+    text-align: center;
+}
+
+.reset-password-content h1 {
+    font-size: 3em;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+.reset-password-content h2 {
+    padding-bottom: 20px;   
+}
+
+.reset-password-content .passwordForm {
+    width: 100%;
+}
+
+.reset-password-content .passwordForm input {
+    width: 100%;
+    text-align: center;
+    height: 40px;
+    font-size: 1em;
+}
+
+.reset-password-content .passwordForm .passwordForm-error {
+    width: 100%;
+    padding: 10px 0;
+    height: 50px;
+}
+
+.reset-password-content .passwordForm .submit {
+    width: 170px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px;
+}
+
+.reset-password-content .passwordForm .submit.active {
+    border: 1px solid black;
+    color: black;
+    cursor: pointer;
+}

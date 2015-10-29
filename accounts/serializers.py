@@ -43,28 +43,13 @@ class PaginatedUserSerializer(PaginationSerializer):
         object_serializer_class = ExistingUserSerializer
 
 class PasswordUserSerializer(serializers.Serializer):
-    old_password = serializers.CharField(max_length=128)
-    new_password = serializers.CharField(max_length=128)
+    email = serializers.EmailField()
 
-    def __init__(self, *args, **kwargs):
-        super(PasswordUserSerializer, self).__init__(*args, **kwargs)
-
-        try:
-            self.user = self.context['user']
-        except KeyError:
-            raise Exception("Please pass user as context instance")
-
-    def validate_old_password(self, attrs, source):
-        '''
-        Validate the old password is valid.
-        '''
-
-        old_password = attrs[source]
-        if self.user.check_password(old_password):
-            return attrs
-        else:
-            raise serializers.ValidationError(
-                "Old password that you entered is not a valid password")
+class SetPasswordSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = User
+        fields = ('password', )
 
 class ProfilePictureSerializer(serializers.Serializer):
     upload_type = serializers.CharField(max_length=3);

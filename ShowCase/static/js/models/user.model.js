@@ -153,5 +153,21 @@ angular.module("module.model")
         });
     };
 
+    service.resetPassword = function (email) {
+        return $http.post('/users/reset-password', {'email': email}).then(function (response) {
+            return response.data;
+        }, function (response) {
+            return $q.reject(response);
+        });
+    };
+
+    service.setNewPassword = function (password, id, token) {
+        return $http.post('/users/reset-password-confirm/' + id + '-' + token, {'password': password}).then(function (response) {
+            return response.data;
+        }, function (response) {
+            return $q.reject(response);
+        });
+    };
+
 	return service;
 }]);

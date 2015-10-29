@@ -47,3 +47,31 @@ def send_welcome(user_id):
             if (count > 3):
                 raise
             count += count
+
+def send_reset_password(user_id, reset_url):
+    User = get_model('accounts', 'User')
+    user = User.objects.get(id=user_id)
+
+    subject = 'Password Reset Instructions'
+    to = [user.email]
+    from_email = 'ThirdDime Team <info@thirddime.com>'
+
+    ctx = {
+        'username': user.name,
+        'reset_url': reset_url
+    }
+
+    message = get_template('mails/accounts/reset_password.html').render(Context(ctx))
+    msg = EmailMessage(subject, message, to=to, from_email=from_email)
+    msg.content_subtype = 'html'
+
+    count = 1
+    while count:
+        try:
+            msg.send(fail_silently=False)
+            return "Sent password reset email"
+            break;
+        except:
+            if (count > 3):
+                raise
+            count += count
