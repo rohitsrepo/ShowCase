@@ -46,6 +46,8 @@
 				    <span ng-show="nativeLoginForm.uPassword.$error.required">Please provide a password.</span>
 			    </div>
 				<input class="native-action-button" ng-class="{'disabled': nativeLoginForm.$invalid}" ng-disabled="nativeLoginForm.$invalid"  type="button" name="login" value="LOGIN" ng-click="login(existingUser)">
+
+				<a class="forgot-link" href="reset-password">Forgot Password</a>
 			</form><!--
 			--><form class="native-form ng-hide" name="nativeRegisterForm" novalidate  ng-cloak ng-hide="showNativeLogin">
 				<input type="text" placeholder="Name" ng-model="newUser.name" name="uname" maxlength="80" required>

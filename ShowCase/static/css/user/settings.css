@@ -260,3 +260,17 @@ html, body {
     padding-top: 10px;
     display: none;
 }
+
+.setting-link {
+    font-weight: bold;
+    padding: 5px;
+    display: block;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.setting-link:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-color: white;
+}
