@@ -56,6 +56,18 @@ def _update_settings(source_folder, site_name):
         'EMAIL_HOST_PASSWORD =.+$',
         'EMAIL_HOST_PASSWORD = "671b18a15bd67beabc3b0738bd5f8d7a"'
         )
+    sed(settings_path,
+        'CLOUDINARY_API_KEY =.+$',
+        'CLOUDINARY_API_KEY = "185157468258313"'
+        )
+    sed(settings_path,
+        'CLOUDINARY_API_SECRET =.+$',
+        'CLOUDINARY_API_SECRET = "8SqyGOFi6gXBcy9dfTUsGxj9c3c"'
+        )
+    sed(settings_path,
+        'CLOUDINARY_CLOUDNAME =.+$',
+        'CLOUDINARY_CLOUDNAME = "thirddime"'
+        )
 
     secret_key_file = source_folder + '/ShowCase/secret_key.py'
     if not exists(secret_key_file):

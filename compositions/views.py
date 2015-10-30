@@ -1,7 +1,7 @@
 import os, uuid
 import json
 import urllib
-from random import randrange
+from random import randrange, randint
 
 import django_filters
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -9,6 +9,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.http import Http404
+from django.template.defaultfilters import slugify
 from django.core.files import File
 
 from rest_framework import permissions, generics, status
@@ -26,6 +27,7 @@ from accounts.serializers import ExistingUserSerializer
 from buckets.serializers import BucketSerializer
 from buckets.models import BucketMembership
 from feeds.models import Fresh
+from mediastore.manager import upload_image
 from ShowCase.utils import check_object_permissions, BrowserSimulator
 
 class CompositionError(Exception):
@@ -131,6 +133,12 @@ class CompositionList(APIView):
         image_path = get_image_path(temp_image.owner, temp_image.identifier)
         os.remove(image_path)
 
+    def get_public_id(self, uploader, artist, composition_name):
+        return '%s/%s/%s_%s_thirddime_%s' % (slugify(uploader.name),
+            slugify(artist.name),
+            slugify(artist.name),
+            slugify(composition_name),
+            randint(1000, 10000))
 
     def post(self, request, format=None):
         try:
@@ -139,10 +147,8 @@ class CompositionList(APIView):
 
             temp_image = get_object_or_404(TemporaryComposition, id=request.DATA['image_id'], owner=request.user, pristine=True)
             matter = self.generate_matter(temp_image)
-            if not matter:
-                return Response(data={"error": "Unable to resolve the image information"}, status=status.HTTP_400_BAD_REQUEST)
-
             request.DATA['matter'] = matter
+
             self.validate_or_create_artist(request.DATA)
 
             ser = NewCompositionSerializer(data=request.DATA, files=request.FILES, context={'request': request})
@@ -152,8 +158,17 @@ class CompositionList(APIView):
                 if bucket:
                     ser.object.added_with_bucket = True
 
+                matter_public_id = self.get_public_id(request.user, ser.object.artist, ser.object.title)
+                matter_meta = upload_image(matter, public_id=matter_public_id)
+
                 ser.object.uploader = request.user
+                ser.object.matter_identifier = matter_meta['public_id']
+                ser.object.matter_height = matter_meta['height']
+                ser.object.matter_width = matter_meta['width']
+                ser.object.matter_format = matter_meta['format']
+
                 composition = ser.save()
+                
                 temp_image.pristine = False
                 temp_image.save()
 

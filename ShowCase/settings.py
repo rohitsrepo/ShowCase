@@ -86,6 +86,7 @@ INSTALLED_APPS = (
     'admirations',
     'follow',
     'djcelery',
+    'mediastore',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -176,9 +177,14 @@ POSTS_PER_PAGE = 10
 STREAM_API_KEY = 'x399sdbsgtmx'
 STREAM_API_SECRET = 'njhq6uzms7bezq6hxwsz434b6xpp37r97nwc3bg99ps8cmgrf6qvqhyjmgdbuhe9'
 
+CLOUDINARY_API_KEY = '999275522129416'
+CLOUDINARY_API_SECRET = 'Q-w9Rg23en1wmvK-3cNywKnqpcw'
+CLOUDINARY_CLOUDNAME = 'danufntls'
+
 EMAIL_HOST = 'smtp.mailgun.org'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
+DEFAULT_FROM_EMAIL = 'ThirdDime Team <info@thirddime.com>'
 
 SERVER_EMAIL = 'Server Logs <server@thirddime.com>'
 ADMINS = (('Rohit', 'rgarg1992@gmail.com'),)

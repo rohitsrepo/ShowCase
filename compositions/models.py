@@ -31,6 +31,10 @@ class Composition(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     created = models.DateTimeField(auto_now_add=True)
     matter = models.ImageField(upload_to=get_upload_file_name_composition, max_length=500)
+    matter_identifier = models.CharField(max_length=1000)
+    matter_height = models.IntegerField(default=0)
+    matter_width = models.IntegerField(default=0)
+    matter_format = models.CharField(max_length=50, default='')
     views = models.IntegerField(default=0)
     nsfw = models.BooleanField(default=False)
 
