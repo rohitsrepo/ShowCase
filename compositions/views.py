@@ -16,7 +16,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 
-from .models import Composition, InterpretationImage
+from .models import Composition, InterpretationImage, TemporaryComposition
 from .serializers import CompositionSerializer, NewCompositionSerializer, EditCompositionSerializer, CompositionMatterSerializer, InterpretationImageSerializer, PaginatedCompositionSerializer
 from .permissions import IsOwnerOrReadOnly, IsHimself, IsImageUploader
 from .imageTools import crop
@@ -73,6 +73,8 @@ def composition_matter(request, format=None):
 
     if upload_ser.is_valid():
         image_object = generate_image_url(request.user, upload_ser.object)
+        temp_image = TemporaryComposition.objects.create(identifier=image_object['id'], owner=request.user)
+        image_object['id'] = temp_image.id
         return Response(image_object)
 
     return Response(data=upload_ser.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -108,11 +110,9 @@ class CompositionList(APIView):
             except:
                 raise CompositionError("Unable to parse artist data {}".format(artist))
 
-    def generate_matter(self, user, data):
-        if ('image_id' in data.keys()):
-            image_id = data['image_id']
-            image_path = get_image_path(user, image_id)
-            return File(open(image_path))
+    def generate_matter(self, temp_image):
+        image_path = get_image_path(temp_image.owner, temp_image.identifier)
+        return File(open(image_path))
 
     def get_valid_bucket(self, user, request_data):
         if ('bucket' in request_data.keys()):
@@ -127,16 +127,23 @@ class CompositionList(APIView):
     def addToBucket(self, bucket, composition):
         BucketMembership.objects.get_or_create(bucket=bucket, composition=composition)
 
-    def remove_temp_image(self, user, image_id):
-        if image_id:
-            image_path = get_image_path(user, image_id)
-            os.remove(image_path)
+    def remove_temp_image(self, temp_image):
+        image_path = get_image_path(temp_image.owner, temp_image.identifier)
+        os.remove(image_path)
 
 
     def post(self, request, format=None):
         try:
+            if not ('image_id' in request.DATA.keys()):
+                return Response(data={"error": "image_id is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+            temp_image = get_object_or_404(TemporaryComposition, id=request.DATA['image_id'], owner=request.user, pristine=True)
+            matter = self.generate_matter(temp_image)
+            if not matter:
+                return Response(data={"error": "Unable to resolve the image information"}, status=status.HTTP_400_BAD_REQUEST)
+
+            request.DATA['matter'] = matter
             self.validate_or_create_artist(request.DATA)
-            request.DATA['matter'] = self.generate_matter(request.user, request.DATA)
 
             ser = NewCompositionSerializer(data=request.DATA, files=request.FILES, context={'request': request})
 
@@ -147,8 +154,10 @@ class CompositionList(APIView):
 
                 ser.object.uploader = request.user
                 composition = ser.save()
+                temp_image.pristine = False
+                temp_image.save()
 
-                self.remove_temp_image(request.user, request.DATA.get('image_id', ''))
+                self.remove_temp_image(temp_image)
 
                 if bucket:
                     self.addToBucket(bucket, composition)

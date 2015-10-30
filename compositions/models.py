@@ -278,3 +278,10 @@ class InterpretationImage(models.Model):
 
 # Bind Signals
 bind_image_resize_handler(InterpretationImage)
+
+class TemporaryComposition(models.Model):
+    identifier = models.CharField(max_length=100)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL)
+    pristine = models.BooleanField(default=True)
