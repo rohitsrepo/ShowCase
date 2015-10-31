@@ -13,7 +13,7 @@ class CompositionUserSerializer(serializers.ModelSerializer):
         fields = ('id', 'full_name', 'picture', 'slug', 'name')
 
 class CompositionSerializer(serializers.ModelSerializer):
-    matter = URLImageField(source='matter', read_only=True)
+    matter = serializers.Field(source='matter_url')
     matter_550 = serializers.CharField(source='get_550_url', read_only=True)
     matter_350 = serializers.CharField(source='get_350_url', read_only=True)
     matter_aspect = serializers.FloatField(source='get_matter_aspect', read_only=True)

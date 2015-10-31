@@ -16,6 +16,7 @@ from posts.models import Post, bind_post
 from feeds.models import Fresh, bind_fresh_feed, Staff, bind_staff_feed
 from bookmarks.models import BookMark
 from admirations.models import Admiration
+from mediastore.manager import build_url
 
 def get_upload_file_name_composition(instance, filename):
     return '%s/%s/%s_%s_thirddime%s' % (instance.uploader.id, slugify(instance.artist.name), slugify(instance.artist.name), slugify(instance.title), '.' + filename.split('.')[-1])
@@ -136,11 +137,15 @@ class Composition(models.Model):
     def get_grayscale_url(self):
         return resized_file_path(self.matter.url, 'gray')
 
+    def matter_url(self, *args, **kwargs):
+        url,options = build_url(self.matter_identifier, *args, **kwargs)
+        return url
+
     def get_550_url(self):
-        return resized_file_path(self.matter.url, WIDTH_READER)
+        return self.matter_url(width=WIDTH_READER)
 
     def get_350_url(self):
-        return resized_file_path(self.matter.url, WIDTH_STICKY)
+        return self.matter_url(width=WIDTH_STICKY)
 
     def get_interpretations_count(self):
         return self.interpretation_set.count()
@@ -279,6 +284,7 @@ class InterpretationImage(models.Model):
     @property
     def image_path(self):
         return self.image.path
+
 
 
 # Bind Signals
