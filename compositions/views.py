@@ -159,16 +159,17 @@ class CompositionList(APIView):
                     ser.object.added_with_bucket = True
 
                 matter_public_id = self.get_public_id(request.user, ser.object.artist, ser.object.title)
-                matter_meta = upload_image(matter, public_id=matter_public_id)
+                matter_meta = upload_image(matter, public_id=matter_public_id, phash = True)
 
                 ser.object.uploader = request.user
                 ser.object.matter_identifier = matter_meta['public_id']
                 ser.object.matter_height = matter_meta['height']
                 ser.object.matter_width = matter_meta['width']
                 ser.object.matter_format = matter_meta['format']
+                ser.object.matter_phash = matter_meta['phash']
 
                 composition = ser.save()
-                
+
                 temp_image.pristine = False
                 temp_image.save()
 

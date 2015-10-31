@@ -16,3 +16,4 @@ selenium==2.44.0
 wsgiref==0.1.2
 stream-python==2.3.2
 MySQL-python==1.2.5
+cloudinary==1.1.3

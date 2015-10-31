@@ -35,6 +35,7 @@ class Composition(models.Model):
     matter_height = models.IntegerField(default=0)
     matter_width = models.IntegerField(default=0)
     matter_format = models.CharField(max_length=50, default='')
+    matter_phash = models.CharField(max_length=50, default='')
     views = models.IntegerField(default=0)
     nsfw = models.BooleanField(default=False)
 
