@@ -35,7 +35,7 @@
 	<!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter.url}}', '{{composition.get_550_url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{composition.artist.name | escapejs}}', '{{composition.artist.id}}', '{{is_bookmarked}}', '{{is_admired}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter_url}}', '{{composition.get_550_url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{composition.artist.name | escapejs}}', '{{composition.artist.id}}', '{{is_bookmarked}}', '{{is_admired}}')"{% endblock %}
 
 {% block content_block %}
 	<section class="painting-area">
@@ -163,7 +163,7 @@
 
             <div class="associate-works-container">
                 <section class="work" ng-repeat="work in artistWorks">
-                    <div class="work-picture" ng-style="{'background-image': 'url([[work.matter_350]])'}">
+                    <div class="work-picture" ng-style="{'background-image': 'url([[work.matter_400]])'}">
                         <div class="work-nsfw-overlay" ng-cloak ng-show="work.nsfw"  ng-click="work.nsfw = false">
                             <h3>This work has been marked not safe</h3>
                             <h4>Click anywhere to show the work</h4>
@@ -203,7 +203,7 @@
 
             <div class="associate-works-container">
                 <section class="work" ng-repeat="work in uploaderWorks">
-                    <div class="work-picture" ng-style="{'background-image': 'url([[work.matter_350]])'}">
+                    <div class="work-picture" ng-style="{'background-image': 'url([[work.matter_400]])'}">
                         <div class="work-nsfw-overlay" ng-cloak ng-show="work.nsfw"  ng-click="work.nsfw = false">
                             <h3>This work has been marked not safe</h3>
                             <h4>Click anywhere to show the work</h4>

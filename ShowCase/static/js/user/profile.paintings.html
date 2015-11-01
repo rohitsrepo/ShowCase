@@ -2,7 +2,7 @@
     <div class="masonry-brick container profile-art-container" ng-repeat="art in arts">
         <div class="art">
             <article class="art-content" ng-style="{'height': '[[math.round(400*art.matter_aspect)]]px', 'width': '400px', 'background-color': '[[art.major]]'}">
-                <img ng-src="[[art.matter_350]]" alt="[[art.title]]">
+                <img ng-src="[[art.matter_400]]" alt="[[art.title]]">
                 <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
                     <h6>This work is marked not safe</h6>
                     <h6>Click anywhere to show the work</h6>

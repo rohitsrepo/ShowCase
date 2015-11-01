@@ -4,7 +4,7 @@ from PIL import Image
 from django.db.models.signals import post_delete, post_save
 from colorTools import colorz
 
-WIDTH_STICKY = 350
+WIDTH_STICKY = 400
 WIDTH_READER = 550
 
 def resized_file_path(filename, width):

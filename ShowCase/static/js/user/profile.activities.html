@@ -5,7 +5,7 @@
                 <header ng-show="activity.post_type == 'MA' && !showHeader">Artwork admired by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
                 <header ng-show="activity.post_type == 'AD' && !showHeader">Artwork added by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
                 <article class="art-content" ng-style="{'height': '[[math.round(400*activity.content.matter_aspect)]]px', 'width': '400px', 'background-color': '[[activity.content.major]]'}">
-                    <img ng-src="[[activity.content.matter_550]]" alt="[[activity.content.title]]" >
+                    <img ng-src="[[activity.content.matter_400]]" alt="[[activity.content.title]]" >
                     <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
                         <h6>This work is marked not safe</h6>
                         <h6>Click anywhere to show the work</h6>
@@ -39,7 +39,7 @@
             <div class="art" ng-show="activity.grade == 2">
                 <header ng-show="!showHeader">Artwork added to series [[activity.content.name]] by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
                 <article class="art-content" ng-style="{'height': '[[math.round(400*activity.composition.matter_aspect)]]px', 'width': '400px', 'background-color': '[[activity.composition.major]]'}">
-                    <img ng-src="[[activity.composition.matter_550]]" alt="[[activity.composition.title]]" >
+                    <img ng-src="[[activity.composition.matter_400]]" alt="[[activity.composition.title]]" >
                     <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
                         <h6>This work is marked not safe</h6>
                         <h6>Click anywhere to show the work</h6>

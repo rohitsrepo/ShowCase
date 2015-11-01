@@ -144,7 +144,7 @@ class Composition(models.Model):
     def get_550_url(self):
         return self.matter_url(width=WIDTH_READER)
 
-    def get_350_url(self):
+    def get_400_url(self):
         return self.matter_url(width=WIDTH_STICKY)
 
     def get_interpretations_count(self):

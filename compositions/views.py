@@ -159,7 +159,7 @@ class CompositionList(APIView):
                     ser.object.added_with_bucket = True
 
                 matter_public_id = self.get_public_id(request.user, ser.object.artist, ser.object.title)
-                matter_meta = upload_image(matter, public_id=matter_public_id, phash = True, eager = { 'width': 550})
+                matter_meta = upload_image(matter, public_id=matter_public_id, phash = True, eager = [{ 'width': 550}, { 'width': 400}])
 
                 ser.object.uploader = request.user
                 ser.object.matter_identifier = matter_meta['public_id']

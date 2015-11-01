@@ -25,11 +25,11 @@ class PostCompositionSerializer(serializers.ModelSerializer):
     artist = PostUserSerializer(read_only=True)
     matter = URLImageField(source='matter')
     matter_550 = serializers.CharField(source='get_550_url', read_only=True)
-    matter_350 = serializers.CharField(source='get_350_url', read_only=True)
+    matter_400 = serializers.CharField(source='get_400_url', read_only=True)
 
     class Meta:
         model = Composition
-        fields = ("id", "title", "matter", "artist", "slug", "uploader", "matter_350", "matter_550", "views")
+        fields = ("id", "title", "matter", "artist", "slug", "uploader", "matter_400", "matter_550", "views")
 
 class PostInterpretationVoteSerializer(serializers.ModelSerializer):
     total = serializers.CharField(source='get_total', read_only=True)
