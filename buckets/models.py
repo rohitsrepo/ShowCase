@@ -66,7 +66,7 @@ class Bucket(models.Model):
         except:
             try:
                 composition = self.compositions.exclude(nsfw=True).order_by('bucketmembership__added').last()
-                return composition.get_350_url()
+                return composition.get_400_url()
             except:
                 return ''
 

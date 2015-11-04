@@ -24,6 +24,7 @@ class ObjectRelatedField(serializers.RelatedField):
         return serializer.data
 
 class SearchSerializer(serializers.Serializer):
+    content_type = serializers.Field(source='model_name')
     content_object = ObjectRelatedField(source='object')
 
 

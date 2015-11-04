@@ -6,13 +6,15 @@ angular.module('module.root')
     'uploadmodalService',
     'bucketmodalService',
     'activityModel',
+    'searchModel',
     function ($scope,
         $window,
         $location,
         auth,
         uploadmodalService,
         bucketmodalService,
-        activityModel)
+        activityModel,
+        searchModel)
     {
 
     $scope.exploreActive = false;
@@ -226,6 +228,54 @@ angular.module('module.root')
     $scope.showCreateBucket = function () {
         bucketmodalService.showCreateBucket();
     };
+
+    $scope.search = {};
+    var search = function (query) {
+        $scope.search.results = {
+            'users': [],
+            'buckets': [],
+            'arts': [],
+            'count': 0
+        };
+
+        searchModel.search(query).then(function (results) {
+            console.log(results);
+
+            for (i=0; i< results.length; i++) {
+                var result = results[i];
+
+                if (result.content_type == 'user') {
+                    if ($scope.search.results.users.length == 5) {
+                        continue;
+                    }
+
+                    $scope.search.results.users.push(result.content_object)
+                }else if (result.content_type == 'bucket') {
+                    if ($scope.search.results.buckets.length == 5) {
+                        continue;
+                    }
+                    
+                    $scope.search.results.buckets.push(result.content_object)
+                }else if (result.content_type == 'composition') {
+                    if ($scope.search.results.arts.length == 5) {
+                        continue;
+                    }
+                    
+                    $scope.search.results.arts.push(result.content_object)
+                }
+
+                $scope.search.results.count++;
+            }
+
+            console.log($scope.search.results);
+        });
+    };
+
+    $scope.$watch(function () {
+        return $scope.search.query;
+    }, function (val) {
+        search(val);
+    })
 
 }])
 .directive('customHref', [function () {

@@ -200,7 +200,7 @@ body::-webkit-scrollbar-thumb {
 
 /*---------------- Site navigation -----------------*/
 .site-header .site-navigation{
-    width: 50%;
+    width: 40%;
     display: inline-block;
     vertical-align: top;
     padding: 20px 0;
@@ -245,13 +245,21 @@ body::-webkit-scrollbar-thumb {
 
 /*---------------- Site Actions -----------------*/
 .site-header .site-actions {
-    width: 15%;
+    width: 25%;
     display: inline-block;
     vertical-align: top;
     padding: 10px 0;
     padding-top: 13px;
     padding-right: 10px;
     text-align: right;
+}
+
+@media (max-width: 800px) {
+    .site-header .site-actions {
+        padding: 5px 0;
+        margin: 0;
+        width: 50%;
+    };
 }
 
 .site-actions button {
@@ -265,6 +273,7 @@ body::-webkit-scrollbar-thumb {
     padding: 4px;
     cursor: pointer;
     transition: all 0.2s;
+    vertical-align: top;
 }
 
 .site-actions button:hover {
@@ -276,12 +285,103 @@ body::-webkit-scrollbar-thumb {
     font-size: 1.2em;
 }
 
-@media (max-width: 800px) {
-    .site-header .site-actions {
-        padding: 5px 0;
-        margin: 0;
-        width: 50%;
-    };
+/*------------- Search Box ----------*/
+
+.site-actions .searchForm {
+    display: inline-block;
+    position: relative;
+}
+
+.site-actions .searchForm .searchForm-container {
+    vertical-align: top;
+    padding: 0 10px;
+    padding-top: 5px;
+    padding-left: 25px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+.site-actions .searchForm .searchForm-container .search-input {
+    vertical-align: top;
+    border: none;
+}
+
+.site-actions .searchForm .searchForm-container .search-icon {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 1.1em;
+    vertical-align: middle;
+}
+
+
+/*-------------- Search Results ----------------*/
+
+.searchForm .search-results {
+    position: absolute;
+    /*bottom: 0px;*/
+    top: 50px;
+    width: 300px;
+    max-height: 600px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: white;
+    z-index: 10000;
+    overflow: hidden;
+}
+
+.searchForm .search-results .search-result {
+    width: 100%;
+    text-align: left;
+    padding: 5px 10px;
+}
+
+.searchForm .search-results .search-result:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.searchForm .search-results .search-result a {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.searchForm .search-results .search-result-label {
+    width: 100%;
+    height: 50px;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+}
+
+.searchForm .search-results .search-result-label p {
+    float: left;
+    margin-left: 10px
+}
+
+.searchForm .search-results .search-result-label a {
+    float: right;
+    margin-right: 10px
+}
+
+.searchForm .search-results .people-result {
+}
+
+.searchForm .search-results .result-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.searchForm .search-results .result-info {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0.8em;
+    padding-top: 5px;
+    padding-left: 10px;
 }
 
 /*---------------- User Auth -----------------*/
