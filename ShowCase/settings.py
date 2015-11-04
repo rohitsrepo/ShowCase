@@ -68,6 +68,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'rest_framework',
+    'haystack',
     'accounts',
     'compositions',
     'votes',
@@ -87,6 +88,7 @@ INSTALLED_APPS = (
     'follow',
     'djcelery',
     'mediastore',
+    'search'
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -125,6 +127,13 @@ DATABASES = {
 
 SOUTH_MIGRATION_MODULES = {
     'taggit': 'taggit.south_migrations',
+}
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, '../search/whoosh_index'),
+    },
 }
 
 

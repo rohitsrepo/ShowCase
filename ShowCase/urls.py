@@ -58,6 +58,7 @@ urlpatterns += patterns('',
                        url(r'^buckets', include('buckets.urls')),
                        url(r'^bookmarks', include('bookmarks.urls')),
                        url(r'^admirations', include('admirations.urls')),
+                       url(r'^search', include('search.urls')),
 		       )
 
 # Robots.txt
