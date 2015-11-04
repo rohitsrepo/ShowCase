@@ -328,10 +328,33 @@ body::-webkit-scrollbar-thumb {
     overflow: hidden;
 }
 
+.searchForm .search-results .search-result-label {
+    width: 100%;
+    height: 30px;
+    padding: 5px 10px;
+    padding-top: 15px;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+}
+
+.searchForm .search-results .search-result-label p {
+    float: left;
+    font-size: 0.7em;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.searchForm .search-results .search-result-label a {
+    float: right;
+    font-size: 0.7;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+}
+
 .searchForm .search-results .search-result {
     width: 100%;
     text-align: left;
-    padding: 5px 10px;
+    padding: 10px 10px;
 }
 
 .searchForm .search-results .search-result:hover {
@@ -342,26 +365,6 @@ body::-webkit-scrollbar-thumb {
     width: 100%;
     height: 100%;
     display: block;
-}
-
-.searchForm .search-results .search-result-label {
-    width: 100%;
-    height: 50px;
-    display: block;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
-}
-
-.searchForm .search-results .search-result-label p {
-    float: left;
-    margin-left: 10px
-}
-
-.searchForm .search-results .search-result-label a {
-    float: right;
-    margin-right: 10px
-}
-
-.searchForm .search-results .people-result {
 }
 
 .searchForm .search-results .result-image {
@@ -382,6 +385,17 @@ body::-webkit-scrollbar-thumb {
     font-size: 0.8em;
     padding-top: 5px;
     padding-left: 10px;
+}
+
+.searchForm .search-results .more-search {
+    width: 100%;
+    padding: 5px 10px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+.searchForm .search-results .more-search.see-all-active {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 /*---------------- User Auth -----------------*/

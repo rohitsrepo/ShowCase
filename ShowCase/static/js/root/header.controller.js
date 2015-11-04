@@ -7,6 +7,7 @@ angular.module('module.root')
     'bucketmodalService',
     'activityModel',
     'searchModel',
+    'progress',
     function ($scope,
         $window,
         $location,
@@ -14,7 +15,8 @@ angular.module('module.root')
         uploadmodalService,
         bucketmodalService,
         activityModel,
-        searchModel)
+        searchModel,
+        progress)
     {
 
     $scope.exploreActive = false;
@@ -230,52 +232,84 @@ angular.module('module.root')
     };
 
     $scope.search = {};
+    $scope.search.results = {
+        'users': [],
+        'buckets': [],
+        'arts': [],
+        'show': false,
+        'count': 0
+    };
+
+    $scope.search.loading = false;
+    $scope.search.noresults = false;
+
     var search = function (query) {
+        progress.showProgress();
         $scope.search.results = {
             'users': [],
             'buckets': [],
             'arts': [],
+            'show': false,
             'count': 0
         };
 
+        $scope.search.loading = true;
+        $scope.search.noresults = false;
+        $scope.search.results.show = true;
+
         searchModel.search(query).then(function (results) {
-            console.log(results);
 
             for (i=0; i< results.length; i++) {
                 var result = results[i];
+                $scope.search.results.count++;
 
                 if (result.content_type == 'user') {
-                    if ($scope.search.results.users.length == 5) {
+                    if ($scope.search.results.users.length == 3) {
                         continue;
                     }
 
                     $scope.search.results.users.push(result.content_object)
                 }else if (result.content_type == 'bucket') {
-                    if ($scope.search.results.buckets.length == 5) {
+                    if ($scope.search.results.buckets.length == 3) {
                         continue;
                     }
-                    
+
                     $scope.search.results.buckets.push(result.content_object)
                 }else if (result.content_type == 'composition') {
-                    if ($scope.search.results.arts.length == 5) {
+                    if ($scope.search.results.arts.length == 3) {
                         continue;
                     }
-                    
+
                     $scope.search.results.arts.push(result.content_object)
                 }
-
-                $scope.search.results.count++;
             }
 
-            console.log($scope.search.results);
+            progress.hideProgress();
+            $scope.search.loading = false;
+            if (results.length == 0) {
+                $scope.search.noresults = true;
+            }
+
+        }, function () {
+            progress.hideProgress();
+            $scope.search.loading = false;
+            $scope.search.noresults = false;
         });
     };
 
     $scope.$watch(function () {
         return $scope.search.query;
     }, function (val) {
+        if (!val) {
+            return;
+        }
+
         search(val);
     })
+
+    $scope.hideSearchResults = function () {
+        $scope.search.results.show = false;
+    };
 
 }])
 .directive('customHref', [function () {
@@ -294,5 +328,15 @@ angular.module('module.root')
             siteLoaderHide: '='
         },
         template: '<div class="site-loader" ng-cloak ng-hide="siteLoaderHide"><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span></div>'
+    };
+}])
+.directive('clickCloseSearch', ['$document', function ($document) {
+    return function (scope, element, attrs) {
+        $document.bind('click', function (event) {
+            var isClickedInside = element.find(event.target).length > 0 || element[0] == event.target;
+            if (!isClickedInside) {
+                scope.hideSearchResults();
+            }
+        });
     };
 }]);

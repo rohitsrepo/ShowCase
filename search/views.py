@@ -13,7 +13,7 @@ from haystack.inputs import Clean
 @api_view(['GET'])
 def search(request, format=None):
     q = request.GET.get('q', '')
-    if q is '':
+    if q is '' or not q:
         return Response(status=status.HTTP_400_BAD_REQUEST)
     all_results = SearchQuerySet().filter(content=Clean(q))
     serializer = SearchSerializer(all_results, many=True, context={'request': request})

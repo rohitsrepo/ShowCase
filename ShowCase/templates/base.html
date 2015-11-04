@@ -65,14 +65,14 @@
             <li><a ng-href="/blog" target="_blank">BLOG</a></li>
         </nav><!--
         --><section class="site-actions">
-            
+
             <form name="searchForm" class="searchForm">
             <div class=" searchForm-container "  id="search-box">
-                <input class="search-input" type="text" ng-model="search.query" ng-model-options="{ debounce: 500 }"> 
+                <input class="search-input" type="text" ng-model="search.query" ng-model-options="{ debounce: 800 }">
                 <i class="search-icon material-icons">search</i>
             </div>
 
-            <ul class="search-results ng-hide" ng-cloak ng-show="search.results.count > 0">
+            <ul class="search-results ng-hide" click-close-search ng-cloak ng-show="search.results.show">
                 <label class="search-result-label ng-hide" ng-cloak ng-show="search.results.arts.length > 0">
                     <p>ARTWORKS</p>
                     <a href="/search">more</a>
@@ -111,6 +111,12 @@
                     </div>
                 </a>
                 </li>
+
+                <button class="more-search" ng-class="{'see-all-active': search.results.count > 0}">
+                    <span class="ng-hide" ng-cloak ng-show="search.results.count > 0">See All</span>
+                    <span ng-cloak ng-show="search.loading && !search.noresults">Searching thirddime for '[[search.query]]'</span>
+                    <span class="ng-hide" ng-cloak ng-show="search.noresults">No results found</span>
+                </button>
 
             </ul>
 
