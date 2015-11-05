@@ -15,7 +15,14 @@ urlpatterns = patterns('',
                       url(r'^about-us$', TemplateView.as_view(template_name='aboutus.html'), name="about"),
                       url(r'^guidelines$', TemplateView.as_view(template_name='guidelines.html'), name='guidelines'),
                       url(r'^contact-us$', TemplateView.as_view(template_name='contactus.html'), name="contact"),
+                      url(r'^find$', TemplateView.as_view(template_name='contactus.html'), name="contact"),
 		       )
+
+
+# Search urls
+urlpatterns = patterns('',
+                      url(r'^search', TemplateView.as_view(template_name='search.html'), name="contact"),
+               )
 
 ## Composition Urls
 urlpatterns += patterns('',
@@ -58,7 +65,7 @@ urlpatterns += patterns('',
                        url(r'^buckets', include('buckets.urls')),
                        url(r'^bookmarks', include('bookmarks.urls')),
                        url(r'^admirations', include('admirations.urls')),
-                       url(r'^search', include('search.urls')),
+                       url(r'^api/search', include('search.urls')),
 		       )
 
 # Robots.txt

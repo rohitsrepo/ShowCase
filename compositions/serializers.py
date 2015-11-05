@@ -16,6 +16,7 @@ class CompositionSerializer(serializers.ModelSerializer):
     matter = serializers.Field(source='matter_url')
     matter_550 = serializers.CharField(source='get_550_url', read_only=True)
     matter_400 = serializers.CharField(source='get_400_url', read_only=True)
+    matter_thumbnail = serializers.CharField(source='get_thumbnail_url', read_only=True)
     matter_aspect = serializers.FloatField(source='get_matter_aspect', read_only=True)
     timesince = serializers.CharField(source='timesince', read_only=True)
     interpretations_count = serializers.CharField(source='get_interpretations_count', read_only=True)
@@ -32,7 +33,7 @@ class CompositionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Composition
         fields = ('id', 'title', 'artist', 'description', 'created', 'major',
-		   'matter', 'matter_400', 'matter_550', 'matter_aspect', 'timesince', 'nsfw',
+		   'matter', 'matter_400', 'matter_550', 'matter_thumbnail', 'matter_aspect', 'timesince', 'nsfw',
            'slug', 'uploader', 'views', 'interpretations_count', 'is_bookmarked',
            'is_admired', 'admirers_count', 'bookmarks_count', 'buckets_count', 'has_ownership')
     	read_only_fields = ('id', 'slug', 'views', 'created')

@@ -259,8 +259,8 @@ angular.module('module.root')
 
         searchModel.search(query).then(function (results) {
 
-            for (i=0; i< results.length; i++) {
-                var result = results[i];
+            for (i=0; i< results.results.length; i++) {
+                var result = results.results[i];
                 $scope.search.results.count++;
 
                 if (result.content_type == 'user') {

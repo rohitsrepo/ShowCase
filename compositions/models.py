@@ -147,6 +147,9 @@ class Composition(models.Model):
     def get_400_url(self):
         return self.matter_url(width=WIDTH_STICKY)
 
+    def get_thumbnail_url(self):
+        return self.matter_url(width=50, height=50)
+
     def get_interpretations_count(self):
         return self.interpretation_set.count()
 

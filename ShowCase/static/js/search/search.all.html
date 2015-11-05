@@ -1,0 +1,86 @@
+<div ng-cloak masonry load-images="onMobile" masonry-options="{ transitionDuration: '0' }" class="arts-container search-container" infinite-scroll="loadMoreArtifacts()" infinite-scroll-distance='1' infinite-scroll-disabled='searchMeta.busy || searchMeta.disableGetMore'>
+    <div class="masonry-brick container search-art-container" ng-repeat="artifact in searchMeta.results">
+        <div class="art" ng-show="artifact.content_type == 'composition' ">
+            <article class="art-content" ng-style="{'height': '[[math.round(400*artifact.content_object.matter_aspect)]]px', 'width': '400px', 'background-color': '[[artifact.content_object.major]]'}">
+                <img ng-src="[[artifact.content_object.matter_400]]" alt="[[artifact.content_object.title]]">
+                <div ng-cloak ng-show="artifact.content_object.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
+                    <h6>This work is marked not safe</h6>
+                    <h6>Click anywhere to show the work</h6>
+                </div>
+                <a custom-href="/arts/[[artifact.content_object.slug]]" class="details-inset">
+                    <section class="inset-actions">
+                        <i class="material-icons" ng-click="shareArt($event, $index)" >share</i>
+                        <i class="material-icons" ng-cloak ng-hide="artifact.content_object.is_admired" ng-click="handleAdmireArt($event, $index)">favorite_border</i>
+                        <i class="material-icons admire-on-icon" ng-cloak ng-show="artifact.content_object.is_admired" ng-click="handleAdmireArt($event, $index)">favorite</i>
+                    </section>
+
+                    <section class="bookmark-action">
+                        <i class="material-icons" ng-click="handleBookMark($event, $index)" ng-cloak ng-hide="artifact.content_object.is_bookmarked">bookmark_border</i>
+                        <i class="material-icons bookmark-on-icon" ng-click="handleBookMark($event, $index)" ng-cloak ng-show="artifact.content_object.is_bookmarked">bookmark</i>
+                    </section>
+
+                    <section class="series-action">
+                        <button ng-click="showAddToBucket($event, $index)">Add To Series</button>
+                    </section>
+                </a>
+            </article>
+            <section class="details">
+                <h4><a ng-href="/arts/[[artifact.content_object.slug]]">[[artifact.content_object.title | titlecase]]</a></h4>
+                <h5> by <a ng-href="/@[[artifact.content_object.artist.slug]]">[[artifact.content_object.artist.name | titlecase]]</a></h5>
+            </section><!--
+            --><section class="scores" ng-cloak ng-show="artifact.content_object.buckets_count> 0" ui-sref="buckets({artSlug: artifact.content_object.slug})">
+                    <span>[[artifact.content_object.buckets_count]] Series</span>
+                </section>
+        </div> <!-- art -->
+
+
+        <section class="feed-bucket" ng-show="artifact.content_type == 'bucket'">
+            <div class="bucket-picture" ng-style="{'background-image': 'url([[artifact.content_object.picture]])'}">
+                <section class="bucket-inset-details" ui-sref="bucket({userSlug: artifact.content_object.owner.slug, bucketSlug: artifact.content_object.slug})">
+                    <section class="bucket-inset-details-actions">
+                        <i class="material-icons" ng-click="shareBucket($event, $index)" >share</i>
+                        <i class="material-icons admire-on-icon" ng-cloak ng-show="artifact.content_object.is_admired">favorite</i>
+                    </section>
+
+                    <section class="bookmark-action">
+                        <i class="material-icons" ng-cloak ng-hide="artifact.content_object.is_bookmarked" ng-click="handleBookMarkBucket($event, $index)">bookmark_border</i>
+                        <i class="material-icons bookmark-on-icon" ng-cloak ng-show="artifact.content_object.is_bookmarked" ng-click="handleBookMarkBucket($event, $index)">bookmark</i>
+                    </section>
+
+                    <h2>[[artifact.content_object.name | titlecase]]</h2>
+                    <h3>[[artifact.content_object.description]]</h3>
+                    <div class="by-user">By</div>
+                    <h3>[[artifact.content_object.owner.name | titlecase ]]</h3>
+                    <div class="arts-count">[[artifact.content_object.compositions_count]] Artworks</div>
+                    <div class="arts-count">[[artifact.content_object.views]] Views</div>
+                </section>
+            </div>
+        </section>
+
+        <section class="feed-user" ng-show="artifact.content_type == 'user'">
+            <header class="feed-user-header">
+                <a ng-href="/@[[artifact.content_object.slug]]">
+                    <h2>[[artifact.content_object.name | titlecase ]]</h2>
+
+                    <section class="owner-picture" ng-style="{'background-image': 'url([[artifact.content_object.picture]])'}">
+                    </section>
+
+                    <section class="user-credentials">
+                        <li class="cred-count" ng-cloak ng-show="artifact.content_object.followers_count > 0">[[artifact.content_object.followers_count]] Followers</li>
+                        <li class="cred-count" ng-cloak ng-show="artifact.content_object.buckets_count > 0">[[artifact.content_object.buckets_count]] Series</li>
+                        <li class="cred-count" ng-cloak ng-show="artifact.content_object.paintings_count > 0">[[artifact.content_object.paintings_count]] Originals</li>
+                        <li class="cred-count" ng-cloak ng-show="artifact.content_object.uploads_count > 0">[[artifact.content_object.uploads_count]] Contributions</li>
+                        <li class="cred-count" ng-cloak ng-show="artifact.content_object.admirations_count > 0">[[artifact.content_object.admirations_count]] Admirations</li>
+                    </section>
+                </a>
+            </header>
+            <footer class="feed-user-footer">
+                <button ng-class="{'active': artifact.content_object.is_followed}" ng-click="handleFollow(artifact.content_object)">Follow</button>
+            </footer>
+        </section>
+    </div>
+
+    <section ng-cloak ng-show="bookmarksMeta.noWorks" class="empty-placeholder">
+        <h4>No works found in this category.</h4>
+    </section>
+</div>

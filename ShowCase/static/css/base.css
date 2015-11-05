@@ -385,6 +385,7 @@ body::-webkit-scrollbar-thumb {
     font-size: 0.8em;
     padding-top: 5px;
     padding-left: 10px;
+    cursor: pointer;
 }
 
 .searchForm .search-results .more-search {
@@ -963,6 +964,95 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+/*-------------------- Post User ---------------------*/
+.feed-user {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 1);
+    text-align: center;
+}
+
+.feed-user .feed-user-header {
+    padding: 10px;
+    width: 100%;
+    height: 80%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.feed-user .feed-user-header a .owner-picture {
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 50%;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.feed-user .feed-user-header a h2 {
+    font-size: 1.4em;
+    line-height: 1.5em;
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.feed-user .feed-user-header .user-credentials {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.feed-user .feed-user-header .user-credentials .cred-count {
+    display: inline;
+    margin: 0 4px;
+    margin-top: 5px;
+}
+
+.feed-user .feed-user-footer {
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.feed-user .feed-user-footer button {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 5px 25px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin: 5px auto;
+    margin-top: 20px
+}
+
+.feed-user .feed-user-footer button.active,
+.feed-user .feed-user-footer button:hover {
+    background: white;
+    color: black;
+    border-color: black;
+}
+
+.feed-user .feed-user-footer button.active:before {
+    position: absolute;
+    content: '\E876';
+    font-family: 'Material Icons';
+    left: 80%;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
 /*============== EXPLORE BUTTON ====================*/
 .explore {

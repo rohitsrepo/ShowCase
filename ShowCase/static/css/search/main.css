@@ -1,0 +1,61 @@
+html, body {
+  height: 100%;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+}
+
+body {
+  overflow: scroll;
+}
+
+/*----------- Header --------------*/
+
+.search-page-header {
+    width: 100%;
+    height: 200px;
+    padding: 20px;
+}
+
+.search-page-header .main-search {
+    margin: 0 auto;
+    display: block;
+    width: 80%;
+    max-width: 400px;
+    height: 100px;
+    font-weight: bold;
+    font-size: 3em;
+    border: none;
+}
+
+/*------------ Navigation  -------------*/
+
+.search-navigation {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.search-navigation li {
+    display: inline-block;
+    width: 20%;
+    cursor: pointer;
+    border-bottom: 1px solid white;
+}
+
+.search-navigation li a {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.search-navigation li.active,
+.search-navigation li:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.search-navigation li.active a,
+.search-navigation li:hover a {
+    color: rgba(0, 0, 0, 1);
+}

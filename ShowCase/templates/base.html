@@ -78,8 +78,8 @@
                     <a href="/search">more</a>
                 </label>
                 <li class="search-result " ng-repeat="art in search.results.arts">
-                <a ng-href="/arts/[[art.slug]]">
-                    <div class="result-image" ng-style="{'background-image': 'url([[art.matter]])'}"></div>
+                <a custom-href="/arts/[[art.slug]]">
+                    <div class="result-image" ng-style="{'background-image': 'url([[art.matter_thumbnail]])'}"></div>
                     <div class="result-info">
                         [[art.title | titlecase]]
                     </div>
@@ -91,7 +91,7 @@
                     <a href="/search">more</a>
                 </label>
                 <li class="search-result " ng-repeat="bucket in search.results.buckets">
-                <a ng-href="/@[[bucket.owner.slug]]/series/[[bucket.slug]]">
+                <a custom-href="/@[[bucket.owner.slug]]/series/[[bucket.slug]]">
                     <div class="result-image" ng-style="{'background-image': 'url([[bucket.picture]])'}"></div>
                     <div class="result-info">
                         [[bucket.name | titlecase]]
@@ -104,7 +104,7 @@
                     <a href="/search">more</a>
                 </label>
                 <li class="search-result people-result" ng-repeat="user in search.results.users">
-                <a ng-href="/@[[user.slug]]">
+                <a custom-href="/@[[user.slug]]">
                     <div class="result-image" ng-style="{'background-image': 'url([[user.picture]])'}"></div>
                     <div class="result-info">
                         [[user.name | titlecase]]
