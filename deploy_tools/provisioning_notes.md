@@ -12,6 +12,7 @@ Provisioning a new site
 * rabbitmq-server
 * OpenCV (Generate outline and graysclae things)
 * libjpeg-dev (Image optimization with pillow)
+* solr for search -> java
 
 eg, on Ubuntu:
 
