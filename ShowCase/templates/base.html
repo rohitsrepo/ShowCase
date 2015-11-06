@@ -66,7 +66,7 @@
         </nav><!--
         --><section class="site-actions">
 
-            <form name="searchForm" class="searchForm">
+            <form name="searchForm" class="searchForm nt-mb">
             <div class=" searchForm-container "  id="search-box">
                 <input class="search-input" type="text" ng-model="search.query" ng-model-options="{ debounce: 800 }">
                 <i class="search-icon material-icons">search</i>
@@ -123,6 +123,9 @@
 
             </form>
 
+            <button class="show-mb" custom-href="/search">
+              <i class="material-icons">search</i>
+            </button>
             <button ng-click="showUpload()">
               <i class="material-icons">add</i>
             </button>

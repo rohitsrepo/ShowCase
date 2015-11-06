@@ -29,12 +29,20 @@ body {
     border: none;
 }
 
+@media (max-width: 800px) {
+    .search-page-header .main-search {
+        width: 95%;
+        font-size: 1.9em;
+    }
+}
+
 /*------------ Navigation  -------------*/
 
 .search-navigation {
     width: 80%;
     max-width: 600px;
     margin: 0 auto;
+    margin-bottom: 20px;
     text-align: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -58,4 +66,11 @@ body {
 .search-navigation li.active a,
 .search-navigation li:hover a {
     color: rgba(0, 0, 0, 1);
+}
+
+@media (max-width: 800px) {
+    .search-navigation {
+        width: 95%;
+        font-size: 0.75em;
+    }
 }

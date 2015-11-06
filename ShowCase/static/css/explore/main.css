@@ -6,6 +6,10 @@ html, body {
   font-smooth: always;
 }
 
+body {
+  overflow: scroll;
+}
+
 .auth-user,
 .auth-user a {
   color: white;

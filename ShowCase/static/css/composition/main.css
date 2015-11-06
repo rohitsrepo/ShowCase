@@ -2,6 +2,10 @@ html, body {
     height: 100%;
 }
 
+body {
+  overflow: scroll;
+}
+
 /*=========== Painting area ============*/
 
 .painting-area {

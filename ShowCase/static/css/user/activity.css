@@ -1,4 +1,7 @@
 
+body {
+  overflow: scroll;
+}
 
 .activities-arts-container {
     /*width: 90%;*/

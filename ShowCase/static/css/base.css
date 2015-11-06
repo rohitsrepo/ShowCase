@@ -1054,6 +1054,12 @@ body::-webkit-scrollbar-thumb {
     transform: translateY(-50%);
 }
 
+@media (max-width: 800px) {
+  .feed-user {
+    width: 100%;
+  }
+}
+
 /*============== EXPLORE BUTTON ====================*/
 .explore {
   font-weight: 400;
