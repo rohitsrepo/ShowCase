@@ -4,7 +4,7 @@ from .models import Bucket
 
 
 class BucketIndex(indexes.SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, use_template=True)
+    text = indexes.EdgeNgramField(document=True, use_template=True)
     owner = indexes.CharField(model_attr='owner')
     pub_date = indexes.DateTimeField(model_attr='created')
 

@@ -4,7 +4,7 @@ from .models import Composition
 
 
 class CompositionIndex(indexes.SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, use_template=True)
+    text = indexes.EdgeNgramField(document=True, use_template=True)
     uploader = indexes.CharField(model_attr='uploader')
     pub_date = indexes.DateTimeField(model_attr='created')
 

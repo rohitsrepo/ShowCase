@@ -92,6 +92,8 @@ angular.module('SearchApp')
 
                 if (!$scope.searchMeta.results || $scope.searchMeta.results.length == 0){
                     $scope.searchMeta.noWorks = true;
+                } else {
+                    $scope.searchMeta.noWorks = false;
                 }
 
                 progress.hideProgress();

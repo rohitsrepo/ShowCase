@@ -4,7 +4,7 @@ from .models import User
 
 
 class UserIndex(indexes.SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, use_template=True)
+    text = indexes.EdgeNgramField(document=True, use_template=True)
     pub_date = indexes.DateTimeField(model_attr='date_joined')
 
     def get_model(self):
