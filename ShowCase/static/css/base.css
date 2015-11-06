@@ -102,6 +102,16 @@ ol, ul {
     border: 5px solid white;
 }
 
+@media (max-width: 800px) {
+  ::-webkit-scrollbar {
+      width: 7px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      border: none;
+  }
+}
+
 /*::selection {
   background: #E6B800;
 }
@@ -130,6 +140,16 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
     background-color: black;
     border: 5px solid white;
+}
+
+@media (max-width: 800px) {
+  body::-webkit-scrollbar {
+      width: 7px;
+  }
+
+  body::-webkit-scrollbar-thumb {
+      border: none;
+  }
 }
 
 /*============= Site Header ==============*/

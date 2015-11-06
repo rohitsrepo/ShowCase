@@ -74,3 +74,9 @@ body {
         font-size: 0.75em;
     }
 }
+
+/*-----------no results ----------*/
+
+.no-results {
+    padding-top: 40px;
+}
