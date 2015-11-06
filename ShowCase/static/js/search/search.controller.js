@@ -1,6 +1,8 @@
 angular.module('SearchApp')
 .controller('searchController', ['$scope',
     '$state',
+    '$q',
+    '$location',
     'admireService',
     'bookService',
     'bucketmodalService',
@@ -9,7 +11,7 @@ angular.module('SearchApp')
     'searchModel',
     'alert',
     'progress',
-    function ($scope, $state, admireService, bookService, bucketmodalService, shareModalService, followService, searchModel, alert, progress) {
+    function ($scope, $state, $q, $location, admireService, bookService, bucketmodalService, shareModalService, followService, searchModel, alert, progress) {
     $scope.searchmeta = {};
     $scope.math = window.Math;
     $scope.searchMeta = {
@@ -21,6 +23,12 @@ angular.module('SearchApp')
         noWorks: false,
         results: []
     };
+
+    var query = $location.search().q;
+    if (query) {
+        $scope.searchmeta.query = query;    
+    }
+    
 
     var mq = window.matchMedia( "(max-width: 800px)" );
     if (mq.matches) {
@@ -47,6 +55,7 @@ angular.module('SearchApp')
     var artifactFetcher = function () {
         var current = $state.current.name;
 
+
         if (current == 'all') {
             return searchModel.search;
         } else if (current == 'users') {
@@ -55,7 +64,12 @@ angular.module('SearchApp')
             return searchModel.searchArts;
         } else if (current == 'buckets') {
             return searchModel.searchBuckets;
+        } else {
+            return function () {
+                return $q.reject();
+            };
         }
+
     };
 
     var getArtifacts = function () {
@@ -91,7 +105,7 @@ angular.module('SearchApp')
     };
 
     $scope.loadMoreArtifacts = function () {
-        if ($scope.searchMeta.busy) {
+        if ($scope.searchMeta.busy || !$scope.searchmeta.query) {
             return;
         }
 

@@ -17,25 +17,18 @@ angular.module("SearchApp", [
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
 
-    // For any unmatched url, reload as we have not mentioned any base
-    $urlRouterProvider.otherwise(
-        function() {
-            window.location.reload();
-
-    });
-
     // use the HTML5 History API
     $locationProvider.html5Mode({
       enabled: true,
     });
 
     // For any unmatched url, redirect to /state1
-    $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise("/all");
     //
     // Now set up the states
     $stateProvider
     .state('all', {
-        url: "/",
+        url: "/all",
         templateUrl: "/static/js/search/search.all.html",
         controller: 'searchAllController'
     })

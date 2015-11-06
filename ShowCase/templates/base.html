@@ -75,7 +75,7 @@
             <ul class="search-results ng-hide" click-close-search ng-cloak ng-show="search.results.show">
                 <label class="search-result-label ng-hide" ng-cloak ng-show="search.results.arts.length > 0">
                     <p>ARTWORKS</p>
-                    <a href="/search">more</a>
+                    <a ng-href="/search/artworks?q=[[search.query]]">more</a>
                 </label>
                 <li class="search-result " ng-repeat="art in search.results.arts">
                 <a custom-href="/arts/[[art.slug]]">
@@ -88,7 +88,7 @@
 
                 <label class="search-result-label ng-hide" ng-cloak ng-show="search.results.buckets.length > 0">
                     <p>SERIES</p>
-                    <a href="/search">more</a>
+                    <a ng-href="/search/series?q=[[search.query]]">more</a>
                 </label>
                 <li class="search-result " ng-repeat="bucket in search.results.buckets">
                 <a custom-href="/@[[bucket.owner.slug]]/series/[[bucket.slug]]">
@@ -101,7 +101,7 @@
 
                 <label class="search-result-label ng-hide" ng-cloak ng-show="search.results.users.length > 0">
                     <p>PEOPLE</p>
-                    <a href="/search">more</a>
+                    <a ng-href="/search/people?q=[[search.query]]">more</a>
                 </label>
                 <li class="search-result people-result" ng-repeat="user in search.results.users">
                 <a custom-href="/@[[user.slug]]">
@@ -113,7 +113,7 @@
                 </li>
 
                 <button class="more-search" ng-class="{'see-all-active': search.results.count > 0}">
-                    <span class="ng-hide" ng-cloak ng-show="search.results.count > 0">See All</span>
+                    <a ng-href="/search/all?q=[[search.query]]" class="ng-hide" ng-cloak ng-show="search.results.count > 0">See All</a>
                     <span ng-cloak ng-show="search.loading && !search.noresults">Searching thirddime for '[[search.query]]'</span>
                     <span class="ng-hide" ng-cloak ng-show="search.noresults">No results found</span>
                 </button>
