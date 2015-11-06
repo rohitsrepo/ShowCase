@@ -21,7 +21,7 @@ urlpatterns = patterns('',
 
 # Search urls
 urlpatterns += patterns('',
-                      url(r'^search$', TemplateView.as_view(template_name='search.html'), name="contact"),
+                      url(r'^search', TemplateView.as_view(template_name='search.html'), name="contact"),
                )
 
 ## Composition Urls
