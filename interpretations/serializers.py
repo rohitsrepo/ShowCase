@@ -5,12 +5,11 @@ from interpretationVotes.models import InterpretationVote
 from ShowCase.serializers import URLImageField
 
 class InterpretationUserSerializer(serializers.ModelSerializer):
-    full_name = serializers.CharField(source='get_full_name', read_only=True)
     picture = URLImageField(source='picture')
 
     class Meta:
         model = User
-        fields = ('id', 'full_name', 'picture', 'slug')
+        fields = ('id', 'name', 'picture', 'slug')
 
 class InterpretationVoteSerializer(serializers.ModelSerializer):
     total = serializers.CharField(source='get_total', read_only=True)

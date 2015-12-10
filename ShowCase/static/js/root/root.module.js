@@ -8,7 +8,7 @@ angular.module('module.root', [
     "module.auth",
     'module.sharing',
     'module.scrollTo',
-    'module.titlecase',
+    'module.titlecaseFilter',
     'module.analytics',
     'module.bookmark',
     'module.admiration',

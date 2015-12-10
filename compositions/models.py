@@ -151,7 +151,7 @@ class Composition(models.Model):
         return self.matter_url(width=50, height=50)
 
     def get_interpretations_count(self):
-        return self.interpretation_set.count()
+        return self.interprets.count()
 
     def get_matter_aspect(self):
         return self.matter.height/self.matter.width

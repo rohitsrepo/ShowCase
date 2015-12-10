@@ -124,6 +124,22 @@
     </section>
 
     <section class="art-associates">
+
+    <section class="associate-category art-interprets" ng-cloak ng-show="artInterprets.length > 0">
+            <h2>Posts inspired from this work</h2>
+
+            <div class="art-interprets-container">
+                <article class="art-interpret" ng-repeat="interpret in artInterprets">
+                    <p class="art-interpret-text">[[interpret.text]]</p>
+                    <a class="art-interpret-user" href="/@[[interpret.user.slug]]">- [[interpret.user.name | titlecase]]</a>
+                </article>
+            </div>
+
+            <section class="associated-buckets-actions" ng-cloak ng-show="artBuckets.length > 5">
+                <a ui-sref="buckets({compositionSlug: '{{composition.slug}}' })">See all<i class="material-icons">arrow_forward</i></a>
+            </section>
+        </section>
+
         <section class="associate-category art-buckets" ng-cloak ng-show="artBuckets.length > 0">
             <h2>Series explaining this work</h2>
 

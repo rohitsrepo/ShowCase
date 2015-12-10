@@ -9,7 +9,7 @@ from posts.models import Post, bind_post
 
 
 class Interpretation(models.Model):
-    composition = models.ForeignKey('compositions.Composition')
+    composition = models.ForeignKey('compositions.Composition', related_name="interprets")
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     interpretation = models.TextField()
     created = models.DateTimeField(auto_now_add=True)

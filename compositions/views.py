@@ -27,6 +27,7 @@ from accounts.serializers import ExistingUserSerializer
 from buckets.serializers import BucketSerializer
 from buckets.models import BucketMembership
 from feeds.models import Fresh
+from interpretations.serializers import InterpretationSerializer
 from mediastore.manager import upload_image
 from ShowCase.utils import check_object_permissions, BrowserSimulator
 
@@ -368,12 +369,15 @@ def get_associates(request, composition_id, format=None):
     artBuckets = composition.holders.filter(public=True).order_by('-views')[:6]
     artistWorks = composition.artist.arts.exclude(id=composition_id).order_by('-created')[:6]
     uploaderWorks = composition.uploader.compositions.exclude(id=composition_id).order_by('-created')[:6]
+    artInterprets = composition.interprets.filter(public=True).order_by('-created')[:6]
 
     artBucketsSerializer = BucketSerializer(artBuckets, context={'request': request})
     artistWorksSerializer = CompositionSerializer(artistWorks, context={'request': request})
     uploaderWorksSerializer = CompositionSerializer(uploaderWorks, context={'request': request})
+    artInterpretsSerializer = InterpretationSerializer(artInterprets, context={'request': request})
 
     result = {'artBuckets': artBucketsSerializer.data,
+    'artInterprets': artInterpretsSerializer.data,
     'artistWorks': artistWorksSerializer.data,
     'uploaderWorks': uploaderWorksSerializer.data}
 

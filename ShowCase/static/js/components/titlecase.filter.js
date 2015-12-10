@@ -1,4 +1,4 @@
-angular.module('module.titlecase', [])
+angular.module('module.titlecaseFilter', [])
 .filter('titlecase', function() {
     return function(s) {
         s = ( s === undefined || s === null ) ? '' : s;

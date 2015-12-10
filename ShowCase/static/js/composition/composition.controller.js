@@ -21,6 +21,7 @@ controller("compositionController", [
     'shareModalService',
     'editArtModalService',
     'confirmModalService',
+    'interpretationModel',
 	function ($window,
         $document,
         $scope,
@@ -41,7 +42,8 @@ controller("compositionController", [
         compositionModel,
         shareModalService,
         editArtModalService,
-        confirmModalService)
+        confirmModalService,
+        interpretationModel)
 	{
 
 	$scope.composition = {};
@@ -64,6 +66,7 @@ controller("compositionController", [
     var getArtAssociates = function () {
         compositionModel.getAssociates($scope.composition.id).then(function (response) {
             $scope.artBuckets = response.artBuckets;
+            $scope.artInterprets = response.artInterprets;
             $scope.artistWorks = response.artistWorks;
             $scope.uploaderWorks = response.uploaderWorks;
         });

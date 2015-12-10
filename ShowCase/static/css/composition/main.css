@@ -280,7 +280,7 @@ body {
 
 .painting-details-container .painting-actions i:hover {
     color: rgba(0, 0, 0, 1);
-    
+
 }
 
 .painting-details-container .painting-parent {
@@ -396,11 +396,55 @@ body {
     }
 }
 
+/*------------ Art Interprets -------------*/
+
+.art-associates .art-interprets {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 10px;
+}
+
+.art-associates .art-interprets .art-interprets-container {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.art-associates .art-interprets  h2 {
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-decoration: underline;
+}
+
+.art-associates .art-interprets .art-interprets-container .art-interpret-text {
+    line-height: 1.5em;
+    font-size: 1.1em;
+    /*text-align: left;*/
+    padding: 0 10px;
+    /*border-left: 2px solid rgba(0, 0, 0, 0.9);*/
+}
+
+.art-associates .art-interprets .art-interprets-container .art-interpret-user {
+    width: 100%;
+    display: block;
+    text-align: right;
+    margin-top: 20px;
+}
+
+@media (max-width: 800px) {
+    .art-associates .art-interprets .art-interprets-container {
+        width: 100%;
+    }
+}
+
+
 /*------------ Art buckets ----------------*/
 .art-associates .art-buckets {
     width: 100%;
     position: relative;
+    padding: 10px;
     padding-bottom: 30px;
+    background-color: rgba(0, 0, 0, 0.04);
 }
 
 .art-associates .art-buckets > h2 {
@@ -412,7 +456,7 @@ body {
 
 .art-associates .art-buckets .associated-buckets-actions {
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     right: 10px;
 }
 
@@ -538,11 +582,12 @@ body {
 .art-associates .associate-works {
     width: 100%;
     position: relative;
-    padding-bottom: 30px;
+    padding: 10px;
+    padding-bottom: 50px;
+    background-color: rgba(0, 0, 0, 0.04);
 }
 
 .art-associates .associate-works > h2 {
-    margin-top: 30px;
     margin-bottom: 20px;
     letter-spacing: 1px;
 }
@@ -553,7 +598,7 @@ body {
 
 .art-associates .associate-works .associated-works-actions {
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     right: 10px;
 }
 
