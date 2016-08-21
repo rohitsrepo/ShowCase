@@ -1,12 +1,14 @@
 from django.conf.urls import patterns, include, url
-from django.views.generic import TemplateView
+from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
+
 from compositions import clientViews
 
-
-from django.contrib import admin
 admin.autodiscover()
+favicon_view = RedirectView.as_view(url='/static/images/favicon.ico')
 
 # WebClient urls
 urlpatterns = patterns('',
@@ -16,6 +18,7 @@ urlpatterns = patterns('',
                       url(r'^guidelines$', TemplateView.as_view(template_name='guidelines.html'), name='guidelines'),
                       url(r'^contact-us$', TemplateView.as_view(template_name='contactus.html'), name="contact"),
                       url(r'^find$', TemplateView.as_view(template_name='contactus.html'), name="contact"),
+                      url(r'^favicon\.ico$', favicon_view),
 		       )
 
 
