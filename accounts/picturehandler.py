@@ -15,9 +15,12 @@ def _resize(im, width, filename):
     height = im.size[1]*resize_ratio
     size = (width, height)
     im.thumbnail(size)
-
     resize_filepath = resize_picture_path(filename, width)
-    im.save(resize_filepath)
+
+    try:
+        im.save(resize_filepath)
+    except IOError:
+        im.convert('RGB').save(resize_filepath)
 
 def resize_profile(filepath):
     im = Image.open(filepath)
