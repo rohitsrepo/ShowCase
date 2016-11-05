@@ -179,6 +179,7 @@ body::-webkit-scrollbar-thumb {
     width: 20%;
     display: inline-block;
     cursor: pointer;
+    margin-top: 6px;
 }
 
 .site-logo img {
@@ -200,11 +201,13 @@ body::-webkit-scrollbar-thumb {
     font-size: 1.15em;
     margin-top: 8px;
     letter-spacing: 1px;
+    color: rgba(0, 0, 0, 0.85);
 }
 
 .site-logo .site-name h2 {
     display: block;
     font-size: 0.55em;
+    color: rgba(0, 0, 0, 0.85);
 }
 
 @media (max-width: 800px) {
@@ -233,15 +236,15 @@ body::-webkit-scrollbar-thumb {
 }
 
 .site-navigation li a {
-    font-size: 0.75em;
+    font-size: 13px;
     font-weight: bold;
     letter-spacing: 1px;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.54);
 }
 
 .site-navigation li a:hover,
 .site-navigation li a.active {
-    color: rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, 0.85);
 }
 
 .site-navigation li a.active {
@@ -270,7 +273,6 @@ body::-webkit-scrollbar-thumb {
     vertical-align: top;
     padding: 10px 0;
     padding-top: 13px;
-    padding-right: 10px;
     text-align: right;
 }
 
@@ -287,13 +289,16 @@ body::-webkit-scrollbar-thumb {
     background: transparent;
     box-shadow: none;
     border: none;
-    height: 24px;
-    width: 24px;
-    min-width: 24px;
-    padding: 4px;
+    height: 20px;
+    width: 28px;
+    min-width: 20px;
+    padding: 0;
+    padding-left: 8px;
+    padding-top: 4px;
     cursor: pointer;
     transition: all 0.2s;
     vertical-align: top;
+    text-align: center;
 }
 
 .site-actions button:hover {
@@ -302,7 +307,8 @@ body::-webkit-scrollbar-thumb {
 
 .site-actions button i {
   vertical-align: middle;
-    font-size: 1.2em;
+    font-size: 1.5em;
+    text-align: center;
 }
 
 /*------------- Search Box ----------*/
@@ -424,7 +430,9 @@ body::-webkit-scrollbar-thumb {
     width: 15%;
     display: inline-block;
     vertical-align: top;
-    padding: 10px 0;
+    padding-top: 13px;
+    height: 43px;
+    vertical-align: top;
 }
 
 .user-auth button {
@@ -432,13 +440,15 @@ body::-webkit-scrollbar-thumb {
     background: transparent;
     box-shadow: none;
     border: none;
-    height: 24px;
-    width: 24px;
-    min-width: 24px;
-    padding: 4px;
+    height: 20px;
+    width: 28px;
+    min-width: 20px;
+    padding: 0;
+    padding-top: 4px;
+    padding-left: 8px;
     cursor: pointer;
     transition: all 0.2s;
-    margin-top: 4px;
+    vertical-align: top;
 }
 
 .user-auth button:hover {
@@ -447,16 +457,17 @@ body::-webkit-scrollbar-thumb {
 
 .user-auth button i {
   vertical-align: middle;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 .user-auth h3 {
-    font-size: 0.75em;
+    font-size: 0.77em;
     font-weight: bold;
     color: rgba(0, 0, 0, 0.7);
     letter-spacing: 1px;
     cursor: pointer;
-    padding: 10px 5px;
+    padding-top: 9px;
+    padding-left: 8px;
 }
 
 .user-auth h3:hover {
@@ -606,7 +617,7 @@ body::-webkit-scrollbar-thumb {
 /*================= Arts Stream ===============*/
 .arts-container {
   width: 100%;
-  max-width: 1300px;
+  max-width: 1000px;
   margin: 20px auto;
   text-align: center;
 }
@@ -626,23 +637,47 @@ body::-webkit-scrollbar-thumb {
 }
 
 .art {
+  margin: 0 auto;
   margin-bottom: 10px;
   color: rgba(0, 0, 0, 0.8);
+  background: white;
+  border-radius: 2px;
+
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 .art:hover {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.actor-picture {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .art .art-content {
   position: relative;
   margin: 0 auto;
+  width: 100%;
 }
 
 .art .art-content img {
   width: 100%;
   height: 100%;
   vertical-align: bottom;
+  opacity: 0;
+
+  -webkit-transition: opacity .5s;
+  -moz-transition: opacity .5s;
+  -ms-transition: opacity .5s;
+  transition: opacity .5s;
+}
+
+.art .art-content.loaded img{
+    opacity: 1;
 }
 
 .art .art-content .nsfw-overlay {
@@ -881,11 +916,18 @@ body::-webkit-scrollbar-thumb {
 /*================== Post-Bucket =======================*/
 
 .feed-bucket {
-  width: 400px;
-  height: 350px;
+  width: 300px;
+  height: 300px;
   margin: 0 auto;
   margin-bottom: 15px;
   color: rgba(0, 0, 0, 0.8);
+
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.feed-bucket:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .feed-bucket .bucket-picture {

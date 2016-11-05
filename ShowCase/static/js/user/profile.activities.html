@@ -1,11 +1,20 @@
 <div ng-cloak masonry load-images="onMobile" masonry-options="{ transitionDuration: '0' }" class="arts-container activities-arts-container" infinite-scroll="loadMoreActivities()" infinite-scroll-distance='1' infinite-scroll-disabled='activitiesMeta.busy || activitiesMeta.disableGetMore'>
         <div class="masonry-brick container activities-art-container" ng-repeat="activity in userActivities">
-            <div class="art" ng-show="activity.grade == 1">
-                <header ng-show="activity.post_type == 'CR' && !showHeader">Artwork by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
-                <header ng-show="activity.post_type == 'MA' && !showHeader">Artwork admired by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
-                <header ng-show="activity.post_type == 'AD' && !showHeader">Artwork added by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
-                <article class="art-content" ng-style="{'height': '[[math.round(400*activity.content.matter_aspect)]]px', 'width': '400px', 'background-color': '[[activity.content.major]]'}">
-                    <img ng-src="[[activity.content.matter_400]]" alt="[[activity.content.title]]" >
+            <div class="art" ng-show="activity.grade == 1" ng-style="{'width': '300px',}">
+                <header ng-show="activity.post_type == 'CR' && !showHeader">
+                    <img class="actor-picture" ng-src="[[activity.creator.picture]]">
+                    <a class="art-attribution" ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]'s</a> artwork added
+                </header>
+                <header ng-show="activity.post_type == 'MA' && !showHeader">
+                    <img class="actor-picture" ng-src="[[activity.creator.picture]]">
+                    <a class="art-attribution" ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a> admired this artwork
+                </header>
+                <header ng-show="activity.post_type == 'AD' && !showHeader">
+                    <img class="actor-picture" ng-src="[[activity.creator.picture]]">
+                    <a class="art-attribution" ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a> added artwork
+                </header>
+                <article class="art-content" ng-style="{'height': '[[math.round(300*activity.content.matter_aspect)]]px', 'width': '300px', 'background-color': '[[activity.content.major]]'}">
+                    <img ng-src="[[activity.content.matter_400]]" alt="[[activity.content.title]]" onload="imgLoaded(this)">
                     <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
                         <h6>This work is marked not safe</h6>
                         <h6>Click anywhere to show the work</h6>
@@ -36,10 +45,13 @@
                 </section>
             </div>
 
-            <div class="art" ng-show="activity.grade == 2">
-                <header ng-show="!showHeader">Artwork added to series [[activity.content.name]] by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
-                <article class="art-content" ng-style="{'height': '[[math.round(400*activity.composition.matter_aspect)]]px', 'width': '400px', 'background-color': '[[activity.composition.major]]'}">
-                    <img ng-src="[[activity.composition.matter_400]]" alt="[[activity.composition.title]]" >
+            <div class="art" ng-show="activity.grade == 2" ng-style="{'width': '300px',}">
+                <header ng-show="!showHeader">
+                    <img class="actor-picture" ng-src="[[activity.creator.picture]]">
+                    <a class="art-attribution" ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a> added this to series <a class="art-attribution" ng-href="/@[[activity.creator.slug]]/series/[[activity.content.slug]]">[[activity.content.name]]</a>
+                </header>
+                <article class="art-content" ng-style="{'height': '[[math.round(300*activity.composition.matter_aspect)]]px', 'width': '300px', 'background-color': '[[activity.composition.major]]'}">
+                    <img ng-src="[[activity.composition.matter_400]]" alt="[[activity.composition.title]]" onload="imgLoaded(this)">
                     <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
                         <h6>This work is marked not safe</h6>
                         <h6>Click anywhere to show the work</h6>
@@ -71,7 +83,10 @@
             </div>
 
             <section class="feed-bucket" ng-show="activity.grade == 3">
-                <header ng-show="!showHeader">Series admired by <a ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a></header>
+                <header ng-show="!showHeader">
+                    <img class="actor-picture" ng-src="[[activity.creator.picture]]">
+                    <a class="art-attribution" ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a> admired this series
+                </header>
                 <div class="bucket-picture" ng-style="{'background-image': 'url([[activity.content.picture]])'}">
                     <section class="bucket-inset-details" ui-sref="bucket({userSlug: activity.content.owner.slug, bucketSlug: activity.content.slug})">
                         <section class="bucket-inset-details-actions">

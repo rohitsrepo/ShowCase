@@ -3,8 +3,9 @@ body {
   overflow: scroll;
 }
 
-.activities-arts-container {
+.activities-arts-container .activities-art-container {
     /*width: 90%;*/
+    /*background: white;*/
 }
 
 .activities-arts-container .activities-art-container header {
@@ -14,24 +15,30 @@ body {
     color: rgba(0, 0, 0, 0.54);
     font-size: 0.75em;
     letter-spacing: 1px;
+    vertical-align: top;
+    display : flex;
+    align-items : center;
 }
 
 .activities-arts-container .activities-art-container header a {
-    color: rgba(0, 0, 0, 0.54);
+    color: rgba(0, 0, 0, 0.9);
     letter-spacing: 1px;
     cursor: pointer;
+    vertical-align: top;
+    padding: 0 4px;
 }
 
 .activities-arts-container .activities-art-container header a:hover {
-    color: rgba(0, 0, 0, 0.9);
+    color: rgba(0, 0, 0, 1);
+    text-decoration: underline;
 }
 
 .activities-arts-container .activities-art-container .feed-bucket {
-    height: 400px;
+    height: auto;
 }
 
 .activities-arts-container .activities-art-container .feed-bucket .bucket-picture {
-    height: 350px;
+    height: 300px;
 }
 
 @media (max-width: 800px) {

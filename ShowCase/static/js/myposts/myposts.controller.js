@@ -88,6 +88,8 @@ angular.module('MypostsApp')
 
                 progress.hideProgress();
                 $scope.activitiesMeta.busy = false;
+                
+                console.log('Got ARts: ', $scope.userActivities);
             }, function () {
                 alert.showAlert('We are unable to fetch data');
                 progress.hideProgress();

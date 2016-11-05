@@ -201,23 +201,29 @@ header .details .actions h3:hover {
 
 .user-buckets {
     width: 80%;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
 .user-buckets .user-bucket {
-    width: 32%;
+    width: 300px;
+    height: 300px;
     display: inline-block;
+    margin: 8px;
+}
+
+.user-buckets .user-bucket:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .user-bucket .user-bucket-picture {
     width: 100%;
-    height: 350px;
+    height: 300px;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
     cursor: pointer;
-    border: 10px solid white;
+    /*border: 10px solid white;*/
 }
 
 .user-bucket-picture .user-bucket-details {
