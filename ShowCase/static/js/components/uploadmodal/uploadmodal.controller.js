@@ -50,6 +50,10 @@ angular.module('module.uploadmodal')
             );
         };
 
+        $scope.holdClick = function(event) {
+            event.stopPropagation();
+        }
+
         $scope.urlUpload = function () {
             $scope.uploadingImage = true;
             $scope.art.upload_type = 'url'

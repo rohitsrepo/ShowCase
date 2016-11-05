@@ -28,6 +28,10 @@ angular.module('module.bucketmodal')
             }
         }
 
+        $scope.holdClick = function (event) {
+            event.stopPropagation();
+        }
+
         $scope.bucketForShowLoaded = false;
         $scope.art = art;
         bucketModel.artBuckets(art.id).then(function (buckets) {

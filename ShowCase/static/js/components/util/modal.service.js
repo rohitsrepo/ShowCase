@@ -84,7 +84,7 @@ function LoginModal() {
                 body.removeClass('modal-open');
             }
 
-            if(delay === undefined || delay === null) delay = 100;
+            if(delay === undefined || delay === null) delay = 200;
             modalElement.addClass('modal-close');
             window.setTimeout(function() {
               //  Resolve the 'close' promise.
@@ -156,6 +156,11 @@ function LoginModal() {
             if (evt.keyCode == 27) {
                 inputs.close();
             }
+        })
+
+        // bind close on click outside
+        modalElement.click(function (evt) {
+          inputs.close();
         })
 
         window.setTimeout(function () {

@@ -34,7 +34,7 @@ body {
 }
 
 body.modal-open {
-    overflow: hidden;
+    overflow-y  : scroll;
 }
 
 @media (max-width: 800px) {
@@ -129,11 +129,9 @@ a {
 
 body::-webkit-scrollbar {
     width: 15px;
-    /*border: 1px solid rgba(0, 0, 0, 0.9);*/
 }
 
 body::-webkit-scrollbar-track {
-    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
     -webkit-box-shadow: none;
 }
 

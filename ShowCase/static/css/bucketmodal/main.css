@@ -12,13 +12,13 @@
 }
 
 .bucket-modal.modal-open {
-    -webkit-animation: fadeIn 0.1s;
-    animation: fadeIn 0.1s;
+    -webkit-animation: fadeIn 0.3s;
+    animation: fadeIn 0.3s;
 }
 
 .bucket-modal.modal-close {
-    -webkit-animation: fadeOut 0.1s;
-    animation: fadeOut 0.1s;
+    -webkit-animation: fadeOut 0.3s;
+    animation: fadeOut 0.3s;
 }
 
 .bucket-modal::-webkit-scrollbar {

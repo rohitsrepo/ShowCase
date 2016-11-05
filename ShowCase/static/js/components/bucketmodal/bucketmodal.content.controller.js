@@ -50,6 +50,10 @@ angular.module('module.bucketmodal')
             });
         }
 
+        $scope.holdClick = function (event) {
+            event.stopPropagation();
+        }
+
 
         var getAdmirationOptions = function () {
             admireService.getAdmirationOptionsBucket($scope.bucket).then(function (options) {

@@ -28,6 +28,10 @@ angular.module('module.bucketmodal')
             })
         };
 
+        $scope.holdClick = function (event) {
+            event.stopPropagation();
+        }
+
         $scope.close = function () {
             close();
         };

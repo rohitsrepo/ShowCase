@@ -58,6 +58,10 @@ angular.module('module.bucketmodal')
             $scope.newMembership.bucket = bucket;
         }
 
+        $scope.holdClick = function (event) {
+            event.stopPropagation();
+        }
+
         $scope.completeAddToBucket = function (description) {
 
             if (addingCount) {

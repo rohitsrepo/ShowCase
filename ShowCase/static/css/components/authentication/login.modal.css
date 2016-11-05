@@ -11,13 +11,13 @@
 }
 
 .login-modal.modal-open {
-    -webkit-animation: fadeIn 0.1s;
-    animation: fadeIn 0.1s;
+    -webkit-animation: fadeIn 0.3s;
+    animation: fadeIn 0.3s;
 }
 
 .login-modal.modal-close {
-    -webkit-animation: fadeOut 0.1s;
-    animation: fadeOut 0.1s;
+    -webkit-animation: fadeOut 0.3s;
+    animation: fadeOut 0.3s;
 }
 
 .login-modal .site-loader .stick {
@@ -44,7 +44,7 @@
 
 .login-modal .modal-content {
   width: 600px;
-  height: 600px;
+  min-height: 500px;
   margin: 0 auto;
   padding-top: 120px;
   background-color: white;
@@ -227,13 +227,13 @@
     transition: all 0.4s;
 }
 
+.login-native header button:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
 .login-native header button.active {
     background-color: rgba(0, 0, 0, 0.8);
     color: white
-}
-
-.login-native header button:hover {
-    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .login-native .native-form {

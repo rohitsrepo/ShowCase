@@ -32,6 +32,10 @@ angular.module('module.bucketmodal')
             });
         }
 
+        $scope.holdClick = function (event) {
+            event.stopPropagation();
+        }
+
         $scope.urlBackgroundUpload = function () {
             $scope.uploadingBackground = true;
             $scope.newBucket.upload_type = 'url';

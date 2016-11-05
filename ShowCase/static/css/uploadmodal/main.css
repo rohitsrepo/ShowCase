@@ -9,10 +9,19 @@
     overflow: auto;
 }
 
+.upload-modal.modal-open {
+    -webkit-animation: fadeIn 0.3s;
+    animation: fadeIn 0.3s;
+}
+
+.upload-modal.modal-close {
+    -webkit-animation: fadeOut 0.3s;
+    animation: fadeOut 0.3s;
+}
+
 .upload-modal .site-loader .stick {
     background: white;
 }
-
 
 .upload-modal::-webkit-scrollbar {
     width: 15px;

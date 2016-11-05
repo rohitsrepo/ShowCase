@@ -30,6 +30,10 @@ angular.module('module.bucketmodal')
             });
         }
 
+        $scope.holdClick = function (event) {
+            event.stopPropagation();
+        }
+
         $scope.toggleEditMode = function () {
             $scope.editingBackground = !$scope.editingBackground;
             $scope.loaded = true;
