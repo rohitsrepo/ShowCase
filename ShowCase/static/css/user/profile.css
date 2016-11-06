@@ -1,5 +1,5 @@
 html {
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
 }
 
 html, body {
@@ -10,6 +10,10 @@ html, body {
   font-smooth: always;
 }
 
+body {
+    background: #fafafa;
+}
+
 .auth-user,
 .auth-user a {
   color: white;
@@ -18,28 +22,32 @@ html, body {
 
 .primary-header {
     width: 100%;
+    margin-top: -4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .primary-header .container{
-    width: 70%;
-    max-width: 1200px;
+    width: 100%;
+    /*max-width: 1200px;*/
     margin: 0 auto;
+    background: white;
+    padding-bottom: 4px;
 }
 
 .primary-header .primary-header-header {
-    width: 100%;
-    text-align: center;
+    width: 60%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
 }
 
 .primary-header .primary-header-header .picture {
-	text-align: center;
-    margin-bottom: 10px;
-    display: block;
-    margin: 0 auto;
-    height: 150px;
-    width: 150px;
+    margin-top: 20px;
+    height: 130px;
+    width: 130px;
     border-radius: 50%;
 
+    float: right;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -60,60 +68,50 @@ html, body {
 .primary-header .primary-header-header .details h2 {
     line-height: 1.3em;
     letter-spacing: 1px;
-    color: rgba(0, 0, 0, 0.9);
 }
 
 .primary-header h1 {
-    font-size: 2em;
+    font-size: 2.2em;
     font-weight: bold;
+    color: rgba(0, 0, 0, 0.85);
 }
 
 .primary-header h2 {
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: rgba(0, 0, 0, 0.6);
 }
 
 .primary-header .primary-header-header .details .actions {
     display: block;
     vertical-align: top;
-    text-align: center;
+    text-align: left;
     margin-top: 30px;
 }
 
-header .details .actions button {
+header .details .actions .action {
     background: transparent;
     border: none;
     border: 1px solid rgba(0, 0, 0, 0.8);
-    padding: 5px 25px;
+    padding: 8px 25px;
     font-size: 0.8em;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    display: block;
-    margin: 20px auto;
-    margin-top: 40px;
+    display: inline-block;
+    /*margin: 20px auto;*/
+    margin-top: 15px;
+    align-items: flex-start;
 }
 
-header .details .actions button.active,
-header .details .actions button:hover {
+header .details .actions .action.active {
     background: rgba(0, 0, 0, 0.9);
     color: white;
-}
-
-header .details .actions button.active:before {
-    position: absolute;
-    content: '\E876';
-    font-family: 'Material Icons';
-    left: 80%;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 header .details .actions h3 {
     display: inline;
     color: rgba(0, 0, 0, 0.54);
-    margin-left: 5px;
-    font-size: 0.8em;
+    font-size: 0.9em;
     cursor: pointer;
 }
 
@@ -136,11 +134,13 @@ header .details .actions h3:hover {
 /*============ Contributions =============*/
 
 .primary-header .contributions {
-    /*width: 100%;*/
-    margin: 40px auto;
-    margin-top: 60px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    text-align: center;
+    /*border-bottom: 1px solid rgba(0, 0, 0, 0.2);*/
+    width: 60%;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 40px;
+    text-align: left;
+    white-space: nowrap;
 }
 
 .primary-header .contributions .contribution {
@@ -160,7 +160,7 @@ header .details .actions h3:hover {
 .primary-header .contribution h5 {
     font-size: 1.8em;
     font-weight: bold;
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(0, 0, 0, 0.6);
     text-align: center;
 }
 
@@ -170,12 +170,12 @@ header .details .actions h3:hover {
 }
 
 .primary-header .contributions .active {
-    border-bottom: 1px solid rgba(0, 0, 0, 1);
+    /*border-bottom: 1px solid rgba(0, 0, 0, 1);*/
 }
 
 .primary-header .contributions .active h4,
 .primary-header .contributions .active h5 {
-    color: rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, 0.9);
 }
 
 

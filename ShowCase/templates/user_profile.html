@@ -59,9 +59,12 @@
                     <h2>{{artist.about}}</h2>
 
                     <section class="actions">
-                        <button ng-class="{'active': artist.is_followed}" ng-click="handleFollow()">Follow</button>
-                        <h3 ng-click="showFollowers()">Followers {{artist.followers_count}}</h3>
-                        <h3 ng-click="showFollows()">Following {{artist.followings_count}}</h3>
+                        <h3 ng-click="showFollowers()" ng-cloak ng-show="{{artist.followers_count}} > 0">{{artist.followers_count}} Followers</h3>
+                        <h3 ng-click="showFollows()" ng-cloak ng-show="{{artist.followings_count}} > 0">{{artist.followings_count}} Following</h3>
+                        <br>
+                        <button class="action" ng-click="handleFollow()" ng-cloak ng-show="!artist.is_me && !artist.is_followed">Follow</button>
+                        <button class="action active" ng-click="handleFollow()" ng-cloak ng-show="!artist.is_me && artist.is_followed">Following</button>
+                        <a href="/me/settings" class="action" ng-show="[[artist.is_me]]" ng-cloak ng-show="artist.is_me">EDIT</a>
                     </section>
                 </div>
 
