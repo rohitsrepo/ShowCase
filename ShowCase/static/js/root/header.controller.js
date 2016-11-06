@@ -327,7 +327,7 @@ angular.module('module.root')
         scope: {
             siteLoaderHide: '='
         },
-        template: '<div class="site-loader" ng-cloak ng-hide="siteLoaderHide"><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span><span class="stick"></span></div>'
+        template: '<span class="site-loader" ng-cloak ng-hide="siteLoaderHide"><span class="site-loader-inner"></span></span>'
     };
 }])
 .directive('clickCloseSearch', ['$document', function ($document) {

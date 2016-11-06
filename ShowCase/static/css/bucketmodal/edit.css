@@ -1,4 +1,8 @@
-.edit-modal .site-loader .stick {
+.edit-modal .site-loader {
+    border-color: white;
+}
+
+.edit-modal .site-loader-innner {
     background: white;
 }
 

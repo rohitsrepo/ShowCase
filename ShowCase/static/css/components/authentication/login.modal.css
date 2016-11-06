@@ -20,7 +20,11 @@
     animation: fadeOut 0.3s;
 }
 
-.login-modal .site-loader .stick {
+.login-modal .site-loader {
+    border-color: white;
+}
+
+.login-modal .site-loader-innner {
     background: white;
 }
 

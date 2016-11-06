@@ -77,6 +77,7 @@ controller("compositionController", [
         $scope.composition.url = url;
         $scope.composition.matter = url;
         $scope.composition.matter_550 = matter_550;
+        $scope.composition.matter_400 = matter_550.replace('500', '400');
         $scope.composition.slug = slug;
         $scope.composition.title = title;
 		$scope.composition.artist = {

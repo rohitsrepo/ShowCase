@@ -1,7 +1,10 @@
-.bucket-content .site-loader .stick {
-    background: white;
+.bucket-content .site-loader {
+    border-color: white;
 }
 
+.bucket-content .site-loader-innner {
+    background: white;
+}
 /*------------- Bucket modal overrides ------------*/
 .bucket-modal .modal-actions-header,
 .bucket-modal .modal-actions-header i.content-action {
