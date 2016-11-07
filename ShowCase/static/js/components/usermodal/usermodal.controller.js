@@ -23,6 +23,10 @@ angular.module('module.usermodal')
             }
         };
 
+        $scope.holdClick = function(event) {
+            event.stopPropagation();
+        };
+
         progress.showProgress();
         inputData.usersFetcher().then(function (bookmarkers) {
             $scope.bookmarkers = bookmarkers;

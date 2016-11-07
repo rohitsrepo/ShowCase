@@ -2,7 +2,7 @@
     <section class="modal-actions">
         <i class="material-icons action" ng-click="close()">close</i>
     </section>
-    <div class="container">
+    <div class="container" ng-click="holdClick($event)">
         <section class="bookmarker" ng-repeat="marker in bookmarkers">
             <a class="marker-picture" ng-href="/@[[marker.slug]]">
                 <img ng-src="[[marker.picture]]">

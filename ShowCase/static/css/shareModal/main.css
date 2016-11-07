@@ -23,6 +23,16 @@
     overflow: auto;
 }
 
+.share-modal.modal-open {
+    -webkit-animation: fadeIn 0.3s;
+    animation: fadeIn 0.3s;
+}
+
+.share-modal.modal-close {
+    -webkit-animation: fadeOut 0.3s;
+    animation: fadeOut 0.3s;
+}
+
 .share-modal::-webkit-scrollbar {
     width: 15px;
 }

@@ -9,13 +9,13 @@
 }
 
 .bookmark-modal.modal-open {
-    -webkit-animation: fadeIn 0.1s;
-    animation: fadeIn 0.1s;
+    -webkit-animation: fadeIn 0.3s;
+    animation: fadeIn 0.3s;
 }
 
 .bookmark-modal.modal-close {
-    -webkit-animation: fadeOut 0.1s;
-    animation: fadeOut 0.1s;
+    -webkit-animation: fadeOut 0.3s;
+    animation: fadeOut 0.3s;
 }
 
 .bookmark-modal .modal-actions {
@@ -38,10 +38,11 @@
 
 .bookmark-modal .container {
     width: 500px;
-    height: 500px;
+    max-height: 500px;
+    min-height: 200px;
     max-width: 500px;
     margin: 0 auto;
-    margin-top: 150px;
+    margin-top: 50px;
     overflow: auto;
     background-color: white;
     padding-top: 20px;

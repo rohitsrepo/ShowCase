@@ -89,7 +89,7 @@ ol, ul {
           outline: none;
 }
 
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
     width: 15px;
 }
 
@@ -110,7 +110,7 @@ ol, ul {
   ::-webkit-scrollbar-thumb {
       border: none;
   }
-}
+}*/
 
 /*::selection {
   background: #E6B800;
@@ -127,7 +127,7 @@ a {
 
 /*============= Scroll Bar ===========*/
 
-body::-webkit-scrollbar {
+/*body::-webkit-scrollbar {
     width: 15px;
 }
 
@@ -148,7 +148,7 @@ body::-webkit-scrollbar-thumb {
   body::-webkit-scrollbar-thumb {
       border: none;
   }
-}
+}*/
 
 /*============= Site Header ==============*/
 .site-header {

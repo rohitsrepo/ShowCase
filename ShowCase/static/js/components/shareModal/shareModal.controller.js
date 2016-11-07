@@ -11,5 +11,9 @@ angular.module('module.shareModal')
             close();
         };
 
+        $scope.holdClick = function(event) {
+            event.stopPropagation();
+        };
+
     }
 ]);

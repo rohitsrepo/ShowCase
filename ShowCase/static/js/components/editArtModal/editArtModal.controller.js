@@ -13,6 +13,10 @@ angular.module('module.editArtModal')
             close();
         };
 
+        $scope.holdClick = function(event) {
+            event.stopPropagation();
+        };
+
         $scope.artistName = art.artist.name;
         $scope.art = art;
         $scope.art.artist = art.artist.id;
