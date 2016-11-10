@@ -12,11 +12,11 @@ html, body {
 
 body {
     background: #fafafa;
+    padding-top: 0;
 }
 
-.auth-user,
-.auth-user a {
-  color: white;
+.site-header {
+    background: transparent;
 }
 /*================ HEADER ===================*/
 
@@ -24,13 +24,16 @@ body {
     width: 100%;
     margin-top: -4px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
 }
 
 .primary-header .container{
     width: 100%;
-    /*max-width: 1200px;*/
     margin: 0 auto;
-    background: white;
+    background: transparent;
     padding-bottom: 4px;
 }
 
@@ -39,6 +42,17 @@ body {
     max-width: 600px;
     margin: 0 auto;
     text-align: left;
+}
+
+section.circleEffect {
+  width: 200vw;
+  height: 200vw;
+  margin-left: -100vw;
+  margin-top: -100vw;
+  border-radius: 100%;
+  position: absolute;
+  will-change: transform;
+  z-index: -2;
 }
 
 .primary-header .primary-header-header .picture {
@@ -76,9 +90,17 @@ body {
     color: rgba(0, 0, 0, 0.85);
 }
 
+.primary-header.white h1 {
+    color: rgba(255, 255, 255, 0.95);
+}
+
 .primary-header h2 {
     font-size: 1.1em;
     color: rgba(0, 0, 0, 0.6);
+}
+
+.primary-header.white h2 {
+    color: rgba(255, 255, 255, 0.95);
 }
 
 .primary-header .primary-header-header .details .actions {
@@ -88,7 +110,7 @@ body {
     margin-top: 30px;
 }
 
-header .details .actions .action {
+.primary-header .details .actions .action {
     background: transparent;
     border: none;
     border: 1px solid rgba(0, 0, 0, 0.8);
@@ -103,19 +125,33 @@ header .details .actions .action {
     align-items: flex-start;
 }
 
-header .details .actions .action.active {
+.primary-header.white .details .actions .action {
+    border-color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.primary-header .details .actions .action.active {
     background: rgba(0, 0, 0, 0.9);
     color: white;
 }
 
-header .details .actions h3 {
+.primary-header.white .details .actions .action.active {
+    background: rgba(255, 255, 255, 0.9);
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.primary-header .details .actions h3 {
     display: inline;
     color: rgba(0, 0, 0, 0.54);
     font-size: 0.9em;
     cursor: pointer;
 }
 
-header .details .actions h3:hover {
+.primary-header.white .details .actions h3 {
+    color: rgba(255, 255, 255, 0.74);
+}
+
+.primary-header .details .actions h3:hover {
   text-decoration: underline;
 }
 
@@ -149,32 +185,42 @@ header .details .actions h3:hover {
     text-align: left;
     margin-right: 20px;
     padding-bottom: 8px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.primary-header.white .contributions .contribution {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .primary-header .contribution h4 {
     font-size: 1em;
-    color: rgba(0, 0, 0, 0.6);
     letter-spacing: 1px;
 }
 
 .primary-header .contribution h5 {
     font-size: 1.8em;
     font-weight: bold;
-    color: rgba(0, 0, 0, 0.6);
     text-align: center;
 }
 
 .primary-header .contribution:hover h4,
-.primary-header .contribution:hover h5 {
-    color: rgba(0, 0, 0, 1);
+.primary-header .contribution:hover h5,
+.primary-header .contributions .active h4,
+.primary-header .contributions .active h5  {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.primary-header.white .contribution:hover h4,
+.primary-header.white .contribution:hover h5, 
+.primary-header.white .contributions .active h4,
+.primary-header.white .contributions .active h5 {
+    color: rgba(255, 255, 255, 1);
 }
 
 .primary-header .contributions .active {
     /*border-bottom: 1px solid rgba(0, 0, 0, 1);*/
 }
-
-.primary-header .contributions .active h4,
-.primary-header .contributions .active h5 {
+{
     color: rgba(0, 0, 0, 0.9);
 }
 

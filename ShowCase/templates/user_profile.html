@@ -49,9 +49,9 @@
 {% block body_attr_block %}ng-controller="userProfileController"{% endblock %}
 
 {% block content_block %}
-    <header class="primary-header" ng-init="init('{{artist.id}}', '{{is_followed}}', '{{is_me}}')">
+    <header class="primary-header" ng-init="init('{{artist.id}}', '{{is_followed}}', '{{is_me}}', '{{artist.picture_major}}')">
         <div class="container">
-            <header class="primary-header-header">
+            <header class="primary-header-header" ng-cloak>
                 <div class="picture" ng-style="{'background-image': 'url({{artist.picture.url}})'}"></div>
 
                 <div class="details">
@@ -70,7 +70,7 @@
 
             </header>
             <section class="contributions">
-                <a class="contribution" ui-sref-active="active" ui-sref="activities">
+                <a class="contribution" ui-sref-active="active" ui-sref="activities" ng-cloak>
                     <h4>Activities</h4>
                 </a><!--
                 --><a class="contribution" ng-cloak ng-show="[[{{artist.buckets_count}} != 0]] || artist.is_me" ui-sref-active="active" ui-sref="userbuckets">

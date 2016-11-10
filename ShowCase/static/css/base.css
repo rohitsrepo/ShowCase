@@ -240,9 +240,18 @@ body::-webkit-scrollbar-thumb {
     color: rgba(0, 0, 0, 0.54);
 }
 
+.site-header.white .site-navigation li a {
+    color: rgba(255, 255, 255, 0.7);
+}
+
 .site-navigation li a:hover,
 .site-navigation li a.active {
     color: rgba(0, 0, 0, 0.85);
+}
+
+.site-header.white .site-navigation li a:hover,
+.site-header.white .site-navigation li a.active {
+    color: rgba(255, 255, 255, 0.95);
 }
 
 .site-navigation li a.active {
@@ -309,6 +318,14 @@ body::-webkit-scrollbar-thumb {
     text-align: center;
 }
 
+.site-header.white .site-actions button i {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.site-header.white .site-actions button:hover i {
+    color: rgba(255, 255, 255, 1);
+}
+
 /*------------- Search Box ----------*/
 
 .site-actions .searchForm {
@@ -326,15 +343,31 @@ body::-webkit-scrollbar-thumb {
     border-radius: 15px;
 }
 
+.site-header.white .site-actions .searchForm .searchForm-container {
+    border-color: rgba(255,255,255,0.7);
+}
+
 .site-actions .searchForm .searchForm-container .search-input {
     vertical-align: top;
     border: none;
+    background: transparent;
 }
 
+.site-header.white .site-actions .searchForm .searchForm-container .search-input {
+    color: white;
+}
 .site-actions .searchForm .searchForm-container .search-icon {
     color: rgba(0, 0, 0, 0.5);
     font-size: 1.1em;
     vertical-align: middle;
+}
+
+.site-header.white .site-actions .searchForm .searchForm-container .search-icon {
+  color: rgba(255,255,255,0.7);
+}
+
+.site-header.white .site-actions .searchForm .searchForm-container .search-icon:hover {
+  color: rgba(255,255,255,1);
 }
 
 
@@ -458,6 +491,14 @@ body::-webkit-scrollbar-thumb {
     font-size: 1.5em;
 }
 
+.site-header.white .user-auth button i {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.site-header.white .user-auth button:hover i {
+  color: rgba(255, 255, 255, 1);
+}
+
 .user-auth h3 {
     font-size: 0.77em;
     font-weight: bold;
@@ -468,8 +509,20 @@ body::-webkit-scrollbar-thumb {
     padding-left: 8px;
 }
 
+.site-header.white .user-auth h3 {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.site-header.white .user-auth h3:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
 .user-auth h3:hover {
     color: rgba(0, 0, 0, 1);
+}
+
+.site-header.white .user-auth h3:hover {
+    color: rgba(255, 255, 255, 1);
 }
 
 .user-profile-options.mdl-menu {

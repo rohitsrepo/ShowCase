@@ -48,6 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     picture = models.ImageField(
         upload_to=get_upload_file_name_users, default=settings.DEFAULT_USER_PICTURE)
+    picture_major = models.CharField(max_length=7, default="#000000")
 
     login_type = models.CharField(default='NT', max_length=2, choices=LOGIN_CHOICES)
 

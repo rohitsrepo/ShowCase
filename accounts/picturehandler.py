@@ -2,6 +2,7 @@ import os
 from PIL import Image
 from django.db.models.signals import post_delete, post_save
 
+
 WIDTH_PROFILE = 120
 
 def resize_picture_path(filename, width):

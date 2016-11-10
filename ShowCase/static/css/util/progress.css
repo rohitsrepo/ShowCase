@@ -13,6 +13,10 @@
   pointer-events: none;
 }
 
+.progress-bar.white {
+    background: white;
+}
+
 .progress-bar::after {
   position: absolute;
   top: 0;
@@ -27,6 +31,10 @@
   transition: opacity 0.2s, box-shadow 2s 4s;
   -webkit-transform: rotate(2deg) translateY(-2px);
   transform: rotate(2deg) translateY(-2px);
+}
+
+.progress-bar.white::after {
+    background: white;
 }
 
 .progress-bar.animate {

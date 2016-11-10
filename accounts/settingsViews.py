@@ -19,6 +19,7 @@ from .serializers import ExistingUserSerializer, PasswordUserSerializer, SetPass
 from .tasks import send_reset_password_mail
 
 from ShowCase.utils import check_object_permissions
+from compositions.colorTools import colorz
 
 
 @api_view(['POST'])
@@ -149,7 +150,10 @@ def update_picture(user, upload_object):
         image_file = get_image_from_upload(upload_object['upload_image'])
 
     user.picture = File(image_file)
-    user.save();
+    user.save()
+    major = colorz(user.picture.path)
+    user.picture_major = major[0]
+    user.save()
 
 
 class MailOptionsDetail(APIView):
