@@ -72,7 +72,8 @@ controller("compositionController", [
         });
     };
 
-	$scope.init = function (id, url, matter_550, slug, title, artist_name, artist_id, isBookMarked, is_admired) {
+	$scope.init = function (id, url, matter_550, slug, title, artist_name,
+        artist_id, isBookMarked, is_admired, major_color) {
 		$scope.composition.id = id;
         $scope.composition.url = url;
         $scope.composition.matter = url;
@@ -80,6 +81,7 @@ controller("compositionController", [
         $scope.composition.matter_400 = matter_550.replace('500', '400');
         $scope.composition.slug = slug;
         $scope.composition.title = title;
+        $scope.composition.major_color = major_color;
 		$scope.composition.artist = {
             'name': artist_name,
             'id': artist_id};
@@ -90,8 +92,15 @@ controller("compositionController", [
 			analytics.logEvent('Composition', 'Init: ' + url);
 		}
 
+        initHeaderColor();
         getArtAssociates(id);
 	};
+
+    function initHeaderColor () {
+        $scope.headerColor = $scope.composition.major_color;
+        var siteHeader = document.querySelector('.site-header');
+        siteHeader.className += " white";
+    }
 
     $scope.handleBookMark = function () {
     	var composition = $scope.composition;

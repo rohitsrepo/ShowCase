@@ -3,15 +3,22 @@ html, body {
 }
 
 body {
-  overflow: scroll;
+  overflow-y: scroll;
+  padding: 0;
+}
+
+.site-header {
+    background: transparent;
 }
 
 /*=========== Painting area ============*/
 
 .painting-area {
-    height: 90%;
+    height: 100%;
     position: relative;
     overflow: show;
+    /*padding-top: 80px;*/
+    background: rgba(0, 0, 0, 0.95);
 }
 
 .painting-area .painting-container {
@@ -20,7 +27,6 @@ body {
     margin: 0 auto;
     text-align: center;
     position: relative;
-    background: white;
     vertical-align: top;
     overflow: show;
 }
@@ -50,6 +56,13 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    padding-top: 112px;
+    padding-bottom: 32px;
+    opacity: 0;
+}
+
+.painting-area .painting-container.loaded .painting{
+    opacity: 1;
 }
 
 .painting-area .painting.landscape {

@@ -59,6 +59,7 @@ section.circleEffect {
     margin-top: 20px;
     height: 130px;
     width: 130px;
+    /*border: 2px solid rgba(255, 255, 255, 0.9);*/
     border-radius: 50%;
 
     float: right;

@@ -35,7 +35,7 @@
 	<!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter_url}}', '{{composition.get_550_url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{composition.artist.name | escapejs}}', '{{composition.artist.id}}', '{{is_bookmarked}}', '{{is_admired}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter_url}}', '{{composition.get_550_url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{composition.artist.name | escapejs}}', '{{composition.artist.id}}', '{{is_bookmarked}}', '{{is_admired}}', '{{composition.major}}')"{% endblock %}
 
 {% block content_block %}
 	<section class="painting-area">
@@ -47,7 +47,7 @@
                 <h4>Click anywhere to show the work</h4>
             </div>
             {% endif %}
-			<img class="painting painting-original" fit-image src="{{composition.matter_url}}" alt="{{composition.slug}}">
+			<img class="painting painting-original" fit-image src="{{composition.matter_url}}" alt="{{composition.slug}}"  onload="imgLoaded(this)">
 		</div>
 
         <section class="art-actions">
