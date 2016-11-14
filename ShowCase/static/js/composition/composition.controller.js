@@ -99,8 +99,10 @@ controller("compositionController", [
     function initHeaderColor () {
         $scope.headerColor = $scope.composition.major_color;
         var siteHeader = document.querySelector('.site-header');
+        var progressBar = document.querySelector('.progress-bar');
         siteHeader.className += " white";
-    }
+        progressBar.className += " white";
+    };
 
     $scope.handleBookMark = function () {
     	var composition = $scope.composition;
@@ -292,7 +294,7 @@ controller("compositionController", [
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
-        	imagesLoaded(element, function () {
+            imagesLoaded(element, function () {
                imgElement = element[0]
 
                 if (imgElement.width/$(window).width() > 0.8){

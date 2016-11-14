@@ -33,6 +33,17 @@
 	 <!-- build:css /static/build/composition.css -->
 	<link rel="stylesheet" type="text/css" href="/static/css/composition/main.css">
 	<!-- endbuild -->
+    <script type="text/javascript">
+        function paintingLoaded(painting){
+            imgLoaded(painting);
+            var actions = document.querySelector('.art-actions');
+
+            var bounds = painting.getBoundingClientRect();
+            console.log(bounds);
+            actions.style.left = bounds.left + bounds.width + 'px';
+            actions.style.top = bounds.top + 112 + 'px';
+        };
+    </script>
 {%endblock%}
 
 {% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter_url}}', '{{composition.get_550_url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{composition.artist.name | escapejs}}', '{{composition.artist.id}}', '{{is_bookmarked}}', '{{is_admired}}', '{{composition.major}}')"{% endblock %}
@@ -47,10 +58,10 @@
                 <h4>Click anywhere to show the work</h4>
             </div>
             {% endif %}
-			<img class="painting painting-original" fit-image src="{{composition.matter_url}}" alt="{{composition.slug}}"  onload="imgLoaded(this)">
+			<img class="painting painting-original" fit-image src="{{composition.matter_url}}" alt="{{composition.slug}}"  onload="paintingLoaded(this)">
 		</div>
 
-        <section class="art-actions">
+        <section class="art-actions" ng-cloak>
             <button class="art-action" ng-click="handleAdmire()" ng-cloak ng-hide="composition.is_admired">
                 <i class="material-icons">favorite_border</i>
             </button>
