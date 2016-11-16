@@ -21,6 +21,7 @@ controller("compositionController", [
     'shareModalService',
     'editArtModalService',
     'confirmModalService',
+    'followService',
     'interpretationModel',
 	function ($window,
         $document,
@@ -43,6 +44,7 @@ controller("compositionController", [
         shareModalService,
         editArtModalService,
         confirmModalService,
+        followService,
         interpretationModel)
 	{
 
@@ -73,7 +75,7 @@ controller("compositionController", [
     };
 
 	$scope.init = function (id, url, matter_550, slug, title, artist_name,
-        artist_id, isBookMarked, is_admired, major_color) {
+        artist_id, isBookMarked, is_admired, major_color, uploader_id, is_uploader_followed, is_uploader_me) {
 		$scope.composition.id = id;
         $scope.composition.url = url;
         $scope.composition.matter = url;
@@ -82,9 +84,13 @@ controller("compositionController", [
         $scope.composition.slug = slug;
         $scope.composition.title = title;
         $scope.composition.major_color = major_color;
-		$scope.composition.artist = {
+        $scope.composition.artist = {
             'name': artist_name,
             'id': artist_id};
+        $scope.composition.uploader = {
+            'is_followed': is_uploader_followed == 'True',
+            'id': uploader_id,
+            'is_me': is_uploader_me == 'True'};
         $scope.composition.is_bookMarked = isBookMarked == 'True';
         $scope.composition.is_admired = is_admired == 'True';
 
@@ -98,11 +104,34 @@ controller("compositionController", [
 
     function initHeaderColor () {
         $scope.headerColor = $scope.composition.major_color;
+        $scope.headerTextColor = getTextColor($scope.headerColor);
+
         var siteHeader = document.querySelector('.site-header');
         var progressBar = document.querySelector('.progress-bar');
+        var details = document.querySelector('.painting-details');
+        var detailsContainer = document.querySelector('.painting-details-container');
         siteHeader.className += " white";
         progressBar.className += " white";
+        details.style.backgroundColor = $scope.headerColor;
+
+        if ($scope.headerTextColor == 'white') {
+            detailsContainer.className += " white";
+        }
     };
+
+    function getTextColor(color) {
+        var red = parseInt(color.substring(1,3), 16);
+        var green = parseInt(color.substring(3,5), 16);
+        var blue = parseInt(color.substring(5), 16);
+
+        var lum = 1 - ( 0.299 * red + 0.587 * green + 0.114 * blue)/255;
+
+        if (lum > 0.5){
+            return 'white';
+        }
+
+        return 'black';
+    }
 
     $scope.handleBookMark = function () {
     	var composition = $scope.composition;
@@ -204,6 +233,20 @@ controller("compositionController", [
             });;
         }
     };
+
+    $scope.handleFollow = function (event) {
+        var uploader = $scope.composition.uploader;
+
+        if (uploader.is_followed) {
+            followService.unfollow(uploader).then(function () {
+                uploader.is_followed = false;
+            });
+        } else {
+            followService.follow(uploader).then(function () {
+                uploader.is_followed = true;
+            });
+        }
+    }
 
     $scope.handleAdmireArt = function (event, art) {
         event.stopPropagation();

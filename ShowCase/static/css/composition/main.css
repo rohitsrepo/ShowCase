@@ -62,9 +62,9 @@ body {
 }
 
 .painting-area .painting-container.loaded .painting{
-opacity: 1;
--webkit-animation: fadeIn 0.6s;
-animation: fadeIn 0.4s;
+    opacity: 1;
+    -webkit-animation: fadeIn 0.6s;
+    animation: fadeIn 0.4s;
 }
 
 .painting-area .painting.landscape {
@@ -261,32 +261,34 @@ animation: fadeIn 0.4s;
 
 .painting-details .painting-details-container {
     width: 60%;
+    max-width: 900px;
     margin: 0 auto;
     vertical-align: top;
     padding: 20px;
     color: rgba(0, 0, 0, 0.9);
     letter-spacing: 1px;
-    text-align: center;
+    text-align: left;
 }
 
-.painting-details-container header {
-    width: 70%;
-    display: block;
-    margin: 0 auto;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    text-align: center;
-    vertical-align: top;
-}
-
-.painting-details-container header h2 {
+.painting-details-container h2 {
     font-size: 2em;
-    line-height: 1.5em;
+    line-height: 1em;
     display: inline-block;
-    vertical-align: top;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.painting-details-container.white h2 {
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .painting-details-container .painting-actions {
-    padding: 10px;
+    /*width: 30%;*/
+    /*text-align: left;*/
+    float: right;
+    vertical-align: bottom;
+    margin-top: 10px;
+    padding-right: 8px
 }
 
 .painting-details-container .painting-actions i {
@@ -295,80 +297,203 @@ animation: fadeIn 0.4s;
     transition: all 0.4s;
 }
 
-.painting-details-container .painting-actions i:hover {
-    color: rgba(0, 0, 0, 1);
+.painting-details-container.white .painting-actions i {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.4s;
+}
 
+.painting-details-container .painting-actions i:hover {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.painting-details-container.white .painting-actions i:hover {
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .painting-details-container .painting-parent {
     display: inline-block;
-    padding: 10px;
+    margin-bottom: 16px;
 }
 
-.painting-parent .by-header {
-    font-size: 0.65em;
+.painting-parent .by-header,
+.painting-finder .by-header {
+    font-size: 0.9em;
     display: inline;
     color: rgba(0, 0, 0, 0.5);
 }
 
+.painting-details-container.white .painting-parent .by-header,
+.painting-details-container.white .painting-finder .by-header {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.painting-parent .by-header {
+    font-size: 2em;
+}
+
 .painting-parent .by-user {
-    font-size: 0.9em;
-    line-height: 1em;
-    display: inline;
+    font-size: 2em;
+    display: inline-block;
     cursor: pointer;
+    padding-top: 4px;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.painting-details-container.white .painting-parent .by-user {
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .painting-parent .by-user:hover {
     text-decoration: underline;
 }
 
-.painting-details-container .details-actions-details {
+.painting-details-container .painting-finder {
+    float: right;
     margin-top: 10px;
+    max-width: 30%;
+}
+
+.painting-finder .by-user {
+    padding-top: 8px;
+    display: inline-block;
+    width: 100%;
+}
+
+.painting-finder .finder-picture {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    vertical-align: bottom;
+    float: left;
+}
+
+.painting-details-container .painting-finder .finder-details{
+    padding-left: 68px;
+}
+
+.painting-finder .finder-details .finder-name {
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.9);
+    line-height: 1.5em;
+    font-size: 1.1em;
+}
+
+.painting-finder .by-user:hover .finder-name {
+    text-decoration: underline;
+}
+
+.painting-details-container.white .painting-finder .finder-details .finder-name {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.painting-finder .finder-details .finder-about {
+    color: rgba(0, 0, 0, 0.74);
+    font-size: 0.8em;
+    line-height: 1.5em;
+}
+
+.painting-details-container.white .painting-finder .finder-details .finder-about {
+    color: rgba(255, 255, 255, 0.74);
+}
+
+.painting-finder .finder-follow {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-top: 8px;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.painting-finder .finder-follow.active,
+.painting-finder .finder-follow:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.painting-details-container.white .painting-finder .finder-follow {
+    border-color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.painting-details-container.white .painting-finder .finder-follow:hover {
+    background: rgba(0, 0, 0, 0.9);
+    border-color: rgba(0, 0, 0, 0.9);
+}
+
+.painting-details-container .details-actions-details {
+    display: inline-block;
+    padding-bottom: 16px;
+    padding-top: 10px;
 }
 
 .painting-details-container .details-actions-details h4 {
-    font-size: 0.8em;
-    line-height: 1.8em;
+    font-size: 0.9em;
+    line-height: 1.5em;
     color: rgba(0, 0, 0, 0.9);
     cursor: pointer;
-    display: inline;
-    padding: 0 5px;
+    display: block;
 }
 
-.painting-details .details-actions-details h4:hover {
-    color: rgba(0, 0, 0, 0.4);
+.painting-details-container .details-actions-details h4:first-child {
 }
 
-.painting-details .details-actions-details h4.inactive {
+.painting-details-container .details-actions-details h4:last-child {
+}
+
+.painting-details-container.white .details-actions-details h4 {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.painting-details-container .details-actions-details h4:hover {
+    text-decoration: underline;
+}
+
+.painting-details-container .details-actions-details h4.inactive {
     color: rgba(0, 0, 0, 0.9);
     cursor: default;
 }
 
-.painting-details .details-actions {
-    margin-top: 30px;
+.painting-details-container .details-actions {
+    display: block;
+    padding-top: 12px;
 }
 
-.painting-details .details-actions .action {
+.painting-details-container .details-actions .action {
     background: transparent;
     border: none;
-    border: 1px solid rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.9);
     border-radius: 1px;
     width: 200px;
     padding: 10px 20px;
-    margin-bottom: 10px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
     display: inline-block;
+    color: rgba(0, 0, 0, 0.9);
 }
 
-.painting-details .details-actions .action.active,
-.painting-details .details-actions .action:hover {
+.painting-details-container.white .details-actions .action {
+    border-color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.painting-details-container .details-actions .action.active,
+.painting-details-container .details-actions .action:hover {
     background: rgba(0, 0, 0, 0.9);
     color: white;
 }
 
-.painting-details .details-actions .action:before {
+.painting-details-container.white .details-actions .action.active,
+.painting-details-container.white .details-actions .action:hover {
+    background: rgba(0, 0, 0, 0.9);
+    border-color: rgba(0, 0, 0, 0.9);
+}
+
+.painting-details-container .details-actions .action:before {
     position: absolute;
     content: '\2714';
     left: 130%;

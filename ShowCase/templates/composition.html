@@ -46,7 +46,7 @@
     </script>
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter_url}}', '{{composition.get_550_url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{composition.artist.name | escapejs}}', '{{composition.artist.id}}', '{{is_bookmarked}}', '{{is_admired}}', '{{composition.major}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="compositionController" ng-init="init({{composition.id}}, '{{composition.matter_url}}', '{{composition.get_550_url}}', '{{composition.slug}}', '{{composition.title | escapejs}}', '{{composition.artist.name | escapejs}}', '{{composition.artist.id}}', '{{is_bookmarked}}', '{{is_admired}}', '{{composition.major}}', '{{composition.uploader.id}}', '{{is_uploader_followed}}', '{{is_uploader_me}}')"{% endblock %}
 
 {% block content_block %}
 	<section class="painting-area">
@@ -96,37 +96,44 @@
 	</section>
 
     <section class="painting-details" >
-        <div class="painting-details-container">
-            <header class="clearfix">
-                <h2>{{ composition.title | title }}</h2>
-            </header>
+        <div class="painting-details-container clearfix">
+
+            <h2>{{ composition.title | title }}</h2>
+
+            <section class="painting-parent">
+                <span class="by-header"> By</span> <a class="by-user" ng-href="/@{{composition.artist.slug}}">
+                    {{composition.artist.name | title}}
+                </a>
+            </section> 
+
 
             <section class="painting-actions" ng-cloak ng-show="'{{has_ownership}}' === 'True'">
                 <i class="material-icons"  ng-click="showEditArt()">edit</i>
                 <i class="material-icons" ng-click="deleteArt()">delete</i>
             </section>
+            <br>
 
-            <section class="painting-parent">
-                <div class="by-header">Created By</div>
-                <a class="by-user" ng-href="/@{{composition.artist.slug}}">
-                    <h3>{{composition.artist.name | title}}</h3>
-                </a>
+            <section class="painting-finder">
+                <div class="by-header">Contributed By</div> <br>
+                <section class="by-user" class="uploader">
+                    <a ng-href="/@{{composition.uploader.slug}}"><img src="{{composition.uploader.picture.url}}" class="finder-picture" /></a>
+                    <section class="finder-details">
+                        <a ng-href="/@{{composition.uploader.slug}}"><h3 class="finder-name">{{composition.uploader.name | title}}</h3></a>
+                        <a ng-href="/@{{composition.uploader.slug}}"><h4 class="finder-about">{{composition.uploader.about | title}}</h4></a>
+                        <button class="finder-follow" ng-click="handleFollow($event)" ng-cloak ng-show="!composition.uploader.is_me && !composition.uploader.is_followed">Follow</button>
+                        <button class="finder-follow active" ng-click="handleFollow($event)" ng-cloak ng-show="!composition.uploader.is_me && composition.uploader.is_followed">Following</button>
+                    </section>
+                </section>
+                    
             </section>
 
-            <section class="painting-parent">
-                <div class="by-header">Contributed By</div>
-                <a class="by-user" ng-href="/@{{composition.uploader.slug}}" class="uploader">
-                    <h3>{{composition.uploader.name | title}}</h3>
-                </a>
-            </section>
-
-            <section class="details-actions-details">
+            <section class="details-actions-details" ng-show="{{composition.buckets_count}} > 0 || {{composition.admirers_count}} >0">
                 <!-- <h4 class="inactive" ng-show="{{composition.bookmarks_count}} > 0">Bookmarks {{composition.bookmarks_count}}</h4> -->
-                <h4 ui-sref="buckets({compositionSlug: '{{composition.slug}}' })" ng-show="{{composition.buckets_count}} > 0">Series {{composition.buckets_count}}</h4>
-                <h4 ng-click="showAdmirers()" ng-show="{{composition.admirers_count}} > 0">Admirers {{composition.admirers_count}}</h4>
+                <h4 ui-sref="buckets({compositionSlug: '{{composition.slug}}' })" ng-show="{{composition.buckets_count}} > 0">Present in  {{composition.buckets_count}} series</h4>
+                <h4 ng-click="showAdmirers()" ng-show="{{composition.admirers_count}} > 0">Admired by {{composition.admirers_count}} <span ng-cloak ng-show="{{composition.admirers_count}} == 1">person</span><span ng-cloak ng-show="{{composition.admirers_count}} > 1">people</span></h4>
             </section>
 
-            <section class="details-actions">
+            <section class="details-actions" ng-class="{'right': {{composition.buckets_count}} > 0 || {{composition.admirers_count}} > 0}">
                 <button class="action collect" ng-click="showAddToBucket($event, composition)">Add To Series</button>
             </section>
 

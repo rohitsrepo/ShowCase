@@ -13,7 +13,9 @@ def composition_main(request, slug):
         'is_bookmarked': composition.is_bookmarked(request.user.id),
         'is_admired': composition.is_admired(request.user.id),
         'has_ownership': composition.has_ownership(request.user.id),
-        'is_nsfw': composition.is_nsfw(request.user)
+        'is_nsfw': composition.is_nsfw(request.user),
+        'is_uploader_followed' : composition.uploader.is_followed(request.user.id),
+        'is_uploader_me': composition.uploader.id == request.user.id
     })
     return render_to_response("composition.html", context)
 

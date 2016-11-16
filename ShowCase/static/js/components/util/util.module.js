@@ -60,9 +60,13 @@ angular.module('module.util', [])
 	    function headerColorOnScroll (color, scroll) {
 	    	if (color) {
 	        	if (scroll < 50) {
-		        	element[0].style.background = 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + 0 + ')' ;
+		        	element[0].style.background = 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + 0 + ')';
+		        	element.addClass('white');
 	        	} else {
-		        	element[0].style.background = 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + 1 + ')' ;
+		        	element[0].style.background = 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + 1 + ')';
+		        	if (scope.headerTextColor != 'white') {
+		        		element.removeClass('white');
+		        	}
 	        	}
 	    	}
 	    }
