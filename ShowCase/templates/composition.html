@@ -159,7 +159,7 @@
         </section>
 
         <section class="associate-category art-buckets" ng-cloak ng-show="artBuckets.length > 0">
-            <h2>Series explaining this work</h2>
+            <h2>Series containing this artwork</h2>
 
             <div class="art-buckets-container">
                 <section class="art-bucket" ng-repeat="bucket in artBuckets">
@@ -187,13 +187,13 @@
                 </section>
             </div>
 
-            <section class="associated-buckets-actions" ng-cloak ng-show="artBuckets.length > 5">
-                <a ui-sref="buckets({compositionSlug: '{{composition.slug}}' })">See all<i class="material-icons">arrow_forward</i></a>
+            <section class="associated-buckets-actions" ng-cloak ng-show="associateCounts.artBuckets > 3">
+                <a ui-sref="buckets({compositionSlug: '{{composition.slug}}' })">See all [[associateCounts.artBuckets]]<i class="material-icons">arrow_forward</i></a>
             </section>
         </section>
 
         <section class="associate-category associate-works artist-works" ng-cloak ng-show="artistWorks.length > 0">
-            <h2>Other works created by <a ng-href="/@{{composition.artist.slug}}">{{composition.artist.name | title}}</a></h2>
+            <h2>More artworks created by <a ng-href="/@{{composition.artist.slug}}">{{composition.artist.name | title}}</a></h2>
 
             <div class="associate-works-container">
                 <section class="work" ng-repeat="work in artistWorks">
@@ -203,37 +203,23 @@
                             <h4>Click anywhere to show the work</h4>
                         </div>
                         <a class="work-details" ng-class="{'long-title': work.title.length> 22}" custom-href="/arts/[[work.slug]]">
-                            <section class="work-inset-details-actions">
-                                <i class="material-icons" ng-click="shareArt($event, work)" >share</i>
-                                <i class="material-icons" ng-cloak ng-hide="work.is_admired" ng-click="handleAdmireArt($event, work)">favorite_border</i>
-                                <i class="material-icons admire-on-icon" ng-cloak ng-show="work.is_admired" ng-click="handleAdmireArt($event, work)">favorite</i>
-                            </section>
-
-                            <section class="bookmark-action">
-                                <i class="material-icons" ng-cloak ng-hide="work.is_bookmarked" ng-click="handleBookMarkArt($event, work)">bookmark_border</i>
-                                <i class="material-icons bookmark-on-icon" ng-cloak ng-show="work.is_bookmarked" ng-click="handleBookMarkArt($event, work)">bookmark</i>
-                            </section>
-
                             <h2>[[work.title | titlecase]]</h2>
                             <div class="by-user">By</div>
                             <h3>[[work.artist.name | titlecase ]]</h3>
                             <div class="arts-count" ng-show=" work.admirers_count > 0">[[work.admirers_count]] Admirers</div>
                             <div class="arts-count" ng-show=" work.buckets_count > 0">[[work.buckets_count]] Series</div>
-                            <section class="work-details-actions">
-                                <button ng-click="showAddToBucket($event, work)">Add To Series</button>
-                            </section>
                         </a>
                     </div>
                 </section>
             </div>
 
-            <section class="associated-works-actions" ng-cloak ng-show="artistWorks.length > 5">
-                <a ng-href="/@{{composition.artist.slug}}/originals">See all<i class="material-icons">arrow_forward</i></a>
+            <section class="associated-works-actions" ng-cloak ng-show="associateCounts.artistWorks > 4">
+                <a ng-href="/@{{composition.artist.slug}}/originals">See all [[associateCounts.artistWorks]]<i class="material-icons">arrow_forward</i></a>
             </section>
         </section>
 
         <section class="associate-category associate-works uploader-works" ng-cloak ng-show="uploaderWorks.length > 0">
-            <h2>Other works added by <a ng-href="/@{{composition.uploader.slug}}">{{composition.uploader.name | title}}</a></h2>
+            <h2>More artworks added by <a ng-href="/@{{composition.uploader.slug}}">{{composition.uploader.name | title}}</a></h2>
 
             <div class="associate-works-container">
                 <section class="work" ng-repeat="work in uploaderWorks">
@@ -243,32 +229,18 @@
                             <h4>Click anywhere to show the work</h4>
                         </div>
                         <a class="work-details" ng-class="{'long-title': work.title.length> 22}" custom-href="/arts/[[work.slug]]">
-                            <section class="work-inset-details-actions">
-                                <i class="material-icons" ng-click="shareArt($event, work)" >share</i>
-                                <i class="material-icons" ng-cloak ng-hide="work.is_admired" ng-click="handleAdmireArt($event, work)">favorite_border</i>
-                                <i class="material-icons admire-on-icon" ng-cloak ng-show="work.is_admired" ng-click="handleAdmireArt($event, work)">favorite</i>
-                            </section>
-
-                            <section class="bookmark-action">
-                                <i class="material-icons" ng-cloak ng-hide="work.is_bookmarked" ng-click="handleBookMarkArt($event, work)">bookmark_border</i>
-                                <i class="material-icons bookmark-on-icon" ng-cloak ng-show="work.is_bookmarked" ng-click="handleBookMarkArt($event, work)">bookmark</i>
-                            </section>
-
                             <h2>[[work.title | titlecase]]</h2>
                             <div class="by-user">By</div>
                             <h3>[[work.artist.name | titlecase ]]</h3>
                             <div class="arts-count" ng-show=" work.admirers_count > 0">[[work.admirers_count]] Admirers</div>
                             <div class="arts-count" ng-show=" work.buckets_count > 0">[[work.buckets_count]] Series</div>
-                            <section class="work-details-actions">
-                                <button ng-click="showAddToBucket($event, work)">Add To Series</button>
-                            </section>
                         </a>
                     </div>
                 </section>
             </div>
 
-            <section class="associated-works-actions" ng-cloak ng-show="uploaderWorks.length > 5">
-                <a ng-href="/@{{composition.uploader.slug}}/contributions">See all<i class="material-icons">arrow_forward</i></a>
+            <section class="associated-works-actions" ng-cloak ng-show="associateCounts.uploaderWorks > 4">
+                <a ng-href="/@{{composition.uploader.slug}}/contributions">See all [[associateCounts.uploaderWorks]]<i class="material-icons">arrow_forward</i></a>
             </section>
         </section>
 

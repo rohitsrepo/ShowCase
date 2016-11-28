@@ -71,6 +71,7 @@ controller("compositionController", [
             $scope.artInterprets = response.artInterprets;
             $scope.artistWorks = response.artistWorks;
             $scope.uploaderWorks = response.uploaderWorks;
+            $scope.associateCounts = response.counts;
         });
     };
 

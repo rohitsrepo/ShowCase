@@ -366,10 +366,15 @@ def random_composition(request, format=None):
 @permission_classes((permissions.AllowAny,))
 def get_associates(request, composition_id, format=None):
     composition = get_object_or_404(Composition, pk=composition_id)
-    artBuckets = composition.holders.filter(public=True).order_by('-views')[:6]
-    artistWorks = composition.artist.arts.exclude(id=composition_id).order_by('-created')[:6]
-    uploaderWorks = composition.uploader.compositions.exclude(id=composition_id).order_by('-created')[:6]
-    artInterprets = composition.interprets.filter(public=True).order_by('-created')[:6]
+    artBuckets = composition.holders.filter(public=True).order_by('-views')[:3]
+    artistWorks = composition.artist.arts.exclude(id=composition_id).order_by('-created')[:4]
+    uploaderWorks = composition.uploader.compositions.exclude(id=composition_id).exclude(artist=composition.artist).order_by('-created')[:4]
+    artInterprets = composition.interprets.filter(public=True).order_by('-created')[:4]
+
+    artBucketsCount = composition.holders.count()
+    artistWorksCount = composition.artist.arts.count()
+    uploaderWorksCount = composition.uploader.compositions.count()
+    artInterpretsCount = composition.interprets.count()
 
     artBucketsSerializer = BucketSerializer(artBuckets, context={'request': request})
     artistWorksSerializer = CompositionSerializer(artistWorks, context={'request': request})
@@ -379,6 +384,11 @@ def get_associates(request, composition_id, format=None):
     result = {'artBuckets': artBucketsSerializer.data,
     'artInterprets': artInterpretsSerializer.data,
     'artistWorks': artistWorksSerializer.data,
-    'uploaderWorks': uploaderWorksSerializer.data}
+    'uploaderWorks': uploaderWorksSerializer.data,
+    'counts': {'artBuckets': artBucketsCount,
+        'artInterprets': artInterpretsCount,
+        'artistWorks': artistWorksCount,
+        'uploaderWorks': uploaderWorksCount
+    }}
 
     return Response(result)
