@@ -45,7 +45,7 @@
             <header>Add new artwork</header>
             <section class="artwork-image-source" ng-cloak ng-hide="imageUploaded">
                 <section class="art-upload-overlay ng-hide" ng-cloak ng-show="uploadingImage">
-                    <site-loader site-loader-hide='false'></site-loader>
+                    <site-loader ng-class="{'animate': true}" site-loader-hide='false'></site-loader>
                 </section>
 
                 <section class="source-upload">
@@ -79,7 +79,7 @@
                 <header>Add details for artwork</header>
             <form class="info-form" name="infoForm">
                 <section class="art-upload-overlay ng-hide" ng-cloak ng-show="uploadingDetails">
-                    <site-loader site-loader-hide='false'></site-loader>
+                    <site-loader ng-class="{'animate': true}" site-loader-hide='false'></site-loader>
                 </section>
 
                 <input type="text" class="title" autofocus="autofocus" placeholder="Title*" ng-model="art.title" name="uTitle" maxlength="100" required>

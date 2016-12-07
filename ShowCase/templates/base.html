@@ -135,81 +135,82 @@
             <button ng-click="showUpload()">
               <i class="material-icons">add</i>
             </button>
-        </section><!--
-        --><section class="user-auth">
-        {% if user.is_authenticated %}
 
-            <button id="user-notifications" ng-class="{'active': activeNotifications.status}" ng-click="showNotifications()">
-              <span class="badge-wrapper" ng-class="{'mdl-badge': activeNotifications.status}" data-badge="[[activeNotifications.count]]"><i class="material-icons">notifications_none</i></span>
-            </button>
+            {% if user.is_authenticated %}
 
-            <ul class="user-notification-container mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="user-notifications">
+                <button id="user-notifications" ng-class="{'active': activeNotifications.status}" ng-click="showNotifications()">
+                  <span class="badge-wrapper" ng-class="{'mdl-badge': activeNotifications.status}" data-badge="[[activeNotifications.count]]"><i class="material-icons">notifications_none</i></span>
+                </button>
 
+                <ul class="user-notification-container mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="user-notifications">
 
 
-              <a class="user-notification mdl-menu__item" custom-href="[[notification.target_link]]" ng-repeat="notification in notifications">
-                <section class="actor-picture">
-                    <img ng-src="[[notification.actors[0].picture]]">
-                </section>
-                <section class="notification-details">
-                    <span ng-cloak ng-show="notification.actor_count>2">[[notification.actors[0].name]],</span>
-                    <span ng-cloak ng-show="notification.actor_count<=2">[[notification.actors[0].name]]</span>
-                    <span ng-cloak ng-show="notification.actor_count == 2">
-                        and [[notification.actors[1].name]]
-                    </span>
-                    <span ng-cloak ng-show="notification.actor_count>2">
-                        [[notification.actors[1].name]]
-                        and [[notification.actor_count - 2]]
-                        <span ng-cloak ng-show="notification.actor_count>3">others</span>
-                        <span ng-cloak ng-show="notification.actor_count==3">other</span>
-                    </span>
-                    [[notification.action]]
-                    [[notification.target_name | titlecase]]
-                </section>
-              </a>
-              <button class="more-notifications " ng-click="showMoreNotifications($event)" ng-hide="noNotifications || noMoreNotifications">
-                  <span ng-hide="loadingNotifications">Show more</span>
-                  <span ng-show="loadingNotifications">Loading Notifications...</span>
-              </button>
-              <section class="no-notifications ng-hide" ng-cloak ng-show="noNotifications">
-                  <h4>There are no notifications yet.</h4>
-                  <h5>Take it easy</h5>
-                  <a ng-href="/home" class="explore" analytics-click analytics-data="['Reader', 'Button-Explore Art']">EXPLORE ART</a>
-              </section>
-            </ul>
 
-            <button id="user-profile">
-              <i class="material-icons">reorder</i>
-            </button>
+                  <a class="user-notification mdl-menu__item" custom-href="[[notification.target_link]]" ng-repeat="notification in notifications">
+                    <section class="actor-picture">
+                        <img ng-src="[[notification.actors[0].picture]]">
+                    </section>
+                    <section class="notification-details">
+                        <span ng-cloak ng-show="notification.actor_count>2">[[notification.actors[0].name]],</span>
+                        <span ng-cloak ng-show="notification.actor_count<=2">[[notification.actors[0].name]]</span>
+                        <span ng-cloak ng-show="notification.actor_count == 2">
+                            and [[notification.actors[1].name]]
+                        </span>
+                        <span ng-cloak ng-show="notification.actor_count>2">
+                            [[notification.actors[1].name]]
+                            and [[notification.actor_count - 2]]
+                            <span ng-cloak ng-show="notification.actor_count>3">others</span>
+                            <span ng-cloak ng-show="notification.actor_count==3">other</span>
+                        </span>
+                        [[notification.action]]
+                        [[notification.target_name | titlecase]]
+                    </section>
+                  </a>
+                  <button class="more-notifications " ng-click="showMoreNotifications($event)" ng-hide="noNotifications || noMoreNotifications">
+                      <span ng-hide="loadingNotifications">Show more</span>
+                      <span ng-show="loadingNotifications">Loading Notifications...</span>
+                  </button>
+                  <section class="no-notifications ng-hide" ng-cloak ng-show="noNotifications">
+                      <h4>There are no notifications yet.</h4>
+                      <h5>Take it easy</h5>
+                      <a ng-href="/home" class="explore" analytics-click analytics-data="['Reader', 'Button-Explore Art']">EXPLORE ART</a>
+                  </section>
+                </ul>
 
-            <ul class="user-profile-options mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                for="user-profile">
-              <li class="mdl-menu__item" ng-click="showUpload()"><i class="material-icons">add_box</i>Add Artwork</li>
-              <li class="mdl-menu__item" ng-click="showCreateBucket()"><i class="material-icons">view_carousel</i>Create Series</li>
-              <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
-              <li class="mdl-menu__item indent_right" ng-click="gotoMyContributions()"><i class="material-icons">photo</i>Contributions</li>
-              <li class="mdl-menu__item indent_right" ng-click="gotoMySeries()"><i class="material-icons">view_array</i>Series</li>
-              <li class="mdl-menu__item indent_right" ng-click="gotoMyDrafts()"><i class="material-icons">edit</i>Drafts</li>
-              <li class="mdl-menu__item indent_right" ng-click="gotoMyBookmarks()"><i class="material-icons">bookmark</i>Bookmarks</li>
-              <a class="mdl-menu__item" ng-href="/me/settings"><i class="material-icons">settings</i>Settings</a>
-              <a ng-href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
-            </ul>
+                <button id="user-profile">
+                  <i class="material-icons">reorder</i>
+                </button>
 
-        {% else %}
-            <h3 ng-cloak ng-hide="userIsNowLoggedIn" ng-click="authorize()">SIGNUP/LOGIN</h3>
+                <ul class="user-profile-options mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                    for="user-profile">
+                  <li class="mdl-menu__item" ng-click="showUpload()"><i class="material-icons">add_box</i>Add Artwork</li>
+                  <li class="mdl-menu__item" ng-click="showCreateBucket()"><i class="material-icons">view_carousel</i>Create Series</li>
+                  <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
+                  <li class="mdl-menu__item indent_right" ng-click="gotoMyContributions()"><i class="material-icons">photo</i>Contributions</li>
+                  <li class="mdl-menu__item indent_right" ng-click="gotoMySeries()"><i class="material-icons">view_array</i>Series</li>
+                  <li class="mdl-menu__item indent_right" ng-click="gotoMyDrafts()"><i class="material-icons">edit</i>Drafts</li>
+                  <li class="mdl-menu__item indent_right" ng-click="gotoMyBookmarks()"><i class="material-icons">bookmark</i>Bookmarks</li>
+                  <a class="mdl-menu__item" ng-href="/me/settings"><i class="material-icons">settings</i>Settings</a>
+                  <a ng-href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
+                </ul>
 
-            <button ng-cloak ng-show="userIsNowLoggedIn" id="user-profile">
-              <i class="material-icons">reorder</i>
-            </button>
+            {% else %}
 
-            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                for="user-profile">
-              <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
-              <li class="mdl-menu__item"><i class="material-icons">list</i>Collection</li>
-              <a class="mdl-menu__item" ng-href="/me/settings"><i class="material-icons">settings</i>Settings</a>
-              <a ng-href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
-            </ul>
-        {% endif %}
+                <h3 ng-cloak ng-hide="userIsNowLoggedIn" ng-click="authorize()">SIGNUP/LOGIN</h3>
+
+                <button ng-cloak ng-show="userIsNowLoggedIn" id="user-profile">
+                  <i class="material-icons">reorder</i>
+                </button>
+
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                    for="user-profile">
+                  <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
+                  <li class="mdl-menu__item"><i class="material-icons">list</i>Collection</li>
+                  <a class="mdl-menu__item" ng-href="/me/settings"><i class="material-icons">settings</i>Settings</a>
+                  <a ng-href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
+                </ul>
+
+            {% endif %}
         </section><!--
         --><nav class="site-navigation show-mb">
             <li><a ng-class="{'active' : homeActive}" ng-href="/home">HOME</a></li>

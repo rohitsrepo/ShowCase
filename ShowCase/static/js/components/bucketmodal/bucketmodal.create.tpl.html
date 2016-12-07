@@ -8,7 +8,7 @@
             <h1 class="buckets-header" ng-cloak ng-hide="bucketCreated">Create a new series</h1>
             <form class="bucket-form" ng-cloak ng-hide="bucketCreated" name="bucketForm">
                  <section class="details-uploading-overlay ng-hide" ng-cloak ng-show="uploadingDetails">
-                     <site-loader site-loader-hide='false'></site-loader>
+                     <site-loader ng-class="{'animate': true}" site-loader-hide='false'></site-loader>
                  </section>
 
                  <input type="text" autofocus placeholder="Title" ng-model="newBucket.name" name="uName" required ng-maxlength="25">
@@ -27,7 +27,7 @@
             <h1 class="buckets-header background" ng-cloak ng-show="bucketCreated">Add a background suiting to your title?</h1>
             <section ng-cloak ng-show="bucketCreated" class="background-source">
                 <section class="source-uploading-overlay" ng-cloak ng-show="uploadingBackground">
-                    <site-loader site-loader-hide='false'></site-loader>
+                    <site-loader ng-class="{'animate': true}" site-loader-hide='false'></site-loader>
                 </section>
 
                 <section class="source-upload">

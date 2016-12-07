@@ -6,7 +6,7 @@
         </section>
             <section class="picture-holder" ng-if="membership.composition.matter_400" ng-style="{'background-image': 'url([[membership.composition.matter_400]])'}">
                 <section class="bucket-adding-overlay ng-hide" ng-cloak ng-show="updatingMembership">
-                    <site-loader site-loader-hide='false'></site-loader>
+                    <site-loader ng-class="{'animate': true}" site-loader-hide='false'></site-loader>
                 </section>
             </section>
 

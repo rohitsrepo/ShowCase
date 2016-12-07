@@ -102,7 +102,7 @@
             </div>
         </div>
 
-        <site-loader site-loader-hide='slyInitComplete || $scope.noArts'></site-loader>
+        <site-loader ng-class="{'animate': !slyInitComplete && !noArts}" site-loader-hide='slyInitComplete || noArts'></site-loader>
 
     </article>
 

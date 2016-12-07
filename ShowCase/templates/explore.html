@@ -94,7 +94,7 @@
             </section>
         </div>
     </div>
-    <site-loader site-loader-hide='!postsMeta.busy || postsMeta.disableGetMore'></site-loader>
+    <site-loader ng-class="{'animate': true}" site-loader-hide='!postsMeta.busy || postsMeta.disableGetMore'></site-loader>
     <div ui-view></div>
 {% endblock %}
 

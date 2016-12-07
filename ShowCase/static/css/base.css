@@ -155,7 +155,7 @@ body::-webkit-scrollbar-thumb {
     width: 100%;
     background-color: white;
     color: rgba(0, 0, 0, 0.9);
-    padding: 10px 20px;
+    padding: 10px 64px;
     position: fixed;
     top: 0;
     -webkit-transition: all 0.3s cubic-bezier(0.0, 0.0, 0.2, 1);
@@ -172,6 +172,7 @@ body::-webkit-scrollbar-thumb {
 @media (max-width: 800px) {
     .site-header {
         position: static;
+        padding: 10px 20px;
     }
 }
 
@@ -213,7 +214,7 @@ body::-webkit-scrollbar-thumb {
 
 @media (max-width: 800px) {
     .site-header .site-logo {
-        width: 2em;
+        width: 30%;
     }
 
     .site-logo img {
@@ -278,7 +279,7 @@ body::-webkit-scrollbar-thumb {
 
 /*---------------- Site Actions -----------------*/
 .site-header .site-actions {
-    width: 25%;
+    width: 40%;
     display: inline-block;
     vertical-align: top;
     padding: 10px 0;
@@ -290,7 +291,7 @@ body::-webkit-scrollbar-thumb {
     .site-header .site-actions {
         padding: 5px 0;
         margin: 0;
-        width: 50%;
+        width: 70%;
     };
 }
 
@@ -327,6 +328,39 @@ body::-webkit-scrollbar-thumb {
 
 .site-header.white .site-actions button:hover i {
     color: rgba(255, 255, 255, 1);
+}
+
+.site-actions h3 {
+    font-size: 0.77em;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.7);
+    letter-spacing: 1px;
+    cursor: pointer;
+    padding-top: 9px;
+    padding-left: 8px;
+    display: inline-block;
+}
+
+.site-header.white .site-actions h3 {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.site-header.white .site-actions h3:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+.site-actions h3:hover {
+    color: rgba(0, 0, 0, 1);
+}
+
+.site-header.white .site-actions h3:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+@media (max-width: 800px) {
+    .site-actions h3 {
+        padding-top: 10px;
+    }
 }
 
 /*------------- Search Box ----------*/
@@ -460,73 +494,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 /*---------------- User Auth -----------------*/
-.site-header .user-auth {
-    width: 15%;
-    display: inline-block;
-    vertical-align: top;
-    padding-top: 13px;
-    height: 43px;
-    vertical-align: top;
-}
-
-.user-auth button {
-    color: rgba(0, 0, 0, 0.5);
-    background: transparent;
-    box-shadow: none;
-    border: none;
-    height: 20px;
-    width: 28px;
-    min-width: 20px;
-    padding: 0;
-    padding-top: 4px;
-    padding-left: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    vertical-align: top;
-}
-
-.user-auth button:hover {
-  color: rgba(0, 0, 0, 0.95);
-}
-
-.user-auth button i {
-  vertical-align: middle;
-    font-size: 1.5em;
-}
-
-.site-header.white .user-auth button i {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.site-header.white .user-auth button:hover i {
-  color: rgba(255, 255, 255, 1);
-}
-
-.user-auth h3 {
-    font-size: 0.77em;
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.7);
-    letter-spacing: 1px;
-    cursor: pointer;
-    padding-top: 9px;
-    padding-left: 8px;
-}
-
-.site-header.white .user-auth h3 {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.site-header.white .user-auth h3:hover {
-    color: rgba(255, 255, 255, 1);
-}
-
-.user-auth h3:hover {
-    color: rgba(0, 0, 0, 1);
-}
-
-.site-header.white .user-auth h3:hover {
-    color: rgba(255, 255, 255, 1);
-}
 
 .user-profile-options.mdl-menu {
     width: 200px;
@@ -646,26 +613,6 @@ body::-webkit-scrollbar-thumb {
 .user-notification-container.mdl-menu .no-notifications h5 {
     padding-top: 100px;
     color: rgba(0, 0, 0, 0.8);
-}
-
-@media (max-width: 800px) {
-    .site-header .user-auth {
-      width: 30%;
-      text-align: right;
-      padding: 5px 0;
-      margin: 0;
-    }
-
-    .user-auth button {
-        padding: 0;
-        margin: 0;
-    }
-
-    .user-auth h3 {
-        padding: 5px 0;
-        padding-top: 8px;
-    }
-
 }
 
 /*================= Arts Stream ===============*/
@@ -954,6 +901,10 @@ body::-webkit-scrollbar-thumb {
 @media (max-width: 800px) {
   .arts-container .container {
       width: 100%;
+  }
+
+  .art {
+    width: 100% !important;
   }
 
   .art .art-content {
@@ -1286,6 +1237,9 @@ footer.site-footer header h2 {
   height: 41px;
   position: relative;
   border: 6px solid rgb(0,0,0);
+} 
+
+.site-loader.animate {
   animation: site-loader 2.3s infinite ease;
     -o-animation: site-loader 2.3s infinite ease;
     -ms-animation: site-loader 2.3s infinite ease;

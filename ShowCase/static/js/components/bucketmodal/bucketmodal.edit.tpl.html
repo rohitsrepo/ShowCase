@@ -7,7 +7,7 @@
             <h1 class="buckets-header details" ng-hide="editingBackground">Edit series</h1>
             <form class="bucket-form" ng-class="{'animate' : loaded}" ng-hide="editingBackground" name="bucketForm">
                 <section class="details-uploading-overlay ng-hide" ng-cloak ng-show="uploadingDetails">
-                    <site-loader site-loader-hide='false'></site-loader>
+                    <site-loader ng-class="{'animate': true}" site-loader-hide='false'></site-loader>
                 </section>
 
                  <input type="text" autofocus placeholder="Title" ng-model="bucket.name" name="uName" required ng-maxlength="25">
@@ -28,7 +28,7 @@
             <h1 class="buckets-header background" ng-show="editingBackground">Edit background suiting to your title</h1>
             <section ng-show="editingBackground" class="background-source">
                 <section class="source-uploading-overlay" ng-cloak ng-show="uploadingBackground">
-                    <site-loader site-loader-hide='false'></site-loader>
+                    <site-loader ng-class="{'animate': true}" site-loader-hide='false'></site-loader>
                 </section>
 
                 <section class="source-upload">
