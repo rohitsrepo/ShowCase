@@ -109,7 +109,7 @@ body {
 
 @media (max-width: 800px) {
     .painting-area {
-        margin-bottom: 70px;
+        /*margin-bottom: 70px;*/
         overflow: show;
         height: auto;
     }
@@ -126,6 +126,7 @@ body {
         max-height: auto;
         position: static;
         transform: none;
+        padding: 16px 0;
     }
 
     .fullscreen {
@@ -217,6 +218,8 @@ body {
         bottom: -70px;
         width: 100%;
         text-align: center;
+        position: static;
+        padding-bottom: 16px;
     }
 
     .painting-area .art-actions .art-action {
@@ -284,8 +287,6 @@ body {
 }
 
 .painting-details-container .painting-actions {
-    /*width: 30%;*/
-    /*text-align: left;*/
     float: right;
     vertical-align: bottom;
     margin-top: 10px;
@@ -514,6 +515,19 @@ body {
         width: 100%;
         font-size: 0.8em;
     }
+
+    .painting-details-container .painting-actions {
+        float: none;
+    }
+
+    .painting-details-container .painting-finder {
+        float: none;
+        max-width: none;
+    }
+
+    .painting-details-container .details-actions-details {
+        padding-bottom: 0;
+    }
 }
 
 /*============== Art Associates ==============*/
@@ -589,6 +603,7 @@ body {
 
 .art-associates .art-buckets > h2 {
     margin-bottom: 4px;
+    padding-right: 95px;
     padding-left: 5px;
     letter-spacing: 1px;
     font-size: 1em;
@@ -597,7 +612,7 @@ body {
 
 .art-associates .art-buckets .associated-buckets-actions {
     position: absolute;
-    top: 6px;
+    top: 5px;
     right: 0;
 }
 
@@ -717,7 +732,12 @@ body {
 
 @media (max-width: 800px) {
     .art-associates .art-buckets .art-bucket {
-        width: 100%;
+        width: 50%;
+        display: inline-block;
+        height: 200px;
+    }
+
+    .art-associates .art-buckets .art-buckets-container {
         display: block;
     }
 }
@@ -733,11 +753,12 @@ body {
 }
 
 .art-associates .associate-works.artist-works {
-    margin-right: 30px;
+    /*margin-right: 30px;*/
 }
 
 .art-associates .associate-works > h2 {
     margin-bottom: 4px;
+    padding-right: 95px;
     letter-spacing: 1px;
     font-size: 1em;
     text-align: left;
@@ -914,7 +935,7 @@ body {
 
 .art-associates .associate-works .associated-works-actions {
     position: absolute;
-    top: 6px;
+    top: 5px;
     right: 0;
 }
 
@@ -945,7 +966,7 @@ body {
 
 @media (max-width: 800px) {
     .art-associates .associate-works .work {
-        width: 100%;
-        display: block;
+        width: 50%;
+        display: inline-block;
     }
 }
