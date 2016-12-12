@@ -157,9 +157,32 @@ section.circleEffect {
 }
 
 @media (max-width: 800px) {
-    .primary-header .container{
-        width: 75%;
+    .primary-header {
+        padding-top: 0;
     }
+
+    .primary-header .container{
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    .primary-header .primary-header-header {
+        text-align: center;
+        max-width: none;
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    .primary-header .primary-header-header .picture{
+        margin: 0 auto;
+        margin-top: 16px;
+        float: none;
+    }
+
+    .primary-header .primary-header-header .actions {
+        text-align: center !important;
+    }
+
     .primary-header h1 {
         font-size: 2em;
     }
@@ -228,10 +251,13 @@ section.circleEffect {
 
 @media (max-width: 800px) {
     .primary-header .contributions {
-        width: 95%;
+        width: 100%;
+        max-width: none;
+        text-align: left;
+        overflow-x: auto; 
     }
     .primary-header .contribution h4 {
-        font-size: 0.5em;
+        /*font-size: 0.5em;*/
     }
 
     .primary-header .controbution h5 {

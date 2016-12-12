@@ -907,6 +907,12 @@ body::-webkit-scrollbar-thumb {
     width: 100% !important;
   }
 
+  .art .scores {
+    width: 30%;
+    text-align: right;
+    padding-right: 16px;
+  }
+
   .art .art-content {
     width: 100% !important;
     height: auto !important;
@@ -914,7 +920,7 @@ body::-webkit-scrollbar-thumb {
 
   .art .details {
     width: 70%;
-    padding-left: 5px;
+    padding-left: 16px;
   }
 }
 

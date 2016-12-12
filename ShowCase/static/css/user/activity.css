@@ -44,6 +44,10 @@ body {
 @media (max-width: 800px) {
 
     .activities-arts-container .activities-art-container header {
+        padding: 8px 16px;
+    }
+
+    .activities-arts-container .activities-art-container header {
         width: 100%;
     }
 }
