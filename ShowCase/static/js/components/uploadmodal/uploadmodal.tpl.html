@@ -3,7 +3,7 @@
         <button ng-click="close()">X</button>
     </section>
 
-    <section class="image-source" ng-cloak ng-hide="imageUploaded" ng-click="holdClick($event)">
+    <section class="image-source" ng-cloak ng-hide="imageUploaded" onclick="holdClick(event)">
         <header>Add new artwork</header>
         <section class="artwork-image-source" ng-cloak ng-hide="imageUploaded">
             <section class="art-upload-overlay ng-hide" ng-cloak ng-show="uploadingImage">
@@ -37,7 +37,7 @@
         </section>
     </section>
 
-    <section ng-cloak ng-if="imageUploaded" class="info-source clearfix" ng-style="{'background-image': 'url([[artImage.url]])'}" ng-click="holdClick($event)">
+    <section ng-cloak ng-if="imageUploaded" class="info-source clearfix" ng-style="{'background-image': 'url([[artImage.url]])'}" onclick="holdClick(event)">
             <header>Add details for artwork</header>
         <form class="info-form" name="infoForm">
             <section class="art-upload-overlay ng-hide" ng-cloak ng-show="uploadingDetails">

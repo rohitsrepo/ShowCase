@@ -72,7 +72,7 @@ angular.module("UserApp", [
             }],
             'close': ['$state', function ($state) {
                 return function () {
-                    $state.go('arts');
+                    $state.go('activities');
                 };
             }]
         }

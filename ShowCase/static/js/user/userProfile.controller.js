@@ -43,7 +43,7 @@ angular.module('UserApp')
         anim.addEventListener('finish', function() {
           header.style.backgroundColor = color;
           siteHeader.style.backgroundColor = color;
-          header.removeChild(effectNode);
+          header.removeChild(circularEffectNode);
         });
     };
 

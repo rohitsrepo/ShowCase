@@ -159,9 +159,11 @@ function LoginModal() {
         })
 
         // bind close on click outside
-        modalElement.click(function (evt) {
-          inputs.close();
-        })
+        if (!options.stopCloseOnClickOutside) {
+          modalElement.click(function (evt) {
+            inputs.close();
+          })
+        }
 
         window.setTimeout(function () {
             modalElement.focus();

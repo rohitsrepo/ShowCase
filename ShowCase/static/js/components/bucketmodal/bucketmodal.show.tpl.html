@@ -3,7 +3,7 @@
         <i class="material-icons action" ng-click="close()">close</i>
     </section>
     <div class="scroll-holder">
-        <ul class="container"  ng-click="holdClick($event)">
+        <ul class="container"  onclick="holdClick(event)">
             <site-loader ng-class="{'animate': !bucketForShowLoaded}" site-loader-hide='bucketForShowLoaded'></site-loader>
 
             <h1 class="buckets-header" ng-cloak ng-hide="noSuchBucket.status || !bucketForShowLoaded">Series containing <a ng-href="/arts/[[art.slug]]">[[art.title | titlecase]]</a></h1>

@@ -11,10 +11,6 @@ angular.module('module.auth')
 		close();
 	}
 
-	$scope.holdClick = function (event){
-		event.stopPropagation();
-	};
-
     $scope.toNative = function () {
         $scope.showNative = true;
         $scope.showNativeLogin = true;

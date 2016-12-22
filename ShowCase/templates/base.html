@@ -33,6 +33,9 @@
             var imgWrapper = img.parentNode;
             imgWrapper.className += imgWrapper.className ? ' loaded' : 'loaded';
         };
+        function holdClick(event) {
+            event.stopPropagation();
+        }
     </script>
 
     {% block css_block %}{% endblock %}
