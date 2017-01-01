@@ -9,28 +9,38 @@ body {
 }
 
 .activities-arts-container .activities-art-container header {
-    width: 400px;
+    width: 300px;
     padding: 10px 5px;
     margin: 0 auto;
     color: rgba(0, 0, 0, 0.54);
     font-size: 0.75em;
     letter-spacing: 1px;
     vertical-align: top;
-    display : flex;
-    align-items : center;
+    position: relative;
+    padding-left: 34px;
+}
+
+.activities-arts-container .activities-art-container header .actor-picture{
+    position: absolute;
+    left: 10px;
+    top: 6px;
 }
 
 .activities-arts-container .activities-art-container header a {
     color: rgba(0, 0, 0, 0.9);
+    line-height: 1.3em;
     letter-spacing: 1px;
     cursor: pointer;
-    vertical-align: top;
-    padding: 0 4px;
+    vertical-align: middle;
 }
 
 .activities-arts-container .activities-art-container header a:hover {
     color: rgba(0, 0, 0, 1);
     text-decoration: underline;
+}
+
+.activities-arts-container .activities-art-container header .art-attribution-verb {
+    /*white-space: nowrap;*/
 }
 
 .activities-arts-container .activities-art-container .feed-bucket {

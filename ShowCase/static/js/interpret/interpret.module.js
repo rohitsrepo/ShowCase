@@ -4,7 +4,7 @@ angular.module("InterpretApp", [
     "module.auth",
     "module.topbar",
     "module.model",
-    'module.titlecase',
+    'module.titlecaseFilter',
     'module.analytics',
     'module.util'])
 .config(['$httpProvider', '$interpolateProvider', function ($httpProvider, $interpolateProvider) {

@@ -819,7 +819,7 @@ body::-webkit-scrollbar-thumb {
 .art .details {
   width: 80%;
   padding: 10px;
-  padding-left: 15px;
+  /*padding-left: 15px;*/
   display: inline-block;
 }
 

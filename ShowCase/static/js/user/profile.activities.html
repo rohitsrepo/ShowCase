@@ -48,7 +48,7 @@
             <div class="art" ng-show="activity.grade == 2" ng-style="{'width': '300px',}">
                 <header ng-show="!showHeader">
                     <img class="actor-picture" ng-src="[[activity.creator.picture]]">
-                    <a class="art-attribution" ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a> added this to series <a class="art-attribution" ng-href="/@[[activity.creator.slug]]/series/[[activity.content.slug]]">[[activity.content.name]]</a>
+                    <a class="art-attribution" ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a> <span class="art-attribution-verb">added this to series</span> <a class="art-attribution" ng-href="/@[[activity.creator.slug]]/series/[[activity.content.slug]]">[[activity.content.name]]</a>
                 </header>
                 <article class="art-content" ng-style="{'height': '[[math.round(300*activity.composition.matter_aspect)]]px', 'width': '300px', 'background-color': '[[activity.composition.major]]'}">
                     <img ng-src="[[activity.composition.matter_400]]" alt="[[activity.composition.title]]" onload="imgLoaded(this)">
