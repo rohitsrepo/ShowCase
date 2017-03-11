@@ -37,7 +37,7 @@
 {% block content_block %}
     <div ng-cloak masonry load-images="onMobile" masonry-options="{ transitionDuration: '0' }" class="arts-container explore-container" infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore'>
         <div class="masonry-brick container explore-art-container" ng-repeat="art in arts">
-            <div class="art" ng-show="art.feed_type == 'AR'" ng-style="{'width': '300px',}">
+            <div class="art" ng-show="art.feed_type == 'AR'">
                 <article class="art-content" ng-style="{'height': '[[math.round(300*art.content.matter_aspect)]]px', 'width': '300px', 'background-color': '[[art.content.major]]'}">
                     <img ng-src="[[art.content.matter_400]]" alt="[[art.content.title]]" onload="imgLoaded(this)">
                     <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">

@@ -1,8 +1,8 @@
 <div ng-cloak masonry load-images="onMobile" masonry-options="{ transitionDuration: '0' }" class="arts-container search-container" infinite-scroll="loadMoreArtifacts()" infinite-scroll-distance='1' infinite-scroll-disabled='searchMeta.busy || searchMeta.disableGetMore'>
     <div class="masonry-brick container search-art-container" ng-repeat="artifact in searchMeta.results">
         <div class="art" ng-show="artifact.content_type == 'composition' ">
-            <article class="art-content" ng-style="{'height': '[[math.round(400*artifact.content_object.matter_aspect)]]px', 'width': '400px', 'background-color': '[[artifact.content_object.major]]'}">
-                <img ng-src="[[artifact.content_object.matter_400]]" alt="[[artifact.content_object.title]]">
+            <article class="art-content" ng-style="{'height': '[[math.round(300*artifact.content_object.matter_aspect)]]px', 'width': '300px', 'background-color': '[[artifact.content_object.major]]'}">
+                <img ng-src="[[artifact.content_object.matter_400]]" alt="[[artifact.content_object.title]]" onload="imgLoaded(this)">
                 <div ng-cloak ng-show="artifact.content_object.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
                     <h6>This work is marked not safe</h6>
                     <h6>Click anywhere to show the work</h6>

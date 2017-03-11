@@ -1,6 +1,6 @@
 <div ng-cloak masonry load-images="onMobile" masonry-options="{ transitionDuration: '0' }" class="arts-container profile-container" infinite-scroll="loadMoreCompositions()" infinite-scroll-distance='1' infinite-scroll-disabled='artsMeta.busy || artsMeta.disableGetMore'>
     <div class="masonry-brick container profile-art-container" ng-repeat="art in arts">
-        <div class="art" ng-style="{'width': '300px',}">
+        <div class="art">
             <article class="art-content" ng-style="{'height': '[[math.round(300*art.matter_aspect)]]px', 'width': '300px', 'background-color': '[[art.major]]'}">
                 <img ng-src="[[art.matter_400]]" alt="[[art.title]]" onload="imgLoaded(this)">
                 <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
