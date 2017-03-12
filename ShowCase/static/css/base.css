@@ -31,6 +31,7 @@ body {
   padding-top: 80px;
   width: 100%;
   height: 100%;
+    position: relative;
 }
 
 body.modal-open {
@@ -156,17 +157,29 @@ body::-webkit-scrollbar-thumb {
     background-color: white;
     color: rgba(0, 0, 0, 0.9);
     padding: 10px 64px;
-    position: fixed;
+    position: absolute;
     top: 0;
-    -webkit-transition: all 0.3s cubic-bezier(0.0, 0.0, 0.2, 1);
-    -moz-transition: all 0.3s cubic-bezier(0.0, 0.0, 0.2, 1);
-    -o-transition: all 0.3s cubic-bezier(0.0, 0.0, 0.2, 1);
-    transition: all 0.3s cubic-bezier(0.0, 0.0, 0.2, 1);
     z-index: 1000;
+    -webkit-transition: background-color 0.3s cubic-bezier(0.0, 0.0, 0.2, 1);
+    -moz-transition: background-color 0.3s cubic-bezier(0.0, 0.0, 0.2, 1);
+    -o-transition: background-color 0.3s cubic-bezier(0.0, 0.0, 0.2, 1);
+    transition: background-color 0.3s cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
-.header-pull-up {
+.header-fix {
+    position: fixed;
+    -webkit-transition: top 0.3s cubic-bezier(0.0, 0.0, 0.2, 1);
+    -moz-transition: top 0.3s cubic-bezier(0.0, 0.0, 0.2, 1);
+    -o-transition: top 0.3s cubic-bezier(0.0, 0.0, 0.2, 1);
+    transition: top 0.3s cubic-bezier(0.0, 0.0, 0.2, 1);
+    opacity: 0;
     top: -85px;
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.15);
+}
+
+.header-pull-down {
+  top: 0;
+  opacity: 1;
 }
 
 @media (max-width: 800px) {

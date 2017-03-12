@@ -225,7 +225,7 @@
 
         <div class="container">
             <header class="primary-header-header" ng-cloak>
-                <div class="picture" ng-style="{'background-image': 'url({{artist.picture.url}})'}"></div>
+                <img class="picture" ng-src="{{artist.picture.url}}" onload="imgLoaded(this)" />
 
                 <div class="details">
                     <h1>{{artist.name | title}}</h1>
@@ -274,6 +274,8 @@
 {% endblock %}
 
 {% block script_block %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.2.2/web-animations-next-lite.min.js"></script>
+
     <!-- build:js /static/build/userProfile.js -->
     <script type="text/javascript" src="/static/bower_components/nginfinitescroll/build/ng-infinite-scroll.min.js"></script>
     <script type="text/javascript" src="/static/bower_components/angular-upload/angular-upload.min.js"></script>

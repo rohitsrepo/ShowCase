@@ -3,9 +3,10 @@ angular.module('module.util', [])
 	return function(scope, element, attrs) {
 	    var didScroll;
 	    var lastScrollTop = 0;
-	    var delta = 5;
+	    var delta = 3;
 	    var navbarHeight = element.outerHeight();
 	    var headerColor;
+	    var hasCrossedThreshhold = false;
 
         var mq = window.matchMedia( "(max-width: 800px)" );
 
@@ -28,22 +29,30 @@ angular.module('module.util', [])
 
 	    function hasScrolled() {
 	        var st = $(this).scrollTop();
-
 	        headerColorOnScroll(headerColor, st);
 
+	        if (st> navbarHeight && !hasCrossedThreshhold) {
+	        	hasCrossedThreshhold = true;
+	        	element.addClass('header-fix');
+	        } else if (st == 0) {
+	        	element.removeClass('header-fix');
+	        	hasCrossedThreshhold = false;
+	        }
+
 	        // Make sure they scroll more than delta
-	        if(Math.abs(lastScrollTop - st) <= delta)
-	            return;
+	        
 
 	        // If they scrolled down and are past the navbar, add class .nav-up.
 	        // This is necessary so you never see what is "behind" the navbar.
 	        if (st > lastScrollTop && st > navbarHeight){
+	        	if(Math.abs(lastScrollTop - st) <= delta)
+	        	    return;
 	            // Scroll Down
-	            element.addClass('header-pull-up');
+	            element.removeClass('header-pull-down');
 	        } else {
 	            // Scroll Up
 	            if(st + $(window).height() < $(document).height()) {
-	                element.removeClass('header-pull-up');
+	                element.addClass('header-pull-down');
 	            }
 	        }
 
@@ -54,6 +63,7 @@ angular.module('module.util', [])
 	    	if (scope.headerColor){
 	    		headerColor = hexToRgb(scope.headerColor);
 	    		element[0].style.background = 'rgba(' + headerColor.r + ',' + headerColor.g + ',' + headerColor.b + ',' + 0 + ')' ;
+	    		element.addClass('white');
 	    	}
 	    };
 
