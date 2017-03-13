@@ -180,7 +180,10 @@ angular.module('ExploreApp')
         var title = 'Artwork: "' + art.title + '" by: ' + art.artist.name;
         var description = 'Find thoughts about artwork "' + art.title+
             '" at ' + share_url;
-        var media = 'http://thirddime.com' + art.matter;
+        var media = art.matter;
+        if (media.indexOf('http') == -1) {
+            media = 'http://thirddime.com' + art.matter;
+        }
         shareModalService.shareThisPage(share_url, title, description, media);
     };
 
