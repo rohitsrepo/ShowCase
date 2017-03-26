@@ -21,6 +21,7 @@ class InterpretationList(APIView):
             serializer.object.user = request.user
             serializer.object.composition = get_object_or_404(
                 Composition, id=composition_id)
+            serializer.object.public = True
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -370,6 +370,7 @@ def get_associates(request, composition_id, format=None):
     artistWorks = composition.artist.arts.exclude(id=composition_id).order_by('-created')[:4]
     uploaderWorks = composition.uploader.compositions.exclude(id=composition_id).exclude(artist=composition.artist).order_by('-created')[:4]
     artInterprets = composition.interprets.filter(public=True).order_by('-created')[:4]
+    print artInterprets
 
     artBucketsCount = composition.holders.count()
     artistWorksCount = composition.artist.arts.count()

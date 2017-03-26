@@ -34,7 +34,13 @@ def composition_series(request, slug):
 def add_interpretation(request, slug):
     composition = get_object_or_404(Composition, slug=slug)
 
-    context = RequestContext(request, {'composition': composition})
+    context = RequestContext(request, {'composition': composition, 'editMode': True})
+    return render_to_response("interpret.html", context)
+
+def show_interpretation(request, slug):
+    interpretation = get_object_or_404(interpretation, slug=slug)
+
+    context = RequestContext(request, {'interpretation': interpretation, 'editMode': False})
     return render_to_response("interpret.html", context)
 
 

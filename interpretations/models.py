@@ -5,6 +5,8 @@ from django.conf import settings
 from django.utils.timesince import timesince
 from django.contrib.contenttypes.models import ContentType
 
+from ShowCase.slugger import unique_slugify
+
 from posts.models import Post, bind_post
 
 
@@ -14,6 +16,8 @@ class Interpretation(models.Model):
     interpretation = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     public = models.BooleanField(default=False)
+    slug = models.SlugField(max_length=200, default="")
+
 
     def __str__(self):
         if len(self.interpretation) > 12:
@@ -30,6 +34,11 @@ class Interpretation(models.Model):
             interpretation = self.interpretation
 
         return u'%s' % (interpretation, )
+
+    def save(self, *args, **kwargs):
+        slug_str = self.get_text(40)
+        unique_slugify(self, slug_str)
+        super(Interpretation, self).save(*args, **kwargs)
 
     def timesince(self, now=None):
         return timesince(self.created, now)
@@ -65,6 +74,17 @@ class Interpretation(models.Model):
             targets.append(self.composition.uploader)
 
         return targets
+
+    def short_text(self):
+        return self.get_text(150)
+
+    def get_text(self, length):
+        text = self.to_text()
+        if len(text) > length:
+            space = text[:length].rfind(" ")
+            text = text[:space] + "..."
+
+        return text
 
 #Bind Signals
 bind_post(Interpretation)
