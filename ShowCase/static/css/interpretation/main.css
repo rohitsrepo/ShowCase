@@ -1,0 +1,57 @@
+body {
+	padding: 0;
+	overflow: hidden;
+}
+
+.site-header {
+	background: transparent;
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+	background: black;
+	position: relative;
+	/*padding-top: 80px;*/
+}
+
+.container .user-interpretation {
+        position: relative;
+        width: 55%;
+        height: 100%;
+        display: inline-block;
+        background: white;
+        padding-top: 80px;
+}
+
+.container .painting {
+        width: 45%;
+        height: 100%;
+        background: #1c2023;
+        display: inline-block;
+        position: relative;
+	    float: right;
+}
+
+.container .painting img.landscape {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        width: 100%;
+        height: auto;
+        padding: 0 3%;
+}
+
+
+.container .painting img.potrait {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        height: 100%;
+        width: auto;
+        padding: 3% 0;
+}

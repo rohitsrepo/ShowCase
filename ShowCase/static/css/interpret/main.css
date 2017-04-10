@@ -18,23 +18,17 @@ html, body {
 /*========== Painting ============*/
 
 .container .painting {
-        width: 55%;
+        width: 45%;
         height: 100%;
         background: #1c2023;
         display: inline-block;
-        margin-right: 4%;
         position: relative;
+        float: right;
 }
 
 .imgareaselect-outer {
     background-color: rgba(230, 184, 0, 0.6);
 }
-
-.container .painting img {
-
-
-}
-
 
 .container .painting img.landscape {
         position: absolute;
@@ -64,9 +58,10 @@ html, body {
 
 .container .user-interpretation {
         position: relative;
-        width: 40%;
+        width: 55%;
         height: 100%;
         display: inline-block;
+        padding: 16px;
 }
 
 .user-interpretation .actions {
@@ -107,13 +102,12 @@ html, body {
     color: white;
 }
 
-.new-interpretation {
-    position: absolute;
-    top: 10%;
-    height: 80%;
-    width: 100%;
-    overflow: auto;
+.user-interpretation .content-container {
+    margin: 0 auto;
+    width: 600px;
+    padding-top: 80px;
 }
+
 
 /*================= Interpretation - Content ==================*/
 /*Changes made here should also reflect in the add interpretation area. */
@@ -125,29 +119,29 @@ html, body {
 }
 
 .interpret-content h3 {
-    font-size: 1.25em;
+    font-size: 32px;
     font-weight: bold;
     letter-spacing: 0.1px;
     margin: 0;
-    margin-bottom: 13px;
+    margin-bottom: 20px;
 }
 
 .interpret-content h4 {
     font-size: 1.2em;
     letter-spacing: 0.1px;
     margin: 0;
-    margin-bottom: 13px;
+    margin-bottom: 20px;
 }
 
 .interpret-content,
 .interpret-content:after,
 .interpret-content p {
-    font-size: 1em;
+    font-size: 18px;
     letter-spacing: 0.1px;
-    line-height: 1.5em;
+    line-height: 32px;
     margin: 0;
     display: block;
-    margin-bottom: 13px;
+    margin-bottom: 20px;
 }
 
 .interpret-content:after{
@@ -157,12 +151,19 @@ html, body {
 .interpret-content a {
     text-decoration: underline;
     cursor: pointer;
+    color: rgba(0,0,0,0.8);
+}
+
+.interpret-content a:hover {
+    color: black;
 }
 
 .interpret-content blockquote {
-    font-size: 1.1em;
+    font-size: 18px;
+    line-height: 32px;
     letter-spacing: 0.1px;
-    margin: 12px 0;
+    margin-top: 4px;
+    margin-bottom: 24px;
     padding: 0;
     padding-left: 10px;
     font-style: italic;

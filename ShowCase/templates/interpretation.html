@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+{% block html_attr_block %}ng-app="InterpretationApp"{% endblock %}
+
+{% block title_block %}
+	<title>Words inspired from {{interpretation.composition.title | title}} by {{interpretation.user.name | title}}</title>
+{%endblock%}
+
+{% block meta_block %}
+	<meta charset="UTF-8">
+	<meta name="Description" content="Words inspired from {{interpretation.composition.title}}, Artist: {{interpreation.composition.artist.name}},Written By: {{interpretation.user.name}} , Category: Art Interpretations and Stories">
+	<!-- <link rel="canonical" href="http://thirddime.com/arts/{{composition.slug}}" /> -->
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<meta property="og:title" content="{{composition.title | title}}">
+	<meta property="og:site_name" content="ThirdDime">
+	<meta property="og:url" content="http://thirddime.com/arts/{{composition.slug}}">
+	<meta property="og:description" content="by {{composition.artist.name}}">
+	<meta property="og:image" content="http://thirddime.com{{composition.matter.url}}">
+	<meta property="og:type" content="article">
+    <meta property="fb:app_id" content="462422103909005">
+    <meta property="article:author" content="http://thirddime.com/@{{ composition.artist.slug }}" />
+    <meta property="article:publisher" content="https://www.facebook.com/thirddimeart" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@thirddime">
+    <meta name="twitter:title" content="{{composition.title | title}}">
+    <meta name="twitter:description" content="by {{composition.artist.name}}">
+    <meta name="twitter:image" content="http://thirddime.com{{composition.matter.url}}">
+    <meta name="theme-color" content="{{composition.major}}" />
+{%endblock%}
+
+{% block css_block %}
+	 <!-- build:css /static/build/interpretation.css -->
+	<link rel="stylesheet" type="text/css" href="/static/css/interpretation/main.css">
+	<!-- endbuild -->
+    <script type="text/javascript">
+        function paintingLoaded(painting){
+            imgLoaded(painting);
+            var actions = document.querySelector('.art-actions');
+
+            var bounds = painting.getBoundingClientRect();
+            actions.style.left = bounds.left + bounds.width + 'px';
+            actions.style.top = bounds.top + 112 + 'px';
+        };
+    </script>
+{%endblock%}
+
+{% block body_attr_block %}ng-controller="interpretationController" ng-init="init()"{% endblock %}
+
+{% block site_header_block %}
+{%endblock%}
+
+{% block content_block %}
+    
+    <section class="container">
+        
+        <header header-scroll class="site-header" ng-controller="headerController">
+            <a class="site-logo" ng-href="/home">
+                <img src="/static/images/header-md.png"  analytics-click analytics-data="['Top Bar-Left', 'Logo']">
+                <section class="site-name nt-mb" fade-on-scroll ng-cloak ng-hide="hideName" analytics-click analytics-data="['Top Bar-Left', 'Logo - Name']">
+                    <h1 class="nt-mb">THIRDDIME</h1>
+                    <h2 class="nt-mb">BEYOND THE BRUSHSTROKES</h2>
+                </section>
+            </a><!--
+            --><nav class="site-navigation nt-mb">
+                <li><a ng-class="{'active' : homeActive}" ng-href="/home">HOME</a></li>
+                <li><a ng-class="{'active' : exploreActive}" ng-href="/arts">FRESH</a></li>
+                <!-- <li><a ng-href="/artist">ARTISTS</a></li> -->
+                <!-- <li><a ng-href="/generes">GENRES</a></li> -->
+                <li><a ng-href="/blog" target="_blank">BLOG</a></li>
+            </nav><!--
+            --><section class="site-actions">
+
+                <form name="searchForm" class="searchForm nt-mb">
+                <div class=" searchForm-container "  id="search-box">
+                    <input class="search-input" type="text" ng-model="search.query" ng-model-options="{ debounce: 800 }">
+                    <i class="search-icon material-icons">search</i>
+                </div>
+
+                <ul class="search-results ng-hide" click-close-search ng-cloak ng-show="search.results.show">
+                    <label class="search-result-label ng-hide" ng-cloak ng-show="search.results.arts.length > 0">
+                        <p>ARTWORKS</p>
+                        <a ng-href="/search/artworks?q=[[search.query]]">more</a>
+                    </label>
+                    <li class="search-result " ng-repeat="art in search.results.arts">
+                    <a custom-href="/arts/[[art.slug]]">
+                        <div class="result-image" ng-style="{'background-image': 'url([[art.matter_thumbnail]])'}"></div>
+                        <div class="result-info">
+                            [[art.title | titlecase]]
+                        </div>
+                    </a>
+                    </li>
+
+                    <label class="search-result-label ng-hide" ng-cloak ng-show="search.results.buckets.length > 0">
+                        <p>SERIES</p>
+                        <a ng-href="/search/series?q=[[search.query]]">more</a>
+                    </label>
+                    <li class="search-result " ng-repeat="bucket in search.results.buckets">
+                    <a custom-href="/@[[bucket.owner.slug]]/series/[[bucket.slug]]">
+                        <div class="result-image" ng-style="{'background-image': 'url([[bucket.picture]])'}"></div>
+                        <div class="result-info">
+                            [[bucket.name | titlecase]]
+                        </div>
+                    </a>
+                    </li>
+
+                    <label class="search-result-label ng-hide" ng-cloak ng-show="search.results.users.length > 0">
+                        <p>PEOPLE</p>
+                        <a ng-href="/search/people?q=[[search.query]]">more</a>
+                    </label>
+                    <li class="search-result people-result" ng-repeat="user in search.results.users">
+                    <a custom-href="/@[[user.slug]]">
+                        <div class="result-image" ng-style="{'background-image': 'url([[user.picture]])'}"></div>
+                        <div class="result-info">
+                            [[user.name | titlecase]]
+                        </div>
+                    </a>
+                    </li>
+
+                    <button class="more-search" ng-class="{'see-all-active': search.results.count > 0}">
+                        <a ng-href="/search/all?q=[[search.query]]" class="ng-hide" ng-cloak ng-show="search.results.count > 0">See All</a>
+                        <span ng-cloak ng-show="search.loading && !search.noresults">Searching thirddime for '[[search.query]]'</span>
+                        <span class="ng-hide" ng-cloak ng-show="search.noresults">No results found</span>
+                    </button>
+
+                </ul>
+
+
+                </form>
+
+                <button class="show-mb" custom-href="/search">
+                  <i class="material-icons">search</i>
+                </button>
+                <button ng-click="showUpload()">
+                  <i class="material-icons">add</i>
+                </button>
+
+                {% if user.is_authenticated %}
+
+                    <button id="user-notifications" ng-class="{'active': activeNotifications.status}" ng-click="showNotifications()">
+                      <span class="badge-wrapper" ng-class="{'mdl-badge': activeNotifications.status}" data-badge="[[activeNotifications.count]]"><i class="material-icons">notifications_none</i></span>
+                    </button>
+
+                    <ul class="user-notification-container mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="user-notifications">
+
+
+
+                      <a class="user-notification mdl-menu__item" custom-href="[[notification.target_link]]" ng-repeat="notification in notifications">
+                        <section class="actor-picture">
+                            <img ng-src="[[notification.actors[0].picture]]">
+                        </section>
+                        <section class="notification-details">
+                            <span ng-cloak ng-show="notification.actor_count>2">[[notification.actors[0].name]],</span>
+                            <span ng-cloak ng-show="notification.actor_count<=2">[[notification.actors[0].name]]</span>
+                            <span ng-cloak ng-show="notification.actor_count == 2">
+                                and [[notification.actors[1].name]]
+                            </span>
+                            <span ng-cloak ng-show="notification.actor_count>2">
+                                [[notification.actors[1].name]]
+                                and [[notification.actor_count - 2]]
+                                <span ng-cloak ng-show="notification.actor_count>3">others</span>
+                                <span ng-cloak ng-show="notification.actor_count==3">other</span>
+                            </span>
+                            [[notification.action]]
+                            [[notification.target_name | titlecase]]
+                        </section>
+                      </a>
+                      <button class="more-notifications " ng-click="showMoreNotifications($event)" ng-hide="noNotifications || noMoreNotifications">
+                          <span ng-hide="loadingNotifications">Show more</span>
+                          <span ng-show="loadingNotifications">Loading Notifications...</span>
+                      </button>
+                      <section class="no-notifications ng-hide" ng-cloak ng-show="noNotifications">
+                          <h4>There are no notifications yet.</h4>
+                          <h5>Take it easy</h5>
+                          <a ng-href="/home" class="explore" analytics-click analytics-data="['Reader', 'Button-Explore Art']">EXPLORE ART</a>
+                      </section>
+                    </ul>
+
+                    <button id="user-profile">
+                      <i class="material-icons">reorder</i>
+                    </button>
+
+                    <ul class="user-profile-options mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                        for="user-profile">
+                      <li class="mdl-menu__item" ng-click="showUpload()"><i class="material-icons">add_box</i>Add Artwork</li>
+                      <li class="mdl-menu__item" ng-click="showCreateBucket()"><i class="material-icons">view_carousel</i>Create Series</li>
+                      <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
+                      <li class="mdl-menu__item indent_right" ng-click="gotoMyContributions()"><i class="material-icons">photo</i>Contributions</li>
+                      <li class="mdl-menu__item indent_right" ng-click="gotoMySeries()"><i class="material-icons">view_array</i>Series</li>
+                      <li class="mdl-menu__item indent_right" ng-click="gotoMyDrafts()"><i class="material-icons">edit</i>Drafts</li>
+                      <li class="mdl-menu__item indent_right" ng-click="gotoMyBookmarks()"><i class="material-icons">bookmark</i>Bookmarks</li>
+                      <a class="mdl-menu__item" ng-href="/me/settings"><i class="material-icons">settings</i>Settings</a>
+                      <a ng-href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
+                    </ul>
+
+                {% else %}
+
+                    <h3 ng-cloak ng-hide="userIsNowLoggedIn" ng-click="authorize()">SIGNUP/LOGIN</h3>
+
+                    <button ng-cloak ng-show="userIsNowLoggedIn" id="user-profile">
+                      <i class="material-icons">reorder</i>
+                    </button>
+
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                        for="user-profile">
+                      <li class="mdl-menu__item" ng-click="goHome()"><i class="material-icons">face</i>Profile</li>
+                      <li class="mdl-menu__item"><i class="material-icons">list</i>Collection</li>
+                      <a class="mdl-menu__item" ng-href="/me/settings"><i class="material-icons">settings</i>Settings</a>
+                      <a ng-href="/users/logout?next={{request.path}}" class="mdl-menu__item"><i class="material-icons">eject</i>Logout</a>
+                    </ul>
+
+                {% endif %}
+            </section><!--
+            --><nav class="site-navigation show-mb">
+                <li><a ng-class="{'active' : homeActive}" ng-href="/home">HOME</a></li>
+                <li><a ng-class="{'active' : exploreActive}" ng-href="/arts">FRESH</a></li>
+                <!-- <li><a ng-href="/artist">ARTISTS</a></li> -->
+                <!-- <li><a ng-href="/generes">GENRES</a></li> -->
+                <li><a ng-href="/blog" target="_blank">BLOG</a></li>
+            </nav>
+        </header>
+
+        <section class='painting'>
+            <img fit-image ng-src="{{composition.matter.url}}" crop />
+        </section>
+        <section class='user-interpretation'>
+            <p class="interpret-content">{{interpretation.interpretation | safe}}</p>
+        </section>
+    </section>
+    <div ui-view></div>
+
+{% endblock %}
+
+{% block script_block %}
+	<!-- build:js /static/build/interpretation.js -->
+	<script type="text/javascript" src="/static/js/interpretation/interpretation.module.js"></script>
+	<script type="text/javascript" src="/static/js/interpretation/interpretation.controller.js"></script>
+    <!-- endbuild -->
+{% endblock %}

@@ -33,6 +33,6 @@ angular.module("InterpretApp", [
 }]).run(['auth', '$window', function (auth, $window) {
 	auth.getCurrentUser().then(function () {},
         function () {
-        $window.location.href = "/login#?next=" + $window.location.pathname;
+        $window.location.href = "/login/#?next=" + $window.location.pathname;
     });
 }]);

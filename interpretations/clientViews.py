@@ -9,4 +9,4 @@ def show_interpretation(request, user_slug, interpret_slug):
         'interpretation': interpretation,
         'composition': interpretation.composition,
         'editMode': False})
-    return render_to_response("interpret.html", context)
+    return render_to_response("interpretation.html", context)
