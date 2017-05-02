@@ -9,12 +9,9 @@ body {
 }
 
 .site-header .site-navigation {
-	/*visibility: hidden;*/
 }
 
 .site-header .site-actions {
-	/*text-align: left;*/
-	/*display: inline;*/
 	width: 58%;
 	float: right;
 	margin-right: 16px;
@@ -24,5 +21,110 @@ body {
 	width: 100%;
 	height: 100%;
 	position: relative;
-	/*padding-top: 80px;*/
+}
+
+.content-container .interpret-content {
+    padding: 16px 0;
+}
+
+/*---------- Actions----------*/
+
+.content-container .actions {
+	width: 100%;
+	display: block;
+	margin-top: 32px;
+}
+
+.actions .interpret-action {
+	width: 33%;
+	float: left;
+	text-align: center;
+	background: transparent;
+	border: none;
+	vertical-align: top;
+	display : flex;
+	align-items : center;
+	justify-content: center;
+	color: rgba(0,0,0,0.85);
+	cursor: pointer;
+	font-size: 14px;
+	margin-bottom: 32px;
+}
+
+.actions .interpret-action.active,
+.actions .interpret-action:hover {
+	color: rgba(0,0,0,1);
+}
+
+.actions .interpret-action i {
+	margin-right: 4px;
+}
+
+/*--------------Author----------*/
+.content-container .author {
+    font-size: 14px;
+    display: inline-block;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.9);
+    padding-top: 40px;
+    width: 100%;
+	border-top: 1px solid rgba(0,0,0,0.2);
+}
+
+.content-container .author:hover {
+    text-decoration: underline;
+}
+
+.author .author-picture {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    vertical-align: bottom;
+    float: left;
+}
+
+.author .author-details{
+    padding-left: 68px;
+}
+
+.author-details .author-name {
+    font-weight: bold;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.9);
+    line-height: 1.5em;
+    margin: 2px 0;
+}
+
+.author:hover .author-name {
+    text-decoration: underline;
+}
+
+.author-details .author-name {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.author-details .author-about {
+    color: rgba(0, 0, 0, 0.74);
+    line-height: 1.5em;
+}
+
+.author-details .author-about {
+    color: rgba(0, 0, 0, 0.74);
+}
+
+.author .author-follow {
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 5px 10px;
+    color: rgba(0, 0, 0, 0.9);
+    float: right;
+}
+
+.author .author-follow.active,
+.author .author-follow:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: rgba(255, 255, 255, 0.9);
 }

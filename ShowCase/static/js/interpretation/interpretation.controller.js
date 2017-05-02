@@ -1,13 +1,21 @@
 angular.module("InterpretationApp")
 .controller('interpretationController', ['$scope', function($scope) {
-	$scope.hideName = true;
+    $scope.hideName = true;
+    $scope.interpretation = {};
 
-	$scope.init = function () {
+    $scope.init = function (is_admired, is_bookmarked) {
+        $scope.interpretation.is_admired = is_admired == 'True';
+        $scope.interpretation.is_bookmarked = is_bookmarked == 'True';
+    };
 
-	};
-	
-    var siteHeader = document.querySelector('.site-header');
-    // siteHeader.className += " white";
+    $scope.handleAdmire = function () {
+        $scope.interpretation.is_admired = !$scope.interpretation.is_admired;
+    }
+
+    $scope.handleBookmark = function () {
+        $scope.interpretation.is_bookmarked = !$scope.interpretation.is_bookmarked;
+    }
+    
 
 }]).directive('fitImage', function () {
     return {

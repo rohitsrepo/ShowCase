@@ -1,5 +1,4 @@
 /*========== Painting ============*/
-
 .container .painting {
         width: 45%;
         height: 100%;
@@ -53,14 +52,12 @@
 /*============ Interpretation =============*/
 
 .container .user-interpretation {
-        position: relative;
-        width: 55%;
-        height: 100%;
-        display: inline-block;
-        
+    position: relative;
+    width: 55%;
+    height: 100%;
+    display: inline-block;
+    overflow-x: auto;
 }
-
-
 
 .user-interpretation .content-container {
     margin: 0 auto;
