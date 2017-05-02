@@ -13,33 +13,50 @@ angular.module('InterpretApp')
 
 	var uploading;
 	$scope.composition = {};
+	$scope.hideName = true;
 
-	$scope.init = function (id, url) {
-		$scope.composition.id = id;
-		$scope.composition.url = url;
-		if (url) {
-			analytics.logEvent('Composition', 'Init: ' + url);
-		}
+	$scope.init = function (id) {
+		$scope.interpret.id = id;
 	};
 
 	$scope.saveInterpretation = function () {
-		analytics.logEvent('Composition', 'Add Interpretation', $scope.composition.url);
+		// analytics.logEvent('Composition', 'Save Interpretation', $scope.composition.url);
 
 		if (!uploading){
 			progress.showProgress();
 			uploading = true;
-			interpretationModel.addInterpretation($scope.composition.id, $('.new-interpretation').html())
-			.then(function () {
-				// Take to composition page
+			interpretationModel.addInterpretation($scope.interpret.id, $('.new-interpretation').html(), true)
+			.then(function (response) {
 				progress.hideProgress();
-				alert.showAlert("Your submission is under review.");
+				uploading = false;
+				document.querySelector('.draft-text').className += ' show';
 
 				$timeout(function () {
-					$window.location.href = $scope.composition.url;
-				}, 3000);
+					console.log("removing");
+					document.querySelector('.draft-text').classList.remove("show");
+				}, 500);
 			}, function () {
 				progress.hideProgress();
-				alert.showAlert("This is not a valid submission.");
+				alert.showAlert("Unable to save data");
+				uploading = false;
+			});
+		}
+	};
+
+	$scope.publishInterpretation = function () {
+		// analytics.logEvent('Composition', 'Add Interpretation', $scope.composition.url);
+
+		if (!uploading){
+			progress.showProgress();
+			uploading = true;
+			interpretationModel.addInterpretation($scope.interpret.id, $('.new-interpretation').html(), false)
+			.then(function (response) {
+				// Take to composition page
+				progress.hideProgress();
+				window.location = response.url;
+			}, function () {
+				progress.hideProgress();
+				alert.showAlert("Unable to save data");
 				uploading = false;
 			});
 		}
@@ -125,6 +142,29 @@ angular.module('InterpretApp')
                var imgClass = (imgElement.width/imgElement.height > 1) ? 'landscape' : 'potrait';
                element.addClass(imgClass);
             })
+        }
+    }
+}).directive('saveDraft', function () {
+	var debounce = function (fn, delay) {
+	    var timer = null;
+
+	    return function () {
+	        var context = this, args = arguments;
+	        clearTimeout(timer);
+	        timer = setTimeout(function () {
+	            fn.apply(context, args);
+	        }, delay);
+	    };
+	};
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+
+			var processor = debounce(function () {
+				console.log("Bounce");
+				scope.saveInterpretation();
+			}, 5000);
+            element.bind('input', processor);
         }
     }
 });

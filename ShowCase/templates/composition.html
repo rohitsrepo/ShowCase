@@ -305,7 +305,8 @@
             </section>
 
             <section class="details-actions" ng-class="{'right': {{composition.buckets_count}} > 0 || {{composition.admirers_count}} > 0}">
-                <button class="action collect" ng-click="showAddToBucket($event, composition)">Add To Series</button>
+                <button class="action collect" ng-click="showAddToBucket($event, composition)">Add to Series</button>
+                <button class="action collect" ng-click="gotoWriteTale()">Write a Tale</button>
             </section>
 
         </div>
@@ -315,10 +316,10 @@
     <section class="art-associates">
 
     <section class="associate-category art-interprets" ng-cloak ng-show="artInterprets.length > 0">
-            <h2>Posts inspired from this work</h2>
+            <h2>Tales inspired from this work</h2>
 
             <article class="art-interpret" ng-repeat="interpret in artInterprets">
-                <a ng-href="/@[[interpret.user.slug]]/words/[[interpret.slug]]" class="art-interpret-text">[[interpret.text]]</a>
+                <a ng-href="/@[[interpret.user.slug]]/tales/[[interpret.slug]]" class="art-interpret-text">[[interpret.text]]</a>
                 <a class="art-interpret-user" href="/@[[interpret.user.slug]]">By <b>[[interpret.user.name | titlecase]]</b></a>
             </article>
 

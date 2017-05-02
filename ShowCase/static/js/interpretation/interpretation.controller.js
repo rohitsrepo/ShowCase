@@ -7,7 +7,7 @@ angular.module("InterpretationApp")
 	};
 	
     var siteHeader = document.querySelector('.site-header');
-    siteHeader.className += " white";
+    // siteHeader.className += " white";
 
 }]).directive('fitImage', function () {
     return {

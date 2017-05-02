@@ -23,11 +23,13 @@ class InterpretationSerializer(serializers.ModelSerializer):
     timesince = serializers.CharField(source='timesince', read_only=True)
     vote = InterpretationVoteSerializer(read_only=True)
     text = serializers.CharField(source='short_text', read_only=True)
+    url = serializers.CharField(source='url', read_only=True)
 
     class Meta:
         model = Interpretation
-        fields = ('id', 'interpretation', 'user', 'composition', 'timesince', 'vote', 'text', 'slug')
+        fields = ('id', 'interpretation', 'user', 'composition', 'timesince', 'vote', 'text', 'slug', 'url', 'is_draft')
         read_only_fields = ('id', 'composition', 'slug')
+        write_only_fields = ('is_draft', )
 
 class PostInterpretationSerializer(serializers.ModelSerializer):
     text = serializers.CharField(source='to_text', read_only=True)

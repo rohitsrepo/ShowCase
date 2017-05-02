@@ -42,7 +42,7 @@ urlpatterns += patterns('',
                        url(r'^reset-password$', TemplateView.as_view(template_name='reset-password.html'), name="password-reset"),
                        url(r'^reset-password-confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',  'accounts.clientViews.reset_password_confirm'),
                        url(r'^@(?P<user_slug>[\w-]+)/series/(?P<bucket_slug>[\w-]+)', 'buckets.clientViews.series_main', name="series-page"),
-                       url(r'^@(?P<user_slug>[\w-]+)/words/(?P<interpret_slug>[\w-]+)', 'interpretations.clientViews.show_interpretation', name="interpret-page"),
+                       url(r'^@(?P<user_slug>[\w-]+)/tales/(?P<interpret_slug>[\w-]+)', 'interpretations.clientViews.show_interpretation', name="interpret-page"),
                        url(r'^@(?P<slug>[\w-]+)', 'accounts.clientViews.artist_main', name="artist-page"),
                        url(r'^me/settings$', 'accounts.clientViews.user_settings', name="user-settings"),
                        # url(r'^me/collections$', 'accounts.clientViews.user_collections', name="user-collections"),
@@ -50,7 +50,8 @@ urlpatterns += patterns('',
 
 ## Interpretation Urls
 urlpatterns += patterns('',
-                       url(r'^arts/(?P<slug>[\w-]+)/add-interpretation$', 'compositions.clientViews.add_interpretation', name="interpretation-page"),
+                       url(r'^arts/(?P<slug>[\w-]+)/write-a-tale$', 'interpretations.clientViews.add_interpretation', name="interpretation-page"),
+                       url(r'^write-a-tale/drafts/(?P<id>[0-9]+)$', 'interpretations.clientViews.edit_interpretation', name="interpretation-page"),
     )
 
 ## Post Urls
@@ -69,6 +70,7 @@ urlpatterns += patterns('',
                        url(r'^buckets', include('buckets.urls')),
                        url(r'^bookmarks', include('bookmarks.urls')),
                        url(r'^admirations', include('admirations.urls')),
+                       url(r'^interpretations', include('interpretations.urls')),
                        url(r'^api/search', include('search.urls')),
 		       )
 

@@ -1,94 +1,92 @@
-<!DOCTYPE html>
-<html ng-app="InterpretApp">
-<head>
-	<title>Interpret - {{composition.title}} - ThirdDime</title>
+{% extends "base.html" %}
+{% block html_attr_block %}ng-app="InterpretApp"{% endblock %}
 
+{% block title_block %}
+	<title>Write a Tale inspired by {{composition.title | title}} by {{composition.artist.name | title}}</title>
+{%endblock%}
+
+{% block meta_block %}
+	<meta charset="UTF-8">
+	<meta name="Description" content="Write a tale inspired from {{composition.title}}, Artist: {{composition.artist.name}}, Category: Art Interpretations and Stories">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="{{composition.major}}" />
+{%endblock%}
 
-	<link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico">
-
-	<link href='http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+{% block css_block %}
 	 <!-- build:css /static/build/interpret.css -->
-	<link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
-	<link rel="stylesheet" type="text/css" href="/static/bower_components/medium-editor/dist/css/medium-editor.css">
-	<link rel="stylesheet" type="text/css" href="/static/bower_components/medium-editor/dist/css/themes/default.css">
-	<link rel="stylesheet" type="text/css" href="/static/vendor/imgareaselect/css/imgareaselect-default.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/interpret/main.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/animate.css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/medium-editor/dist/css/medium-editor.css">
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/medium-editor/dist/css/themes/default.css">
+    <link rel="stylesheet" type="text/css" href="/static/vendor/imgareaselect/css/imgareaselect-default.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/interpret/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/interpret/main.css">
 	<!-- endbuild -->
+    <script type="text/javascript">
+        function paintingLoaded(painting){
+            imgLoaded(painting);
+            var actions = document.querySelector('.art-actions');
 
-	<script>
-		 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		 ga('create', 'UA-58563444-1', 'auto');
-		 ga('require', 'displayfeatures');
-		 ga('send', 'pageview');
-	</script>
-</head>
-<body ng-controller="interpretController">
-	<!-- <topbar></topbar>
-	<div class="curtain-overlay-placeholder"></div> -->
-	<div class="progress-bar"></div>
+            var bounds = painting.getBoundingClientRect();
+            actions.style.left = bounds.left + bounds.width + 'px';
+            actions.style.top = bounds.top + 112 + 'px';
+        };
+    </script>
+{%endblock%}
 
-	<section class="container" ng-init="init({{composition.id}}, '/arts/{{composition.slug}}')">
-		<section class='user-interpretation'>
-			<header class="actions">
-				<button class="save" ng-click="saveInterpretation()">SAVE</button>
-				<button class="back"><a href="/arts/{{composition.slug}}">BACK</a></button>
-			</header>
-			<div class="content-container">
-				<p class="new-interpretation interpret-content" rich-edit></p>
-			</div>
-		</section>
-		<section class='painting'>
-			<img fit-image ng-src="{{composition.matter.url}}" crop />
-		</section>
+{% block body_attr_block %}ng-controller="interpretController" ng-init="init({{interpretation.id}})"{% endblock %}
+
+{% block site_header_block %}
+{%endblock%}
+
+{% block content_block %}
+    
+    <section class="container">
+        <section class='user-interpretation'>
+            
+            <header class="page-header" >
+                <a class="site-logo" ng-href="/home">
+                    <img src="/static/images/header-md.png"  analytics-click analytics-data="['Top Bar-Left', 'Logo']">
+                </a>
+                <section class="page-actions">
+                    <p class="draft-text">Saved in drafts</p>
+                    <button class="save" ng-click="saveInterpretation()">
+                        SAVE
+                    </button>
+                    <button class="publish" ng-click="publishInterpretation()">
+                        PUBLISH
+                    </button>
+                </section>
+            </header>
+            <div class="content-container">
+                <section save-draft class="new-interpretation interpret-content" rich-edit></section>
+            </div>
+        </section>
+
+        <section class='painting'>
+            <img fit-image ng-src="{{composition.matter.url}}" crop onload="imgLoaded(this)" />
+        </section>
     </section>
 
-	<alert-support></alert-support>
-    <progress-support></progress-support>
+{% endblock %}
 
-	<!-- Scripts Here -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-cookies.min.js"></script>
+{% block site_footer_block %}
+{% endblock %}
 
+
+{% block script_block %}
 	<!-- build:js /static/build/interpret.js -->
-	<script type="text/javascript" src="/static/bower_components/angular-upload/angular-upload.min.js"></script>
-	<script type="text/javascript" src="/static/bower_components/medium-editor/dist/js/medium-editor.min.js"></script>
-	<script type="text/javascript" src="/static/vendor/imgareaselect/scripts/jquery.imgareaselect.js"></script>
+    <script type="text/javascript" src="/static/bower_components/angular-upload/angular-upload.min.js"></script>
+    <!-- <script type="text/javascript" src="/static/bower_components/medium-editor/dist/js/medium-editor.min.js"></script> -->
+    <script type="text/javascript" src="/static/vendor/imgareaselect/scripts/jquery.imgareaselect.js"></script>
 
-	<script type="text/javascript" src="/static/js/interpret/interpret.module.js"></script>
-	<script type="text/javascript" src="/static/js/interpret/interpret.controller.js"></script>
-	<script type="text/javascript" src="/static/js/interpret/imageExtension.js"></script>
-	<script type="text/javascript" src="/static/js/interpret/richEdit.directive.js"></script>
-	
-	<script type="text/javascript" src="/static/js/models/model.module.js"></script>
-	<script type="text/javascript" src="/static/js/models/user.model.js"></script>
-	<script type="text/javascript" src="/static/js/models/interpretation.model.js"></script>
-
-	<script type="text/javascript" src="/static/js/authentication/auth.module.js"></script>
-    <script type="text/javascript" src="/static/js/authentication/login.modal.controller.js"></script>
-	<script type="text/javascript" src="/static/js/authentication/auth.service.js"></script>
-
-	<script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
-    <script type="text/javascript" src="/static/js/components/titlecase.filter.js"></script>
-
-    <script type="text/javascript" src="/static/js/components/analytics/analytics.service.js"></script>
-    <script type="text/javascript" src="/static/js/components/analytics/analytics.directive.js"></script>
-
-    <script type="text/javascript" src="/static/js/components/util/util.module.js"></script>
-    <script type="text/javascript" src="/static/js/components/util/modal.service.js"></script>
-    <script type="text/javascript" src="/static/js/components/util/progress.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/util/progress.directive.js"></script>
-	<script type="text/javascript" src="/static/js/components/util/alert.service.js"></script>
-	<script type="text/javascript" src="/static/js/components/util/alert.directive.js"></script>
-	<!-- endbuild -->
-</body>
-</html>
+    <script type="text/javascript" src="/static/js/components/topbar/topbar.directive.js"></script>
+    <script type="text/javascript" src="/static/js/components/topbar/topbar.controller.js"></script>
+    
+    <script type="text/javascript" src="/static/js/interpret/interpret.module.js"></script>
+    <script type="text/javascript" src="/static/js/interpret/interpret.controller.js"></script>
+    <script type="text/javascript" src="/static/js/interpret/richEdit.directive.js"></script>
+    <script type="text/javascript" src="/static/js/interpret/imageExtension.js"></script>
+    <!-- endbuild -->
+{% endblock %}

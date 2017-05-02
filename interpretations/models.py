@@ -16,6 +16,7 @@ class Interpretation(models.Model):
     interpretation = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     public = models.BooleanField(default=False)
+    is_draft = models.BooleanField(default=True)
     slug = models.SlugField(max_length=200, default="")
 
 
@@ -77,6 +78,9 @@ class Interpretation(models.Model):
 
     def short_text(self):
         return self.get_text(150)
+
+    def url(self):
+        return '/@' + self.user.slug + '/tales/' + self.slug
 
     def get_text(self, length):
         text = self.to_text()

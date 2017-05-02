@@ -1,0 +1,195 @@
+/*========== Painting ============*/
+
+.container .painting {
+        width: 45%;
+        height: 100%;
+        background: #1c2023;
+        display: inline-block;
+        position: relative;
+        float: right;
+}
+
+
+.imgareaselect-outer {
+    background-color: rgba(230, 184, 0, 0.6);
+}
+
+.container .painting img{
+    opacity: 0;
+  -webkit-transition: opacity 3s;
+  -moz-transition: opacity 3s;
+  -ms-transition: opacity 3s;
+  transition: opacity 3s;
+}
+
+.container .painting.loaded img{
+    opacity: 1;
+}
+
+.container .painting img.landscape {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        width: 100%;
+        height: auto;
+        padding: 0 3%;
+}
+
+
+.container .painting img.potrait {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        height: 100%;
+        width: auto;
+        padding: 3% 0;
+}
+
+
+/*============ Interpretation =============*/
+
+.container .user-interpretation {
+        position: relative;
+        width: 55%;
+        height: 100%;
+        display: inline-block;
+        
+}
+
+
+
+.user-interpretation .content-container {
+    margin: 0 auto;
+    width: 600px;
+    padding: 16px;
+    padding-top: 80px;
+}
+
+
+/*================= Interpretation - Content ==================*/
+/*Changes made here should also reflect in the add interpretation area. */
+
+.medium-editor-toolbar{
+    background: white !important;
+}
+
+.medium-editor-action {
+    background: rgba(0,0,0,0.75) !important;
+}
+
+.medium-editor-action:hover {
+    color: white !important;
+    background: rgba(0,0,0,0.9) !important;
+}
+
+.medium-editor-button-active {
+    background: rgba(0,0,0,0.9) !important;
+}
+
+.interpret-content {
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: none solid rgba(0, 0, 0, 0.8);
+    font-family: 'Merriweather', serif;
+}
+
+.interpret-content h3 {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 0.1px;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.interpret-content h4 {
+    font-size: 1.2em;
+    letter-spacing: 0.1px;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.interpret-content,
+.interpret-content:after,
+.interpret-content p {
+    font-size: 18px;
+    letter-spacing: 0.1px;
+    line-height: 32px;
+    margin: 0;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.interpret-content:after{
+    font-style: normal;
+}
+
+.interpret-content a {
+    text-decoration: underline;
+    cursor: pointer;
+    color: rgba(0,0,0,0.8);
+}
+
+.interpret-content a:hover {
+    color: black;
+}
+
+.interpret-content blockquote {
+    font-size: 18px;
+    line-height: 32px;
+    letter-spacing: 0.1px;
+    margin-top: 4px;
+    margin-bottom: 24px;
+    padding: 0 16px;
+    font-style: italic;
+    /*border-left: 4px solid rgba(0, 0, 0, 0.8);*/
+    text-align: center;
+}
+
+.interpret-content blockquote::before,
+.interpret-content blockquote::after {
+    content: "";
+}
+
+.interpret-content b {
+    font-weight: bold;
+}
+
+.interpret-content i {
+    font-style: italic;
+}
+
+.interpret-content .image-holder {
+    width: 100%;
+    position: relative;
+    display: block;
+    margin-bottom: 13px;
+}
+
+.interpret-content .image-holder img {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.interpret-content .image-actions {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    font-family: 'taile', sans-serif;
+    cursor: pointer;
+    opacity: 0.6;
+    background-color: rgba(230, 184, 0, 0.4);
+    padding: 0 5px;
+}
+
+.interpret-content .image-actions:hover {
+    opacity: 1;
+    background-color: rgba(230, 184, 0, 0.8);
+}

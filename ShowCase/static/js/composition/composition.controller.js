@@ -297,6 +297,10 @@ controller("compositionController", [
         editArtModalService.showEditArt($scope.composition);
     };
 
+    $scope.gotoWriteTale = function () {
+        window.location.href = '/arts/' + $scope.composition.slug +'/write-a-tale'
+    }
+
     $scope.deleteArt = function () {
         confirmModalService.showDeleteConfirm().then(function () {
             progress.showProgress();

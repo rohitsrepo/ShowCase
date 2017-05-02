@@ -30,7 +30,7 @@ class InterpretationList(APIView):
 class InterpretationDetail(APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsInterpreterOrReadOnly)
 
-    def put(self, request, composition_id, interpretation_id, format=None):
+    def put(self, request, interpretation_id, format=None):
         interpretation = get_object_or_404(Interpretation, id=interpretation_id)
         self.check_object_permissions(request, interpretation)
         serializer = InterpretationSerializer(interpretation, data=request.DATA)
@@ -50,6 +50,6 @@ class InterpretationDetail(APIView):
 @permission_classes((permissions.AllowAny,))
 def get_composition_interprets(request, composition_id, format=None):
     composition = get_object_or_404(Composition, pk=composition_id)
-    interprets = composition.interprets.filter(public=True).order_by('-created')
+    interprets = composition.interprets.filter(public=True, is_draft=False).order_by('-created')
     serializer = InterpretationSerializer(interprets, context={'request': request})
     return Response(data=serializer.data)
