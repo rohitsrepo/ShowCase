@@ -315,7 +315,7 @@
 
     <section class="art-associates">
 
-    <section class="associate-category art-interprets" ng-cloak ng-show="artInterprets.length > 0">
+        <section class="associate-category art-interprets" ng-cloak ng-show="artInterprets.length > 0">
             <h2>Tales inspired from this work</h2>
 
             <article class="art-interpret" ng-repeat="interpret in artInterprets">
@@ -323,9 +323,9 @@
                 <a class="art-interpret-user" href="/@[[interpret.user.slug]]">By <b>[[interpret.user.name | titlecase]]</b></a>
             </article>
 
-            <section class="associated-buckets-actions" ng-cloak ng-show="artBuckets.length > 5">
+            <!-- <section class="associated-buckets-actions" ng-cloak ng-show="artBuckets.length > 5">
                 <a ui-sref="buckets({compositionSlug: '{{composition.slug}}' })">See all<i class="material-icons">arrow_forward</i></a>
-            </section>
+            </section> -->
         </section>
 
         <section class="associate-category art-buckets" ng-cloak ng-show="artBuckets.length > 0">

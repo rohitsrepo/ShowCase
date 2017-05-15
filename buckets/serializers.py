@@ -33,6 +33,7 @@ class BucketSerializer(serializers.ModelSerializer):
     is_admired = serializers.SerializerMethodField('get_is_admired')
     admire_as = serializers.SerializerMethodField('get_admire_as')
     is_public = serializers.Field(source='public')
+    url = serializers.CharField(source='get_absolute_url', read_only=True)
 
     class Meta:
         model = Bucket
@@ -51,7 +52,8 @@ class BucketSerializer(serializers.ModelSerializer):
             'composition_added',
             'is_bookmarked',
             'is_admired',
-            'admire_as')
+            'admire_as',
+            'url')
         read_only_fields = ('id', 'slug', 'views' )
 
     def get_ownership(self, obj):

@@ -16,8 +16,6 @@
 .container .painting img{
     opacity: 0;
   -webkit-transition: opacity 3s;
-  -moz-transition: opacity 3s;
-  -ms-transition: opacity 3s;
   transition: opacity 3s;
 }
 
@@ -57,6 +55,29 @@
     height: 100%;
     display: inline-block;
     overflow-x: auto;
+}
+
+.container .user-interpretation::-webkit-scrollbar {
+    width: 4px;
+}
+
+.container .user-interpretation::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+}
+
+.container .user-interpretation::-webkit-scrollbar-thumb {
+    background-color: black;
+    /*border: 5px solid white;*/
+}
+
+@media (max-width: 800px) {
+  .container .user-interpretation::-webkit-scrollbar {
+      width: 7px;
+  }
+
+  .container .user-interpretation::-webkit-scrollbar-thumb {
+      border: none;
+  }
 }
 
 .user-interpretation .content-container {

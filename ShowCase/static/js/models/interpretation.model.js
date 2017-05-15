@@ -18,5 +18,14 @@ angular.module('module.model')
         });
     };
 
+    service.getRelated = function (interpretationId) {
+        var interpretUrl = "/interpretations/" + interpretationId + "/related";
+        return $http.get(interpretUrl).then(function (response) {
+            return response.data;
+        }, function (response) {
+            return $q.reject(response);
+        });
+    };
+
 	return service;
 }]);

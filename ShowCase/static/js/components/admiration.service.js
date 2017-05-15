@@ -38,6 +38,10 @@ angular.module('module.admiration', ['module.model', 'module.util'])
         return admire(bucket.id, admirationModel.TypeBucket, option);
     };
 
+    service.admireInterpret = function (interpret) {
+        return admire(interpret.id, admirationModel.TypeInterpret, '');
+    };
+
 	var unadmire = function (object_id, content_type) {
 		return auth.runWithAuth(function () {
 			progress.showProgress();
@@ -58,6 +62,10 @@ angular.module('module.admiration', ['module.model', 'module.util'])
 
     service.unadmireBucket = function (bucket) {
         return unadmire(bucket.id, admirationModel.TypeBucket);
+    };
+
+    service.unadmireInterpret = function (interpret) {
+        return unadmire(interpret.id, admirationModel.TypeInterpret);
     };
 
     var getAdmirationOptions = function (object_id, content_type) {

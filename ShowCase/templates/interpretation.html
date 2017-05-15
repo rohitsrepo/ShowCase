@@ -37,7 +37,7 @@
 	<!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="interpretationController" ng-init="init('True', 'False')"{% endblock %}
+{% block body_attr_block %}ng-controller="interpretationController" ng-init="init({{interpretation.id}}, '{{is_admired}}', '{{is_bookmarked}}', {{interpretation.user.id}}, '{{is_user_followed}}')"{% endblock %}
 
 {% block site_header_block %}
 {%endblock%}
@@ -217,16 +217,16 @@
             </header>
             <div class="content-container">
                 <section class="interpret-content">{{interpretation.interpretation | safe}}</section>
-                <section class="actions" ng-cloak>
-                    <button class="interpret-action" ng-click="handleAdmire()" ng-cloak ng-hide="interpretation.is_admired">
+                <section class="actions">
+                    <button class="interpret-action" ng-click="handleAdmire()" ng-hide="interpretation.is_admired">
                         <i class="material-icons">favorite_border</i>  Admire</button>
-                    <button class="interpret-action active" ng-click="handleAdmire()" ng-cloak ng-show="interpretation.is_admired">
+                    <button class="interpret-action active ng-hide" ng-click="handleAdmire()" ng-cloak ng-show="interpretation.is_admired">
                         <i class="material-icons">favorite</i>  Admired</button>
                     <button class="interpret-action" ng-click="showShare()">
                         <i class="material-icons">share</i>  Share</button>
-                    <button class="interpret-action" ng-click="handleBookmark()" ng-cloak ng-hide="interpretation.is_bookmarked">
+                    <button class="interpret-action" ng-click="handleBookmark()" ng-hide="interpretation.is_bookmarked">
                         <i class="material-icons">bookmark_border</i>  Bookmark</button>
-                    <button class="interpret-action active" ng-click="handleBookmark()" ng-cloak ng-show="interpretation.is_bookmarked">
+                    <button class="interpret-action active ng-hide" ng-click="handleBookmark()" ng-cloak ng-show="interpretation.is_bookmarked">
                         <i class="material-icons">bookmark</i>  Bookmarked</button>
                 </section>
                 <section class="author">
@@ -237,6 +237,65 @@
                         <a ng-href="/@{{interpretation.user.slug}}"><h3 class="author-name">{{interpretation.user.name | title}}</h3></a>
                         <a ng-href="/@{{interpretation.user.slug}}"><h4 class="author-about">{{interpretation.user.about | title}}</h4></a>
                     </section>
+                </section>
+
+                <section class="interpret-associates">
+
+                    <!-- <section class="associate-category interpret-interprets" ng-cloak ng-show="relatedInterprets.length > 0">
+                        <h2>Other tales by <a ng-href="/@{{composition.artist.slug}}">[[interpretation.user | titlecase]]</a></h2>
+
+                        <article class="interpret-interpret" ng-repeat="interpret in relatedInterprets">
+                            <a ng-href="/@[[interpret.user.slug]]/tales/[[interpret.slug]]" class="interpret-interpret-text">[[interpret.text]]</a>
+                            <a class="interpret-interpret-user" href="/@[[interpret.user.slug]]">By <b>[[interpret.user.name | titlecase]]</b></a>
+                        </article>
+
+                        <section class="associated-buckets-actions" ng-cloak ng-show="relatedInterprets.length > 5">
+                            <a ui-sref="buckets({compositionSlug: '{{composition.slug}}' })">See all<i class="material-icons">arrow_forward</i></a>
+                        </section>
+                    </section> -->
+
+                    <section class="associate-category interpret-buckets" ng-cloak ng-show="relatedBuckets.length > 0">
+                        <h2><a target="_blank" ng-href="/@{{interpretation.user.slug}}/series">Series created by {{interpretation.user.name | title}}</a></h2>
+
+                        <div class="interpret-buckets-container">
+                            <a ng-href="/@[[bucket.owner.slug]]/series/[[bucket.slug]]" target="_blank" class="interpret-bucket" ng-repeat="bucket in relatedBuckets">
+                                <div class="interpret-bucket-picture" ng-style="{'background-image': 'url([[bucket.picture]])'}">
+                                    <section class="details" ng-class="{'long-description': bucket.description.length > 50}">
+                                        <h2>[[bucket.name | titlecase]]</h2>
+                                        <h3>[[bucket.description]]</h3>
+                                        <div class="by-user nt-mb" nt-mb>By</div>
+                                        <h3 class="nt-mb">[[bucket.owner.name | titlecase ]]</h3>
+                                        <div class="arts-count">[[bucket.compositions_count]] Artworks</div>
+                                        <div class="arts-count">[[bucket.views]] Views</div>
+
+                                    </section>
+                                </div>
+                            </a>
+                        </div>
+                    </section>
+
+                    <section class="associate-category associate-works" ng-cloak ng-show="relatedWorks.length > 0">
+                        <h2><a ng-href="/@{{composition.artist.slug}}/contributions">Artworks added by {{interpretation.user.name | title}}</a></h2>
+
+                        <div class="associate-works-container">
+                            <section class="work" ng-repeat="work in relatedWorks">
+                                <div class="work-picture" ng-style="{'background-image': 'url([[work.matter_400]])'}">
+                                    <div class="work-nsfw-overlay" ng-cloak ng-show="work.nsfw"  ng-click="work.nsfw = false">
+                                        <h3>This work has been marked not safe</h3>
+                                        <h4>Click anywhere to show the work</h4>
+                                    </div>
+                                    <a class="work-details" ng-class="{'long-title': work.title.length> 22}" custom-href="/arts/[[work.slug]]">
+                                        <h2>[[work.title | titlecase]]</h2>
+                                        <div class="by-user">By</div>
+                                        <h3>[[work.artist.name | titlecase ]]</h3>
+                                        <div class="arts-count" ng-show=" work.admirers_count > 0">[[work.admirers_count]] Admirers</div>
+                                        <div class="arts-count" ng-show=" work.buckets_count > 0">[[work.buckets_count]] Series</div>
+                                    </a>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+
                 </section>
             </div>
         </section>

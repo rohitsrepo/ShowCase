@@ -24,7 +24,8 @@ body {
 }
 
 .content-container .interpret-content {
-    padding: 16px 0;
+    padding-top: 32px;
+    padding-bottom: 16px;
 }
 
 /*---------- Actions----------*/
@@ -67,6 +68,7 @@ body {
     cursor: pointer;
     color: rgba(0, 0, 0, 0.9);
     padding-top: 40px;
+    padding-bottom: 40px;
     width: 100%;
 	border-top: 1px solid rgba(0,0,0,0.2);
 }
@@ -127,4 +129,289 @@ body {
 .author .author-follow:hover {
     background: rgba(0, 0, 0, 0.9);
     color: rgba(255, 255, 255, 0.9);
+}
+
+/*-------------Related--------------*/
+
+.interpret-associates {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.interpret-associates .associate-category {
+    margin-bottom: 32px;
+    position: relative;
+}
+
+.interpret-associates .associate-category > h2 {
+    margin-bottom: 4px;
+    padding-right: 95px;
+    padding-left: 5px;
+    letter-spacing: 1px;
+    font-size: 1em;
+    text-align: left;
+}
+
+.interpret-associates .associate-category > h2 a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 800px) {
+    .interpret-associates {
+        width: 95%;
+    }
+}
+
+/*------------ Related buckets ----------------*/
+.interpret-associates .interpret-buckets {
+    width: 100%;
+    text-align: left;
+}
+
+
+.interpret-associates .interpret-buckets .associated-buckets-actions {
+    position: absolute;
+    right: 0;
+}
+
+.interpret-associates .interpret-buckets .associated-buckets-actions a {
+    cursor: pointer;
+}
+
+.interpret-associates .interpret-buckets .associated-buckets-actions i {
+    vertical-align: bottom;
+    font-size: 1.2em;
+    padding-left: 5px;
+}
+
+.interpret-associates .interpret-buckets .interpret-buckets-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.interpret-associates .interpret-buckets .interpret-bucket {
+    width: 200px;
+    padding: 5px;
+    height: 200px;
+    display: inline-block;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.interpret-associates .interpret-buckets .interpret-bucket-picture {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.interpret-associates .interpret-buckets .interpret-bucket .details {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    transition: all 1s;
+    padding: 4px;
+    padding-top: 28px;
+    line-height: 1;
+}
+
+.interpret-associates .interpret-buckets .interpret-bucket .details:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.interpret-associates .interpret-buckets .interpret-bucket .details h2 {
+    color: white;
+    font-size: 1.4em;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+.interpret-associates .interpret-buckets .interpret-bucket .details .by-user {
+    font-size: 0.8em;
+    line-height: 1.5em;
+    margin-top: 40px;
+}
+
+
+.interpret-associates .interpret-buckets .interpret-bucket .details.long-description .by-user {
+    margin-top: 40px;
+}
+
+.interpret-associates .interpret-buckets .interpret-bucket .details h3 {
+    font-size: 1em;
+    line-height: 1.5em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.interpret-associates .interpret-buckets .interpret-bucket .details .arts-count {
+    font-size: 0.7em;
+    margin-top: 10px;
+    display: inline;
+}
+
+.interpret-bucket .details .interpret-bucket-details-actions,
+.interpret-bucket .details .bookmark-action {
+    position: absolute;
+    top: 20px;
+    transition: all 0.3s;
+}
+
+.interpret-bucket .details:hover .interpret-bucket-details-actions i,
+.interpret-bucket .details:hover .bookmark-action i {
+    opacity: 1;
+}
+
+.interpret-bucket .details .interpret-bucket-details-actions {
+    right: 20px;
+}
+
+.interpret-bucket .details .bookmark-action {
+    left: 20px;
+}
+
+.interpret-bucket .details .interpret-bucket-details-actions i,
+.interpret-bucket .details .bookmark-action i {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2em;
+    padding: 0 2px;
+    opacity: 0;
+}
+
+.interpret-bucket .details .interpret-bucket-details-actions i.admire-on-icon,
+.interpret-bucket .details .bookmark-action i.bookmark-on-icon {
+    opacity: 1;
+}
+
+.interpret-bucket .details .interpret-bucket-details-actions i:hover,
+.interpret-bucket .details .bookmark-action i:hover {
+    color: white;
+}
+
+@media (max-width: 800px) {
+    .interpret-associates .interpret-buckets .interpret-bucket {
+        width: 50%;
+        display: inline-block;
+        height: 200px;
+    }
+
+    .interpret-associates .interpret-buckets .interpret-buckets-container {
+        display: block;
+    }
+}
+
+
+/*--------------- Related Works --------------*/
+
+.interpret-associates .associate-works .associate-works-container {
+    width: 100%;
+    text-align: left;
+}
+
+.interpret-associates .associate-works .work {
+    width: 180px;
+    padding: 5px;
+    height: 180px;
+    display: inline-block;
+    text-align: center;
+}
+
+.interpret-associates .associate-works .work .work-nsfw-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    z-index: 10;
+    padding-top: 20%;
+    line-height: 20px;
+}
+
+.interpret-associates .associate-works .work .work-nsfw-overlay.ng-hide-add {
+        -webkit-animation: fadeOut 0.4s;
+        animation: fadeOut 0.4s;
+}
+
+.interpret-associates .associate-works .work-picture {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.interpret-associates .associate-works .work .work-details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 1s;
+    line-height: 1;
+    padding-top: 40px;
+}
+
+.interpret-associates .associate-works .work .work-details:hover {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    opacity: 1;
+}
+
+.interpret-associates .associate-works .work .work-details h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 1.2em;
+}
+
+.interpret-associates .associate-works .work .work-details .by-user {
+    font-size: 0.8em;
+    margin-top: 20px;
+    line-height: 1.2em;
+}
+
+
+.interpret-associates .associate-works .work .work-details.long-title .by-user {
+    
+}
+
+.interpret-associates .associate-works .work .work-details h3 {
+    font-size: 1em;
+    line-height: 1.2em;
+}
+
+.interpret-associates .associate-works .work .work-details .arts-count {
+    font-size: 0.7em;
+    display: inline;
+}
+
+.interpret-associates .associate-works .associated-works-actions {
+    position: absolute;
+    right: 0;
+}
+
+.interpret-associates .associate-works .associated-works-actions i {
+    vertical-align: bottom;
+    font-size: 1.2em;
+    padding-left: 5px;
+}
+
+@media (max-width: 800px) {
+    .interpret-associates .associate-works .work {
+        width: 50%;
+        display: inline-block;
+    }
 }

@@ -24,6 +24,10 @@ angular.module('module.bookmark', ['module.model', 'module.util'])
         return bookmark(bucket.id, bookmarkModel.TypeBucket);
     };
 
+    service.bookmarkInterpret = function (interpret) {
+        return bookmark(interpret.id, bookmarkModel.TypeInterpret);
+    };
+
 	var unmark = function (object_id, content_type) {
 		return auth.runWithAuth(function () {
 			progress.showProgress();
@@ -44,6 +48,10 @@ angular.module('module.bookmark', ['module.model', 'module.util'])
 
     service.unmarkBucket = function (bucket) {
         return unmark(bucket.id, bookmarkModel.TypeBucket);
+    };
+
+    service.unmarkInterpret = function (interpret) {
+        return unmark(interpret.id, bookmarkModel.TypeInterpret);
     };
 
 	return service;

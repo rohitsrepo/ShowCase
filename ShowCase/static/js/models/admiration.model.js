@@ -6,6 +6,7 @@ angular.module("module.model")
 
     service.TypeBucket = 'BK';
     service.TypeArt = 'AR';
+    service.TypeInterpret = 'IN';
 
     service.admire = function (object_id, content_type, admire_word) {
         admire_word = admire_word || '';

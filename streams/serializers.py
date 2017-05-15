@@ -9,32 +9,50 @@ from buckets.serializers import BucketSerializer
 from compositions.models import Composition
 from compositions.serializers import CompositionSerializer
 from interpretations.models import Interpretation
-from interpretations.serializers import PostInterpretationSerializer
+from interpretations.serializers import InterpretationSerializer
 
 class ContentObjectRelatedField(serializers.RelatedField):
 
     def to_native(self, value):
+
+        print value
         verb = value[0]['verb']
 
-        if verb==Post.INTERPRET:
+        if verb in [Post.INTERPRET, Post.ADMIRE_INTERPRET]:
             interpretation_id = value[0]['object']
             interpretation = Interpretation.objects.get(pk=interpretation_id)
-            serializer = PostInterpretationSerializer(interpretation, context={'request': self.context['request']})
-        elif verb==Post.ADD or verb==Post.CREATE or verb==Post.ADMIRE_ART:
+            serializer = InterpretationSerializer(interpretation, context={'request': self.context['request']})
+        elif verb in [Post.CREATE, Post.ADMIRE_ART, Post.ADD]:
             composition_id = value[0]['object']
             composition = Composition.objects.get(pk=composition_id)
             serializer = CompositionSerializer(composition, context={'request': self.context['request']})
-        elif verb==Post.BUCKET:
-            composition_id = value[0]['target']
-            composition = Composition.objects.get(pk=composition_id)
-            serializer = CompositionSerializer(composition, context={'request': self.context['request']})
-        elif verb==Post.ADMIRE_BUCKET:
-            bucket_id = value[0]['object']
+        elif verb in [Post.ADMIRE_BUCKET, Post.BUCKET]:
+            interpretation_id = value[0]['object']
             bucket = Bucket.objects.get(pk=bucket_id)
             serializer = BucketSerializer(bucket, context={'request': self.context['request']})
         elif verb=='FL':
             return {};
         else:
+            print value
+            raise Exception('Unexpected type of notification activity')
+
+        return serializer.data
+
+class TargetObjectRelatedField(serializers.RelatedField):
+
+    def to_native(self, value):
+
+        print value
+        verb = value[0]['verb']
+
+        if verb in [Post.INTERPRET, Post.BUCKET]:
+            composition_id = value[0]['target']
+            composition = Composition.objects.get(pk=composition_id)
+            serializer = CompositionSerializer(composition, context={'request': self.context['request']})
+        elif verb in ['FL', Post.ADMIRE_INTERPRET, Post.ADMIRE_BUCKET, Post.BUCKET, Post.CREATE, Post.ADMIRE_ART]:
+            return {};
+        else:
+            print value
             raise Exception('Unexpected type of notification activity')
 
         return serializer.data
@@ -43,6 +61,7 @@ class NotificationSerializer(serializers.Serializer):
     verb = serializers.CharField(max_length=4, source='verb')
     actors = serializers.CharField(max_length=4, source='activities')
     content_object = ContentObjectRelatedField(source='activities')
+    target_object = TargetObjectRelatedField(source='activities')
     id = serializers.CharField(max_length=32, read_only=True)
     is_read = serializers.BooleanField(read_only=True)
     is_seen = serializers.BooleanField(read_only=True)

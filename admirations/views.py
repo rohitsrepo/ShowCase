@@ -21,6 +21,7 @@ from accounts.models import User
 from accounts.serializers import ExistingUserSerializer
 from compositions.models import Composition
 from buckets.models import Bucket
+from interpretations.models import Interpretation
 
 class AdmirationsList(APIView):
 
@@ -33,6 +34,8 @@ class AdmirationsList(APIView):
                 content_object = get_object_or_404(Composition, id=serializer.data['object_id'])
             elif (serializer.data['content_type'] == Admiration.BUCKET):
                 content_object = get_object_or_404(Bucket, id=serializer.data['object_id'])
+            elif (serializer.data['content_type'] == Admiration.INTERPRET):
+                content_object = get_object_or_404(Interpretation, id=serializer.data['object_id'])
             else:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -62,6 +65,10 @@ class AdmirationsList(APIView):
                 content_object = get_object_or_404(Bucket, id=serializer.data['object_id'])
                 ctype = ContentType.objects.get(app_label='buckets', model='bucket')
                 content_type = Admiration.BUCKET
+            elif (serializer.data['content_type'] == Admiration.INTERPRET):
+                content_object = get_object_or_404(Interpretation, id=serializer.data['object_id'])
+                ctype = ContentType.objects.get(app_label='interpretations', model='interpretation')
+                content_type = Admiration.INTERPRET
             else:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -102,6 +109,8 @@ class AdmirationsList(APIView):
                 ctype = ContentType.objects.get(app_label='compositions', model='composition')
             elif (content_type == Admiration.BUCKET):
                 ctype = ContentType.objects.get(app_label='buckets', model='bucket')
+            elif (content_type == Admiration.INTERPRET):
+                ctype = ContentType.objects.get(app_label='interpretations', model='interpretation')
             else:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -149,6 +158,8 @@ class ObjectAdmirationsList(APIView):
                 content_object = get_object_or_404(Composition, id=serializer.data['object_id'])
             elif (serializer.data['content_type'] == Admiration.BUCKET):
                 content_object = get_object_or_404(Bucket, id=serializer.data['object_id'])
+            elif (serializer.data['content_type'] == Admiration.INTERPRET):
+                content_object = get_object_or_404(Interpretation, id=serializer.data['object_id'])
             else:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
 

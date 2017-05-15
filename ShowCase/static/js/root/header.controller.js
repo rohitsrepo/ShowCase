@@ -37,8 +37,9 @@ angular.module('module.root')
         var action, target_name, target_link;
         var verb = notification.verb;
         if (verb == 'IN') {
-            action = "interpreted";
-            target_name = notification.content_object.interpretation;
+            action = 'wrote a tale about ' + notification.target_object.title;
+            target_name = '';
+            target_link =  notification.content_object.url;
         }
         else if (verb == 'AD') {
             action = 'added new artwork';
@@ -51,24 +52,29 @@ angular.module('module.root')
             target_link = '/arts/' + notification.content_object.slug;
         }
         else if (verb == 'BK') {
-            action = 'added artwork ' + notification.content_object.title + ' to series';
+            action = 'added artwork ' + notification.target_object.title + ' to series';
             target_name = '';
-            target_link = '/arts/' + notification.content_object.slug;
+            target_link = notification.content_object.url;
         }
         else if (verb == 'MA') {
             action = 'admired artwork';
             target_name = notification.content_object.title;
-            target_link = '/arts/' + notification.content_object.slug;
+            target_link = '/@' + notification.actors[0].slug + '/admirations;
         }
         else if (verb == 'MB') {
             action = 'admired series';
             target_name = notification.content_object.name;
-            target_link = '/@' + notification.content_object.owner.slug + '/series/' + notification.content_object.slug;
+            target_link = '/@' + notification.actors[0].slug + '/admirations';
         }
         else if (verb == 'FL') {
             action = 'started following you';
             target_name = '';
-            target_link = '/@' + $scope.user.slug;
+            target_link = '/@' + notification.actors[0].slug;
+        }
+        else if (verb == 'AI') {
+            action = 'admired your tale';
+            target_name = '';
+            target_link = '/@' + notification.actors[0].slug + '/admirations';
         }
         else {
             console.error('Invalid notification activity type');

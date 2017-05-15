@@ -11,10 +11,12 @@ class AdmirationOption(models.Model):
 class Admiration(models.Model):
     BUCKET = 'BK'
     ART = 'AR'
+    INTERPRET = 'IN'
 
     TYPE_CHOICES = (
         (BUCKET, 'bucket'),
         (ART, 'art'),
+        (INTERPRET, 'interpret'),
     )
 
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='admirations')
@@ -31,6 +33,8 @@ class Admiration(models.Model):
             post_type = Post.ADMIRE_BUCKET
         elif self.admire_type == self.ART:
             post_type = Post.ADMIRE_ART
+        elif self.admire_type == self.INTERPRET:
+            post_type = Post.ADMIRE_INTERPRET
         else:
             raise("Invalid admire type found")
 
@@ -44,6 +48,8 @@ class Admiration(models.Model):
             post_type = Post.ADMIRE_BUCKET
         elif self.admire_type == self.ART:
             post_type = Post.ADMIRE_ART
+        elif self.admire_type == self.INTERPRET:
+            post_type = Post.ADMIRE_INTERPRET
         else:
             raise("Invalid admire type found")
 

@@ -23,7 +23,7 @@ class InterpretationSerializer(serializers.ModelSerializer):
     timesince = serializers.CharField(source='timesince', read_only=True)
     vote = InterpretationVoteSerializer(read_only=True)
     text = serializers.CharField(source='short_text', read_only=True)
-    url = serializers.CharField(source='url', read_only=True)
+    url = serializers.CharField(source='get_absolute_url', read_only=True)
 
     class Meta:
         model = Interpretation

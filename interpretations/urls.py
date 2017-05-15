@@ -7,4 +7,5 @@ urlpatterns = patterns('',
                            views.InterpretationDetail.as_view(), name='interpretation-detail'),
                        url(r'^/(?P<interpretation_id>[0-9]+)/comments', include('comments.urls')),
                        url(r'^/(?P<interpretation_id>[0-9]+)/votes', include('interpretationVotes.urls')),
+                       url(r'^/(?P<interpretation_id>[0-9]+)/related', 'interpretations.views.get_related'),
                        )

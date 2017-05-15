@@ -16,6 +16,7 @@ class Post(models.Model):
     BUCKET = 'BK'
     ADMIRE_ART = 'MA'
     ADMIRE_BUCKET = 'MB'
+    ADMIRE_INTERPRET = 'AI'
 
     TYPE_CHOICES = (
         (INTERPRET, 'interpret'),

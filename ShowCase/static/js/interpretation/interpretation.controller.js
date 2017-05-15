@@ -1,20 +1,96 @@
 angular.module("InterpretationApp")
-.controller('interpretationController', ['$scope', function($scope) {
+.controller('interpretationController', [
+    '$scope',
+    'interpretationModel',
+    'followService',
+    'bookService',
+    'admireService',
+    function($scope, interpretationModel, followService, bookService, admireService) {
     $scope.hideName = true;
     $scope.interpretation = {};
 
-    $scope.init = function (is_admired, is_bookmarked) {
+    var getInterpretAssociates = function () {
+        interpretationModel.getRelated($scope.interpretation.id).then(function (response) {
+            console.log(response);
+            $scope.relatedBuckets = response.relatedBuckets;
+            $scope.relatedInterprets = response.relatedInterprets;
+            $scope.relatedWorks = response.relatedWorks;
+            $scope.relatedCounts = response.counts;
+        });
+    };
+
+    $scope.init = function (id, is_admired, is_bookmarked, user_id, is_user_followed) {
+        $scope.interpretation.id = id;
         $scope.interpretation.is_admired = is_admired == 'True';
         $scope.interpretation.is_bookmarked = is_bookmarked == 'True';
+        $scope.interpretation.user = {
+            'id': user_id,
+            'is_followed': is_user_followed == 'True'
+        }
+
+        getInterpretAssociates();
+    };
+
+    $scope.handleBookMark = function () {
+        var interpretation = $scope.interpretation;
+
+        if (interpretation.is_bookmarked) {
+            bookService.unmarkInterpret(interpretation).then(function () {
+                interpretation.is_bookmarked = false;
+            });
+        } else {
+            bookService.bookmarkInterpret(interpretation).then(function () {
+                interpretation.is_bookmarked = true;
+            });;
+        }
     };
 
     $scope.handleAdmire = function () {
-        $scope.interpretation.is_admired = !$scope.interpretation.is_admired;
+        var interpretation = $scope.interpretation;
+
+        if (interpretation.is_admired) {
+            admireService.unadmireInterpret(interpretation).then(function () {
+                interpretation.is_admired = false;
+            });
+        } else {
+            admireService.admireInterpret(interpretation).then(function () {
+                interpretation.is_admired = true;
+            });;
+        }
+    };
+
+    $scope.showBookMarkers = function () {
+        usermodalService.showBookMarkers($scope.interpretation).then(function (bookStatus) {
+            if (bookStatus == 'bookmarked') {
+                $scope.interpretation.is_bookmarked = true;
+            }
+        });
     }
 
-    $scope.handleBookmark = function () {
-        $scope.interpretation.is_bookmarked = !$scope.interpretation.is_bookmarked;
+    $scope.showAdmirers = function () {
+        usermodalService.showArtAdmirers($scope.interpretation).then(function (admireStatus) {
+            if (admireStatus == 'admired') {
+                $scope.interpretation.is_admired = true;
+            }
+        });
     }
+
+
+
+    $scope.handleFollow = function (event) {
+        var user = $scope.interpretation.user;
+
+        if (user.is_followed) {
+            followService.unfollow(user).then(function () {
+                user.is_followed = false;
+            });
+        } else {
+            followService.follow(user).then(function () {
+                user.is_followed = true;
+            });
+        }
+    }
+
     
 
 }]).directive('fitImage', function () {

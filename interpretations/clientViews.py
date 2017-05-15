@@ -27,8 +27,17 @@ def edit_interpretation(request, id):
 
 def show_interpretation(request, user_slug, interpret_slug):
     interpretation = get_object_or_404(Interpretation, slug=interpret_slug, user__slug=user_slug)
+    if request.user.is_authenticated():
+        user_id = request.user.id
+    else:
+        user_id = 0
+
     context = RequestContext(request, {
         'interpretation': interpretation,
         'composition': interpretation.composition,
+        'is_me' : interpretation.user.id == user_id,
+        'is_admired' : interpretation.is_admired(user_id),
+        'is_bookmarked' : interpretation.is_bookmarked(user_id),
+        'is_user_followed' : interpretation.user.is_followed(user_id),
         'editMode': False})
     return render_to_response("interpretation.html", context)

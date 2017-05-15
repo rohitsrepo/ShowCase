@@ -7,10 +7,12 @@ from django.db import models
 class BookMark(models.Model):
     BUCKET = 'BK'
     ART = 'AR'
+    INTERPRET = 'IN'
 
     TYPE_CHOICES = (
         (BUCKET, 'bucket'),
         (ART, 'art'),
+        (INTERPRET, 'interpret'),
     )
 
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='bookmarks')

@@ -6,6 +6,7 @@ angular.module("module.model")
 
     service.TypeBucket = 'BK';
     service.TypeArt = 'AR';
+    service.TypeInterpret = 'IN';
 
     service.bookmark = function (object_id, content_type) {
         return $http.post('/bookmarks',
