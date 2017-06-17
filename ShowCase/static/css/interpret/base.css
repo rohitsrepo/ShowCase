@@ -87,6 +87,18 @@
     padding-top: 80px;
 }
 
+/*==============Interpret Title==========*/
+
+.content-container .content-title {
+    width: 100%;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border: none;
+    font-family: 'Merriweather', serif;
+}
+
 
 /*================= Interpretation - Content ==================*/
 /*Changes made here should also reflect in the add interpretation area. */
@@ -115,7 +127,7 @@
 }
 
 .interpret-content h3 {
-    font-size: 36px;
+    font-size: 28px;
     font-weight: bold;
     letter-spacing: 0.1px;
     margin: 0;
@@ -132,7 +144,7 @@
 .interpret-content,
 .interpret-content:after,
 .interpret-content p {
-    font-size: 18px;
+    font-size: 20px;
     letter-spacing: 0.1px;
     line-height: 32px;
     margin: 0;

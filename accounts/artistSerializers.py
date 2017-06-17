@@ -25,7 +25,7 @@ class UserInterpretationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Interpretation
-        fields = ('composition', 'interpretation', 'timesince')
+        fields = ('composition', 'interpretation', 'timesince', 'title')
 
 class PaginatedUserInterpretationSerializer(PaginationSerializer):
     class Meta:

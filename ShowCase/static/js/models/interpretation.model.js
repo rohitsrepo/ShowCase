@@ -2,9 +2,9 @@ angular.module('module.model')
 .factory('interpretationModel', ['$http', '$q', function ($http, $q) {
 	var service = {};
 
-    service.addInterpretation = function (interpretation_id, interpretation, isDraft) {
+    service.addInterpretation = function (interpretation_id, title, interpretation, isDraft) {
         var interpretUrl = "/interpretations/" + interpretation_id;
-        return $http.put(interpretUrl, {"interpretation": interpretation, 'is_draft': isDraft}).then(function (response) {
+        return $http.put(interpretUrl, {"title": title, "interpretation": interpretation, 'is_draft': isDraft}).then(function (response) {
             return response.data;
         });
     };

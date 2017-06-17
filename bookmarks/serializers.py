@@ -8,6 +8,8 @@ from compositions.models import Composition
 from compositions.serializers import CompositionSerializer
 from buckets.models import Bucket
 from buckets.serializers import BucketSerializer
+from interpretations.models import Interpretation
+from interpretations.serializers import InterpretationSerializer
 
 class ContentObjectRelatedField(serializers.RelatedField):
 
@@ -17,6 +19,8 @@ class ContentObjectRelatedField(serializers.RelatedField):
             serializer = CompositionSerializer(value, context={'request': self.context['request']})
         elif isinstance(value, Bucket):
             serializer = BucketSerializer(value, context={'request': self.context['request']})
+        elif isinstance(value, Interpretation):
+            serializer = InterpretationSerializer(value, context={'request': self.context['request']})
         else:
             raise Exception('Unexpected type of bookmark object')
 
@@ -42,6 +46,6 @@ class BookmarkContentCreateSerializer(serializers.Serializer):
 
     def validate_content_type(self, attrs, value):
         field_value = attrs[value]
-        if (field_value == BookMark.ART or field_value==BookMark.BUCKET):
+        if (field_value in [BookMark.ART, BookMark.BUCKET, BookMark.INTERPRET]):
             return attrs
         raise serializers.ValidationError('Invalid bookmark type received');

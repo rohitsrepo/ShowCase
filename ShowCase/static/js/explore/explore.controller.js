@@ -154,6 +154,20 @@ angular.module('ExploreApp')
         }
     };
 
+    $scope.handleBookmarkInterpret = function (index) {
+        var interpret = $scope.arts[index].content;
+
+        if (interpret.is_bookmarked) {
+            bookService.unmarkInterpret(interpret).then(function () {
+                interpret.is_bookmarked = false;
+            });
+        } else {
+            bookService.bookmarkInterpret(interpret).then(function () {
+                interpret.is_bookmarked = true;
+            });;
+        }
+    };
+
     $scope.showArtBuckets = function (index) {
         var art = $scope.arts[index].content;
         $state.go('buckets', {'artSlug': art.slug});

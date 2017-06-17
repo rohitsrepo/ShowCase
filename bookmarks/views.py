@@ -15,6 +15,7 @@ from .serializers import PaginatedBookmarkSerializer, BookmarkContentCreateSeria
 
 from compositions.models import Composition
 from buckets.models import Bucket
+from interpretations.models import Interpretation
 
 class BookmarksList(APIView):
 
@@ -47,6 +48,10 @@ class BookmarksList(APIView):
                 content_object = get_object_or_404(Bucket, id=serializer.data['object_id'])
                 ctype = ContentType.objects.get(app_label='buckets', model='bucket')
                 content_type = BookMark.BUCKET
+            elif (serializer.data['content_type'] == BookMark.INTERPRET):
+                content_object = get_object_or_404(Interpretation, id=serializer.data['object_id'])
+                ctype = ContentType.objects.get(app_label='interpretations', model='interpretation')
+                content_type = BookMark.INTERPRET
             else:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -66,6 +71,8 @@ class BookmarksList(APIView):
                 ctype = ContentType.objects.get(app_label='compositions', model='composition')
             elif (serializer.data['content_type'] == BookMark.BUCKET):
                 ctype = ContentType.objects.get(app_label='buckets', model='bucket')
+            elif (serializer.data['content_type'] == BookMark.INTERPRET):
+                ctype = ContentType.objects.get(app_label='interpretations', model='interpretation')
             else:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
 

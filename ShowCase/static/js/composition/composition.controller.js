@@ -293,6 +293,19 @@ controller("compositionController", [
         }
     };
 
+    $scope.handleBookmarkInterpret = function (index) {
+        var interpret = $scope.artInterprets[index];
+        if (interpret.is_bookmarked) {
+            bookService.unmarkInterpret(interpret).then(function () {
+                interpret.is_bookmarked = false;
+            });
+        } else {
+            bookService.bookmarkInterpret(interpret).then(function () {
+                interpret.is_bookmarked = true;
+            });;
+        }
+    };
+
     $scope.showEditArt = function () {
         editArtModalService.showEditArt($scope.composition);
     };

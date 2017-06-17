@@ -1,21 +1,30 @@
-from .models import User
-from .serializers import NewUserSerializer, ExistingUserSerializer, PasswordUserSerializer
-from .artistSerializers import PaginatedUserCompositionSerializer, PaginatedUserInterpretationSerializer
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
+from django.core.exceptions import ValidationError
 from django.http import Http404
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import get_object_or_404, redirect
+
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import generics, permissions
-from .permissions import IsHimselfOrReadOnly, IsHimself
-from django.contrib.auth import authenticate, login, logout
-from ShowCase.utils import check_object_permissions
-from django.shortcuts import get_object_or_404, redirect
 from rest_framework.views import APIView
+
+from ShowCase.utils import check_object_permissions
+
+from .models import User
+from .serializers import NewUserSerializer, ExistingUserSerializer, PasswordUserSerializer
+from .artistSerializers import PaginatedUserCompositionSerializer, PaginatedUserInterpretationSerializer
+from .permissions import IsHimselfOrReadOnly, IsHimself
+
 from compositions.models import Composition
 from compositions.serializers import CompositionSerializer
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q
-from django.core.exceptions import ValidationError
+from buckets.models import Bucket
+from buckets.serializers import BucketSerializer
+from interpretations.models import Interpretation
+from interpretations.serializers import InterpretationSerializer
+
 
 
 class UserList(APIView):
@@ -204,3 +213,16 @@ def get_uploads(request, pk, format=None):
     serializer = PaginatedUserCompositionSerializer(this_page_compositions, context={'request': request})
     return Response(data=serializer.data)
 
+@api_view(['GET'])
+@permission_classes((permissions.IsAuthenticated,))
+def get_my_drafts(request, format=None):
+    buckets = request.user.buckets.filter(public=False)
+    buckets = BucketSerializer(buckets, context={'request': request}).data
+    buckets = [{'content_type' : 'BK', 'content': bucket} for bucket in buckets]
+    interprets = request.user.interprets.filter(is_draft=True)
+    interprets = InterpretationSerializer(interprets, context={'request': request}).data
+    interprets = [{'content_type' : 'IN', 'content': interpret} for interpret in interprets]
+
+    result = interprets+buckets
+    result = sorted(result, key= lambda x: x['content']['updated'], reverse=True)
+    return Response(result)

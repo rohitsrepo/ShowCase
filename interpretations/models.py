@@ -9,6 +9,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from ShowCase.slugger import unique_slugify
 
 from posts.models import Post, bind_post
+from feeds.models import Fresh, bind_fresh_feed
 
 from bookmarks.models import BookMark
 from admirations.models import Admiration
@@ -16,9 +17,11 @@ from admirations.models import Admiration
 
 class Interpretation(models.Model):
     composition = models.ForeignKey('compositions.Composition', related_name="interprets")
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="interprets")
+    title = models.CharField(max_length=140)
     interpretation = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     public = models.BooleanField(default=False)
     is_draft = models.BooleanField(default=True)
     slug = models.SlugField(max_length=200, default="")
@@ -42,7 +45,7 @@ class Interpretation(models.Model):
         return u'%s' % (interpretation, )
 
     def save(self, *args, **kwargs):
-        slug_str = self.get_text(40)
+        slug_str = self.title
         unique_slugify(self, slug_str)
         super(Interpretation, self).save(*args, **kwargs)
 
@@ -106,5 +109,24 @@ class Interpretation(models.Model):
     def admirers_count(self):
         return self.admirers.count()
 
+    def add_to_fresh_feed(self):
+        if not self.is_draft and not self.get_fresh_post().exists():
+            Fresh.objects.create(feed_type=Fresh.INTERPRET,
+                content_object=self)
+
+    def get_fresh_post(self):
+        return Fresh.objects.filter(feed_type=Fresh.INTERPRET,
+                object_id=self.id,
+                content_type=ContentType.objects.get_for_model(Interpretation))
+
+    def remove_fresh_post(self):
+        try:
+            Fresh.objects.filter(feed_type=Fresh.INTERPRET,
+                object_id=self.id,
+                content_type=ContentType.objects.get_for_model(Interpretation)).delete()
+        except:
+            pass
+
 #Bind Signals
 bind_post(Interpretation)
+bind_fresh_feed(Interpretation)

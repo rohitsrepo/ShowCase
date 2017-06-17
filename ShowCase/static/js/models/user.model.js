@@ -121,6 +121,14 @@ angular.module("module.model")
         });
     };
 
+    service.drafts = function () {
+        return $http.get('/users/me/drafts').then(function (response) {
+            return response.data;
+        }, function (error) {
+            return $q.reject(error);
+        });
+    };
+
     service.follow = function (user_id) {
     	return $http.post('/users/follows', {'follows': [user_id]}).then(function (response) {
     		return response.data;

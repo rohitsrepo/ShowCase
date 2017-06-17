@@ -3,12 +3,10 @@ from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import post_save, post_delete
 from django.contrib.contenttypes.fields import GenericForeignKey
 
-from interpretations.models import Interpretation
-
 
 class StaffPost(models.Model):
     composition = models.ForeignKey('compositions.Composition')
-    interpretation = models.ForeignKey(Interpretation)
+    interpretation = models.ForeignKey('interpretations.Interpretation')
 
 
     def get_search_parameter(self):
@@ -17,10 +15,12 @@ class StaffPost(models.Model):
 class Fresh(models.Model):
     BUCKET = 'BK'
     ART = 'AR'
+    INTERPRET = 'IN'
 
     TYPE_CHOICES = (
         (ART, 'art'),
         (BUCKET, 'bucket'),
+        (INTERPRET, 'interpret'),
     )
 
     created = models.DateTimeField(auto_now_add=True)

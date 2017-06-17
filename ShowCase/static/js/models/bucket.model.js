@@ -36,14 +36,6 @@ angular.module("module.model")
         });
     };
 
-    service.myDrafts = function () {
-        return $http.get('/users/me/drafts').then(function (response) {
-            return response.data;
-        }, function (error) {
-            return $q.reject(error);
-        });
-    };
-
     service.addToBucket = function (bucketId, compositionId, description) {
         return $http.put('/buckets/' + bucketId + '/arts',
             {'composition_id': compositionId, 'description': description})

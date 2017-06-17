@@ -197,13 +197,6 @@ def get_my_buckets(request, format=None):
     buckets = request.user.buckets.all().order_by('-created')
     return serialize_user_buckets(request, buckets)
 
-@api_view(['GET'])
-@permission_classes((permissions.IsAuthenticated,))
-def get_my_drafts(request, format=None):
-    buckets = request.user.buckets.filter(public=False).order_by('-created')
-    return serialize_user_buckets(request, buckets)
-
-
 @api_view(['PUT'])
 @permission_classes((permissions.IsAuthenticated,))
 def make_bucket_public(request, bucket_id, format=None):

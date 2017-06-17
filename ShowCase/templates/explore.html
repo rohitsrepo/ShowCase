@@ -37,7 +37,7 @@
 {% block content_block %}
     <div ng-cloak masonry load-images="onMobile" masonry-options="{ transitionDuration: '0' }" class="arts-container explore-container" infinite-scroll="loadMorePosts()" infinite-scroll-distance='1' infinite-scroll-disabled='postsMeta.busy || postsMeta.disableGetMore'>
         <div class="masonry-brick container explore-art-container" ng-repeat="art in arts">
-            <div class="art" ng-show="art.feed_type == 'AR'">
+            <section class="art" ng-show="art.feed_type == 'AR'">
                 <article class="art-content" ng-style="{'height': '[[math.round(300*art.content.matter_aspect)]]px', 'width': '300px', 'background-color': '[[art.content.major]]'}">
                     <img ng-src="[[art.content.matter_400]]" alt="[[art.content.title]]" onload="imgLoaded(this)">
                     <div ng-cloak ng-show="art.nsfw" class="nsfw-overlay" ng-click="toggleNsfw($index)">
@@ -68,7 +68,7 @@
                 --><section class="scores" ng-cloak ng-show="art.content.buckets_count> 0" ui-sref="buckets({artSlug: art.content.slug})">
                     <span>[[art.content.buckets_count]] Series</span>
                 </section>
-            </div> <!-- art -->
+            </section> 
 
             <section class="feed-bucket" ng-show="art.feed_type == 'BK'">
                 <div class="bucket-picture" ng-style="{'background-image': 'url([[art.content.picture]])'}">
@@ -92,6 +92,24 @@
                     </section>
                 </div>
             </section>
+
+            <section class="interpret" ng-show="art.feed_type == 'IN'">
+                <img class="interpret-image" ng-src="[[art.content.composition.matter_400]]" alt="[[art.content.composition.title]]" onload="imgLoaded(this)">
+                <section class="interpret-content">
+                    <section class="details" ng-style="{'background-color': '[[art.content.composition.major]]'}">
+                        <a target="_blank" ng-href="[[art.content.url]]" class="details-content-title">[[art.content.title]]</a>
+                        <a target="_blank" ng-href="[[art.content.url]]" class="details-content">[[art.content.text]]</a>
+                        <a target="_blank" class="author-details" ng-href="/@[[art.content.user.slug]]">
+                            <span>by </span>
+                            <h4>[[art.content.user.name | titlecase]]</h4>
+                        </a>
+                        <section class="details-actions">
+                            <i class="material-icons" ng-click="handleBookmarkInterpret($index)" ng-cloak ng-hide="art.content.is_bookmarked">bookmark_border</i>
+                            <i class="material-icons active" ng-click="handleBookmarkInterpret($index)" ng-cloak ng-show="art.content.is_bookmarked">bookmark</i>
+                        </section>
+                    </section>
+                </section>
+            </section> 
         </div>
     </div>
     <site-loader ng-class="{'animate': true}" site-loader-hide='!postsMeta.busy || postsMeta.disableGetMore'></site-loader>

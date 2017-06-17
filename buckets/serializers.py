@@ -40,6 +40,7 @@ class BucketSerializer(serializers.ModelSerializer):
         fields = ('id',
             'owner',
             'name',
+            'updated',
             'description',
             'slug',
             'views',

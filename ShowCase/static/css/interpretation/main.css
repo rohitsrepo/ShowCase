@@ -23,8 +23,11 @@ body {
 	position: relative;
 }
 
-.content-container .interpret-content {
+.content-container .content-title {
     padding-top: 32px;
+}
+
+.content-container .interpret-content {
     padding-bottom: 16px;
 }
 

@@ -11,7 +11,8 @@ def add_interpretation(request, slug):
     composition = get_object_or_404(Composition, slug=slug)
     draft = Interpretation.objects.create(
     	composition = composition,
-    	user = request.user
+    	user = request.user,
+        public = True
     )
 
     return redirect('/write-a-tale/drafts/' + str(draft.id))

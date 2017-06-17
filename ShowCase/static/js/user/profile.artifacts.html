@@ -56,6 +56,25 @@
                 </section>
             </div>
         </section>
+
+
+        <section class="interpret" ng-show="artifact.content_type == 'IN'">
+            <img class="interpret-image" ng-src="[[artifact.content.composition.matter_400]]" alt="[[artifact.content.composition.title]]" onload="imgLoaded(this)">
+            <section class="interpret-content">
+                <section class="details" ng-style="{'background-color': '[[artifact.content.composition.major]]'}">
+                    <a target="_blank" ng-href="[[artifact.content.url]]" class="details-content-title">[[artifact.content.title]]</a>
+                    <a target="_blank" ng-href="[[artifact.content.url]]" class="details-content">[[artifact.content.text]]</a>
+                    <a target="_blank" class="author-details" ng-href="/@[[artifact.content.user.slug]]">
+                        <span>by </span>
+                        <h4>[[artifact.content.user.name | titlecase]]</h4>
+                    </a>
+                    <section class="details-actions">
+                        <i class="material-icons" ng-click="handleBookmarkInterpret($index)" ng-cloak ng-hide="artifact.content.is_bookmarked">bookmark_border</i>
+                        <i class="material-icons active" ng-click="handleBookmarkInterpret($index)" ng-cloak ng-show="artifact.content.is_bookmarked">bookmark</i>
+                    </section>
+                </section>
+            </section>
+        </section> 
     </div>
 
     <section ng-cloak ng-show="bookmarksMeta.noWorks" class="empty-placeholder">

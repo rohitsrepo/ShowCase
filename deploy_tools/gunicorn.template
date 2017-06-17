@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn server for samara
+
+[Service]
+Restart=on-failure  
+User=leo  
+WorkingDirectory=/home/leo/sites/104.199.146.85/source  
+ExecStart=/home/leo/sites/104.199.146.85/virtualenv/bin/gunicorn \
+    --bind unix:/tmp/samara.socket \
+    samara.wsgi:application  
+
+[Install]
+WantedBy=multi-user.target 

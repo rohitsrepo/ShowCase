@@ -319,13 +319,18 @@
             <h2>Tales inspired from this work</h2>
 
             <article class="art-interpret" ng-repeat="interpret in artInterprets">
-                <a ng-href="/@[[interpret.user.slug]]/tales/[[interpret.slug]]" class="art-interpret-text">[[interpret.text]]</a>
-                <a class="art-interpret-user" href="/@[[interpret.user.slug]]">By <b>[[interpret.user.name | titlecase]]</b></a>
+                <a class="art-interpret-title" ng-href="/@[[interpret.user.slug]]/tales/[[interpret.slug]]">[[interpret.title]]</a>
+                <a class="art-interpret-user" ng-href="/@[[interpret.user.slug]]"> 
+                    By
+                    <b>[[interpret.user.name | titlecase]]</b>
+                </a>
+                <section class="actions">
+                    <button class="interpret-action" ng-click="handleBookmarkInterpret($index)" ng-hide="interpret.is_bookmarked">
+                        <i class="material-icons">bookmark_border</i></button>
+                    <button class="interpret-action active ng-hide" ng-click="handleBookmarkInterpret($index)" ng-cloak ng-show="interpret.is_bookmarked">
+                        <i class="material-icons">bookmark</i></button>
+                </section>
             </article>
-
-            <!-- <section class="associated-buckets-actions" ng-cloak ng-show="artBuckets.length > 5">
-                <a ui-sref="buckets({compositionSlug: '{{composition.slug}}' })">See all<i class="material-icons">arrow_forward</i></a>
-            </section> -->
         </section>
 
         <section class="associate-category art-buckets" ng-cloak ng-show="artBuckets.length > 0">

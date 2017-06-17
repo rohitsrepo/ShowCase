@@ -36,12 +36,15 @@ angular.module('UserApp')
     }
 
     var artifactFetcher = function () {
-        var listType = $state.current.data.listType
+        var listType = $state.current.data.listType;
+
 
         if (listType == 'admirations') {
             return admirationModel.getUserAdmirations;
         } else if (listType == 'bookmarks') {
-            return bookmarkModel.getBookMarks
+            return bookmarkModel.getBookMarks;
+        } else if (listType == 'drafts') {
+            return userModel.drafts;
         }
     }();
 
@@ -51,19 +54,33 @@ angular.module('UserApp')
             var pageVal = $scope.artifactsMeta.pageVal;
             progress.showProgress();
             artifactFetcher($scope.artist.id, pageVal).then(function (response) {
-                $scope.artifactsMeta.next = response.next;
-                $scope.artifactsMeta.previous = response.previous;
 
-                for (var i = 0; i < response.results.length; i++) {
-                    $scope.artifacts.push(response.results[i]);
-                }
-
-                if (response.next == null){
+                if (response instanceof Array) {
                     $scope.artifactsMeta.disableGetMore = true;
-                }
 
-                if ($scope.artifacts.length == 0){
-                    $scope.artifactsMeta.noWorks = true;
+                    if (response.length > 0) {
+                        $scope.artifacts = response;
+                    } else {
+                        $scope.artifactsMeta.noWorks = true;
+                    }
+
+                } else {
+
+                    $scope.artifactsMeta.next = response.next;
+                    $scope.artifactsMeta.previous = response.previous;
+
+                    for (var i = 0; i < response.results.length; i++) {
+                        $scope.artifacts.push(response.results[i]);
+                    }
+
+                    if (response.next == null){
+                        $scope.artifactsMeta.disableGetMore = true;
+                    }
+
+                    if ($scope.artifacts.length == 0){
+                        $scope.artifactsMeta.noWorks = true;
+                    }
+
                 }
 
                 progress.hideProgress();
@@ -141,6 +158,20 @@ angular.module('UserApp')
         } else {
             admireService.admireBucket(bucket).then(function () {
                 bucket.is_admired = true;
+            });;
+        }
+    };
+
+    $scope.handleBookmarkInterpret = function (index) {
+        var interpret = $scope.artifacts[index].content;
+
+        if (interpret.is_bookmarked) {
+            bookService.unmarkInterpret(interpret).then(function () {
+                interpret.is_bookmarked = false;
+            });
+        } else {
+            bookService.bookmarkInterpret(interpret).then(function () {
+                interpret.is_bookmarked = true;
             });;
         }
     };

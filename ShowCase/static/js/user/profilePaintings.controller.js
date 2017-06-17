@@ -63,7 +63,6 @@ angular.module('UserApp')
                 }
 
                 if ($scope.arts.length == 0){
-                    console.log('settion it to false');
                     $scope.artsMeta.noWorks = true;
                 }
 

@@ -557,7 +557,6 @@ body {
 
 .art-associates .art-interprets {
     width: 100%;
-    /*padding: 10px;*/
     position: relative;
     text-align: left;
     padding-left: 5px;
@@ -572,42 +571,70 @@ body {
 }
 
 .art-interprets .art-interpret {
-
-    width: 100%;
-    /*margin: 4px;*/
-    padding: 8px;
-    /*height: 200px;*/
+    width: 49%;
     display: inline-block;
-    background: white;
-    /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
+    vertical-align: bottom;
     margin-bottom: 16px;
-    border: 1px solid rgba(0,0,0,0.1);
+    position: relative;
 }
 
-.art-interprets .art-interpret:hover {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-
-}
-
-.art-interpret .art-interpret-text {
-    line-height: 1.5em;
-    font-size: 1.1em;
-    /*padding: 0 10px;*/
+.art-interpret .art-interpret-title {
+    font-size: 1.4em;
+    font-weight: bold;
     overflow: hidden;
-    /*height: 156px;*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    line-height: 1.4em;
+    cursor: pointer;
+}
+
+.art-interpret .art-interpret-title:hover {
+    text-decoration: underline;
 }
 
 .art-interpret .art-interpret-user {
-    width: 100%;
-    display: block;
-    text-align: left;
+    display: inline-block;
     margin-top: 8px;
-    /*font-weight: bold;*/
     font-size: 0.9em;
     color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
 }
+
 .art-interpret .art-interpret-user b {
     font-weight: bold;
+}
+
+.art-interpret .art-interpret-user:hover b {
+    text-decoration: underline;
+}
+
+.art-interpret .actions {
+    display: inline-block;
+}
+
+.art-interpret .actions .interpret-action {
+    background: transparent;
+    border: none;
+    vertical-align: bottom;
+    padding: 0;
+    opacity: 0;
+}
+
+.art-interpret .actions .interpret-action.active,
+.art-interpret:hover .actions .interpret-action {
+    opacity: 1;
+}
+
+.actions .interpret-action i {
+    font-size: 1.4em;
+    color: rgba(0, 0, 0, 0.7);
+    vertical-align: bottom;
+    cursor: pointer;
+}
+
+.actions .interpret-action i {
+    color: rgba(0, 0, 0, 0.9);
 }
 
 @media (max-width: 800px) {

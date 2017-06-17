@@ -28,6 +28,7 @@ class Bucket(models.Model):
 
     owner = models.ForeignKey(User, related_name='buckets')
     created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     bookers = GenericRelation(BookMark, related_query_name='booked_buckets')
     admirers = GenericRelation(Admiration, related_query_name='admired_buckets')
 

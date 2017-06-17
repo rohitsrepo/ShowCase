@@ -11,7 +11,6 @@ angular.module("InterpretationApp")
 
     var getInterpretAssociates = function () {
         interpretationModel.getRelated($scope.interpretation.id).then(function (response) {
-            console.log(response);
             $scope.relatedBuckets = response.relatedBuckets;
             $scope.relatedInterprets = response.relatedInterprets;
             $scope.relatedWorks = response.relatedWorks;
@@ -31,7 +30,7 @@ angular.module("InterpretationApp")
         getInterpretAssociates();
     };
 
-    $scope.handleBookMark = function () {
+    $scope.handleBookmark = function () {
         var interpretation = $scope.interpretation;
 
         if (interpretation.is_bookmarked) {

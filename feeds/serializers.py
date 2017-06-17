@@ -11,6 +11,7 @@ from buckets.serializers import BucketSerializer
 from compositions.models import Composition
 from compositions.serializers import CompositionSerializer
 from interpretations.models import Interpretation
+from interpretations.serializers import InterpretationSerializer
 from interpretationVotes.models import InterpretationVote
 
 class PostUserSerializer(serializers.ModelSerializer):
@@ -29,7 +30,7 @@ class PostCompositionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Composition
-        fields = ("id", "title", "matter", "artist", "slug", "uploader", "matter_400", "matter_550", "views")
+        fields = ("id", "title", "matter", "artist", "slug", "uploader", "matter_400", "matter_550", "views", "major")
 
 class PostInterpretationVoteSerializer(serializers.ModelSerializer):
     total = serializers.CharField(source='get_total', read_only=True)
@@ -46,7 +47,7 @@ class PostInterpretationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Interpretation
-        fields = ("id", "interpretation", "user", 'vote', 'timesince')
+        fields = ("id", "interpretation", "user", 'vote', 'timesince', 'title')
 
 class PostSerializer(serializers.ModelSerializer):
     composition = PostCompositionSerializer(read_only=True)
@@ -72,6 +73,8 @@ class ContentObjectRelatedField(serializers.RelatedField):
             serializer = BucketSerializer(value, context={'request': self.context['request']})
         elif isinstance(value, Composition):
             serializer = CompositionSerializer(value, context={'request': self.context['request']})
+        elif isinstance(value, Interpretation):
+            serializer = InterpretationSerializer(value, context={'request': self.context['request']})
         else:
             raise Exception('Unexpected type of tagged object')
 

@@ -14,6 +14,7 @@ angular.module('InterpretApp')
 	var uploading;
 	$scope.composition = {};
 	$scope.hideName = true;
+	$scope.interpret = {};
 
 	$scope.init = function (id) {
 		$scope.interpret.id = id;
@@ -22,17 +23,17 @@ angular.module('InterpretApp')
 	$scope.saveInterpretation = function () {
 		// analytics.logEvent('Composition', 'Save Interpretation', $scope.composition.url);
 
+
 		if (!uploading){
 			progress.showProgress();
 			uploading = true;
-			interpretationModel.addInterpretation($scope.interpret.id, $('.new-interpretation').html(), true)
+			interpretationModel.addInterpretation($scope.interpret.id, $scope.interpret.title, $('.new-interpretation').html(), true)
 			.then(function (response) {
 				progress.hideProgress();
 				uploading = false;
 				document.querySelector('.draft-text').className += ' show';
 
 				$timeout(function () {
-					console.log("removing");
 					document.querySelector('.draft-text').classList.remove("show");
 				}, 500);
 			}, function () {
@@ -49,7 +50,7 @@ angular.module('InterpretApp')
 		if (!uploading){
 			progress.showProgress();
 			uploading = true;
-			interpretationModel.addInterpretation($scope.interpret.id, $('.new-interpretation').html(), false)
+			interpretationModel.addInterpretation($scope.interpret.id, $scope.interpret.title, $('.new-interpretation').html(), false)
 			.then(function (response) {
 				// Take to composition page
 				progress.hideProgress();
@@ -161,7 +162,6 @@ angular.module('InterpretApp')
         link: function (scope, element, attrs) {
 
 			var processor = debounce(function () {
-				console.log("Bounce");
 				scope.saveInterpretation();
 			}, 5000);
             element.bind('input', processor);

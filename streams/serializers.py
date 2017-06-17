@@ -14,8 +14,6 @@ from interpretations.serializers import InterpretationSerializer
 class ContentObjectRelatedField(serializers.RelatedField):
 
     def to_native(self, value):
-
-        print value
         verb = value[0]['verb']
 
         if verb in [Post.INTERPRET, Post.ADMIRE_INTERPRET]:
@@ -33,7 +31,6 @@ class ContentObjectRelatedField(serializers.RelatedField):
         elif verb=='FL':
             return {};
         else:
-            print value
             raise Exception('Unexpected type of notification activity')
 
         return serializer.data
@@ -41,8 +38,6 @@ class ContentObjectRelatedField(serializers.RelatedField):
 class TargetObjectRelatedField(serializers.RelatedField):
 
     def to_native(self, value):
-
-        print value
         verb = value[0]['verb']
 
         if verb in [Post.INTERPRET, Post.BUCKET]:
@@ -52,7 +47,6 @@ class TargetObjectRelatedField(serializers.RelatedField):
         elif verb in ['FL', Post.ADMIRE_INTERPRET, Post.ADMIRE_BUCKET, Post.BUCKET, Post.CREATE, Post.ADMIRE_ART]:
             return {};
         else:
-            print value
             raise Exception('Unexpected type of notification activity')
 
         return serializer.data

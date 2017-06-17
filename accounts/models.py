@@ -142,7 +142,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def drafts_count(self):
-        return self.buckets.filter(public=False).count()
+        return self.buckets.filter(public=False).count() + self.interprets.filter(is_draft=True).count()
 
     @property
     def bookmarks_count(self):

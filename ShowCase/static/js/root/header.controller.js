@@ -59,7 +59,7 @@ angular.module('module.root')
         else if (verb == 'MA') {
             action = 'admired artwork';
             target_name = notification.content_object.title;
-            target_link = '/@' + notification.actors[0].slug + '/admirations;
+            target_link = '/@' + notification.actors[0].slug + '/admirations';
         }
         else if (verb == 'MB') {
             action = 'admired series';
