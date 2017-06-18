@@ -23,12 +23,12 @@ body {
 .activities-arts-container .activities-art-container header .actor-picture{
     position: absolute;
     left: 10px;
-    top: 10px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .activities-arts-container .activities-art-container header a {
     color: rgba(0, 0, 0, 0.9);
-    line-height: 1.3em;
     letter-spacing: 1px;
     cursor: pointer;
     vertical-align: middle;

@@ -109,7 +109,12 @@ angular.module('module.root')
             activityModel.enrichActivities(data.new).then(function(response) {
                 var notification;
                 for (var i = 0; i < response.length; i++) {
-                    notification = transformRawNotification(response[i]);
+                    try {
+                        notification = transformRawNotification(response[i]);
+                    } catch (err) {
+                        console.log('Notification parse error');
+                        continue;
+                    }
                     $scope.notifications.unshift(notification);
                     if (!notification.is_seen) {
                         $scope.activeNotifications.status = true;
@@ -137,7 +142,12 @@ angular.module('module.root')
 
             var notification;
             for (var i = 0; i < response.results.length; i++) {
-                notification = transformRawNotification(response.results[i]);
+                try {
+                    notification = transformRawNotification(response.results[i]);
+                } catch (err) {
+                    console.log('Notification parse error');
+                    continue;
+                }
                 $scope.notifications.push(notification);
                 if (!notification.is_seen) {
                     $scope.activeNotifications.status = true;

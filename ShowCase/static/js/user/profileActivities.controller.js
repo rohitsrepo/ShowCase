@@ -40,6 +40,9 @@ angular.module('UserApp')
                     return 2;
                 case 'MB':
                     return 3;
+                case 'IN':
+                case 'AI':
+                    return 4;
                 default:
                     console.log('Invalid activity type found', activity.post_type);
             };
@@ -157,6 +160,18 @@ angular.module('UserApp')
             } else {
                 admireService.admireBucket(bucket).then(function () {
                     bucket.is_admired = true;
+                });;
+            }
+        };
+
+        $scope.handleBookmarkInterpret = function (interpret) {
+            if (interpret.is_bookmarked) {
+                bookService.unmarkInterpret(interpret).then(function () {
+                    interpret.is_bookmarked = false;
+                });
+            } else {
+                bookService.bookmarkInterpret(interpret).then(function () {
+                    interpret.is_bookmarked = true;
                 });;
             }
         };

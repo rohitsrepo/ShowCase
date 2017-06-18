@@ -10,7 +10,7 @@ from buckets.serializers import BucketSerializer
 from compositions.models import Composition
 from compositions.serializers import CompositionSerializer
 from interpretations.models import Interpretation
-from interpretations.serializers import PostInterpretationSerializer
+from interpretations.serializers import InterpretationSerializer
 from postVotes.serializers import VoteSerializer
 from ShowCase.serializers import URLImageField
 
@@ -19,7 +19,7 @@ class ContentObjectRelatedField(serializers.RelatedField):
     def to_native(self, value):
 
         if isinstance(value, Interpretation):
-            serializer = PostInterpretationSerializer(value, context={'request': self.context['request']})
+            serializer = InterpretationSerializer(value, context={'request': self.context['request']})
         elif isinstance(value, Composition):
             serializer = CompositionSerializer(value, context={'request': self.context['request']})
         elif isinstance(value, Bucket):

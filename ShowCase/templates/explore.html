@@ -94,21 +94,23 @@
             </section>
 
             <section class="interpret" ng-show="art.feed_type == 'IN'">
-                <img class="interpret-image" ng-src="[[art.content.composition.matter_400]]" alt="[[art.content.composition.title]]" onload="imgLoaded(this)">
-                <section class="interpret-content">
-                    <section class="details" ng-style="{'background-color': '[[art.content.composition.major]]'}">
-                        <a target="_blank" ng-href="[[art.content.url]]" class="details-content-title">[[art.content.title]]</a>
-                        <a target="_blank" ng-href="[[art.content.url]]" class="details-content">[[art.content.text]]</a>
-                        <a target="_blank" class="author-details" ng-href="/@[[art.content.user.slug]]">
-                            <span>by </span>
-                            <h4>[[art.content.user.name | titlecase]]</h4>
-                        </a>
-                        <section class="details-actions">
-                            <i class="material-icons" ng-click="handleBookmarkInterpret($index)" ng-cloak ng-hide="art.content.is_bookmarked">bookmark_border</i>
-                            <i class="material-icons active" ng-click="handleBookmarkInterpret($index)" ng-cloak ng-show="art.content.is_bookmarked">bookmark</i>
+                <div class="interpret-holder">
+                    <img class="interpret-image" ng-src="[[art.content.composition.matter_400]]" alt="[[art.content.composition.title]]" onload="imgLoaded(this)">
+                    <section class="interpret-content">
+                        <section class="details" ng-style="{'background-color': '[[art.content.composition.major]]'}">
+                            <a target="_blank" ng-href="[[art.content.url]]" class="details-content-title">[[art.content.title]]</a>
+                            <a target="_blank" ng-href="[[art.content.url]]" class="details-content">[[art.content.text]]</a>
+                            <a target="_blank" class="author-details" ng-href="/@[[art.content.user.slug]]">
+                                <span>by </span>
+                                <h4>[[art.content.user.name | titlecase]]</h4>
+                            </a>
+                            <section class="details-actions">
+                                <i class="material-icons" ng-click="handleBookmarkInterpret($index)" ng-cloak ng-hide="art.content.is_bookmarked">bookmark_border</i>
+                                <i class="material-icons active" ng-click="handleBookmarkInterpret($index)" ng-cloak ng-show="art.content.is_bookmarked">bookmark</i>
+                            </section>
                         </section>
                     </section>
-                </section>
+                </div>
             </section> 
         </div>
     </div>

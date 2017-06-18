@@ -108,5 +108,33 @@
                     </section>
                 </div>
             </section>
+
+            <section class="interpret" ng-show="activity.grade == 4">
+                <header ng-show="activity.post_type == 'IN' && !showHeader">
+                    <img class="actor-picture" ng-src="[[activity.creator.picture]]">
+                    <a class="art-attribution" ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a> <span>wrote a tale about</span> <a class="art-attribution" ng-href="/arts/[[activity.content.composition.slug]]">[[activity.content.composition.title | titlecase]]</a>
+                </header>
+                <header ng-show="activity.post_type == 'AI' && !showHeader">
+                    <img class="actor-picture" ng-src="[[activity.creator.picture]]">
+                    <a class="art-attribution" ng-href="/@[[activity.creator.slug]]">[[activity.creator.name | titlecase]]</a> admired this tale
+                </header>
+                <div class="interpret-holder">
+                    <img class="interpret-image" ng-src="[[activity.content.composition.matter_400]]" alt="[[activity.content.composition.title]]" onload="imgLoaded(this)">
+                    <section class="interpret-content">
+                        <section class="details" ng-style="{'background-color': '[[activity.content.composition.major]]'}">
+                            <a target="_blank" ng-href="[[activity.content.url]]" class="details-content-title">[[activity.content.title]]</a>
+                            <a target="_blank" ng-href="[[activity.content.url]]" class="details-content">[[activity.content.text]]</a>
+                            <a target="_blank" class="author-details" ng-href="/@[[activity.content.user.slug]]">
+                                <span>by </span>
+                                <h4>[[activity.content.user.name | titlecase]]</h4>
+                            </a>
+                            <section class="details-actions">
+                                <i class="material-icons" ng-click="handleBookmarkInterpret(activity.content)" ng-cloak ng-hide="activity.content.is_bookmarked">bookmark_border</i>
+                                <i class="material-icons active" ng-click="handleBookmarkInterpret(activity.content)" ng-cloak ng-show="activity.content.is_bookmarked">bookmark</i>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+            </section> 
         </div>
     </div>

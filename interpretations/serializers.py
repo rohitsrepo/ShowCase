@@ -49,10 +49,3 @@ class InterpretationSerializer(serializers.ModelSerializer):
     def get_is_bookmarked(self, obj):
         request = self.context['request']
         return obj.is_bookmarked(request.user.id)
-
-class PostInterpretationSerializer(serializers.ModelSerializer):
-    text = serializers.CharField(source='to_text', read_only=True)
-
-    class Meta:
-        model = Interpretation
-        fields = ('id', 'interpretation', 'text', 'title')
