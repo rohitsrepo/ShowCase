@@ -21,6 +21,10 @@ def add_interpretation(request, slug):
 @login_required
 def edit_interpretation(request, id):
     interpretation = get_object_or_404(Interpretation, id=id)
+
+    if interpretation.user.id != request.user.id:
+        return redirect('arts/'+ interpretation.composition.slug +'/write-a-tale')
+
     composition = interpretation.composition
     context = RequestContext(request, {'composition': composition, 'interpretation': interpretation, 'editMode': True})
     return render_to_response("interpret.html", context)
@@ -28,6 +32,10 @@ def edit_interpretation(request, id):
 
 def show_interpretation(request, user_slug, interpret_slug):
     interpretation = get_object_or_404(Interpretation, slug=interpret_slug, user__slug=user_slug)
+
+    if interpretation.is_draft:
+        return redirect('/write-a-tale/drafts/' + str(interpretation.id))
+
     if request.user.is_authenticated():
         user_id = request.user.id
     else:

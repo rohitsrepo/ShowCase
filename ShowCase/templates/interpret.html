@@ -35,7 +35,7 @@
     </script>
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="interpretController" ng-init="init({{interpretation.id}})"{% endblock %}
+{% block body_attr_block %}ng-controller="interpretController" ng-init="init({{interpretation.id}}, '{{composition.slug}}', '{{interpretation.title}}')"{% endblock %}
 
 {% block site_header_block %}
 {%endblock%}
@@ -51,6 +51,9 @@
                 </a>
                 <section class="page-actions">
                     <p class="draft-text">Saved in drafts</p>
+                    <button class="text-action" ng-click="deleteInterpretation()">
+                        Delete
+                    </button>
                     <button class="save" ng-click="saveInterpretation()">
                         SAVE
                     </button>
@@ -60,8 +63,10 @@
                 </section>
             </header>
             <div class="content-container">
-                <input type="text" class="content-title" placeholder="Add title" autofocus="true" ng-model="interpret.title" />
-                <section save-draft class="new-interpretation interpret-content" rich-edit></section>
+                <input save-draft type="text" class="content-title" placeholder="Add title" autofocus="true" ng-model="interpret.title" />
+                <section save-draft class="new-interpretation interpret-content" rich-edit>
+                    {{interpretation.interpretation | safe}}
+                </section>
             </div>
         </section>
 

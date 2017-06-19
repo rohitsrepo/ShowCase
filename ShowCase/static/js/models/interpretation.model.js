@@ -4,9 +4,13 @@ angular.module('module.model')
 
     service.addInterpretation = function (interpretation_id, title, interpretation, isDraft) {
         var interpretUrl = "/interpretations/" + interpretation_id;
-        return $http.put(interpretUrl, {"title": title, "interpretation": interpretation, 'is_draft': isDraft}).then(function (response) {
-            return response.data;
-        });
+        return $http.put(interpretUrl, {"title": title, "interpretation": interpretation, 'is_draft': isDraft}).then(
+            function (response) {
+                return response.data;
+            }, function (response) {
+                return $q.reject(response);
+            }
+        );
     };
 
     service.artInterprets = function (compositionId) {
@@ -25,6 +29,17 @@ angular.module('module.model')
         }, function (response) {
             return $q.reject(response);
         });
+    };
+
+    service.delete = function (interpretation_id) {
+        var interpretUrl = "/interpretations/" + interpretation_id;
+        return $http.delete(interpretUrl).then(
+            function (response) {
+                return response.data;
+            }, function (response) {
+                return $q.reject(response);
+            }
+        );
     };
 
 	return service;

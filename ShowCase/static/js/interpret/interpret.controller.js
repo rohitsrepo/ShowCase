@@ -4,30 +4,40 @@ angular.module('InterpretApp')
 	'analytics',
 	'progress',
 	'interpretationModel',
+	'confirmModalService',
 	'upload',
 	'alert',
 	'$http',
 	'$timeout',
 	'$window',
-	function ($scope, analytics, progress, interpretationModel, upload, alert, $http, $timeout, $window) {
+	function ($scope, analytics, progress, interpretationModel, confirmModalService, upload, alert, $http, $timeout, $window) {
 
 	var uploading;
 	$scope.composition = {};
 	$scope.hideName = true;
 	$scope.interpret = {};
+	$scope.composition = {};
 
-	$scope.init = function (id) {
+	$scope.init = function (id, compositionSlug, title) {
 		$scope.interpret.id = id;
+		$scope.interpret.title = title;
+		$scope.composition.slug = compositionSlug;
 	};
 
 	$scope.saveInterpretation = function () {
 		// analytics.logEvent('Composition', 'Save Interpretation', $scope.composition.url);
 
-
 		if (!uploading){
 			progress.showProgress();
 			uploading = true;
-			interpretationModel.addInterpretation($scope.interpret.id, $scope.interpret.title, $('.new-interpretation').html(), true)
+
+			var title = $scope.interpret.title ? $scope.interpret.title : 'Untitled';
+			var interpretation = $('.new-interpretation').html() ? $('.new-interpretation').html(): '';
+
+			console.log('title', title);
+			console.log('interpretation', interpretation);
+
+			interpretationModel.addInterpretation($scope.interpret.id, title, interpretation, true)
 			.then(function (response) {
 				progress.hideProgress();
 				uploading = false;
@@ -35,7 +45,7 @@ angular.module('InterpretApp')
 
 				$timeout(function () {
 					document.querySelector('.draft-text').classList.remove("show");
-				}, 500);
+				}, 2000);
 			}, function () {
 				progress.hideProgress();
 				alert.showAlert("Unable to save data");
@@ -61,6 +71,20 @@ angular.module('InterpretApp')
 				uploading = false;
 			});
 		}
+	};
+
+	$scope.deleteInterpretation = function (index) {
+	    progress.hideProgress();
+
+	    confirmModalService.showDeleteConfirm().then(function () {
+	        interpretationModel.delete($scope.interpret.id).then(function () {
+	            progress.hideProgress();
+	            window.location.href = '/arts/' + $scope.composition.slug;
+	        }, function () {
+	            progress.hideProgress();
+	            alert.showAlert('Currently unable to remove this draft');
+	        });
+	    });
 	};
 
 	$scope.interpret = {};

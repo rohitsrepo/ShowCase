@@ -69,11 +69,22 @@ html, body {
     background: rgba(0,0,0,0.9);
     border: 1px solid rgba(0,0,0,0.9);
     color: white;
-    padding: 7px 15px;
+    padding: 8px 16px;
     margin: 0 2px;
     margin-top: 12px;
-    border-radius: 2px;
+    border-radius: 20px;
     cursor: pointer;
+}
+
+.page-actions button.text-action {
+    color: rgba(0,0,0,0.5);
+    border: none;
+    background: white;
+    padding: 8px 4px;
+}
+
+.page-actions .text-action:hover {
+    text-decoration: underline;
 }
 
 .page-actions button.save {
