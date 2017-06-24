@@ -3,6 +3,12 @@ body {
 	overflow: hidden;
 }
 
+@media (max-width: 800px) {
+    body {
+        overflow: auto;
+    }
+}
+
 .site-header {
 	background: transparent;
 	padding: 10px 16px;
@@ -23,15 +29,38 @@ body {
 	position: relative;
 }
 
+.container .content-container {
+    padding-top: 112px;
+}
+
 .content-container .content-title {
-    padding-top: 32px;
+    /*padding-top: 32px;*/
 }
 
 .content-container .interpret-content {
     padding-bottom: 16px;
 }
 
-/*---------- Actions----------*/
+@media (max-width: 800px) {
+    .container .content-container {
+        padding-top: 16px;
+    }
+}
+
+/*--------- Updates ----------*/
+
+.content-container .interpret-updates {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.interpret-updates .interpret-update {
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+/*---------- Actions ---------*/
 
 .content-container .actions {
 	width: 100%;

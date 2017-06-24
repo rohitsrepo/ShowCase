@@ -520,6 +520,10 @@ body {
         float: none;
     }
 
+    .painting-details-container .details-actions .action {
+        margin-bottom: 8px;
+    }
+
     .painting-details-container .painting-finder {
         float: none;
         max-width: none;
@@ -581,9 +585,9 @@ body {
 .art-interpret .art-interpret-title {
     font-size: 1.4em;
     font-weight: bold;
-    overflow: hidden;
+    /*overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: nowrap;*/
     display: block;
     line-height: 1.4em;
     cursor: pointer;
@@ -640,6 +644,14 @@ body {
 @media (max-width: 800px) {
     .art-associates .art-interprets .art-interprets-container {
         width: 100%;
+    }
+
+    .art-interprets .art-interpret {
+        width: 100%;
+    }
+
+    .art-interpret .actions .interpret-action {
+        opacity: 1;
     }
 }
 

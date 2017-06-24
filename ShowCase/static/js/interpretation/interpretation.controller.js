@@ -4,8 +4,16 @@ angular.module("InterpretationApp")
     'interpretationModel',
     'followService',
     'bookService',
+    'confirmModalService',
     'admireService',
-    function($scope, interpretationModel, followService, bookService, admireService) {
+    'progress',
+    function($scope, 
+        interpretationModel,
+        followService, 
+        bookService,
+        confirmModalService,
+        admireService,
+        progress) {
     $scope.hideName = true;
     $scope.interpretation = {};
 
@@ -18,16 +26,31 @@ angular.module("InterpretationApp")
         });
     };
 
-    $scope.init = function (id, is_admired, is_bookmarked, user_id, is_user_followed) {
+    $scope.init = function (id, is_admired, is_bookmarked, user_id, is_user_followed, user_slug) {
         $scope.interpretation.id = id;
         $scope.interpretation.is_admired = is_admired == 'True';
         $scope.interpretation.is_bookmarked = is_bookmarked == 'True';
         $scope.interpretation.user = {
             'id': user_id,
-            'is_followed': is_user_followed == 'True'
+            'is_followed': is_user_followed == 'True',
+            'slug': user_slug
         }
 
         getInterpretAssociates();
+    };
+
+    $scope.deleteInterpretation = function () {
+        progress.hideProgress();
+
+        confirmModalService.showDeleteConfirm().then(function () {
+            interpretationModel.delete($scope.interpretation.id).then(function () {
+                progress.hideProgress();
+                window.location.href = '/@' + $scope.interpretation.user.slug;
+            }, function () {
+                progress.hideProgress();
+                alert.showAlert('Currently unable to remove this draft');
+            });
+        });
     };
 
     $scope.handleBookmark = function () {

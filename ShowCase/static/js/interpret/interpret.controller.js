@@ -18,10 +18,12 @@ angular.module('InterpretApp')
 	$scope.interpret = {};
 	$scope.composition = {};
 
-	$scope.init = function (id, compositionSlug, title) {
+	$scope.init = function (id, compositionSlug, title, url, mode) {
 		$scope.interpret.id = id;
 		$scope.interpret.title = title;
+		$scope.interpret.url = url;
 		$scope.composition.slug = compositionSlug;
+		$scope.mode = mode;
 	};
 
 	$scope.saveInterpretation = function () {
@@ -33,9 +35,6 @@ angular.module('InterpretApp')
 
 			var title = $scope.interpret.title ? $scope.interpret.title : 'Untitled';
 			var interpretation = $('.new-interpretation').html() ? $('.new-interpretation').html(): '';
-
-			console.log('title', title);
-			console.log('interpretation', interpretation);
 
 			interpretationModel.addInterpretation($scope.interpret.id, title, interpretation, true)
 			.then(function (response) {
@@ -72,6 +71,10 @@ angular.module('InterpretApp')
 			});
 		}
 	};
+
+	$scope.cancelEdit = function () {
+		window.location.href = $scope.interpret.url;
+	}
 
 	$scope.deleteInterpretation = function (index) {
 	    progress.hideProgress();
@@ -184,6 +187,10 @@ angular.module('InterpretApp')
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
+
+        	if (scope.mode != 'draft') {
+        		return;
+        	}
 
 			var processor = debounce(function () {
 				scope.saveInterpretation();

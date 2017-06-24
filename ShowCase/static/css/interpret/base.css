@@ -8,7 +8,6 @@
         float: right;
 }
 
-
 .imgareaselect-outer {
     background-color: rgba(230, 184, 0, 0.6);
 }
@@ -46,6 +45,12 @@
         padding: 3% 0;
 }
 
+@media (max-width: 800px) {
+    .container .painting {
+        width: 100%;
+    }
+}
+
 
 /*============ Interpretation =============*/
 
@@ -58,7 +63,7 @@
 }
 
 .container .user-interpretation::-webkit-scrollbar {
-    width: 4px;
+    width: 0;
 }
 
 .container .user-interpretation::-webkit-scrollbar-track {
@@ -67,17 +72,6 @@
 
 .container .user-interpretation::-webkit-scrollbar-thumb {
     background-color: black;
-    /*border: 5px solid white;*/
-}
-
-@media (max-width: 800px) {
-  .container .user-interpretation::-webkit-scrollbar {
-      width: 7px;
-  }
-
-  .container .user-interpretation::-webkit-scrollbar-thumb {
-      border: none;
-  }
 }
 
 .user-interpretation .content-container {
@@ -85,6 +79,58 @@
     width: 600px;
     padding: 16px;
     padding-top: 80px;
+}
+
+.user-interpretation .interpret-painting {
+    width: 100%;
+    padding: 16px 0;
+}
+
+.interpret-painting img {
+    width: 100%;
+}
+
+.interpret-painting .caption {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    margin-top: 4px;
+}
+
+@media (max-width: 800px) {
+    .container .user-interpretation {
+        width: 100%;
+        height: auto;
+    }
+
+    .user-interpretation .content-container {
+        width: 100%;
+        padding: 0;
+    }
+
+    .user-interpretation .interpret-updates {
+        padding: 16px;
+    }
+
+    .user-interpretation .content-title {
+        padding: 16px;
+    }
+
+    .user-interpretation .interpret-content {
+        padding: 16px;
+    }
+
+    .user-interpretation .actions {
+        padding: 16px;
+    }
+
+    .user-interpretation .author {
+        padding: 16px;
+    }
+
+    .user-interpretation .interpret-associates {
+        padding: 16px;
+    }
 }
 
 /*==============Interpret Title==========*/

@@ -35,7 +35,7 @@
     </script>
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="interpretController" ng-init="init({{interpretation.id}}, '{{composition.slug}}', '{{interpretation.title}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="interpretController" ng-init="init({{interpretation.id}}, '{{composition.slug}}', '{{interpretation.title}}', '{{interpretation.get_absolute_url}}', '{{mode}}')"{% endblock %}
 
 {% block site_header_block %}
 {%endblock%}
@@ -49,6 +49,7 @@
                 <a class="site-logo" ng-href="/home">
                     <img src="/static/images/header-md.png"  analytics-click analytics-data="['Top Bar-Left', 'Logo']">
                 </a>
+                {% if mode == 'draft' %}
                 <section class="page-actions">
                     <p class="draft-text">Saved in drafts</p>
                     <button class="text-action" ng-click="deleteInterpretation()">
@@ -61,6 +62,17 @@
                         PUBLISH
                     </button>
                 </section>
+                {% else %}
+                <section class="page-actions">
+                    <p class="draft-text">Saved in drafts</p>
+                    <button class="text-action nt-mb" ng-click="cancelEdit()">
+                        Cancel
+                    </button>
+                    <button class="publish" ng-click="publishInterpretation()">
+                        UPDATE
+                    </button>
+                </section>
+                {% endif %}
             </header>
             <div class="content-container">
                 <input save-draft type="text" class="content-title" placeholder="Add title" autofocus="true" ng-model="interpret.title" />

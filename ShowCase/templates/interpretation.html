@@ -37,7 +37,7 @@
 	<!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="interpretationController" ng-init="init({{interpretation.id}}, '{{is_admired}}', '{{is_bookmarked}}', {{interpretation.user.id}}, '{{is_user_followed}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="interpretationController" ng-init="init({{interpretation.id}}, '{{is_admired}}', '{{is_bookmarked}}', {{interpretation.user.id}}, '{{is_user_followed}}', '{{interpretation.user.slug}}')"{% endblock %}
 
 {% block site_header_block %}
 {%endblock%}
@@ -46,7 +46,7 @@
     
     <section class="container">
 
-        <a href="/arts/{{composition.slug}}" class='painting'>
+        <a href="/arts/{{composition.slug}}" class='painting nt-mb'>
             <img fit-image ng-src="{{composition.matter.url}}" crop onload="imgLoaded(this)" />
         </a>
         <section class='user-interpretation'>
@@ -60,11 +60,6 @@
                         <h2 class="nt-mb">BEYOND THE BRUSHSTROKES</h2>
                     </section>
                 </a><!--
-                --><nav class="site-navigation nt-mb ng-hide">
-                    <li><a ng-class="{'active' : homeActive}" ng-href="/home">HOME</a></li>
-                    <li><a ng-class="{'active' : exploreActive}" ng-href="/arts">FRESH</a></li>
-                    <li><a ng-href="/blog" target="_blank">BLOG</a></li>
-                </nav><!--
                 --><section class="site-actions">
 
                     <form name="searchForm" class="searchForm nt-mb">
@@ -216,7 +211,17 @@
                 </nav>
             </header>
             <div class="content-container">
+                {% if is_me %}
+                <section class="interpret-updates">
+                    <a class="interpret-update nt-mb" href="/write-a-tale/edit/{{interpretation.id}}">Edit</a>
+                    <div class="interpret-update" ng-click="deleteInterpretation()">Delete</div>
+                </section>
+                {% endif %}
                 <section class="content-title">{{interpretation.title}}</section>
+                <a href="/arts/{{composition.slug}}" class="interpret-painting show-mb">
+                    <img ng-src="{{composition.matter.url}}" onload="imgLoaded(this)" alt="{{composition.title | title}}, {{composition.artist.name | title}}" />
+                    <div class="caption">{{composition.title | title}}, {{composition.artist.name | title}}</div>
+                </a>
                 <section class="interpret-content">{{interpretation.interpretation | safe}}</section>
                 <section class="actions" ng-cloak>
                     <button class="interpret-action" ng-click="handleAdmire()" ng-hide="interpretation.is_admired">

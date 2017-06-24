@@ -51,7 +51,8 @@ urlpatterns += patterns('',
 ## Interpretation Urls
 urlpatterns += patterns('',
                        url(r'^arts/(?P<slug>[\w-]+)/write-a-tale$', 'interpretations.clientViews.add_interpretation', name="interpretation-page"),
-                       url(r'^write-a-tale/drafts/(?P<id>[0-9]+)$', 'interpretations.clientViews.edit_interpretation', name="interpretation-page"),
+                       url(r'^write-a-tale/drafts/(?P<id>[0-9]+)$', 'interpretations.clientViews.edit_interpretation', {'mode': 'draft'}, name="draft-page"),
+                       url(r'^write-a-tale/edit/(?P<id>[0-9]+)$', 'interpretations.clientViews.edit_interpretation', {'mode': 'edit'}, name="edit-page"),
     )
 
 ## Post Urls

@@ -1172,6 +1172,12 @@ body::-webkit-scrollbar-thumb {
     opacity: 1;
 }
 
+@media (max-width: 800px) {
+    .details-actions i {
+        opacity: 1;
+    }
+}
+
 /*-------------------- Post User ---------------------*/
 .feed-user {
     width: 300px;
