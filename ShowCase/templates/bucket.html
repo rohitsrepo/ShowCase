@@ -2,7 +2,7 @@
 {% block html_attr_block %}ng-app="BucketApp"{% endblock %}
 
 {% block title_block %}
-    <title>{{bucket.name | title}} by {{bucket.owner.name | title}} </title>
+    <title>{{bucket.name | title}} by {{bucket.owner.name | title}} - Thirddime </title>
 {%endblock%}
 
 {% block meta_block %}
@@ -12,6 +12,7 @@
     <link rel="canonical" href="http://thirddime.com/arts/{{bucket.slug}}" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fff" />
 
     <meta property="og:title" content="{{bucket.name | title}}">
     <meta property="og:site_name" content="ThirdDime">

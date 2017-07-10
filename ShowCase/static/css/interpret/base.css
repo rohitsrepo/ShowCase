@@ -1,11 +1,12 @@
 /*========== Painting ============*/
 .container .painting {
-        width: 45%;
-        height: 100%;
-        background: #1c2023;
-        display: inline-block;
-        position: relative;
-        float: right;
+    width: 45%;
+    height: 100%;
+    background: #1c2023;
+    display: inline-block;
+    position: relative;
+    float: right;
+    overflow: hidden;
 }
 
 .imgareaselect-outer {

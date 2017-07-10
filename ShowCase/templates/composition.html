@@ -2,7 +2,7 @@
 {% block html_attr_block %}ng-app="CompositionApp"{% endblock %}
 
 {% block title_block %}
-	<title>{{composition.title | title}} by {{composition.artist.name | title}} | Interpretations and Stories</title>
+	<title>{{composition.title | title}} by {{composition.artist.name | title}} - Thirddime</title>
 {%endblock%}
 
 {% block meta_block %}
@@ -11,6 +11,7 @@
 	<link rel="canonical" href="http://thirddime.com/arts/{{composition.slug}}" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="{{composition.major}}" />
 
 	<meta property="og:title" content="{{composition.title | title}}">
 	<meta property="og:site_name" content="ThirdDime">
@@ -27,7 +28,6 @@
     <meta name="twitter:title" content="{{composition.title | title}}">
     <meta name="twitter:description" content="by {{composition.artist.name}}">
     <meta name="twitter:image" content="http://thirddime.com{{composition.matter.url}}">
-    <meta name="theme-color" content="{{composition.major}}" />
 {%endblock%}
 
 {% block css_block %}
