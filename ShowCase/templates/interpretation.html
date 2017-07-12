@@ -16,18 +16,17 @@
 	<meta property="og:title" content="{{interpretation.title | title}}">
 	<meta property="og:site_name" content="ThirdDime">
 	<meta property="og:url" content="http://thirddime.com/@{{interpretation.user.slug}}/tales/{{interpretation.slug}}">
-	<meta property="og:description" content="by {{interpretation.user.name}}">
+	<meta property="og:description" content="{{interpretation.text}}">
 	<meta property="og:image" content="http://thirddime.com{{composition.matter.url}}">
 	<meta property="og:type" content="article">
     <meta property="fb:app_id" content="462422103909005">
-    <meta property="article:author" content="{{interpretation.user.name}}" />
+    <meta property="article:author" content="http://thirddime.com/@{{interpretation.user.slug}}" />
     <meta property="article:publisher" content="https://www.facebook.com/thirddimeart" />
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@thirddime">
     <meta name="twitter:title" content="{{interpretation.title | title}}">
-    <meta name="twitter:creator" content="{{interpretation.user.name}}">
-    <meta name="twitter:description" content="by {{interpretation.user.name}}">
+    <meta name="twitter:description" content="{{interpretation.text}}">
     <meta name="twitter:image" content="http://thirddime.com{{composition.matter.url}}">
 {%endblock%}
 
