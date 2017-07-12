@@ -37,7 +37,7 @@
 	<!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="interpretationController" ng-init="init({{interpretation.id}}, '{{interpretation.title}}', '{{interpretation.text}}', '{{is_admired}}', '{{is_bookmarked}}', '{{composition.matter.url}}', {{interpretation.user.id}}, '{{interpretation.user.name}}', '{{is_user_followed}}', '{{interpretation.user.slug}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="interpretationController" ng-init="init({{interpretation.id}}, '{{interpretation.title}}', '{{interpretation.short_text}}', '{{is_admired}}', '{{is_bookmarked}}', '{{composition.matter.url}}', {{interpretation.user.id}}, '{{interpretation.user.name}}', '{{is_user_followed}}', '{{interpretation.user.slug}}')"{% endblock %}
 
 {% block site_header_block %}
 {%endblock%}
