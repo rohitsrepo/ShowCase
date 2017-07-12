@@ -5,6 +5,7 @@ angular.module("InterpretationApp")
     'followService',
     'bookService',
     'confirmModalService',
+    'shareModalService',
     'admireService',
     'progress',
     function($scope, 
@@ -12,6 +13,7 @@ angular.module("InterpretationApp")
         followService, 
         bookService,
         confirmModalService,
+        shareModalService,
         admireService,
         progress) {
     $scope.hideName = true;
@@ -26,12 +28,27 @@ angular.module("InterpretationApp")
         });
     };
 
-    $scope.init = function (id, is_admired, is_bookmarked, user_id, is_user_followed, user_slug) {
+    $scope.init = function (id, 
+        title,
+        text,
+        is_admired, 
+        is_bookmarked, 
+        composition_url,
+        user_id, 
+        user_name,
+        is_user_followed, 
+        user_slug) {
         $scope.interpretation.id = id;
+        $scope.interpretation.title = title;
+        $scope.interpretation.text = text;
         $scope.interpretation.is_admired = is_admired == 'True';
         $scope.interpretation.is_bookmarked = is_bookmarked == 'True';
+        $scope.interpretation.composition = {
+            'url': composition_url
+        }
         $scope.interpretation.user = {
             'id': user_id,
+            'name': user_name,
             'is_followed': is_user_followed == 'True',
             'slug': user_slug
         }
@@ -51,6 +68,14 @@ angular.module("InterpretationApp")
                 alert.showAlert('Currently unable to remove this draft');
             });
         });
+    };
+
+    $scope.showShare = function () {
+        var share_url = window.location.href;
+        var title = "'" + $scope.interpretation.title + "' by " + $scope.interpretation.user.name;
+        var description = $scope.interpretation.text;
+        var media = 'http://thirddime.com' + $scope.interpretation.composition.url;
+        shareModalService.shareThisPage(share_url, title, description, media);
     };
 
     $scope.handleBookmark = function () {

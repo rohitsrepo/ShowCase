@@ -7,7 +7,7 @@
 
 {% block meta_block %}
 	<meta charset="UTF-8">
-	<meta name="Description" content="Tales inspired from {{interpretation.composition.title}}, Artist: {{interpreation.composition.artist.name}},Written By: {{interpretation.user.name}} , Category: Art Interpretations and Stories">
+	<meta name="Description" content="Tales inspired from {{composition.title}}, Artist: {{composition.artist.name}},Written By: {{interpretation.user.name}} , Category: Art Interpretations and Stories">
 	<link rel="canonical" href="http://thirddime.com/@{{interpretation.user.slug}}/tales/{{interpretation.slug}}" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,7 +37,7 @@
 	<!-- endbuild -->
 {%endblock%}
 
-{% block body_attr_block %}ng-controller="interpretationController" ng-init="init({{interpretation.id}}, '{{is_admired}}', '{{is_bookmarked}}', {{interpretation.user.id}}, '{{is_user_followed}}', '{{interpretation.user.slug}}')"{% endblock %}
+{% block body_attr_block %}ng-controller="interpretationController" ng-init="init({{interpretation.id}}, '{{interpretation.title}}', '{{interpretation.text}}', '{{is_admired}}', '{{is_bookmarked}}', '{{composition.matter.url}}', {{interpretation.user.id}}, '{{interpretation.user.name}}', '{{is_user_followed}}', '{{interpretation.user.slug}}')"{% endblock %}
 
 {% block site_header_block %}
 {%endblock%}
