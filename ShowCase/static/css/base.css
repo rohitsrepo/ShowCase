@@ -999,6 +999,8 @@ body::-webkit-scrollbar-thumb {
     font-size: 1em;
     line-height: 1.5em;
     color: white;
+    max-height: 3em;
+    overflow: hidden;
 }
 
 .feed-bucket .bucket-picture .bucket-inset-details .arts-count {

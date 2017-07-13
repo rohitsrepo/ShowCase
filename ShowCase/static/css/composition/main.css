@@ -686,17 +686,17 @@ body {
 
 .art-associates .art-buckets .art-buckets-container {
     width: 100%;
-    display: flex;
+    /*display: flex;*/
     justify-content: space-between;
 }
 
 .art-associates .art-buckets .art-bucket {
-    width: 300px;
+    width: 260px;
     padding: 5px;
-    height: 300px;
+    height: 260px;
     display: inline-block;
     text-align: center;
-    flex-grow: 1;
+    /*flex-grow: 1;*/
 }
 
 .art-associates .art-buckets .art-bucket-picture {
@@ -717,6 +717,7 @@ body {
     background: rgba(0, 0, 0, 0.5);
     color: white;
     transition: all 1s;
+    padding: 16px;
     padding-top: 50px;
     line-height: 1;
 }
@@ -735,17 +736,16 @@ body {
 .art-associates .art-buckets .art-bucket .details .by-user {
     font-size: 0.8em;
     line-height: 1.5em;
-    margin-top: 80px;
-}
-
-
-.art-associates .art-buckets .art-bucket .details.long-description .by-user {
     margin-top: 40px;
 }
 
 .art-associates .art-buckets .art-bucket .details h3 {
     font-size: 1em;
     line-height: 1.5em;
+    height: 1.5em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .art-associates .art-buckets .art-bucket .details .arts-count {
@@ -801,6 +801,19 @@ body {
 
     .art-associates .art-buckets .art-buckets-container {
         display: block;
+    }
+
+    .art-associates .art-buckets .art-bucket .details h2 {
+        font-size: 1em;
+    }
+
+    .art-associates .art-buckets .art-bucket .details h3 {
+        font-size: 0.8em;
+    }
+
+    .art-associates .art-buckets .art-bucket .details .arts-count {
+        margin-top: 16px;
+        display: inline-block;
     }
 }
 
