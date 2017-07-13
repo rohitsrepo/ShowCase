@@ -1075,15 +1075,25 @@ body::-webkit-scrollbar-thumb {
     width: 100%;
     height: 300px;
     position: relative;
+    overflow: hidden;
 }
 
 .interpret-holder .interpret-image {
     position: absolute;
     opacity: 0;
+    height: 100%;
     -webkit-transition: opacity .5s;
     -moz-transition: opacity .5s;
     -ms-transition: opacity .5s;
     transition: opacity .5s;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.interpret-holder .interpret-image.tall {
+    height: auto;
+    width: 100%;
 }
 
 .interpret-holder.loaded .interpret-image {
@@ -1111,6 +1121,10 @@ body::-webkit-scrollbar-thumb {
     padding: 16px;
 }
 
+.interpret-content .details.white {
+    color: white;
+}
+
 .details .details-content-title {
     font-weight: bold;
     font-size: 20px;
@@ -1121,6 +1135,12 @@ body::-webkit-scrollbar-thumb {
 .details .details-content-title {
     display: block;
     cursor: pointer;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.details.white .details-content, 
+.details.white .details-content-title {
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .details .author-details {
@@ -1142,8 +1162,17 @@ body::-webkit-scrollbar-thumb {
     color: rgba( 0, 0, 0, 0.5);
 }
 
+.details.white .author-details span {
+    color: rgba( 255, 255, 255, 0.7);
+}
+
 .author-details h4 {
     font-weight: bold;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.details.white .author-details h4 {
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .author-details:hover h4 {
@@ -1155,16 +1184,23 @@ body::-webkit-scrollbar-thumb {
     margin-top: 16px;
 }
 
-
 .details-actions i {
     font-size: 20px;
-    color: rgba(0, 0, 0, .7 );
+    color: rgba(0, 0, 0, .8);
     cursor: pointer;
     opacity: 0;
 }
 
+.details.white .details-actions i {
+    color: rgba(255, 255, 255, 0.9);
+}
+
 .details-actions i:hover {
     color: black;
+}
+
+.details.white .details-actions i:hover {
+    color: white;
 }
 
 .interpret .details-actions i.active,

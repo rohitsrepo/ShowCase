@@ -176,3 +176,4 @@ class MailOptions(models.Model):
     admiration = models.BooleanField(default=True)
     to_bucket = models.BooleanField(default=True)
     follow = models.BooleanField(default=True)
+    interpret = models.BooleanField(default=True)

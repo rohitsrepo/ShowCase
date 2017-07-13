@@ -11,6 +11,8 @@ def send_admired(admiration_id):
         return send_admired_composition(admiration)
     elif admiration.admire_type == Admiration.BUCKET:
         return send_admired_bucket(admiration)
+    elif admiration.admire_type == Admiration.INTERPRET:
+        return send_admired_interpret(admiration)
     else:
         raise Exception('send_admired_mail: Invalid admiration type found. Admiration:{0} with type: {1}'
             .format(admiration.id, admiration.admire_type))
@@ -91,6 +93,45 @@ def send_admired_bucket(admiration):
     }
 
     message = get_template('mails/admiration/admired_series.html').render(Context(ctx))
+    msg = EmailMessage(subject, message, to=to, from_email=from_email)
+    msg.content_subtype = 'html'
+
+    count = 1
+    while count:
+        try:
+            msg.send(fail_silently=False)
+            break;
+        except:
+            if (count > 3):
+                raise
+            count += count
+
+
+def send_admired_interpret(admiration):
+    target_user = admiration.owner
+    interpret = admiration.content_object
+    if target_user.id == interpret.user.id:
+        return "send_admired_interpret: Action user is same as the target user"
+
+    MailOptions = get_model('accounts', 'MailOptions')
+    mail_options = MailOptions.objects.get(user=interpret.user)
+    if not mail_options.admiration:
+        return "User disabeled admiration mails"
+
+    subject = target_user.name + " admired tale " + interpret.title
+    to = [interpret.user.email]
+    from_email = 'ThirdDime <notifications@thirddime.com>'
+
+    ctx = {
+        'target_name': target_user.name,
+        'target_slug': target_user.slug,
+        'target_picture': target_user.picture.url,
+        'interpret_name': interpret.title,
+        'interpret_slug': interpret.slug,
+        'interpret_user_slug': interpret.user.slug,
+    }
+
+    message = get_template('mails/admiration/admired_interpret.html').render(Context(ctx))
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
     msg.content_subtype = 'html'
 

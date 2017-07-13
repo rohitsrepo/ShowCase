@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from .models import Interpretation
 from .serializers import InterpretationSerializer
 from .permissions import IsInterpreterOrReadOnly
+from .tasks import send_interpret_added_mail
 
 from buckets.models import Bucket
 from buckets.serializers import BucketSerializer
@@ -37,11 +38,14 @@ class InterpretationDetail(APIView):
     def put(self, request, interpretation_id, format=None):
         interpretation = get_object_or_404(Interpretation, id=interpretation_id)
         self.check_object_permissions(request, interpretation)
+        is_draft = interpretation.is_draft
         serializer = InterpretationSerializer(interpretation, data=request.DATA, context={'request': request})
         if serializer.is_valid():
             serializer.object.edited = True
             instance = serializer.save()
-            instance.add_to_fresh_feed()
+            if is_draft and not instance.is_draft:
+                send_interpret_added_mail.delay(instance.id)
+                instance.add_to_fresh_feed()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

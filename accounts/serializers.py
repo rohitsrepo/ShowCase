@@ -76,5 +76,5 @@ class MailOptionsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MailOptions
-        fields = ('id', 'follow', 'to_bucket', 'admiration')
+        fields = ('id', 'follow', 'to_bucket', 'admiration', 'interpret')
         read_only_fields = ('id',)

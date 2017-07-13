@@ -176,6 +176,20 @@ angular.module('UserApp')
         }
     };
 
+    $scope.getTextColor = function (color) {
+        var red = parseInt(color.substring(1,3), 16);
+        var green = parseInt(color.substring(3,5), 16);
+        var blue = parseInt(color.substring(5), 16);
+
+        var lum = 1 - ( 0.299 * red + 0.587 * green + 0.114 * blue)/255;
+
+        if (lum > 0.5){
+            return 'white';
+        }
+
+        return 'black';
+    }
+
     $scope.showArtBuckets = function (index) {
         var art = $scope.artifacts[index].content;
         bucketmodalService.showArtBuckets(art);

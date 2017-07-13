@@ -30,6 +30,8 @@
     <!-- endbuild -->
     <script type="text/javascript">
         function imgLoaded(img){
+            var imageClass =  (img.width/img.height > 1) ? ' wide' : ' tall';
+            img.className += imageClass;
             var imgWrapper = img.parentNode;
             imgWrapper.className += imgWrapper.className ? ' loaded' : 'loaded';
         };
