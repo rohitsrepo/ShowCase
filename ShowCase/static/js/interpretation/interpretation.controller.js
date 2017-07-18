@@ -145,7 +145,7 @@ angular.module("InterpretationApp")
         restrict: 'A',
         link: function (scope, element, attrs) {
             element.bind('load', function () {
-               imgElement = element[0]
+               var imgElement = element[0]
                var imgClass = (imgElement.width/imgElement.height > 1) ? 'landscape' : 'potrait';
                element.addClass(imgClass);
             })

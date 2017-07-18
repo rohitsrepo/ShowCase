@@ -356,7 +356,7 @@ controller("compositionController", [
         restrict: 'A',
         link: function (scope, element, attrs) {
             imagesLoaded(element, function () {
-               imgElement = element[0]
+                var imgElement = element[0]
 
                 if (imgElement.width/$(window).width() > 0.8){
                     element.addClass('landscape');
