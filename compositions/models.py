@@ -210,7 +210,10 @@ class Composition(models.Model):
 
         return None
 
-    def create_post(self):
+    def create_post(self, created, raw):
+        if not created or raw:
+            return
+
         if not self.added_with_bucket:
 
             if not (self.artist.id == self.uploader.id):
@@ -220,7 +223,7 @@ class Composition(models.Model):
                     post_type = Post.ADD,
                     content_object=self)
 
-            return Post(
+            Post.objects.create(
                 composition=self,
                 creator=self.artist,
                 post_type = Post.CREATE,

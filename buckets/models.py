@@ -166,12 +166,17 @@ class BucketMembership(models.Model):
                 object_id=self.bucket.id,
                 content_type=ContentType.objects.get_for_model(Bucket))
 
-    def create_post(self):
-        return Post(
-            composition=self.composition,
-            creator=self.bucket.owner,
-            post_type = Post.BUCKET,
-            content_object=self.bucket)
+    def create_post(self, created, raw):
+        if not created or raw:
+            return
+
+        if self.bucket.public:
+            post = Post(
+                composition=self.composition,
+                creator=self.bucket.owner,
+                post_type = Post.BUCKET,
+                content_object=self.bucket)
+            post.save()
 
     def get_post(self):
         return Post.objects.filter(composition=self.composition,

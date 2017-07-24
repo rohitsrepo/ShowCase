@@ -28,20 +28,22 @@ class Admiration(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
 
-    def create_post(self):
-        if self.admire_type == self.BUCKET:
-            post_type = Post.ADMIRE_BUCKET
-        elif self.admire_type == self.ART:
-            post_type = Post.ADMIRE_ART
-        elif self.admire_type == self.INTERPRET:
-            post_type = Post.ADMIRE_INTERPRET
-        else:
-            raise("Invalid admire type found")
+    def create_post(self, created, raw):
+        if created and not raw:
+            if self.admire_type == self.BUCKET:
+                post_type = Post.ADMIRE_BUCKET
+            elif self.admire_type == self.ART:
+                post_type = Post.ADMIRE_ART
+            elif self.admire_type == self.INTERPRET:
+                post_type = Post.ADMIRE_INTERPRET
+            else:
+                raise("Invalid admire type found")
 
-        return Post(
-            creator=self.owner,
-            post_type = post_type,
-            content_object=self.content_object)
+            post = Post(
+                creator=self.owner,
+                post_type = post_type,
+                content_object=self.content_object)
+            post.save()
 
     def get_post(self):
         if self.admire_type == self.BUCKET:

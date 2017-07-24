@@ -96,10 +96,7 @@ class Post(models.Model):
 
 # Define Signals
 def model_created(sender, instance, created, raw, **kwargs):
-    if created and not raw:
-        post = instance.create_post()
-        if post:
-            post.save()
+    post = instance.create_post(created, raw)
 
 def model_deleted(sender, instance, **kwargs):
     try:

@@ -27,6 +27,7 @@ class Interpretation(models.Model):
     slug = models.SlugField(max_length=200, default="")
     bookers = GenericRelation(BookMark, related_query_name='booked_interprets')
     admirers = GenericRelation(Admiration, related_query_name='admired_interprets')
+    post_id = models.IntegerField(default=0)
 
     def __str__(self):
         if len(self.interpretation) > 12:
@@ -59,12 +60,17 @@ class Interpretation(models.Model):
         soup = BeautifulSoup(self.interpretation)
         return soup.get_text()
 
-    def create_post(self):
-        return Post(
+    def create_post(self, created, raw):
+        if self.is_draft or self.post_id:
+            return
+
+        post = Post.objects.create(
             composition=self.composition,
             creator=self.user,
             post_type = Post.INTERPRET,
             content_object=self)
+        self.post_id = post.id
+        self.save()
 
     def get_post(self):
         return Post.objects.filter(composition=self.composition,
