@@ -1133,6 +1133,10 @@ body::-webkit-scrollbar-thumb {
     margin-bottom: 8px;
 }
 
+.details .details-content {
+    white-space: pre-line;
+}
+
 .details .details-content, 
 .details .details-content-title {
     display: block;
