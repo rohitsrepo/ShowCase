@@ -7,6 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericRelation
 
 from ShowCase.slugger import unique_slugify
+from ShowCase.helpers import html2text
 
 from posts.models import Post, bind_post
 from feeds.models import Fresh, bind_fresh_feed
@@ -57,8 +58,10 @@ class Interpretation(models.Model):
         return '/@' + self.user.slug + '/tales/' + self.slug
 
     def to_text(self):
-        soup = BeautifulSoup(self.interpretation)
-        return soup.get_text()
+        # soup = BeautifulSoup(self.interpretation)
+        # return soup.get_text()
+
+        return html2text.html2text(self.interpretation)
 
     def create_post(self, created, raw):
         if self.is_draft or self.post_id:

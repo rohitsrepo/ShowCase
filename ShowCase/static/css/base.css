@@ -1130,7 +1130,7 @@ body::-webkit-scrollbar-thumb {
 .details .details-content-title {
     font-weight: bold;
     font-size: 20px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 }
 
 .details .details-content, 
@@ -1138,6 +1138,7 @@ body::-webkit-scrollbar-thumb {
     display: block;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.8);
+    line-height: 1.1em;
 }
 
 .details.white .details-content, 
