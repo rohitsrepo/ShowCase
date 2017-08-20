@@ -1212,6 +1212,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 @media (max-width: 800px) {
+    .interpret {
+        width: 100%;
+    }
+
     .details-actions i {
         opacity: 1;
     }
