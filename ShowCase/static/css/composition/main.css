@@ -575,11 +575,19 @@ body {
 }
 
 .art-interprets .art-interpret {
-    width: 49%;
+    width: 48%;
     display: inline-block;
     vertical-align: bottom;
     margin-bottom: 16px;
+    margin-right: 8px;
     position: relative;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.art-interprets .art-interpret:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .art-interpret .art-interpret-title {
@@ -595,6 +603,12 @@ body {
 
 .art-interpret .art-interpret-title:hover {
     text-decoration: underline;
+}
+
+.art-interpret .art-interpret-content {
+    font-size: 1em;
+    display: block;
+    cursor: pointer;
 }
 
 .art-interpret .art-interpret-user {
@@ -623,6 +637,7 @@ body {
     vertical-align: bottom;
     padding: 0;
     opacity: 0;
+    cursor: pointer;
 }
 
 .art-interpret .actions .interpret-action.active,
@@ -637,8 +652,8 @@ body {
     cursor: pointer;
 }
 
-.actions .interpret-action i {
-    color: rgba(0, 0, 0, 0.9);
+.actions.white .interpret-action i {
+    color: rgba(255, 255, 255, 0.9);
 }
 
 @media (max-width: 800px) {
