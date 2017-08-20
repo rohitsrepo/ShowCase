@@ -58,7 +58,9 @@ class Interpretation(models.Model):
 
     def to_text(self):
         soup = BeautifulSoup(self.interpretation)
-        return soup.get_text(separator="\n")
+        text = soup.get_text(separator="\n")
+        if text:
+            return text.strip()
 
     def create_post(self, created, raw):
         if self.is_draft or self.post_id:
