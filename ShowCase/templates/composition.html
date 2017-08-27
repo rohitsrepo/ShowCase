@@ -332,6 +332,10 @@
                         <i class="material-icons">bookmark</i></button>
                 </section>
             </article>
+
+            <section class="associated-buckets-actions" ng-cloak ng-show="associateCounts.artInterprets > 3">
+                <a ng-href="/@[[interpret.user.slug]]">See all [[associateCounts.artInterprets]]<i class="material-icons">arrow_forward</i></a>
+            </section>
         </section>
 
         <section class="associate-category art-buckets" ng-cloak ng-show="artBuckets.length > 0">

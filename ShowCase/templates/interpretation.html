@@ -247,18 +247,28 @@
 
                 <section class="interpret-associates">
 
-                    <!-- <section class="associate-category interpret-interprets" ng-cloak ng-show="relatedInterprets.length > 0">
-                        <h2>Other tales by <a ng-href="/@{{composition.artist.slug}}">[[interpretation.user | titlecase]]</a></h2>
+                    <section class="associate-category interpret-interprets" ng-cloak ng-show="relatedInterprets.length > 0">
+                        <h2>Other tales by <a ng-href="/@{{composition.artist.slug}}">{{interpretation.user.name | title}}</a></h2>
 
-                        <article class="interpret-interpret" ng-repeat="interpret in relatedInterprets">
-                            <a ng-href="/@[[interpret.user.slug]]/tales/[[interpret.slug]]" class="interpret-interpret-text">[[interpret.text]]</a>
-                            <a class="interpret-interpret-user" href="/@[[interpret.user.slug]]">By <b>[[interpret.user.name | titlecase]]</b></a>
-                        </article>
+                        <div class="interpret-holder" ng-repeat="interpret in relatedInterprets">
+                            <img class="interpret-image" ng-src="[[interpret.composition.matter_400]]" alt="[[interpret.composition.title]]" onload="imgLoaded(this)">
+                            <section class="feed-interpret-content">
+                                <section class="details" ng-class="{white: getTextColor('[[interpret.composition.major]]') == 'white'}" ng-style="{'background-color': '[[interpret.composition.major]]'}">
+                                    <a target="_blank" ng-href="[[interpret.url]]" class="details-content-title">[[interpret.title]]</a>
+                                    <a target="_blank" ng-href="[[interpret.url]]" class="details-content">[[interpret.text]]</a>
+                                    <a target="_blank" class="author-details" ng-href="/@[[interpret.user.slug]]">
+                                        <span>by </span>
+                                        <h4>[[interpret.user.name | titlecase]]</h4>
+                                    </a>
+                                    <section class="details-actions">
+                                        <i class="material-icons" ng-click="handleBookmarkInterpret(interpret)" ng-cloak ng-hide="interpret.is_bookmarked">bookmark_border</i>
+                                        <i class="material-icons active" ng-click="handleBookmarkInterpret(interpret)" ng-cloak ng-show="interpret.is_bookmarked">bookmark</i>
+                                    </section>
+                                </section>
+                            </section>
+                        </div>
 
-                        <section class="associated-buckets-actions" ng-cloak ng-show="relatedInterprets.length > 5">
-                            <a ui-sref="buckets({compositionSlug: '{{composition.slug}}' })">See all<i class="material-icons">arrow_forward</i></a>
-                        </section>
-                    </section> -->
+                    </section>
 
                     <section class="associate-category interpret-buckets" ng-cloak ng-show="relatedBuckets.length > 0">
                         <h2><a target="_blank" ng-href="/@{{interpretation.user.slug}}/series">Series created by {{interpretation.user.name | title}}</a></h2>
@@ -273,7 +283,6 @@
                                         <h3 class="nt-mb">[[bucket.owner.name | titlecase ]]</h3>
                                         <div class="arts-count">[[bucket.compositions_count]] Artworks</div>
                                         <div class="arts-count">[[bucket.views]] Views</div>
-
                                     </section>
                                 </div>
                             </a>

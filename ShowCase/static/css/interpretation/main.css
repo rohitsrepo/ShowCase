@@ -194,6 +194,21 @@ body {
     }
 }
 
+/*------------ Related Interprets -------------*/
+.interpret-associates .interpret-interprets {
+    width: 100%;
+    text-align: left;
+}
+
+.interpret-associates .interpret-holder {
+    width: 48%;
+    height: 292px;
+    margin-right: 8px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
 /*------------ Related buckets ----------------*/
 .interpret-associates .interpret-buckets {
     width: 100%;

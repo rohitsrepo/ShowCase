@@ -61,7 +61,7 @@
         <section class="interpret" ng-show="artifact.content_type == 'IN'">
             <div class="interpret-holder">
                 <img class="interpret-image" ng-src="[[artifact.content.composition.matter_400]]" alt="[[artifact.content.composition.title]]" onload="imgLoaded(this)">
-                <section class="interpret-content">
+                <section class="feed-interpret-content">
                     <section class="details" ng-class="{white: getTextColor('[[artifact.content.composition.major]]') == 'white'}" ng-style="{'background-color': '[[artifact.content.composition.major]]'}">
                         <a target="_blank" ng-href="[[artifact.content.url]]" class="details-content-title">[[artifact.content.title]]</a>
                         <a target="_blank" ng-href="[[artifact.content.url]]" class="details-content">[[artifact.content.text]]</a>

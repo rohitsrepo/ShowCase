@@ -69,7 +69,7 @@ def get_related(request, interpretation_id, format=None):
     interpretation = get_object_or_404(Interpretation, id=interpretation_id)
     relatedBuckets = Bucket.objects.filter(public=True, owner=interpretation.user).order_by('-views')[:2]
     relatedWorks = Composition.objects.exclude(id=interpretation.composition.id, uploader=interpretation.user).order_by('-created')[:3]
-    relatedInterprets = Interpretation.objects.filter(public=True, is_draft=False, user=interpretation.user).exclude(id=interpretation.id).order_by('-created')
+    relatedInterprets = Interpretation.objects.filter(public=True, is_draft=False, user=interpretation.user).exclude(id=interpretation.id).order_by('-created')[:2]
 
     relatedBucketsCount = Bucket.objects.filter(public=True, owner=interpretation.user).count()
     relatedWorksCount = Composition.objects.exclude(id=interpretation.composition.id, uploader=interpretation.user).count()

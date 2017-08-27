@@ -1102,7 +1102,7 @@ body::-webkit-scrollbar-thumb {
     opacity: 1;
 }
 
-.interpret .interpret-content {
+.interpret-holder .feed-interpret-content {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -1112,7 +1112,7 @@ body::-webkit-scrollbar-thumb {
     padding: 32px;
 }
 
-.interpret-content .details {
+.feed-interpret-content .details {
     background: rgba(255, 255, 255, 0.85);
     width: 100%;
     height: 100%;
@@ -1123,7 +1123,7 @@ body::-webkit-scrollbar-thumb {
     padding: 16px;
 }
 
-.interpret-content .details.white {
+.feed-interpret-content .details.white {
     color: white;
 }
 
@@ -1161,7 +1161,6 @@ body::-webkit-scrollbar-thumb {
 .author-details h4 {
     display: inline-block;
     vertical-align: top;
-    /*margin: 0 4px;*/
     margin-top: 4px;
 }
 
